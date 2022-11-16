@@ -1,3 +1,7 @@
+---
+title: vcpkg_download_distfile
+---
+
 # vcpkg_download_distfile
 
 Download and cache a file needed for this port.
@@ -58,3 +62,4 @@ The helper [`vcpkg_from_github`](vcpkg_from_github.md) should be used for downlo
 
 ## Source
 [scripts/cmake/vcpkg\_download\_distfile.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_download_distfile.cmake)
+

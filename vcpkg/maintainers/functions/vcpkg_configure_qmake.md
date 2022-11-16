@@ -1,3 +1,7 @@
+---
+title: vcpkg_configure_qmake
+---
+
 # vcpkg_configure_qmake
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_configure_qmake.md).
@@ -27,3 +31,4 @@ The options passed to qmake to the build step.
 
 ## Source
 [scripts/cmake/vcpkg\_configure\_qmake.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_configure_qmake.cmake)
+

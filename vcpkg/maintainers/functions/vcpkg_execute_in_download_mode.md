@@ -1,3 +1,7 @@
+---
+title: vcpkg_execute_in_download_mode
+---
+
 # vcpkg_execute_in_download_mode
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_execute_in_download_mode.md).
@@ -19,3 +23,4 @@ See [`execute_process()`] for more details.
 
 ## Source
 [scripts/cmake/vcpkg\_execute\_in\_download\_mode.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_execute_in_download_mode.cmake)
+

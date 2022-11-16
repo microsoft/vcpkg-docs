@@ -1,3 +1,7 @@
+---
+title: vcpkg_build_make
+---
+
 # vcpkg_build_make
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_build_make.md).
@@ -55,3 +59,4 @@ You can use the alias [`vcpkg_install_make()`](vcpkg_install_make.md) function i
 
 ## Source
 [scripts/cmake/vcpkg\_build\_make.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_build_make.cmake)
+

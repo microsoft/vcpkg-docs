@@ -1,3 +1,7 @@
+---
+title: vcpkg_build_ninja
+---
+
 # vcpkg_build_ninja
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_build_ninja.md).
@@ -17,3 +21,4 @@ Only build the specified targets.
 
 ## Source
 [scripts/cmake/vcpkg\_build\_ninja.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_build_ninja.cmake)
+

@@ -1,3 +1,7 @@
+---
+title: vcpkg_list
+---
+
 # vcpkg_list
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_list.md).
@@ -92,3 +96,4 @@ endif()
 
 ## Source
 [scripts/cmake/vcpkg\_list.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_list.cmake)
+

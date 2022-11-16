@@ -1,3 +1,7 @@
+---
+title: vcpkg_check_features
+---
+
 # vcpkg_check_features
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_check_features.md).
@@ -134,3 +138,4 @@ vcpkg_cmake_configure(
 
 ## Source
 [scripts/cmake/vcpkg\_check\_features.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_check_features.cmake)
+

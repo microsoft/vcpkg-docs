@@ -1,3 +1,7 @@
+---
+title: vcpkg_install_make
+---
+
 # vcpkg_install_make
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_install_make.md).
@@ -24,3 +28,4 @@ This command transparently forwards to [`vcpkg_build_make()`](vcpkg_build_make.m
 
 ## Source
 [scripts/cmake/vcpkg\_install\_make.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_make.cmake)
+

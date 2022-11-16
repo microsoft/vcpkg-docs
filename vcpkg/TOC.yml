@@ -56,7 +56,7 @@
   items:
   - name: Maintainer Guide
     href: contributing/maintainer-guide.md
-  - name: CMake Guidelines
+  - name: CMake Style Guide
     href: contributing/cmake-guidelines.md
   - name: PR Review Checklist
     href: contributing/pr-review-checklist.md
@@ -210,9 +210,9 @@
     - name: vcpkg_replace_string
       href: maintainers/functions/vcpkg_replace_string.md
     - name: x_vcpkg_get_python_packages
-      href: maintainers/functions/x_vcpkg_get_python_packages.md
+      href: maintainers/functions/vcpkg_get_python_packages.md
     - name: x_vcpkg_pkgconfig_get_modules
-      href: maintainers/functions/x_vcpkg_pkgconfig_get_modules.md
+      href: maintainers/functions/vcpkg_pkgconfig_get_modules.md
     - name: Internal
       items:
       - name: execute_process

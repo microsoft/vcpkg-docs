@@ -43,8 +43,8 @@
       "breadcrumb_path": "/vcpkg/breadcrumb/toc.json",
       "extendBreadcrumb": true,
       "feedback_system": "None",
-      "author": "vcpkg",
-      "ms.author": "vcpkg",
+      "author": "ras0219-msft",
+      "ms.author": "roschuma",
       "ms.prod": "visual-cpp"
     },
     "fileMetadata": {},

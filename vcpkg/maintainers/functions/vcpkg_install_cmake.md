@@ -1,3 +1,7 @@
+---
+title: vcpkg_install_cmake
+---
+
 # vcpkg_install_cmake
 
 **This function has been deprecated in favor of [`vcpkg_cmake_install`](vcpkg_cmake_install.md) from the vcpkg-cmake port.**
@@ -27,3 +31,4 @@ parameter.
 
 ## Source
 [scripts/cmake/vcpkg\_install\_cmake.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_cmake.cmake)
+

@@ -1,3 +1,7 @@
+---
+title: vcpkg_acquire_msys
+---
+
 # vcpkg_acquire_msys
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_acquire_msys.md).
@@ -58,3 +62,4 @@ vcpkg_execute_required_process(
 
 ## Source
 [scripts/cmake/vcpkg\_acquire\_msys.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_acquire_msys.cmake)
+

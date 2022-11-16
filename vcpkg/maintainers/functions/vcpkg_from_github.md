@@ -1,3 +1,7 @@
+---
+title: vcpkg_from_github
+---
+
 # vcpkg_from_github
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_from_github.md).
@@ -76,3 +80,4 @@ This exports the `VCPKG_HEAD_VERSION` variable during head builds.
 
 ## Source
 [scripts/cmake/vcpkg\_from\_github.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_from_github.cmake)
+

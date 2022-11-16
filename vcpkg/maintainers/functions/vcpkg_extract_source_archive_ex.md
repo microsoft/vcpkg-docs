@@ -1,3 +1,7 @@
+---
+title: vcpkg_extract_source_archive_ex
+---
+
 # vcpkg_extract_source_archive_ex
 
 **This function has been deprecated in favor of [`vcpkg_extract_source_archive()`].**
@@ -20,3 +24,4 @@ This command forwards all options to [`vcpkg_extract_source_archive()`], with `<
 
 ## Source
 [scripts/cmake/vcpkg\_extract\_source\_archive\_ex.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_extract_source_archive_ex.cmake)
+

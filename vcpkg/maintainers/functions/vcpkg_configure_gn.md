@@ -1,6 +1,11 @@
+---
+title: vcpkg_configure_gn
+---
+
 # vcpkg_configure_gn
 
-**This function has been deprecated in favor of [`vcpkg_gn_configure`](vcpkg_gn_configure.md).**
+> [!WARNING]
+> This function has been deprecated in favor of [`vcpkg_gn_configure`](vcpkg_gn_configure.md).
 
 Generate Ninja (GN) targets
 

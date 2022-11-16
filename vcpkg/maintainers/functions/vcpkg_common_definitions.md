@@ -1,3 +1,7 @@
+---
+title: vcpkg_common_definitions
+---
+
 # vcpkg_common_definitions
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_common_definitions.md).
@@ -36,3 +40,4 @@ portfiles are able to use find_library calls to discover dependent libraries wit
 
 ## Source
 [scripts/cmake/vcpkg\_common\_definitions.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_common_definitions.cmake)
+

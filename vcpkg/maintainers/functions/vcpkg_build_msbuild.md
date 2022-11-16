@@ -1,3 +1,7 @@
+---
+title: vcpkg_build_msbuild
+---
+
 # vcpkg_build_msbuild
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_build_msbuild.md).
@@ -64,3 +68,4 @@ Additional options passed to msbuild for Debug builds. These are in addition to 
 
 ## Source
 [scripts/cmake/vcpkg\_build\_msbuild.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_build_msbuild.cmake)
+

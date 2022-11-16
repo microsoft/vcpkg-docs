@@ -1,3 +1,7 @@
+---
+title: vcpkg_install_qmake
+---
+
 # vcpkg_install_qmake
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_install_qmake.md).
@@ -24,3 +28,4 @@ staging directories.
 
 ## Source
 [scripts/cmake/vcpkg\_install\_qmake.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_qmake.cmake)
+

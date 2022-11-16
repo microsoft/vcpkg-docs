@@ -1,3 +1,7 @@
+---
+title: vcpkg_cmake_configure
+---
+
 # vcpkg_cmake_configure
 
 **The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_cmake_configure.md).**
@@ -135,3 +139,4 @@ This command replaces [`vcpkg_configure_cmake()`](vcpkg_configure_cmake.md).
 
 [ninja]: https://ninja-build.org/
 [VCPKG_CHAINLOAD_TOOLCHAIN_FILE]: ../../users/triplets.md#VCPKG_CHAINLOAD_TOOLCHAIN_FILE
+

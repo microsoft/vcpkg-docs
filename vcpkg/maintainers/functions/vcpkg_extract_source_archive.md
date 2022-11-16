@@ -1,3 +1,7 @@
+---
+title: vcpkg_extract_source_archive
+---
+
 # vcpkg_extract_source_archive
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_extract_source_archive.md).
@@ -152,3 +156,4 @@ This command replaces [`vcpkg_extract_source_archive_ex()`](vcpkg_extract_source
 
 ## Source
 [scripts/cmake/vcpkg\_extract\_source\_archive.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_extract_source_archive.cmake)
+

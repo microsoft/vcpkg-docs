@@ -105,15 +105,15 @@ Especially useful to provide your own build_machine and host_machine entries.
 
 ### VCPKG_MESON_NATIVE_FILE_DEBUG
 
-See [VCPKG_MESON_NATIVE_FILE_RELEASE](#vcpkg-meson-native-file-release).
+See [VCPKG_MESON_NATIVE_FILE_RELEASE](#vcpkg_meson_native_file_release).
 
 ### VCPKG_MESON_CROSS_FILE_RELEASE
 
-See [VCPKG_MESON_NATIVE_FILE_RELEASE](#vcpkg-meson-native-file-release).
+See [VCPKG_MESON_NATIVE_FILE_RELEASE](#vcpkg_meson_native_file_release).
 
 ### VCPKG_MESON_CROSS_FILE_DEBUG
 
-See [VCPKG_MESON_NATIVE_FILE_RELEASE](#vcpkg-meson-native-file-release).
+See [VCPKG_MESON_NATIVE_FILE_RELEASE](#vcpkg_meson_native_file_release).
 
 ### VCPKG_CMAKE_CONFIGURE_OPTIONS
 Set additional CMake configure options that are appended to the configure command (in [`vcpkg_cmake_configure`](../maintainers/functions/vcpkg_cmake_configure.md)).

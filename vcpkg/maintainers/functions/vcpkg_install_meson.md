@@ -1,3 +1,7 @@
+---
+title: vcpkg_install_meson
+---
+
 # vcpkg_install_meson
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_install_meson.md).
@@ -20,3 +24,4 @@ Adds the appropriate Release and Debug `bin\` directories to the path during the
 
 ## Source
 [scripts/cmake/vcpkg\_install\_meson.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_meson.cmake)
+

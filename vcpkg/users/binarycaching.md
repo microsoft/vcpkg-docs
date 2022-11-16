@@ -272,5 +272,3 @@ Binary caching relies on hashing everything that contributes to a particular pac
 Despite this extensive list, it is possible to defeat the cache and introduce nondeterminism. If you have additional details that you'd like to be tracked, the easiest resolution is to generate a triplet file with your additional information in a comment. That additional information will be included in the package's input set and ensure a unique universe of binaries.
 
 The hashes used are stored in the package and in the current installed directory at `/share/<port>/vcpkg_abi_info.txt`.
-
-The original specification for binary caching is available [here](../specifications/binarycaching.md).

@@ -1,4 +1,9 @@
-# Maintainer Guidelines and Policies
+---
+title: vcpkg Maintainer Guide
+description: The Guide for maintainers contributing to vcpkg.
+---
+
+# Maintainer Guide
 
 This document lists a set of policies that you should apply when adding or updating a port recipe.
 It is intended to serve the role of

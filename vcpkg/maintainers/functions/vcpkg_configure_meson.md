@@ -1,3 +1,7 @@
+---
+title: vcpkg_configure_meson
+---
+
 # vcpkg_configure_meson
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_configure_meson.md).
@@ -42,3 +46,4 @@ This command supplies many common arguments to Meson. To see the full list, exam
 
 ## Source
 [scripts/cmake/vcpkg\_configure\_meson.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_configure_meson.cmake)
+

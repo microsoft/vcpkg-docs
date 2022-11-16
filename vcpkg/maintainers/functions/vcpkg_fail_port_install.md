@@ -1,6 +1,10 @@
+---
+title: vcpkg_fail_port_install
+---
+
 # vcpkg_fail_port_install
 
-**This function has been deprecated in favor of the [`supports` field](manifest-files.md#supports).**
+**This function has been deprecated in favor of the [`supports` field](../../users/manifests.md#supports).**
 
 Checks common requirements and fails the current portfile with a (default) error message
 
@@ -41,3 +45,4 @@ Library linkage for which the build should fail early.
 
 ## Source
 [scripts/cmake/vcpkg\_fail\_port\_install.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_fail_port_install.cmake)
+

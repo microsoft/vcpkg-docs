@@ -1,3 +1,7 @@
+---
+title: vcpkg_copy_tools
+---
+
 # vcpkg_copy_tools
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_copy_tools.md).
@@ -34,3 +38,4 @@ Auto clean the copied executables from `${CURRENT_PACKAGES_DIR}/bin` and `${CURR
 
 ## Source
 [scripts/cmake/vcpkg\_copy\_tools.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_copy_tools.cmake)
+

@@ -1,3 +1,7 @@
+---
+title: vcpkg_install_copyright
+---
+
 # vcpkg_install_copyright
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_install_copyright.md).
@@ -67,3 +71,4 @@ vcpkg_install_copyright(FILE_LIST ${LICENSE_FILES})
 ## Source
 
 [vcpkg_install_copyright.md](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_copyright.cmake)
+

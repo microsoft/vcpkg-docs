@@ -1,3 +1,7 @@
+---
+title: vcpkg_fixup_pkgconfig
+---
+
 # vcpkg_fixup_pkgconfig
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_fixup_pkgconfig.md).
@@ -47,3 +51,4 @@ Still work in progress. If there are more cases which can be handled here feel f
 
 ## Source
 [scripts/cmake/vcpkg\_fixup\_pkgconfig.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_fixup_pkgconfig.cmake)
+

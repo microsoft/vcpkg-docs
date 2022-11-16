@@ -1,3 +1,7 @@
+---
+title: vcpkg_install_msbuild
+---
+
 # vcpkg_install_msbuild
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_install_msbuild.md).
@@ -93,3 +97,4 @@ Additional options passed to msbuild for Debug builds. These are in addition to 
 
 ## Source
 [scripts/cmake/vcpkg\_install\_msbuild.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_msbuild.cmake)
+

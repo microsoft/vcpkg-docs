@@ -1,3 +1,7 @@
+---
+title: vcpkg_gn_install
+---
+
 # vcpkg_gn_install
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/ports/vcpkg-gn/vcpkg_gn_install.md).
@@ -27,3 +31,4 @@ Note: includes must be handled separately
 
 ## Source
 [ports/vcpkg-gn/vcpkg\_gn\_install.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-gn/vcpkg_gn_install.cmake)
+

@@ -1,3 +1,7 @@
+---
+title: vcpkg_minimum_required
+---
+
 # vcpkg_minimum_required
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_minimum_required.md).
@@ -15,3 +19,4 @@ The date-version to check against.
 
 ## Source
 [scripts/cmake/vcpkg\_minimum\_required.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_minimum_required.cmake)
+

@@ -1,3 +1,7 @@
+---
+title: vcpkg_copy_tool_dependencies
+---
+
 # vcpkg_copy_tool_dependencies
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_copy_tool_dependencies.md).
@@ -21,3 +25,4 @@ This command should always be called by portfiles after they have finished rearr
 
 ## Source
 [scripts/cmake/vcpkg\_copy\_tool\_dependencies.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_copy_tool_dependencies.cmake)
+

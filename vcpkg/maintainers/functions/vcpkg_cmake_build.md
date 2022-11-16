@@ -1,6 +1,8 @@
-# vcpkg_cmake_build
+---
+title: vcpkg_cmake_build
+---
 
-**The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_cmake_build.md).**
+# vcpkg_cmake_build
 
 Build a cmake project with a custom install target.
 
@@ -19,7 +21,7 @@ vcpkg_cmake_build(
 )
 ```
 
-To use this function, you must depend on the helper port [`vcpkg-cmake`](ports/vcpkg-cmake.md):
+To use this function, you must depend on the helper port `vcpkg-cmake`:
 ```no-highlight
 "dependencies": [
   {
@@ -66,3 +68,4 @@ This command replaces [`vcpkg_build_cmake()`](vcpkg_build_cmake.md).
 
 ## Source
 [ports/vcpkg-cmake/vcpkg\_cmake\_build.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-cmake/vcpkg_cmake_build.cmake)
+

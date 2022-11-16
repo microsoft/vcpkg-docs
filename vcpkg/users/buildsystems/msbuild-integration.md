@@ -44,7 +44,7 @@ The following examples assume they are at the root of your repository with a sub
 
 See the [Customize your build][1] section of the official MSBuild documentation for more information on `Directory.Build.targets` and `Directory.Build.props`.
 
-[1]: visualstudio/msbuild/customize-your-build#directorybuildprops-and-directorybuildtargets
+[1]: /visualstudio/msbuild/customize-your-build#directorybuildprops-and-directorybuildtargets
 
 ### Linked NuGet Package
 

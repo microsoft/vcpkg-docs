@@ -1,3 +1,7 @@
+---
+title: vcpkg_qmake_configure
+---
+
 # vcpkg_qmake_configure
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/ports/vcpkg-qmake/vcpkg_qmake_configure.md).
@@ -34,3 +38,4 @@ The options passed after -- to qmake.
 
 ## Source
 [ports/vcpkg-qmake/vcpkg\_qmake\_configure.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-qmake/vcpkg_qmake_configure.cmake)
+

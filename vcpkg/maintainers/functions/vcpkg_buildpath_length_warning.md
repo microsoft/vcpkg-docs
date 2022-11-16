@@ -1,3 +1,7 @@
+---
+title: vcpkg_buildpath_length_warning
+---
+
 # vcpkg_buildpath_length_warning
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_buildpath_length_warning.md).
@@ -14,3 +18,4 @@ and isn't relied on for correctness.
 
 ## Source
 [scripts/cmake/vcpkg\_buildpath\_length\_warning.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_buildpath_length_warning.cmake)
+

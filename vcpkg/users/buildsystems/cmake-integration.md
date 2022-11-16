@@ -1,18 +1,11 @@
+---
+title: CMake Integration
+description: How to integrate vcpkg into a CMake build using Visual Studio, Visual Studio Code, a terminal, or other IDEs.
+---
+
 # CMake Integration
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/users/buildsystems/cmake-integration.md).**
-
 See [Installing and Using Packages Example: sqlite](../../examples/installing-and-using-packages.md) for a fully worked example using CMake.
-
-## Table of Contents
-
-- [`CMAKE_TOOLCHAIN_FILE`](#cmake_toolchain_file)
-- [IDE Integration](#ide-integration)
-  - [Visual Studio Code (CMake Tools extension)](#visual-studio-code-cmake-tools-extension)
-  - [Visual Studio](#visual-studio)
-  - [CLion](#clion)
-- [Using Multiple Toolchain Files](#using-multiple-toolchain-files)
-- [Settings Reference](#settings-reference)
 
 ## `CMAKE_TOOLCHAIN_FILE`
 

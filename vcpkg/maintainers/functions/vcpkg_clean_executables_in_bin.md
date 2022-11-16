@@ -1,3 +1,7 @@
+---
+title: vcpkg_clean_executables_in_bin
+---
+
 # vcpkg_clean_executables_in_bin
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_clean_executables_in_bin.md).
@@ -23,3 +27,4 @@ Generally, there is no need to call this function manually. Instead, pass an ext
 
 ## Source
 [scripts/cmake/vcpkg\_clean\_executables\_in\_bin.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_clean_executables_in_bin.cmake)
+

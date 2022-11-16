@@ -1,3 +1,8 @@
+---
+title: Android Support in vcpkg
+description: How to target Android devices using C++ with vcpkg
+---
+
 # Android
 
 > [!NOTE]
@@ -184,25 +189,25 @@ cmake
 
 ### Test on an example
 
-The folder [docs/examples/vcpkg_android_example_cmake](../examples/vcpkg_android_example_cmake) provides a working example, with an android library that consumes the jsoncpp library:
+The folder [docs/examples/vcpkg_android_example_cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake) provides a working example, with an android library that consumes the jsoncpp library:
 
 *Details*
 
-* The [CMakeLists](../../examples/vcpkg_android_example_cmake/CMakeLists.txt) simply uses `find_package` and `target_link_library`
+* The [CMakeLists](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake/CMakeLists.txt) simply uses `find_package` and `target_link_library`
 
-* The [compile.sh](../../examples/vcpkg_android_example_cmake/compile.sh) script enables you to select any matching pair of "android abi" /  "vcpkg triplet" and to test the compilation
+* The [compile.sh](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake/compile.sh) script enables you to select any matching pair of "android abi" /  "vcpkg triplet" and to test the compilation
 
-* The dummy [my_lib.cpp](../../examples/vcpkg_android_example_cmake/my_lib.cpp) file uses the jsoncpp library
+* The dummy [my_lib.cpp](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake/my_lib.cpp) file uses the jsoncpp library
 
 *Note*: this example only compiles an Android library, as the compilation of a full fledged Android App is beyond the scope of this document.
 
-### Test on an example, using [vcpkg_android.cmake](../examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake)
+### Test on an example, using [vcpkg_android.cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake)
 
-The folder [vcpkg_android_example_cmake_script](../../examples/vcpkg_android_example_cmake_script) provides the same example, and uses a cmake script in order to simplify the usage.
+The folder [vcpkg_android_example_cmake_script](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script) provides the same example, and uses a cmake script in order to simplify the usage.
 
 *Details*
 
-* The main [CMakeLists](../../examples/vcpkg_android_example_cmake_script/CMakeLists.txt) loads [vcpkg_android.cmake](../../examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake) if the flag `VCPKG_TARGET_ANDROID` is set:
+* The main [CMakeLists](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script/CMakeLists.txt) loads [vcpkg_android.cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake) if the flag `VCPKG_TARGET_ANDROID` is set:
 ````cmake
 if (VCPKG_TARGET_ANDROID)
     include("cmake/vcpkg_android.cmake")
@@ -210,7 +215,7 @@ endif()
 ````
 *Important: place these lines before calling project() !*
 
-* The [compile.sh](../../examples/vcpkg_android_example_cmake_script/compile.sh) script shows that it is then possible to compile for android using a simple cmake invocation, for example:
+* The [compile.sh](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script/compile.sh) script shows that it is then possible to compile for android using a simple cmake invocation, for example:
 ````bash
 cmake .. -DVCPKG_TARGET_ANDROID=ON -DANDROID_ABI=armeabi-v7a
 ````
@@ -242,8 +247,6 @@ export ANDROID_NDK_HOME=/home/your-account/Android/Sdk/ndk-bundle
 3. `maven <optional>`
 
 4. Android triplets
-
-See [android.md](../users/android.md) for instructions on how to install the triplets.
 
 *Please note that in order to use "prefab" (see below), the four architectures are required. If any is missing the export will fail*
 

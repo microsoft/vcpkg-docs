@@ -1,3 +1,7 @@
+---
+title: vcpkg_from_sourceforge
+---
+
 # vcpkg_from_sourceforge
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_from_sourceforge.md).
@@ -71,3 +75,4 @@ Specifies that the default removal of the top level folder should not occur.
 
 ## Source
 [scripts/cmake/vcpkg\_from\_sourceforge.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_from_sourceforge.cmake)
+

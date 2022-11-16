@@ -156,7 +156,7 @@ The output of that command will be the commit SHA you need to put as the `"built
 Once your changes have been committed locally, you can refer to the commit SHA regardless of the repository branch you're working on. So, let's go back to the main vcpkg repository branch.
 
 ```
-git checkout master
+git checkout HEAD
 ```
 
 ### Step 6: Create your manifest file with your custom baseline

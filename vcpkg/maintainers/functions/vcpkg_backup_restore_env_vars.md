@@ -1,3 +1,7 @@
+---
+title: vcpkg_backup_restore_env_vars
+---
+
 # vcpkg_backup_restore_env_vars
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_backup_restore_env_vars.md).
@@ -24,3 +28,4 @@ multiple times for one `backup`.
 
 ## Source
 [scripts/cmake/vcpkg\_backup\_restore\_env\_vars.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_backup_restore_env_vars.cmake)
+

@@ -1,5 +1,9 @@
-Vcpkg PR Checklist
-=====================
+---
+title: vcpkg PR Review Checklist
+---
+
+vcpkg PR Review Checklist
+=========================
 Revision: 1
 
 ## Overview

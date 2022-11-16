@@ -1,3 +1,7 @@
+---
+title: vcpkg_find_acquire_program
+---
+
 # vcpkg_find_acquire_program
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_find_acquire_program.md).
@@ -49,3 +53,4 @@ Note that msys2 has a dedicated helper function: [`vcpkg_acquire_msys`](vcpkg_ac
 
 ## Source
 [scripts/cmake/vcpkg\_find\_acquire\_program.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_find_acquire_program.cmake)
+

@@ -1,3 +1,7 @@
+---
+title: vcpkg_add_to_path
+---
+
 # vcpkg_add_to_path
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_add_to_path.md).
@@ -25,3 +29,4 @@ If no paths are passed, then nothing will be done.
 
 ## Source
 [scripts/cmake/vcpkg\_add\_to\_path.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_add_to_path.cmake)
+

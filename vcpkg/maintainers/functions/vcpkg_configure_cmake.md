@@ -4,7 +4,8 @@ title: vcpkg_configure_cmake
 
 # vcpkg_configure_cmake
 
-**This function has been deprecated in favor of [`vcpkg_cmake_configure`](vcpkg_cmake_configure.md).**
+> [!WARNING]
+> This function has been deprecated in favor of [`vcpkg_cmake_configure`](vcpkg_cmake_configure.md).
 
 Configure CMake for Debug and Release builds of a project.
 

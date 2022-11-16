@@ -1,6 +1,8 @@
-# vcpkg_configure_make
+---
+title: vcpkg_configure_make
+---
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_configure_make.md).
+# vcpkg_configure_make
 
 Configure configure for Debug and Release builds of a project.
 
@@ -95,3 +97,4 @@ This command supplies many common arguments to configure. To see the full list, 
 
 ## Source
 [scripts/cmake/vcpkg\_configure\_make.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_configure_make.cmake)
+

@@ -1,4 +1,9 @@
-# CMake Guidelines
+---
+title: vcpkg CMake Style Guide
+description: The CMake Style Guide for contributing to vcpkg.
+---
+
+# CMake Style Guide
 
 We expect that all CMake scripts that are either:
 

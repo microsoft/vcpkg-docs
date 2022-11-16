@@ -1,3 +1,7 @@
+---
+title: vcpkg_get_python_packages
+---
+
 # x_vcpkg_get_python_packages
 
 [!INCLUDE [experimental](../../../includes/experimental.md)]
@@ -35,3 +39,4 @@ Variable to store the path to the python binary inside the virtual environment
 
 ## Source
 [ports/vcpkg-get-python-packages/x\_vcpkg\_get\_python\_packages.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-get-python-packages/x_vcpkg_get_python_packages.cmake)
+

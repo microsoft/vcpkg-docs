@@ -1,3 +1,7 @@
+---
+title: vcpkg_host_path_list
+---
+
 # vcpkg_host_path_list
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_host_path_list.md).
@@ -27,3 +31,4 @@ for `SET`, the variable will be set to the empty string.
 
 ## Source
 [scripts/cmake/vcpkg\_host\_path\_list.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_host_path_list.cmake)
+

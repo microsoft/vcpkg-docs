@@ -1,3 +1,7 @@
+---
+title: vcpkg_check_linkage
+---
+
 # vcpkg_check_linkage
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_check_linkage.md).
@@ -36,3 +40,4 @@ This command will either alter the settings for `VCPKG_LIBRARY_LINKAGE` or fail,
 
 ## Source
 [scripts/cmake/vcpkg\_check\_linkage.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_check_linkage.cmake)
+

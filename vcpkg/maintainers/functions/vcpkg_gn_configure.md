@@ -1,3 +1,7 @@
+---
+title: vcpkg_gn_configure
+---
+
 # vcpkg_gn_configure
 
 The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/ports/vcpkg-gn/vcpkg_gn_configure.md).
@@ -30,3 +34,4 @@ Options to be passed to the release target.
 
 ## Source
 [ports/vcpkg-gn/vcpkg\_gn\_configure.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-gn/vcpkg_gn_configure.cmake)
+
