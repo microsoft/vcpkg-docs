@@ -217,7 +217,7 @@ cmake .. -DVCPKG_TARGET_ANDROID=ON -DANDROID_ABI=armeabi-v7a
 
 ## Consume libraries using vcpkg, and Android prefab Archives (AAR files)
 
-[!INCLUDE [experimental](/includes/experimental.md)]
+[!INCLUDE [experimental](../../../includes/experimental.md)]
 
 vcpkg can export android archives ([AAR files](https://developer.android.com/studio/projects/android-library)). Once an archive is created, it can imported in Android Studio as a native dependent.  The archive is automatically consumed using [android studio's prefab tool](https://github.com/google/prefab). 
 

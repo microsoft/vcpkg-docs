@@ -241,4 +241,4 @@ If you want to have flexible port customization along with versioning, you shoul
 
 ## Further reading
 
-If you're interested in delving deeper into the details of how versioning works we recommended that you read our [Versioning Reference](../users/versioning.md) and [Versioning Concepts](../users/versioning.implementation-details.md).
+If you're interested in delving deeper into the details of how versioning works we recommended that you read our [Versioning Reference](../users/versioning.md) and [Versioning Concepts](../users/versioning.concepts.md).

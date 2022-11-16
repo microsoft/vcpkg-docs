@@ -1,6 +1,6 @@
 # x_vcpkg_get_python_packages
 
-[!INCLUDE [experimental](/includes/experimental.md)]
+[!INCLUDE [experimental](../../../includes/experimental.md)]
 
 Retrieve needed python packages.
 

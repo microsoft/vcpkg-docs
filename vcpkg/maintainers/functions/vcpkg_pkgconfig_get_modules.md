@@ -4,7 +4,7 @@ title: x_vcpkg_pkgconfig_get_modules
 
 # x_vcpkg_pkgconfig_get_modules
 
-[!INCLUDE [experimental](/includes/experimental.md)]
+[!INCLUDE [experimental](../../../includes/experimental.md)]
 
 Retrieve required module information from pkgconfig modules
 

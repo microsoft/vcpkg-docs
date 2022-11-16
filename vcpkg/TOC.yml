@@ -27,7 +27,7 @@
     - name: Consuming Alternate Registries
       href: users/registries.md
     - name: Versioning Concepts
-      href: users/versioning.implementation-details.md
+      href: users/versioning.concepts.md
     - name: Versioning Reference
       href: users/versioning.md
     - name: Asset Caching

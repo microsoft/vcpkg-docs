@@ -1,6 +1,6 @@
 # Asset Caching
 
-[!INCLUDE [experimental](/includes/experimental.md)]
+[!INCLUDE [experimental](../../../includes/experimental.md)]
 
 vcpkg can utilize mirrors to cache downloaded assets, ensuring continued operation even if the original source changes
 or disappears.
