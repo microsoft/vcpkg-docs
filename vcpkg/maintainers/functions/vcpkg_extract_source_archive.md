@@ -103,7 +103,7 @@ Defaults to `${CURRENT_BUILDTREES_DIR}/<BASE_DIRECTORY>`. Must be an absolute pa
 
 `vcpkg_extract_source_archive` extracts the archive into `<WORKING_DIRECTORY>/<SOURCE_BASE>-<short-hash>.clean`. If the folder exists, it is deleted before extraction. Without specifying `SOURCE_BASE`, `BASE_DIRECTORY`, or `WORKING_DIRECTORY`, this will default to `${CURRENT_BUILDTREES_DIR}/src/<archive-stem>-<short-hash>.clean`.
 
-In [`--editable`](../commands/install.md#editable) mode:
+In [`--editable`](../../commands/install.md#editable) mode:
 1. No `.clean` suffix is added to the extracted folder
 2. The extracted folder is not deleted. If it exists, `vcpkg_extract_source_archive` does nothing.
 

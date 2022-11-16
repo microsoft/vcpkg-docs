@@ -33,9 +33,9 @@ A list of URL/SHA512 pairs to acquire in msys.
 This parameter can be used by a port to privately extend the list of msys packages to be acquired.
 The URLs can be found on the msys2 website[1] and should be a direct archive link:
 
-    https://repo.msys2.org/mingw/i686/mingw-w64-i686-gettext-0.19.8.1-9-any.pkg.tar.zst
+> https://repo.msys2.org/mingw/i686/mingw-w64-i686-gettext-0.19.8.1-9-any.pkg.tar.zst
 
-[1] https://packages.msys2.org/search
+[1]: https://packages.msys2.org/search
 
 ## Notes
 A call to `vcpkg_acquire_msys` will usually be followed by a call to `bash.exe`:

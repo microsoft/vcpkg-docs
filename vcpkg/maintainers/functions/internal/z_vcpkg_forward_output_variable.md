@@ -1,6 +1,5 @@
 ---
-title: z_vcpkg_apply_patches
-description: Internal helper to apply a set of patches to a source tree.
+title: z_vcpkg_forward_output_variable
 ---
 
 # z_vcpkg_forward_output_variable

@@ -1,7 +1,5 @@
 # vcpkg_download_distfile
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_download_distfile.md).
-
 Download and cache a file needed for this port.
 
 This helper should always be used instead of CMake's built-in `file(DOWNLOAD)` command.
@@ -47,7 +45,7 @@ Requires `SKIP_SHA512`.
 ### HEADERS
 A list of headers to append to the download request. This can be used for authentication during a download.
 
-Headers should be specified as "<header-name>: <header-value>".
+Headers should be specified as `"<header-name>: <header-value>"`.
 
 ## Notes
 The helper [`vcpkg_from_github`](vcpkg_from_github.md) should be used for downloading from GitHub projects.

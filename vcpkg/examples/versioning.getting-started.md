@@ -5,10 +5,6 @@ description: Learn how to use versioning in vcpkg
 
 # Getting started with versioning
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/examples/versioning.getting-started.md).**
-
-Vcpkg lets you take control of which version of packages to install in your projects using manifests. 
-
 ## Using versions with manifests
 
 Let's start with creating a simple CMake project that depends on `fmt` and `zlib`.
@@ -241,14 +237,8 @@ The last thing to discuss is how overlay ports interact with versioning resoluti
 
 Going into more detail, when you provide an overlay for a port, vcpkg will always use the overlay port without caring what version is contained in it. The reasons are two-fold: (1) it is consistent with the existing behavior of overlay ports of completely masking the existing port, and (2) overlay ports do not (and are not expected to) provide enough information to power vcpkg's versioning feature.
 
-If you want to have flexible port customization along with versioning, you should consider making your own custom registry. See our [registries specification for more details](../specifications/registries.md).
+If you want to have flexible port customization along with versioning, you should consider [making your own custom registry](../maintainers/registries.md).
 
 ## Further reading
 
-If you're interested in delving deeper into the details of how versioning works we recommended that you read the [original versioning specification](../specifications/versioning.md) and the [implementation details](../users/versioning.implementation-details.md).
-
-See also:
-
-* [Versioning docs](../users/versioning.md)
-* [Original specification](../specifications/versioning.md)
-* [Versioning implementation details](../users/versioning.implementation-details.md)
+If you're interested in delving deeper into the details of how versioning works we recommended that you read our [Versioning Reference](../users/versioning.md) and [Versioning Concepts](../users/versioning.implementation-details.md).

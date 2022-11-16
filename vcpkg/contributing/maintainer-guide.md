@@ -42,15 +42,15 @@ https://github.blog/2019-02-14-introducing-draft-pull-requests/
 
 At this time, the following helpers are deprecated:
 
-- [`vcpkg_extract_source_archive_ex()`](vcpkg_extract_source_archive_ex.md) should be replaced by the supported overload of [`vcpkg_extract_source_archive()`] (with `ARCHIVE`)
+- [`vcpkg_extract_source_archive_ex()`](../maintainers/functions/vcpkg_extract_source_archive_ex.md) should be replaced by the supported overload of [`vcpkg_extract_source_archive()`] (with `ARCHIVE`)
 - The deprecated overload of [`vcpkg_extract_source_archive()`] without `ARCHIVE` should be replaced by the supported overload with `ARCHIVE`.
-- `vcpkg_apply_patches()` should be replaced by the `PATCHES` arguments to the "extract" helpers (e.g. [`vcpkg_from_github()`](vcpkg_from_github.md))
-- `vcpkg_build_msbuild()` should be replaced by [`vcpkg_install_msbuild()`](vcpkg_install_msbuild.md)
-- `vcpkg_copy_tool_dependencies()` should be replaced by [`vcpkg_copy_tools()`](vcpkg_copy_tools.md)
-- `vcpkg_configure_cmake` should be replaced by [`vcpkg_cmake_configure()`](vcpkg_cmake_configure.md) after removing `PREFER_NINJA` (from port [`vcpkg-cmake`](ports/vcpkg-cmake.md))
-- `vcpkg_build_cmake` should be replaced by [`vcpkg_cmake_build()`](vcpkg_cmake_build.md) (from port [`vcpkg-cmake`](ports/vcpkg-cmake.md))
-- `vcpkg_install_cmake` should be replaced by [`vcpkg_cmake_install()`](vcpkg_cmake_install.md) (from port [`vcpkg-cmake`](ports/vcpkg-cmake.md))
-- `vcpkg_fixup_cmake_targets` should be replaced by [`vcpkg_cmake_config_fixup`](ports/vcpkg-cmake-config/vcpkg_cmake_config_fixup.md#vcpkg_cmake_config_fixup) (from port [`vcpkg-cmake-config`](ports/vcpkg-cmake-config.md#vcpkg-cmake-config))
+- `vcpkg_apply_patches()` should be replaced by the `PATCHES` arguments to the "extract" helpers (e.g. [`vcpkg_from_github()`](../maintainers/functions/vcpkg_from_github.md))
+- `vcpkg_build_msbuild()` should be replaced by [`vcpkg_install_msbuild()`](../maintainers/functions/vcpkg_install_msbuild.md)
+- `vcpkg_copy_tool_dependencies()` should be replaced by [`vcpkg_copy_tools()`](../maintainers/functions/vcpkg_copy_tools.md)
+- `vcpkg_configure_cmake` should be replaced by [`vcpkg_cmake_configure()`](../maintainers/functions/vcpkg_cmake_configure.md) after removing `PREFER_NINJA`
+- `vcpkg_build_cmake` should be replaced by [`vcpkg_cmake_build()`](../maintainers/functions/vcpkg_cmake_build.md)
+- `vcpkg_install_cmake` should be replaced by [`vcpkg_cmake_install()`](../maintainers/functions/vcpkg_cmake_install.md)
+- `vcpkg_fixup_cmake_targets` should be replaced by [`vcpkg_cmake_config_fixup`](../maintainers/functions/vcpkg_cmake_config_fixup.md)
 
 Some of the replacement helper functions are in "tools ports" to allow consumers to pin their
 behavior at specific versions, to allow locking the behavior of the helpers at a particular
@@ -67,7 +67,7 @@ version. Tools ports need to be added to your port's `"dependencies"`, like so:
 }
 ```
 
-[`vcpkg_extract_source_archive()`]: vcpkg_extract_source_archive.md
+[`vcpkg_extract_source_archive()`]: ../maintainers/functions/vcpkg_extract_source_archive.md
 
 ### Avoid excessive comments in portfiles
 
@@ -119,15 +119,15 @@ Many ports are using this code to install a copyright file:
 file(INSTALL "${SOURCE_PATH}LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
 ```
 
-This is discouraged in favour of [`vcpkg_install_copyright()`](vcpkg_install_copyright.md). New ports should use `vcpkg_install_copyright()` instead. However, it is still valid for existing ports to use something like the code above. You may replace this with `vcpkg_install_copyright` but you don't have to.
+This is discouraged in favour of [`vcpkg_install_copyright()`](../maintainers/functions/vcpkg_install_copyright.md). New ports should use `vcpkg_install_copyright()` instead. However, it is still valid for existing ports to use something like the code above. You may replace this with `vcpkg_install_copyright` but you don't have to.
 
-`vcpkg_install_copyright` also includes the functionallity to handle multiple copyright files. See its [documentation](vcpkg_install_copyright.md) for more info.
+`vcpkg_install_copyright` also includes the functionallity to handle multiple copyright files. See its [documentation](../maintainers/functions/vcpkg_install_copyright.md) for more info.
 
 ## Features
 
 ### Do not use features to implement alternatives
 
-Features must be treated as additive functionality. If port[featureA] installs and port[featureB] installs, then port[featureA,featureB] must install. Moreover, if a second port depends on [featureA] and a third port depends on [featureB], installing both the second and third ports should have their dependencies satisfied.
+Features must be treated as additive functionality. If `port[featureA]` installs and `port[featureB]` installs, then `port[featureA,featureB]` must install. Moreover, if a second port depends on `[featureA]` and a third port depends on `[featureB]`, installing both the second and third ports should have their dependencies satisfied.
 
 Libraries in this situation must choose one of the available options as expressed in vcpkg, and users who want a different setting must use overlay ports at this time.
 
@@ -192,7 +192,7 @@ All dependencies should be split out and packaged separately so they can be upda
 When multiple buildsystems are available, prefer using CMake.
 Additionally, when appropriate, it can be easier and more maintainable to rewrite alternative buildsystems into CMake using `file(GLOB)` directives.
 
-Examples: [abseil](../../ports/abseil/portfile.cmake)
+Examples: [abseil](https://github.com/Microsoft/vcpkg/tree/master/ports/abseil/portfile.cmake)
 
 ### Choose either static or shared binaries
 
@@ -213,8 +213,7 @@ vcpkg_cmake_configure(
 
 ### When defining features, explicitly control dependencies
 
-When defining a feature that captures an optional dependency,
-ensure that the dependency will not be used accidentally when the feature is not explicitly enabled.
+When defining a feature that captures an optional dependency, ensure that the dependency will not be used accidentally when the feature is not explicitly enabled.
 
 ```cmake
 set(CMAKE_DISABLE_FIND_PACKAGE_ZLIB ON)
@@ -232,7 +231,7 @@ vcpkg_cmake_configure(
 )
 ```
 
-The snippet below using `vcpkg_check_features()` is equivalent,  [see the documentation](vcpkg_check_features.md).
+The snippet below using [`vcpkg_check_features()`](../maintainers/functions/vcpkg_check_features.md) is equivalent.
 
 ```cmake
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
@@ -249,7 +248,7 @@ vcpkg_cmake_configure(
 )
 ```
 
-Note that `ZLIB` in the above is case-sensitive. See the [CMAKE_DISABLE_FIND_PACKAGE_PackageName](https://cmake.org/cmake/help/v3.22/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.html) and [CMAKE_REQUIRE_FIND_PACKAGE_PackageName](https://cmake.org/cmake/help/v3.22/variable/CMAKE_REQUIRE_FIND_PACKAGE_PackageName.html) documnetation for more details.
+Note that `ZLIB` in the above is case-sensitive. See the [`CMAKE_DISABLE_FIND_PACKAGE_<PackageName>`](https://cmake.org/cmake/help/v3.22/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.html) and [`CMAKE_REQUIRE_FIND_PACKAGE_<PackageName>`](https://cmake.org/cmake/help/v3.22/variable/CMAKE_REQUIRE_FIND_PACKAGE_PackageName.html) documnetation for more details.
 
 ### Place conflicting libs in a `manual-link` directory
 
@@ -285,7 +284,7 @@ For Example:
 - You've discovered that the wrong copyright file has been deployed, and fixed that in the portfile.
 - You should update the `"port-version"` field in the manifest file to `1`.
 
-See our [manifest files document](manifest-files.md#port-version) for a full explanation of our conventions.
+See the [versioning documentation](../users/versioning.md#port-version) for more information.
 
 ### Update the version files in `versions/` of any modified ports
 
@@ -316,7 +315,7 @@ To update the files for all modified ports at once.
 
 _NOTE: These commands require you to have committed your changes to the ports before running them. The reason is that the Git SHA of the port directory is required in these version files. But don't worry, the `x-add-version` command will warn you if you have local changes that haven't been committed._
 
-See our [versioning specification](../specifications/versioning.md) and [registries specification](../specifications/registries-2.md) to learn how vcpkg interacts with these files.
+See the [Versioning Reference](../users/versioning.md) and [Creating Registries](../maintainers/registries.md) for more information.
 
 ## Patching
 
@@ -332,7 +331,7 @@ Common options that allow avoiding patching:
 ### Prefer patching over overriding `VCPKG_<VARIABLE>` values
 
 Some variables prefixed with `VCPKG_<VARIABLE>` have an equivalent `CMAKE_<VARIABLE>`.
-However, not all of them are passed to the internal package build [(see implementation: Windows toolchain)](../../scripts/toolchains/windows.cmake).
+However, not all of them are passed to the internal package build [(see implementation: Windows toolchain)](https://github.com/Microsoft/vcpkg/tree/master/scripts/toolchains/windows.cmake).
 
 Consider the following example:
 

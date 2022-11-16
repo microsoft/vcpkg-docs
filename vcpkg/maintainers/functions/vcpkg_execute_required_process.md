@@ -1,6 +1,9 @@
-# vcpkg_execute_required_process
+---
+title: vcpkg_execute_required_process
+description: Execute a process with logging and fail the build if the command fails.
+---
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_execute_required_process.md).
+# vcpkg_execute_required_process
 
 Execute a process with logging and fail the build if the command fails.
 
@@ -19,7 +22,7 @@ vcpkg_execute_required_process(
 ## Parameters
 ### ALLOW_IN_DOWNLOAD_MODE
 Allows the command to execute in Download Mode.
-[See execute_process() override](../../scripts/cmake/execute_process.cmake).
+[See execute_process() override](internal/execute_process.cmake).
 
 ### COMMAND
 The command to be executed, along with its arguments.

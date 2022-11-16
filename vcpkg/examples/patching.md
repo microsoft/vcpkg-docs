@@ -64,7 +64,7 @@ Time Elapsed 00:00:04.19
 
 ## Identify the problematic code
 
-Taking a look at [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/ms682658(v=vs.85).aspx) shows that `ExitProcess` is only available for desktop apps. Additionally, it's useful to see the surrounding context:
+Taking a look at [MSDN](https://msdn.microsoft.com/library/windows/desktop/ms682658(v=vs.85).aspx) shows that `ExitProcess` is only available for desktop apps. Additionally, it's useful to see the surrounding context:
 
 ```c
 /* buildtrees\libpng\src\v1.6.37-c993153cdf\pngerror.c:769 */

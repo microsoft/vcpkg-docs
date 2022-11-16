@@ -1,6 +1,8 @@
-# Versioning
+---
+title: Versioning Reference
+---
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/users/versioning.md).**
+# Versioning Reference
 
 Versioning allows you to deterministically control the precise revisions of dependencies used by
 your project from within your manifest file. Versioning only applies to [Manifest Mode](manifests.md).
@@ -80,6 +82,8 @@ _Sorting behavior_: No sorting is attempted on the version string itself. Howeve
 Examples:
 * `apple` <> `orange` <> `orange.2` <> `orange2`
 * `watermelon#0`< `watermelon#1`
+
+<a name="port-version"></a>
 
 #### `port-version`
 A positive integer value that increases each time the port changes without updating the sources.

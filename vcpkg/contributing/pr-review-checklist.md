@@ -29,7 +29,7 @@ See our [Maintainer Guidelines and Policies](maintainer-guide.md#versioning) for
 
 A description only one or a few sentences long is helpful. Consider using the library's official description from their `README.md` or similar if possible. Automatic translations are acceptable and we are happy to clean up translations to English for our contributors.
 
-See our [manifest file documentation](manifest-files.md#description) for more information.
+See our [manifest file documentation](../users/manifests.md#description) for more information.
     
 </details>
 
