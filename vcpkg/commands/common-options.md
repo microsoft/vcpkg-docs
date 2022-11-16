@@ -1,6 +1,9 @@
-# Common Command Options
+---
+title: Common Command Options
+description: Common command line options reference for vcpkg.
+---
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/commands/common-options.md).**
+# Common Command Options
 
 Most vcpkg commands accept a group of common options that control cross-cutting aspects of the tool. Not all options affect every command. For example, a command that does not download any files will be unaffected by changing the downloads directory.
 

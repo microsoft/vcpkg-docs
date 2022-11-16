@@ -1,8 +1,11 @@
+---
+title: vcpkg_cmake_install
+description: Build and install a CMake project.
+---
+
 # vcpkg_cmake_install
 
-**The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_cmake_install.md).**
-
-Build and install a cmake project.
+Build and install a CMake project.
 
 ## Usage
 

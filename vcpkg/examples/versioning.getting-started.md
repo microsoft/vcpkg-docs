@@ -1,3 +1,8 @@
+---
+title: Getting started with versioning
+description: Learn how to use versioning in vcpkg
+---
+
 # Getting started with versioning
 
 **The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/examples/versioning.getting-started.md).**

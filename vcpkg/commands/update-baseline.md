@@ -1,6 +1,9 @@
-# vcpkg x-update-baseline
+---
+title: vcpkg x-update-baseline
+description: Command line reference for the vcpkg x-update-baseline command. Update baselines for all configured registries.
+---
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/commands/update-baseline.md).**
+# vcpkg x-update-baseline
 
 **This command is experimental and may change or be removed at any time**
 

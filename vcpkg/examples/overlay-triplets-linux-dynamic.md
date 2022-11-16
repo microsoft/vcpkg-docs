@@ -1,3 +1,8 @@
+---
+title: Using Overlay Triplets
+description: Learn to use overlay triplets to build shared libraries on Linux.
+---
+
 # Using Overlay Triplets
 
 ## Building dynamic libraries on Linux

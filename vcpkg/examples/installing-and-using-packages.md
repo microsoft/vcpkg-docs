@@ -1,4 +1,9 @@
-## Installing and Using Packages Example: SQLite
+---
+title: Getting Started with Classic Mode
+description: Learn to get started with SQLite with vcpkg in Classic Mode.
+---
+
+# Installing and Using Packages Example: SQLite
 
 _Note: this old example uses Classic Mode, but most developers will be happier with Manifest Mode. See [Manifest Mode: CMake Example](manifest-mode-cmake.md) for an example of converting to Manifest Mode._
 
@@ -8,7 +13,6 @@ _Note: this old example uses Classic Mode, but most developers will be happier w
     - [CMake (Toolchain file)](#cmake)
     - [Other integration options](../users/buildsystems/integration.md)
 
----
 <a name="install"></a>
 ## Step 1: Install
 
@@ -71,7 +75,7 @@ See `.\vcpkg help triplet` for all supported targets.
 <a name="use"></a>
 ## Step 2: Use
 <a name="msbuild"></a>
-#### VS/MSBuild Project (User-wide integration)
+### VS/MSBuild Project (User-wide integration)
 
 The recommended and most productive way to use vcpkg is via user-wide integration, making the system available for all projects you build. The user-wide integration will prompt for administrator access the first time it is used on a given machine, but afterwards is no longer required and the integration is configured on a per-user basis.
 ```no-highlight
@@ -89,7 +93,7 @@ You can now simply use File -> New Project in Visual Studio and the library will
 To remove the integration for your user, you can use `.\vcpkg integrate remove`.
 
 <a name="cmake"></a>
-#### CMake (Toolchain File)
+### CMake (Toolchain File)
 
 The best way to use installed libraries with cmake is via the toolchain file `scripts\buildsystems\vcpkg.cmake`. To use this file, you simply need to add it onto your CMake command line as:  
 `-DCMAKE_TOOLCHAIN_FILE=D:\src\vcpkg\scripts\buildsystems\vcpkg.cmake`.
@@ -158,7 +162,7 @@ PS D:\src\cmake-test\build> .\Debug\main.exe
 
 *Note: The correct sqlite3.dll is automatically copied to the output folder when building for x86-windows. You will need to distribute this along with your application.*
 
-##### Handling libraries without native cmake support
+#### Handling libraries without native cmake support
 
 Unlike other platforms, we do not automatically add the `include\` directory to your compilation line by default. If you're using a library that does not provide CMake integration, you will need to explicitly search for the files and add them yourself using [`find_path()`][1] and [`find_library()`][2].
 

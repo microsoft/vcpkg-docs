@@ -1,6 +1,9 @@
-# vcpkg list
+---
+title: vcpkg list
+description: Command line reference for the vcpkg list command. Shows a list of the packages in the installed tree, along with the version and description of each.
+---
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/commands/list.md).**
+# vcpkg list
 
 ## Synopsis
 
@@ -10,17 +13,17 @@ vcpkg list [options]
 
 ## Description
 
-Shows a list of the packages in the installed tree, along with the version and description of each. 
+Shows a list of the packages in the installed tree, along with the version and description of each.
 
 ## Example
 ```no-highlight
 $ vcpkg list
 
-cxxopts:x64-windows				3.0.0			This is a lightweight C++ option parser library...
-fmt:x64-windows					9.0.0			Formatting library for C++. It can be used as a...
-range-v3:x64-windows				0.12.0 			Range library for C++11/14/17/20.
-vcpkg-cmake-config:x64-windows			2022-02-06#1
-vcpkg-cmake:x64-windows				2022-08-18
+cxxopts:x64-windows              3.0.0              This is a lightweight C++ option parser library...
+fmt:x64-windows                  9.0.0              Formatting library for C++. It can be used as a...
+range-v3:x64-windows             0.12.0             Range library for C++11/14/17/20.
+vcpkg-cmake-config:x64-windows   2022-02-06#1
+vcpkg-cmake:x64-windows          2022-08-18
 ```
 
 ## Options

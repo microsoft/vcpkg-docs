@@ -1,4 +1,9 @@
-# vcpkg_catalog_release_process
+---
+title: Microsoft/vcpkg Catalog Release Process
+description: Internal process guide for creating a new curated catalog release of vcpkg.
+---
+
+# Microsoft/vcpkg Catalog Release Process
 
 This document describes the acceptance criteria / process we use when doing a vcpkg release.
 

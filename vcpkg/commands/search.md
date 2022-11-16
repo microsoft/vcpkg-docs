@@ -1,6 +1,9 @@
-# vcpkg search
+---
+title: vcpkg search
+description: Command line reference for the vcpkg search command. Search for available packages by name and description.
+---
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/commands/search.md).**
+# vcpkg search
 
 ## Synopsis
 
@@ -10,7 +13,7 @@ vcpkg search [options] [query]
 
 ## Description
 
-Searches for available packages by name and description.
+Search for available packages by name and description.
 
 Search performs a case-insensitive search through all available package names and descriptions. The results are displayed in a tabular format.
 

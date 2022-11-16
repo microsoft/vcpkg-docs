@@ -1,6 +1,11 @@
-## Patching Example: Patching libpng to work for x64-uwp
+---
+title: Patching libpng 1.6.37 for UWP compatibility
+description: Learn how to develop and apply patches to a library in a vcpkg portfile.
+---
 
-### Initial error logs
+# Patching Example: Patching libpng to work for x64-uwp
+
+## Initial error logs
 First, try building:
 
 ```no-highlight
@@ -57,7 +62,7 @@ Next, looking at the above logs (build-xxx-out.log and build-xxx-err.log).
 Time Elapsed 00:00:04.19
 ```
 
-### Identify the problematic code
+## Identify the problematic code
 
 Taking a look at [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/ms682658(v=vs.85).aspx) shows that `ExitProcess` is only available for desktop apps. Additionally, it's useful to see the surrounding context:
 
@@ -109,7 +114,7 @@ This already gives us some great clues, but the full definition tells the comple
 
 `abort()` is a standard CRT call and certainly available in UWP, so we just need to convince libpng to be more platform agnostic. The easiest and most reliable way to achieve this is to patch the code; while in this particular case we could pass in a compiler flag to override `PNG_ABORT` because this is a private header, in general it is more reliable to avoid adding more required compiler switches when possible (especially when it isn't already exposed as a CMake option).
 
-### Patching the code to improve compatibility
+## Patching the code to improve compatibility
 
 We recommend using git to create the patch file, since you'll already have it installed.
 ```no-highlight
@@ -155,7 +160,7 @@ vcpkg_cmake_configure(
 ...
 ```
 
-### Verification
+## Verification
 
 To be completely sure this works from scratch, we need to remove the package and rebuild it:
 

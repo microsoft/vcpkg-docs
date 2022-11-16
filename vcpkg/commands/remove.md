@@ -1,6 +1,9 @@
-# vcpkg remove
+---
+title: vcpkg remove
+description: Command line reference for the vcpkg remove command. Remove port packages from Classic Mode.
+---
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/commands/remove.md).**
+# vcpkg remove
 
 ## Synopsis
 

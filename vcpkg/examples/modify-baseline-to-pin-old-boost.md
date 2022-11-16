@@ -1,3 +1,8 @@
+---
+title: Selecting Boost Versions as a Set
+description: Learn how to set versions across a library framework like Boost or Qt in vcpkg.
+---
+
 # Pin old Boost versions
 This document will teach you how to set versions of meta-packages like `boost` or `qt5`.
 

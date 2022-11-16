@@ -1,6 +1,9 @@
-# vcpkg integrate
+---
+title: vcpkg integrate
+description: Command line reference for the vcpkg integrate command. Integrate vcpkg with shells and buildsystems.
+---
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/commands/integrate.md).**
+# vcpkg integrate
 
 ## Synopsis
 

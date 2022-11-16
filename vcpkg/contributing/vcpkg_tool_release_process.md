@@ -1,4 +1,9 @@
-# vcpkg_tool_release_process
+---
+title: Microsoft/vcpkg-tool Release Process
+description: Internal process guide for creating a new tool release of vcpkg.
+---
+
+# Microsoft/vcpkg-tool Release Process
 
 This document describes the acceptance criteria / process we use when doing a vcpkg-tool update,
 such as https://github.com/microsoft/vcpkg/pull/23757

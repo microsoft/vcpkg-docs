@@ -42,7 +42,10 @@
     "globalMetadata": {
       "breadcrumb_path": "/vcpkg/breadcrumb/toc.json",
       "extendBreadcrumb": true,
-      "feedback_system": "None"
+      "feedback_system": "None",
+      "author": "vcpkg",
+      "ms.author": "vcpkg",
+      "ms.prod": "visual-cpp"
     },
     "fileMetadata": {},
     "template": [],

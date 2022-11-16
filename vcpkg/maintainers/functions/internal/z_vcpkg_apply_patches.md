@@ -1,6 +1,9 @@
-# z_vcpkg_apply_patches
+---
+title: z_vcpkg_apply_patches
+description: Internal helper to apply a set of patches to a source tree.
+---
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/).
+# z_vcpkg_apply_patches
 
 **Only for internal use in vcpkg helpers. Behavior and arguments will change without notice.**
 

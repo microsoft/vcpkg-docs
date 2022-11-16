@@ -1,6 +1,9 @@
-# vcpkg install
+---
+title: vcpkg install
+description: Command line reference for the vcpkg install command. Build and install port packages.
+---
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/commands/install.md).**
+# vcpkg install
 
 ## Synopsis
 

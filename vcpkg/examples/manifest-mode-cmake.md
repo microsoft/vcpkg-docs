@@ -1,3 +1,8 @@
+---
+title: Getting Started with Manifest Mode
+description: Learn to get started in vcpkg with Manifest Mode.
+---
+
 # Manifest Mode: CMake Example
 
 We would like to add [vcpkg manifest support](../users/manifests.md) to an existing cmake project!

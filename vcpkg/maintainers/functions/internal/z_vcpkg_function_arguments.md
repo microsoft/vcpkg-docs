@@ -1,8 +1,7 @@
 # z_vcpkg_function_arguments
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/).
-
 **Only for internal use in vcpkg helpers. Behavior and arguments will change without notice.**
+
 Get a list of the arguments which were passed in.
 Unlike `ARGV`, which is simply the arguments joined with `;`,
 so that `(A B)` is not distinguishable from `("A;B")`,

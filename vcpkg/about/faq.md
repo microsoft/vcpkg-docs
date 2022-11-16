@@ -1,3 +1,8 @@
+---
+title: Frequently Asked Questions
+description: Common questions and answers about vcpkg
+---
+
 # Frequently Asked Questions
 
 ## Can I contribute a new library?
