@@ -1,10 +1,8 @@
 # Asset Caching
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/users/assetcaching.md).**
+[!INCLUDE [experimental](/includes/experimental.md)]
 
-**Experimental feature: this may change or be removed at any time**
-
-Vcpkg can utilize mirrors to cache downloaded assets, ensuring continued operation even if the original source changes
+vcpkg can utilize mirrors to cache downloaded assets, ensuring continued operation even if the original source changes
 or disappears.
 
 In-tool help is available via `vcpkg help assetcaching`.

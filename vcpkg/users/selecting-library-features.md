@@ -1,7 +1,5 @@
 # Selecting Library Features
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/users/selecting-library-features.md).**
-
 ## Installing a library
 
 We will look at [llvm](https://llvm.org/) as an example. You could install it using:
@@ -87,6 +85,3 @@ or in manifest files:
   }]
 }
 ```
-
-# Further reading
-- The [Feature Packages](../specifications/feature-packages.md) specification was the initial design for features.

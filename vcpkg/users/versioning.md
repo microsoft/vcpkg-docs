@@ -7,6 +7,8 @@ title: Versioning Reference
 Versioning allows you to deterministically control the precise revisions of dependencies used by
 your project from within your manifest file. Versioning only applies to [Manifest Mode](manifests.md).
 
+For more information about vcpkg's versioning algorithm and high level concepts, see [Versioning Concepts](versioning.concepts.md).
+
 For an example with context, see our guide to [getting started with versioning](../examples/versioning.getting-started.md).
 
 ## Contents
@@ -168,11 +170,6 @@ For an override to take effect, the overridden package must form part of the dep
   ]
 }
 ```
-
-## See Also
-
-* The [implementation details](versioning.implementation-details.md)
-* The [original specification](../specifications/versioning.md)
 
 [version-gte]: #version-gte
 [builtin-baseline]: manifests.md#builtin-baseline

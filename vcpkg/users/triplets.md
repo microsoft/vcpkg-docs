@@ -1,10 +1,8 @@
 # Triplet Files
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/users/triplets.md).**
-
 Triplet is a standard term used in cross compiling as a way to completely capture the target environment (cpu, os, compiler, runtime, etc) in a single convenient name.
 
-In Vcpkg, we use triplets to describe an imaginary "target configuration set" for every library. Within a triplet, libraries are generally built with the same configuration, but it is not a requirement. For example, you could have one triplet that builds `openssl` statically and `zlib` dynamically, one that builds them both statically, and one that builds them both dynamically (all for the same target OS and architecture). A single build will consume files from a single triplet.
+In vcpkg, we use triplets to describe an imaginary "target configuration set" for every library. Within a triplet, libraries are generally built with the same configuration, but it is not a requirement. For example, you could have one triplet that builds `openssl` statically and `zlib` dynamically, one that builds them both statically, and one that builds them both dynamically (all for the same target OS and architecture). A single build will consume files from a single triplet.
 
 We currently provide many triplets by default (run `vcpkg help triplet`). However, you can easily customize or add your own by copying a built-in triplet from the `triplets\` directory into a project local location. Then, use `--overlay-triplets=` (or equivalent such as [`$VCPKG_OVERLAY_TRIPLETS`](config-environment.md#vcpkg_overlay_triplets), [CMake `VCPKG_OVERLAY_TRIPLETS`](buildsystems/cmake-integration.md#vcpkg_overlay_triplets), or [MSBuild Additional Options](buildsystems/msbuild-integration.md#vcpkg-additional-install-options)) to add that directory to vcpkg. See our [overlay triplets example](../examples/overlay-triplets-linux-dynamic.md) for a more detailed walkthrough.
 
@@ -94,26 +92,38 @@ This option also has forms for configuration-specific flags:
 - `VCPKG_LINKER_FLAGS_RELEASE`
 
 ### VCPKG_MESON_CONFIGURE_OPTIONS
-Set additional Meson configure options that are appended to the configure command (in [`vcpkg_configure_meson`](../maintainers/vcpkg_configure_meson.md)).
+Set additional Meson configure options that are appended to the configure command (in [`vcpkg_configure_meson`](../maintainers/functions/vcpkg_configure_meson.md)).
 
 This field is optional.
 
 Also available as build-type specific `VCPKG_MESON_CONFIGURE_OPTIONS_DEBUG` and `VCPKG_MESON_CONFIGURE_OPTIONS_RELEASE` variables.
 
-### VCPKG_MESON_(CROSS|NATIVE)_FILE(_RELEASE|_DEBUG)
-Provide an additional (configuration dependent) file as a meson cross/native file. Can be used to override settings provided by vcpkg since it will be passed after vcpkg's generated cross/native files are passed.
+### VCPKG_MESON_NATIVE_FILE_RELEASE
+Provide an additional configuration dependent file as a meson cross/native file. Can be used to override settings provided by vcpkg since it will be passed after vcpkg's generated cross/native files are passed.
 
-Especially usefull to provide your own build_machine and host_machine entries.
+Especially useful to provide your own build_machine and host_machine entries.
+
+### VCPKG_MESON_NATIVE_FILE_DEBUG
+
+See [VCPKG_MESON_NATIVE_FILE_RELEASE](#vcpkg-meson-native-file-release).
+
+### VCPKG_MESON_CROSS_FILE_RELEASE
+
+See [VCPKG_MESON_NATIVE_FILE_RELEASE](#vcpkg-meson-native-file-release).
+
+### VCPKG_MESON_CROSS_FILE_DEBUG
+
+See [VCPKG_MESON_NATIVE_FILE_RELEASE](#vcpkg-meson-native-file-release).
 
 ### VCPKG_CMAKE_CONFIGURE_OPTIONS
-Set additional CMake configure options that are appended to the configure command (in [`vcpkg_cmake_configure`](../maintainers/vcpkg_cmake_configure.md)).
+Set additional CMake configure options that are appended to the configure command (in [`vcpkg_cmake_configure`](../maintainers/functions/vcpkg_cmake_configure.md)).
 
 This field is optional.
 
 Also available as build-type specific `VCPKG_CMAKE_CONFIGURE_OPTIONS_DEBUG` and `VCPKG_CMAKE_CONFIGURE_OPTIONS_RELEASE` variables.
 
 ### VCPKG_MAKE_CONFIGURE_OPTIONS
-Set additional automake / autoconf configure options that are appended to the configure command (in [`vcpkg_configure_make`](../maintainers/vcpkg_configure_make.md)).
+Set additional automake / autoconf configure options that are appended to the configure command (in [`vcpkg_configure_make`](../maintainers/functions/vcpkg_configure_make.md)).
 
 This field is optional.
 
@@ -130,15 +140,17 @@ Replaces the default computed list of triplet "Supports" terms.
 
 This option (if set) will override the default set of terms used for qualified dependency resolution and "Supports" field evaluation.
 
-See the [`"supports"`](../maintainers/manifest-files.md#supports) manifest file field documentation for more details.
+See the [`"supports"`](manifests.md#supports) manifest file field documentation for more details.
 
 > Implementers' Note: this list is extracted via the `vcpkg_get_dep_info` mechanism.
 
 ### VCPKG_DISABLE_COMPILER_TRACKING
 
-When this option is set to (true|1|on), the compiler is ignored in the abi tracking.
+When this option is set to `TRUE`, `ON`, or `1`, the compiler will not be tracked as part of the package abis.
 
-## Windows Variables
+This will cause [Binary Caching](binarycaching.md) to reuse builds from older or newer compilers.
+
+## Windows-specific Variables
 
 <a name="VCPKG_ENV_PASSTHROUGH"></a>
 ### VCPKG_ENV_PASSTHROUGH
@@ -239,9 +251,3 @@ The default triplet when running any vcpkg command is `%VCPKG_DEFAULT_TRIPLET%` 
 - OSX: `x64-osx`
 
 We recommend using a systematic naming scheme when creating new triplets. The Android toolchain naming scheme is a good source of inspiration: https://developer.android.com/ndk/guides/standalone_toolchain.html.
-
-## Android triplets
-See [android.md](android.md)
-
-## Mingw-w64 triplets
-See [mingw.md](mingw.md)

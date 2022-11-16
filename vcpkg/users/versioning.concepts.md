@@ -1,15 +1,6 @@
-# Versioning: Implementation details
+# Versioning Concepts
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/users/versioning.implementation-details.md).**
-
-## Contents
-
-* [Minimum versioning](#minimum-versioning)
-* [Constraint resolution](#constraint-resolution)
-* [Acquiring port versions](#acquiring-port-versions)
-
-
-### Minimum versioning
+## Minimum versioning
 Vcpkg uses a minimal selection approach to versioning, inspired by the one [used by Go](https://research.swtch.com/vgo-mvs). But modified in some ways:
 
 * Always starts from a fresh install, eliminates the need for upgrade/downgrade operations.

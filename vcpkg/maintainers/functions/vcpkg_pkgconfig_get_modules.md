@@ -1,8 +1,11 @@
+---
+title: x_vcpkg_pkgconfig_get_modules
+---
+
 # x_vcpkg_pkgconfig_get_modules
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/ports/vcpkg-pkgconfig-get-modules/x_vcpkg_pkgconfig_get_modules.md).
+[!INCLUDE [experimental](/includes/experimental.md)]
 
-Experimental
 Retrieve required module information from pkgconfig modules
 
 ## Usage
@@ -17,25 +20,26 @@ x_vcpkg_pkgconfig_get_modules(
     [INCLUDE_DIRS]
 )
 ```
+
 ## Parameters
 
 ### PREFIX
-Used variable prefix to use
+Prefix to use for all output variables.
 
 ### MODULES
 List of pkgconfig modules to retrieve information for.
 
 ### LIBS
-Returns `"${PKGCONFIG}" --libs` in <prefix>_LIBS_(DEBUG|RELEASE)
+Returns `"${PKGCONFIG}" --libs` as `<prefix>_LIBS_RELEASE` and `<prefix>_LIBS_DEBUG`.
 
 ### LIBRARIES
-Returns `"${PKGCONFIG}" --libs-only-l` in <prefix>_LIBRARIES_(DEBUG|RELEASE)
+Returns `"${PKGCONFIG}" --libs-only-l` in `<prefix>_LIBRARIES_RELEASE` and `<prefix>_LIBRARIES_DEBUG`.
 
 ### LIBRARIES_DIRS
-Returns `"${PKGCONFIG}" --libs-only-L` in <prefix>_LIBRARIES_DIRS_(DEBUG|RELEASE)
+Returns `"${PKGCONFIG}" --libs-only-L` in `<prefix>_LIBRARIES_DIRS_RELEASE` and `<prefix>_LIBRARIES_DIRS_DEBUG`.
 
 ### INCLUDE_DIRS
-Returns `"${PKGCONFIG}"  --cflags-only-I` in <prefix>_INCLUDE_DIRS_(DEBUG|RELEASE)
+Returns `"${PKGCONFIG}"  --cflags-only-I` in `<prefix>_INCLUDE_DIRS_RELEASE` and `<prefix>_INCLUDE_DIRS_DEBUG`.
 
 ## Examples
 

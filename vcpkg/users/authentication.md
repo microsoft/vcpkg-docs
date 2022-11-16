@@ -1,10 +1,8 @@
 # Authentication for Source Code
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/users/authentication.md).**
+[Registries](registries.md) and [`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md) directly use the Git command line tools to fetch remote resources. Some of these resources may be protected from anonymous access and need authentication or credentials.
 
-Registries and `vcpkg_from_git()` directly use the git command line tools to fetch remote resources. Some of these resources may be protected from anonymous access and need authentication or credentials.
-
-The strategies below all seek to achieve the same fundamental goal: `git clone https://....` should succeed without interaction. This enables vcpkg to be separated from the specifics of your authentication scheme, ensuring forwards compatibility with any additional security improvements in the future.
+The strategies below all seek to achieve the same fundamental goal: `git clone https://....` should succeed without interaction. This enables vcpkg to be separated from the specifics of your authentication scheme, ensuring forward compatibility with any additional security improvements in the future.
 
 ## Pre-seed git credentials
 
@@ -28,11 +26,11 @@ For systems which need bearer auth, you can use `git config`:
 git config --global --unset-all http.<uri>.extraheader
 git config --global http.<uri>.extraheader "AUTHORIZATION: bearer <System_AccessToken>"
 ```
-The `<uri>` can be filled in with a variety of options, documented in https://git-scm.com/docs/git-config#Documentation/git-config.txt-httplturlgt. For example, `https://dev.azure.com/MYORG/`.
+The `<uri>` can be filled in with a variety of options, for example `https://dev.azure.com/MYORG/`. See the [`git config` documentation](https://git-scm.com/docs/git-config#Documentation/git-config.txt-httplturlgt) for more details.
 
 (Original Source: https://github.com/Microsoft/azure-pipelines-agent/issues/1601#issuecomment-394511048).
 
-**Note for Azure DevOps users:** You may need to enable access via Job authorization scope https://docs.microsoft.com/en-us/azure/devops/pipelines/process/access-tokens?view=azure-devops&tabs=yaml#job-authorization-scope. You may also need to "reference" the repo in your yaml via:
+**Note for Azure DevOps users:** You may need to enable access via [Job authorization scope](/azure/devops/pipelines/process/access-tokens#job-authorization-scope) and reference the repo in your yaml pipeline:
 
 ```yaml
 resources: 
@@ -52,14 +50,15 @@ jobs:
 
 ## Pass credentials in an environment variable (not recommended)
 
-Using `VCPKG_KEEP_ENV_VARS` or `VCPKG_ENV_PASSTHROUGH_UNTRACKED`, we can smuggle credential info via another var like `MY_TOKEN_VAR`.
+Using `VCPKG_KEEP_ENV_VARS` or `VCPKG_ENV_PASSTHROUGH_UNTRACKED`, you can pass credentials in via the environment.
 ```sh
 export VCPKG_KEEP_ENV_VARS=MY_TOKEN_VAR
 export MY_TOKEN_VAR=abc123
 ```
-This can then be used in your private ports:
+
+This can then be used in your private ports with the p[`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md) or [`vcpkg_from_github()`](../maintainers/functions/vcpkg_from_github.md) helpers.
 ```cmake
-# some/private/portfile.cmake
+# vcpkg-from-git-example/portfile.cmake
 set(MY_TOKEN_VAR "")
 if(DEFINED ENV{MY_TOKEN_VAR})
     set(MY_TOKEN_VAR "$ENV{MY_TOKEN_VAR}@")
@@ -70,7 +69,7 @@ vcpkg_from_git(
 )
 ```
 ```cmake
-# some/other/private/portfile.cmake
+# vcpkg-from-github-example/portfile.cmake
 vcpkg_from_github(
     AUTHORIZATION_TOKEN "$ENV{MY_TOKEN_VAR}"
 )

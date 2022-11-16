@@ -1,16 +1,5 @@
 # MSBuild Integration (Visual Studio)
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/users/buildsystems/msbuild-integration.md).**
-
-## Table of Contents
-
-- [Integration Methods](#integration-methods)
-  - [User-wide integration](#user-wide-integration)
-  - [Import `.props` and `.targets`](#import-props-and-targets)
-  - [Linked NuGet Package](#linked-nuget-package)
-- [Common Configuration](#common-configuration)
-- [Manifest Mode Configuration](#manifest-mode-configuration)
-
 ## Integration Methods
 
 ### User-wide integration
@@ -53,9 +42,9 @@ The following examples assume they are at the root of your repository with a sub
 </Project>
 ```
 
-More information about `Directory.Build.targets` and `Directory.Build.props` can be found in the [Customize your build][1] section of the official MSBuild documentation.
+See the [Customize your build][1] section of the official MSBuild documentation for more information on `Directory.Build.targets` and `Directory.Build.props`.
 
-[1]: https://docs.microsoft.com/visualstudio/msbuild/customize-your-build#directorybuildprops-and-directorybuildtargets
+[1]: visualstudio/msbuild/customize-your-build#directorybuildprops-and-directorybuildtargets
 
 ### Linked NuGet Package
 

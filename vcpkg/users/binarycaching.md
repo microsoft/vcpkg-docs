@@ -1,10 +1,8 @@
 # Binary Caching
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/users/binarycaching.md).**
+Libraries installed with vcpkg can always be built from source. However, that can duplicate work and waste time across multiple projects, developers, or machines.
 
-Libraries installed with vcpkg can always be built from source. However, that can duplicate work and waste time when working across multiple projects.
-
-Binary caching is a vcpkg feature that saves copies of library binaries in a shared location that can be accessed by vcpkg for future installs. This means that, as a user, you should only need to build dependencies from source once. If vcpkg is asked to install the same library with the same build configuration in the future, it will just copy the built binaries from the cache and finish the operation in seconds.
+Binary caching is a vcpkg feature that saves copies of library binaries in a shared location that can be accessed by vcpkg for future installs. This means that, as a user, you should only need to build dependencies from source once. If vcpkg is asked to install the same library with the same build configuration in the future, it will copy the built binaries from the cache and finish the operation in seconds.
 
 Binary caching is especially effective when using Continuous Integration, since local developers can reuse the binaries produced during a CI run. It also greatly enhances the performance of "ephemeral" or "hosted" build agents, since all local changes are otherwise lost between runs. By using binary caching backed by a cloud service, such as GitHub, Azure, or many others, you can ensure your CI runs at maximum speed and only rebuilds your dependencies when they've changed.
 
@@ -15,17 +13,6 @@ Caches can be hosted in a variety of environments. The most basic examples are a
 If your CI provider offers a native "caching" function, we recommend using both vcpkg binary caching and the native method for the most performant results.
 
 In-tool help is available via `vcpkg help binarycaching`.
-
-Table of Contents
- - [Configuration](#configuration)
- - [CI Examples](#ci-examples)
-   - [GitHub Packages](#github-packages)
-   - [Azure DevOps Artifacts](#azure-devops-artifacts)
-   - [Azure Blob Storage](#azure-blob-storage-experimental)
-   - [Google Cloud Storage](#google-cloud-storage-experimental)
- - [NuGet Provider Configuration](#nuget-provider-configuration)
- - [Implementation Notes](#implementation-notes-internal-details-subject-to-change-without-notice)
-
 
 ## Configuration
 
@@ -115,17 +102,15 @@ steps:
       ./vcpkg/vcpkg install sqlite3 cpprestsdk --triplet ${{ matrix.triplet }}
 ```
 
-If you're using [manifests](../specifications/manifests.md), you can omit the `vcpkg package restore` step: it will be run automatically as part of your build.
+If you're using [manifests](manifests.md), you can omit the `vcpkg package restore` step: it will be run automatically as part of your build.
 
-More information about GitHub Packages' NuGet support is available on [GitHub Docs][github-nuget].
-
-[github-nuget]: https://docs.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-dotnet-cli-for-use-with-github-packages
+See the [GitHub Packages' NuGet documentation](https://docs.github.com/packages/using-github-packages-with-your-projects-ecosystem/configuring-dotnet-cli-for-use-with-github-packages) for more information.
 
 ### Azure DevOps Artifacts
 
 To use vcpkg with Azure DevOps Artifacts, we recommend using the `NuGet` backend.
 
-First, you need to ensure Artifacts has been enabled on your DevOps instance; this can be done by an Administrator through `Project Settings > General > Overview > Azure DevOps Services > Artifacts`.
+First, you need to ensure Artifacts has been enabled on your DevOps instance; this can be done by an Administrator through **Project Settings > General > Overview > Azure DevOps Services > Artifacts**.
 
 Next, you will need to create a feed for your project; see the [Azure DevOps Artifacts Documentation][devops-nuget] for more information. Your feed URL will be an `https://` link ending with `/nuget/v3/index.json`.
 
@@ -144,7 +129,7 @@ If you are using custom agents with a non-Windows OS, you will need to install M
 
 More information about Azure DevOps Artifacts' NuGet support is available in the [Azure DevOps Artifacts Documentation][devops-nuget].
 
-[devops-nuget]: https://docs.microsoft.com/en-us/azure/devops/artifacts/get-started-nuget?view=azure-devops
+[devops-nuget]: /azure/devops/artifacts/get-started-nuget
 
 ### Azure Blob Storage (experimental)
 
@@ -156,9 +141,10 @@ Vcpkg supports interfacing with Azure Blob Storage via the `x-azblob` source typ
 x-azblob,<baseuri>,<sas>[,<rw>]
 ```
 
-First, you need to create an Azure Storage Account as well as a container ([Quick Start Documentation](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal)].
+First, you need to create an Azure Storage Account as well as a container. See the [Azure Storage Quick Start Documentation](/azure/storage/blobs/storage-quickstart-blobs-portal) for instructions.
 
-Next, you will need to create a Shared Access Signature, which can be done from the storage account under Settings -> Shared access signature. This SAS will need:
+Next, you will need to create a *Shared Access Signature*, which can be done from the storage account under **Settings -> Shared Access Signature**. This SAS will need:
+
 - Allowed services: Blob
 - Allowed resource types: Object
 - Allowed permissions: Read, Create (if using `write` or `readwrite`)
@@ -166,15 +152,17 @@ Next, you will need to create a Shared Access Signature, which can be done from 
 The blob endpoint plus the container must be passed as the `<baseuri>` and the generated SAS without the `?` prefix must be passed as the `<sas>`.
 
 Example:
-```
+```no-highlight
 x-azblob,https://<storagename>.blob.core.windows.net/<containername>,sv=2019-12-12&ss=b&srt=o&sp=rcx&se=2020-12-31T06:20:36Z&st=2020-12-30T22:20:36Z&spr=https&sig=abcd,readwrite
 ```
 
-Vcpkg will attempt to avoid revealing the SAS during normal operations, however:
+vcpkg will attempt to avoid revealing the SAS during normal operations, however:
 1. It will be printed in full if `--debug` is passed
 2. It will be passed as a command line parameter to subprocesses, such as `curl.exe`
 
-Azure Blob Storage includes a feature to remove cache entries that haven't been accessed in a given number of days which can be used to reduce the size of your cache. See [Data Lifecycle Management on Microsoft Docs](https://docs.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview) for more information, or look for "Data management > Lifecycle management" in the Azure Portal for your storage account. If you wish to be able to be resilient to upstream libraries' servers but still want to remove entries from the binary cache, consider using [asset caching](assetcaching.md#x-azurl) in a different storage account without a lifecycle management policy.
+Azure Blob Storage includes a feature to remove cache entries that haven't been accessed in a given number of days which can be used to reduce the size of your cache. See [Data Lifecycle Management on Microsoft Docs](/azure/storage/blobs/lifecycle-management-overview) for more information, or look for **Data management > Lifecycle management** in the Azure Portal for your storage account.
+
+If you wish to be able to be resilient to upstream libraries' servers, consider using [Asset Caching](assetcaching.md#x-azurl) in a different storage account without a lifecycle management policy.
 
 ### Google Cloud Storage (experimental)
 
@@ -212,7 +200,7 @@ necessary to create or otherwise manipulate the prefix used by your vcpkg cache.
 
 ### Credentials
 
-Many NuGet servers require additional credentials to access. The most flexible way to supply credentials is via the `nugetconfig` provider with a custom `nuget.config` file. See https://docs.microsoft.com/en-us/nuget/consume-packages/consuming-packages-authenticated-feeds for more information on authenticating via `nuget.config`.
+Many NuGet servers require additional credentials to access. The most flexible way to supply credentials is via the `nugetconfig` provider with a custom `nuget.config` file. See the [Consuming packages from authenticated feeds](/nuget/consume-packages/consuming-packages-authenticated-feeds) for more information.
 
 However, it is still possible to authenticate against many servers using NuGet's built-in credential providers or via customizing your environment's default `nuget.config`. The default config can be extended via nuget client calls such as
 ```
