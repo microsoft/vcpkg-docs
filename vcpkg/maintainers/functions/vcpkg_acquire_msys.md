@@ -4,8 +4,6 @@ title: vcpkg_acquire_msys
 
 # vcpkg_acquire_msys
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_acquire_msys.md).
-
 Download and prepare an MSYS2 instance.
 
 ## Usage
@@ -48,9 +46,9 @@ vcpkg_acquire_msys(MSYS_ROOT)
 set(BASH ${MSYS_ROOT}/usr/bin/bash.exe)
 
 vcpkg_execute_required_process(
-    COMMAND ${BASH} --noprofile --norc "${CMAKE_CURRENT_LIST_DIR}\\build.sh"
-    WORKING_DIRECTORY ${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel
-    LOGNAME build-${TARGET_TRIPLET}-rel
+    COMMAND "${BASH}" --noprofile --norc "${CMAKE_CURRENT_LIST_DIR}\\build.sh"
+    WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel"
+    LOGNAME "build-${TARGET_TRIPLET}-rel"
 )
 ```
 

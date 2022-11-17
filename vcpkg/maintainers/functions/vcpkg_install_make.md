@@ -8,15 +8,15 @@ The latest version of this document lives in the [vcpkg repo](https://github.com
 
 Build and install a make project.
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_install_make(...)
 ```
 
-## Parameters:
+## Parameters
 See [`vcpkg_build_make()`](vcpkg_build_make.md).
 
-## Notes:
+## Notes
 This command transparently forwards to [`vcpkg_build_make()`](vcpkg_build_make.md), adding `ENABLE_INSTALL`
 
 ## Examples

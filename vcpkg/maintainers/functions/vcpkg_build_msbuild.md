@@ -4,9 +4,7 @@ title: vcpkg_build_msbuild
 
 # vcpkg_build_msbuild
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_build_msbuild.md).
-
-Build a msbuild-based project. Deprecated in favor of `vcpkg_install_msbuild()`.
+Build a msbuild-based project. Prefer using [`vcpkg_install_msbuild()`](vcpkg_install_msbuild.md) when possible.
 
 ## Usage
 ```cmake

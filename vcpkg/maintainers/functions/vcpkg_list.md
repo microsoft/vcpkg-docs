@@ -1,39 +1,34 @@
 ---
 title: vcpkg_list
+description: A replacement for CMake's list function which improves handling of elements with internal semicolons, such as other lists.
 ---
 
 # vcpkg_list
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_list.md).
+A replacement for CMake's `list()` function which improves handling of elements with internal semicolons, such as other lists.
 
-A replacement for CMake's `list()` function, which correctly handles elements
-with internal semicolons (in other words, escaped semicolons).
-Use `vcpkg_list()` instead of `list()` whenever possible.
-
+## Usage
 ```cmake
 vcpkg_list(SET <out-var> [<element>...])
 vcpkg_list(<COMMAND> <list-var> [<other-arguments>...])
 ```
 
-In addition to all of the commands from `list()`, `vcpkg_list` adds
-a `vcpkg_list(SET)` command.
-This command takes its arguments, escapes them, and then concatenates
-them into a list; this should be used instead of `set()` for setting any
-list variable.
+## Notes
 
-Otherwise, the `vcpkg_list()` function is the same as the built-in
-`list()` function, with the following restrictions:
+Use `vcpkg_list()` instead of `list()` whenever it is a requirement to correctly handle lists of lists.
+
+`vcpkg_list()` supports all the subcommands of the built-in `list()` function, with the following restrictions:
 
 - `GET`, `REMOVE_ITEM`, and `REMOVE_AT` support only one index/value
 - `POP_BACK` and `POP_FRONT` do not support getting the value into
   another out variable. Use C++ style `GET` then `POP_(BACK|FRONT)`.
 - `FILTER` and `TRANSFORM` are unsupported.
 
-See the [CMake documentation for `list()`](https://cmake.org/cmake/help/latest/command/list.html)
-for more information.
+`vcpkg_list` also adds a `vcpkg_list(SET)` subcommand. This subcommand supports correctly creating a list of lists.
 
-## Notes: Some Weirdnesses
+See the [CMake documentation for `list()`](https://cmake.org/cmake/help/latest/command/list.html) for more information.
 
+### Remarks on Zero-Element lists
 The most major weirdness is due to `""` pulling double-duty as "list of zero elements",
 and "list of one element, which is empty". `vcpkg_list` always uses the former understanding.
 This can cause weird behavior, for example:

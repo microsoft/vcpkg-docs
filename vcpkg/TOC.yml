@@ -68,8 +68,8 @@
   items:
   - name: CONTROL Files (deprecated)
     href: maintainers/control-files.md
-  - name: Writing Reusable Functions
-    displayName: helpers, scripts
+  - name: Authoring Script Ports
+    displayName: helpers, scripts, reuseable, function, reuse
     href: maintainers/authoring-script-ports.md
   - name: Creating Registries
     href: maintainers/registries.md
@@ -227,6 +227,8 @@
         href: maintainers/functions/internal/z_vcpkg_get_cmake_vars.md
       - name: z_vcpkg_prettify_command_line
         href: maintainers/functions/internal/z_vcpkg_prettify_command_line.md
+      - name: z_vcpkg_restore_pkgconfig_path
+        href: maintainers/functions/internal/z_vcpkg_restore_pkgconfig_path.md
       - name: z_vcpkg_setup_pkgconfig_path
         href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
 - name: Command-Line Reference

@@ -8,7 +8,7 @@ The latest version of this document lives in the [vcpkg repo](https://github.com
 
 Generate Ninja (GN) targets
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_gn_configure(
     SOURCE_PATH <SOURCE_PATH>
@@ -18,7 +18,7 @@ vcpkg_gn_configure(
 )
 ```
 
-## Parameters:
+## Parameters
 ### SOURCE_PATH (required)
 The path to the GN project.
 

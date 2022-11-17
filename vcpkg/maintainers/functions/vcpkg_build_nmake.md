@@ -8,7 +8,7 @@ The latest version of this document lives in the [vcpkg repo](https://github.com
 
 Build a msvc makefile project.
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_build_nmake(
     SOURCE_PATH <${SOURCE_PATH}>
@@ -80,7 +80,7 @@ If not specified, target `all` will be passed.
 Adds `install` to the list of targets passed to the build command,
 and passes the install prefix in the `INSTALLDIR` makefile variable.
 
-## Notes:
+## Notes
 You can use the alias [`vcpkg_install_nmake()`](vcpkg_install_nmake.md) function if your makefile supports the
 "install" target.
 

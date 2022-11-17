@@ -8,7 +8,7 @@ The latest version of this document lives in the [vcpkg repo](https://github.com
 
 Download and extract a project from Gitlab instances. Enables support for `install --head`.
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_from_gitlab(
     GITLAB_URL <https://gitlab.com>
@@ -22,7 +22,7 @@ vcpkg_from_gitlab(
 )
 ```
 
-## Parameters:
+## Parameters
 
 ### GITLAB_URL
 The URL of the Gitlab instance to use.
@@ -61,12 +61,12 @@ Relative paths are based on the port directory.
 ### FILE_DISAMBIGUATOR
 A token to uniquely identify the resulting filename if the SHA512 changes even though a git ref does not, to avoid stepping on the same file name.
 
-## Notes:
+## Notes
 At least one of `REF` and `HEAD_REF` must be specified, however it is preferable for both to be present.
 
 This exports the `VCPKG_HEAD_VERSION` variable during head builds.
 
-## Examples:
+## Examples
 * [curl](https://github.com/Microsoft/vcpkg/blob/master/ports/curl/portfile.cmake#L75)
 * [folly](https://github.com/Microsoft/vcpkg/blob/master/ports/folly/portfile.cmake#L15)
 * [z3](https://github.com/Microsoft/vcpkg/blob/master/ports/z3/portfile.cmake#L13)

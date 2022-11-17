@@ -8,14 +8,14 @@ The latest version of this document lives in the [vcpkg repo](https://github.com
 
 Build a ninja project
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_build_ninja(
     [TARGETS <target>...]
 )
 ```
 
-## Parameters:
+## Parameters
 ### TARGETS
 Only build the specified targets.
 

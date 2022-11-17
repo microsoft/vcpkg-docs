@@ -1,3 +1,8 @@
+---
+title: Authoring Script Ports
+description: Learn to create a Script Port to reuse functions in multiple vcpkg portfiles.
+---
+
 # Authoring Script Ports
 
 Ports can expose functions for other ports to consume during their build. For
@@ -35,7 +40,7 @@ Ports should never provide a `vcpkg-port-config.cmake` file under a different
 # This include guard ensures the file will be loaded only once
 include_guard(GLOBAL)
 
-# This is how you could pull in a transitive dependency
+# This is how you could pull in a needed transitive dependency of my-other-helper
 include("${CMAKE_CURRENT_LIST_DIR}/../my-other-helper/vcpkg-port-config.cmake")
 
 # Finally, it is convention to put each public function into a separate file with a matching name

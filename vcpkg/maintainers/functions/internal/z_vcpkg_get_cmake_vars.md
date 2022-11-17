@@ -1,6 +1,10 @@
+---
+title: z_vcpkg_get_cmake_vars
+---
+
 # z_vcpkg_get_cmake_vars
 
-**Only for internal use in vcpkg helpers. Behavior and arguments will change without notice.**
+[!INCLUDE [internal-helper](../../../../includes/internal-helper.md)]
 
 Runs a cmake configure with a dummy project to extract certain cmake variables
 
@@ -21,15 +25,13 @@ the output file is not generated multiple times.
 
 ## Examples
 
-* [vcpkg_configure_make](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_configure_make.cmake)
-
-### Basic Usage
-
 ```cmake
 z_vcpkg_get_cmake_vars(cmake_vars_file)
 include("${cmake_vars_file}")
 message(STATUS "detected CXX flags: ${VCPKG_DETECTED_CXX_FLAGS}")
 ```
+
+See also [vcpkg_configure_make](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_configure_make.cmake).
 
 ## Source
 [scripts/cmake/z\_vcpkg\_get\_cmake\_vars.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/z_vcpkg_get_cmake_vars.cmake)

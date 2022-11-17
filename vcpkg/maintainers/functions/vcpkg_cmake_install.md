@@ -38,7 +38,7 @@ Adds the configuration-specific `bin/` directory to the `PATH` during the build.
 
 When building for a Windows dynamic triplet, newly built executables may not be immediately executable because their dependency DLLs may not be findable from the build environment. This flag instructs vcpkg to add any additional paths needed to locate those dependency DLLs to the `PATH` environment variable. This is required if the project needs to execute newly built binaries as part of the build (such as to generate code).
 
-## Examples:
+## Examples
 
 ```cmake
 vcpkg_from_github(OUT_SOURCE_PATH source_path ...)

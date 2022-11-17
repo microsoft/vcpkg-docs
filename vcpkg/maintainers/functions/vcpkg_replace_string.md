@@ -4,13 +4,22 @@ title: vcpkg_replace_string
 
 # vcpkg_replace_string
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_replace_string.md).
-
 Replace a string in a file.
 
+## Usage
 ```cmake
 vcpkg_replace_string(<filename> <match> <replace>)
 ```
+
+## Parameters
+### `<filename>`
+The path to the file to modify.
+
+### `<match>`
+The string to match.
+
+### `<replace>`
+The string to replace all matched sequences with.
 
 ## Source
 [scripts/cmake/vcpkg\_replace\_string.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_replace_string.cmake)

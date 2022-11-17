@@ -4,16 +4,9 @@ title: vcpkg_qmake_configure
 
 # vcpkg_qmake_configure
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/ports/vcpkg-qmake/vcpkg_qmake_configure.md).
-
 Configure a qmake-based project.
 
-###User setable triplet variables:
-VCPKG_OSX_DEPLOYMENT_TARGET: Determines QMAKE_MACOSX_DEPLOYMENT_TARGET
-VCPKG_QMAKE_COMMAND: Path to qmake. (default: "${CURRENT_HOST_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_HOST_EXECUTABLE_SUFFIX}")
-VCPKG_QT_CONF_(RELEASE|DEBUG): Path to qt.config being used for RELEASE/DEBUG. (default: "${CURRENT_INSTALLED_DIR}/tools/Qt6/qt_(release|debug).conf")
-VCPKG_QMAKE_OPTIONS(_RELEASE|_DEBUG)?: Extra options to pass to QMake
-
+## Usage
 ```cmake
 vcpkg_qmake_configure(
     SOURCE_PATH <pro_file_path>
@@ -26,15 +19,41 @@ vcpkg_qmake_configure(
 )
 ```
 
+## Parameters
 ### SOURCE_PATH
 The path to the *.pro qmake project file.
 
-### QMAKE_OPTIONS, QMAKE_OPTIONS\_RELEASE, QMAKE_OPTIONS\_DEBUG
-options directly passed to qmake with the form QMAKE_X=something or CONFIG=something 
+### QMAKE_OPTIONS, QMAKE_OPTIONS_RELEASE, QMAKE_OPTIONS_DEBUG
+Options directly passed to qmake with the form QMAKE_X=something or CONFIG=something 
 
-### OPTIONS, OPTIONS\_RELEASE, OPTIONS\_DEBUG
+### OPTIONS, OPTIONS_RELEASE, OPTIONS_DEBUG
 The options passed after -- to qmake.
 
+## Triplet Parameters
+
+### VCPKG_OSX_DEPLOYMENT_TARGET
+Determines `QMAKE_MACOSX_DEPLOYMENT_TARGET`
+
+### VCPKG_QMAKE_COMMAND
+Path to qmake.
+
+Defaults to `"${CURRENT_HOST_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_HOST_EXECUTABLE_SUFFIX}"`.
+
+### VCPKG_QT_CONF_RELEASE
+Path to the `qt.config` being used for release mode.
+
+Defaults to `"${CURRENT_INSTALLED_DIR}/tools/Qt6/qt_release.conf"`.
+
+### VCPKG_QT_CONF_DEBUG
+Path to the `qt.config` being used for debug mode.
+
+Defaults to `"${CURRENT_INSTALLED_DIR}/tools/Qt6/qt_debug.conf"`
+
+### VCPKG_QMAKE_OPTIONS_RELEASE
+Extra options to pass to `qmake` in release mode.
+
+### VCPKG_QMAKE_OPTIONS_DEBUG
+Extra options to pass to `qmake` in debug mode.
 
 ## Source
 [ports/vcpkg-qmake/vcpkg\_qmake\_configure.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-qmake/vcpkg_qmake_configure.cmake)

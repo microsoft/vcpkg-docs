@@ -1,8 +1,13 @@
+---
+title: vcpkg CONTROL files
+---
+
 # CONTROL files
 
-**`CONTROL` files are retained for backwards compatibility with earlier versions of vcpkg;
-we recommend using [vcpkg.json manifest files](../users/manifests.md) for any newly authored port.
-Use `./vcpkg format-manifest ports/<portname>/CONTROL` to convert an existing `CONTROL` file to a `vcpkg.json` file.**
+> [!WARNING]
+> `CONTROL` files are deprecated and only retained for backwards compatibility with earlier versions of vcpkg. Use [vcpkg.json manifest files](../users/manifests.md) for any newly authored port.
+>
+> Use `./vcpkg format-manifest path/to/CONTROL` to convert an existing `CONTROL` file to a `vcpkg.json` file.
 
 The `CONTROL` file contains metadata about the port.  The syntax is based on [the Debian `control` format][debian] although we only support the subset of fields documented here.
 
@@ -14,7 +19,7 @@ Field names are case-sensitive and start the line without leading whitespace.  P
 
 The first paragraph in a `CONTROL` file is the Source paragraph.  It must have a `Source`, `Version`, and `Description` field. The full set of fields is documented below.
 
-### Examples:
+### Examples
 ```no-highlight
 Source: ace
 Version: 6.5.5
@@ -67,7 +72,7 @@ The version of the port.
 
 This field is a non-negative integer. It allows one to version the port file separately from the version of the underlying library; if you make a change to a port, without changing the underlying version of the library, you should increment this field by one (starting at `0`, which is equivalent to no `Port-Version` field). When the version of the underlying library is upgraded, this field should be set back to `0` (i.e., delete the `Port-Version` field).
 
-##### Examples:
+##### Examples
 ```no-highlight
 Version: 1.0.5
 Port-Version: 2
@@ -81,7 +86,7 @@ A description of the library.
 
 By convention the first line of the description is a summary of the library.  An optional detailed description follows.  The detailed description can be multiple lines, all starting with whitespace.
 
-##### Examples:
+##### Examples
 ```no-highlight
 Description: C++ header-only JSON library
 ```
@@ -131,32 +136,7 @@ Expression that evaluates to true when the port is expected to build successfull
 
 Currently, this field is only used in the CI testing to skip ports. In the future, this mechanism is intended to warn users in advance that a given install tree is not expected to succeed. Therefore, this field should be used optimistically; in cases where a port is expected to succeed 10% of the time, it should still be marked "supported".
 
-The grammar for the supports expression uses standard operators:
-- `!expr` - negation
-- `expr|expr` - or (`||` is also supported)
-- `expr&expr` - and (`&&` is also supported)
-- `(expr)` - grouping/precedence
-
-The predefined expressions are computed from standard triplet settings:
-- `native` - `TARGET_TRIPLET` == `HOST_TRIPLET`
-- `x64` - `VCPKG_TARGET_ARCHITECTURE` == `"x64"`
-- `x86` - `VCPKG_TARGET_ARCHITECTURE` == `"x86"`
-- `arm` - `VCPKG_TARGET_ARCHITECTURE` == `"arm"` or `VCPKG_TARGET_ARCHITECTURE` == `"arm64"`
-- `arm64` - `VCPKG_TARGET_ARCHITECTURE` == `"arm64"`
-- `windows` - `VCPKG_CMAKE_SYSTEM_NAME` == `""` or `VCPKG_CMAKE_SYSTEM_NAME` == `"WindowsStore"`
-- `uwp` - `VCPKG_CMAKE_SYSTEM_NAME` == `"WindowsStore"`
-- `linux` - `VCPKG_CMAKE_SYSTEM_NAME` == `"Linux"`
-- `osx` - `VCPKG_CMAKE_SYSTEM_NAME` == `"Darwin"`
-- `android` - `VCPKG_CMAKE_SYSTEM_NAME` == `"Android"`
-- `static` - `VCPKG_LIBRARY_LINKAGE` == `"static"`
-- `wasm32` - `VCPKG_TARGET_ARCHITECTURE` == `"wasm32"`
-- `emscripten` - `VCPKG_CMAKE_SYSTEM_NAME` == `"Emscripten"`
-
-These predefined expressions can be overridden in the triplet file via the [`VCPKG_DEP_INFO_OVERRIDE_VARS`](../users/triplets.md) option.
-
-This field is optional and defaults to true.
-
-> Implementers' Note: these terms are computed from the triplet via the `vcpkg_get_dep_info` mechanism.
+See [`"supports"`](../users/manifests.md#supports) in the `vcpkg.json` manifest documentation for the list of supported identifiers.
 
 ##### Example:
 ```no-highlight

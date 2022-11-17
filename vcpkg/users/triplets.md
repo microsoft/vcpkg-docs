@@ -136,6 +136,9 @@ Also available as build-type specific `VCPKG_MAKE_CONFIGURE_OPTIONS_DEBUG` and `
 
 <a name="VCPKG_DEP_INFO_OVERRIDE_VARS"></a>
 ### VCPKG_DEP_INFO_OVERRIDE_VARS
+
+[!INCLUDE [experimental](../../includes/experimental.md)]
+
 Replaces the default computed list of triplet "Supports" terms.
 
 This option (if set) will override the default set of terms used for qualified dependency resolution and "Supports" field evaluation.

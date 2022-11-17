@@ -13,7 +13,7 @@ Builds a meson project previously configured with `vcpkg_configure_meson()`.
 vcpkg_install_meson([ADD_BIN_TO_PATH])
 ```
 
-## Parameters:
+## Parameters
 ### ADD_BIN_TO_PATH
 Adds the appropriate Release and Debug `bin\` directories to the path during the build such that executables can run against the in-tree DLLs.
 

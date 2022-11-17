@@ -1,16 +1,44 @@
+---
+title: z_vcpkg_setup_pkgconfig_path
+---
+
 # z_vcpkg_setup_pkgconfig_path
 
-**Only for internal use in vcpkg helpers. Behavior and arguments will change without notice.**
+[!INCLUDE [internal-helper](../../../../includes/internal-helper.md)]
 
-`z_vcpkg_setup_pkgconfig_path` sets up environment variables to use `pkgconfig`, such as `PKG_CONFIG` and `PKG_CONFIG_PATH`.
-The original values are restored with `z_vcpkg_restore_pkgconfig_path`. `BASE_DIRS` indicates the base directories to find `.pc` files; typically `${CURRENT_INSTALLED_DIR}`, or `${CURRENT_INSTALLED_DIR}/debug`.
+Set up the environment to use `pkgconfig`.
 
+## Usage
 ```cmake
-z_vcpkg_setup_pkgconfig_path(BASE_DIRS <"${CURRENT_INSTALLED_DIR}" ...>)
-# Build process that may transitively invoke pkgconfig
-z_vcpkg_restore_pkgconfig_path()
+z_vcpkg_setup_pkgconfig_path(BASE_DIRS <base-dirs>)
 ```
 
+## Parameters
+### BASE_DIRS
+List of base directories to use.
+
+Typically `${CURRENT_INSTALLED_DIR}` or `${CURRENT_INSTALLED_DIR}/debug`, but not both.
+
+## Notes
+Acquires and sets `PKG_CONFIG` to a valid `pkg-config` program.
+
+For each entry of `BASE_DIRS`, prepends `<entry>/lib` and `<entry>/share` to `PKG_CONFIG_PATH` in an unspecified order.
+
+See also [`z_vcpkg_restore_pkgconfig_path`](z_vcpkg_restore_pkgconfig_path.md).
+
+## Examples
+```cmake
+z_vcpkg_setup_pkgconfig_path(BASE_DIRS "${CURRENT_INSTALLED_DIR}")
+# Build process that may internally invoke pkgconfig
+vcpkg_execute_build_process(COMMAND my-buildsystem.py -release ...)
+z_vcpkg_restore_pkgconfig_path()
+if(NOT VCPKG_BUILD_TYPE)
+  z_vcpkg_setup_pkgconfig_path(BASE_DIRS "${CURRENT_INSTALLED_DIR}/debug")
+  # Build process that may internally invoke pkgconfig
+  vcpkg_execute_build_process(COMMAND my-buildsystem.py -debug ...)
+  z_vcpkg_restore_pkgconfig_path()
+endi()
+```
 
 ## Source
 [scripts/cmake/z\_vcpkg\_setup\_pkgconfig\_path.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/z_vcpkg_setup_pkgconfig_path.cmake)

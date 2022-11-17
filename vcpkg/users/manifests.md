@@ -203,28 +203,53 @@ See [Host Dependencies](host-dependencies.md) for more information.
 
 #### `"platform"` Field
 
-The `"platform"` field defines the platforms where the dependency should be installed - for example,
-you might need to use sha256, and so you use platform primitives on Windows, but `picosha2` on non-Windows platforms.
+The `"platform"` field limits the platforms where the dependency is required.
 
-```json
+Some predefined values are computed from the [triplet settings](triplets.md):
+- `x64` - `VCPKG_TARGET_ARCHITECTURE` == `"x64"`
+- `x86` - `VCPKG_TARGET_ARCHITECTURE` == `"x86"`
+- `arm` - `VCPKG_TARGET_ARCHITECTURE` == `"arm"` or `VCPKG_TARGET_ARCHITECTURE` == `"arm64"`
+- `arm64` - `VCPKG_TARGET_ARCHITECTURE` == `"arm64"`
+- `wasm32` - `VCPKG_TARGET_ARCHITECTURE` == `"wasm32"`
+- `windows` - `VCPKG_CMAKE_SYSTEM_NAME` == `""` or `VCPKG_CMAKE_SYSTEM_NAME` == `"WindowsStore"` or `VCPKG_CMAKE_SYSTEM_NAME` == `"MinGW"`
+- `mingw` - `VCPKG_CMAKE_SYSTEM_NAME` == `"MinGW"`
+- `uwp` - `VCPKG_CMAKE_SYSTEM_NAME` == `"WindowsStore"`
+- `linux` - `VCPKG_CMAKE_SYSTEM_NAME` == `"Linux"`
+- `osx` - `VCPKG_CMAKE_SYSTEM_NAME` == `"Darwin"`
+- `ios` - `VCPKG_CMAKE_SYSTEM_NAME` == `"iOS"`
+- `freebsd` - `VCPKG_CMAKE_SYSTEM_NAME` == `"FreeBSD"`
+- `openbsd` - `VCPKG_CMAKE_SYSTEM_NAME` == `"OpenBSD"`
+- `android` - `VCPKG_CMAKE_SYSTEM_NAME` == `"Android"`
+- `emscripten` - `VCPKG_CMAKE_SYSTEM_NAME` == `"Emscripten"`
+- `static` - `VCPKG_LIBRARY_LINKAGE` == `"static"`
+- `static-crt` - `VCPKG_CRT_LINKAGE` == `"static"`
+
+Cross-compiling can be detected with the `native` value:
+- `native` - `TARGET_TRIPLET` == `HOST_TRIPLET`
+
+Expressions can also be combined using logical operators and grouping:
+- `!<expr>`, `not <expr>` - negation
+- `<expr>|<expr>`, `<expr>||<expr>`, `<expr>,<expr>`, `<expr> or <expr>` - logical OR
+- `<expr>&<expr>`, `<expr>&&<expr>`, `<expr> and <expr>` - logical AND
+- `(<expr>)` - grouping/precedence
+
+##### Examples
+
+**Needs `picosha2` for sha256 on non-Windows, but get it from the OS on Windows (BCrypt)**
+```jsonc
 {
   "name": "picosha2",
   "platform": "!windows"
 }
 ```
 
-This is a string field which takes boolean expressions of the form `<identifier>`,
-`!expression`, `expression { & expression & expression...}`, and `expression { | expression | expression...}`,
-along with parentheses to denote precedence.
-For example, a dependency that's only installed on the Windows OS, for the ARM64 architecture,
-and on Linux on x64, would be written `(windows & arm64) | (linux & x64)`.
-
-The common identifiers are:
-
-- The operating system: `windows`, `uwp`, `linux`, `osx` (includes macOS), `android`, `emscripten`
-- The architecture: `x86`, `x64`, `wasm32`, `arm64`, `arm` (includes both arm32 and arm64 due to backwards compatibility)
-
-although one can define their own.
+**Require zlib on arm64 Windows and amd64 Linux**
+```jsonc
+{
+  "name": "zlib",
+  "platform": "(windows & arm64) | (linux & x64)"
+}
+```
 
 <a id="version-gt"></a>
 
@@ -261,9 +286,8 @@ See also [versioning](versioning.md#overrides) for more semantic details.
 
 ### `"supports"`
 
-If your project doesn't support common platforms, you can tell your users this with the `"supports"` field.
-It uses the same platform expressions as [`"platform"`](#platform), from dependencies, as well as the
-`"supports"` field of features.
+If your project doesn't support common platforms, you can tell your users this with the `"supports"` field. It uses the same platform expressions as [`"platform"`](#platform), from dependencies, as well as the `"supports"` field of features.
+
 For example, if your library doesn't support linux, you might write `{ "supports": "!linux" }`.
 
 <a id="default-features"></a>

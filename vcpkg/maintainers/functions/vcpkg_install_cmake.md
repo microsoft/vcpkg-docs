@@ -10,19 +10,19 @@ The latest version of this document lives in the [vcpkg repo](https://github.com
 
 Build and install a cmake project.
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_install_cmake(...)
 ```
 
-## Parameters:
+## Parameters
 See [`vcpkg_build_cmake()`](vcpkg_build_cmake.md).
 
-## Notes:
+## Notes
 This command transparently forwards to [`vcpkg_build_cmake()`](vcpkg_build_cmake.md), adding a `TARGET install`
 parameter.
 
-## Examples:
+## Examples
 
 * [zlib](https://github.com/Microsoft/vcpkg/blob/master/ports/zlib/portfile.cmake)
 * [cpprestsdk](https://github.com/Microsoft/vcpkg/blob/master/ports/cpprestsdk/portfile.cmake)

@@ -9,7 +9,7 @@ title: vcpkg_configure_gn
 
 Generate Ninja (GN) targets
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_configure_gn(
     SOURCE_PATH <SOURCE_PATH>
@@ -19,7 +19,7 @@ vcpkg_configure_gn(
 )
 ```
 
-## Parameters:
+## Parameters
 ### SOURCE_PATH (required)
 The path to the GN project.
 

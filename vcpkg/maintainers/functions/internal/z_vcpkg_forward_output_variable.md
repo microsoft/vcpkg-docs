@@ -4,17 +4,31 @@ title: z_vcpkg_forward_output_variable
 
 # z_vcpkg_forward_output_variable
 
-**Only for internal use in vcpkg helpers. Behavior and arguments will change without notice.**
+[!INCLUDE [internal-helper](../../../../includes/internal-helper.md)]
 
-This macro helps with forwarding values from inner function calls,
-through a local function scope, into pointer out parameters.
+Forward values from inner function calls into pointer out parameters through a local function scope.
+
+## Usage
 
 ```cmake
-z_vcpkg_forward_output_variable(ptr_to_parent_var var_to_forward)
+z_vcpkg_forward_output_variable(<ptr_to_parent_var> <value_var>)
 ```
 
-is equivalent to
+## Parameters
+### `<ptr_to_parent_var>`
 
+The name of a local variable set to the desired parent variable name.
+
+Most commonly, this local is the result of a pointer-out parameter to a function.
+
+### `<value_var>`
+The name of a local variable that will be propagated out.
+
+## Notes
+The following two snippets are equivalent:
+```cmake
+z_vcpkg_forward_output_variable(ptr_to_parent_var value_var)
+```
 ```cmake
 if(DEFINED ptr_to_parent_var)
     if(DEFINED value_var)
@@ -25,12 +39,7 @@ if(DEFINED ptr_to_parent_var)
 endif()
 ```
 
-Take note that the first argument should be a local variable that has a value of the parent variable name.
-Most commonly, this local is the result of a pointer-out parameter to a function.
-If the variable in the first parameter is not defined, this function does nothing,
-simplifying functions with optional out parameters.
-Most commonly, this should be used in cases like:
-
+## Examples
 ```cmake
 function(my_function out_var)
     file(SHA512 "somefile.txt" local_var)

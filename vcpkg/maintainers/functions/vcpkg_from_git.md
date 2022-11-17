@@ -8,7 +8,7 @@ The latest version of this document lives in the [vcpkg repo](https://github.com
 
 Download and extract a project from git
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_from_git(
     OUT_SOURCE_PATH <SOURCE_PATH>
@@ -20,7 +20,7 @@ vcpkg_from_git(
 )
 ```
 
-## Parameters:
+## Parameters
 ### OUT_SOURCE_PATH
 Specifies the out-variable that will contain the extracted location.
 
@@ -54,10 +54,10 @@ Only files pointed to by `REF` are fetched.
 This makes Git LFS mandatory for the port.
 It's a fatal error if the extension is not installed.
 
-## Notes:
+## Notes
 `OUT_SOURCE_PATH`, `REF`, and `URL` must be specified.
 
-## Examples:
+## Examples
 
 * [fdlibm](https://github.com/Microsoft/vcpkg/blob/master/ports/fdlibm/portfile.cmake)
 

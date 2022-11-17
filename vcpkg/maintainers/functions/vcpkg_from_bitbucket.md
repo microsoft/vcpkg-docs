@@ -8,7 +8,7 @@ The latest version of this document lives in the [vcpkg repo](https://github.com
 
 Download and extract a project from Bitbucket.
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_from_bitbucket(
     OUT_SOURCE_PATH <SOURCE_PATH>
@@ -20,7 +20,7 @@ vcpkg_from_bitbucket(
 )
 ```
 
-## Parameters:
+## Parameters
 ### OUT_SOURCE_PATH
 Specifies the out-variable that will contain the extracted location.
 
@@ -51,12 +51,12 @@ A list of patches to be applied to the extracted sources.
 
 Relative paths are based on the port directory.
 
-## Notes:
+## Notes
 At least one of `REF` and `HEAD_REF` must be specified, however it is preferable for both to be present.
 
 This exports the `VCPKG_HEAD_VERSION` variable during head builds.
 
-## Examples:
+## Examples
 
 * [blaze](https://github.com/Microsoft/vcpkg/blob/master/ports/blaze/portfile.cmake)
 

@@ -10,7 +10,7 @@ Download and extract a project from GitHub. Enables support for `install --head`
 
 This also works with Gitea by specifying the Gitea server with the `GITHUB_HOST` option.
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_from_github(
     OUT_SOURCE_PATH <SOURCE_PATH>
@@ -25,7 +25,7 @@ vcpkg_from_github(
 )
 ```
 
-## Parameters:
+## Parameters
 ### OUT_SOURCE_PATH
 Specifies the out-variable that will contain the extracted location.
 
@@ -67,12 +67,12 @@ A token to be passed via the Authorization HTTP header as "token ${AUTHORIZATION
 ### FILE_DISAMBIGUATOR
 A token to uniquely identify the resulting filename if the SHA512 changes even though a git ref does not, to avoid stepping on the same file name.
 
-## Notes:
+## Notes
 At least one of `REF` and `HEAD_REF` must be specified, however it is preferable for both to be present.
 
 This exports the `VCPKG_HEAD_VERSION` variable during head builds.
 
-## Examples:
+## Examples
 
 * [cpprestsdk](https://github.com/Microsoft/vcpkg/blob/master/ports/cpprestsdk/portfile.cmake)
 * [ms-gsl](https://github.com/Microsoft/vcpkg/blob/master/ports/ms-gsl/portfile.cmake)

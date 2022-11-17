@@ -8,7 +8,7 @@ The latest version of this document lives in the [vcpkg repo](https://github.com
 
 Get the Windows SDK number.
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_get_windows_sdk(<variable>)
 ```

@@ -8,7 +8,7 @@ The latest version of this document lives in the [vcpkg repo](https://github.com
 
 Build and install a msvc makefile project.
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_install_nmake(
     SOURCE_PATH <${SOURCE_PATH}>
@@ -71,7 +71,7 @@ Additional options passed to the build command for the debug build. These are in
 The list of targets passed to the build command.
 If not specified, target `all` will be passed.
 
-## Notes:
+## Notes
 This command transparently forwards to [`vcpkg_build_nmake()`](vcpkg_build_nmake.md), adding `ENABLE_INSTALL`.
 
 ## Examples

@@ -4,11 +4,9 @@ title: vcpkg_build_make
 
 # vcpkg_build_make
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_build_make.md).
+Build a Makefile project.
 
-Build a linux makefile project.
-
-## Usage:
+## Usage
 ```cmake
 vcpkg_build_make([BUILD_TARGET <target>]
                  [INSTALL_TARGET <target>]
@@ -45,10 +43,10 @@ The underlying buildsystem will be instructed to not parallelize
 ### SUBPATH
 Additional subdir to invoke make in. Useful if only parts of a port should be built. 
 
-## Notes:
+## Notes
 This command should be preceded by a call to [`vcpkg_configure_make()`](vcpkg_configure_make.md).
-You can use the alias [`vcpkg_install_make()`](vcpkg_install_make.md) function if your makefile supports the
-"install" target
+
+You can use the alias [`vcpkg_install_make()`](vcpkg_install_make.md) function if your makefile supports the "install" target.
 
 ## Examples
 

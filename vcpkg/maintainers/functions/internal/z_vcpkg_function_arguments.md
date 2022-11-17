@@ -1,26 +1,43 @@
+---
+title: z_vcpkg_function_arguments
+---
+
 # z_vcpkg_function_arguments
 
-**Only for internal use in vcpkg helpers. Behavior and arguments will change without notice.**
+[!INCLUDE [internal-helper](../../../../includes/internal-helper.md)]
 
-Get a list of the arguments which were passed in.
-Unlike `ARGV`, which is simply the arguments joined with `;`,
-so that `(A B)` is not distinguishable from `("A;B")`,
-this macro gives `"A;B"` for the first argument list,
-and `"A\;B"` for the second.
+Get a list of function arguments suitable for perfect forwarding to another function.
+
+## Usage
 
 ```cmake
 z_vcpkg_function_arguments(<out-var> [<N>])
 ```
 
-`z_vcpkg_function_arguments` gets the arguments between `ARGV<N>` and the last argument.
-`<N>` defaults to `0`, so that all arguments are taken.
+## Parameters
+### `<out-var>`
+The variable to set to the list of arguments
 
-## Example:
+### `<N>`
+The index to start accumulating arguments.
+
+Defaults to `0` so all arguments will be gathered.
+
+## Notes
+
+This macro improves over `ARGV` by making it possible to distinguish list arguments.
+
+|              | `ARGV`        | `z_vcpkg_function_arguments()` |
+|--------------|---------------|--------------------------------|
+| `fun(A B)`   | `"A;B"`       | `"A;B"`                        |
+| `fun("A;B")` | `"A;B"`       | `"A\;B"`                       |
+
+## Examples
 ```cmake
-function(foo_replacement)
+function(fun)
     z_vcpkg_function_arguments(ARGS)
-    foo(${ARGS})
-    ...
+    message("fun() is deprecated, use fun_replacement()")
+    fun_replacement(${ARGS})
 endfunction()
 ```
 

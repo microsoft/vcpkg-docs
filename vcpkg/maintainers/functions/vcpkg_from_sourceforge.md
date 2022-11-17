@@ -12,7 +12,7 @@ This function automatically checks a set of sourceforge mirrors.
 Additional mirrors can be injected through the `VCPKG_SOURCEFORGE_EXTRA_MIRRORS`
 list variable in the triplet.
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_from_sourceforge(
     OUT_SOURCE_PATH SOURCE_PATH
@@ -26,7 +26,7 @@ vcpkg_from_sourceforge(
 )
 ```
 
-## Parameters:
+## Parameters
 ### OUT_SOURCE_PATH
 Specifies the out-variable that will contain the extracted location.
 
@@ -67,7 +67,7 @@ Relative paths are based on the port directory.
 ### NO_REMOVE_ONE_LEVEL
 Specifies that the default removal of the top level folder should not occur.
 
-## Examples:
+## Examples
 
 * [cunit](https://github.com/Microsoft/vcpkg/blob/master/ports/cunit/portfile.cmake)
 * [polyclipping](https://github.com/Microsoft/vcpkg/blob/master/ports/polyclipping/portfile.cmake)

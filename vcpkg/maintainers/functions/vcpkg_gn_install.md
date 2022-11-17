@@ -10,7 +10,7 @@ Installs a GN project.
 
 In order to build a GN project without installing, use [`vcpkg_build_ninja()`].
 
-## Usage:
+## Usage
 ```cmake
 vcpkg_gn_install(
      SOURCE_PATH <SOURCE_PATH>
@@ -18,7 +18,7 @@ vcpkg_gn_install(
 )
 ```
 
-## Parameters:
+## Parameters
 ### SOURCE_PATH
 The path to the source directory
 
