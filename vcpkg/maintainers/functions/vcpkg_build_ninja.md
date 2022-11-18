@@ -4,9 +4,7 @@ title: vcpkg_build_ninja
 
 # vcpkg_build_ninja
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_build_ninja.md).
-
-Build a ninja project
+Build a ninja project.
 
 ## Usage
 ```cmake

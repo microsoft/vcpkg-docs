@@ -23,7 +23,7 @@ Build and install port packages.
 
 ### Classic Mode
 
-In Classic Mode, this verb adds port packages to the existing set in the [installed directory][] (defaults to `installed/` under the vcpkg root). This can require removing and rebuilding existing packages, which can fail.
+In [Classic Mode][], this verb adds port packages to the existing set in the [installed directory][] (defaults to `installed/` under the vcpkg root). This can require removing and rebuilding existing packages, which can fail.
 
 <a id="package-syntax"></a>
 
@@ -90,7 +90,7 @@ The install plan lists all packages and features that will be installed, as well
 
 ### `--editable`
 
-**Classic Mode Only**
+**[Classic Mode][] Only**
 
 Perform editable builds for all directly referenced packages on the command line.
 
@@ -120,7 +120,7 @@ By default, only [`"dependencies"`][dependencies] and the dependencies of the [`
 
 ### `--head`
 
-**Classic Mode Only**
+**[Classic Mode][] Only**
 
 Request all packages explicitly referenced on the command line to fetch the latest sources available when building.
 
@@ -162,7 +162,7 @@ This flag blocks vcpkg from performing builds on demand and will fail if a packa
 
 ### `--recurse`
 
-**Classic Mode Only**
+**[Classic Mode][] Only**
 
 Approve an install plan that requires rebuilding packages.
 
@@ -191,6 +191,7 @@ Suppress generation of usage text printed at the end of installation.
 [Asset Caching]: ../users/assetcaching.md
 [Binary Caching]: ../users/binarycaching.md
 [Manifest Mode]: ../users/manifests.md
+[Classic Mode]: ../users/classic-mode.md
 [supports]: ../users/manifests.md#supports
 [default-features]: ../users/manifests.md#default-features
 [dependencies]: ../users/manifests.md#dependencies

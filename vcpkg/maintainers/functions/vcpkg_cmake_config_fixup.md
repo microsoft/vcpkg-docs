@@ -4,12 +4,9 @@ title: vcpkg_cmake_config_fixup
 
 # vcpkg_cmake_config_fixup
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/ports/vcpkg-cmake-config/vcpkg_cmake_config_fixup.md).
+Merge and correct Release and Debug CMake targets and configs to support multiconfig generators.
 
-Merge release and debug CMake targets and configs to support multiconfig generators.
-
-Additionally corrects common issues with targets, such as absolute paths and incorrectly placed binaries.
-
+## Usage
 ```cmake
 vcpkg_cmake_config_fixup(
     [PACKAGE_NAME <name>]
@@ -19,6 +16,8 @@ vcpkg_cmake_config_fixup(
     [NO_PREFIX_CORRECTION]
 )
 ```
+
+Additionally corrects common issues with targets, such as absolute paths and incorrectly placed binaries.
 
 For many ports, `vcpkg_cmake_config_fixup()` on its own should work,
 as `PACKAGE_NAME` defaults to `${PORT}` and `CONFIG_PATH` defaults to `share/${PACKAGE_NAME}`.

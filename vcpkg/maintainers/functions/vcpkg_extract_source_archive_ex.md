@@ -6,8 +6,6 @@ title: vcpkg_extract_source_archive_ex
 
 **This function has been deprecated in favor of [`vcpkg_extract_source_archive()`].**
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_extract_source_archive_ex.md).
-
 Extract an archive.
 
 ## Usage

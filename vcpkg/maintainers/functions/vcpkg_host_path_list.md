@@ -4,10 +4,9 @@ title: vcpkg_host_path_list
 
 # vcpkg_host_path_list
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_host_path_list.md).
-
 Modify a host path list variable (PATH, INCLUDE, LIBPATH, etc.)
 
+## Usage
 ```cmake
 vcpkg_host_path_list(PREPEND <list-var> [<path>...])
 vcpkg_host_path_list(APPEND <list-var> [<path>...])

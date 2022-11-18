@@ -4,8 +4,6 @@ title: vcpkg_gn_install
 
 # vcpkg_gn_install
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/ports/vcpkg-gn/vcpkg_gn_install.md).
-
 Installs a GN project.
 
 In order to build a GN project without installing, use [`vcpkg_build_ninja()`].

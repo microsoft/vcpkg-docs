@@ -4,10 +4,9 @@ title: vcpkg_configure_qmake
 
 # vcpkg_configure_qmake
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_configure_qmake.md).
-
 Configure a qmake-based project.
 
+## Usage
 ```cmake
 vcpkg_configure_qmake(
     SOURCE_PATH <pro_file_path>

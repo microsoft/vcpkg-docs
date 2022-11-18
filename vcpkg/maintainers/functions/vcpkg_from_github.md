@@ -4,8 +4,6 @@ title: vcpkg_from_github
 
 # vcpkg_from_github
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_from_github.md).
-
 Download and extract a project from GitHub. Enables support for `install --head`.
 
 This also works with Gitea by specifying the Gitea server with the `GITHUB_HOST` option.

@@ -4,9 +4,9 @@ title: vcpkg_check_features
 
 # vcpkg_check_features
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_check_features.md).
 Check if one or more features are a part of a package installation.
 
+## Usage
 ```cmake
 vcpkg_check_features(
     OUT_FEATURE_OPTIONS <out-var>

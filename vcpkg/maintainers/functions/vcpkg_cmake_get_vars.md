@@ -4,8 +4,6 @@ title: vcpkg_cmake_get_vars
 
 # vcpkg_cmake_get_vars
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/ports/vcpkg-cmake-get-vars/vcpkg_cmake_get_vars.md).
-
 Runs a cmake configure with a dummy project to extract certain cmake variables
 
 ## Usage

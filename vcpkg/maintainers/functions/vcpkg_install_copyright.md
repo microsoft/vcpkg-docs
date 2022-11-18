@@ -4,8 +4,6 @@ title: vcpkg_install_copyright
 
 # vcpkg_install_copyright
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_install_copyright.md).
-
 Merges multiple copyright files into a single file and install it.
 Installs a single copyright file.
 

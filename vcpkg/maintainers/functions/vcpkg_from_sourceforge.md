@@ -4,8 +4,6 @@ title: vcpkg_from_sourceforge
 
 # vcpkg_from_sourceforge
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_from_sourceforge.md).
-
 Download and extract a project from sourceforge.
 
 This function automatically checks a set of sourceforge mirrors.

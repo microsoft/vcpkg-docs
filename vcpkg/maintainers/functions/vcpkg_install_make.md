@@ -4,8 +4,6 @@ title: vcpkg_install_make
 
 # vcpkg_install_make
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_install_make.md).
-
 Build and install a make project.
 
 ## Usage

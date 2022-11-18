@@ -4,8 +4,6 @@ title: vcpkg_fixup_pkgconfig
 
 # vcpkg_fixup_pkgconfig
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_fixup_pkgconfig.md).
-
 Fix common paths in *.pc files and make everything relative to $(prefix).
 Additionally, on static triplets, private entries are merged with their non-private counterparts,
 allowing pkg-config to be called without the ``--static`` flag.

@@ -4,8 +4,6 @@ title: vcpkg_from_gitlab
 
 # vcpkg_from_gitlab
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_from_gitlab.md).
-
 Download and extract a project from Gitlab instances. Enables support for `install --head`.
 
 ## Usage

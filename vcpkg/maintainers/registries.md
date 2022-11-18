@@ -1,20 +1,10 @@
+---
+title: Creating Registries
+---
+
 # Creating Registries
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/maintainers/registries.md).**
-
-There are two parts to using registries; this documents the creation side of
-the relationship. In order to learn more about using registries that others
-have created, please read [this documentation](../users/registries.md).
-## Table of Contents
-
-- [Creating Registries](#creating-registries)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-    - [Git Registries](#git-registries)
-      - [Adding a New Version](#adding-a-new-version)
-    - [Filesystem Registries](#filesystem-registries)
-      - [Adding a New Version](#adding-a-new-version-1)
-    - [Builtin Registries](#builtin-registries)
+For information on consuming registries, see [Using Registries](../users/registries.md).
 
 ## Overview
 

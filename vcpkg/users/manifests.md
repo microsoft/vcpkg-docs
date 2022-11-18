@@ -1,44 +1,7 @@
 # Manifest Mode
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/users/manifests.md).**
-
-vcpkg has two modes of consuming dependencies - classic mode and manifest mode.
-
-In classic mode, vcpkg produces an "installed" tree, whose contents are changed by explicit calls to `vcpkg install` or
-`vcpkg remove`. The installed tree is intended for consumption by any number of projects: for example, installing a
-bunch of libraries and then using those libraries from Visual Studio, without additional configuration. Because the
-installed tree is not associated with an individual project, it's similar to tools like `brew` or `apt`, except that the
-installed tree is vcpkg-installation-local, rather than global to a system or user.
-
-In manifest mode, an installed tree is associated with a particular project rather than the vcpkg installation. The set
-of installed ports is controlled by editing the project's "manifest file", and the installed tree is placed in the
-project directory or build directory. This mode acts more similarly to language package managers like Cargo, or npm. We
-recommend using this manifest mode whenever possible, because it allows one to encode a project's dependencies
-explicitly in a project file, rather than in the documentation, making your project much easier to consume.
-
 Check out the [manifest cmake example](../examples/manifest-mode-cmake.md) for an example project using CMake and
 manifest mode.
-
-## Table of Contents
-
-- [Simple Example Manifest](#simple-example-manifest)
-- [Manifest Syntax Reference](#manifest-syntax-reference)
-  - [`"name"`](#name)
-  - [Version Fields](#version-fields)
-  - [`"description"`](#description)
-  - [`"builtin-baseline"`](#builtin-baseline)
-  - [`"dependencies"`](#dependencies)
-    - [`"name"`](#dependencies-name)
-    - [`"default-features"`](#dependencies-default-features)
-    - [`"features"`](#dependencies-features)
-    - [`"host"`](#host)
-    - [`"platform"`](#platform)
-    - [`"version>="`](#version-gt)
-  - [`"overrides"`](#overrides)
-  - [`"supports"`](#supports)
-  - [`"features"`](#features)
-  - [`"default-features"`](#default-features)
-  - [`"vcpkg-configuration"`](#vcpkg-configuration)
 
 ## Simple Example Manifest
 

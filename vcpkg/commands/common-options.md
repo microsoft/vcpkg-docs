@@ -9,7 +9,7 @@ Most vcpkg commands accept a group of common options that control cross-cutting 
 
 <a name="asset-sources"></a>
 
-## `--x-asset-sources=<config>`
+### `--x-asset-sources=<config>`
 
 **Experimental: will change or be removed at any time**
 
@@ -17,7 +17,7 @@ Specify the cache configuration for [Asset Caching](../users/assetcaching.md).
 
 <a name="binarysource"></a>
 
-## `--binarysource=<config>`
+### `--binarysource=<config>`
 
 Add a source for [Binary Caching](../users/binarycaching.md).
 
@@ -25,7 +25,7 @@ This option can be specified multiple times; see the Binary Caching documentatio
 
 <a name="buildtrees-root"></a>
 
-## `--x-buildtrees-root=<path>`
+### `--x-buildtrees-root=<path>`
 
 **Experimental: will change or be removed at any time**
 
@@ -35,7 +35,7 @@ Defaults to `buildtrees/` under the vcpkg root folder.
 
 <a name="downloads-root"></a>
 
-## `--downloads-root=<path>`
+### `--downloads-root=<path>`
 
 Specify where downloaded tools and source code archives should be kept.
 
@@ -43,7 +43,7 @@ Defaults to the `VCPKG_DOWNLOADS` environment variable. If that is unset, defaul
 
 <a name="host-triplet"></a>
 
-## `--host-triplet=<triplet>`
+### `--host-triplet=<triplet>`
 
 Specify the host [architecture triplet][triplets].
 
@@ -51,7 +51,7 @@ Defaults to the `VCPKG_DEFAULT_HOST_TRIPLET` environment variable. If that is un
 
 <a name="install-root"></a>
 
-## `--x-install-root=<path>`
+### `--x-install-root=<path>`
 
 **Experimental: will change or be removed at any time**
 
@@ -63,7 +63,7 @@ In [Manifest Mode](../users/manifests.md), defaults to `vcpkg_installed/` under 
 
 <a name="manifest-root"></a>
 
-## `--x-manifest-root=<path>`
+### `--x-manifest-root=<path>`
 
 **Experimental: will change or be removed at any time**
 
@@ -73,7 +73,7 @@ Defaults to searching upwards from the current working directory for the nearest
 
 <a name="overlay-ports"></a>
 
-## `--overlay-ports=<path>`
+### `--overlay-ports=<path>`
 
 Specifies a directory containing [overlay ports](../users/registries.md#configuration-overlay-ports).
 
@@ -81,7 +81,7 @@ This option can be specified multiple times; ports will resolve to the first mat
 
 <a name="overlay-triplets"></a>
 
-## `--overlay-triplets=<path>`
+### `--overlay-triplets=<path>`
 
 Specifies a directory containing [overlay triplets](../examples/overlay-triplets-linux-dynamic.md).
 
@@ -89,7 +89,7 @@ This option can be specified multiple times; [triplets][] will resolve to the fi
 
 <a name="packages-root"></a>
 
-## `--x-packages-root=<path>`
+### `--x-packages-root=<path>`
 
 **Experimental: will change or be removed at any time**
 
@@ -99,7 +99,7 @@ Defaults to `packages/` under the vcpkg root folder.
 
 <a name="triplet"></a>
 
-## `--triplet=<triplet>`
+### `--triplet=<triplet>`
 
 Specify the target [architecture triplet][triplets].
 
@@ -109,13 +109,13 @@ Note that on Windows operating systems, the architecture is always deduced as x8
 
 <a name="vcpkg-root"></a>
 
-## `--vcpkg-root=<path>`
+### `--vcpkg-root=<path>`
 
 Specifies the vcpkg root folder.
 
 Defaults to the directory containing the vcpkg program. The directory must be a valid vcpkg instance, such as a `git clone` of `https://github.com/microsoft/vcpkg`. This option can be used to run a custom-built copy of the tool directly from the build folder.
 
-## Response Files (`@<file>`)
+### Response Files (`@<file>`)
 
 The vcpkg command line accepts text files containing newline-separated command line parameters.
 

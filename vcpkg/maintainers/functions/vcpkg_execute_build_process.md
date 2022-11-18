@@ -4,8 +4,6 @@ title: vcpkg_execute_build_process
 
 # vcpkg_execute_build_process
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_execute_build_process.md).
-
 Execute a required build process
 
 ## Usage

@@ -4,8 +4,6 @@ title: vcpkg_install_nmake
 
 # vcpkg_install_nmake
 
-The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_install_nmake.md).
-
 Build and install a msvc makefile project.
 
 ## Usage

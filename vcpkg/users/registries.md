@@ -1,29 +1,6 @@
 # Using Registries
 
-**The latest version of this documentation is available on [GitHub](https://github.com/Microsoft/vcpkg/tree/master/docs/users/registries.md).**
-
-There are two parts to using registries; this documents the use side of the
-relationship. In order to learn more about creating registries for others to
-use, please read [this documentation](../maintainers/registries.md).
-
-## Table of Contents
-
-- [Using Registries](#using-registries)
-  - [Table of Contents](#table-of-contents)
-  - [`vcpkg-configuration.json`](#vcpkg-configurationjson)
-    - [Registry Objects](#registry-objects)
-      - [Registry Objects: `"kind"`](#registry-objects-kind)
-      - [Registry Objects: `"baseline"`](#registry-objects-baseline)
-      - [Registry Objects: `"repository"`](#registry-objects-repository)
-      - [Registry Objects: `"path"`](#registry-objects-path)
-    - [Configuration: `"default-registry"`](#configuration-default-registry)
-    - [Configuration: `"registries"`](#configuration-registries)
-    - [Configuration: `"overlay-ports"`](#configuration-overlay-ports)
-    - [Configuration: `"overlay-triplets"`](#configuration-overlay-triplets)
-    - [Example Configuration File](#example-configuration-file)
-  - [Package Name Resolution](#package-name-resolution)
-    - [Overlays Resolution](#overlays-resolution)
-    - [Versioning Support](#versioning-support)
+For information on creating your own registries, see [Creating Registries](../users/registries.md).
 
 ## `vcpkg-configuration.json`
 
