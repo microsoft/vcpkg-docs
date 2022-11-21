@@ -11,7 +11,7 @@ If you want to contribute but don't have a particular library in mind then take 
 of [new port requests](https://github.com/Microsoft/vcpkg/issues?q=is%3Aissue+is%3Aopen+label%3Acategory%3Anew-port).
 
 ## Can vcpkg create pre-built binary packages? What is the binary format used by vcpkg?
-Yes! See the [`export` command](../users/buildsystems/export-command.md) if you wish to produce binaries for exporting into other environments.
+Yes! See the [`export` command](../commands/export.md) if you wish to produce binaries for exporting into other environments.
 
 Alternatively, if your goal is to preserve binaries produced by `vcpkg install` operations for later re-use, see the [Binary Caching feature](../users/binarycaching.md)
 
@@ -55,7 +55,7 @@ Execute `git pull` to get the latest sources, then run `bootstrap-vcpkg.bat` (Wi
 ## How do I use different versions of a library on one machine?
 Within a single instance of vcpkg (e.g. one set of `installed\`, `packages\`, `ports\` and so forth), you can only have one version of a library installed (otherwise, the headers would conflict with each other!). For those with experience with system-wide package managers, packages in vcpkg correspond to the `X-dev` or `X-devel` packages.
 
-To use different versions of a library for different projects, we recommend making separate instances of vcpkg and using the [per-project integration mechanisms](../users/buildsystems/integration.md). The versions of each library are specified by the files in `ports\`, so they are easily manipulated using standard `git` commands. This makes it very easy to roll back the entire set of libraries to a consistent set of older versions which all work with each other. If you need to then pin a specific library forward, that is as easy as checking out the appropriate version of `ports\<package>\`.
+To use different versions of a library for different projects, we recommend making separate instances of vcpkg and using the per-project integration mechanisms. The versions of each library are specified by the files in `ports\`, so they are easily manipulated using standard `git` commands. This makes it very easy to roll back the entire set of libraries to a consistent set of older versions which all work with each other. If you need to then pin a specific library forward, that is as easy as checking out the appropriate version of `ports\<package>\`.
 
 If your application is very sensitive to the versions of libraries, we recommend checking in the specific set of portfiles you need into your source control along with your project sources and using the `--vcpkg-root` option to redirect the working directory of `vcpkg.exe`.
 

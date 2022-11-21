@@ -11,7 +11,7 @@ _Note: this old example uses Classic Mode, but most developers will be happier w
   - [Step 2: Use](#use)
     - [VS/MSBuild Project (User-wide integration)](#msbuild)
     - [CMake (Toolchain file)](#cmake)
-    - [Other integration options](../users/buildsystems/integration.md)
+    - [Other integration options](../users/buildsystems/manual-integration.md)
 
 <a name="install"></a>
 ## Step 1: Install
@@ -77,6 +77,9 @@ See `.\vcpkg help triplet` for all supported targets.
 <a name="msbuild"></a>
 ### VS/MSBuild Project (User-wide integration)
 
+> [!div class="nextstepaction"]
+> [Learn more about using vcpkg from MSBuild](../users/buildsystems/msbuild-integration.md)
+
 The recommended and most productive way to use vcpkg is via user-wide integration, making the system available for all projects you build. The user-wide integration will prompt for administrator access the first time it is used on a given machine, but afterwards is no longer required and the integration is configured on a per-user basis.
 ```no-highlight
 PS D:\src\vcpkg> .\vcpkg integrate install
@@ -94,6 +97,9 @@ To remove the integration for your user, you can use `.\vcpkg integrate remove`.
 
 <a name="cmake"></a>
 ### CMake (Toolchain File)
+
+> [!div class="nextstepaction"]
+> [Learn more about using vcpkg from CMake](../users/buildsystems/cmake-integration.md)
 
 The best way to use installed libraries with cmake is via the toolchain file `scripts\buildsystems\vcpkg.cmake`. To use this file, you simply need to add it onto your CMake command line as:  
 `-DCMAKE_TOOLCHAIN_FILE=D:\src\vcpkg\scripts\buildsystems\vcpkg.cmake`.

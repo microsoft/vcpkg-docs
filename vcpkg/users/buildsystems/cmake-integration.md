@@ -1,6 +1,6 @@
 ---
 title: CMake Integration
-description: How to integrate vcpkg into a CMake build using Visual Studio, Visual Studio Code, a terminal, or other IDEs.
+description: Integrate vcpkg into a CMake project using Visual Studio, Visual Studio Code, a terminal, or other IDEs.
 ---
 
 # CMake Integration
@@ -12,22 +12,22 @@ See [Installing and Using Packages Example: sqlite](../../examples/installing-an
 Projects configured to use the vcpkg toolchain file (via the CMake setting `CMAKE_TOOLCHAIN_FILE`) can find libraries from vcpkg using the standard CMake functions: `find_package()`, `find_path()`, and `find_library()`.
 
 ```no-highlight
-cmake ../my/project -DCMAKE_TOOLCHAIN_FILE=[vcpkg-root]/scripts/buildsystems/vcpkg.cmake
+cmake ../my/project -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
 ```
 
 Since version 3.21, CMake will use the environment variable `CMAKE_TOOLCHAIN_FILE`[1] as the default value for `CMAKE_TOOLCHAIN_FILE`.
 
 **cmd**
 ```cmd
-set CMAKE_TOOLCHAIN_FILE=[vcpkg root]/scripts/buildsystems/vcpkg.cmake
+set CMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
 ```
 **Powershell**
 ```powershell
-$env:CMAKE_TOOLCHAIN_FILE="[vcpkg root]/scripts/buildsystems/vcpkg.cmake"
+$env:CMAKE_TOOLCHAIN_FILE="<vcpkg-root>/scripts/buildsystems/vcpkg.cmake"
 ```
 **bash**
 ```sh
-export CMAKE_TOOLCHAIN_FILE=[vcpkg root]/scripts/buildsystems/vcpkg.cmake
+export CMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
 ```
 
 vcpkg does not automatically add any include or links paths into your project. To use a header-only library you can use `find_path()` which will correctly work on all platforms:
@@ -49,7 +49,7 @@ Adding the following to your workspace `settings.json` will make CMake Tools aut
 ```json
 {
   "cmake.configureSettings": {
-    "CMAKE_TOOLCHAIN_FILE": "[vcpkg root]/scripts/buildsystems/vcpkg.cmake"
+    "CMAKE_TOOLCHAIN_FILE": "<vcpkg-root>/scripts/buildsystems/vcpkg.cmake"
   }
 }
 ```
@@ -59,7 +59,7 @@ Adding the following to your workspace `settings.json` will make CMake Tools aut
 In the CMake Settings Editor, add the path to the vcpkg toolchain file under `CMake toolchain file`:
 
 ```
-[vcpkg root]/scripts/buildsystems/vcpkg.cmake
+<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
 ```
 
 ### CLion
@@ -67,7 +67,7 @@ In the CMake Settings Editor, add the path to the vcpkg toolchain file under `CM
 Open the Toolchains settings (`File > Settings` on Windows and Linux, `CLion > Preferences` on macOS), and go to the CMake settings (`Build, Execution, Deployment > CMake`). In `CMake options`, add the following line:
 
 ```
--DCMAKE_TOOLCHAIN_FILE=[vcpkg root]/scripts/buildsystems/vcpkg.cmake
+-DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
 ```
 
 You must add this line to each profile separately.

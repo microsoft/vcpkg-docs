@@ -1,3 +1,8 @@
+---
+title: MSBuild Integration
+description: Integrate vcpkg into an MSBuild or Visual Studio project.
+---
+
 # MSBuild Integration (Visual Studio)
 
 ## Integration Methods
@@ -48,7 +53,7 @@ See the [Customize your build][1] section of the official MSBuild documentation 
 
 ### Linked NuGet Package
 
-**Note: This approach is not recommended for new projects, since it makes them difficult to share with others. For a portable, self-contained NuGet package, see the [`export command`](export-command.md)**
+**Note: This approach is not recommended for new projects, since it makes them difficult to share with others. For a portable, self-contained NuGet package, see the [`export command`](../../commands/export.md)**
 
 VS projects can also be integrated through a NuGet package. This will modify the project file, so we do not recommend this approach for open source projects.
 

@@ -225,10 +225,14 @@
   items:
     - name: Common Command Options
       href: commands/common-options.md
+    - name: vcpkg export
+      href: commands/export.md
     - name: vcpkg install
       href: commands/install.md
     - name: vcpkg integrate
       href: commands/integrate.md
+    - name: vcpkg list
+      href: commands/list.md
     - name: vcpkg remove
       href: commands/remove.md
     - name: vcpkg search
