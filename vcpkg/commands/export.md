@@ -15,8 +15,8 @@ The `export` command creates a shrinkwrapped archive containing a specific set o
 Each of these have the same internal layout which mimics the layout of a full vcpkg instance:
 
 - `installed/` contains the library files
-- `scripts/buildsystems/vcpkg.cmake` is the [CMake toolchain file](cmake-integration.md)
-- `scripts/buildsystems/msbuild/vcpkg.props` and `scripts/buildsystems/msbuild/vcpkg.targets` are the [MSBuild integration files](msbuild-integration.md)
+- `scripts/buildsystems/vcpkg.cmake` is the [CMake toolchain file](../users/buildsystems/cmake-integration.md)
+- `scripts/buildsystems/msbuild/vcpkg.props` and `scripts/buildsystems/msbuild/vcpkg.targets` are the [MSBuild integration files](../users/buildsystems/msbuild-integration.md)
 
 NuGet package exports will also contain a `build\native\vcpkg.targets` that integrates with MSBuild projects using the NuGet package manager.
 

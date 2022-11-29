@@ -1,4 +1,9 @@
-# Authentication for Source Code
+---
+title: Remote Authentication
+description: Learn to configure which credentials are used when accessing remote resources with vcpkg.
+---
+
+# Remote Authentication
 
 [Registries](registries.md) and [`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md) directly use the Git command line tools to fetch remote resources. Some of these resources may be protected from anonymous access and need authentication or credentials.
 

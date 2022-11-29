@@ -1,5 +1,5 @@
-- name: Index
-  href: index.md
+- name: vcpkg Documentation
+  href: index.yml
 - name: Consuming Libraries
   items:
     - name: Getting Started with Classic Mode
@@ -45,15 +45,15 @@
     - name: Examples
       items:
       - name: Selecting LLVM Features
-        href: users/selecting-library-features.md
+        href: users/examples/selecting-llvm-features.md
       - name: Selecting Boost Versions as a Set
         displayName: baseline, baselines, versioning
-        href: examples/modify-baseline-to-pin-old-boost.md
+        href: users/examples/modify-baseline-to-pin-old-boost.md
       - name: Creating a Custom Linux Triplet
         displayName: dynamic, so, shared object, overlay
-        href: examples/overlay-triplets-linux-dynamic.md
+        href: users/examples/overlay-triplets-linux-dynamic.md
       - name: Getting Started with Versioning
-        href: examples/versioning.getting-started.md
+        href: users/examples/versioning.getting-started.md
 - name: Packaging Libraries
   items:
   - name: Tutorials

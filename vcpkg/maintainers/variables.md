@@ -1,5 +1,6 @@
 ---
 title: Portfile Variable Reference
+description: These are variables set automatically by vcpkg for use in any port.
 ---
 
 # Portfile Variable Reference
@@ -10,7 +11,9 @@ These are variables set automatically by vcpkg for use in any port. They should 
 The name of the port that is currently being built
 
 ### VERSION
-The version of the port that is currently being built
+The version of the port that is currently being built.
+
+Does not contain the ["port-version"](../users/versioning.md#port-version).
 
 ### VCPKG_TARGET_IS_\<system\>
 Defined to a true value if building for *\<system\>*.
@@ -52,7 +55,7 @@ This is set to `".exe"` on Windows and `""` on other platforms.
 ### VCPKG_TARGET_EXECUTABLE_SUFFIX
 Executable suffix for the built-for system.
 
-This is set to `".exe"` when [`VCPKG_TARGET_IS_WINDOWS`](#VCPKG_TARGET_IS_\<system\>) and `""` otherwise.
+This is set to `".exe"` when [`VCPKG_TARGET_IS_WINDOWS`](#VCPKG_TARGET_IS_system) and `""` otherwise.
 
 ### VCPKG_HOST_BUNDLE_SUFFIX
 Bundle suffix of the building system.

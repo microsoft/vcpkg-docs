@@ -1,4 +1,9 @@
-# Selecting Library Features
+---
+title: Selecting LLVM Features
+description: Learn how to customize the llvm package with features in vcpkg.
+---
+
+# Selecting LLVM Features
 
 ## Installing a library
 

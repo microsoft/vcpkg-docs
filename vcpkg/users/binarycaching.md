@@ -1,3 +1,8 @@
+---
+title: Binary Caching
+description: Reuse binaries built with vcpkg across different projects and machines.
+---
+
 # Binary Caching
 
 Libraries installed with vcpkg can always be built from source. However, that can duplicate work and waste time across multiple projects, developers, or machines.
