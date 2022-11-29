@@ -83,7 +83,7 @@ This option can be specified multiple times; ports will resolve to the first mat
 
 ### `--overlay-triplets=<path>`
 
-Specifies a directory containing [overlay triplets](../examples/overlay-triplets-linux-dynamic.md).
+Specifies a directory containing [overlay triplets](../users/examples/overlay-triplets-linux-dynamic.md).
 
 This option can be specified multiple times; [triplets][] will resolve to the first match.
 

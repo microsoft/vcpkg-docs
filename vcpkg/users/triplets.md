@@ -4,9 +4,13 @@ Triplet is a standard term used in cross compiling as a way to completely captur
 
 In vcpkg, we use triplets to describe an imaginary "target configuration set" for every library. Within a triplet, libraries are generally built with the same configuration, but it is not a requirement. For example, you could have one triplet that builds `openssl` statically and `zlib` dynamically, one that builds them both statically, and one that builds them both dynamically (all for the same target OS and architecture). A single build will consume files from a single triplet.
 
-We currently provide many triplets by default (run `vcpkg help triplet`). However, you can easily customize or add your own by copying a built-in triplet from the `triplets\` directory into a project local location. Then, use `--overlay-triplets=` (or equivalent such as [`$VCPKG_OVERLAY_TRIPLETS`](config-environment.md#vcpkg_overlay_triplets), [CMake `VCPKG_OVERLAY_TRIPLETS`](buildsystems/cmake-integration.md#vcpkg_overlay_triplets), or [MSBuild Additional Options](buildsystems/msbuild-integration.md#vcpkg-additional-install-options)) to add that directory to vcpkg. See our [overlay triplets example](../examples/overlay-triplets-linux-dynamic.md) for a more detailed walkthrough.
+We currently provide many triplets by default (run `vcpkg help triplet`). However, you can easily customize or add your own by copying a built-in triplet from the `triplets\` directory into a project local location. Then, use `--overlay-triplets=` (or equivalent such as [`$VCPKG_OVERLAY_TRIPLETS`](config-environment.md#vcpkg_overlay_triplets), [CMake `VCPKG_OVERLAY_TRIPLETS`](buildsystems/cmake-integration.md#vcpkg_overlay_triplets), or [MSBuild Additional Options](buildsystems/msbuild-integration.md#vcpkg-additional-install-options)) to add that directory to vcpkg. See our [overlay triplets example](examples/overlay-triplets-linux-dynamic.md) for a more detailed walkthrough.
 
-To change the triplet used by your project, you can pass `--triplet=<triplet>` on the command line or see our [Buildsystem-Specific Documentation](buildsystems/integration.md).
+To change the triplet used:
+- In [Classic Mode](classic-mode.md), you can qualify package references with the triplet name, such as `zlib:x64-windows-static-md`.
+- In [Manifest Mode](manifests.md), you can pass `--triplet=<triplet>` on the [`vcpkg install`](../commands/install.md) command line.
+- With CMake, you can set [`VCPKG_TARGET_TRIPLET`](buildsystems/cmake-integration.md#vcpkg_target_triplet).
+- With MSBuild, you can set [`VcpkgTriplet`](buildsystems/msbuild-integration.md#vcpkgtriplet-triplet).
 
 ## Community triplets
 

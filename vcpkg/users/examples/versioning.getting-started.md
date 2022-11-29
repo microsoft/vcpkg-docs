@@ -146,7 +146,7 @@ If you want to upgrade your dependencies, you can bump the minimum version const
 { "builtin-baseline": "3426db05b996481ca31e95fff3734cf23e0f51bc" }
 ```
 
-This field declares the versioning baseline for all ports. Setting a baseline is required to enable versioning, otherwise you will get the current versions on the ports directory. You can run 'git rev-parse HEAD' to get the current commit of vcpkg and set it as the builtin-baseline. See the [`builtin-baseline` documentation](../users/manifests.md#builtin-baseline) for more information.
+This field declares the versioning baseline for all ports. Setting a baseline is required to enable versioning, otherwise you will get the current versions on the ports directory. You can run 'git rev-parse HEAD' to get the current commit of vcpkg and set it as the builtin-baseline. See the [`builtin-baseline` documentation](../manifests.md#builtin-baseline) for more information.
 
 In our example, you can notice that we do not declare a version constraint for `zlib`; instead, the version is taken from the baseline. Internally, vcpkg will look in commit `3426db05b996481ca31e95fff3734cf23e0f51bc` to find out what version of `zlib` was the latest at that point in time (in our case it was `1.2.11#9`).
 
@@ -237,8 +237,8 @@ The last thing to discuss is how overlay ports interact with versioning resoluti
 
 Going into more detail, when you provide an overlay for a port, vcpkg will always use the overlay port without caring what version is contained in it. The reasons are two-fold: (1) it is consistent with the existing behavior of overlay ports of completely masking the existing port, and (2) overlay ports do not (and are not expected to) provide enough information to power vcpkg's versioning feature.
 
-If you want to have flexible port customization along with versioning, you should consider [making your own custom registry](../maintainers/registries.md).
+If you want to have flexible port customization along with versioning, you should consider [making your own custom registry](../../maintainers/registries.md).
 
 ## Further reading
 
-If you're interested in delving deeper into the details of how versioning works we recommended that you read our [Versioning Reference](../users/versioning.md) and [Versioning Concepts](../users/versioning.concepts.md).
+If you're interested in delving deeper into the details of how versioning works we recommended that you read our [Versioning Reference](../versioning.md) and [Versioning Concepts](../versioning.concepts.md).

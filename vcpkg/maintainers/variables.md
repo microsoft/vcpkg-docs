@@ -55,7 +55,7 @@ This is set to `".exe"` on Windows and `""` on other platforms.
 ### VCPKG_TARGET_EXECUTABLE_SUFFIX
 Executable suffix for the built-for system.
 
-This is set to `".exe"` when [`VCPKG_TARGET_IS_WINDOWS`](#VCPKG_TARGET_IS_system) and `""` otherwise.
+This is set to `".exe"` when [`VCPKG_TARGET_IS_WINDOWS`](#vcpkg_target_is_system) and `""` otherwise.
 
 ### VCPKG_HOST_BUNDLE_SUFFIX
 Bundle suffix of the building system.
