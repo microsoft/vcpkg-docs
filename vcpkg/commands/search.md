@@ -8,7 +8,7 @@ ms.date: 11/30/2022
 
 ## Synopsis
 
-```no-highlight
+```console
 vcpkg search [options] [query]
 ```
 
@@ -20,7 +20,7 @@ Search performs a case-insensitive search through all available package names an
 
 ## Example
 
-```no-highlight
+```console
 $ vcpkg search zlib
 miniz                    2.2.0#1          Single C source file zlib-replacement library
 zlib                     1.2.12#1         A compression library

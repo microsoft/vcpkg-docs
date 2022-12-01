@@ -30,7 +30,7 @@ vcpkg_cmake_configure(
 
 To use this function, you must depend on the helper port `vcpkg-cmake`:
 
-```no-highlight
+```json
 "dependencies": [
   {
     "name": "vcpkg-cmake",

@@ -20,13 +20,13 @@ The first paragraph in a `CONTROL` file is the Source paragraph.  It must have a
 
 ### Examples
 
-```no-highlight
+```txt
 Source: ace
 Version: 6.5.5
 Description: The ADAPTIVE Communication Environment
 ```
 
-```no-highlight
+```txt
 Source: vtk
 Version: 8.2.0
 Port-Version: 2
@@ -77,12 +77,12 @@ This field is a non-negative integer. It allows one to version the port file sep
 
 ##### Examples
 
-```no-highlight
+```
 Version: 1.0.5
 Port-Version: 2
 ```
 
-```no-highlight
+```
 Version: 2019-03-21
 ```
 
@@ -94,11 +94,11 @@ By convention the first line of the description is a summary of the library.  An
 
 ##### Examples
 
-```no-highlight
+```
 Description: C++ header-only JSON library
 ```
 
-```no-highlight
+```
 Description: Mosquitto is an open source message broker that implements the MQ Telemetry Transport protocol versions 3.1 and 3.1.1.
   MQTT provides a lightweight method of carrying out messaging using a publish/subscribe model. This makes it suitable for "machine
   to machine" messaging such as with low power sensors or mobile devices such as phones, embedded computers or microcontrollers like the Arduino.
@@ -110,7 +110,7 @@ The URL of the homepage for the library where a user is able to find additional 
 
 Example:
 
-```no-highlight
+```
 Homepage: https://github.com/Microsoft/vcpkg
 ```
 
@@ -128,7 +128,7 @@ Dependencies can be filtered based on the target triplet to support differing re
 
 ##### Example
 
-```no-highlight
+```
 Build-Depends: rapidjson, curl[core,openssl] (!windows), curl[core,winssl] (windows)
 ```
 
@@ -140,7 +140,7 @@ This field is optional.
 
 ##### Example
 
-```no-highlight
+```
 Default-Features: dynamodb, s3, kinesis
 ```
 
@@ -154,7 +154,7 @@ See [`"supports"`](../users/manifests.md#supports) in the `vcpkg.json` manifest 
 
 ##### Example
 
-```no-highlight
+```
 Supports: !(uwp|arm)
 ```
 
@@ -164,7 +164,7 @@ Multiple optional features can be specified in the `CONTROL` files.  It must hav
 
 ### Example
 
-```no-highlight
+```
 Source: vtk
 Version: 8.2.0-2
 Description: Software system for 3D computer graphics, image processing, and visualization

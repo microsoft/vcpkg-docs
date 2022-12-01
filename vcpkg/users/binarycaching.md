@@ -146,7 +146,7 @@ More information about Azure DevOps Artifacts' NuGet support is available in the
 
 vcpkg supports interfacing with Azure Blob Storage via the `x-azblob` source type.
 
-```no-highlight
+```
 x-azblob,<baseuri>,<sas>[,<rw>]
 ```
 
@@ -162,7 +162,7 @@ The blob endpoint plus the container must be passed as the `<baseuri>` and the g
 
 Example:
 
-```no-highlight
+```
 x-azblob,https://<storagename>.blob.core.windows.net/<containername>,sv=2019-12-12&ss=b&srt=o&sp=rcx&se=2020-12-31T06:20:36Z&st=2020-12-30T22:20:36Z&spr=https&sig=abcd,readwrite
 ```
 
@@ -182,7 +182,7 @@ If you wish to be able to be resilient to upstream libraries' servers, consider 
 
 vcpkg supports interfacing with Google Cloud Storage (GCS) via the `x-gcs` source type.
 
-```no-highlight
+```
 x-gcs,<prefix>[,<rw>]
 ```
 
@@ -192,13 +192,13 @@ As part of this quickstart you would have configured the `gsutil` command-line t
 
 Example 1 (using a bucket without a common prefix for the objects):
 
-```no-highlight
+```
 x-gcs,gs://<bucket-name>/,readwrite
 ```
 
 Example 2 (using a bucket and a prefix for the objects):
 
-```no-highlight
+```
 x-gcs,gs://<bucket-name>/my-vcpkg-cache/maybe/with/many/slashes/,readwrite
 x-gcs,gs://<bucket-name>/my-vcpkg-cache/maybe/with`,commas/too!/,readwrite
 ```
@@ -254,13 +254,13 @@ We recommend using a Personal Access Token (PAT) as the password for maximum sec
 
 The `nuget` and `nugetconfig` source providers additionally respect certain environment variables while generating nuget packages. The `metadata.repository` field of any packages will be generated as:
 
-```no-highlight
+```xml
     <repository type="git" url="${VCPKG_NUGET_REPOSITORY}"/>
 ```
 
 or
 
-```no-highlight
+```xml
     <repository type="git"
                 url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git"
                 branch="${GITHUB_REF}"

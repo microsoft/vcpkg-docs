@@ -22,7 +22,7 @@ Using a minimum version approach has the following advantages:
 
 To give an example, consider the following package graph:
 
-```no-highlight
+```
     (A 1.0) -> (B 1.0)
 
     (A 1.1) -> (B 1.0) 

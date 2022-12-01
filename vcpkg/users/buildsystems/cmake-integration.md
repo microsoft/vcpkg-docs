@@ -12,7 +12,7 @@ See [Installing and Using Packages Example: sqlite](../../examples/installing-an
 
 Projects configured to use the vcpkg toolchain file (via the CMake setting `CMAKE_TOOLCHAIN_FILE`) can find libraries from vcpkg using the standard CMake functions: `find_package()`, `find_path()`, and `find_library()`.
 
-```no-highlight
+```console
 cmake ../my/project -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
 ```
 
@@ -80,7 +80,7 @@ You must add this line to each profile separately.
 
 To combine vcpkg's toolchain file with another toolchain file, you can set the cmake variable `VCPKG_CHAINLOAD_TOOLCHAIN_FILE`:
 
-```no-highlight
+```console
 cmake ../my/project \
    -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake \
    -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=../my/project/toolchain.cmake

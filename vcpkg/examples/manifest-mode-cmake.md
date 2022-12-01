@@ -13,7 +13,7 @@ using some common dependencies.
 
 Let's create the following file layout:
 
-```no-highlight
+```
 fibo/
   src/
     main.cxx

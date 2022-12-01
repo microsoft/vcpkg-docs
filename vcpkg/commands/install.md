@@ -9,13 +9,13 @@ ms.date: 11/30/2022
 
 - **Classic mode**
 
-```no-highlight
+```console
 vcpkg install [options] <package>...
 ```
 
 - **Manifest mode**
 
-```no-highlight
+```console
 vcpkg install [options]
 ```
 
@@ -29,7 +29,7 @@ In [Classic mode](../users/classic-mode.md), this verb adds port packages to the
 
 #### <a name="package-syntax"></a> Package Syntax
 
-```no-highlight
+```console
 portname[feature1,feature2]:triplet
 ```
 

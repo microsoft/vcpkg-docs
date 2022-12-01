@@ -7,7 +7,7 @@ ms.date: 11/30/2022
 
 ## Synopsis
 
-```no-highlight
+```console
 vcpkg list [options]
 ```
 
@@ -17,7 +17,7 @@ Shows a list of the packages in the installed tree, along with the version and d
 
 ## Example
 
-```no-highlight
+```console
 $ vcpkg list
 
 cxxopts:x64-windows              3.0.0              This is a lightweight C++ option parser library...

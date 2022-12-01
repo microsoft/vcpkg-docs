@@ -7,11 +7,11 @@ ms.date: 11/30/2022
 
 ## Synopsis
 
-```no-highlight
+```console
 vcpkg remove [options] <package>...
 ```
 
-```no-highlight
+```console
 vcpkg remove --outdated [options]
 ```
 

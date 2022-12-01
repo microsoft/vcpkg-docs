@@ -433,7 +433,7 @@ Portfiles have direct access to variables set in the triplet file, but `CMakeLis
 
 Portfiles and CMake builds invoked by portfiles are run in different processes. Conceptually:
 
-```no-highlight
+```
 +----------------------------+       +------------------------------------+
 | CMake.exe                  |       | CMake.exe                          |
 +----------------------------+       +------------------------------------+

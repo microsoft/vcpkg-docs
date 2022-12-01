@@ -30,7 +30,7 @@ We will gladly accept and review contributions that aim to solve issues with the
 
 Community Triplets are enabled by default, when using a community triplet a message like the following one will be printed during a package install:
 
-```no-highlight
+```console
 -- Using community triplet x86-uwp. This triplet configuration is not guaranteed to succeed.
 -- [COMMUNITY] Loading triplet configuration from: D:\src\viromer\vcpkg\triplets\community\x86-uwp.cmake
 ```

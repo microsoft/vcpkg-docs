@@ -37,7 +37,7 @@ Skip removing the top level directory of the archive.
 
 Most archives contain a single top-level directory, such as:
 
-```no-highlight
+```
 zlib-1.2.11/
     doc/
         ...

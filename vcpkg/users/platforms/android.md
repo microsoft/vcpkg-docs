@@ -339,7 +339,7 @@ Successfully exported jsoncpp. Checkout .../vcpkg/prefab
 
 #### The output directory after export
 
-```no-highlight
+```
 prefab
 └── jsoncpp/
     ├── aar/

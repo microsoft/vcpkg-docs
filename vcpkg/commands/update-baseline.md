@@ -10,7 +10,7 @@ ms.date: 11/30/2022
 
 ## Synopsis
 
-```no-highlight
+```console
 vcpkg x-update-baseline [options] [--add-initial-baseline] [--dry-run]
 ```
 

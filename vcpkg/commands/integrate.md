@@ -9,7 +9,7 @@ ms.date: 11/30/2022
 
 - **Buildsystem Integration**
 
-```no-highlight
+```console
 vcpkg integrate [options] install
 vcpkg integrate [options] remove
 vcpkg integrate [options] project
@@ -17,7 +17,7 @@ vcpkg integrate [options] project
 
 - **Shell Integration**
 
-```no-highlight
+```console
 vcpkg integrate [options] powershell
 vcpkg integrate [options] bash
 vcpkg integrate [options] zsh
@@ -79,7 +79,7 @@ Adds vcpkg tab-completion support to the current user's fish shell completions d
 
 ## Example
 
-```no-highlight
+```console
 $ vcpkg integrate install
 Applied user-wide integration for this vcpkg root.
 

@@ -9,7 +9,7 @@ ms.date: 11/30/2022
 
 ### User-wide integration
 
-```no-highlight
+```console
 vcpkg integrate install
 ```
 
@@ -59,7 +59,7 @@ See the [Customize your build](/visualstudio/msbuild/customize-your-build#direct
 
 VS projects can also be integrated through a NuGet package. This will modify the project file, so we do not recommend this approach for open source projects.
 
-```no-highlight
+```powershell
 PS D:\src\vcpkg> .\vcpkg integrate project
 Created nupkg: D:\src\vcpkg\scripts\buildsystems\vcpkg.D.src.vcpkg.1.0.0.nupkg
 
