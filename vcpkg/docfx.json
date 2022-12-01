@@ -51,7 +51,7 @@
       "ROBOTS": "INDEX,FOLLOW",
       "manager": "roschuma",
       "ms.date": "11/16/2020",
-      "ms.prod": "vcpkg",
+      "ms.prod": "visual-cpp",
       "ms.topic": "conceptual",
       "audience": "developer",
       "defaultDevLang": "cpp",
