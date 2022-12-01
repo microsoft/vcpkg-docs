@@ -197,8 +197,12 @@
       href: maintainers/functions/vcpkg_minimum_required.md
     - name: x_vcpkg_pkgconfig_get_modules
       href: maintainers/functions/vcpkg_pkgconfig_get_modules.md
+    - name: vcpkg_qmake_build
+      href: maintainers/functions/vcpkg_qmake_build.md
     - name: vcpkg_qmake_configure
       href: maintainers/functions/vcpkg_qmake_configure.md
+    - name: vcpkg_qmake_install
+      href: maintainers/functions/vcpkg_qmake_install.md
     - name: vcpkg_replace_string
       href: maintainers/functions/vcpkg_replace_string.md
     - name: vcpkg_restore_env_variables

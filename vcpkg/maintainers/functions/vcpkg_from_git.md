@@ -54,6 +54,7 @@ A list of patches to be applied to the extracted sources.
 Relative paths are based on the port directory.
 
 ### LFS
+_Added in vcpkg version 2022.11.14_
 
 Enable fetching files stored using Git LFS.
 Only files pointed to by `REF` are fetched.
