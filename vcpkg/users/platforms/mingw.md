@@ -12,7 +12,7 @@ ms.date: 11/30/2022
 
 vcpkg includes [x64, x86, arm64 and arm community triplets](https://github.com/microsoft/vcpkg/tree/master/triplets/community) for [Mingw-w64](http://mingw-w64.org/). They don't depend on Visual Studio and can be used natively on Windows as well as for cross-compiling on other operating systems. There are two variants of each triplet, selecting between static and dynamic linking. The actual tools (g++ etc.) are expected to be named with particular prefixes.
 
-| architecture | vcpkg community triplets                | tool name prefix     |
+| Architecture | vcpkg community triplets                | Tool name prefix     |
 |--------------|-----------------------------------------|----------------------|
 | x64          | x64-mingw-dynamic, x64-mingw-static     | x86_64-w64-mingw32-  |
 | x86          | x86-mingw-dynamic, x86-mingw-static     | i686-w64-mingw32-    |

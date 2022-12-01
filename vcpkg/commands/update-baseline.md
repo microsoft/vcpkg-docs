@@ -1,10 +1,12 @@
 ---
 title: vcpkg x-update-baseline
 description: Command line reference for the vcpkg x-update-baseline command. Update baselines for all configured registries.
+ms.date: 11/30/2022
 ---
 # vcpkg x-update-baseline
 
-**This command is experimental and may change or be removed at any time**
+> [!NOTE]
+> This command is experimental and may change or be removed at any time.
 
 ## Synopsis
 
@@ -30,7 +32,7 @@ Print the planned baseline upgrades, but do not modify the files on disk.
 
 ### <a name="add-initial-baseline"></a> `--add-initial-baseline`
 
-**Manifest mode only**
+- **Manifest mode only**
 
 Add a [`"builtin-baseline"`](../users/manifests.md#builtin-baseline) field to the `vcpkg.json` if it does not already have one.
 

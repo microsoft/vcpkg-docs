@@ -1,6 +1,7 @@
 ---
 title: Packaging zlib 1.2.13 for vcpkg
 description: Learn how to package zlib from the upstream source release in vcpkg.
+ms.date: 11/30/2022
 ---
 
 # Packaging Archive Files Example: zlib
@@ -9,7 +10,7 @@ description: Learn how to package zlib from the upstream source release in vcpkg
 
 First, locate a globally accessible archive of the library's sources. Zip, gzip, and bzip are all supported. Strongly prefer official sources or mirrors over unofficial mirrors.
 
-*Looking at zlib's website, the URL http://zlib.net/zlib-1.2.13.tar.gz looks appropriate.*
+*Looking at zlib's website, the URL `http://zlib.net/zlib-1.2.13.tar.gz` looks appropriate.*
 
 Second, determine a suitable package name. This should be ASCII, lowercase, and recognizable to someone who knows the library's "human name". If the library is already packaged in another package manager, prefer that name.
 
@@ -35,6 +36,7 @@ PS D:\src\vcpkg> .\vcpkg create zlib2 http://zlib.net/zlib-1.2.13.tar.gz zlib-1.
 In addition to the generated `ports/<package>/portfile.cmake`, we also need a `ports/<package>/vcpkg.json` file. This file is a simple set of fields describing the package's metadata.
 
 *For zlib2, we'll create the file `ports/zlib2/vcpkg.json` with the following contents:*
+
 ```json
 {
   "name": "zlib2",
@@ -80,10 +82,10 @@ At this point, it is a matter of reading the error messages and log files while 
 In the `ports/` directory are many libraries that can be used as examples, including many that are not based on CMake.
 
 - Header only libraries
-    - rapidjson
-    - range-v3
+  - rapidjson
+  - range-v3
 - MSBuild-based
-    - mpg123
+  - mpg123
 - Non-CMake, custom buildsystem
-    - openssl
-    - ffmpeg
+  - openssl
+  - ffmpeg

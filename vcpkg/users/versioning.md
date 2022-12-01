@@ -3,8 +3,7 @@ title: Versioning reference
 description: Use vcpkg versioning to control the versions of dependencies used by your project.
 ms.date: 11/30/2022
 ---
-
-# Versioning Reference
+# Versioning reference
 
 Versioning allows you to deterministically control the precise revisions of dependencies used by
 your project from within your manifest file. Versioning only applies to [Manifest mode](manifests.md).
@@ -33,14 +32,14 @@ Each versioning scheme defines its own rules on what is a valid version string a
 
 The versioning schemes understood by vcpkg are:
 
-Manifest property | Versioning scheme
-------------------|------------------------------------
-`version`         | For dot-separated numeric versions
-`version-semver`  | For SemVer compliant versions
-`version-date`    | For dates in the format YYYY-MM-DD
-`version-string`  | For arbitrary strings
+| Manifest property | Versioning scheme |
+|---|---|
+| `version` | For dot-separated numeric versions |
+| `version-semver` | For SemVer compliant versions |
+| `version-date` | For dates in the format YYYY-MM-DD |
+| `version-string` | For arbitrary strings |
 
-A manifest must contain only one version declaration. 
+A manifest must contain only one version declaration.
 
 > [!NOTE]
 > By design, vcpkg does not compare versions that use different schemes. For example, a package that has a `version-string: 7.1.3` cannot be compared with the same package using `version: 7.1.4`, even if the conversion seems obvious.
@@ -53,7 +52,7 @@ The version is logically composed of dot-separated (`.`) numeric sections. Each 
 
 The regex pattern for this versioning scheme is: `(0|[1-9]\d*)(\.(0|[1-9]\d*))*`
 
-_Sorting behavior_: When comparing two versions, each section is compared from left to right by their numeric value, until the first difference is found. A version with the smallest set of sections takes precedence over another with a larger set of sections, given that all their preceding sections compare equally.
+*Sorting behavior*: When comparing two versions, each section is compared from left to right by their numeric value, until the first difference is found. A version with the smallest set of sections takes precedence over another with a larger set of sections, given that all their preceding sections compare equally.
 
 Example:
 
@@ -63,7 +62,7 @@ Example:
 
 Accepts version strings that follow semantic versioning conventions as described in the [semantic versioning specification](https://semver.org/#semantic-versioning-specification-semver).
 
-_Sorting behavior_: Strings are sorted following the rules described in the semantic versioning specification.
+*Sorting behavior*: Strings are sorted following the rules described in the semantic versioning specification.
 
 Example:
 
@@ -77,7 +76,7 @@ This is the recommended versioning scheme for "Live at HEAD" libraries that don'
 
 The regex pattern for this versioning scheme is: `\d{4}-\d{2}-\d{2}(\.(0|[1-9]\d*))*`
 
-_Sorting behavior_: Strings are sorted first by their date part, then by numeric comparison of their disambiguation identifiers. Disambiguation identifiers follow the rules of the relaxed (`version`) scheme.
+*Sorting behavior*: Strings are sorted first by their date part, then by numeric comparison of their disambiguation identifiers. Disambiguation identifiers follow the rules of the relaxed (`version`) scheme.
 
 Examples:
 `2021-01-01` < `2021-01-01.1` < `2021-02-01.1.2` < `2021-02-01.1.3` < `2021-02-01`
@@ -86,9 +85,10 @@ Examples:
 
 For packages using version strings that do not fit any of the other schemes, it accepts most arbitrary strings.  The `#` which is used to denote port versions is disallowed.
 
-_Sorting behavior_: No sorting is attempted on the version string itself. However, if the strings match exactly, their port versions can be compared and sorted.
+*Sorting behavior*: No sorting is attempted on the version string itself. However, if the strings match exactly, their port versions can be compared and sorted.
 
 Examples:
+
 - `apple` <> `orange` <> `orange.2` <> `orange2`
 - `watermelon#0`< `watermelon#1`
 
@@ -105,9 +105,10 @@ The rules for port versions are:
 > [!NOTE]
 > Whenever vcpkg output a version it follows the format `<version>#<port version>`. For example `1.2.0#2` means version `1.2.0` port version `2`. When the port version is `0` the `#0` suffix is omitted (`1.2.0` implies version `1.2.0` port version `0`).
 
-_Sorting behavior_: If two versions compare equally, their port versions are compared by their numeric value, lower port versions take precedence.
+*Sorting behavior*: If two versions compare equally, their port versions are compared by their numeric value, lower port versions take precedence.
 
 Examples:
+
 - `1.2.0` < `1.2.0#1` < `1.2.0#2` < `1.2.0#10`
 - `2021-01-01#20` < `2021-01-01.1`
 - `windows#7` < `windows#8`

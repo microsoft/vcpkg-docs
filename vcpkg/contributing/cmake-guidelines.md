@@ -1,8 +1,8 @@
 ---
 title: vcpkg CMake Style Guide
 description: The CMake Style Guide for contributing to vcpkg.
+ms.date: 11/30/2022
 ---
-
 # CMake Style Guide
 
 We expect that all CMake scripts that are either:
@@ -29,13 +29,15 @@ We hope that they will make both forwards and backwards compatibility easier.
     - Exception: positional parameters that are optional should be
       given a name via `set(argument_name "${ARG<N>}")`, after checking `ARGC`.
   - Out-parameters should be the first parameter to a function. Example:
-  ```cmake
-  function(format out_var)
-    cmake_parse_arguments(PARSE_ARGV 1 "arg" ...)
-    # ... set(buffer "output")
-    set("${out_var}" "${buffer}" PARENT_SCOPE)
-  endfunction()
-  ```
+
+    ```cmake
+    function(format out_var)
+      cmake_parse_arguments(PARSE_ARGV 1 "arg" ...)
+      # ... set(buffer "output")
+      set("${out_var}" "${buffer}" PARENT_SCOPE)
+    endfunction()
+    ```
+
 - There are no unparsed or unused arguments.
   Always check for `ARGN` or `arg_UNPARSED_ARGUMENTS`.
   `FATAL_ERROR` when possible, `WARNING` if necessary for backwards compatibility.
@@ -59,9 +61,8 @@ We hope that they will make both forwards and backwards compatibility easier.
   Follow these rules to quote correctly:
   - If an argument contains a variable expansion `${...}`,
     it must be quoted.
-    - Exception: a "splat" variable expansion, when one variable will be
-      passed to a function as multiple arguments. In this case, the argument
-      should simply be `${foo}`:
+    - Exception: a "splat" variable expansion, when one variable will be passed to a function as multiple arguments. In this case, the argument should simply be `${foo}`:
+
       ```cmake
       vcpkg_list(SET working_directory)
       if(DEFINED "arg_WORKING_DIRECTORY")
@@ -71,16 +72,19 @@ We hope that they will make both forwards and backwards compatibility easier.
       # else calls do_the_thing(WORKING_DIRECTORY "${arg_WORKING_DIRECTORY}")
       do_the_thing(${working_directory})
       ```
+
   - Otherwise, if the argument contains any escape sequences that are not
     `\\`, `\"`, or `\$`, that argument must be a quoted argument.
     - For example: `"foo\nbar"` must be quoted.
   - Otherwise, if the argument contains a `\`, a `"`, or a `$`,
     that argument should be bracketed.
     - Example:
+
       ```cmake
       set(x [[foo\bar]])
       set(y [=[foo([[bar\baz]])]=])
       ```
+
   - Otherwise, if the argument contains characters that are
     not alphanumeric or `_`, that argument should be quoted.
   - Otherwise, the argument should be unquoted.
@@ -89,12 +93,14 @@ We hope that they will make both forwards and backwards compatibility easier.
       `EQUAL`, `STREQUAL`, `VERSION_LESS`, etc.
     - The first argument to `MATCHES` and `IN_LIST`
     - Example:
+
       ```cmake
       if("${FOO}" STREQUAL "BAR") # ...
       if("${BAZ}" EQUAL "0") # ...
       if("FOO" IN_LIST list_variable) # ...
       if("${bar}" MATCHES [[a[bcd]+\.[bcd]+]]) # ...
       ```
+
     - For single expressions and for other types of predicates that do not
     take `<variable|string>`, use the normal rules.
 - There are no "pointer" or "in-out" parameters
@@ -150,14 +156,13 @@ We hope that they will make both forwards and backwards compatibility easier.
     if they do, make sure to comment that function or option
     with the required CMake version.
 
-
-### Changing Existing Functions
+### Changing existing functions
 
 - Never remove arguments in non-internal functions;
   if they should no longer do anything, just take them as normal and warn on use.
 - Never add a new mandatory argument.
 
-### Naming Variables
+### Naming variables
 
 - `cmake_parse_arguments`: set prefix to `"arg"`
 - Local variables are named with `snake_case`

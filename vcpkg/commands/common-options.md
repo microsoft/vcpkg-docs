@@ -1,15 +1,18 @@
 ---
 title: Common Command Options
 description: Common command line options reference for vcpkg.
+ms.date: 11/30/2022
 ---
-
 # Common Command Options
 
 Most vcpkg commands accept a group of common options that control cross-cutting aspects of the tool. Not all options affect every command. For example, a command that does not download any files will be unaffected by changing the downloads directory.
 
+## Options
+
 ### <a name="asset-sources"></a> `--x-asset-sources=<config>`
 
-**Experimental: will change or be removed at any time**
+> [!NOTE]
+> This option is experimental and may change or be removed at any time.
 
 Specify the cache configuration for [Asset Caching](../users/assetcaching.md).
 
@@ -21,7 +24,8 @@ This option can be specified multiple times; see the Binary Caching documentatio
 
 ### <a name="buildtrees-root"></a> `--x-buildtrees-root=<path>`
 
-**Experimental: will change or be removed at any time**
+> [!NOTE]
+> This option is experimental and may change or be removed at any time.
 
 Specifies the temporary path to store intermediate build files, such as objects or unpacked source code.
 
@@ -41,7 +45,8 @@ Defaults to the `VCPKG_DEFAULT_HOST_TRIPLET` environment variable. If that is un
 
 ### <a name="install-root"></a> `--x-install-root=<path>`
 
-**Experimental: will change or be removed at any time**
+> [!NOTE]
+> This option is experimental and may change or be removed at any time.
 
 Specifies the path to lay out installed packages.
 
@@ -51,7 +56,8 @@ In [Manifest mode](../users/manifests.md), defaults to `vcpkg_installed/` under 
 
 ### <a name="manifest-root"></a> `--x-manifest-root=<path>`
 
-**Experimental: will change or be removed at any time**
+> [!NOTE]
+> This option is experimental and may change or be removed at any time.
 
 Specifies the directory containing [`vcpkg.json`](../users/manifests.md).
 
@@ -71,7 +77,8 @@ This option can be specified multiple times; [triplets](../users/triplets.md) wi
 
 ### <a name="packages-root"></a> `--x-packages-root=<path>`
 
-**Experimental: will change or be removed at any time**
+> [!NOTE]
+> This option is experimental and may change or be removed at any time.
 
 Specifies the temporary path to stage intermediate package files before final install.
 

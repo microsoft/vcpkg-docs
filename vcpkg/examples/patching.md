@@ -1,9 +1,9 @@
 ---
 title: Patching libpng 1.6.37 for UWP compatibility
 description: Learn how to develop and apply patches to a library in a vcpkg portfile.
+ms.date: 11/30/2022
 ---
-
-# Patching Example: Patching libpng to work for x64-uwp
+# Patching example: Patching libpng to work for x64-uwp
 
 ## Initial error logs
 
@@ -79,6 +79,7 @@ Taking a look at [MSDN](https://msdn.microsoft.com/library/windows/desktop/ms682
 ```
 
 A recursive search for `PNG_ABORT` reveals the definition:
+
 ```no-highlight
 PS D:\src\vcpkg\buildtrees\libpng\src\v1.6.37-c993153cdf> findstr /snipl "PNG_ABORT" *
 CHANGES:701:  Added PNG_SETJMP_SUPPORTED, PNG_SETJMP_NOT_SUPPORTED, and PNG_ABORT() macros
@@ -118,6 +119,7 @@ This already gives us some great clues, but the full definition tells the comple
 ## Patching the code to improve compatibility
 
 We recommend using git to create the patch file, since you'll already have it installed.
+
 ```no-highlight
 PS D:\src\vcpkg\buildtrees\libpng\src\v1.6.37-c993153cdf> git init .
 Initialized empty Git repository in D:/src/vcpkg/buildtrees/libpng/src/v1.6.37-c993153cdf/.git/
@@ -134,6 +136,7 @@ PS D:\src\vcpkg\buildtrees\libpng\src\v1.6.37-c993153cdf> git commit -m "temp"
 ```
 
 Now we can modify `pngpriv.h` to use `abort()` everywhere.
+
 ```c
 /* buildtrees\libpng\src\v1.6.37-c993153cdf\pngpriv.h:459 */
 #ifndef PNG_ABORT
@@ -142,11 +145,13 @@ Now we can modify `pngpriv.h` to use `abort()` everywhere.
 ```
 
 The output of `git diff` is already in patch format, so we just need to save the patch into the `ports/libpng` directory.
+
 ```no-highlight
 PS buildtrees\libpng\src\v1.6.37-c993153cdf> git diff --ignore-space-at-eol | out-file -enc ascii ..\..\..\..\ports\libpng\use-abort-on-all-platforms.patch
 ```
 
 Finally, we need to apply the patch after extracting the source.
+
 ```cmake
 # ports\libpng\portfile.cmake
 ...

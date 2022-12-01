@@ -1,9 +1,9 @@
 ---
 title: Getting Started with Manifest mode
 description: Learn to get started in vcpkg with Manifest mode.
+ms.date: 11/30/2022
 ---
-
-# Manifest mode: CMake Example
+# Manifest mode: CMake example
 
 We would like to add [vcpkg manifest support](../users/manifests.md) to an existing cmake project!
 Let's create a simple project that prints the fibonacci sequence up to a certain number,

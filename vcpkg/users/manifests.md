@@ -36,7 +36,7 @@ Manifests follow strict JSON: they can't contain C++-style comments (`//`) nor t
 you can use field names that start with `$` to write your comments in any object that has a well-defined set of keys.
 These comment fields are not allowed in any objects which permit user-defined keys (such as `"features"`).
 
-The latest JSON Schema is available at https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json. IDEs with JSON Schema support such as Visual Studio and Visual Studio Code can use this file to provide IntelliSense and syntax checking. For most IDEs, you should set `"$schema"` in your `vcpkg.json` to this URL (like the above example).
+The latest JSON Schema is available at [vcpkg.schema.json](https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json). IDEs with JSON Schema support such as Visual Studio and Visual Studio Code can use this file to provide IntelliSense and syntax checking. For most IDEs, you should set `"$schema"` in your `vcpkg.json` to this URL (like the above example).
 
 Each manifest contains a top level object with the following fields:
 
@@ -189,7 +189,7 @@ Expressions can also be combined using logical operators and grouping:
 
 ##### Examples
 
-**Needs `picosha2` for sha256 on non-Windows, but get it from the OS on Windows (BCrypt)**
+- **Needs `picosha2` for sha256 on non-Windows, but get it from the OS on Windows (BCrypt)**
 
 ```jsonc
 {
@@ -198,7 +198,7 @@ Expressions can also be combined using logical operators and grouping:
 }
 ```
 
-**Require zlib on arm64 Windows and amd64 Linux**
+- **Require zlib on arm64 Windows and amd64 Linux**
 
 ```jsonc
 {
@@ -292,8 +292,7 @@ You also have control over which features are default, if a person doesn't ask f
 
 Allows to embed vcpkg configuration properties inside the `vcpkg.json` file. Everything inside the `vcpkg-configuration` property is treated as if it were defined in a `vcpkg-configuration.json` file. For more details, see the [`vcpkg-configuration.json`](registries.md) documentation.
 
-Having a `vcpkg-configuration` defined in `vcpkg.json` while also having a `vcpkg-configuration.json` 
-file is not allowed and will result in the vcpkg command terminating with an error message.
+Having a `vcpkg-configuration` defined in `vcpkg.json` while also having a `vcpkg-configuration.json` file is not allowed and will result in the vcpkg command terminating with an error message.
 
 #### Example
 

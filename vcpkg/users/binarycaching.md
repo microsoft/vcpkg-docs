@@ -1,6 +1,7 @@
 ---
 title: Binary Caching
 description: Reuse binaries built with vcpkg across different projects and machines.
+ms.date: 11/30/2022
 ---
 
 # Binary Caching
@@ -25,28 +26,30 @@ Binary caching is configured via a combination of defaults, the environment vari
 
 By default, zip-based archives will be cached at the first valid location of:
 
-**Windows**
+- **Windows**
+
 1. `%VCPKG_DEFAULT_BINARY_CACHE%`
 1. `%LOCALAPPDATA%\vcpkg\archives`
 1. `%APPDATA%\vcpkg\archives`
 
-**Non-Windows**
+- **Non-Windows**
+
 1. `$VCPKG_DEFAULT_BINARY_CACHE`
 1. `$XDG_CACHE_HOME/vcpkg/archives`
 1. `$HOME/.cache/vcpkg/archives`
 
 ### Valid source strings (`<source>`)
 
-| form                        | description
-|-----------------------------|---------------
-| `clear`                     | Removes all previous sources (including the default)
-| `default[,<rw>]`            | Adds the default file-based location
-| `files,<absolute path>[,<rw>]`       | Adds a custom file-based location
-| `nuget,<uri>[,<rw>]`        | Adds a NuGet-based source; equivalent to the `-Source` parameter of the NuGet CLI
-| `nugetconfig,<path>[,<rw>]` | Adds a NuGet-config-file-based source; equivalent to the `-Config` parameter of the NuGet CLI. This config should specify `defaultPushSource` for uploads.
-| `nugettimeout,<seconds>`    | Specifies a timeout for NuGet network operations; equivalent to the `-Timeout` parameter of the NuGet CLI.
-| `x-azblob,<baseuri>,<sas>[,<rw>]`    | **Experimental: will change or be removed without warning**<br> Adds an Azure Blob Storage source. Uses Shared Access Signature validation. URL should include the container path.
-| `interactive`               | Enables interactive credential management for NuGet (for debugging; requires `--debug` on the command line)
+| Form | Description |
+|---|---|
+| `clear` | Removes all previous sources (including the default) |
+| `default[,<rw>]` | Adds the default file-based location |
+| `files,<absolute path>[,<rw>]` | Adds a custom file-based location |
+| `nuget,<uri>[,<rw>]` | Adds a NuGet-based source; equivalent to the `-Source` parameter of the NuGet CLI |
+| `nugetconfig,<path>[,<rw>]` | Adds a NuGet-config-file-based source; equivalent to the `-Config` parameter of the NuGet CLI. This config should specify `defaultPushSource` for uploads. |
+| `nugettimeout,<seconds>` | Specifies a timeout for NuGet network operations; equivalent to the `-Timeout` parameter of the NuGet CLI. |
+| `x-azblob,<baseuri>,<sas>[,<rw>]` | **Experimental: may change or be removed without warning** <br/> Adds an Azure Blob Storage source. Uses Shared Access Signature validation. URL should include the container path. |
+| `interactive` | Enables interactive credential management for NuGet (for debugging; requires `--debug` on the command line) |
 
 The `<rw>` optional parameter for certain sources controls whether they will be consulted for
 downloading binaries (`read`)(default), whether on-demand builds will be uploaded to that remote (`write`), or both (`readwrite`).
@@ -264,7 +267,7 @@ or
                 commit="${GITHUB_SHA}"/>
 ```
 
-if the appropriate environment variables are defined and non-empty. This is specifically used to associate packages in GitHub Packages with the _building_ project and not intended to associate with the original package sources.
+if the appropriate environment variables are defined and non-empty. This is specifically used to associate packages in GitHub Packages with the *building* project and not intended to associate with the original package sources.
 
 #### NuGet's cache
 

@@ -1,19 +1,22 @@
 ---
 title: vcpkg integrate
 description: Command line reference for the vcpkg integrate command. Integrate vcpkg with shells and buildsystems.
+ms.date: 11/30/2022
 ---
-
 # vcpkg integrate
 
 ## Synopsis
 
-**Buildsystem Integration**
+- **Buildsystem Integration**
+
 ```no-highlight
 vcpkg integrate [options] install
 vcpkg integrate [options] remove
 vcpkg integrate [options] project
 ```
-**Shell Integration**
+
+- **Shell Integration**
+
 ```no-highlight
 vcpkg integrate [options] powershell
 vcpkg integrate [options] bash
@@ -52,25 +55,25 @@ See [MSBuild Per-Project Integration](../users/buildsystems/msbuild-integration.
 
 ### `vcpkg integrate powershell`
 
-**Windows Only**
+- **Windows Only**
 
 Adds vcpkg tab-completion support to the current user's Powershell profile.
 
 ### `vcpkg integrate bash`
 
-**Non-Windows Only**
+- **Non-Windows Only**
 
 Adds vcpkg tab-completion support to the current user's `.bashrc` (`.bash_profile` on MacOS).
 
 ### `vcpkg integrate zsh`
 
-**Non-Windows Only**
+- **Non-Windows Only**
 
 Adds vcpkg tab-completion support to the current user's `.zshrc`.
 
 ### `vcpkg integrate x-fish`
 
-**Non-Windows Only**
+- **Non-Windows Only**
 
 Adds vcpkg tab-completion support to the current user's fish shell completions directory.
 

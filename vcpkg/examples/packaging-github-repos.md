@@ -1,9 +1,10 @@
 ---
 title: Packaging libogg for vcpkg
 description: Learn how to package the libogg GitHub Repo in vcpkg.
+ms.date: 11/30/2022
 ---
+# Packaging GitHub repos example: libogg
 
-# Packaging Github Repos Example: libogg
 ## Create the manifest file
 
 The manifest file (called `vcpkg.json`) is a json file describing the package's metadata.
@@ -44,7 +45,7 @@ vcpkg_cmake_install()
 file(INSTALL "${SOURCE_PATH}/COPYING" DESTINATION "${CURRENT_PACKAGES_DIR}/share/libogg" RENAME copyright)
 ```
 
-Check the documentation for [`vcpkg_cmake_configure`](../maintainers/functions/vcpkg_cmake_configure.md) and [`vcpkg_cmake_install`](../maintainers/functions/vcpkg_cmake_install.md) if your package needs additional options. 
+Check the documentation for [`vcpkg_cmake_configure`](../maintainers/functions/vcpkg_cmake_configure.md) and [`vcpkg_cmake_install`](../maintainers/functions/vcpkg_cmake_install.md) if your package needs additional options.
 
 Now you can run `vcpkg install libogg` to build and install the package.
 

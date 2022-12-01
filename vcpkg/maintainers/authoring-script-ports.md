@@ -1,9 +1,9 @@
 ---
 title: Authoring Script Ports
 description: Learn to create a Script Port to reuse functions in multiple vcpkg portfiles.
+ms.date: 11/30/2022
 ---
-
-# Authoring Script Ports
+# Authoring script ports
 
 Ports can expose functions for other ports to consume during their build. For
 example, the `vcpkg-cmake` helper port exposes the `vcpkg_cmake_configure()`

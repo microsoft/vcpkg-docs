@@ -1,6 +1,7 @@
 ---
 title: vcpkg search
 description: Command line reference for the vcpkg search command. Search for available packages by name and description.
+ms.date: 11/30/2022
 ---
 
 # vcpkg search
@@ -32,7 +33,8 @@ All vcpkg commands support a set of [common options](common-options.md).
 
 ### `--x-full-desc`
 
-**Experimental and may change or be removed at any time**
+> [!NOTE]
+> This option is experimental and may change or be removed at any time.
 
 Do not truncate long descriptions.
 

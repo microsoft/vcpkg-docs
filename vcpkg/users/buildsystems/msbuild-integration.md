@@ -1,17 +1,18 @@
 ---
 title: MSBuild Integration
 description: Integrate vcpkg into an MSBuild or Visual Studio project.
+ms.date: 11/30/2022
 ---
+# MSBuild integration (Visual Studio)
 
-# MSBuild Integration (Visual Studio)
-
-## Integration Methods
+## Integration methods
 
 ### User-wide integration
 
 ```no-highlight
 vcpkg integrate install
 ```
+
 This will implicitly add Include Directories, Link Directories, and Link Libraries for all packages installed with vcpkg to all VS2015, VS2017, VS2019, and VS2022 MSBuild projects. We also add a post-build action for executable projects that will analyze and copy any DLLs you need to the output folder, enabling a seamless F5 experience.
 
 For the vast majority of libraries, this is all you need to do: open **File** > **New Project** and write code! However, some libraries perform conflicting behaviors such as redefining `main()`. Since you need to choose per-project which of these conflicting options you want, you will need to add those libraries to your linker inputs manually.
@@ -33,14 +34,16 @@ The easiest way to add these to every project in your solution is to create `Dir
 
 The following examples assume they are at the root of your repository with a submodule of `microsoft/vcpkg` at `vcpkg`.
 
-**Example `Directory.Build.props`**:
+#### Example `Directory.Build.props`
+
 ```xml
 <Project>
  <Import Project="$(MSBuildThisFileDirectory)vcpkg\scripts\buildsystems\msbuild\vcpkg.props" />
 </Project>
 ```
 
-**Example `Directory.Build.targets`**:
+#### Example `Directory.Build.targets`
+
 ```xml
 <Project>
  <Import Project="$(MSBuildThisFileDirectory)vcpkg\scripts\buildsystems\msbuild\vcpkg.targets" />

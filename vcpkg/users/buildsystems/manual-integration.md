@@ -1,11 +1,11 @@
 ---
 title: Manual Integration
 description: Integrate vcpkg into any buildsystem, such as meson or autoconf.
+ms.date: 12/01/2022
 ---
-
 # Manual Integration
 
-When installing libraries, vcpkg creates a single common layout partitioned by triplet. 
+When installing libraries, vcpkg creates a single common layout partitioned by triplet.
 
 The root of the tree in [Classic mode](../classic-mode.md) is `<vcpkg root>/installed`. The root of the tree in [Manifest mode](../manifests.md) is `<vcpkg.json directory>/vcpkg_installed`.
 
@@ -31,4 +31,4 @@ export LDFLAGS=-L$(pwd)/installed/x64-linux/lib
 export PKG_CONFIG_PATH=$(pwd)/installed/x64-linux/lib/pkgconfig:$PKG_CONFIG_PATH
 ```
 
-_On Windows dynamic triplets, such as x64-windows:_ To run any produced executables you will also need to either copy the needed DLL files to the same folder as your executable or *prepend* the correct `bin\` directory to your path.
+On Windows dynamic triplets, such as x64-windows: To run any produced executables you will also need to either copy the needed DLL files to the same folder as your executable or *prepend* the correct `bin\` directory to your path.

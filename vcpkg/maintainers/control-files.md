@@ -62,6 +62,7 @@ For tagged-release ports, we follow the following convention:
 For rolling-release ports, we use the date that the _commit was accessed by you_, formatted as `YYYY-MM-DD`. Stated another way: if someone had a time machine and went to that date, they would see this commit as the latest master.
 
 For example, given:
+
 1. The latest commit was made on 2019-04-19
 1. The current version string is `2019-02-14-1`
 1. Today's date is 2019-06-01.
@@ -119,7 +120,7 @@ Comma separated list of vcpkg ports the library has a dependency on.
 
 vcpkg does not distinguish between build-only dependencies and runtime dependencies. The complete list of dependencies needed to successfully use the library should be specified.
 
-*For example: websocketpp is a header only library, and thus does not require any dependencies at install time. However, downstream users need boost and openssl to make use of the library. Therefore, websocketpp lists boost and openssl as dependencies*
+For example: websocketpp is a header only library, and thus does not require any dependencies at install time. However, downstream users need boost and openssl to make use of the library. Therefore, websocketpp lists boost and openssl as dependencies.
 
 If the port is dependent on optional features of another library those can be specified using the `portname[featurelist]` syntax. If the port does not require any features from the dependency, this should be specified as `portname[core]`.
 

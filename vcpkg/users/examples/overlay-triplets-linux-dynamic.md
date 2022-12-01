@@ -1,8 +1,8 @@
 ---
 title: Using Overlay Triplets
 description: Learn to use overlay triplets to build shared libraries on Linux.
+ms.date: 11/30/2022
 ---
-
 # Using Overlay Triplets
 
 ## Building dynamic libraries on Linux
@@ -21,6 +21,7 @@ To save time, copy the existing `x64-linux.cmake` triplet file.
 ```
 
 And modify `custom-triplets/x64-linux-dynamic.cmake` to match the contents below:
+
 ```cmake
 # ~/git/custom-triplets/x64-linux-dynamic.cmake
 set(VCPKG_TARGET_ARCHITECTURE x64)
@@ -32,9 +33,9 @@ set(VCPKG_CMAKE_SYSTEM_NAME Linux)
 
 ### Step 2: Use `--overlay-triplets` to build dynamic libraries
 
-Use the `--overlay-triplets` option to include the triplets in the `custom-triplets` directory. 
+Use the `--overlay-triplets` option to include the triplets in the `custom-triplets` directory.
 
-```
+```sh
 ~/git$ vcpkg/vcpkg install sqlite3:x64-linux-dynamic --overlay-triplets=custom-triplets
 The following packages will be built and installed:
     sqlite3[core]:x64-linux-dynamic
@@ -66,9 +67,9 @@ The package sqlite3:x64-linux-dynamic provides CMake targets:
 
 Overlay triplets enables your custom triplet files when using `vcpkg install`, `vcpkg update`, `vcpkg upgrade`, and `vcpkg remove`.
 
-When using the `--overlay-triplets` option, a message like the following lets you know that a custom triplet is being used: 
+When using the `--overlay-triplets` option, a message like the following lets you know that a custom triplet is being used:
 
-```
+```console
 -- Loading triplet configuration from: /home/custom-triplets/x64-linux-dynamic.cmake
 ```
 

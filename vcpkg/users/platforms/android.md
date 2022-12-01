@@ -1,8 +1,8 @@
 ---
 title: Android Support in vcpkg
 description: How to target Android devices using C++ with vcpkg
+ms.date: 11/30/2022
 ---
-
 # Android
 
 > [!NOTE]
@@ -12,29 +12,29 @@ description: How to target Android devices using C++ with vcpkg
 
 1. Download the [android ndk](https://developer.android.com/ndk/downloads/)
 
-1. Set environment variable `ANDROID_NDK_HOME` to your android ndk installation. 
-   For example:
+1. Set environment variable `ANDROID_NDK_HOME` to your android ndk installation. For example:
 
-````bash
-export ANDROID_NDK_HOME=/home/your-account/Android/Sdk/ndk-bundle
-````
+   ```bash
+   export ANDROID_NDK_HOME=/home/your-account/Android/Sdk/ndk-bundle
+   ```
 
-Or:
-````bash
-export ANDROID_NDK_HOME=/home/your-account/Android/android-ndk-r21b
-````
+   Or:
+
+   ```bash
+   export ANDROID_NDK_HOME=/home/your-account/Android/android-ndk-r21b
+   ```
 
 1. Install [vcpkg](https://github.com/microsoft/vcpkg)
 
 1. Set environment variable `VCPKG_ROOT` to your vcpkg installation.
-````bash
-export VCPKG_ROOT=/path/to/vcpkg
-````
+
+   ```bash
+   export VCPKG_ROOT=/path/to/vcpkg
+   ```
 
 ## vcpkg triplets and their corresponding android ABI
 
-There are four different Android ABI, each of which maps to 
-a vcpkg triplet. The following table outlines the mapping from vcpkg architectures to android architectures
+There are four different Android ABIs, each of which maps to a vcpkg triplet. The following table outlines the mapping from vcpkg architectures to android architectures:
 
 |VCPKG_TARGET_TRIPLET       | ANDROID_ABI          |
 |---------------------------|----------------------|
@@ -81,7 +81,7 @@ set(VCPKG_CMAKE_SYSTEM_NAME Android)
 set(ENV{VULKAN_SDK} $ENV{ANDROID_NDK_HOME}/sysroot/usr)
 ```
 
-Notice that **the location of the sysroot has changed since NDK 22**. (see https://github.com/android/ndk/issues/1407).
+Notice that **the location of the sysroot has changed since NDK 22**. (For more information, see [\[BUG\] sysroot headers missing since r22?](https://github.com/android/ndk/issues/1407)).
 
 If you prefer using [the latest version](https://developer.android.com/studio/projects/install-ndk#default-ndk-per-agp), check the [BuildSystemMaintainers.md of the NDK document](https://android.googlesource.com/platform/ndk/+/master/docs/BuildSystemMaintainers.md#sysroot) and then put appropriate path for your system.
 
@@ -161,9 +161,9 @@ vcpkg_toolchain_file=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
 android_toolchain_file=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake
 ```
 
-When using vcpkg, the vcpkg toolchain shall be specified first. 
+When using vcpkg, the vcpkg toolchain shall be specified first.
 
-However, vcpkg provides a way to preload and additional toolchain, with the VCPKG_CHAINLOAD_TOOLCHAIN_FILE option. 
+However, vcpkg provides a way to preload and additional toolchain, with the VCPKG_CHAINLOAD_TOOLCHAIN_FILE option.
 
 ```bash
 cmake \
@@ -192,7 +192,7 @@ cmake
 
 The folder [docs/examples/vcpkg_android_example_cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake) provides a working example, with an android library that consumes the jsoncpp library:
 
-*Details*
+#### Details
 
 - The [CMakeLists](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake/CMakeLists.txt) simply uses `find_package` and `target_link_library`
 
@@ -203,11 +203,13 @@ The folder [docs/examples/vcpkg_android_example_cmake](https://github.com/Micros
 > [!NOTE]
 > This example only compiles an Android library, as the compilation of a full-fledged Android App is beyond the scope of this document.
 
-### Test on an example, using [vcpkg_android.cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake)
+### Test on an example: `vcpkg_android.cmake`
+
+Test using [vcpkg_android.cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake).
 
 The folder [vcpkg_android_example_cmake_script](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script) provides the same example, and uses a cmake script in order to simplify the usage.
 
-*Details*
+#### Details
 
 - The main [CMakeLists](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script/CMakeLists.txt) loads [vcpkg_android.cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake) if the flag `VCPKG_TARGET_ANDROID` is set:
 
@@ -256,10 +258,10 @@ export ANDROID_NDK_HOME=/home/your-account/Android/Sdk/ndk-bundle
 
 1. Android triplets
 
-> [!NOTE] 
+> [!NOTE]
 > To use "prefab" (see below), all four architectures are required. If any are missing the export will fail.
 
-### Example exporting [jsoncpp]
+### Example exporting \[jsoncpp]
 
 First, "vcpkg install" the 4 android architectures (it is mandatory to export all 4 of them):
 
@@ -380,10 +382,10 @@ prefab
     │       └── prefab.json
     ├── jsoncpp-1.9.2.aar
     └── pom.xml
-````
+```
 
 ### Example consuming [jsoncpp] via vcpkg and prefab
 
-See the example repo here:
+See the example GitHub repo here:
 
-https://github.com/atkawa7/prefab-vpkg-integration-sample
+[`atkawa7/prefab-vpkg-integration-sample`](https://github.com/atkawa7/prefab-vpkg-integration-sample)

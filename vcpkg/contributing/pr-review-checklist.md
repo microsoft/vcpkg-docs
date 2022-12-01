@@ -102,6 +102,7 @@ Ports should uphold vcpkg's contract of not modifying the user's system by avoid
 Some ports have library and tool dependencies that do not exist within vcpkg. For these missing dependencies, we ask that contributors add a message to the top of the port's `portfile.cmake` stating the missing dependencies and how to acquire them. We ask that the message is displayed before any major work is done to ensure that users can "early out" of the installation process as soon as possible in case they are missing the dependency.
 
 Example:
+
 ```cmake
 message(
 "${PORT} currently requires the following libraries from the system package manager:

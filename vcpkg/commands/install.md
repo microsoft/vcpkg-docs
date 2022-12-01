@@ -1,8 +1,8 @@
 ---
 title: vcpkg install
 description: Command line reference for the vcpkg install command. Build and install port packages.
+ms.date: 11/30/2022
 ---
-
 # vcpkg install
 
 ## Synopsis
@@ -27,9 +27,7 @@ Build and install port packages.
 
 In [Classic mode](../users/classic-mode.md), this verb adds port packages to the existing set in the [installed directory](common-options.md#install-root) (defaults to `installed/` under the vcpkg root). This can require removing and rebuilding existing packages, which can fail.
 
-<a name="package-syntax"></a>
-
-**Package Syntax**
+#### <a name="package-syntax"></a> Package Syntax
 
 ```no-highlight
 portname[feature1,feature2]:triplet
@@ -83,7 +81,7 @@ The install plan lists all packages and features that will be installed, as well
 
 ### <a name="editable"></a> `--editable`
 
-**Classic mode only**
+- **Classic mode only**
 
 Perform editable builds for all directly referenced packages on the command line.
 
@@ -101,9 +99,10 @@ By default, vcpkg will run several checks on built packages and emit warnings if
 
 ### <a name="feature"></a> `--x-feature=<feature>`
 
-**Experimental and may change or be removed at any time**
+> [!NOTE]
+> This option is experimental and may change or be removed at any time.
 
-**Manifest mode only**
+- **Manifest mode only**
 
 Specify an additional [feature](../users/manifests.md#features) from the `vcpkg.json` to install dependencies for.
 
@@ -111,7 +110,7 @@ By default, only [`"dependencies"`](../users/manifests.md#dependencies) and the 
 
 ### `--head`
 
-**Classic mode only**
+- **Classic mode only**
 
 Request all packages explicitly referenced on the command line to fetch the latest sources available when building.
 
@@ -125,9 +124,10 @@ By default, vcpkg will stop at the first package build failure. This flag instru
 
 ### `--x-no-default-features`
 
-**Experimental and may change or be removed at any time**
+> [!NOTE]
+> This option is experimental and may change or be removed at any time.
 
-**Manifest mode only**
+- **Manifest mode only**
 
 Don't install the default features from the top-level manifest.
 
@@ -153,7 +153,7 @@ This flag blocks vcpkg from performing builds on demand and will fail if a packa
 
 ### `--recurse`
 
-**Classic mode only**
+- **Classic mode only**
 
 Approve an install plan that requires rebuilding packages.
 
@@ -161,13 +161,15 @@ In order to modify the set of features of an installed package, vcpkg must remov
 
 ### `--x-use-aria2`
 
-**Experimental and may change or be removed at any time**
+> [!NOTE]
+> This option is experimental and may change or be removed at any time.
 
 Use aria2 to perform download tasks.
 
 ### <a name="write-nuget-packages-config"></a> `--x-write-nuget-packages-config`
 
-**Experimental and may change or be removed at any time**
+> [!NOTE]
+> This option is experimental and may change or be removed at any time.
 
 Writes out a NuGet `packages.config`-formatted file for use with [binary caching](../users/binarycaching.md).
 

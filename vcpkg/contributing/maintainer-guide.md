@@ -1,8 +1,8 @@
 ---
 title: vcpkg Maintainer Guide
 description: The Guide for maintainers contributing to vcpkg.
+ms.date: 11/30/2022
 ---
-
 # Maintainer Guide
 
 This document lists a set of policies that you should apply when adding or updating a port recipe.
@@ -38,8 +38,7 @@ if there is any chance of confusion.
 GitHub Draft PRs are a great way to get CI or human feedback on work that isn't yet ready to merge.
 Most new PRs should be opened as drafts and converted to normal PRs once the CI passes.
 
-More information about GitHub Draft PRs:
-https://github.blog/2019-02-14-introducing-draft-pull-requests/
+For more information about GitHub Draft PRs, see [Introducing draft pull requests](https://github.blog/2019-02-14-introducing-draft-pull-requests/).
 
 ## Portfiles
 
@@ -81,7 +80,7 @@ Remove any boiler plate comments introduced by the `create` command before submi
 
 Ports must not change their behavior based on which ports are already installed in a form that would change which contents that port installs. For example, given:
 
-```
+```console
 > vcpkg install a
 > vcpkg install b
 > vcpkg remove a
@@ -89,7 +88,7 @@ Ports must not change their behavior based on which ports are already installed 
 
 and
 
-```
+```console
 > vcpkg install b
 ```
 
@@ -106,11 +105,13 @@ A core design ideal of vcpkg is to not create "lock-in" for customers. In the bu
 To that end, any CMake configs that the port exports, which are not in the upstream library, should have `unofficial-` as a prefix. Any additional targets should be in the `unofficial::<port>::` namespace.
 
 This means that the user should see:
- * `find_package(unofficial-<port> CONFIG)` as the way to get at the unique-to-vcpkg package
- * `unofficial::<port>::<target>` as an exported target from that port.
+
+- `find_package(unofficial-<port> CONFIG)` as the way to get at the unique-to-vcpkg package
+- `unofficial::<port>::<target>` as an exported target from that port.
 
 Examples:
- * [`brotli`](https://github.com/microsoft/vcpkg/blob/4f0a640e4c5b74166b759a862d7527c930eff32e/ports/brotli/install.patch) creates the `unofficial-brotli` package, producing target `unofficial::brotli::brotli`.
+
+- [`brotli`](https://github.com/microsoft/vcpkg/blob/4f0a640e4c5b74166b759a862d7527c930eff32e/ports/brotli/install.patch) creates the `unofficial-brotli` package, producing target `unofficial::brotli::brotli`.
 
 ### Install copyright file
 
@@ -175,8 +176,7 @@ Notwithstanding the above, ports may remove polyfills with a feature, as long as
 
 Example:
 
-- `abseil[cxx17]` changes `absl::string_view` to a replacement or `std::string_view`; the patch
-https://github.com/microsoft/vcpkg/blob/981e65ce0ac1f6c86e5a5ded7824db8780173c76/ports/abseil/fix-cxx-standard.patch implements the baking requirement
+- `abseil[cxx17]` changes `absl::string_view` to a replacement or `std::string_view`; the [patch](https://github.com/microsoft/vcpkg/blob/981e65ce0ac1f6c86e5a5ded7824db8780173c76/ports/abseil/fix-cxx-standard.patch) implements the baking requirement.
 
 ### Recommended solutions
 
@@ -184,7 +184,7 @@ If it's critical to expose the underlying alternatives, we recommend providing m
 
 ```cmake
 set(USING_DOG 0)
-message(STATUS "This version of LibContosoFrobnicate uses the Kittens backend. To use the Dog backend instead, create an overlay port of this with USING_DOG set to 1 and the `kittens` dependency replaced with `dog`.")
+message(STATUS "This version of LibContoso uses the Kittens backend. To use the Dog backend instead, create an overlay port of this with USING_DOG set to 1 and the `kittens` dependency replaced with `dog`.")
 message(STATUS "This recipe is at ${CMAKE_CURRENT_LIST_DIR}")
 message(STATUS "See the overlay ports documentation at https://github.com/microsoft/vcpkg/blob/master/docs/specifications/ports-overlay.md")
 ```

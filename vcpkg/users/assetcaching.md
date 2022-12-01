@@ -1,9 +1,9 @@
 ---
 title: Asset Caching
 description: Use vcpkg to mirror sources and tools internally to guarantee build reliability.
+ms.date: 11/30/2022
 ---
-
-# Asset Caching
+# Asset caching
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
@@ -43,7 +43,7 @@ You can also use the filesystem (e.g. a network drive) via `file://` as asset ca
 
 The workflow of this asset source is:
 
-1. Attemp to read from the mirror
+1. Attempt to read from the mirror
 1. (If step 1 failed) Read from the original url
 1. (If step 2 succeeded) Write back to the mirror
 

@@ -11,7 +11,7 @@ Let's start with creating a simple CMake project that depends on `fmt` and `zlib
 
 Create a folder with the following files:
 
-**vcpkg.json**
+`vcpkg.json`
 
 ```json
 {
@@ -28,7 +28,7 @@ Create a folder with the following files:
 }
 ```
 
-**main.cpp**
+`main.cpp`
 
 ```cpp
 #include <fmt/core.h>
@@ -43,7 +43,7 @@ int main()
 }
 ```
 
-**CMakeLists.txt**
+`CMakeLists.txt`
 
 ```CMake
 cmake_minimum_required(VERSION 3.18)
@@ -161,9 +161,10 @@ This field declares the versioning baseline for all ports. Setting a baseline is
 
 In our example, you can notice that we do not declare a version constraint for `zlib`; instead, the version is taken from the baseline. Internally, vcpkg will look in commit `3426db05b996481ca31e95fff3734cf23e0f51bc` to find out what version of `zlib` was the latest at that point in time (in our case it was `1.2.11#9`).
 
-During version resolution, baseline versions are treated as minimum version constraints. If you declare an explicit constraint that is lower than a baseline version, the explicit constraint will be upgraded to the baseline version. 
+During version resolution, baseline versions are treated as minimum version constraints. If you declare an explicit constraint that is lower than a baseline version, the explicit constraint will be upgraded to the baseline version.
 
 For example, if we modified our dependencies like this:
+
 ```json
 { "dependencies": [
     {
@@ -180,11 +181,11 @@ For example, if we modified our dependencies like this:
 > [!NOTE]
 > The value `1.2.11#7` represents version `1.2.11`, port version `7`.
 
-Since the baseline introduces a minimum version constraint for `zlib` at `1.2.11#9` and a higher version does satisfy the minimum version constraint for `1.2.11#7`, vcpkg is allowed to upgrade it. 
+Since the baseline introduces a minimum version constraint for `zlib` at `1.2.11#9` and a higher version does satisfy the minimum version constraint for `1.2.11#7`, vcpkg is allowed to upgrade it.
 
 Baselines are also a convenient mechanism to upgrade multiple versions at a time, for example, if you wanted to depend on multiple `boost` libraries, it is more convenient to set the `baseline` once than declaring a version constraint on each package.
 
-But what if you want to pin a version older than the baseline? 
+But what if you want to pin a version older than the baseline?
 
 #### `overrides`
 

@@ -16,10 +16,11 @@ x_vcpkg_get_python_packages(
     [PYTHON_VERSION (2|3)]
     PYTHON_EXECUTABLE <path to python binary>
     REQUIREMENTS_FILE <file-path>
-    PACKAGES <packages to aqcuire>...
-    [OUT_PYTHON_VAR somevar]
+    PACKAGES <packages to acquire>...
+    [OUT_PYTHON_VAR some_var]
 )
 ```
+
 ## Parameters
 
 ### PYTHON_VERSION
@@ -30,7 +31,7 @@ Must be either 2 or 3.
 
 ### PYTHON_EXECUTABLE
 
-Full path to the python executable 
+Full path to the python executable
 
 ### REQUIREMENTS_FILE
 
@@ -47,4 +48,3 @@ Variable to store the path to the python binary inside the virtual environment
 ## Source
 
 [ports/vcpkg-get-python-packages/x\_vcpkg\_get\_python\_packages.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-get-python-packages/x_vcpkg_get_python_packages.cmake)
-
