@@ -1,7 +1,8 @@
 ---
 title: vcpkg_from_gitlab
+description: Learn how to use vcpkg_from_gitlab.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_from_gitlab
 
 Download and extract a project from Gitlab instances. Enables support for `install --head`.

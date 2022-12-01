@@ -1,7 +1,8 @@
 ---
 title: vcpkg_download_distfile
+description: Learn how to use vcpkg_download_distfile.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_download_distfile
 
 Download and cache a file needed for this port.

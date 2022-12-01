@@ -102,7 +102,9 @@ This will create a new branch named `custom-boost-baseline` and check it out imm
 The next step is to modify the baseline file, open the file in your editor of choice and modify the entries for the Boost libraries.
 
 Change the `"baseline"` version to your desired version.
-_NOTE: Remember to also set the port versions to 0 (or your desired version)._
+
+> [!NOTE]
+> Remember to also set the port versions to 0 (or your desired version).
 
 `${vcpkg-root}/versions/baseline.json`
 ```diff

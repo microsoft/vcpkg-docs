@@ -157,6 +157,7 @@ See [Host dependencies](host-dependencies.md) for more information.
 The `"platform"` field limits the platforms where the dependency is required.
 
 Some predefined values are computed from the [triplet settings](triplets.md):
+
 - `x64` - `VCPKG_TARGET_ARCHITECTURE` == `"x64"`
 - `x86` - `VCPKG_TARGET_ARCHITECTURE` == `"x86"`
 - `arm` - `VCPKG_TARGET_ARCHITECTURE` == `"arm"` or `VCPKG_TARGET_ARCHITECTURE` == `"arm64"`
@@ -176,9 +177,11 @@ Some predefined values are computed from the [triplet settings](triplets.md):
 - `static-crt` - `VCPKG_CRT_LINKAGE` == `"static"`
 
 Cross-compiling can be detected with the `native` value:
+
 - `native` - `TARGET_TRIPLET` == `HOST_TRIPLET`
 
 Expressions can also be combined using logical operators and grouping:
+
 - `!<expr>`, `not <expr>` - negation
 - `<expr>|<expr>`, `<expr>||<expr>`, `<expr>,<expr>`, `<expr> or <expr>` - logical OR
 - `<expr>&<expr>`, `<expr>&&<expr>`, `<expr> and <expr>` - logical AND
@@ -187,6 +190,7 @@ Expressions can also be combined using logical operators and grouping:
 ##### Examples
 
 **Needs `picosha2` for sha256 on non-Windows, but get it from the OS on Windows (BCrypt)**
+
 ```jsonc
 {
   "name": "picosha2",
@@ -195,6 +199,7 @@ Expressions can also be combined using logical operators and grouping:
 ```
 
 **Require zlib on arm64 Windows and amd64 Linux**
+
 ```jsonc
 {
   "name": "zlib",
@@ -209,7 +214,7 @@ A minimum version constraint on the dependency.
 This field specifies the minimum version of the dependency, optionally using a
 `#N` suffix to denote port-version if non-zero.
 
-See also [versioning](versioning.md#version-1) for more semantic details.
+For more information on versioning semantics, see [Versioning](versioning.md#version).
 
 ### <a name="overrides"></a> `"overrides"`
 
@@ -237,17 +242,9 @@ For example, if your library doesn't support linux, you might write `{ "supports
 
 ### <a name="default-features"></a> <a name="features"></a> `"features"` and `"default-features"`
 
-The `"features"` field defines _your_ project's optional features, that others may either depend on or not.
-It's an object, where the keys are the names of the features, and the values are objects describing the feature.
-`"description"` is required,
-and acts exactly like the [`"description"`](#description) field on the global package,
-and `"dependencies"` are optional,
-and again act exactly like the [`"dependencies"`](#dependencies) field on the global package.
-There's also the `"supports"` field,
-which again acts exactly like the [`"supports"`](#supports) field on the global package.
+The `"features"` field defines _your_ project's optional features, that others may either depend on or not. It's an object, where the keys are the names of the features, and the values are objects describing the feature. `"description"` is required, and acts exactly like the [`"description"`](#description) field on the global package, and `"dependencies"` are optional, and again act exactly like the [`"dependencies"`](#dependencies) field on the global package. There's also the `"supports"` field, which again acts exactly like the [`"supports"`](#supports) field on the global package.
 
-You also have control over which features are default, if a person doesn't ask for anything specific,
-and that's the `"default-features"` field, which is an array of feature names.
+You also have control over which features are default, if a person doesn't ask for anything specific, and that's the `"default-features"` field, which is an array of feature names.
 
 #### Example
 
@@ -293,9 +290,7 @@ and that's the `"default-features"` field, which is an array of feature names.
 
 ### `"vcpkg-configuration"`
 
-Allows to embed vcpkg configuration properties inside the `vcpkg.json` file. Everything inside
-the `vcpkg-configuration` property is treated as if it were defined in a `vcpkg-configuration.json` file. 
-See the [`vcpkg-configuration.json` documentation](registries.md) for details.
+Allows to embed vcpkg configuration properties inside the `vcpkg.json` file. Everything inside the `vcpkg-configuration` property is treated as if it were defined in a `vcpkg-configuration.json` file. For more details, see the [`vcpkg-configuration.json`](registries.md) documentation.
 
 Having a `vcpkg-configuration` defined in `vcpkg.json` while also having a `vcpkg-configuration.json` 
 file is not allowed and will result in the vcpkg command terminating with an error message.

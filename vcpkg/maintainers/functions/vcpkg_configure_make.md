@@ -1,7 +1,8 @@
 ---
 title: vcpkg_configure_make
+description: Learn how to use vcpkg_configure_make.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_configure_make
 
 Configure configure for Debug and Release builds of a project.

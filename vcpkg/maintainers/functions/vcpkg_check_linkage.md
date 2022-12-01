@@ -1,7 +1,8 @@
 ---
 title: vcpkg_check_linkage
+description: Assert the available library and CRT linkage options for the port.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_check_linkage
 
 Asserts the available library and CRT linkage options for the port.
@@ -46,4 +47,3 @@ This command will either alter the settings for `VCPKG_LIBRARY_LINKAGE` or fail,
 ## Source
 
 [scripts/cmake/vcpkg\_check\_linkage.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_check_linkage.cmake)
-

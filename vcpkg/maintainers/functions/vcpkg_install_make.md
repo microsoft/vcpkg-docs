@@ -1,7 +1,8 @@
 ---
 title: vcpkg_install_make
+description: Learn how to use vcpkg_install_make.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_install_make
 
 Build and install a make project.

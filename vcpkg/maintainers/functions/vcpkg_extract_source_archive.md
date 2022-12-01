@@ -1,7 +1,8 @@
 ---
 title: vcpkg_extract_source_archive
+description: Learn how to use vcpkg_extract_source_archive.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_extract_source_archive
 
 Extract an archive.
@@ -36,7 +37,7 @@ Skip removing the top level directory of the archive.
 
 Most archives contain a single top-level directory, such as:
 
-```
+```no-highlight
 zlib-1.2.11/
     doc/
         ...
@@ -105,6 +106,7 @@ Defaults to `${CURRENT_BUILDTREES_DIR}/<BASE_DIRECTORY>`. Must be an absolute pa
 `vcpkg_extract_source_archive` extracts the archive into `<WORKING_DIRECTORY>/<SOURCE_BASE>-<short-hash>.clean`. If the folder exists, it is deleted before extraction. Without specifying `SOURCE_BASE`, `BASE_DIRECTORY`, or `WORKING_DIRECTORY`, this will default to `${CURRENT_BUILDTREES_DIR}/src/<archive-stem>-<short-hash>.clean`.
 
 In [`--editable`](../../commands/install.md#editable) mode:
+
 1. No `.clean` suffix is added to the extracted folder
 1. The extracted folder is not deleted. If it exists, `vcpkg_extract_source_archive` does nothing.
 
@@ -135,7 +137,7 @@ vcpkg_cmake_configure(SOURCE_PATH "${src}")
 
 ## Remarks
 
-**Deprecated Syntax**
+### Deprecated Syntax
 
 This command also supports a deprecated overload:
 
@@ -147,11 +149,10 @@ The deprecated overload extracts `<archive>` into `${working_directory}/<archive
 
 All uses of the deprecated overload should be replaced with the syntax in [Usage](#usage) above by adding an explicit [`ARCHIVE`](#archive) parameter and replacing direct references to the extracted path with uses of the [`<out-var>`](#out-var).
 
-**Replacement**
+### Replacement
 
 This command replaces [`vcpkg_extract_source_archive_ex()`](vcpkg_extract_source_archive_ex.md).
 
 ## Source
 
 [scripts/cmake/vcpkg\_extract\_source\_archive.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_extract_source_archive.cmake)
-

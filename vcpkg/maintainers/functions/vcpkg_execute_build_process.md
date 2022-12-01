@@ -1,7 +1,8 @@
 ---
 title: vcpkg_execute_build_process
+description: Learn how to use vcpkg_execute_build_process.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_execute_build_process
 
 Execute a required build process

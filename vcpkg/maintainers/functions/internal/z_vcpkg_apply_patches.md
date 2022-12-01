@@ -1,8 +1,8 @@
 ---
 title: z_vcpkg_apply_patches
 description: Internal helper to apply a set of patches to a source tree.
+ms.date: 11/30/2022
 ---
-
 # z_vcpkg_apply_patches
 
 [!INCLUDE [internal-helper](../../../../includes/internal-helper.md)]

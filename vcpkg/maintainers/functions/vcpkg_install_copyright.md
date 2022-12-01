@@ -1,7 +1,8 @@
 ---
 title: vcpkg_install_copyright
+description: Learn how to use vcpkg_install_copyright.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_install_copyright
 
 Merges multiple copyright files into a single file and install it.

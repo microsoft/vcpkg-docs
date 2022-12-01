@@ -1,7 +1,8 @@
 ---
 title: x_vcpkg_pkgconfig_get_modules
+description: Learn how to use x_vcpkg_pkgconfig_get_modules.
+ms.date: 11/30/2022
 ---
-
 # x_vcpkg_pkgconfig_get_modules
 
 [!INCLUDE [experimental](../../../includes/experimental.md)]

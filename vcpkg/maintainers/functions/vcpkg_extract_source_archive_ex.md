@@ -1,7 +1,8 @@
 ---
 title: vcpkg_extract_source_archive_ex
+description: Learn how to use vcpkg_extract_source_archive_ex.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_extract_source_archive_ex
 
 **This function has been deprecated in favor of [`vcpkg_extract_source_archive()`].**

@@ -1,8 +1,8 @@
 ---
 title: vcpkg_cmake_install
-description: Build and install a CMake project.
+description: Use vcpkg_cmake_install to build and install a CMake project.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_cmake_install
 
 Build and install a CMake project.
@@ -17,6 +17,7 @@ vcpkg_cmake_install(
 ```
 
 To use this function, you must depend on the helper port `vcpkg-cmake`:
+
 ```no-highlight
 "dependencies": [
   {

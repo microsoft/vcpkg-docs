@@ -1,7 +1,8 @@
 ---
 title: vcpkg_build_cmake
+description: Use vcpkg_build_cmake to build a cmake project.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_build_cmake
 
 **This function has been deprecated in favor of [`vcpkg_cmake_build`](vcpkg_cmake_build.md).**
@@ -45,4 +46,3 @@ You can use the alias [`vcpkg_install_cmake()`](vcpkg_configure_cmake.md) functi
 ## Source
 
 [scripts/cmake/vcpkg\_build\_cmake.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_build_cmake.cmake)
-

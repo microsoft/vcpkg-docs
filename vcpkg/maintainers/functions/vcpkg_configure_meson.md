@@ -1,7 +1,8 @@
 ---
 title: vcpkg_configure_meson
+description: Learn how to use vcpkg_configure_meson.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_configure_meson
 
 Configure Meson for Debug and Release builds of a project.

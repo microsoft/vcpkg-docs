@@ -1,7 +1,8 @@
 ---
 title: vcpkg_from_github
+description: Learn how to use vcpkg_from_github.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_from_github
 
 Download and extract a project from GitHub. Enables support for `install --head`.

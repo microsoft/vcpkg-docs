@@ -1,7 +1,8 @@
 ---
 title: vcpkg_from_git
+description: Learn how to use vcpkg_from_git.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_from_git
 
 Download and extract a project from git

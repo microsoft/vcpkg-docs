@@ -1,7 +1,8 @@
 ---
 title: vcpkg_qmake_configure
+description: Learn how to use vcpkg_qmake_configure.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_qmake_configure
 
 Configure a qmake-based project.

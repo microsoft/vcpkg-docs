@@ -1,10 +1,9 @@
 ---
 title: vcpkg_cmake_configure
+description: Use vcpkg_cmake_configure to configure a CMake-based project.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_cmake_configure
-
-**The latest version of this document lives in the [vcpkg repo](https://github.com/Microsoft/vcpkg/blob/master/docs/maintainers/vcpkg_cmake_configure.md).**
 
 Configure a CMake-based project.
 
@@ -30,6 +29,7 @@ vcpkg_cmake_configure(
 ```
 
 To use this function, you must depend on the helper port `vcpkg-cmake`:
+
 ```no-highlight
 "dependencies": [
   {

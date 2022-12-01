@@ -1,7 +1,8 @@
 ---
 title: vcpkg_get_windows_sdk
+description: Learn how to use vcpkg_get_windows_sdk.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_get_windows_sdk
 
 Get the Windows SDK number.

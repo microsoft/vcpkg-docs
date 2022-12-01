@@ -1,7 +1,8 @@
 ---
 title: vcpkg_copy_pdbs
+description: Learn how to use vcpkg_copy_pdbs.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_copy_pdbs
 
 Automatically locate pdbs in the build tree and copy them adjacent to all DLLs.

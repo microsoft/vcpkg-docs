@@ -1,8 +1,8 @@
 ---
 title: vcpkg_execute_required_process
 description: Execute a process with logging and fail the build if the command fails.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_execute_required_process
 
 Execute a process with logging and fail the build if the command fails.

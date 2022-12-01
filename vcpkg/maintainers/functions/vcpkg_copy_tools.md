@@ -1,7 +1,8 @@
 ---
 title: vcpkg_copy_tools
+description: Learn how to use vcpkg_copy_tools.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_copy_tools
 
 Copy tools and all their DLL dependencies into the `tools` folder.

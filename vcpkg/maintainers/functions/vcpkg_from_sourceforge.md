@@ -1,5 +1,7 @@
 ---
 title: vcpkg_from_sourceforge
+description: Learn how to use vcpkg_from_sourceforge.
+ms.date: 11/30/2022
 ---
 # vcpkg_from_sourceforge
 

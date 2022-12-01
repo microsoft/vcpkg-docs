@@ -1,7 +1,8 @@
 ---
 title: vcpkg_build_nmake
+description: Use vcpkg_build_nmake to build an NMake Makefile project.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_build_nmake
 
 Build an NMake Makefile project.
@@ -107,4 +108,3 @@ You can use the alias [`vcpkg_install_nmake()`](vcpkg_install_nmake.md) function
 ## Source
 
 [scripts/cmake/vcpkg\_build\_nmake.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_build_nmake.cmake)
-

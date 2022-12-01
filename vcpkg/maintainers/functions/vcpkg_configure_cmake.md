@@ -1,7 +1,8 @@
 ---
 title: vcpkg_configure_cmake
+description: Use vcpkg_configure_cmake to configure a CMake project.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_configure_cmake
 
 > [!WARNING]
@@ -73,6 +74,7 @@ Additional options passed to CMake during the Debug configuration. These are in 
 
 Any CMake variables which are explicitly passed in, but which may not be used on all platforms.
 For example:
+
 ```cmake
 vcpkg_cmake_configure(
     ...

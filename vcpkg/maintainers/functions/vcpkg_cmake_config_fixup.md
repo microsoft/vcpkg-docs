@@ -1,7 +1,8 @@
 ---
 title: vcpkg_cmake_config_fixup
+description: Use vcpkg_cmake_config_fixup to support multiconfig generators.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_cmake_config_fixup
 
 Merge and correct Release and Debug CMake targets and configs to support multiconfig generators.
@@ -37,7 +38,7 @@ done by vcpkg due to moving the config files.
 Currently the correction does not take into account how the files are moved,
 and applies a rather simply correction which in some cases will yield the wrong results.
 
-## How it Works
+## How it works
 
 1. Moves `/debug/<CONFIG_PATH>/*targets-debug.cmake` to `/share/${PACKAGE_NAME}`.
 1. Transforms all references matching `/bin/*.exe` to `/${TOOLS_PATH}/*.exe` on Windows.
@@ -57,4 +58,3 @@ and applies a rather simply correction which in some cases will yield the wrong 
 ## Source
 
 [ports/vcpkg-cmake-config/vcpkg\_cmake\_config\_fixup.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-cmake-config/vcpkg_cmake_config_fixup.cmake)
-

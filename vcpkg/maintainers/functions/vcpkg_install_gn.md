@@ -1,7 +1,8 @@
 ---
 title: vcpkg_install_gn
+description: Learn how to use vcpkg_install_gn.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_install_gn
 
 **This function has been deprecated in favor of [`vcpkg_gn_install`](vcpkg_gn_install.md).**

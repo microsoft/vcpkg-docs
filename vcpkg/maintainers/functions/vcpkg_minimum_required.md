@@ -1,7 +1,8 @@
 ---
 title: vcpkg_minimum_required
+description: Learn how to use vcpkg_minimum_required.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_minimum_required
 
 Asserts that the version of the vcpkg program being used to build a port is later than the supplied date, inclusive.

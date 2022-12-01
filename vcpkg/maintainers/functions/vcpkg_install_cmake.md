@@ -1,7 +1,8 @@
 ---
 title: vcpkg_install_cmake
+description: Learn how to use vcpkg_install_cmake.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_install_cmake
 
 **This function has been deprecated in favor of [`vcpkg_cmake_install`](vcpkg_cmake_install.md) from the vcpkg-cmake port.**

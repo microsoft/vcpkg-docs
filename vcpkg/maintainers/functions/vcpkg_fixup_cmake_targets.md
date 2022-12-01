@@ -1,7 +1,8 @@
 ---
 title: vcpkg_fixup_cmake_targets
+description: Learn how to use vcpkg_fixup_cmake_targets.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_fixup_cmake_targets
 
 **This function has been deprecated in favor of [`vcpkg_cmake_config_fixup`](vcpkg_cmake_config_fixup.md).**

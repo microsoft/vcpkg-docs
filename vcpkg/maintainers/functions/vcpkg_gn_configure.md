@@ -1,7 +1,8 @@
 ---
 title: vcpkg_gn_configure
+description: Learn how to use vcpkg_gn_configure.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_gn_configure
 
 Generate Ninja (GN) targets

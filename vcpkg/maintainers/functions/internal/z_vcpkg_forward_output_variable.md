@@ -3,7 +3,6 @@ title: z_vcpkg_forward_output_variable
 description: Forward values from inner function calls into pointer out parameters.
 ms.date: 11/30/2022
 ---
-
 # z_vcpkg_forward_output_variable
 
 [!INCLUDE [internal-helper](../../../../includes/internal-helper.md)]

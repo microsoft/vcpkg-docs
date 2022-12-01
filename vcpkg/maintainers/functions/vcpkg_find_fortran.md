@@ -1,7 +1,8 @@
 ---
 title: vcpkg_find_fortran
+description: Learn how to use vcpkg_find_fortran.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_find_fortran
 
 Checks if a Fortran compiler can be found.

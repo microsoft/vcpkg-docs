@@ -1,7 +1,8 @@
 ---
 title: vcpkg_install_qmake
+description: Learn how to use vcpkg_install_qmake.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_install_qmake
 
 Build and install a qmake project.

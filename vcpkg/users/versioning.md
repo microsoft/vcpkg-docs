@@ -42,11 +42,10 @@ Manifest property | Versioning scheme
 
 A manifest must contain only one version declaration. 
 
-_NOTE: By design, vcpkg does not compare versions that use different schemes. For example, a package
-that has a `version-string: 7.1.3` cannot be compared with the same package using `version: 7.1.4`, even if the
-conversion seems obvious._
+> [!NOTE]
+> By design, vcpkg does not compare versions that use different schemes. For example, a package that has a `version-string: 7.1.3` cannot be compared with the same package using `version: 7.1.4`, even if the conversion seems obvious.
 
-#### `version`
+### `version`
 
 Accepts version strings that follow a relaxed, dot-separated-, semver-like scheme.
 
@@ -57,18 +56,20 @@ The regex pattern for this versioning scheme is: `(0|[1-9]\d*)(\.(0|[1-9]\d*))*`
 _Sorting behavior_: When comparing two versions, each section is compared from left to right by their numeric value, until the first difference is found. A version with the smallest set of sections takes precedence over another with a larger set of sections, given that all their preceding sections compare equally.
 
 Example:
+
 `0` < `0.1` < `0.1.0` < `1` < `1.0.0` < `1.0.1` < `1.1`< `2.0.0`
 
-#### `version-semver`
+### `version-semver`
 
 Accepts version strings that follow semantic versioning conventions as described in the [semantic versioning specification](https://semver.org/#semantic-versioning-specification-semver).
 
 _Sorting behavior_: Strings are sorted following the rules described in the semantic versioning specification.
 
 Example:
+
 `1.0.0-1` < `1.0.0-alpha` < `1.0.0-beta` < `1.0.0` < `1.0.1` < `1.1.0`
 
-#### `version-date`
+### `version-date`
 
 Accepts version strings that can be parsed to a date following the ISO-8601 format `YYYY-MM-DD`. Disambiguation identifiers are allowed in the form of dot-separated-, positive-, integer-numbers with no leading zeroes.
 
@@ -81,7 +82,7 @@ _Sorting behavior_: Strings are sorted first by their date part, then by numeric
 Examples:
 `2021-01-01` < `2021-01-01.1` < `2021-02-01.1.2` < `2021-02-01.1.3` < `2021-02-01`
 
-#### `version-string`
+### `version-string`
 
 For packages using version strings that do not fit any of the other schemes, it accepts most arbitrary strings.  The `#` which is used to denote port versions is disallowed.
 
@@ -91,16 +92,18 @@ Examples:
 - `apple` <> `orange` <> `orange.2` <> `orange2`
 - `watermelon#0`< `watermelon#1`
 
-#### <a name="port-version"></a> `port-version`
+### <a name="port-version"></a> `port-version`
 
 A positive integer value that increases each time the port changes without updating the sources.
 
 The rules for port versions are:
+
 - Start at 0 for the original version of the port,
 - increase by 1 each time a vcpkg-specific change is made to the port that does not increase the version of the package,
 - and reset to 0 each time the version of the package is updated.
 
-_NOTE: Whenever vcpkg output a version it follows the format `<version>#<port version>`. For example `1.2.0#2` means version `1.2.0` port version `2`. When the port version is `0` the `#0` suffix is omitted (`1.2.0` implies version `1.2.0` port version `0`)._
+> [!NOTE]
+> Whenever vcpkg output a version it follows the format `<version>#<port version>`. For example `1.2.0#2` means version `1.2.0` port version `2`. When the port version is `0` the `#0` suffix is omitted (`1.2.0` implies version `1.2.0` port version `0`).
 
 _Sorting behavior_: If two versions compare equally, their port versions are compared by their numeric value, lower port versions take precedence.
 

@@ -1,7 +1,8 @@
 ---
 title: vcpkg_from_bitbucket
+description: Learn how to use vcpkg_from_bitbucket.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_from_bitbucket
 
 Download and extract a project from Bitbucket.

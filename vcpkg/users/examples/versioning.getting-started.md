@@ -1,8 +1,8 @@
 ---
 title: Getting started with versioning
 description: Learn how to use versioning in vcpkg
+ms.date: 11/30/2022
 ---
-
 # Getting started with versioning
 
 ## Using versions with manifests
@@ -12,6 +12,7 @@ Let's start with creating a simple CMake project that depends on `fmt` and `zlib
 Create a folder with the following files:
 
 **vcpkg.json**
+
 ```json
 {
     "name": "versions-test",
@@ -28,7 +29,8 @@ Create a folder with the following files:
 ```
 
 **main.cpp**
-```c++
+
+```cpp
 #include <fmt/core.h>
 #include <zlib.h>
 
@@ -42,6 +44,7 @@ int main()
 ```
 
 **CMakeLists.txt**
+
 ```CMake
 cmake_minimum_required(VERSION 3.18)
 
@@ -57,35 +60,36 @@ target_link_libraries(main PRIVATE ZLIB::ZLIB fmt::fmt)
 And now we build and run our project with CMake:
 
 1. Create the build directory for the project.
-```
-PS D:\versions-test> mkdir build
-PS D:\versions-test> cd build
-```
+
+    ```powershell
+    PS D:\versions-test> mkdir build
+    PS D:\versions-test> cd build
+    ```
 
 1. Configure CMake.
 
-```
-PS D:\versions-test\build> cmake -G Ninja -DCMAKE_TOOLCHAIN_FILE=D:/vcpkg/scripts/buildsystems/vcpkg.cmake ..
--- Running vcpkg install
-Detecting compiler hash for triplet x86-windows...
-The following packages will be built and installed:
-    fmt[core]:x64-windows -> 7.1.3#1 -- D:\Work\viromer\vcpkg\buildtrees\versioning\versions\fmt\4f8427eb0bd40da1856d4e67bde39a4fda689d72
-    vcpkg-cmake[core]:x64-windows -> 2021-02-26 -- D:\Work\viromer\vcpkg\buildtrees\versioning\versions\vcpkg-cmake\51896aa8073adb5c8450daa423d03eedf0dfc61f
-    vcpkg-cmake-config[core]:x64-windows -> 2021-02-26 -- D:\Work\viromer\vcpkg\buildtrees\versioning\versions\vcpkg-cmake-config\d255b3d566a8861dcc99a958240463e678528066
-    zlib[core]:x64-windows -> 1.2.11#9 -- D:\Work\viromer\vcpkg\buildtrees\versioning\versions\zlib\827111046e37c98153d9d82bb6fa4183b6d728e4
-...
-```
+    ```powershell
+    PS D:\versions-test\build> cmake -G Ninja -DCMAKE_TOOLCHAIN_FILE=D:/vcpkg/scripts/buildsystems/vcpkg.cmake ..
+    -- Running vcpkg install
+    Detecting compiler hash for triplet x86-windows...
+    The following packages will be built and installed:
+        fmt[core]:x64-windows -> 7.1.3#1 -- D:\Work\viromer\vcpkg\buildtrees\versioning\versions\fmt\4f8427eb0bd40da1856d4e67bde39a4fda689d72
+        vcpkg-cmake[core]:x64-windows -> 2021-02-26 -- D:\Work\viromer\vcpkg\buildtrees\versioning\versions\vcpkg-cmake\51896aa8073adb5c8450daa423d03eedf0dfc61f
+        vcpkg-cmake-config[core]:x64-windows -> 2021-02-26 -- D:\Work\viromer\vcpkg\buildtrees\versioning\versions\vcpkg-cmake-config\d255b3d566a8861dcc99a958240463e678528066
+        zlib[core]:x64-windows -> 1.2.11#9 -- D:\Work\viromer\vcpkg\buildtrees\versioning\versions\zlib\827111046e37c98153d9d82bb6fa4183b6d728e4
+    ...
+    ```
 
 1. Build the project.
 
-    ```cmd
+    ```powershell
     PS D:\versions-test\build> cmake --build .
     [2/2] Linking CXX executable main.exe
     ```
 
 1. Run it!
 
-    ```cmd
+    ```powershell
     PS D:\versions-test\build> ./main.exe
     fmt version is 70103
     zlib version is 1.2.11
@@ -93,7 +97,7 @@ The following packages will be built and installed:
 
 Take a look at the output:
 
-```cmd
+```console
 fmt[core]:x86-windows -> 7.1.3#1 -- D:\vcpkg\buildtrees\versioning\versions\fmt\4f8427eb0bd40da1856d4e67bde39a4fda689d72
 ...
 zlib[core]:x86-windows -> 1.2.11#9 -- D:\vcpkg\buildtrees\versioning\versions\zlib\827111046e37c98153d9d82bb6fa4183b6d728e4
@@ -101,7 +105,8 @@ zlib[core]:x86-windows -> 1.2.11#9 -- D:\vcpkg\buildtrees\versioning\versions\zl
 
 Instead of using the portfiles in `ports/`, vcpkg is checking out the files for each version in `buildtrees/versioning/versions/`. The files in `ports/` are still used when running vcpkg in classic mode.
 
-_NOTE: Output from vcpkg while configuring CMake is only available when using CMake version `3.18` or newer. If you're using an older CMake you can check the `vcpkg-manifest-install.log` file in your build directory instead._
+> [!NOTE]
+> Output from vcpkg while configuring CMake is only available when using CMake version `3.18` or newer. If you're using an older CMake you can check the `vcpkg-manifest-install.log` file in your build directory instead.
 
 Read our [manifests announcement blog post](https://devblogs.microsoft.com/cppblog/vcpkg-accelerate-your-team-development-environment-with-binary-caching-and-manifests/#using-manifests-with-msbuild-projects) to learn how to use manifests with MSBuild.
 
@@ -109,7 +114,7 @@ Read our [manifests announcement blog post](https://devblogs.microsoft.com/cppbl
 
 If you have used manifests before you will notice that there are some new JSON properties. Let's review these changes:
 
-#### **`version`**
+#### `version`
 
 ```json
 {
@@ -120,12 +125,12 @@ If you have used manifests before you will notice that there are some new JSON p
 
 This is your project's version declaration. Previously, you could only declare versions for your projects using the `version-string` property. Now that versioning has come around, vcpkg is aware of some new versioning schemes.
 
-Version scheme   | Description
----------------- | ---------------
-`version`        | Dot-separated numerics: `1.0.0.5`.
-`version-semver` | Compliant [semantic versions](https://semver.org): `1.2.0` and `1.2.0-rc`.
-`version-date`   | Dates in `YYYY-MM-DD` format: `2021-01-01`
-`version-string` | Arbitrary strings: `vista`, `candy`.
+| Version scheme | Description |
+|---|---|
+| `version` | Dot-separated numerics: `1.0.0.5`. |
+| `version-semver` | Compliant [semantic versions](https://semver.org): `1.2.0` and `1.2.0-rc`. |
+| `version-date` | Dates in `YYYY-MM-DD` format: `2021-01-01` |
+| `version-string` | Arbitrary strings: `vista`, `candy`. |
 
 #### `version>=`
 
@@ -172,7 +177,8 @@ For example, if we modified our dependencies like this:
 ] }
 ```
 
-_NOTE: The value `1.2.11#7` represents version `1.2.11`, port version `7`._
+> [!NOTE]
+> The value `1.2.11#7` represents version `1.2.11`, port version `7`.
 
 Since the baseline introduces a minimum version constraint for `zlib` at `1.2.11#9` and a higher version does satisfy the minimum version constraint for `1.2.11#7`, vcpkg is allowed to upgrade it. 
 

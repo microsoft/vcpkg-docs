@@ -1,5 +1,7 @@
 ---
 title: vcpkg_fixup_pkgconfig
+description: Learn how to use vcpkg_fixup_pkgconfig.
+ms.date: 11/30/2022
 ---
 # vcpkg_fixup_pkgconfig
 

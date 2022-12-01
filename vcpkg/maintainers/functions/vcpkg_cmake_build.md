@@ -1,7 +1,8 @@
 ---
 title: vcpkg_cmake_build
+description: Use vcpkg_cmake_build to build a CMake project with a custom install target.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_cmake_build
 
 Build a cmake project with a custom install target.
@@ -22,6 +23,7 @@ vcpkg_cmake_build(
 ```
 
 To use this function, you must depend on the helper port `vcpkg-cmake`:
+
 ```no-highlight
 "dependencies": [
   {
@@ -69,4 +71,3 @@ This command replaces [`vcpkg_build_cmake()`](vcpkg_build_cmake.md).
 ## Source
 
 [ports/vcpkg-cmake/vcpkg\_cmake\_build.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-cmake/vcpkg_cmake_build.cmake)
-

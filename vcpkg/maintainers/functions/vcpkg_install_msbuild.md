@@ -1,7 +1,8 @@
 ---
 title: vcpkg_install_msbuild
+description: Learn how to use vcpkg_install_msbuild.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_install_msbuild
 
 Build and install a msbuild-based project. This replaces `vcpkg_build_msbuild()`.

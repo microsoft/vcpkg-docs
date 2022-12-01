@@ -1,8 +1,8 @@
 ---
 title: vcpkg_list
 description: A replacement for CMake's list function which improves handling of elements with internal semicolons, such as other lists.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_list
 
 A replacement for CMake's `list()` function which improves handling of elements with internal semicolons, such as other lists.

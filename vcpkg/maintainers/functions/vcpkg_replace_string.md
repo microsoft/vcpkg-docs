@@ -1,7 +1,8 @@
 ---
 title: vcpkg_replace_string
+description: Learn how to use vcpkg_replace_string.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_replace_string
 
 Replace a string in a file.

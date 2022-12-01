@@ -1,7 +1,8 @@
 ---
 title: vcpkg_build_make
+description: Use vcpkg_build_make to build a Makefile project.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_build_make
 
 Build a Makefile project.
@@ -50,7 +51,7 @@ The underlying buildsystem will be instructed to not parallelize
 
 ### SUBPATH
 
-Additional subdir to invoke make in. Useful if only parts of a port should be built. 
+Additional subdir to invoke make in. Useful if only parts of a port should be built.
 
 ## Notes
 
@@ -68,4 +69,3 @@ You can use the alias [`vcpkg_install_make()`](vcpkg_install_make.md) function i
 ## Source
 
 [scripts/cmake/vcpkg\_build\_make.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_build_make.cmake)
-

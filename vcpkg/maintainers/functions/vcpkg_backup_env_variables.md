@@ -1,7 +1,8 @@
 ---
 title: vcpkg_backup_env_variables
+description: Use vcpkg_backup_env_variables to backup a set of environment variables.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_backup_env_variables
 
 Backup a set of environment variables.
@@ -25,4 +26,3 @@ Variables are backed up into the current scope. You must call [`vcpkg_restore_en
 ## Source
 
 [scripts/cmake/vcpkg\_backup\_restore\_env\_vars.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_backup_restore_env_vars.cmake)
-

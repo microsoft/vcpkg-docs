@@ -1,7 +1,8 @@
 ---
 title: vcpkg_execute_required_process_repeat
+description: Learn how to use vcpkg_execute_required_process_repeat.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_execute_required_process_repeat
 
 Execute a process until the command succeeds, or until the COUNT is reached.

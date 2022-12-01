@@ -1,7 +1,8 @@
 ---
 title: vcpkg_host_path_list
+description: Learn how to use vcpkg_host_path_list.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_host_path_list
 
 Modify a host path list variable (PATH, INCLUDE, LIBPATH, etc.)

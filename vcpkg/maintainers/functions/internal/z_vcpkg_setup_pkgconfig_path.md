@@ -1,7 +1,8 @@
 ---
 title: z_vcpkg_setup_pkgconfig_path
+description: Use z_vcpkg_setup_pkgconfig_path to set up the environment to use pkgconfig.
+ms.date: 11/30/2022
 ---
-
 # z_vcpkg_setup_pkgconfig_path
 
 [!INCLUDE [internal-helper](../../../../includes/internal-helper.md)]
@@ -17,6 +18,7 @@ z_vcpkg_setup_pkgconfig_path(BASE_DIRS <base-dirs>)
 ## Parameters
 
 ### BASE_DIRS
+
 List of base directories to use.
 
 Typically `${CURRENT_INSTALLED_DIR}` or `${CURRENT_INSTALLED_DIR}/debug`, but not both.

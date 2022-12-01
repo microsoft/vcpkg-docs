@@ -1,7 +1,8 @@
 ---
 title: vcpkg_copy_tool_dependencies
+description: Learn how to use vcpkg_copy_tool_dependencies.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_copy_tool_dependencies
 
 Copy all DLL dependencies of built tools into the tool folder.

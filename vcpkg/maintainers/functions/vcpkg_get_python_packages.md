@@ -1,7 +1,8 @@
 ---
 title: vcpkg_get_python_packages
+description: Learn how to use vcpkg_get_python_packages.
+ms.date: 11/30/2022
 ---
-
 # x_vcpkg_get_python_packages
 
 [!INCLUDE [experimental](../../../includes/experimental.md)]

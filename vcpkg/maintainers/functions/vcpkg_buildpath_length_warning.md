@@ -1,7 +1,8 @@
 ---
 title: vcpkg_buildpath_length_warning
+description: Enable a warning if the vcpkg installation path is too long for a package.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_buildpath_length_warning
 
 Warns the user if their vcpkg installation path might be too long for the package they're installing.
@@ -25,4 +26,3 @@ This function only emits a warning and must not be used for correctness.
 ## Source
 
 [scripts/cmake/vcpkg\_buildpath\_length\_warning.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_buildpath_length_warning.cmake)
-

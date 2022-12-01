@@ -1,7 +1,8 @@
 ---
 title: vcpkg_build_msbuild
+description: Use vcpkg_build_msbuild to build an MSBuild-based project.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_build_msbuild
 
 Build a msbuild-based project. Prefer using [`vcpkg_install_msbuild()`](vcpkg_install_msbuild.md) when possible.
@@ -80,4 +81,3 @@ Additional options passed to msbuild for Debug builds. These are in addition to 
 ## Source
 
 [scripts/cmake/vcpkg\_build\_msbuild.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_build_msbuild.cmake)
-

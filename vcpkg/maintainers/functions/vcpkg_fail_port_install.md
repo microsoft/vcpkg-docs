@@ -1,7 +1,8 @@
 ---
 title: vcpkg_fail_port_install
+description: Learn how to use vcpkg_fail_port_install.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_fail_port_install
 
 **This function has been deprecated in favor of the [`supports` field](../../users/manifests.md#supports).**
@@ -24,6 +25,7 @@ vcpkg_fail_port_install(
 ## Parameters
 
 ### MESSAGE
+
 Additional failure message. If none is given, a default message will be displayed depending on the failure condition.
 
 ### ALWAYS
@@ -53,4 +55,3 @@ Library linkage for which the build should fail early.
 ## Source
 
 [scripts/cmake/vcpkg\_fail\_port\_install.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_fail_port_install.cmake)
-

@@ -1,7 +1,8 @@
 ---
 title: vcpkg_install_meson
+description: Learn how to use vcpkg_install_meson.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_install_meson
 
 Builds a meson project previously configured with `vcpkg_configure_meson()`.

@@ -1,7 +1,8 @@
 ---
 title: vcpkg_get_program_files_platform_bitness
+description: Learn how to use vcpkg_get_program_files_platform_bitness.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_get_program_files_platform_bitness
 
 Get the Program Files directory of the current platform's bitness:

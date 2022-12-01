@@ -1,7 +1,8 @@
 ---
 title: vcpkg_install_nmake
+description: Learn how to use vcpkg_install_nmake.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_install_nmake
 
 Build and install a msvc makefile project.

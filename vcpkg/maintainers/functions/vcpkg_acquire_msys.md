@@ -1,7 +1,8 @@
 ---
 title: vcpkg_acquire_msys
+description: Use vcpkg_acquire_msys to download and prepare an MSYS2 instance.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_acquire_msys
 
 Download and prepare an MSYS2 instance.
@@ -41,7 +42,7 @@ A list of URL/SHA512 pairs to acquire in msys.
 This parameter can be used by a port to privately extend the list of msys packages to be acquired.
 The URLs can be found on the [msys2 website](https://packages.msys2.org/search) and should be a direct archive link:
 
-> https://repo.msys2.org/mingw/i686/mingw-w64-i686-gettext-0.19.8.1-9-any.pkg.tar.zst
+> `https://repo.msys2.org/mingw/i686/mingw-w64-i686-gettext-0.19.8.1-9-any.pkg.tar.zst`
 
 ## Notes
 
@@ -67,4 +68,3 @@ vcpkg_execute_required_process(
 ## Source
 
 [scripts/cmake/vcpkg\_acquire\_msys.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_acquire_msys.cmake)
-
