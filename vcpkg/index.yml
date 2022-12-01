@@ -1,0 +1,56 @@
+### YamlMime:Landing
+
+title: vcpkg documentation
+summary: vcpkg is a cross-platform package manager for C and C++ developers. Using vcpkg you can quickly get thousands of high quality open source libraries to empower your application and internally share collections of private components.
+
+metadata:
+  title: vcpkg documentation
+  description: vcpkg is a cross-platform package manager for C and C++ developers. Using vcpkg you can quickly get thousands of high quality open source libraries to empower your application and internally share collections of private components.
+  ms.prod: vcpkg
+  ms.topic: landing-page
+  author: ras0219-msft
+  ms.author: roschuma
+  ms.date: 11/17/2022
+
+landingContent:
+  # Card 
+  - title: Get started
+    linkLists:
+      - linkListType: quickstart
+        links:
+          - text: Use sqlite3 in Visual Studio
+            url: examples/installing-and-using-packages.md
+          - text: Use sqlite3 in CMake
+            url: examples/installing-and-using-packages.md
+          - text: Use sqlite3 in Other Buildsystems
+            url: examples/installing-and-using-packages.md
+
+  # Card
+  - title: Use Packages
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: Customize compilation flags
+            url: users/triplets.md
+          - text: Reuse builds between projects and machines
+            url: users/binarycaching.md
+          - text: Mirror external resources for disconnected builds
+            url: users/assetcaching.md
+      - linkListType: deploy
+        links:
+          - text: Integrate with your CMake project
+            url: users/buildsystems/cmake-integration.md
+          - text: Integrate with your MSBuild (Visual Studio) project
+            url: users/buildsystems/msbuild-integration.md
+          - text: Integrate with a custom buildsystem
+            url: users/buildsystems/manual-integration.md
+
+  # Card (Optional; Remove if not applicable.)
+  - title: Create Packages
+    linkLists:
+      - linkListType: reference
+        links:
+          - text: Registry structure reference
+            url: maintainers/registries.md
+          - text: Portfile variable reference
+            url: maintainers/variables.md
