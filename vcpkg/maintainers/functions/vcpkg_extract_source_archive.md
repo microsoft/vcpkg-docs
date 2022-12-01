@@ -1,12 +1,14 @@
 ---
 title: vcpkg_extract_source_archive
+description: Learn how to use vcpkg_extract_source_archive.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_extract_source_archive
 
 Extract an archive.
 
 ## Usage
+
 ```cmake
 vcpkg_extract_source_archive(
     <out-var>
@@ -21,9 +23,7 @@ vcpkg_extract_source_archive(
 
 ## Parameters
 
-<a id="out-var"></a>
-
-### `<out-var>`
+### <a name="out-var"></a> `<out-var>`
 
 Name of the variable to set with the directory containing the extracted contents.
 
@@ -106,8 +106,9 @@ Defaults to `${CURRENT_BUILDTREES_DIR}/<BASE_DIRECTORY>`. Must be an absolute pa
 `vcpkg_extract_source_archive` extracts the archive into `<WORKING_DIRECTORY>/<SOURCE_BASE>-<short-hash>.clean`. If the folder exists, it is deleted before extraction. Without specifying `SOURCE_BASE`, `BASE_DIRECTORY`, or `WORKING_DIRECTORY`, this will default to `${CURRENT_BUILDTREES_DIR}/src/<archive-stem>-<short-hash>.clean`.
 
 In [`--editable`](../../commands/install.md#editable) mode:
+
 1. No `.clean` suffix is added to the extracted folder
-2. The extracted folder is not deleted. If it exists, `vcpkg_extract_source_archive` does nothing.
+1. The extracted folder is not deleted. If it exists, `vcpkg_extract_source_archive` does nothing.
 
 `<short-hash>` unambiguously identifies a particular set of archive and patch file contents.
 Any modifications to the contents of the working directory after calling this function should be applied unconditionally
@@ -132,11 +133,11 @@ vcpkg_extract_source_archive(
 vcpkg_cmake_configure(SOURCE_PATH "${src}")
 ```
 
-* [GitHub Search](https://github.com/microsoft/vcpkg/search?q=vcpkg_extract_source_archive+path%3A%2Fports)
+- [GitHub Search](https://github.com/microsoft/vcpkg/search?q=vcpkg_extract_source_archive+path%3A%2Fports)
 
 ## Remarks
 
-**Deprecated Syntax**
+### Deprecated Syntax
 
 This command also supports a deprecated overload:
 
@@ -148,10 +149,10 @@ The deprecated overload extracts `<archive>` into `${working_directory}/<archive
 
 All uses of the deprecated overload should be replaced with the syntax in [Usage](#usage) above by adding an explicit [`ARCHIVE`](#archive) parameter and replacing direct references to the extracted path with uses of the [`<out-var>`](#out-var).
 
-**Replacement**
+### Replacement
 
 This command replaces [`vcpkg_extract_source_archive_ex()`](vcpkg_extract_source_archive_ex.md).
 
 ## Source
-[scripts/cmake/vcpkg\_extract\_source\_archive.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_extract_source_archive.cmake)
 
+[scripts/cmake/vcpkg\_extract\_source\_archive.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_extract_source_archive.cmake)

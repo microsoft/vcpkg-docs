@@ -1,12 +1,14 @@
 ---
 title: vcpkg_build_nmake
+description: Use vcpkg_build_nmake to build an NMake Makefile project.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_build_nmake
 
 Build an NMake Makefile project.
 
 ## Usage
+
 ```cmake
 vcpkg_build_nmake(
     SOURCE_PATH <${SOURCE_PATH}>
@@ -27,66 +29,82 @@ vcpkg_build_nmake(
 ```
 
 ## Parameters
+
 ### SOURCE_PATH
+
 Specifies the directory containing the source files.
 By convention, this is usually set in the portfile as the variable `SOURCE_PATH`.
 
 ### PROJECT_SUBPATH
+
 Specifies the sub directory containing the makefile.
 
 ### PROJECT_NAME
+
 Specifies the name of the makefile.
 Default is `makefile.vc`
 
 ### LOGFILE_ROOT
+
 Specifies a log file prefix.
 
 ### CL_LANGUAGE
+
 Specifies the language for setting up flags in the `_CL_` environment variable.
 The default language is `CXX`.
 To disable the modification of `_CL_`, use `NONE`.
 
 ### PREFER_JOM
+
 Specifies that a parallel build with `jom` should be attempted.
 This is useful for faster builds of makefiles which process many independent targets
 and which cannot benefit from the `/MP` cl option.
 To mitigate issues with concurrency-unaware makefiles, a normal `nmake` build is run after `jom` errors.
 
 ### PRERUN_SHELL
+
 Script that needs to be called before build.
 
 ### PRERUN_SHELL_DEBUG
+
 Script that needs to be called before debug build.
 
 ### PRERUN_SHELL_RELEASE
+
 Script that needs to be called before release build.
 
 ### OPTIONS
+
 Additional options passed to the build command.
 
 ### OPTIONS_RELEASE
+
 Additional options passed to the build command for the release build. These are in addition to `OPTIONS`.
 
 ### OPTIONS_DEBUG
+
 Additional options passed to the build command for the debug build. These are in addition to `OPTIONS`.
 
 ### TARGET
+
 The list of targets passed to the build command.
 If not specified, target `all` will be passed.
 
 ### ENABLE_INSTALL
+
 Adds `install` to the list of targets passed to the build command,
 and passes the install prefix in the `INSTALLDIR` makefile variable.
 
 ## Notes
+
 You can use the alias [`vcpkg_install_nmake()`](vcpkg_install_nmake.md) function if your makefile supports the
 "install" target.
 
 ## Examples
 
-* [librttopo](https://github.com/microsoft/vcpkg/blob/master/ports/librttopo/portfile.cmake)
-* [openssl](https://github.com/microsoft/vcpkg/blob/master/ports/openssl/portfile.cmake)
+- [librttopo](https://github.com/microsoft/vcpkg/blob/master/ports/librttopo/portfile.cmake)
+- [openssl](https://github.com/microsoft/vcpkg/blob/master/ports/openssl/portfile.cmake)
 
 ## Source
-[scripts/cmake/vcpkg\_build\_nmake.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_build_nmake.cmake)
 
+[scripts/cmake/vcpkg\_build\_nmake.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_build_nmake.cmake)

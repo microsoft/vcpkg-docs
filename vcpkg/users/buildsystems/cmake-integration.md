@@ -1,6 +1,7 @@
 ---
 title: CMake Integration
 description: Integrate vcpkg into a CMake project using Visual Studio, Visual Studio Code, a terminal, or other IDEs.
+ms.date: 11/30/2022
 ---
 
 # CMake Integration
@@ -11,24 +12,29 @@ See [Installing and Using Packages Example: sqlite](../../examples/installing-an
 
 Projects configured to use the vcpkg toolchain file (via the CMake setting `CMAKE_TOOLCHAIN_FILE`) can find libraries from vcpkg using the standard CMake functions: `find_package()`, `find_path()`, and `find_library()`.
 
-```no-highlight
+```console
 cmake ../my/project -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
 ```
 
-Since version 3.21, CMake will use the environment variable `CMAKE_TOOLCHAIN_FILE`[1] as the default value for `CMAKE_TOOLCHAIN_FILE`.
+Since version 3.21, CMake will use the environment variable [`CMAKE_TOOLCHAIN_FILE`](https://cmake.org/cmake/help/latest/envvar/CMAKE_TOOLCHAIN_FILE.html) as the default value for `CMAKE_TOOLCHAIN_FILE`.
 
-**cmd**
-```cmd
-set CMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
-```
-**Powershell**
-```powershell
-$env:CMAKE_TOOLCHAIN_FILE="<vcpkg-root>/scripts/buildsystems/vcpkg.cmake"
-```
-**bash**
-```sh
-export CMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
-```
+- **cmd**
+
+    ```cmd
+    set CMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
+    ```
+
+- **Powershell**
+
+    ```powershell
+    $env:CMAKE_TOOLCHAIN_FILE="<vcpkg-root>/scripts/buildsystems/vcpkg.cmake"
+    ```
+
+- **bash**
+
+    ```sh
+    export CMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
+    ```
 
 vcpkg does not automatically add any include or links paths into your project. To use a header-only library you can use `find_path()` which will correctly work on all platforms:
 
@@ -37,8 +43,6 @@ vcpkg does not automatically add any include or links paths into your project. T
 find_path(CATCH_INCLUDE_DIR NAMES catch.hpp PATH_SUFFIXES catch2)
 include_directories(${CATCH_INCLUDE_DIR})
 ```
-
-[1]: https://cmake.org/cmake/help/latest/envvar/CMAKE_TOOLCHAIN_FILE.html
 
 ## IDE Integration
 
@@ -58,7 +62,7 @@ Adding the following to your workspace `settings.json` will make CMake Tools aut
 
 In the CMake Settings Editor, add the path to the vcpkg toolchain file under `CMake toolchain file`:
 
-```
+```cmake
 <vcpkg-root>/scripts/buildsystems/vcpkg.cmake
 ```
 
@@ -66,7 +70,7 @@ In the CMake Settings Editor, add the path to the vcpkg toolchain file under `CM
 
 Open the Toolchains settings (`File > Settings` on Windows and Linux, `CLion > Preferences` on macOS), and go to the CMake settings (`Build, Execution, Deployment > CMake`). In `CMake options`, add the following line:
 
-```
+```cmake
 -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
 ```
 
@@ -76,7 +80,7 @@ You must add this line to each profile separately.
 
 To combine vcpkg's toolchain file with another toolchain file, you can set the cmake variable `VCPKG_CHAINLOAD_TOOLCHAIN_FILE`:
 
-```no-highlight
+```console
 cmake ../my/project \
    -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake \
    -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=../my/project/toolchain.cmake
@@ -91,7 +95,8 @@ set(VCPKG_TARGET_TRIPLET x64-my-custom-windows-triplet)
 include(/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake)
 ```
 
-**Note: vcpkg does not automatically apply your toolchain's settings, such as your compiler or compilation flags, while building libraries. To change vcpkg's library settings, you must make a [custom triplet file](../triplets.md) (which can [share your toolchain](../triplets.md#VCPKG_CHAINLOAD_TOOLCHAIN_FILE))**
+> [!NOTE]
+> vcpkg does not automatically apply your toolchain's settings, such as your compiler or compilation flags, while building libraries. To change vcpkg's library settings, you must make a [custom triplet file](../triplets.md) (which can [share your toolchain](../triplets.md#VCPKG_CHAINLOAD_TOOLCHAIN_FILE))**
 
 ## Settings Reference
 
@@ -109,7 +114,7 @@ This variable controls which [triplet](../triplets.md) host dependencies will be
 
 If unset, vcpkg will automatically detect an appropriate native triplet (x64-windows, x64-osx, x64-linux).
 
-See also [Host Dependencies](../host-dependencies.md).
+See also [Host dependencies](../host-dependencies.md).
 
 ### `VCPKG_INSTALLED_DIR`
 

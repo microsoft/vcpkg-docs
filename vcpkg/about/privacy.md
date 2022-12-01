@@ -1,12 +1,12 @@
 ---
 title: Telemetry and Privacy
 description: vcpkg telemetry and privacy information
+ms.date: 11/30/2022
 ---
-
 # vcpkg Telemetry and Privacy
 
 vcpkg collects telemetry data to understand usage issues, such as failing packages, and to guide tool improvements. The collected data is anonymous.
-For more information about how Microsoft protects your privacy, see https://privacy.microsoft.com/en-US/privacystatement#mainenterprisedeveloperproductsmodule
+For more information about how Microsoft protects your privacy, see the [Microsoft Privacy Statement](https://privacy.microsoft.com/en-US/privacystatement#mainenterprisedeveloperproductsmodule).
 
 ## Scope
 
@@ -24,7 +24,7 @@ The vcpkg telemetry feature is enabled by default. In order to opt-out of data c
 
 vcpkg displays text similar to the following when you build vcpkg. This is how Microsoft notifies you about data collection.
 
-```
+```console
 Telemetry
 ---------
 vcpkg collects usage data in order to help us improve your experience.
@@ -46,7 +46,7 @@ We collect various telemetry events such as the command line used, the time of i
 
 You can see the telemetry events any command by appending `--printmetrics` after the vcpkg command line.
 
-In the source code (included at https://github.com/microsoft/vcpkg-tool/ ), you can search for calls to the functions `track_property()`, `track_feature()`, `track_metric()`, and `track_buildtime()`
+In the source code (included on GitHub at [`microsoft/vcpkg-tool`](https://github.com/microsoft/vcpkg-tool/)), you can search for calls to the functions `track_property()`, `track_feature()`, `track_metric()`, and `track_buildtime()`
 to see every specific data point we collect.
 
 ## Avoid inadvertent disclosure information

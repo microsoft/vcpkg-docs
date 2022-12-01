@@ -1,12 +1,14 @@
 ---
 title: vcpkg_cmake_get_vars
+description: Use vcpkg_cmake_get_vars to extract certain CMake variables.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_cmake_get_vars
 
 Runs a cmake configure with a dummy project to extract certain cmake variables
 
 ## Usage
+
 ```cmake
 vcpkg_cmake_get_vars(<out-var>)
 ```
@@ -16,6 +18,7 @@ a path to a generated CMake file, with the detected `CMAKE_*` variables
 re-exported as `VCPKG_DETECTED_CMAKE_*`.
 
 Additionally sets, for `RELEASE` and `DEBUG`:
+
 - `VCPKG_COMBINED_CXX_FLAGS_<config>`
 - `VCPKG_COMBINED_C_FLAGS_<config>`
 - `VCPKG_COMBINED_SHARED_LINKER_FLAGS_<config>`
@@ -26,6 +29,7 @@ Most users should use these pre-combined flags instead of attempting
 to read the `VCPKG_DETECTED_*` flags directly.
 
 ## Notes
+
 Avoid usage in portfiles.
 
 All calls to `vcpkg_cmake_get_vars` will result in the same output file;
@@ -40,5 +44,5 @@ message(STATUS "detected CXX flags: ${VCPKG_DETECTED_CMAKE_CXX_FLAGS}")
 ```
 
 ## Source
-[ports/vcpkg-cmake-get-vars/vcpkg\_cmake\_get\_vars.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-cmake-get-vars/vcpkg_cmake_get_vars.cmake)
 
+[ports/vcpkg-cmake-get-vars/vcpkg\_cmake\_get\_vars.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-cmake-get-vars/vcpkg_cmake_get_vars.cmake)

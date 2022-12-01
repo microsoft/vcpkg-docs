@@ -1,9 +1,9 @@
 ---
 title: Selecting LLVM Features
 description: Learn how to customize the llvm package with features in vcpkg.
+ms.date: 11/30/2022
 ---
-
-# Selecting LLVM Features
+# Selecting LLVM features
 
 ## Installing a library
 
@@ -12,7 +12,9 @@ We will look at [llvm](https://llvm.org/) as an example. You could install it us
 ```powershell
 > vcpkg install llvm
 ```
-or via a manifest with
+
+or via a manifest with:
+
 ```json
 {
   "dependencies": ["llvm"]
@@ -25,7 +27,7 @@ With llvm now installed, we can execute:
 > installed\x86-windows\bin\llc.exe --version
 ```
 
-we see:
+We see:
 
 ```powershell
   Registered Targets:
@@ -48,7 +50,7 @@ If we do:
 
 We can see:
 
-```
+```powershell
 llvm                 10.0.0#6         The LLVM Compiler Infrastructure
 llvm[clang]                           Build C Language Family Front-end.
 llvm[clang-tools-extra]               Build Clang tools.
@@ -64,6 +66,7 @@ We can install any of these targets by using the install-feature syntax:
 ```powershell
 > vcpkg install llvm[target-arm] # Installs LLVM with the ARM target
 ```
+
 ```json
 {
   "dependencies": [{ "name": "llvm", "features": ["target-arm"] }]
@@ -77,10 +80,13 @@ the `clang` feature is default, which means that `vcpkg install llvm` will also 
 If you are writing a compiler that uses LLVM as a backend,
 you're likely not interested in installing clang as well,
 and we can do that by disabling default features with the special `core` "feature":
+
 ```powershell
 > vcpkg install llvm[core,target-arm] # removing the default-feature with "core" also removes all of the default targets you get
 ```
+
 or in manifest files:
+
 ```json
 {
   "dependencies": [{

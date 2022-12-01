@@ -1,12 +1,14 @@
 ---
 title: vcpkg_check_features
+description: Check if one or more features are a part of a package installation.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_check_features
 
 Check if one or more features are a part of a package installation.
 
 ## Usage
+
 ```cmake
 vcpkg_check_features(
     OUT_FEATURE_OPTIONS <out-var>
@@ -25,15 +27,11 @@ The `<out-var>` should be set to `FEATURE_OPTIONS` by convention.
 `vcpkg_check_features()` will:
 
 - for each `<feature-name>` passed in `FEATURES`:
-    - if the feature is set, add `-D<feature-var>=ON` to `<out-var>`,
-      and set `<prefix>_<feature-var>` to ON.
-    - if the feature is not set, add `-D<feature-var>=OFF` to `<out-var>`,
-      and set `<prefix>_<feature-var>` to OFF.
+  - if the feature is set, add `-D<feature-var>=ON` to `<out-var>`, and set `<prefix>_<feature-var>` to ON.
+  - if the feature is not set, add `-D<feature-var>=OFF` to `<out-var>`, and set `<prefix>_<feature-var>` to OFF.
 - for each `<feature-name>` passed in `INVERTED_FEATURES`:
-    - if the feature is set, add `-D<feature-var>=OFF` to `<out-var>`,
-      and set `<prefix>_<feature-var>` to OFF.
-    - if the feature is not set, add `-D<feature-var>=ON` to `<out-var>`,
-      and set `<prefix>_<feature-var>` to ON.
+  - if the feature is set, add `-D<feature-var>=OFF` to `<out-var>`, and set `<prefix>_<feature-var>` to OFF.
+  - if the feature is not set, add `-D<feature-var>=ON` to `<out-var>`, and set `<prefix>_<feature-var>` to ON.
 
 If `<prefix>` is not passed, then the feature vars set are simply `<feature-var>`,
 not `_<feature-var>`.
@@ -132,10 +130,10 @@ vcpkg_cmake_configure(
 
 ## Examples in portfiles
 
-* [cpprestsdk](https://github.com/microsoft/vcpkg/blob/master/ports/cpprestsdk/portfile.cmake)
-* [pcl](https://github.com/microsoft/vcpkg/blob/master/ports/pcl/portfile.cmake)
-* [rocksdb](https://github.com/microsoft/vcpkg/blob/master/ports/rocksdb/portfile.cmake)
+- [cpprestsdk](https://github.com/microsoft/vcpkg/blob/master/ports/cpprestsdk/portfile.cmake)
+- [pcl](https://github.com/microsoft/vcpkg/blob/master/ports/pcl/portfile.cmake)
+- [rocksdb](https://github.com/microsoft/vcpkg/blob/master/ports/rocksdb/portfile.cmake)
 
 ## Source
-[scripts/cmake/vcpkg\_check\_features.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_check_features.cmake)
 
+[scripts/cmake/vcpkg\_check\_features.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_check_features.cmake)

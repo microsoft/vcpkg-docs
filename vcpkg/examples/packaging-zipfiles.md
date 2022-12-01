@@ -1,14 +1,16 @@
 ---
 title: Packaging zlib 1.2.13 for vcpkg
 description: Learn how to package zlib from the upstream source release in vcpkg.
+ms.date: 11/30/2022
 ---
 
 # Packaging Archive Files Example: zlib
 
 ## Bootstrap with `create`
+
 First, locate a globally accessible archive of the library's sources. Zip, gzip, and bzip are all supported. Strongly prefer official sources or mirrors over unofficial mirrors.
 
-*Looking at zlib's website, the URL http://zlib.net/zlib-1.2.13.tar.gz looks appropriate.*
+*Looking at zlib's website, the URL `http://zlib.net/zlib-1.2.13.tar.gz` looks appropriate.*
 
 Second, determine a suitable package name. This should be ASCII, lowercase, and recognizable to someone who knows the library's "human name". If the library is already packaged in another package manager, prefer that name.
 
@@ -20,7 +22,7 @@ Finally, if the server's name for the archive is not very descriptive (such as d
 
 All this information can then be passed into the `create` command, which will download the sources and bootstrap the packaging process inside `ports/<packagename>`.
 
-```no-highlight
+```powershell
 PS D:\src\vcpkg> .\vcpkg create zlib2 http://zlib.net/zlib-1.2.13.tar.gz zlib-1.2.13.tar.gz
 -- Downloading http://zlib.net/zlib-1.2.13.tar.gz -> zlib-1.2.13.tar.gz...
 -- Generated portfile: D:\src\vcpkg\ports\zlib2\portfile.cmake
@@ -30,9 +32,11 @@ PS D:\src\vcpkg> .\vcpkg create zlib2 http://zlib.net/zlib-1.2.13.tar.gz zlib-1.
 ```
 
 ## Create the manifest file
+
 In addition to the generated `ports/<package>/portfile.cmake`, we also need a `ports/<package>/vcpkg.json` file. This file is a simple set of fields describing the package's metadata.
 
 *For zlib2, we'll create the file `ports/zlib2/vcpkg.json` with the following contents:*
+
 ```json
 {
   "name": "zlib2",
@@ -42,9 +46,10 @@ In addition to the generated `ports/<package>/portfile.cmake`, we also need a `p
 ```
 
 ## Tweak the generated portfile
+
 The generated `portfile.cmake` will need some editing to correctly package most libraries in the wild, however we can start by trying out the build.
 
-```no-highlight
+```powershell
 PS D:\src\vcpkg> .\vcpkg install zlib2
 Computing installation plan...
 The following packages will be built and installed:
@@ -73,13 +78,14 @@ Found 3 error(s). Please correct the portfile:
 At this point, it is a matter of reading the error messages and log files while steadily improving the quality of the portfile. Zlib required providing a discrete copy of the LICENSE to copy into the package, suppressing the build and installation of executables and headers, and removing the static libraries after they were installed.
 
 ## Suggested example portfiles
+
 In the `ports/` directory are many libraries that can be used as examples, including many that are not based on CMake.
 
 - Header only libraries
-    - rapidjson
-    - range-v3
+  - rapidjson
+  - range-v3
 - MSBuild-based
-    - mpg123
+  - mpg123
 - Non-CMake, custom buildsystem
-    - openssl
-    - ffmpeg
+  - openssl
+  - ffmpeg

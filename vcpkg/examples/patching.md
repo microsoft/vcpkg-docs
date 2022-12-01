@@ -1,14 +1,15 @@
 ---
 title: Patching libpng 1.6.37 for UWP compatibility
 description: Learn how to develop and apply patches to a library in a vcpkg portfile.
+ms.date: 11/30/2022
 ---
-
-# Patching Example: Patching libpng to work for x64-uwp
+# Patching example: Patching libpng to work for x64-uwp
 
 ## Initial error logs
+
 First, try building:
 
-```no-highlight
+```powershell
 PS D:\src\vcpkg> vcpkg install libpng:x64-uwp --editable
 Computing installation plan...
 The following packages will be built and installed:
@@ -41,7 +42,7 @@ Error: build command failed
 
 Next, looking at the above logs (build-xxx-out.log and build-xxx-err.log).
 
-```no-highlight
+```console
 // build-x64-uwp-rel-out.log
 ...
 "D:\src\vcpkg\buildtrees\libpng\x64-uwp-rel\ALL_BUILD.vcxproj" (default target) (1) ->
@@ -78,7 +79,8 @@ Taking a look at [MSDN](https://msdn.microsoft.com/library/windows/desktop/ms682
 ```
 
 A recursive search for `PNG_ABORT` reveals the definition:
-```no-highlight
+
+```powershell
 PS D:\src\vcpkg\buildtrees\libpng\src\v1.6.37-c993153cdf> findstr /snipl "PNG_ABORT" *
 CHANGES:701:  Added PNG_SETJMP_SUPPORTED, PNG_SETJMP_NOT_SUPPORTED, and PNG_ABORT() macros
 libpng-manual.txt:432:errors will result in a call to PNG_ABORT() which defaults to abort().
@@ -117,7 +119,8 @@ This already gives us some great clues, but the full definition tells the comple
 ## Patching the code to improve compatibility
 
 We recommend using git to create the patch file, since you'll already have it installed.
-```no-highlight
+
+```powershell
 PS D:\src\vcpkg\buildtrees\libpng\src\v1.6.37-c993153cdf> git init .
 Initialized empty Git repository in D:/src/vcpkg/buildtrees/libpng/src/v1.6.37-c993153cdf/.git/
 
@@ -133,6 +136,7 @@ PS D:\src\vcpkg\buildtrees\libpng\src\v1.6.37-c993153cdf> git commit -m "temp"
 ```
 
 Now we can modify `pngpriv.h` to use `abort()` everywhere.
+
 ```c
 /* buildtrees\libpng\src\v1.6.37-c993153cdf\pngpriv.h:459 */
 #ifndef PNG_ABORT
@@ -141,11 +145,13 @@ Now we can modify `pngpriv.h` to use `abort()` everywhere.
 ```
 
 The output of `git diff` is already in patch format, so we just need to save the patch into the `ports/libpng` directory.
-```no-highlight
+
+```powershell
 PS buildtrees\libpng\src\v1.6.37-c993153cdf> git diff --ignore-space-at-eol | out-file -enc ascii ..\..\..\..\ports\libpng\use-abort-on-all-platforms.patch
 ```
 
 Finally, we need to apply the patch after extracting the source.
+
 ```cmake
 # ports\libpng\portfile.cmake
 ...
@@ -164,14 +170,14 @@ vcpkg_cmake_configure(
 
 To be completely sure this works from scratch, we need to remove the package and rebuild it:
 
-```no-highlight
+```powershell
 PS D:\src\vcpkg> vcpkg remove libpng:x64-uwp
 Package libpng:x64-uwp was successfully removed
 ```
 
 Now we try a fresh, from scratch install.
 
-```no-highlight
+```powershell
 PS D:\src\vcpkg> vcpkg install libpng:x64-uwp
 Computing installation plan...
 The following packages will be built and installed:

@@ -1,10 +1,16 @@
-# Host Dependencies
+---
+title: Host dependencies
+description: Describes host dependencies, tools packaged by vcpkg for use by ports or custom build systems.
+ms.date: 11/30/2022
+---
+# Host dependencies
 
 Tools used at build time by other ports to generate code or implement a custom build system can be packaged inside vcpkg.
 
 ## Consuming
 
 When consuming a port as a tool, you must set the dependency's `"host"` field to true. For example:
+
 ```json
 {
     "name": "contoso-http-library",
@@ -23,11 +29,14 @@ When consuming a port as a tool, you must set the dependency's `"host"` field to
     ]
 }
 ```
+
 In this case, the `contoso-code-generator` and `contoso-build-system` (including any transitive dependencies) will be built and installed for the host triplet before `contoso-http-library` is built.
 
->Note: Consumers must use `vcpkg.json` instead of `CONTROL` as their metadata format. You can easily convert an existing `CONTROL` file using `vcpkg format-manifest /path/to/CONTROL`.
+> [!NOTE]
+> Consumers must use `vcpkg.json` instead of `CONTROL` as their metadata format. You can easily convert an existing `CONTROL` file using `vcpkg format-manifest /path/to/CONTROL`.
 
-Then, within the portfile of the consumer (`contoso-http-library` in the example), the CMake variable `CURRENT_HOST_INSTALLED_DIR` will be defined to `installed/<host-triplet>` and should be used to locate any required assets. In the example, `contoso-code-generator` might have installed `tools/contoso-code-generator/ccg.exe` which the consumer would add to its local path via
+Then, within the portfile of the consumer (`contoso-http-library` in the example), the CMake variable `CURRENT_HOST_INSTALLED_DIR` will be defined to `installed/<host-triplet>` and should be used to locate any required assets. In the example, `contoso-code-generator` might have installed `tools/contoso-code-generator/ccg.exe` which the consumer would add to its local path via:
+
 ```cmake
 # ports/contoso-http-library/portfile.cmake
 vcpkg_add_to_path(${CURRENT_HOST_INSTALLED_DIR}/tools/contoso-code-generator)
@@ -38,9 +47,9 @@ vcpkg_add_to_path(${CURRENT_HOST_INSTALLED_DIR}/tools/contoso-code-generator)
 The default host triplets are chosen based on the host architecture and operating system, for example `x64-windows`, `x64-linux`, or `x64-osx`. They can be overridden via:
 
 1. In CMake-based manifest mode, calling `set(VCPKG_HOST_TRIPLET "<triplet>" CACHE STRING "")` before the first `project()` directive
-2. In MSBuild-based manifest mode, setting the `VcpkgHostTriplet` property
-3. On the command line, via the flag `--host-triplet=...`
-4. The `VCPKG_DEFAULT_HOST_TRIPLET` environment variable
+1. In MSBuild-based manifest mode, setting the `VcpkgHostTriplet` property
+1. On the command line, via the flag `--host-triplet=...`
+1. The `VCPKG_DEFAULT_HOST_TRIPLET` environment variable
 
 ## Producing
 

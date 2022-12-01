@@ -1,23 +1,24 @@
 ---
-title: Getting Started with Classic Mode
-description: Learn to get started with SQLite with vcpkg in Classic Mode.
+title: Getting Started with Classic mode
+description: Learn to get started with SQLite with vcpkg in Classic mode.
+ms.date: 11/30/2022
 ---
-
 # Installing and Using Packages Example: SQLite
 
-_Note: this old example uses Classic Mode, but most developers will be happier with Manifest Mode. See [Manifest Mode: CMake Example](manifest-mode-cmake.md) for an example of converting to Manifest Mode._
+> [!NOTE]
+> This old example uses Classic mode, but most developers will be happier with Manifest mode. See [Manifest mode: CMake Example](manifest-mode-cmake.md) for an example of converting to Manifest mode.
 
-  - [Step 1: Install](#install)
-  - [Step 2: Use](#use)
-    - [VS/MSBuild Project (User-wide integration)](#msbuild)
-    - [CMake (Toolchain file)](#cmake)
-    - [Other integration options](../users/buildsystems/manual-integration.md)
+- [Step 1: Install](#install)
+- [Step 2: Use](#use)
+  - [VS/MSBuild Project (User-wide integration)](#msbuild)
+  - [CMake (Toolchain file)](#cmake)
+  - [Other integration options](../users/buildsystems/manual-integration.md)
 
-<a name="install"></a>
-## Step 1: Install
+## <a name="install"></a> Step 1: Install
 
 First, we need to know what name [SQLite](https://sqlite.org) goes by in the ports tree. To do that, we'll run the `search` command and inspect the output:
-```no-highlight
+
+```powershell
 PS D:\src\vcpkg> .\vcpkg search sqlite
 libodb-sqlite        2.4.0            Sqlite support for the ODB ORM library
 sqlite3              3.32.1           SQLite is a software library that implements a se...
@@ -25,10 +26,12 @@ sqlite3              3.32.1           SQLite is a software library that implemen
 If your library is not listed, please open an issue at:
     https://github.com/Microsoft/vcpkg/issues
 ```
+
 Looking at the list, we can see that the port is named "sqlite3". You can also run the `search` command without arguments to see the full list of packages.
 
 Installing is then as simple as using the `install` command.
-```no-highlight
+
+```powershell
 PS D:\src\vcpkg> .\vcpkg install sqlite3
 Computing installation plan...
 The following packages will be built and installed:
@@ -59,29 +62,30 @@ The package sqlite3:x86-windows provides CMake targets:
 ```
 
 We can check that sqlite3 was successfully installed for x86 Windows desktop by running the `list` command.
-```no-highlight
+
+```powershell
 PS D:\src\vcpkg> .\vcpkg list
 sqlite3:x86-windows         3.32.1           SQLite is a software library that implements a se...
 ```
 
 To install for other architectures and platforms such as Universal Windows Platform or x64 Desktop, you can suffix the package name with `:<target>`.
-```no-highlight
+
+```powershell
 PS D:\src\vcpkg> .\vcpkg install sqlite3:x86-uwp zlib:x64-windows
 ```
 
 See `.\vcpkg help triplet` for all supported targets.
 
----
-<a name="use"></a>
-## Step 2: Use
-<a name="msbuild"></a>
-### VS/MSBuild Project (User-wide integration)
+## <a name="use"></a> Step 2: Use
+
+### <a name="msbuild"></a> VS/MSBuild Project (User-wide integration)
 
 > [!div class="nextstepaction"]
 > [Learn more about using vcpkg from MSBuild](../users/buildsystems/msbuild-integration.md)
 
 The recommended and most productive way to use vcpkg is via user-wide integration, making the system available for all projects you build. The user-wide integration will prompt for administrator access the first time it is used on a given machine, but afterwards is no longer required and the integration is configured on a per-user basis.
-```no-highlight
+
+```powershell
 PS D:\src\vcpkg> .\vcpkg integrate install
 Applied user-wide integration for this vcpkg root.
 
@@ -89,20 +93,22 @@ All C++ projects can now #include any installed libraries.
 Linking will be handled automatically.
 Installing new libraries will make them instantly available.
 ```
-*Note: You will need to restart Visual Studio or perform a Build to update intellisense with the changes.* 
+
+> [!NOTE]
+> You will need to restart Visual Studio or perform a Build to update intellisense with the changes.
 
 You can now simply use File -> New Project in Visual Studio and the library will be automatically available. For SQLite, you can try out their [C/C++ sample](https://sqlite.org/quickstart.html).
 
 To remove the integration for your user, you can use `.\vcpkg integrate remove`.
 
-<a name="cmake"></a>
-### CMake (Toolchain File)
+### <a name="cmake"></a> CMake (Toolchain File)
 
 > [!div class="nextstepaction"]
 > [Learn more about using vcpkg from CMake](../users/buildsystems/cmake-integration.md)
 
-The best way to use installed libraries with cmake is via the toolchain file `scripts\buildsystems\vcpkg.cmake`. To use this file, you simply need to add it onto your CMake command line as:  
-`-DCMAKE_TOOLCHAIN_FILE=D:\src\vcpkg\scripts\buildsystems\vcpkg.cmake`.
+The best way to use installed libraries with cmake is via the toolchain file `scripts\buildsystems\vcpkg.cmake`. To use this file, you simply need to add it onto your CMake command line as:
+
+  `-DCMAKE_TOOLCHAIN_FILE=D:\src\vcpkg\scripts\buildsystems\vcpkg.cmake`.
 
 If you are using CMake through Open Folder with Visual Studio you can define `CMAKE_TOOLCHAIN_FILE` by adding a "variables" section to each of your `CMakeSettings.json` configurations:
 
@@ -122,9 +128,12 @@ If you are using CMake through Open Folder with Visual Studio you can define `CM
   }]
 }
 ```
-*Note: It might be necessary to delete the CMake cache folder of each modified configuration, to force a full regeneration. In the `CMake` menu, under `Cache (<configuration name>)` you'll find `Delete Cache Folders`.*
+
+> [!NOTE]
+> It might be necessary to delete the CMake cache folder of each modified configuration, to force a full regeneration. In the `CMake` menu, under `Cache (<configuration name>)` you'll find `Delete Cache Folders`.
 
 Now let's make a simple CMake project with a main file.
+
 ```cmake
 # CMakeLists.txt
 cmake_minimum_required(VERSION 3.0)
@@ -136,6 +145,7 @@ add_executable(main main.cpp)
 
 target_link_libraries(main PRIVATE unofficial::sqlite3::sqlite3)
 ```
+
 ```cpp
 // main.cpp
 #include <sqlite3.h>
@@ -149,7 +159,8 @@ int main()
 ```
 
 Then, we build our project in the normal CMake way:
-```no-highlight
+
+```powershell
 PS D:\src\cmake-test> mkdir build 
 PS D:\src\cmake-test> cd build
 PS D:\src\cmake-test\build> cmake .. "-DCMAKE_TOOLCHAIN_FILE=D:\src\vcpkg\scripts\buildsystems\vcpkg.cmake"
@@ -166,11 +177,12 @@ PS D:\src\cmake-test\build> .\Debug\main.exe
 3.15.0
 ```
 
-*Note: The correct sqlite3.dll is automatically copied to the output folder when building for x86-windows. You will need to distribute this along with your application.*
+> [!NOTE]
+> The correct sqlite3.dll is automatically copied to the output folder when building for x86-windows. You will need to distribute this along with your application.
 
 #### Handling libraries without native cmake support
 
-Unlike other platforms, we do not automatically add the `include\` directory to your compilation line by default. If you're using a library that does not provide CMake integration, you will need to explicitly search for the files and add them yourself using [`find_path()`][1] and [`find_library()`][2].
+Unlike other platforms, we do not automatically add the `include\` directory to your compilation line by default. If you're using a library that does not provide CMake integration, you will need to explicitly search for the files and add them yourself using [`find_path()`](https://cmake.org/cmake/help/latest/command/find_path.html) and [`find_library()`](https://cmake.org/cmake/help/latest/command/find_library.html).
 
 ```cmake
 # To find and use catch
@@ -183,10 +195,7 @@ find_library(WASTORAGE_LIBRARY wastorage)
 include_directories(${WASTORAGE_INCLUDE_DIR})
 link_libraries(${WASTORAGE_LIBRARY})
 
-# Note that we recommend using the target-specific directives for a cleaner cmake:
+# We recommend using the target-specific directives for a cleaner cmake:
 #     target_include_directories(main ${LIBRARY})
 #     target_link_libraries(main PRIVATE ${LIBRARY})
 ```
-
-[1]: https://cmake.org/cmake/help/latest/command/find_path.html
-[2]: https://cmake.org/cmake/help/latest/command/find_library.html

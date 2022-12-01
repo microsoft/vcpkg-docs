@@ -1,6 +1,7 @@
 ---
 title: Binary Caching
 description: Reuse binaries built with vcpkg across different projects and machines.
+ms.date: 11/30/2022
 ---
 
 # Binary Caching
@@ -25,28 +26,30 @@ Binary caching is configured via a combination of defaults, the environment vari
 
 By default, zip-based archives will be cached at the first valid location of:
 
-**Windows**
-1. `%VCPKG_DEFAULT_BINARY_CACHE%`
-2. `%LOCALAPPDATA%\vcpkg\archives`
-3. `%APPDATA%\vcpkg\archives`
+- **Windows**
 
-**Non-Windows**
+1. `%VCPKG_DEFAULT_BINARY_CACHE%`
+1. `%LOCALAPPDATA%\vcpkg\archives`
+1. `%APPDATA%\vcpkg\archives`
+
+- **Non-Windows**
+
 1. `$VCPKG_DEFAULT_BINARY_CACHE`
-2. `$XDG_CACHE_HOME/vcpkg/archives`
-3. `$HOME/.cache/vcpkg/archives`
+1. `$XDG_CACHE_HOME/vcpkg/archives`
+1. `$HOME/.cache/vcpkg/archives`
 
 ### Valid source strings (`<source>`)
 
-| form                        | description
-|-----------------------------|---------------
-| `clear`                     | Removes all previous sources (including the default)
-| `default[,<rw>]`            | Adds the default file-based location
-| `files,<absolute path>[,<rw>]`       | Adds a custom file-based location
-| `nuget,<uri>[,<rw>]`        | Adds a NuGet-based source; equivalent to the `-Source` parameter of the NuGet CLI
-| `nugetconfig,<path>[,<rw>]` | Adds a NuGet-config-file-based source; equivalent to the `-Config` parameter of the NuGet CLI. This config should specify `defaultPushSource` for uploads.
-| `nugettimeout,<seconds>`    | Specifies a timeout for NuGet network operations; equivalent to the `-Timeout` parameter of the NuGet CLI.
-| `x-azblob,<baseuri>,<sas>[,<rw>]`    | **Experimental: will change or be removed without warning**<br> Adds an Azure Blob Storage source. Uses Shared Access Signature validation. URL should include the container path.
-| `interactive`               | Enables interactive credential management for NuGet (for debugging; requires `--debug` on the command line)
+| Form | Description |
+|---|---|
+| `clear` | Removes all previous sources (including the default) |
+| `default[,<rw>]` | Adds the default file-based location |
+| `files,<absolute path>[,<rw>]` | Adds a custom file-based location |
+| `nuget,<uri>[,<rw>]` | Adds a NuGet-based source; equivalent to the `-Source` parameter of the NuGet CLI |
+| `nugetconfig,<path>[,<rw>]` | Adds a NuGet-config-file-based source; equivalent to the `-Config` parameter of the NuGet CLI. This config should specify `defaultPushSource` for uploads. |
+| `nugettimeout,<seconds>` | Specifies a timeout for NuGet network operations; equivalent to the `-Timeout` parameter of the NuGet CLI. |
+| `x-azblob,<baseuri>,<sas>[,<rw>]` | **Experimental: may change or be removed without warning** <br/> Adds an Azure Blob Storage source. Uses Shared Access Signature validation. URL should include the container path. |
+| `interactive` | Enables interactive credential management for NuGet (for debugging; requires `--debug` on the command line) |
 
 The `<rw>` optional parameter for certain sources controls whether they will be consulted for
 downloading binaries (`read`)(default), whether on-demand builds will be uploaded to that remote (`write`), or both (`readwrite`).
@@ -61,9 +64,11 @@ If your CI system of choice is not listed, we welcome PRs to add them!
 
 To use vcpkg with GitHub Packages, we recommend using the `NuGet` backend.
 
->**NOTE 2020-09-21**: GitHub's hosted agents come with an older, pre-installed copy of vcpkg on the path that does not support the latest binary caching. This means that direct calls to `bootstrap-vcpkg` or `vcpkg` without a path prefix may call an unintended vcpkg instance. We recommend taking the following two steps to avoid issues if you want to use your own copy of vcpkg:
-> 1. Run the equivalent of `rm -rf "$VCPKG_INSTALLATION_ROOT"` using `shell: 'bash'`
-> 2. Always call `vcpkg` and `bootstrap-vcpkg` with a path prefix, such as `./vcpkg`, `vcpkg/vcpkg`, `.\bootstrap-vcpkg.bat`, etc
+> [!NOTE]
+> **2020-09-21**: GitHub's hosted agents come with an older, pre-installed copy of vcpkg on the path that does not support the latest binary caching. This means that direct calls to `bootstrap-vcpkg` or `vcpkg` without a path prefix may call an unintended vcpkg instance. We recommend taking the following two steps to avoid issues if you want to use your own copy of vcpkg:
+>
+> 1. Run the equivalent of `rm -rf "$VCPKG_INSTALLATION_ROOT"` using `shell: 'bash'`.
+> 2. Always call `vcpkg` and `bootstrap-vcpkg` with a path prefix, such as `./vcpkg`, `vcpkg/vcpkg`, `.\bootstrap-vcpkg.bat`, etc.
 
 ```yaml
 # actions.yaml
@@ -117,7 +122,7 @@ To use vcpkg with Azure DevOps Artifacts, we recommend using the `NuGet` backend
 
 First, you need to ensure Artifacts has been enabled on your DevOps instance; this can be done by an Administrator through **Project Settings > General > Overview > Azure DevOps Services > Artifacts**.
 
-Next, you will need to create a feed for your project; see the [Azure DevOps Artifacts Documentation][devops-nuget] for more information. Your feed URL will be an `https://` link ending with `/nuget/v3/index.json`.
+Next, you will need to create a feed for your project. For more information, see the [Azure DevOps Artifacts Documentation](/azure/devops/artifacts/get-started-nuget). Your feed URL will be an `https://` link ending with `/nuget/v3/index.json`.
 
 ```yaml
 # azure-pipelines.yaml
@@ -132,15 +137,14 @@ steps:
 
 If you are using custom agents with a non-Windows OS, you will need to install Mono to run `nuget.exe` (`apt install mono-complete`, `brew install mono`, etc).
 
-More information about Azure DevOps Artifacts' NuGet support is available in the [Azure DevOps Artifacts Documentation][devops-nuget].
-
-[devops-nuget]: /azure/devops/artifacts/get-started-nuget
+More information about Azure DevOps Artifacts' NuGet support is available in the [Azure DevOps Artifacts Documentation](/azure/devops/artifacts/get-started-nuget).
 
 ### Azure Blob Storage (experimental)
 
-> Note: This is an experimental feature and may change or be removed at any time
+> [!NOTE]
+> This feature is experimental and may change or be removed at any time.
 
-Vcpkg supports interfacing with Azure Blob Storage via the `x-azblob` source type.
+vcpkg supports interfacing with Azure Blob Storage via the `x-azblob` source type.
 
 ```
 x-azblob,<baseuri>,<sas>[,<rw>]
@@ -157,13 +161,15 @@ Next, you will need to create a *Shared Access Signature*, which can be done fro
 The blob endpoint plus the container must be passed as the `<baseuri>` and the generated SAS without the `?` prefix must be passed as the `<sas>`.
 
 Example:
-```no-highlight
+
+```
 x-azblob,https://<storagename>.blob.core.windows.net/<containername>,sv=2019-12-12&ss=b&srt=o&sp=rcx&se=2020-12-31T06:20:36Z&st=2020-12-30T22:20:36Z&spr=https&sig=abcd,readwrite
 ```
 
 vcpkg will attempt to avoid revealing the SAS during normal operations, however:
+
 1. It will be printed in full if `--debug` is passed
-2. It will be passed as a command line parameter to subprocesses, such as `curl.exe`
+1. It will be passed as a command line parameter to subprocesses, such as `curl.exe`
 
 Azure Blob Storage includes a feature to remove cache entries that haven't been accessed in a given number of days which can be used to reduce the size of your cache. See [Data Lifecycle Management on Microsoft Docs](/azure/storage/blobs/lifecycle-management-overview) for more information, or look for **Data management > Lifecycle management** in the Azure Portal for your storage account.
 
@@ -171,9 +177,10 @@ If you wish to be able to be resilient to upstream libraries' servers, consider 
 
 ### Google Cloud Storage (experimental)
 
-> Note: This is an experimental feature and may change or be removed at any time
+> [!NOTE]
+> This feature is experimental and may change or be removed at any time.
 
-Vcpkg supports interfacing with Google Cloud Storage (GCS) via the `x-gcs` source type.
+vcpkg supports interfacing with Google Cloud Storage (GCS) via the `x-gcs` source type.
 
 ```
 x-gcs,<prefix>[,<rw>]
@@ -181,8 +188,7 @@ x-gcs,<prefix>[,<rw>]
 
 First, you need to create an Google Cloud Platform Account as well as a storage bucket ([GCS Quick Start](https://cloud.google.com/storage/docs/quickstart-gsutil)].
 
-As part of this quickstart you would have configured the `gsutil` command-line tool to authenticate with Google Cloud.
-Vcpkg will use this command-line tool, make sure it is in your search path for executables.
+As part of this quickstart you would have configured the `gsutil` command-line tool to authenticate with Google Cloud. vcpkg will use this command-line tool, so make sure it is in your search path for executables.
 
 Example 1 (using a bucket without a common prefix for the objects):
 
@@ -197,28 +203,31 @@ x-gcs,gs://<bucket-name>/my-vcpkg-cache/maybe/with/many/slashes/,readwrite
 x-gcs,gs://<bucket-name>/my-vcpkg-cache/maybe/with`,commas/too!/,readwrite
 ```
 
-Commas (`,`) are valid as part of a object prefix in GCS, just remember to escape them in the vcpkg configuration, as
-shown in the previous example. Note that GCS does not have folders (some of the GCS tools simulate folders), it is not
-necessary to create or otherwise manipulate the prefix used by your vcpkg cache.
+Commas (`,`) are valid as part of a object prefix in GCS. Remember to escape them in the vcpkg configuration, as shown in the previous example. GCS does not have folders (some of the GCS tools simulate folders). It is not necessary to create or otherwise manipulate the prefix used by your vcpkg cache.
 
-## NuGet Provider Configuration
+## NuGet provider configuration
 
 ### Credentials
 
 Many NuGet servers require additional credentials to access. The most flexible way to supply credentials is via the `nugetconfig` provider with a custom `nuget.config` file. See the [Consuming packages from authenticated feeds](/nuget/consume-packages/consuming-packages-authenticated-feeds) for more information.
 
 However, it is still possible to authenticate against many servers using NuGet's built-in credential providers or via customizing your environment's default `nuget.config`. The default config can be extended via nuget client calls such as
-```
+
+```console
 nuget sources add -Name MyRemote -Source https://... -Username $user -Password $pass
 ```
+
 and then passed to vcpkg via `--binarysource=nuget,MyRemote,readwrite`. You can get a path to the precise copy of NuGet used by vcpkg by running `vcpkg fetch nuget`, which will report something like:
-```
+
+```bash
 $ vcpkg fetch nuget
 /vcpkg/downloads/tools/nuget-5.5.1-linux/nuget.exe
 ```
+
 Non-Windows users will need to call this through mono via `mono /path/to/nuget.exe sources add ...`.
 
-##### Credential Example for Azure Dev Ops
+#### Credential example for Azure DevOps
+
 ```bash
 # On Linux or OSX
 $ mono `vcpkg fetch nuget | tail -n1` sources add \
@@ -228,6 +237,7 @@ $ mono `vcpkg fetch nuget | tail -n1` sources add \
   -Password $PAT
 $ export VCPKG_BINARY_SOURCES="nuget,ADO,readwrite"
 ```
+
 ```powershell
 # On Windows Powershell
 PS> & $(vcpkg fetch nuget | select -last 1) sources add `
@@ -243,23 +253,27 @@ We recommend using a Personal Access Token (PAT) as the password for maximum sec
 #### `metadata.repository`
 
 The `nuget` and `nugetconfig` source providers additionally respect certain environment variables while generating nuget packages. The `metadata.repository` field of any packages will be generated as:
-```
+
+```xml
     <repository type="git" url="${VCPKG_NUGET_REPOSITORY}"/>
 ```
+
 or
-```
+
+```xml
     <repository type="git"
                 url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git"
                 branch="${GITHUB_REF}"
                 commit="${GITHUB_SHA}"/>
 ```
-if the appropriate environment variables are defined and non-empty. This is specifically used to associate packages in GitHub Packages with the _building_ project and not intended to associate with the original package sources.
+
+if the appropriate environment variables are defined and non-empty. This is specifically used to associate packages in GitHub Packages with the *building* project and not intended to associate with the original package sources.
 
 #### NuGet's cache
 
 NuGet's cache is not used by default. To use it for every nuget-based source, set the [environment variable](config-environment.md) `VCPKG_USE_NUGET_CACHE` to `true` (case-insensitive) or `1`.
 
-## Implementation Notes (internal details subject to change without notice)
+## Implementation notes (internal details subject to change without notice)
 
 Binary caching relies on hashing everything that contributes to a particular package build. This includes:
 
@@ -268,7 +282,7 @@ Binary caching relies on hashing everything that contributes to a particular pac
 - The C++ compiler executable
 - The C compiler executable
 - The set of features selected
-- Every dependency's package hash (note: this is that package's input hash, not contents)
+- Every dependency's package hash (this is that package's input hash, not contents)
 - All helper scripts referenced by `portfile.cmake` (heuristic)
 - The version of CMake used
 - The contents of any environment variables listed in `VCPKG_ENV_PASSTHROUGH`

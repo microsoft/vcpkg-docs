@@ -1,8 +1,8 @@
 ---
 title: vcpkg export
 description: Command line reference for the vcpkg export command. Create standalone SDK bundles.
+ms.date: 11/30/2022
 ---
-
 # vcpkg export
 
 The `export` command creates a shrinkwrapped archive containing a specific set of libraries (and their dependencies) that can be quickly and reliably shared with build servers or other users in your organization. `export` only supports classic mode at this time.

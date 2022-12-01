@@ -1,8 +1,8 @@
 ---
 title: vcpkg_cmake_install
-description: Build and install a CMake project.
+description: Use vcpkg_cmake_install to build and install a CMake project.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_cmake_install
 
 Build and install a CMake project.
@@ -17,7 +17,8 @@ vcpkg_cmake_install(
 ```
 
 To use this function, you must depend on the helper port `vcpkg-cmake`:
-```no-highlight
+
+```json
 "dependencies": [
   {
     "name": "vcpkg-cmake",
@@ -29,11 +30,13 @@ To use this function, you must depend on the helper port `vcpkg-cmake`:
 ## Parameters
 
 ### DISABLE_PARALLEL
+
 Disables running the build in parallel.
 
 By default builds are run with up to [VCPKG_MAX_CONCURRENCY](../../users/config-environment.md#VCPKG_MAX_CONCURRENCY) jobs. This option limits the build to a single job and should be used only if the underlying build is unable to run correctly with concurrency.
 
 ### ADD_BIN_TO_PATH
+
 Adds the configuration-specific `bin/` directory to the `PATH` during the build.
 
 When building for a Windows dynamic triplet, newly built executables may not be immediately executable because their dependency DLLs may not be findable from the build environment. This flag instructs vcpkg to add any additional paths needed to locate those dependency DLLs to the `PATH` environment variable. This is required if the project needs to execute newly built binaries as part of the build (such as to generate code).
@@ -53,4 +56,5 @@ vcpkg_cmake_install()
 This command replaces [`vcpkg_install_cmake()`](vcpkg_install_cmake.md).
 
 ## Source
+
 [ports/vcpkg-cmake/vcpkg\_cmake\_install.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-cmake/vcpkg_cmake_install.cmake)

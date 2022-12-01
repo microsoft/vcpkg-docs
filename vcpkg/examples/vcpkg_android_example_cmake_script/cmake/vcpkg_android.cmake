@@ -14,7 +14,7 @@
 # 4. Combine vcpkg and Android toolchains by setting CMAKE_TOOLCHAIN_FILE 
 #    and VCPKG_CHAINLOAD_TOOLCHAIN_FILE
 
-# Note: VCPKG_TARGET_ANDROID is not an official Vcpkg variable. 
+# Note: VCPKG_TARGET_ANDROID is not an official vcpkg variable. 
 # it is introduced for the need of this script
 
 if (VCPKG_TARGET_ANDROID)

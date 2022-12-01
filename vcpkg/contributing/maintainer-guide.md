@@ -1,8 +1,8 @@
 ---
 title: vcpkg Maintainer Guide
 description: The Guide for maintainers contributing to vcpkg.
+ms.date: 11/30/2022
 ---
-
 # Maintainer Guide
 
 This document lists a set of policies that you should apply when adding or updating a port recipe.
@@ -38,8 +38,7 @@ if there is any chance of confusion.
 GitHub Draft PRs are a great way to get CI or human feedback on work that isn't yet ready to merge.
 Most new PRs should be opened as drafts and converted to normal PRs once the CI passes.
 
-More information about GitHub Draft PRs:
-https://github.blog/2019-02-14-introducing-draft-pull-requests/
+For more information about GitHub Draft PRs, see [Introducing draft pull requests](https://github.blog/2019-02-14-introducing-draft-pull-requests/).
 
 ## Portfiles
 
@@ -47,8 +46,8 @@ https://github.blog/2019-02-14-introducing-draft-pull-requests/
 
 At this time, the following helpers are deprecated:
 
-- [`vcpkg_extract_source_archive_ex()`](../maintainers/functions/vcpkg_extract_source_archive_ex.md) should be replaced by the supported overload of [`vcpkg_extract_source_archive()`] (with `ARCHIVE`)
-- The deprecated overload of [`vcpkg_extract_source_archive()`] without `ARCHIVE` should be replaced by the supported overload with `ARCHIVE`.
+- [`vcpkg_extract_source_archive_ex()`](../maintainers/functions/vcpkg_extract_source_archive_ex.md) should be replaced by the supported overload of [`vcpkg_extract_source_archive()`](../maintainers/functions/vcpkg_extract_source_archive.md) (with `ARCHIVE`)
+- The deprecated overload of `vcpkg_extract_source_archive()` without `ARCHIVE` should be replaced by the supported overload with `ARCHIVE`.
 - `vcpkg_apply_patches()` should be replaced by the `PATCHES` arguments to the "extract" helpers (e.g. [`vcpkg_from_github()`](../maintainers/functions/vcpkg_from_github.md))
 - `vcpkg_build_msbuild()` should be replaced by [`vcpkg_install_msbuild()`](../maintainers/functions/vcpkg_install_msbuild.md)
 - `vcpkg_copy_tool_dependencies()` should be replaced by [`vcpkg_copy_tools()`](../maintainers/functions/vcpkg_copy_tools.md)
@@ -72,8 +71,6 @@ version. Tools ports need to be added to your port's `"dependencies"`, like so:
 }
 ```
 
-[`vcpkg_extract_source_archive()`]: ../maintainers/functions/vcpkg_extract_source_archive.md
-
 ### Avoid excessive comments in portfiles
 
 Ideally, portfiles should be short, simple, and as declarative as possible.
@@ -83,7 +80,7 @@ Remove any boiler plate comments introduced by the `create` command before submi
 
 Ports must not change their behavior based on which ports are already installed in a form that would change which contents that port installs. For example, given:
 
-```
+```console
 > vcpkg install a
 > vcpkg install b
 > vcpkg remove a
@@ -91,7 +88,7 @@ Ports must not change their behavior based on which ports are already installed 
 
 and
 
-```
+```console
 > vcpkg install b
 ```
 
@@ -108,11 +105,13 @@ A core design ideal of vcpkg is to not create "lock-in" for customers. In the bu
 To that end, any CMake configs that the port exports, which are not in the upstream library, should have `unofficial-` as a prefix. Any additional targets should be in the `unofficial::<port>::` namespace.
 
 This means that the user should see:
- * `find_package(unofficial-<port> CONFIG)` as the way to get at the unique-to-vcpkg package
- * `unofficial::<port>::<target>` as an exported target from that port.
+
+- `find_package(unofficial-<port> CONFIG)` as the way to get at the unique-to-vcpkg package
+- `unofficial::<port>::<target>` as an exported target from that port.
 
 Examples:
- * [`brotli`](https://github.com/microsoft/vcpkg/blob/4f0a640e4c5b74166b759a862d7527c930eff32e/ports/brotli/install.patch) creates the `unofficial-brotli` package, producing target `unofficial::brotli::brotli`.
+
+- [`brotli`](https://github.com/microsoft/vcpkg/blob/4f0a640e4c5b74166b759a862d7527c930eff32e/ports/brotli/install.patch) creates the `unofficial-brotli` package, producing target `unofficial::brotli::brotli`.
 
 ### Install copyright file
 
@@ -137,16 +136,18 @@ Features must be treated as additive functionality. If `port[featureA]` installs
 Libraries in this situation must choose one of the available options as expressed in vcpkg, and users who want a different setting must use overlay ports at this time.
 
 Existing examples we would not accept today retained for backwards compatibility:
-  * `libgit2`, `libzip`, `open62541` all have features for selecting a TLS or crypto backend. Note that `curl` has different crypto backend options but allows selecting between them at runtime, meaning the above tenet is maintained.
-  * `darknet` has `opencv2`, `opencv3`, features to control which version of opencv to use for its dependencies.
+
+- `libgit2`, `libzip`, `open62541` all have features for selecting a TLS or crypto backend. `curl` has different crypto backend options but allows selecting between them at runtime, meaning the above tenet is maintained.
+- `darknet` has `opencv2`, `opencv3`, features to control which version of opencv to use for its dependencies.
 
 ### A feature may engage preview or beta functionality
 
 Notwithstanding the above, if there is a preview branch or similar where the preview functionality has a high probability of not disrupting the non-preview functionality (for example, no API removals), a feature is acceptable to model this setting.
 
 Examples:
-  * The Azure SDKs (of the form `azure-Xxx`) have a `public-preview` feature.
-  * `imgui` has an `experimental-docking` feature which engages their preview docking branch which uses a merge commit attached to each of their public numbered releases.
+
+- The Azure SDKs (of the form `azure-Xxx`) have a `public-preview` feature.
+- `imgui` has an `experimental-docking` feature which engages their preview docking branch which uses a merge commit attached to each of their public numbered releases.
 
 ### Default features should enable behaviors, not APIs
 
@@ -161,26 +162,29 @@ If in doubt, do not mark a feature as default.
 If a consumer of a port depends on only the core functionality of that port, with high probability they must not be broken by turning on the feature. This is even more important when the alternative is not directly controlled by the consumer, but by compiler settings like `/std:c++17` / `-std=c++17`.
 
 Existing examples we would not accept today retained for backwards compatibility:
-  * `redis-plus-plus[cxx17]` controls a polyfill but does not bake the setting into the installed tree.
-  * `ace[wchar]` changes all APIs to accept `const wchar_t*` rather than `const char*`.
+
+- `redis-plus-plus[cxx17]` controls a polyfill but does not bake the setting into the installed tree.
+- `ace[wchar]` changes all APIs to accept `const wchar_t*` rather than `const char*`.
 
 ### A feature may replace polyfills with aliases provided that replacement is baked into the installed tree
 
 Notwithstanding the above, ports may remove polyfills with a feature, as long as:
-  1. Turning on the feature changes the polyfills to aliases of the polyfilled entity
-  2. The state of the polyfill is baked into the installed headers, such that ABI mismatch "impossible" runtime errors are unlikely
-  3. It is possible for a consumer of the port to write code which works in both modes, for example by using a typedef which is either polyfilled or not
+
+1. Turning on the feature changes the polyfills to aliases of the polyfilled entity
+1. The state of the polyfill is baked into the installed headers, such that ABI mismatch "impossible" runtime errors are unlikely
+1. It is possible for a consumer of the port to write code which works in both modes, for example by using a typedef which is either polyfilled or not
 
 Example:
-  * `abseil[cxx17]` changes `absl::string_view` to a replacement or `std::string_view`; the patch
-https://github.com/microsoft/vcpkg/blob/981e65ce0ac1f6c86e5a5ded7824db8780173c76/ports/abseil/fix-cxx-standard.patch implements the baking requirement
+
+- `abseil[cxx17]` changes `absl::string_view` to a replacement or `std::string_view`; the [patch](https://github.com/microsoft/vcpkg/blob/981e65ce0ac1f6c86e5a5ded7824db8780173c76/ports/abseil/fix-cxx-standard.patch) implements the baking requirement.
 
 ### Recommended solutions
 
 If it's critical to expose the underlying alternatives, we recommend providing messages at build time to instruct the user on how to copy the port into a private overlay:
+
 ```cmake
 set(USING_DOG 0)
-message(STATUS "This version of LibContosoFrobnicate uses the Kittens backend. To use the Dog backend instead, create an overlay port of this with USING_DOG set to 1 and the `kittens` dependency replaced with `dog`.")
+message(STATUS "This version of LibContoso uses the Kittens backend. To use the Dog backend instead, create an overlay port of this with USING_DOG set to 1 and the `kittens` dependency replaced with `dog`.")
 message(STATUS "This recipe is at ${CMAKE_CURRENT_LIST_DIR}")
 message(STATUS "See the overlay ports documentation at https://github.com/microsoft/vcpkg/blob/master/docs/specifications/ports-overlay.md")
 ```
@@ -253,14 +257,15 @@ vcpkg_cmake_configure(
 )
 ```
 
-Note that `ZLIB` in the above is case-sensitive. See the [`CMAKE_DISABLE_FIND_PACKAGE_<PackageName>`](https://cmake.org/cmake/help/v3.22/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.html) and [`CMAKE_REQUIRE_FIND_PACKAGE_<PackageName>`](https://cmake.org/cmake/help/v3.22/variable/CMAKE_REQUIRE_FIND_PACKAGE_PackageName.html) documnetation for more details.
+`ZLIB` in the snippet is case-sensitive. For more information, see the [`CMAKE_DISABLE_FIND_PACKAGE_<PackageName>`](https://cmake.org/cmake/help/v3.22/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.html) and [`CMAKE_REQUIRE_FIND_PACKAGE_<PackageName>`](https://cmake.org/cmake/help/v3.22/variable/CMAKE_REQUIRE_FIND_PACKAGE_PackageName.html) documentation.
 
 ### Place conflicting libs in a `manual-link` directory
 
 A lib is considered conflicting if it does any of the following:
-+ Define `main`
-+ Define malloc
-+ Define symbols that are also declared in other libraries
+
+- Define `main`
+- Define malloc
+- Define symbols that are also declared in other libraries
 
 Conflicting libs are typically by design and not considered a defect.  Because some build systems link against everything in the lib directory, these should be moved into a subdirectory named `manual-link`.
 
@@ -275,11 +280,11 @@ files into manifest files. Do not convert CONTROL files that have not been modif
 
 ### Follow common conventions for the `"version"` field
 
-See our [versioning documentation](../users/versioning.md#version-schemes) for a full explanation of our conventions.
+For a full explanation of our conventions, see our [versioning documentation](../users/versioning.md#version-schemes).
 
 ### Update the `"port-version"` field in the manifest file of any modified ports
 
-Vcpkg uses this field to determine whether a given port is out-of-date and should be changed whenever the port's behavior changes.
+vcpkg uses this field to determine whether a given port is out-of-date and should be changed whenever the port's behavior changes.
 
 Our convention is to use the `"port-version"` field for changes to the port that don't change the upstream version, and to reset the `"port-version"` back to zero when an update to the upstream version is made.
 
@@ -293,34 +298,37 @@ See the [versioning documentation](../users/versioning.md#port-version) for more
 
 ### Update the version files in `versions/` of any modified ports
 
-Vcpkg uses a set of metadata files to power its versioning feature.
+vcpkg uses a set of metadata files to power its versioning feature.
 These files are located in the following locations:
-* `${VCPKG_ROOT}/versions/baseline.json`, (this file is common to all ports) and
-* `${VCPKG_ROOT}/versions/${first-letter-of-portname}-/${portname}.json` (one per port).
+
+- `${VCPKG_ROOT}/versions/baseline.json`, (this file is common to all ports) and
+- `${VCPKG_ROOT}/versions/${first-letter-of-portname}-/${portname}.json` (one per port).
 
 For example, for `zlib` the relevant files are:
-* `${VCPKG_ROOT}/versions/baseline.json`
-* `${VCPKG_ROOT}/versions/z-/zlib.json`
+
+- `${VCPKG_ROOT}/versions/baseline.json`
+- `${VCPKG_ROOT}/versions/z-/zlib.json`
 
 We expect that each time you update a port, you also update its version files.
 
 **The recommended method to update these files is to run the `x-add-version` command, e.g.:**
 
-```
+```console
 vcpkg x-add-version zlib
 ```
 
 If you're updating multiple ports at the same time, instead you can run:
 
-```
+```console
 vcpkg x-add-version --all
 ```
 
-To update the files for all modified ports at once.
+to update the files for all modified ports at once.
 
-_NOTE: These commands require you to have committed your changes to the ports before running them. The reason is that the Git SHA of the port directory is required in these version files. But don't worry, the `x-add-version` command will warn you if you have local changes that haven't been committed._
+> [!NOTE]
+> These commands require you to have committed your changes to the ports before running them. The reason is that the Git SHA of the port directory is required in these version files. But don't worry, the `x-add-version` command will warn you if you have local changes that haven't been committed.
 
-See the [Versioning Reference](../users/versioning.md) and [Creating Registries](../maintainers/registries.md) for more information.
+For more information, see the [Versioning reference](../users/versioning.md) and [Creating registries](../maintainers/registries.md).
 
 ## Patching
 
@@ -328,10 +336,11 @@ See the [Versioning Reference](../users/versioning.md) and [Creating Registries]
 
 It is preferable to set options in a call to `vcpkg_configure_xyz()` over patching the settings directly.
 
-Common options that allow avoiding patching:
-1. [MSBUILD] `<PropertyGroup>` settings inside the project file can be overridden via `/p:` parameters
-2. [CMAKE] Calls to `find_package(XYz)` in CMake scripts can be disabled via [`-DCMAKE_DISABLE_FIND_PACKAGE_XYz=ON`](https://cmake.org/cmake/help/v3.15/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.html)
-3. [CMAKE] Cache variables (declared as `set(VAR "value" CACHE STRING "Documentation")` or `option(VAR "Documentation" "Default Value")`) can be overridden by just passing them in on the command line as `-DVAR:STRING=Foo`. One notable exception is if the `FORCE` parameter is passed to `set()`. See also the [CMake `set` documentation](https://cmake.org/cmake/help/v3.15/command/set.html)
+Common options that allow you to avoid patching:
+
+- [MSBUILD] `<PropertyGroup>` settings inside the project file can be overridden via `/p:` parameters
+- [CMAKE] Calls to `find_package(XYz)` in CMake scripts can be disabled via [`-DCMAKE_DISABLE_FIND_PACKAGE_XYz=ON`](https://cmake.org/cmake/help/v3.15/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.html)
+- [CMAKE] Cache variables (declared as `set(VAR "value" CACHE STRING "Documentation")` or `option(VAR "Documentation" "Default Value")`) can be overridden by just passing them in on the command line as `-DVAR:STRING=Foo`. One notable exception is if the `FORCE` parameter is passed to `set()`. For more information, see the [CMake `set` documentation](https://cmake.org/cmake/help/v3.15/command/set.html)
 
 ### Prefer patching over overriding `VCPKG_<VARIABLE>` values
 
@@ -378,29 +387,33 @@ Unless the author of the library is already using it, we should not use this CMa
 This means that if the upstream library has different names in release and debug (libx versus libxd), then the debug library should not be renamed to `libx`. Vice versa, if the upstream library has the same name in release and debug, we should not introduce a new name.
 
 Important caveat:
+
 - Static and shared variants often should be renamed to a common scheme. This enables consumers to use a common name and be ignorant of the downstream linkage. This is safe because we only make one at a time available.
 
-Note that if a library generates CMake integration files (`foo-config.cmake`), renaming must be done through patching the CMake build itself instead of simply calling `file(RENAME)` on the output archives/LIBs.
+If a library generates CMake integration files (`foo-config.cmake`), renaming must be done through patching the CMake build itself instead of simply calling `file(RENAME)` on the output archives/LIBs.
 
 Finally, DLL files on Windows should never be renamed post-build because it breaks the generated LIBs.
 
 ## Code format
 
-### Vcpkg internal code
+### vcpkg internal code
 
 We require the C++ code inside vcpkg to follow the clang-format, if you change them. Please perform the following steps after modification:
 
 - Use Visual Studio:
-1. Configure your [clang-format tools](https://devblogs.microsoft.com/cppblog/clangformat-support-in-visual-studio-2017-15-7-preview-1/).
-2. Open the modified file.
-3. Use shortcut keys Ctrl+K, Ctrl+D to format the current file.
 
+  1. Configure your [clang-format tools](https://devblogs.microsoft.com/cppblog/clangformat-support-in-visual-studio-2017-15-7-preview-1/).
+  1. Open the modified file.
+  1. Use shortcut keys Ctrl+K, Ctrl+D to format the current file.
+  
 - Use tools:
-1. Install [llvm clang-format](https://releases.llvm.org/download.html#10.0.0)
-2. Run command:
-```cmd
-> LLVM_PATH/bin/clang-format.exe -style=file -i changed_file.cpp
-```
+
+  1. Install [llvm clang-format](https://releases.llvm.org/download.html#10.0.0)
+  1. Run command:
+
+    ```cmd
+    > LLVM_PATH/bin/clang-format.exe -style=file -i changed_file.cpp
+    ```
 
 ### Manifests
 
@@ -420,7 +433,7 @@ Portfiles have direct access to variables set in the triplet file, but `CMakeLis
 
 Portfiles and CMake builds invoked by portfiles are run in different processes. Conceptually:
 
-```no-highlight
+```
 +----------------------------+       +------------------------------------+
 | CMake.exe                  |       | CMake.exe                          |
 +----------------------------+       +------------------------------------+

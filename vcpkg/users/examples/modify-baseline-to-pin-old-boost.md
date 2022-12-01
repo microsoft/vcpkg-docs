@@ -1,12 +1,14 @@
 ---
 title: Selecting Boost Versions as a Set
 description: Learn how to set versions across a library framework like Boost or Qt in vcpkg.
+ms.date: 11/30/2022
 ---
-
 # Pin old Boost versions
+
 This document will teach you how to set versions of meta-packages like `boost` or `qt5`.
 
-**What is a meta-package?**
+## What is a meta-package?
+
 In vcpkg we call meta-packages to ports that by themselves don't install anything but that instead forward installation to another port or ports. The reasons for these meta-packages to exist are plenty: to install different versions of a library depending on platform or to conveniently install/uninstall a catalog of related packages (Boost and Qt).
 
 In the case of Boost, it is unlikely that a user requires all of the 140+ Boost libraries in their project. For the sake of convenience, vcpkg splits Boost into multiple sub-packages broken down to individual libraries. By doing so, users can limit the subset of Boost libraries that they depend on.
@@ -16,6 +18,7 @@ If a user wants to install all of the Boost libraries available in vcpkg, they c
 Due to the nature of meta-packages, some unexpected issues arise when trying to use them with versioning. If a user writes the following manifest file:
 
 `vcpkg.json`
+
 ```json
 {
     "name": "demo",
@@ -29,6 +32,7 @@ Due to the nature of meta-packages, some unexpected issues arise when trying to 
 ```
 
 The resulting installation plan is:
+
 ```
 The following packages will be built and installed:
     boost-assert[core]:x64-windows -> 1.75.0 -- D:\vcpkg\buildtrees\versioning\versions\boost-assert\3393715b4ebe30fe1c3b68acf7f84363e611f156
@@ -54,9 +58,11 @@ It is reasonable to expect that overriding `boost` to version 1.72.0 results in 
 Below, we describe two methods to pin down Boost versions effectively.
 
 ## Method 1: Pin specific packages
+
 Use `"overrides"` to force specific versions in a package-by-package basis.
 
 `vcpkg.json`
+
 ```json
 {
     "name": "demo",
@@ -77,30 +83,36 @@ This method allows you to quickly set the specific versions you want, but you wi
 The second method makes it easy to pin the entire Boost collection and end up with a very simple manifest file.
 
 ## Method 2: Modify baseline
+
 An easy way to set the version for the entirety of boost is to use the `"builtin-baseline"` property.
 
 As of right now, it is only possible to go back to Boost version `1.75.0` using a baseline, since that was the contemporary Boost version when the versioning feature was merged. **But, it is possible to modify the baseline to whatever you like and use that instead.**
 
 ### Step 1: Create a new branch
+
 As described in the versioning documentation. The value that goes in `"builtin-baseline"` is a git commit in the microsoft/vcpkg repository's history. If you want to customize the baseline and have control over the vcpkg instance, you can create a new commit with said custom baseline.
 
 Let's start by creating a new branch to hold our modified baseline.
 
 In the directory containing your clone of the vcpkg Git repository run:
 
-```
+```console
 git checkout -b custom-boost-baseline
 ```
 
 This will create a new branch named `custom-boost-baseline` and check it out immediately.
 
 ### Step 2: Modify the baseline
+
 The next step is to modify the baseline file, open the file in your editor of choice and modify the entries for the Boost libraries.
 
 Change the `"baseline"` version to your desired version.
-_NOTE: Remember to also set the port versions to 0 (or your desired version)._
+
+> [!NOTE]
+> Remember to also set the port versions to 0 (or your desired version).
 
 `${vcpkg-root}/versions/baseline.json`
+
 ```diff
 ...
      "boost": {
@@ -135,9 +147,10 @@ _NOTE: Remember to also set the port versions to 0 (or your desired version)._
 Some `boost-` packages are helpers used by vcpkg and are not part of Boost. For example, `"boost-uninstall"` is a vcpkg helper to conveniently uninstall all Boost libraries, but it didn't exist for Boost version `1.72.0`, in this case it is fine to leave it at `1.75.0` to avoid baseline errors (since all versions in `baseline.json` must have existed).
 
 ### Step 3: Commit your changes
+
 After saving your modified file, run these commands to commit your changes:
 
-```
+```console
 git add versions/baseline.json
 git commit -m "Baseline Boost 1.72.0"
 ```
@@ -145,17 +158,20 @@ git commit -m "Baseline Boost 1.72.0"
 You can set the commit message to whatever you want, just make it useful for you.
 
 ### Step 4: Get your baseline commit SHA
+
 Once all your changes are ready, you can get the commit SHA by running:
-```
+
+```console
 git rev-parse HEAD
 ```
 
 The output of that command will be the commit SHA you need to put as the `"builtin-baseline"` in your project's manifest file. Copy the 40-hex digits and save them to use later in your manifest file.
 
 ### Step 5: (Optional) Go back to the main repository branch
+
 Once your changes have been committed locally, you can refer to the commit SHA regardless of the repository branch you're working on. So, let's go back to the main vcpkg repository branch.
 
-```
+```console
 git checkout HEAD
 ```
 
@@ -174,7 +190,7 @@ In this example, commit SHA `9b5cf7c3d9376ddf43429671282972ec4f99aa85` is the co
 
 We run `vcpkg install` in the directory containing our manifest file and the output looks like this:
 
-```
+```console
 The following packages will be built and installed:
     boost-assert[core]:x64-windows -> 1.72.0 -- D:\vcpkg\buildtrees\versioning\versions\boost-assert\6754398591f48435b28014ca0d60e5375a4c04d1
     boost-compatibility[core]:x64-windows -> 1.72.0 -- D:\vcpkg\buildtrees\versioning\versions\boost-compatibility\9893ff3c554575bc712df4108a949e07b269f401
@@ -193,4 +209,4 @@ The following packages will be built and installed:
     boost-vcpkg-helpers[core]:x64-windows -> 7#2 -- D:\vcpkg\buildtrees\versioning\versions\boost-vcpkg-helpers\2a21e5ab45d1ce41c185faf85dff0670ea6def1d
 ```
 
-Notice how simple our manifest file has become, instead of having a multitude of `"overrides"` you can pin down all Boost packages just by setting the `"builtin-baseline"` to be your modified baseline commit SHA.
+Notice how simple our manifest file has become. Instead of having a multitude of `"overrides"` you can pin down all Boost packages by setting the `"builtin-baseline"` as your modified baseline commit SHA.

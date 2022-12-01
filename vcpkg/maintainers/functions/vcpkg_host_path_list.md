@@ -1,12 +1,14 @@
 ---
 title: vcpkg_host_path_list
+description: Learn how to use vcpkg_host_path_list.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_host_path_list
 
 Modify a host path list variable (PATH, INCLUDE, LIBPATH, etc.)
 
 ## Usage
+
 ```cmake
 vcpkg_host_path_list(PREPEND <list-var> [<path>...])
 vcpkg_host_path_list(APPEND <list-var> [<path>...])
@@ -29,5 +31,6 @@ If no paths are passed to `APPEND` or `PREPEND`, nothing will be done;
 for `SET`, the variable will be set to the empty string.
 
 ## Source
+
 [scripts/cmake/vcpkg\_host\_path\_list.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_host_path_list.cmake)
 

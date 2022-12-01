@@ -1,4 +1,9 @@
-# Using Registries
+---
+title: Using registries
+description: Understand the use and content of registries in vcpkg.
+ms.date: 11/30/2022
+---
+# Using registries
 
 For information on creating your own registries, see [Creating Registries](../users/registries.md).
 
@@ -71,26 +76,22 @@ The `"packages"` fields of all the package registries must be disjoint.
 
 An array of port overlay paths.
 
-Each path in the array must point to etiher:
-* a particular port directory (a directory containing `vcpkg.json` and `portfile.cmake`), or
-* a directory containing port directories.
+Each path in the array must point to either:
+
+- a particular port directory (a directory containing `vcpkg.json` and `portfile.cmake`), or
+- a directory containing port directories.
+
 Relative paths are resolved relative to the `vcpkg-configuration.json` file. Absolute paths can be used but are discouraged.
 
 ### Configuration: `"overlay-triplets"`
 
 An array of triplet overlay paths.
 
-Each path in the array must point to a directory of triplet files ([see triplets documentation](triplets.md)).
-Relative paths are resolved relative to the `vcpkg-configuration.json` file. Absolute paths can be used but are discouraged.
+Each path in the array must point to a directory of triplet files ([see triplets documentation](triplets.md)). Relative paths are resolved relative to the `vcpkg-configuration.json` file. Absolute paths can be used but are discouraged.
 
 ### Example Configuration File
 
-Let's assume that you have mirrored <https://github.com/microsoft/vcpkg> at
-<https://git.example.com/vcpkg>: this will be your default registry.
-Additionally, you want to use North Wind Trader's registry for their
-beison and beicode libraries, as well as configure overlay ports and 
-overlay triplets from your custom directories. The following
-`vcpkg-configuration.json` will work:
+Let's assume that you have mirrored <https://github.com/microsoft/vcpkg> at <https://git.example.com/vcpkg>: this will be your default registry. Additionally, you want to use North Wind Trader's registry for their beison and beicode libraries, as well as configure overlay ports and overlay triplets from your custom directories. The following `vcpkg-configuration.json` will work:
 
 ```json
 {
@@ -115,7 +116,7 @@ overlay triplets from your custom directories. The following
 }
 ```
 
-## Package Name Resolution
+## Package name resolution
 
 The way package name resolution works in vcpkg is fairly distinct from many
 package managers. It is very carefully designed to _never_ implicitly choose
@@ -132,23 +133,20 @@ The name resolution algorithm is as follows:
 - If the default registry is set to `null`, error out; otherwise
 - use the built-in registry.
 
-### Overlays Resolution
+### Overlays resolution
 
 Overlay ports and triplets are evaluated in this order:
 
 1. Overlays from the [command line](../commands/common-options.md)
-2. Overlays from `vcpkg-configuration.json`
-3. Overlays from the `VCPKG_OVERLAY_[PORTS|TRIPLETS]` [environment](config-environment.md) variable.
+1. Overlays from `vcpkg-configuration.json`
+1. Overlays from the `VCPKG_OVERLAY_[PORTS|TRIPLETS]` [environment](config-environment.md) variable.
 
-Additionaly, each method has its own evaluation order:
+Additionally, each method has its own evaluation order:
 
-* Overlays from the command line are evaluated from left-to-right in the order each argument is passed, with each `--overlay-[ports|triplets]` argument adding a new overlay location.
-* Overlays from `vcpkg-configuration.json` are evaluated in the order of the `"overlay-[ports|triplets]"` array.
-* Overlays set by `VCPKG_OVERLAY_[PORTS|TRIPLETS]` are evaluated from left-to-right. Overlay locations are separated by an OS-specific path separator (`;` on Windows and `:` on non-Windows).
+- Overlays from the command line are evaluated from left-to-right in the order each argument is passed, with each `--overlay-[ports|triplets]` argument adding a new overlay location.
+- Overlays from `vcpkg-configuration.json` are evaluated in the order of the `"overlay-[ports|triplets]"` array.
+- Overlays set by `VCPKG_OVERLAY_[PORTS|TRIPLETS]` are evaluated from left-to-right. Overlay locations are separated by an OS-specific path separator (`;` on Windows and `:` on non-Windows).
 
-### Versioning Support
+### Versioning support
 
-Versioning with custom registries works exactly as it does in the built-in
-registry. You can read more about that in the [versioning documentation].
-
-[versioning documentation]: versioning.md
+Versioning with custom registries works exactly as it does in the built-in registry. You can read more about that in the [versioning documentation](versioning.md).

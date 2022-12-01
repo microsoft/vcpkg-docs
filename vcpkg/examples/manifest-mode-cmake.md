@@ -1,9 +1,9 @@
 ---
-title: Getting Started with Manifest Mode
-description: Learn to get started in vcpkg with Manifest Mode.
+title: Getting Started with Manifest mode
+description: Learn to get started in vcpkg with Manifest mode.
+ms.date: 11/30/2022
 ---
-
-# Manifest Mode: CMake Example
+# Manifest mode: CMake example
 
 We would like to add [vcpkg manifest support](../users/manifests.md) to an existing cmake project!
 Let's create a simple project that prints the fibonacci sequence up to a certain number,
@@ -13,7 +13,7 @@ using some common dependencies.
 
 Let's create the following file layout:
 
-```no-highlight
+```
 fibo/
   src/
     main.cxx
@@ -126,7 +126,7 @@ fib(7) = 13
 
 it works!
 
-## Converting to Manifest Mode
+## Converting to Manifest mode
 
 We now wish to use manifest mode, so all of our dependencies are managed for us! Let's write a `vcpkg.json`:
 

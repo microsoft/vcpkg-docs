@@ -1,16 +1,18 @@
 ---
 title: vcpkg_install_gn
+description: Learn how to use vcpkg_install_gn.
+ms.date: 11/30/2022
 ---
-
 # vcpkg_install_gn
 
 **This function has been deprecated in favor of [`vcpkg_gn_install`](vcpkg_gn_install.md).**
 
 Installs a GN project.
 
-In order to build a GN project without installing, use [`vcpkg_build_ninja()`].
+To build a GN project without installing, use [`vcpkg_build_ninja()`](vcpkg_build_ninja.md).
 
 ## Usage
+
 ```cmake
 vcpkg_install_gn(
      SOURCE_PATH <SOURCE_PATH>
@@ -19,15 +21,17 @@ vcpkg_install_gn(
 ```
 
 ## Parameters
+
 ### SOURCE_PATH
+
 The path to the source directory
 
 ### TARGETS
+
 Only install the specified targets.
 
-Note: includes must be handled separately
-
-[`vcpkg_build_ninja()`]: vcpkg_build_ninja.md
+Include files must be handled separately.
 
 ## Source
-[scripts/cmake/vcpkg\_install\_gn.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_gn.cmake)
+
+[`scripts/cmake/vcpkg_install_gn.cmake`](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_gn.cmake)
