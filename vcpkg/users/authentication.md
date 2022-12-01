@@ -14,10 +14,13 @@ The strategies below all seek to achieve the same fundamental goal: `git clone h
 You can pre-seed git credentials via `git credential approve`:
 
 Powershell:
+
 ```powershell
 "url=https://github.com`npath=Microsoft/vcpkg`nusername=unused`npassword=$MY_PAT`n" | git credential approve
 ```
+
 Bash:
+
 ```sh
 echo "url=https://github.com"$'\n'"path=Microsoft/vcpkg"$'\n'"username=unused"$'\n'"password=$MY_PAT"$'\n' | git credential approve
 ```
@@ -26,16 +29,19 @@ echo "url=https://github.com"$'\n'"path=Microsoft/vcpkg"$'\n'"username=unused"$'
 
 For systems which need bearer auth, you can use `git config`:
 
-**Note: you must make these config changes with `--global`**
-```
+> [!NOTE]
+> You must make these config changes with `--global`
+
+```console
 git config --global --unset-all http.<uri>.extraheader
 git config --global http.<uri>.extraheader "AUTHORIZATION: bearer <System_AccessToken>"
 ```
+
 The `<uri>` can be filled in with a variety of options, for example `https://dev.azure.com/MYORG/`. See the [`git config` documentation](https://git-scm.com/docs/git-config#Documentation/git-config.txt-httplturlgt) for more details.
 
 (Original Source: https://github.com/Microsoft/azure-pipelines-agent/issues/1601#issuecomment-394511048).
 
-**Note for Azure DevOps users:** You may need to enable access via [Job authorization scope](/azure/devops/pipelines/process/access-tokens#job-authorization-scope) and reference the repo in your yaml pipeline:
+**Azure DevOps users:** You may need to enable access via [Job authorization scope](/azure/devops/pipelines/process/access-tokens#job-authorization-scope) and reference the repo in your yaml pipeline:
 
 ```yaml
 resources: 

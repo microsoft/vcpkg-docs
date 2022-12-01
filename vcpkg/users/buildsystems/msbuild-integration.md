@@ -12,9 +12,9 @@ description: Integrate vcpkg into an MSBuild or Visual Studio project.
 ```no-highlight
 vcpkg integrate install
 ```
-This will implicitly add Include Directories, Link Directories, and Link Libraries for all packages installed with Vcpkg to all VS2015, VS2017 and VS2019 MSBuild projects. We also add a post-build action for executable projects that will analyze and copy any DLLs you need to the output folder, enabling a seamless F5 experience.
+This will implicitly add Include Directories, Link Directories, and Link Libraries for all packages installed with vcpkg to all VS2015, VS2017, VS2019, and VS2022 MSBuild projects. We also add a post-build action for executable projects that will analyze and copy any DLLs you need to the output folder, enabling a seamless F5 experience.
 
-For the vast majority of libraries, this is all you need to do -- just File -> New Project and write code! However, some libraries perform conflicting behaviors such as redefining `main()`. Since you need to choose per-project which of these conflicting options you want, you will need to add those libraries to your linker inputs manually.
+For the vast majority of libraries, this is all you need to do: open **File** > **New Project** and write code! However, some libraries perform conflicting behaviors such as redefining `main()`. Since you need to choose per-project which of these conflicting options you want, you will need to add those libraries to your linker inputs manually.
 
 Here are some examples, though this is not an exhaustive list:
 
@@ -47,13 +47,12 @@ The following examples assume they are at the root of your repository with a sub
 </Project>
 ```
 
-See the [Customize your build][1] section of the official MSBuild documentation for more information on `Directory.Build.targets` and `Directory.Build.props`.
+See the [Customize your build](/visualstudio/msbuild/customize-your-build#directorybuildprops-and-directorybuildtargets) section of the official MSBuild documentation for more information on `Directory.Build.targets` and `Directory.Build.props`.
 
-[1]: /visualstudio/msbuild/customize-your-build#directorybuildprops-and-directorybuildtargets
+### Linked NuGet package
 
-### Linked NuGet Package
-
-**Note: This approach is not recommended for new projects, since it makes them difficult to share with others. For a portable, self-contained NuGet package, see the [`export command`](../../commands/export.md)**
+> [!NOTE]
+> This approach is not recommended for new projects, since it makes them difficult to share with others. For a portable, self-contained NuGet package, see the [`export command`](../../commands/export.md).
 
 VS projects can also be integrated through a NuGet package. This will modify the project file, so we do not recommend this approach for open source projects.
 
@@ -65,7 +64,8 @@ With a project open, go to Tools->NuGet Package Manager->Package Manager Console
     Install-Package vcpkg.D.src.vcpkg -Source "D:/src/vcpkg/scripts/buildsystems"
 ```
 
-*Note: The generated NuGet package does not contain the actual libraries. It instead acts like a shortcut (or symlink) to the vcpkg install and will "automatically" update with any changes (install/remove) to the libraries. You do not need to regenerate or update the NuGet package.*
+> [!NOTE]
+> The generated NuGet package does not contain the actual libraries. It instead acts like a shortcut (or symlink) to the vcpkg install and will "automatically" update with any changes (install/remove) to the libraries. You do not need to regenerate or update the NuGet package.
 
 ## Common Configuration
 
@@ -103,7 +103,7 @@ This can be set to a custom triplet to use for resolving host dependencies.
 
 If unset, this will default to the "native" triplet (x64-windows).
 
-See also [Host Dependencies](../host-dependencies.md).
+See also [Host dependencies](../host-dependencies.md).
 
 ### `VcpkgInstalledDir` (Installed Directory)
 
@@ -111,19 +111,17 @@ This property defines the location vcpkg will install and consume libraries from
 
 In manifest mode, this defaults to `$(VcpkgManifestRoot)\vcpkg_installed\$(VcpkgTriplet)\`. In classic mode, this defaults to `$(VcpkgRoot)\installed\`.
 
-## Manifest Mode Configuration
+## Manifest mode configuration
 
-To use manifests (`vcpkg.json`) with MSBuild, first you need to use one of the integration methods above. Then, add a vcpkg.json above your project file (such as in the root of your source repository) and set the property `VcpkgEnableManifest` to `true`. You can set this property via the IDE in `Project Properties -> Vcpkg -> Use Vcpkg Manifest` (note: you may need to reload the IDE to see the vcpkg Property Page).
+To use manifests (`vcpkg.json`) with MSBuild, first you need to use one of the integration methods above. Then, add a vcpkg.json above your project file (such as in the root of your source repository) and set the property `VcpkgEnableManifest` to `true`. You can set this property via the IDE in **Project Properties** > **Vcpkg** > **Use Vcpkg Manifest**. You may need to reload the IDE to see the vcpkg Property Page.
 
 vcpkg will automatically run during your project's build and install any listed dependencies to `vcpkg_installed/$(VcpkgTriplet)/` adjacent to the `vcpkg.json` file; these libraries will then automatically be included in and linked to your MSBuild projects.
 
-**Known issues**
+## Known issues
 
-* Visual Studio 2015 does not correctly track edits to the `vcpkg.json` and `vcpkg-configuration.json` files, and will not respond to changes unless a `.cpp` is edited.
+- Visual Studio 2015 does not correctly track edits to the `vcpkg.json` and `vcpkg-configuration.json` files, and will not respond to changes unless a `.cpp` is edited.
 
-<a id="vcpkg-additional-install-options"></a>
-
-### `VcpkgAdditionalInstallOptions` (Additional Options)
+### <a name="vcpkg-additional-install-options"></a> `VcpkgAdditionalInstallOptions` (Additional Options)
 
 When using a manifest, this option specifies additional command line flags to pass to the underlying vcpkg tool invocation. This can be used to access features that have not yet been exposed through another option.
 

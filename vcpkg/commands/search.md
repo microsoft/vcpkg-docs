@@ -18,6 +18,7 @@ Search for available packages by name and description.
 Search performs a case-insensitive search through all available package names and descriptions. The results are displayed in a tabular format.
 
 ## Example
+
 ```no-highlight
 $ vcpkg search zlib
 miniz                    2.2.0#1          Single C source file zlib-replacement library
@@ -36,5 +37,3 @@ All vcpkg commands support a set of [common options](common-options.md).
 Do not truncate long descriptions.
 
 By default, long descriptions will be truncated to keep the tabular output browsable.
-
-[Registries]: ../users/registries.md

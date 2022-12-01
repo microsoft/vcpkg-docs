@@ -1,7 +1,6 @@
 ---
 title: vcpkg_configure_gn
 ---
-
 # vcpkg_configure_gn
 
 > [!WARNING]
@@ -10,6 +9,7 @@ title: vcpkg_configure_gn
 Generate Ninja (GN) targets
 
 ## Usage
+
 ```cmake
 vcpkg_configure_gn(
     SOURCE_PATH <SOURCE_PATH>
@@ -20,18 +20,23 @@ vcpkg_configure_gn(
 ```
 
 ## Parameters
+
 ### SOURCE_PATH (required)
+
 The path to the GN project.
 
 ### OPTIONS
-Options to be passed to both the debug and release targets.
-Note: Must be provided as a space-separated string.
+
+Options to be passed to both the debug and release targets. The options must be provided as a space-separated string.
 
 ### OPTIONS_DEBUG (space-separated string)
+
 Options to be passed to the debug target.
 
 ### OPTIONS_RELEASE (space-separated string)
+
 Options to be passed to the release target.
 
 ## Source
+
 [scripts/cmake/vcpkg\_configure\_gn.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_configure_gn.cmake)

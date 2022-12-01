@@ -111,7 +111,7 @@ We hope that they will make both forwards and backwards compatibility easier.
   _this is a notational difference rather than a difference in result_
 - All variables expected to be inherited from the parent scope across an API boundary
   (i.e. not a file-local function) should be documented.
-  Note that all variables mentioned in triplets.md are considered documented.
+  All variables mentioned in [Triplet files](../users/triplets.md) are considered documented.
 - Out parameters are only set in `PARENT_SCOPE` and are never read.
   See also the helper `z_vcpkg_forward_output_variable()` to forward out parameters through a function scope.
 - `CACHE` variables are used only for global variables which are shared internally among strongly coupled
@@ -125,13 +125,15 @@ We hope that they will make both forwards and backwards compatibility easier.
 - `foreach(RANGE)`'s arguments _must always be_ natural numbers,
   and `<start>` _must always be_ less than or equal to `<stop>`.
   - This must be checked by something like:
-  ```cmake
-  if("${start}" LESS_EQUAL "${end}")
-    foreach(RANGE "${start}" "${end}")
-      ...
-    endforeach()
-  endif()
-  ```
+
+    ```cmake
+    if("${start}" LESS_EQUAL "${end}")
+      foreach(RANGE "${start}" "${end}")
+        ...
+      endforeach()
+    endif()
+    ```
+  
 - All port-based scripts must use `include_guard(GLOBAL)`
   to avoid being included multiple times.
 

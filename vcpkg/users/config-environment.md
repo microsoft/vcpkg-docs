@@ -1,4 +1,9 @@
-# Environment Variables
+---
+title: Environment variables
+description: Use environment variables to control how vcpkg works and where it looks for files.
+ms.date: 11/30/2022
+---
+# Environment variables
 
 ## VCPKG_DOWNLOADS
 
@@ -70,8 +75,7 @@ pass in environment variables that should cause rebuilds on change, see [`VCPKG_
 
 Example: `FOO_SDK_DIR;BAR_SDK_DIR`
 
-<a name="VCPKG_MAX_CONCURRENCY"></a>
-## VCPKG_MAX_CONCURRENCY
+## <a name="VCPKG_MAX_CONCURRENCY"></a> VCPKG_MAX_CONCURRENCY
 
 This environment variables limits the amount of concurrency used by underlying buildsystems. If unspecified, this defaults to logical cores + 1.
 
@@ -93,7 +97,8 @@ This environment variable allows using NuGet's cache for every nuget-based binar
 
 ## X_VCPKG_ASSET_SOURCES
 
-> Note: This is an experimental feature and may change or be removed at any time
+> [!NOTE]
+> This feature is experimental and may change or be removed at any time.
 
 This environment variable allows using a private mirror for all SHA512-tagged assets. See [Asset Caching](assetcaching.md) for more details.
 

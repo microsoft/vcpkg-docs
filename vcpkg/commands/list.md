@@ -16,6 +16,7 @@ vcpkg list [options]
 Shows a list of the packages in the installed tree, along with the version and description of each.
 
 ## Example
+
 ```no-highlight
 $ vcpkg list
 
@@ -31,4 +32,5 @@ vcpkg-cmake:x64-windows          2022-08-18
 All vcpkg commands support a set of [common options](https://github.com/microsoft/vcpkg/blob/5fac018507e67a8b98141b9d4cebeb07c9bd5cba/docs/commands/common-options.md).
 
 ### `--x-full-desc`
+
 Print the full, untruncated description of each package.

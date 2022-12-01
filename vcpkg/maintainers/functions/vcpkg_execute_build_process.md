@@ -7,6 +7,7 @@ title: vcpkg_execute_build_process
 Execute a required build process
 
 ## Usage
+
 ```cmake
 vcpkg_execute_build_process(
     COMMAND <cmd> [<args>...]
@@ -16,17 +17,21 @@ vcpkg_execute_build_process(
 )
 ```
 ## Parameters
+
 ### COMMAND
 The command to be executed, along with its arguments.
 
 ### NO_PARALLEL_COMMAND
+
 Optional parameter which specifies a non-parallel command to attempt if a
 failure potentially due to parallelism is detected.
 
 ### WORKING_DIRECTORY
+
 The directory to execute the command in.
 
 ### LOGNAME
+
 The prefix to use for the log files.
 
 This should be a unique name for different triplets so that the logs don't
@@ -34,8 +39,9 @@ conflict when building multiple at once.
 
 ## Examples
 
-* [icu](https://github.com/Microsoft/vcpkg/blob/master/ports/icu/portfile.cmake)
+- [icu](https://github.com/Microsoft/vcpkg/blob/master/ports/icu/portfile.cmake)
 
 ## Source
+
 [scripts/cmake/vcpkg\_execute\_build\_process.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_execute_build_process.cmake)
 

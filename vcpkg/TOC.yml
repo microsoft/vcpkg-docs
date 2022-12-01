@@ -2,13 +2,13 @@
   href: index.yml
 - name: Consuming Libraries
   items:
-    - name: Getting Started with Classic Mode
+    - name: Getting Started with Classic mode
       href: examples/installing-and-using-packages.md
-    - name: Getting Started with Manifest Mode
+    - name: Getting Started with Manifest mode
       href: examples/manifest-mode-cmake.md
     - name: Manifest Files Reference
       href: users/manifests.md
-    - name: Classic Mode
+    - name: Classic mode
       href: users/classic-mode.md
     - name: Triplets
       href: users/triplets.md
@@ -40,7 +40,7 @@
       href: users/binarycaching.md
     - name: Remote Authentication
       href: users/authentication.md
-    - name: Environment Variables
+    - name: Environment variables
       href: users/config-environment.md
     - name: Examples
       items:

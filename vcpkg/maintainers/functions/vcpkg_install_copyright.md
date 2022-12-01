@@ -16,9 +16,11 @@ vcpkg_install_copyright(FILE_LIST <file1> <file2>... [COMMENT])
 ## Parameters
 
 ### FILE_LIST
+
 Specifies a list of license files with absolute paths. You must provide at least one file.
 
 ### COMMENT
+
 This optional parameter adds a comment before at the top of the file. 
 
 ## Notes

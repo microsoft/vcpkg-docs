@@ -5,6 +5,7 @@ description: Learn how to package the libogg GitHub Repo in vcpkg.
 
 # Packaging Github Repos Example: libogg
 ## Create the manifest file
+
 The manifest file (called `vcpkg.json`) is a json file describing the package's metadata.
 
 For libogg, we'll create the file `ports/libogg/vcpkg.json` with the following content:
@@ -20,6 +21,7 @@ For libogg, we'll create the file `ports/libogg/vcpkg.json` with the following c
 You can format the manifest file to our specifications with `vcpkg format-manifest ports/libogg/vcpkg.json`.
 
 ## Create the portfile
+
 `portfile.cmake` describes how to build and install the package. First we download the project from Github with [`vcpkg_from_github`](../maintainers/functions/vcpkg_from_github.md):
 
 ```cmake
@@ -47,6 +49,7 @@ Check the documentation for [`vcpkg_cmake_configure`](../maintainers/functions/v
 Now you can run `vcpkg install libogg` to build and install the package.
 
 ## Suggested example portfiles
+
 In the [`ports/`](https://github.com/Microsoft/vcpkg/tree/master/ports) directory are many libraries that can be used as examples, including many that are not based on CMake.
 
 - Header only libraries

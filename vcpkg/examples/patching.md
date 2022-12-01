@@ -6,6 +6,7 @@ description: Learn how to develop and apply patches to a library in a vcpkg port
 # Patching Example: Patching libpng to work for x64-uwp
 
 ## Initial error logs
+
 First, try building:
 
 ```no-highlight

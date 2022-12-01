@@ -6,6 +6,7 @@ description: Learn how to package zlib from the upstream source release in vcpkg
 # Packaging Archive Files Example: zlib
 
 ## Bootstrap with `create`
+
 First, locate a globally accessible archive of the library's sources. Zip, gzip, and bzip are all supported. Strongly prefer official sources or mirrors over unofficial mirrors.
 
 *Looking at zlib's website, the URL http://zlib.net/zlib-1.2.13.tar.gz looks appropriate.*
@@ -30,6 +31,7 @@ PS D:\src\vcpkg> .\vcpkg create zlib2 http://zlib.net/zlib-1.2.13.tar.gz zlib-1.
 ```
 
 ## Create the manifest file
+
 In addition to the generated `ports/<package>/portfile.cmake`, we also need a `ports/<package>/vcpkg.json` file. This file is a simple set of fields describing the package's metadata.
 
 *For zlib2, we'll create the file `ports/zlib2/vcpkg.json` with the following contents:*
@@ -42,6 +44,7 @@ In addition to the generated `ports/<package>/portfile.cmake`, we also need a `p
 ```
 
 ## Tweak the generated portfile
+
 The generated `portfile.cmake` will need some editing to correctly package most libraries in the wild, however we can start by trying out the build.
 
 ```no-highlight
@@ -73,6 +76,7 @@ Found 3 error(s). Please correct the portfile:
 At this point, it is a matter of reading the error messages and log files while steadily improving the quality of the portfile. Zlib required providing a discrete copy of the LICENSE to copy into the package, suppressing the build and installation of executables and headers, and removing the static libraries after they were installed.
 
 ## Suggested example portfiles
+
 In the `ports/` directory are many libraries that can be used as examples, including many that are not based on CMake.
 
 - Header only libraries

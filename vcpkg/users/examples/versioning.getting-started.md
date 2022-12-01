@@ -62,7 +62,8 @@ PS D:\versions-test> mkdir build
 PS D:\versions-test> cd build
 ```
 
-2. Configure CMake.  
+1. Configure CMake.
+
 ```
 PS D:\versions-test\build> cmake -G Ninja -DCMAKE_TOOLCHAIN_FILE=D:/vcpkg/scripts/buildsystems/vcpkg.cmake ..
 -- Running vcpkg install
@@ -75,22 +76,24 @@ The following packages will be built and installed:
 ...
 ```
 
-3. Build the project.
-```
-PS D:\versions-test\build> cmake --build .
-[2/2] Linking CXX executable main.exe
-```
+1. Build the project.
 
-4. Run it!
-```
-PS D:\versions-test\build> ./main.exe
-fmt version is 70103
-zlib version is 1.2.11
-```
+    ```cmd
+    PS D:\versions-test\build> cmake --build .
+    [2/2] Linking CXX executable main.exe
+    ```
+
+1. Run it!
+
+    ```cmd
+    PS D:\versions-test\build> ./main.exe
+    fmt version is 70103
+    zlib version is 1.2.11
+    ```
 
 Take a look at the output:
 
-```
+```cmd
 fmt[core]:x86-windows -> 7.1.3#1 -- D:\vcpkg\buildtrees\versioning\versions\fmt\4f8427eb0bd40da1856d4e67bde39a4fda689d72
 ...
 zlib[core]:x86-windows -> 1.2.11#9 -- D:\vcpkg\buildtrees\versioning\versions\zlib\827111046e37c98153d9d82bb6fa4183b6d728e4
@@ -103,9 +106,11 @@ _NOTE: Output from vcpkg while configuring CMake is only available when using CM
 Read our [manifests announcement blog post](https://devblogs.microsoft.com/cppblog/vcpkg-accelerate-your-team-development-environment-with-binary-caching-and-manifests/#using-manifests-with-msbuild-projects) to learn how to use manifests with MSBuild.
 
 ### Manifest changes
+
 If you have used manifests before you will notice that there are some new JSON properties. Let's review these changes:
 
 #### **`version`**
+
 ```json
 {
     "name": "versions-test",
@@ -122,7 +127,8 @@ Version scheme   | Description
 `version-date`   | Dates in `YYYY-MM-DD` format: `2021-01-01`
 `version-string` | Arbitrary strings: `vista`, `candy`.
 
-#### **`version>=`** 
+#### `version>=`
+
 ```json
 {
     "dependencies": [
@@ -132,15 +138,15 @@ Version scheme   | Description
 }
 ```
 
-This property is used to express minimum version constraints, it is allowed only as part of the `"dependencies"` declarations. In our example we set an explicit constraint on version `7.1.3#1` of `fmt`. 
+This property is used to express minimum version constraints, it is allowed only as part of the `"dependencies"` declarations. In our example we set an explicit constraint on version `7.1.3#1` of `fmt`.
 
-Vcpkg is allowed to upgrade this constraint if a transitive dependency requires a newer version. For example, if `zlib` were to declare a dependency on `fmt` version `7.1.4` then vcpkg would install `7.1.4` instead.
+vcpkg is allowed to upgrade this constraint if a transitive dependency requires a newer version. For example, if `zlib` were to declare a dependency on `fmt` version `7.1.4` then vcpkg would install `7.1.4` instead.
 
-Vcpkg uses a minimum version approach, in our example, even if `fmt` version `8.0.0` were to be released, vcpkg would still install version `7.1.3#1` as that is the minimum version that satisfies the constraint. The advantages of this approach are that you don't get unexpected dependency upgrades when you update vcpkg and you get reproducible builds (in terms of version used) as long as you use the same manifest. 
+vcpkg uses a minimum version approach, in our example, even if `fmt` version `8.0.0` were to be released, vcpkg would still install version `7.1.3#1` as that is the minimum version that satisfies the constraint. The advantages of this approach are that you don't get unexpected dependency upgrades when you update vcpkg and you get reproducible builds (in terms of version used) as long as you use the same manifest.
 
 If you want to upgrade your dependencies, you can bump the minimum version constraint or use a newer baseline.
 
-#### **`builtin-baseline`**
+#### `builtin-baseline`
 
 ```json
 { "builtin-baseline": "3426db05b996481ca31e95fff3734cf23e0f51bc" }
@@ -174,7 +180,7 @@ Baselines are also a convenient mechanism to upgrade multiple versions at a time
 
 But what if you want to pin a version older than the baseline? 
 
-#### **`overrides`**
+#### `overrides`
 
 Since baselines establish a version floor for all packages and explicit constraints get upgraded when they are lower than the baseline, we need another mechanism to downgrade versions past the baseline.
 
@@ -208,7 +214,7 @@ Let's modify our example once more, this time to force vcpkg to use version `6.0
 
 Rebuild our project:
 
-```
+```powershell
 PS D:\versions-test\build> rm ./CMakeCache.txt
 PS D:\versions-test\build> rm -r ./vcpkg_installed
 PS D:\versions-test\build> cmake -G Ninja -DCMAKE_TOOLCHAIN_FILE=D:/vcpkg/scripts/buildsystems/vcpkg.cmake ..
@@ -223,7 +229,8 @@ PS D:\versions-test\build> cmake --build .
 ```
 
 And run it!
-```
+
+```powershell
 PS D:\versions-test\build> .\main.exe
 fmt version is 60000
 zlib version is 1.2.11
@@ -241,4 +248,4 @@ If you want to have flexible port customization along with versioning, you shoul
 
 ## Further reading
 
-If you're interested in delving deeper into the details of how versioning works we recommended that you read our [Versioning Reference](../versioning.md) and [Versioning Concepts](../versioning.concepts.md).
+If you're interested in delving deeper into the details of how versioning works we recommended that you read our [Versioning reference](../versioning.md) and [Versioning concepts](../versioning.concepts.md).

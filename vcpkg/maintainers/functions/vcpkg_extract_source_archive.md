@@ -7,6 +7,7 @@ title: vcpkg_extract_source_archive
 Extract an archive.
 
 ## Usage
+
 ```cmake
 vcpkg_extract_source_archive(
     <out-var>
@@ -21,9 +22,7 @@ vcpkg_extract_source_archive(
 
 ## Parameters
 
-<a id="out-var"></a>
-
-### `<out-var>`
+### <a name="out-var"></a> `<out-var>`
 
 Name of the variable to set with the directory containing the extracted contents.
 
@@ -107,7 +106,7 @@ Defaults to `${CURRENT_BUILDTREES_DIR}/<BASE_DIRECTORY>`. Must be an absolute pa
 
 In [`--editable`](../../commands/install.md#editable) mode:
 1. No `.clean` suffix is added to the extracted folder
-2. The extracted folder is not deleted. If it exists, `vcpkg_extract_source_archive` does nothing.
+1. The extracted folder is not deleted. If it exists, `vcpkg_extract_source_archive` does nothing.
 
 `<short-hash>` unambiguously identifies a particular set of archive and patch file contents.
 Any modifications to the contents of the working directory after calling this function should be applied unconditionally
@@ -132,7 +131,7 @@ vcpkg_extract_source_archive(
 vcpkg_cmake_configure(SOURCE_PATH "${src}")
 ```
 
-* [GitHub Search](https://github.com/microsoft/vcpkg/search?q=vcpkg_extract_source_archive+path%3A%2Fports)
+- [GitHub Search](https://github.com/microsoft/vcpkg/search?q=vcpkg_extract_source_archive+path%3A%2Fports)
 
 ## Remarks
 
@@ -153,5 +152,6 @@ All uses of the deprecated overload should be replaced with the syntax in [Usage
 This command replaces [`vcpkg_extract_source_archive_ex()`](vcpkg_extract_source_archive_ex.md).
 
 ## Source
+
 [scripts/cmake/vcpkg\_extract\_source\_archive.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_extract_source_archive.cmake)
 

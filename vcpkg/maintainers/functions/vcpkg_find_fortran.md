@@ -9,11 +9,13 @@ Windows(x86/x64) Only: If not it will switch/enable MinGW gfortran
                        and return required cmake args for building. 
 
 ## Usage
+
 ```cmake
 vcpkg_find_fortran(<out_var>)
 ```
 
 ## Example
+
 ```cmake
 vcpkg_find_fortran(fortran_args)
 # ...
@@ -24,5 +26,6 @@ vcpkg_cmake_configure(...
 ```
 
 ## Source
+
 [scripts/cmake/vcpkg\_find\_fortran.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_find_fortran.cmake)
 

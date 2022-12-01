@@ -75,6 +75,7 @@ Adds vcpkg tab-completion support to the current user's `.zshrc`.
 Adds vcpkg tab-completion support to the current user's fish shell completions directory.
 
 ## Example
+
 ```no-highlight
 $ vcpkg integrate install
 Applied user-wide integration for this vcpkg root.

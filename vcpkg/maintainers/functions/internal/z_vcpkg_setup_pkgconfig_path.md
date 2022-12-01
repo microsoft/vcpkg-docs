@@ -9,17 +9,20 @@ title: z_vcpkg_setup_pkgconfig_path
 Set up the environment to use `pkgconfig`.
 
 ## Usage
+
 ```cmake
 z_vcpkg_setup_pkgconfig_path(BASE_DIRS <base-dirs>)
 ```
 
 ## Parameters
+
 ### BASE_DIRS
 List of base directories to use.
 
 Typically `${CURRENT_INSTALLED_DIR}` or `${CURRENT_INSTALLED_DIR}/debug`, but not both.
 
 ## Notes
+
 Acquires and sets `PKG_CONFIG` to a valid `pkg-config` program.
 
 For each entry of `BASE_DIRS`, prepends `<entry>/lib` and `<entry>/share` to `PKG_CONFIG_PATH` in an unspecified order.
@@ -27,6 +30,7 @@ For each entry of `BASE_DIRS`, prepends `<entry>/lib` and `<entry>/share` to `PK
 See also [`z_vcpkg_restore_pkgconfig_path`](z_vcpkg_restore_pkgconfig_path.md).
 
 ## Examples
+
 ```cmake
 z_vcpkg_setup_pkgconfig_path(BASE_DIRS "${CURRENT_INSTALLED_DIR}")
 # Build process that may internally invoke pkgconfig
@@ -41,4 +45,5 @@ endi()
 ```
 
 ## Source
+
 [scripts/cmake/z\_vcpkg\_setup\_pkgconfig\_path.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/z_vcpkg_setup_pkgconfig_path.cmake)

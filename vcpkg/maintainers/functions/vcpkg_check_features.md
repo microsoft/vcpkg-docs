@@ -7,6 +7,7 @@ title: vcpkg_check_features
 Check if one or more features are a part of a package installation.
 
 ## Usage
+
 ```cmake
 vcpkg_check_features(
     OUT_FEATURE_OPTIONS <out-var>
@@ -132,10 +133,11 @@ vcpkg_cmake_configure(
 
 ## Examples in portfiles
 
-* [cpprestsdk](https://github.com/microsoft/vcpkg/blob/master/ports/cpprestsdk/portfile.cmake)
-* [pcl](https://github.com/microsoft/vcpkg/blob/master/ports/pcl/portfile.cmake)
-* [rocksdb](https://github.com/microsoft/vcpkg/blob/master/ports/rocksdb/portfile.cmake)
+- [cpprestsdk](https://github.com/microsoft/vcpkg/blob/master/ports/cpprestsdk/portfile.cmake)
+- [pcl](https://github.com/microsoft/vcpkg/blob/master/ports/pcl/portfile.cmake)
+- [rocksdb](https://github.com/microsoft/vcpkg/blob/master/ports/rocksdb/portfile.cmake)
 
 ## Source
+
 [scripts/cmake/vcpkg\_check\_features.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_check_features.cmake)
 

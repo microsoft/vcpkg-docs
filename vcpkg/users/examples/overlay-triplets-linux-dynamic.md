@@ -78,8 +78,8 @@ As you may have noticed, the default triplets for Windows (`x86-windows` and `x6
 
 Using `--overlay-triplets` it is possible to override the default triplets to accomplish the same behavior on Linux:
 
-* `x64-linux`: Builds dynamic libraries,
-* `x64-linux-static`: Builds static libraries.
+- `x64-linux`: Builds dynamic libraries,
+- `x64-linux-static`: Builds static libraries.
 
 ### Step 1: Create the overlay triplets
 
@@ -94,7 +94,7 @@ Using the custom triplet created in the previous example, rename `custom-triplet
 
 Use the `--overlay-triplets` option to include the triplets in the `custom-triplets` directory.
 
-```
+```console
 ~/git$ vcpkg/vcpkg install sqlite3:x64-linux --overlay-triplets=custom-triplets
 The following packages will be built and installed:
     sqlite3[core]:x64-linux
@@ -124,8 +124,8 @@ The package sqlite3:x64-linux provides CMake targets:
     target_link_libraries(main PRIVATE unofficial::sqlite3::sqlite3)
 ```
 
-Note that the default triplet is masked by your custom triplet:
+The default triplet is masked by your custom triplet:
 
-```
+```console
 -- Loading triplet configuration from: /home/victor/git/custom-triplets/x64-linux.cmake
 ```

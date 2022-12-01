@@ -54,6 +54,7 @@ It is reasonable to expect that overriding `boost` to version 1.72.0 results in 
 Below, we describe two methods to pin down Boost versions effectively.
 
 ## Method 1: Pin specific packages
+
 Use `"overrides"` to force specific versions in a package-by-package basis.
 
 `vcpkg.json`
@@ -77,11 +78,13 @@ This method allows you to quickly set the specific versions you want, but you wi
 The second method makes it easy to pin the entire Boost collection and end up with a very simple manifest file.
 
 ## Method 2: Modify baseline
+
 An easy way to set the version for the entirety of boost is to use the `"builtin-baseline"` property.
 
 As of right now, it is only possible to go back to Boost version `1.75.0` using a baseline, since that was the contemporary Boost version when the versioning feature was merged. **But, it is possible to modify the baseline to whatever you like and use that instead.**
 
 ### Step 1: Create a new branch
+
 As described in the versioning documentation. The value that goes in `"builtin-baseline"` is a git commit in the microsoft/vcpkg repository's history. If you want to customize the baseline and have control over the vcpkg instance, you can create a new commit with said custom baseline.
 
 Let's start by creating a new branch to hold our modified baseline.
@@ -95,6 +98,7 @@ git checkout -b custom-boost-baseline
 This will create a new branch named `custom-boost-baseline` and check it out immediately.
 
 ### Step 2: Modify the baseline
+
 The next step is to modify the baseline file, open the file in your editor of choice and modify the entries for the Boost libraries.
 
 Change the `"baseline"` version to your desired version.
@@ -135,6 +139,7 @@ _NOTE: Remember to also set the port versions to 0 (or your desired version)._
 Some `boost-` packages are helpers used by vcpkg and are not part of Boost. For example, `"boost-uninstall"` is a vcpkg helper to conveniently uninstall all Boost libraries, but it didn't exist for Boost version `1.72.0`, in this case it is fine to leave it at `1.75.0` to avoid baseline errors (since all versions in `baseline.json` must have existed).
 
 ### Step 3: Commit your changes
+
 After saving your modified file, run these commands to commit your changes:
 
 ```
@@ -145,6 +150,7 @@ git commit -m "Baseline Boost 1.72.0"
 You can set the commit message to whatever you want, just make it useful for you.
 
 ### Step 4: Get your baseline commit SHA
+
 Once all your changes are ready, you can get the commit SHA by running:
 ```
 git rev-parse HEAD
@@ -153,6 +159,7 @@ git rev-parse HEAD
 The output of that command will be the commit SHA you need to put as the `"builtin-baseline"` in your project's manifest file. Copy the 40-hex digits and save them to use later in your manifest file.
 
 ### Step 5: (Optional) Go back to the main repository branch
+
 Once your changes have been committed locally, you can refer to the commit SHA regardless of the repository branch you're working on. So, let's go back to the main vcpkg repository branch.
 
 ```

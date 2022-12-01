@@ -8,6 +8,7 @@ description: A replacement for CMake's list function which improves handling of 
 A replacement for CMake's `list()` function which improves handling of elements with internal semicolons, such as other lists.
 
 ## Usage
+
 ```cmake
 vcpkg_list(SET <out-var> [<element>...])
 vcpkg_list(<COMMAND> <list-var> [<other-arguments>...])
@@ -29,6 +30,7 @@ Use `vcpkg_list()` instead of `list()` whenever it is a requirement to correctly
 See the [CMake documentation for `list()`](https://cmake.org/cmake/help/latest/command/list.html) for more information.
 
 ### Remarks on Zero-Element lists
+
 The most major weirdness is due to `""` pulling double-duty as "list of zero elements",
 and "list of one element, which is empty". `vcpkg_list` always uses the former understanding.
 This can cause weird behavior, for example:
@@ -90,5 +92,6 @@ endif()
 ```
 
 ## Source
+
 [scripts/cmake/vcpkg\_list.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_list.cmake)
 

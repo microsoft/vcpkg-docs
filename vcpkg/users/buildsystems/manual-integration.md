@@ -7,18 +7,18 @@ description: Integrate vcpkg into any buildsystem, such as meson or autoconf.
 
 When installing libraries, vcpkg creates a single common layout partitioned by triplet. 
 
-The root of the tree in [Classic Mode](../classic-mode.md) is `<vcpkg root>/installed`. The root of the tree in [Manifest Mode](../manifests.md) is `<vcpkg.json directory>/vcpkg_installed`.
+The root of the tree in [Classic mode](../classic-mode.md) is `<vcpkg root>/installed`. The root of the tree in [Manifest mode](../manifests.md) is `<vcpkg.json directory>/vcpkg_installed`.
 
 Underneath this root, in a subfolder named after the triplet:
 
-* Header files: `include/`
-* Release `.lib`, `.a`, and `.so` files: `lib/` or `lib/manual-link/`
-* Release `.dll` files: `bin/`
-* Release `.pc` files: `lib/pkgconfig/` or `share/pkgconfig/`
-* Debug `.lib`, `.a`, and `.so` files: `debug/lib/` or `debug/lib/manual-link/`
-* Debug `.dll` files: `debug/bin/`
-* Debug `.pc` files: `debug/lib/pkgconfig/` or `debug/share/pkgconfig/`
-* Tools: `tools/<port>/`
+- Header files: `include/`
+- Release `.lib`, `.a`, and `.so` files: `lib/` or `lib/manual-link/`
+- Release `.dll` files: `bin/`
+- Release `.pc` files: `lib/pkgconfig/` or `share/pkgconfig/`
+- Debug `.lib`, `.a`, and `.so` files: `debug/lib/` or `debug/lib/manual-link/`
+- Debug `.dll` files: `debug/bin/`
+- Debug `.pc` files: `debug/lib/pkgconfig/` or `debug/share/pkgconfig/`
+- Tools: `tools/<port>/`
 
 For example, `zlib.h` for `zlib:x64-windows` in classic mode is located at `<vcpkg root>/installed/x64-windows/include/zlib.h`.
 

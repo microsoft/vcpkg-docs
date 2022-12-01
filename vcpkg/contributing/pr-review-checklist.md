@@ -1,17 +1,20 @@
 ---
 title: vcpkg PR Review Checklist
+description: Use a checklist to prepare a vcpkg pull request for review.
+ms.date: 11/30/2022
 ---
+# vcpkg PR Review Checklist
 
-vcpkg PR Review Checklist
-=========================
 Revision: 1
 
 ## Overview
+
 This document provides an annotated checklist which vcpkg team members use to apply the "reviewed" label on incoming pull requests. If a pull request violates any of these points, we may ask contributors to make necessary changes before we can merge the changeset.
 
 Feel free to create an issue or pull request if you feel that this checklist can be improved. Please increment the revision number when modifying the checklist content.
 
 ## Checklist
+
 You can link any of these checklist items in a GitHub comment by copying the link address attached to each item code.
 
 <details id="c000001">
@@ -34,7 +37,7 @@ See our [Maintainer Guidelines and Policies](maintainer-guide.md#versioning) for
 A description only one or a few sentences long is helpful. Consider using the library's official description from their `README.md` or similar if possible. Automatic translations are acceptable and we are happy to clean up translations to English for our contributors.
 
 See our [manifest file documentation](../users/manifests.md#description) for more information.
-    
+
 </details>
 
 <details id="c000004">
@@ -88,7 +91,7 @@ To provide users with a seamless build system integration, please be sure to exp
 
 <details id="c000011">
 <summary><a href="#c000011">c000011</a>: Ports do not use applications which modify the user's system</summary>
-    
+
 Ports should uphold vcpkg's contract of not modifying the user's system by avoiding applications which do so. Examples of these applications are `sudo`, `apt`, `brew`, or `pip`. Please use an alternative to these types of programs wherever possible.
 
 </details>

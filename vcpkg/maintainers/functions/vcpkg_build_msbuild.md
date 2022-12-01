@@ -7,6 +7,7 @@ title: vcpkg_build_msbuild
 Build a msbuild-based project. Prefer using [`vcpkg_install_msbuild()`](vcpkg_install_msbuild.md) when possible.
 
 ## Usage
+
 ```cmake
 vcpkg_build_msbuild(
     PROJECT_PATH <${SOURCE_PATH}/port.sln>
@@ -24,46 +25,59 @@ vcpkg_build_msbuild(
 ```
 
 ## Parameters
+
 ### USE_VCPKG_INTEGRATION
+
 Apply the normal `integrate install` integration for building the project.
 
 By default, projects built with this command will not automatically link libraries or have header paths set.
 
 ### PROJECT_PATH
+
 The path to the solution (`.sln`) or project (`.vcxproj`) file.
 
 ### RELEASE_CONFIGURATION
+
 The configuration (``/p:Configuration`` msbuild parameter) used for Release builds.
 
 ### DEBUG_CONFIGURATION
+
 The configuration (``/p:Configuration`` msbuild parameter)
 used for Debug builds.
 
 ### TARGET_PLATFORM_VERSION
+
 The WindowsTargetPlatformVersion (``/p:WindowsTargetPlatformVersion`` msbuild parameter)
 
 ### TARGET
+
 The MSBuild target to build. (``/t:<TARGET>``)
 
 ### PLATFORM
+
 The platform (``/p:Platform`` msbuild parameter) used for the build.
 
 ### PLATFORM_TOOLSET
+
 The platform toolset (``/p:PlatformToolset`` msbuild parameter) used for the build.
 
 ### OPTIONS
+
 Additional options passed to msbuild for all builds.
 
 ### OPTIONS_RELEASE
+
 Additional options passed to msbuild for Release builds. These are in addition to `OPTIONS`.
 
 ### OPTIONS_DEBUG
+
 Additional options passed to msbuild for Debug builds. These are in addition to `OPTIONS`.
 
 ## Examples
 
-* [chakracore](https://github.com/Microsoft/vcpkg/blob/master/ports/chakracore/portfile.cmake)
+- [chakracore](https://github.com/Microsoft/vcpkg/blob/master/ports/chakracore/portfile.cmake)
 
 ## Source
+
 [scripts/cmake/vcpkg\_build\_msbuild.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_build_msbuild.cmake)
 

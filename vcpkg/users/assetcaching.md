@@ -44,8 +44,8 @@ You can also use the filesystem (e.g. a network drive) via `file://` as asset ca
 The workflow of this asset source is:
 
 1. Attemp to read from the mirror
-2. (If step 1 failed) Read from the original url
-3. (If step 2 succeeded) Write back to the mirror
+1. (If step 1 failed) Read from the original url
+1. (If step 2 succeeded) Write back to the mirror
 
 You can enable/disable steps 1 and 3 via the [`<rw>`](#valid-source-strings) specifier and you can disable step 2 via
 `x-block-origin` below.

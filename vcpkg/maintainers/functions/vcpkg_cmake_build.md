@@ -33,16 +33,16 @@ To use this function, you must depend on the helper port `vcpkg-cmake`:
 
 ## Parameters
 
-All supported parameters to [`vcpkg_cmake_install()`] are supported by `vcpkg_cmake_build()`. See [`vcpkg_cmake_install()`] for additional parameter documentation.
-
-[`vcpkg_cmake_install()`]: vcpkg_cmake_install.md#parameters
+All supported parameters to `vcpkg_cmake_install()` are supported by `vcpkg_cmake_build()`. For more information on its parameters, see [`vcpkg_cmake_install()`](vcpkg_cmake_install.md#parameters).
 
 ### TARGET
+
 The CMake target to build.
 
 If this parameter is not passed, no target will be passed to the build.
 
 ### LOGFILE_BASE
+
 An alternate root name for the logs.
 
 Defaults to `build-${TARGET_TRIPLET}`. It should not contain any path separators. Logs will be generated matching the pattern `${CURRENT_BUILDTREES_DIR}/${LOGFILE_BASE}-<suffix>.log`
@@ -67,5 +67,6 @@ vcpkg_cmake_build(TARGET my.install.target)
 This command replaces [`vcpkg_build_cmake()`](vcpkg_build_cmake.md).
 
 ## Source
+
 [ports/vcpkg-cmake/vcpkg\_cmake\_build.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-cmake/vcpkg_cmake_build.cmake)
 
