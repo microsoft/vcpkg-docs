@@ -6,6 +6,7 @@
           "**/*.md",
           "**/*.yml"
         ],
+        "src": ".",
         "exclude": [
           "**/obj/**",
           "**/includes/**",
@@ -25,7 +26,9 @@
       {
         "files": [
           "**/*.png",
-          "**/*.jpg"
+          "**/*.jpg",
+          "**/*.gif",
+          "**/*.svg"
         ],
         "exclude": [
           "**/obj/**",
@@ -41,11 +44,53 @@
     "externalReference": [],
     "globalMetadata": {
       "breadcrumb_path": "/vcpkg/breadcrumb/toc.json",
-      "extendBreadcrumb": true,
-      "feedback_system": "None"
+      "extendBreadcrumb": "true",
+      "feedback_system": "GitHub",
+      "feedback_github_repo": "Microsoft/vcpkg-docs",
+      "feedback_product_url": "https://github.com/Microsoft/vcpkg/issues/",
+      "ROBOTS": "INDEX,FOLLOW",
+      "manager": "roschuma",
+      "ms.date": "11/16/2020",
+      "ms.prod": "visual-cpp",
+      "ms.topic": "conceptual",
+      "audience": "developer",
+      "defaultDevLang": "cpp",
+      "ms.workload": [
+        "cplusplus"
+      ],
+      "ms.reviewer": [
+        "roschuma",
+        "aupopa",
+        "corob",
+        "twhitney"
+      ],
+      "searchScope": [
+        "vcpkg"
+      ],
+      "uhfHeaderId": []
     },
-    "fileMetadata": {},
+    "fileMetadata": {
+      "author": {
+        "index.md": "ras0219-msft",
+        "about/**.md": "ras0219-msft",
+        "commands/**.md": "ras0219-msft",
+        "examples/**.md": "ras0219-msft",
+        "maintainers/**.md": "ras0219-msft",
+        "contributing/**.md": "ras0219-msft",
+        "users/**.md": "ras0219-msft"
+      },
+      "ms.author": {
+        "index.md": "roschuma",
+        "about/**.md": "roschuma",
+        "commands/**.md": "roschuma",
+        "examples/**.md": "roschuma",
+        "maintainers/**.md": "roschuma",
+        "contributing/**.md": "roschuma",
+        "users/**.md": "roschuma"
+      }
+    },
     "template": [],
-    "dest": "vcpkg-docs"
+    "dest": "vcpkg-docs",
+    "markdownEngineName": "markdig"
   }
 }
