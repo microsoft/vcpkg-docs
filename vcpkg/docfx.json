@@ -77,7 +77,8 @@
         "examples/**.md": "ras0219-msft",
         "maintainers/**.md": "ras0219-msft",
         "contributing/**.md": "ras0219-msft",
-        "users/**.md": "ras0219-msft"
+        "users/**.md": "ras0219-msft",
+        "reference/**.md": "ras0219-msft"
       },
       "ms.author": {
         "index.md": "roschuma",
@@ -86,7 +87,8 @@
         "examples/**.md": "roschuma",
         "maintainers/**.md": "roschuma",
         "contributing/**.md": "roschuma",
-        "users/**.md": "roschuma"
+        "users/**.md": "roschuma",
+        "reference/**.md": "roschuma"
       }
     },
     "template": [],

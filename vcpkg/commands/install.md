@@ -47,7 +47,7 @@ All vcpkg commands support a set of [common options](common-options.md).
 
 Instead of stopping on an unsupported port, continue with a warning.
 
-By default, vcpkg refuses to execute an install plan containing a port installation for a triplet outside its [`"supports"`](../users/manifests.md#supports) clause. The `"supports"` clause of a package describes the full set of platforms a package is expected to be buildable on. This flag instructs vcpkg to warn that the build is expected to fail instead of stopping.
+By default, vcpkg refuses to execute an install plan containing a port installation for a triplet outside its [`"supports"`](../reference/vcpkg-json.md#supports) clause. The `"supports"` clause of a package describes the full set of platforms a package is expected to be buildable on. This flag instructs vcpkg to warn that the build is expected to fail instead of stopping.
 
 ### `--clean-after-build`
 
@@ -106,7 +106,7 @@ By default, vcpkg will run several checks on built packages and emit warnings if
 
 Specify an additional [feature](../users/manifests.md#features) from the `vcpkg.json` to install dependencies for.
 
-By default, only [`"dependencies"`](../users/manifests.md#dependencies) and the dependencies of the [`"default-features"`](../users/manifests.md#default-features) will be installed.
+By default, only [`"dependencies"`](../reference/vcpkg-json.md#dependencies) and the dependencies of [`"default-features"`](../reference/vcpkg-json.md#default-features) will be installed.
 
 ### `--head`
 

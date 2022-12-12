@@ -5,8 +5,7 @@ ms.date: 11/30/2022
 ---
 # Versioning reference
 
-Versioning allows you to deterministically control the precise revisions of dependencies used by
-your project from within your manifest file. Versioning only applies to [Manifest mode](manifests.md).
+Versioning allows you to deterministically control the precise revisions of dependencies used by your project from within your manifest file. Versioning is only available to [Manifest mode](manifests.md) users.
 
 For more information about the vcpkg versioning algorithm and high level concepts, see [Versioning Concepts](versioning.concepts.md).
 
@@ -32,12 +31,12 @@ Each versioning scheme defines its own rules on what is a valid version string a
 
 The versioning schemes understood by vcpkg are:
 
-| Manifest property | Versioning scheme |
-|---|---|
-| `version` | For dot-separated numeric versions |
-| `version-semver` | For SemVer compliant versions |
-| `version-date` | For dates in the format YYYY-MM-DD |
-| `version-string` | For arbitrary strings |
+| Manifest property | Versioning scheme                    |
+|-------------------|--------------------------------------|
+| `version`         | For dot-separated numeric versions   |
+| `version-semver`  | For SemVer compliant versions        |
+| `version-date`    | For dates in the format `YYYY-MM-DD` |
+| `version-string`  | For arbitrary strings                |
 
 A manifest must contain only one version declaration.
 
@@ -119,7 +118,7 @@ Examples:
 
 Baselines define a global version floor for what versions will be considered. This enables top-level manifests to keep the entire graph of dependencies up-to-date without needing to individually specify direct [`"version>="`](#version-gte) constraints.
 
-Every configured registry has an associated baseline. For manifests that don't configure any registries, the [`"builtin-baseline"`](manifests.md#builtin-baseline) field defines the baseline for the built-in registry. If a manifest does not configure any registries and does not have a `"builtin-baseline"`, the install operates according to the Classic mode algorithm and ignores all versioning information.
+Every configured registry has an associated baseline. For manifests that don't configure any registries, the [`"builtin-baseline"`](../reference/vcpkg-json.md#builtin-baseline) field defines the baseline for the built-in registry. If a manifest does not configure any registries and does not have a `"builtin-baseline"`, the install operates according to the Classic mode algorithm and ignores all versioning information.
 
 Baselines, like other registry settings, are ignored from ports consumed as a dependency. If a minimum version is required during transitive version resolution the port should use [`"version>="`](#version-gte).
 
