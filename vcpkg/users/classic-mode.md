@@ -5,7 +5,7 @@ ms.date: 11/30/2022
 ---
 # Classic mode
 
-vcpkg has two primary modes of operation - Classic mode and [Manifest mode](manifests.md). For most users, we recommend Manifest mode.
+vcpkg has two modes for consuming packages - Classic mode and [Manifest mode](manifests.md). For most users, we recommend Manifest mode.
 
 In Classic mode, vcpkg maintains a central *installed tree* inside the vcpkg instance built up by individual [`vcpkg install`](../commands/install.md) and [`vcpkg remove`](../commands/remove.md) commands. This central set of packages can then be shared by any number of projects.
 

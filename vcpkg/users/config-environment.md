@@ -44,7 +44,7 @@ This environment variable can be set to a triplet name which will be used for un
 
 ## VCPKG_OVERLAY_PORTS
 
-This environment variable adds additional [overlay ports](registries.md#configuration-overlay-ports) paths considered after those listed on the command line. List paths to overlays using
+This environment variable adds additional [overlay ports](registries.md#overlays) paths considered after those listed on the command line. List paths to overlays using
 the platform dependent PATH separator (Windows `;` | others `:`)
 
 Example (Windows): `C:\custom-ports\boost;C:\custom-ports\sqlite3`

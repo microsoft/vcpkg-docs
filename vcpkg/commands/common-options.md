@@ -65,7 +65,7 @@ Defaults to searching upwards from the current working directory for the nearest
 
 ### <a name="overlay-ports"></a> `--overlay-ports=<path>`
 
-Specifies a directory containing [overlay ports](../users/registries.md#configuration-overlay-ports).
+Specifies a directory containing [overlay ports](../users/registries.md#overlays).
 
 This option can be specified multiple times; ports will resolve to the first match.
 

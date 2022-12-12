@@ -6,7 +6,7 @@
       href: examples/installing-and-using-packages.md
     - name: Getting Started with Manifest mode
       href: examples/manifest-mode-cmake.md
-    - name: Manifest Files Reference
+    - name: Manifest mode
       href: users/manifests.md
     - name: Classic mode
       href: users/classic-mode.md
@@ -26,10 +26,14 @@
         href: users/platforms/android.md
       - name: MinGW
         href: users/platforms/mingw.md
-    - name: Consuming Alternate Registries
+    - name: Using Registries
       href: users/registries.md
     - name: Versioning Concepts
       href: users/versioning.concepts.md
+    - name: vcpkg.json Reference
+      href: users/vcpkg-json.md
+    - name: vcpkg-configuration.json Reference
+      href: users/vcpkg-configuration-json.md
     - name: Versioning Reference
       href: users/versioning.md
     - name: Asset Caching

@@ -167,9 +167,9 @@ Also available as build-type specific `VCPKG_MAKE_CONFIGURE_OPTIONS_DEBUG` and `
 
 Replaces the default computed list of triplet "Supports" terms.
 
-This option (if set) will override the default set of terms used for qualified dependency resolution and "Supports" field evaluation.
+This option (if set) will override the default set of terms used for [Platform Expression](vcpkg-json.md#platform-expression) evaluation.
 
-See the [`"supports"`](manifests.md#supports) manifest file field documentation for more details.
+See the [`"supports"`](vcpkg-json.md#supports) manifest file field documentation for more details.
 
 > Implementers' note: this list is extracted via the `vcpkg_get_dep_info` mechanism.
 
