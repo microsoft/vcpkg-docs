@@ -6,7 +6,7 @@
       href: examples/installing-and-using-packages.md
     - name: Getting Started with Manifest mode
       href: examples/manifest-mode-cmake.md
-    - name: Manifest Files Reference
+    - name: Manifest mode
       href: users/manifests.md
     - name: Classic mode
       href: users/classic-mode.md
@@ -26,7 +26,7 @@
         href: users/platforms/android.md
       - name: MinGW
         href: users/platforms/mingw.md
-    - name: Consuming Alternate Registries
+    - name: Using Registries
       href: users/registries.md
     - name: Versioning Concepts
       href: users/versioning.concepts.md
@@ -225,26 +225,32 @@
         href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
   - name: CONTROL Files (deprecated)
     href: maintainers/control-files.md
-- name: Command-Line Reference
+- name: Reference
   items:
-    - name: Common Command Options
-      href: commands/common-options.md
-    - name: vcpkg export
-      href: commands/export.md
-    - name: vcpkg install
-      href: commands/install.md
-    - name: vcpkg integrate
-      href: commands/integrate.md
-    - name: vcpkg list
-      href: commands/list.md
-    - name: vcpkg remove
-      href: commands/remove.md
-    - name: vcpkg search
-      href: commands/search.md
-    - name: vcpkg x-update-baseline
-      href: commands/update-baseline.md
-    - name: vcpkg version
-      href: commands/version.md
+    - name: vcpkg.json Reference
+      href: reference/vcpkg-json.md
+    - name: vcpkg-configuration.json Reference
+      href: reference/vcpkg-configuration-json.md
+    - name: Command-Line
+      items:
+        - name: Common Command Options
+          href: commands/common-options.md
+        - name: vcpkg export
+          href: commands/export.md
+        - name: vcpkg install
+          href: commands/install.md
+        - name: vcpkg integrate
+          href: commands/integrate.md
+        - name: vcpkg list
+          href: commands/list.md
+        - name: vcpkg remove
+          href: commands/remove.md
+        - name: vcpkg search
+          href: commands/search.md
+        - name: vcpkg x-update-baseline
+          href: commands/update-baseline.md
+        - name: vcpkg version
+          href: commands/version.md
 - name: Contributing to vcpkg
   items:
   - name: Maintainer Guide
