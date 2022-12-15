@@ -9,7 +9,7 @@ For an overview of using manifests with vcpkg, see [Manifest mode](../users/mani
 
 Manifests are strict [JSON](https://www.json.org) documents. They cannot contain C++-style comments (`//`) nor trailing commas. However you can use field names that start with `$` to write your comments in any object that has a well-defined set of keys. These comment fields are not allowed in any objects which permit user-defined keys (such as `"features"`).
 
-The latest JSON Schema is available at [https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json](). IDEs with JSON Schema support such as Visual Studio and Visual Studio Code can use this file to provide autocomplete and syntax checking. For most IDEs, you should set `"$schema"` in your `vcpkg.json` to this URL.
+The latest JSON Schema is available at [https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json](https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json). IDEs with JSON Schema support such as Visual Studio and Visual Studio Code can use this file to provide autocomplete and syntax checking. For most IDEs, you should set `"$schema"` in your `vcpkg.json` to this URL.
 
 ## Example
 
