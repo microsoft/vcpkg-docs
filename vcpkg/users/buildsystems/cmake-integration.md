@@ -222,3 +222,7 @@ Defaults to `OFF`.
 This variable can be set to a list of feature flags to pass to the vcpkg tool during automatic installation to opt-in to experimental behavior.
 
 See the `--feature-flags=` command line option for more information.
+
+### `VCPKG_TRACE_FIND_PACKAGE`
+
+When set to `ON`, Print every call to `find_package`. Nested calls (e.g. via `find_dependency`) are indented according to nesting depth.
