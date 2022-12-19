@@ -93,7 +93,7 @@ This environment variable changes the metadata of produced NuGet packages. See [
 
 ## VCPKG_USE_NUGET_CACHE
 
-This environment variable allows using NuGet's cache for every nuget-based binary source. See [Binary Caching](binarycaching.md#nuget-provider-configuration) for more details.
+This environment variable allows using NuGet's cache for every nuget-based binary source. See [Binary Caching](binarycaching.md#nuget) for more details.
 
 ## X_VCPKG_ASSET_SOURCES
 
