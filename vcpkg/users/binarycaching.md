@@ -12,7 +12,8 @@ Binary caching saves copies of library binaries in a shared location that can be
 
 Binary caching is especially effective when using Continuous Integration, since local developers can reuse the binaries produced during a CI run. It also greatly enhances the performance of ephemeral or "hosted" build agents, since all local changes are otherwise lost between runs. By using binary caching backed by a cloud service, such as GitHub, Azure, or others, you can ensure your CI runs at maximum speed and only rebuilds your dependencies when they've changed.
 
-> [!TIP] We recommend creating a writable binary cache for every CI pipeline or workflow. Individual developers should have read-only access to the CI binary cache.
+> [!TIP]
+> We recommend creating a writable binary cache for every CI pipeline or workflow. Individual developers should have read-only access to the CI binary cache.
 
 Caches can be hosted in a variety of environments. The most basic examples are a folder on the local machine or a network file share. Caches can also be stored in any NuGet feed (such as GitHub Packages or Azure DevOps Artifacts), Azure Blob Storage, Google Cloud Storage, and many other services.
 
@@ -38,7 +39,7 @@ Binary Caching only covers binaries you build. To cache source files and prebuil
 
 ## Configuration Syntax
 
-Binary caching is configured with the environment variable `VCPKG_BINARY_SOURCES` (set to `<source>;<source>;...`) and the command line option [`--binarysource=<source>`](../commands/common-options.md#binarysourceconfig). Options are evaluated first from the environment, then from the command line. Binary caching can be completely disabled by passing `--binarysource=clear` as the last command line option.
+Binary caching is configured with the environment variable `VCPKG_BINARY_SOURCES` (set to `<source>;<source>;...`) and the command line option [`--binarysource=<source>`](../commands/common-options.md#binarysource). Options are evaluated first from the environment, then from the command line. Binary caching can be completely disabled by passing `--binarysource=clear` as the last command line option.
 
 | Form | Description |
 |---|---|
@@ -61,7 +62,7 @@ downloading binaries (`read`)(default), whether on-demand builds will be uploade
 
 ## <a name="aws"></a> AWS S3 provider
 
-[!INCLUDE [experimental](../../../includes/experimental.md)]
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 ```
 x-aws,<prefix>[,<rw>]
@@ -75,7 +76,7 @@ Pass `--no-sign-request` to the AWS CLI.
 
 ## <a name="azblob"></a> Azure Blob provider
 
-[!INCLUDE [experimental](../../../includes/experimental.md)]
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 ```
 x-azblob,<baseuri>,<sas>[,<rw>]
@@ -125,7 +126,7 @@ Stores zip-compressed archives at the path based on the [binary caching ID](#abi
 
 ## <a name="gcs"></a> Google Cloud Storage provider
 
-[!INCLUDE [experimental](../../../includes/experimental.md)]
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 ```
 x-gcs,<prefix>[,<rw>]
@@ -240,7 +241,7 @@ if the appropriate environment variables are defined and non-empty. This is spec
 
 ### NuGet Cache
 
-NuGet's user-wide cache is not used by default. To use it for every nuget-based source, set the [environment variable](config-environment.md#VCPKG_USE_NUGET_CACHE) `VCPKG_USE_NUGET_CACHE` to `true` (case-insensitive) or `1`.
+NuGet's user-wide cache is not used by default. To use it for every nuget-based source, set the [environment variable](config-environment.md#vcpkg_use_nuget_cache) `VCPKG_USE_NUGET_CACHE` to `true` (case-insensitive) or `1`.
 
 ## Provider Examples
 
@@ -351,7 +352,8 @@ We recommend using a Personal Access Token (PAT) as the password for maximum sec
 
 ## ABI Hash
 
-> [!NOTE] Information on the ABI Hash is provided as an implementation note and will change without notice.
+> [!NOTE]
+> Information on the ABI Hash is provided as an implementation note and will change without notice.
 
 For every build, vcpkg calculates an _ABI Hash_ to determine equivalence. If two builds have the same ABI Hash, vcpkg will consider them identical and reuse the binaries across projects and machines.
 

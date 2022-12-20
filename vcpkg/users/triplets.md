@@ -81,7 +81,7 @@ This field is optional and, if present, will be passed into the build as `CMAKE_
 
 See also the CMake documentation for `CMAKE_SYSTEM_VERSION`: https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_VERSION.html.
 
-### <a name="VCPKG_CHAINLOAD_TOOLCHAIN_FILE"></a> VCPKG_CHAINLOAD_TOOLCHAIN_FILE
+### VCPKG_CHAINLOAD_TOOLCHAIN_FILE
 
 Specifies an alternate CMake Toolchain file to use.
 
@@ -161,7 +161,7 @@ set(VCPKG_MAKE_CONFIGURE_OPTIONS "lt_cv_deplibs_check_method=pass_all")
 
 Also available as build-type specific `VCPKG_MAKE_CONFIGURE_OPTIONS_DEBUG` and `VCPKG_MAKE_CONFIGURE_OPTIONS_RELEASE` variables.
 
-### <a name="VCPKG_DEP_INFO_OVERRIDE_VARS"></a> VCPKG_DEP_INFO_OVERRIDE_VARS
+### VCPKG_DEP_INFO_OVERRIDE_VARS
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
@@ -181,7 +181,7 @@ This will cause [Binary Caching](binarycaching.md) to reuse builds from older or
 
 ## Windows-specific Variables
 
-### <a name="VCPKG_ENV_PASSTHROUGH"></a> VCPKG_ENV_PASSTHROUGH
+### VCPKG_ENV_PASSTHROUGH
 
 Instructs vcpkg to allow additional environment variables into the build process.
 

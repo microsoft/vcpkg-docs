@@ -75,7 +75,7 @@ pass in environment variables that should cause rebuilds on change, see [`VCPKG_
 
 Example: `FOO_SDK_DIR;BAR_SDK_DIR`
 
-## <a name="VCPKG_MAX_CONCURRENCY"></a> VCPKG_MAX_CONCURRENCY
+## VCPKG_MAX_CONCURRENCY
 
 This environment variables limits the amount of concurrency used by underlying buildsystems. If unspecified, this defaults to logical cores + 1.
 
