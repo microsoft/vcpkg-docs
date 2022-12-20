@@ -33,7 +33,7 @@ To use this function, you must depend on the helper port `vcpkg-cmake`:
 
 Disables running the build in parallel.
 
-By default builds are run with up to [VCPKG_MAX_CONCURRENCY](../../users/config-environment.md#VCPKG_MAX_CONCURRENCY) jobs. This option limits the build to a single job and should be used only if the underlying build is unable to run correctly with concurrency.
+By default builds are run with up to [`VCPKG_MAX_CONCURRENCY`](../../users/config-environment.md#vcpkg_max_concurrency) jobs. This option limits the build to a single job and should be used only if the underlying build is unable to run correctly with concurrency.
 
 ### ADD_BIN_TO_PATH
 

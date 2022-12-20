@@ -55,7 +55,7 @@ By default vcpkg disables writing back to the source directory (via the undocume
 
 ### NO_CHARSET_FLAG
 
-Disables passing `/utf-8` when using the [built-in Windows toolchain](../../users/triplets.md#VCPKG_CHAINLOAD_TOOLCHAIN_FILE).
+Disables passing `/utf-8` when using the [built-in Windows toolchain](../../users/triplets.md#vcpkg_chainload_toolchain_file).
 
 This is needed for libraries that set their own source code's character set when targeting MSVC. See the [MSVC documentation for `/utf-8`](/cpp/build/reference/utf-8-set-source-and-executable-character-sets-to-utf-8) for more information.
 

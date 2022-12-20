@@ -71,7 +71,7 @@ This environment variable can be set to a list of environment variables, separat
 the build environment.
 
 The values of the kept variables will not be tracked in package ABIs and will not cause rebuilds when they change. To
-pass in environment variables that should cause rebuilds on change, see [`VCPKG_ENV_PASSTHROUGH`](triplets.md#VCPKG_ENV_PASSTHROUGH).
+pass in environment variables that should cause rebuilds on change, see [`VCPKG_ENV_PASSTHROUGH`](triplets.md#vcpkg_env_passthrough).
 
 Example: `FOO_SDK_DIR;BAR_SDK_DIR`
 
@@ -81,15 +81,15 @@ This environment variables limits the amount of concurrency used by underlying b
 
 ## VCPKG_DEFAULT_BINARY_CACHE
 
-This environment variable redirects the default location to store binary packages. See [Binary Caching](binarycaching.md#configuration) for more details.
+This environment variable redirects the default location to store binary packages. See [Binary Caching][] for more details.
 
 ## VCPKG_BINARY_SOURCES
 
-This environment variable adds or removes binary sources. See [Binary Caching](binarycaching.md#configuration) for more details.
+This environment variable adds or removes binary sources. See [Binary Caching][] for more details.
 
 ## VCPKG_NUGET_REPOSITORY
 
-This environment variable changes the metadata of produced NuGet packages. See [Binary Caching](binarycaching.md#configuration) for more details.
+This environment variable changes the metadata of produced NuGet packages. See [Binary Caching](binarycaching.md#nuget) for more details.
 
 ## VCPKG_USE_NUGET_CACHE
 
@@ -105,3 +105,5 @@ This environment variable allows using a private mirror for all SHA512-tagged as
 ## VCPKG_NO_CI
 
 Setting `VCPKG_NO_CI` disables vcpkg's CI environment detection heuristics.
+
+[Binary Caching]: binarycaching.md

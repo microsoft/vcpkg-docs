@@ -242,8 +242,9 @@ Valid values are, for example, `14.25` or `14.27.29110`.
 
 ### VCPKG_LOAD_VCVARS_ENV
 
-If `VCPKG_CHAINLOAD_TOOLCHAIN_FILE` is used, VCPKG will not setup the Visual Studio environment.
-Setting `VCPKG_LOAD_VCVARS_ENV` to (true|1|on) changes this behavior so that the Visual Studio environment is setup following the same rules as if `VCPKG_CHAINLOAD_TOOLCHAIN_FILE` was not set.
+Determines whether vcpkg will search for and use an instance of Visual Studio as part of the triplet environment.
+
+By default, this is `ON` for Windows triplets that do not specify [`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](#vcpkg_chainload_toolchain_file). For non-Windows triplets and triplets specifying `VCPKG_CHAINLOAD_TOOLCHAIN_FILE`, this defaults to `OFF`.
 
 ## Linux Variables
 
