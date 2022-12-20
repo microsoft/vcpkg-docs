@@ -96,7 +96,7 @@ include(/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake)
 ```
 
 > [!NOTE]
-> vcpkg does not automatically apply your toolchain's settings, such as your compiler or compilation flags, while building libraries. To change vcpkg's library settings, you must make a [custom triplet file](../triplets.md) (which can [share your toolchain](../triplets.md#VCPKG_CHAINLOAD_TOOLCHAIN_FILE))**
+> vcpkg does not automatically apply your toolchain's settings, such as your compiler or compilation flags, while building libraries. To change vcpkg's library settings, you must make a [custom triplet file](../triplets.md) (which can [share your toolchain](../triplets.md#vcpkg_chainload_toolchain_file))**
 
 ## Settings Reference
 
