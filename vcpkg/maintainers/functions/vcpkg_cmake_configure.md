@@ -111,7 +111,7 @@ This command automatically provides several options to CMake.
 - [`CMAKE_BUILD_TYPE`](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html) is set to `"Release"` or `"Debug"` as appropriate.
 - [`BUILD_SHARED_LIBS`](https://cmake.org/cmake/help/latest/variable/BUILD_SHARED_LIBS.html) is set according to the value of [`VCPKG_LIBRARY_LINKAGE`](../../users/triplets.md#vcpkg_library_linkage).
 - [`CMAKE_INSTALL_PREFIX=${CURRENT_PACKAGES_DIR}</debug>`](https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_PREFIX.html) as appropriate to the configuration
-- [`CMAKE_TOOLCHAIN_FILE`](https://cmake.org/cmake/help/latest/variable/CMAKE_TOOLCHAIN_FILE.html) and `VCPKG_CHAINLOAD_TOOLCHAIN_FILE` are set to include the [vcpkg toolchain file](../../users/buildsystems/cmake-integration.md#cmake_toolchain_file) and the [triplet toolchain](../../users/triplets.md#VCPKG_CHAINLOAD_TOOLCHAIN_FILE).
+- [`CMAKE_TOOLCHAIN_FILE`](https://cmake.org/cmake/help/latest/variable/CMAKE_TOOLCHAIN_FILE.html) and `VCPKG_CHAINLOAD_TOOLCHAIN_FILE` are set to include the [vcpkg toolchain file](../../users/buildsystems/cmake-integration.md#cmake_toolchain_file) and the [triplet toolchain](../../users/triplets.md#vcpkg_chainload_toolchain_file).
 - [`CMAKE_SYSTEM_NAME=${VCPKG_CMAKE_SYSTEM_NAME}`](https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html). If `VCPKG_CMAKE_SYSTEM_NAME` is unset, defaults to `"Windows"`.
 - [`CMAKE_SYSTEM_VERSION=${VCPKG_CMAKE_SYSTEM_VERSION}`](https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_VERSION.html) if `VCPKG_CMAKE_SYSTEM_VERSION` is set.
 - [`CMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON`](https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_NO_PACKAGE_REGISTRY.html)
@@ -121,6 +121,7 @@ This command automatically provides several options to CMake.
 - [`CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION=ON`](https://cmake.org/cmake/help/latest/variable/CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION.html)
 - [`CMAKE_INSTALL_LIBDIR:STRING=lib`](https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html)
 - [`CMAKE_INSTALL_BINDIR:STRING=bin`](https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html)
+- [`FETCHCONTENT_FULLY_DISCONNECTED=ON`](https://cmake.org/cmake/help/latest/module/FetchContent.html#variable:FETCHCONTENT_FULLY_DISCONNECTED) (_since version 2022-10-30_)
 
 This command also passes all options in [`VCPKG_CMAKE_CONFIGURE_OPTIONS`](../../users/triplets.md#vcpkg_cmake_configure_options) and the configuration-specific options from `VCPKG_CMAKE_CONFIGURE_OPTIONS_RELEASE` or `VCPKG_CMAKE_CONFIGURE_OPTIONS_DEBUG`.
 
