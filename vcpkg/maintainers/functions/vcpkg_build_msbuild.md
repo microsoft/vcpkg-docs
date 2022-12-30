@@ -16,8 +16,8 @@ vcpkg_build_msbuild(
     [DEBUG_CONFIGURATION <Debug>]
     [TARGET <Build>]
     [TARGET_PLATFORM_VERSION <10.0.15063.0>]
-    [PLATFORM <${TRIPLET_SYSTEM_ARCH}>]
-    [PLATFORM_TOOLSET <${VCPKG_PLATFORM_TOOLSET}>]
+    [PLATFORM <Win32>]
+    [PLATFORM_TOOLSET <v143>]
     [OPTIONS </p:ZLIB_INCLUDE_PATH=X>...]
     [OPTIONS_RELEASE </p:ZLIB_LIB=X>...]
     [OPTIONS_DEBUG </p:ZLIB_LIB=X>...]
@@ -39,28 +39,29 @@ The path to the solution (`.sln`) or project (`.vcxproj`) file.
 
 ### RELEASE_CONFIGURATION
 
-The configuration (``/p:Configuration`` msbuild parameter) used for Release builds.
+The configuration (`/p:Configuration` msbuild parameter) used for Release builds.
 
 ### DEBUG_CONFIGURATION
 
-The configuration (``/p:Configuration`` msbuild parameter)
-used for Debug builds.
+The configuration (`/p:Configuration` msbuild parameter) used for Debug builds.
 
 ### TARGET_PLATFORM_VERSION
 
-The WindowsTargetPlatformVersion (``/p:WindowsTargetPlatformVersion`` msbuild parameter)
+The WindowsTargetPlatformVersion (`/p:WindowsTargetPlatformVersion` msbuild parameter).
 
 ### TARGET
 
-The MSBuild target to build. (``/t:<TARGET>``)
+The MSBuild target to build (`/t:<TARGET>`).
 
 ### PLATFORM
 
-The platform (``/p:Platform`` msbuild parameter) used for the build.
+The platform (`/p:Platform` msbuild parameter) used for the build.
+
+See the [`vcpkg_install_msbuild()` documentation](vcpkg_install_msbuild.md#platform) for this parameter.
 
 ### PLATFORM_TOOLSET
 
-The platform toolset (``/p:PlatformToolset`` msbuild parameter) used for the build.
+The platform toolset (`/p:PlatformToolset` msbuild parameter) used for the build.
 
 ### OPTIONS
 
