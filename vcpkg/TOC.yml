@@ -249,6 +249,8 @@
           href: commands/search.md
         - name: vcpkg x-update-baseline
           href: commands/update-baseline.md
+        - name: vcpkg x-lint-port
+          href: commands/lint-port.md
         - name: vcpkg version
           href: commands/version.md
 - name: Contributing to vcpkg
