@@ -5,13 +5,12 @@ ms.date: 01/05/2023
 ---
 # vcpkg x-lint-port
 
-> [!NOTE]
-> This command is experimental and may change or be removed at any time.
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 ## Synopsis
 
 ```console
-vcpkg x-update-baseline [options] [--fix] [--increase-version] [--all] [package]
+vcpkg x-update-baseline [options] [--fix] [--increase-version] [--all | port...]
 ```
 
 ## Description
@@ -31,32 +30,38 @@ It performs the following checks:
   
   Warns when a deprecated license expressions is used and suggests a non deprecated one.
 
-- Check for the use of deprecated functions in `portfile.cmake` (auto fix often possible):  
-  
-  The following checks are performed:
-  - `vcpkg_build_msbuild` -> `vcpkg_install_msbuild` (auto fix not avaiable)
-  - `vcpkg_configure_cmake` -> `vcpkg_cmake_configure` (auto fix avaiable)
-  - `vcpkg_build_cmake` -> `vcpkg_cmake_build` (auto fix avaiable)
-  - `vcpkg_install_cmake` -> `vcpkg_cmake_install` (auto fix avaiable)
-  - `vcpkg_fixup_cmake_targets` -> `vcpkg_fixup_cmake_targets` (auto fix avaiable)
-  - `vcpkg_extract_source_archive_ex` -> `vcpkg_extract_source_archive` (auto fix avaiable)
-  - deprecated `vcpkg_check_features` call without `FEATURES` keyword (auto fix avaiable)
+- Check for the use of deprecated functions in `portfile.cmake`: 
+
+  - `vcpkg_build_msbuild` -> `vcpkg_install_msbuild` (auto fix not available)
+  - `vcpkg_configure_cmake` -> `vcpkg_cmake_configure` (auto fix available)
+  - `vcpkg_build_cmake` -> `vcpkg_cmake_build` (auto fix available)
+  - `vcpkg_install_cmake` -> `vcpkg_cmake_install` (auto fix available)
+  - `vcpkg_fixup_cmake_targets` -> `vcpkg_fixup_cmake_targets` (auto fix available)
+  - `vcpkg_extract_source_archive_ex` -> `vcpkg_extract_source_archive` (auto fix available)
+
+- `vcpkg_check_features` call without `FEATURES` keyword (auto fix available)
 
 
 ## Options
 
 All vcpkg commands support a set of [common options](common-options.md).
 
+### `port...`
+
+The list of ports to lint and fix.
+
+Required if `--all` was not passed.
+
 ### `--fix`
 
-The command tries to fix as many problems as possible.
+Apply all automatic fixes to the port files.
 
 ### `--increase-version`
 
-- **only when `--fix` is passed**
-
 Increases the `port-version` of ports which where fixed.
+
+Requires `--fix` to also be passed.
 
 ### `--all`
 
-Instead of linting the given ports lint all avaiable ports.
+Instead of linting the given ports lint all available ports.
