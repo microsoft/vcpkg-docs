@@ -5,8 +5,8 @@
 	"image": "mcr.microsoft.com/devcontainers/base:alpine-3.17",
 
 	"customizations": {
-      "vscode": {
-        "extensions": ["docsmsft.docs-authoring-pack"]
-      }
+		"vscode": {
+			"extensions": ["docsmsft.docs-authoring-pack"]
+		}
 	}
 }
