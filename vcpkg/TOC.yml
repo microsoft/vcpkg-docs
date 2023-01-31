@@ -67,11 +67,11 @@
   - name: Authoring Script Ports
     displayName: helpers, scripts, reuseable, function, reuse
     href: maintainers/authoring-script-ports.md
+  - name: Creating Registries
+    href: maintainers/registries.md
   - name: Host Dependencies
     displayName: host, dependencies
     href: users/host-dependencies.md
-  - name: Creating Registries
-    href: maintainers/registries.md
   - name: Portfile Variable Reference
     href: maintainers/variables.md
   - name: Portfile Function Reference
