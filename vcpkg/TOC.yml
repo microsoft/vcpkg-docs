@@ -69,7 +69,7 @@
     href: maintainers/authoring-script-ports.md
   - name: Host Dependencies
     displayName: host, dependencies
-    href: users/host-dependencies
+    href: users/host-dependencies.md
   - name: Creating Registries
     href: maintainers/registries.md
   - name: Portfile Variable Reference
