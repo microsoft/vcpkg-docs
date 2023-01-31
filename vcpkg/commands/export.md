@@ -81,7 +81,7 @@ Contains the [Standard Integration Files][].
 vcpkg export --nuget [options] <package>...
 ```
 
-Create an [NuGet](https://learn.microsoft.com/en-us/nuget/what-is-nuget) package at `<output-dir>/<nuget-id>.<nuget-version>.nupkg`.
+Create an [NuGet](/nuget/what-is-nuget) package at `<output-dir>/<nuget-id>.<nuget-version>.nupkg`.
 
 Contains the [Standard Integration Files][] as well as additional MSBuild integration to support inclusion in an MSBuild C++ project (`.vcxproj`) via the NuGet Package Manager. Note that you cannot mix multiple NuGet packages produced with `export` together -- only one of the packages will be used. To add additional libraries, you must create a new export with the full set of dependencies.
 
