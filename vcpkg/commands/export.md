@@ -21,7 +21,7 @@ Export built packages from the [installed directory](common-options.md#install-r
 2. Their transitive dependencies
 3. [Integration files](#standard-integration), such as a [CMake toolchain][cmake] or [MSBuild props/targets][msbuild]
 
-`export` must be used from Classic Mode. [Manifest Mode](../users/manifests.md) is unsupported.
+`export` must be used from [Classic Mode](../users/classic-mode.md). [Manifest Mode](../users/manifests.md) is unsupported.
 
 ### Standard Integration
 
@@ -85,7 +85,7 @@ Create an [NuGet](https://learn.microsoft.com/en-us/nuget/what-is-nuget) package
 
 Contains the [Standard Integration Files][] as well as additional MSBuild integration to support inclusion in an MSBuild C++ project (`.vcxproj`) via the NuGet Package Manager. Note that you cannot mix multiple NuGet packages produced with `export` together -- only one of the packages will be used. To add additional libraries, you must create a new export with the full set of dependencies.
 
-See also:
+Format specific options:
 - [`--nuget-id`](#nuget-id)
 - [`--nuget-version`](#nuget-version)
 - [`--nuget-description`](#nuget-description)
@@ -100,7 +100,7 @@ vcpkg export --ifw [options] <package>...
 
 Export to an IFW-based installer.
 
-See also:
+Format specific options:
 - [`--ifw-configuration-file-path`](#ifw-configuration-file-path)
 - [`--ifw-installer-file-path`](#ifw-installer-file-path)
 - [`--ifw-packages-directory-path`](#ifw-packages-directory-path)
@@ -117,7 +117,7 @@ vcpkg export --x-chocolatey [options] <package>...
 
 Export a Chocolatey package.
 
-See also:
+Format specific options:
 - [`--x-maintainer`](#maintainer)
 - [`--x-version-suffix`](#version-suffix)
 
@@ -131,7 +131,7 @@ vcpkg export --prefab [options] <package>...
 
 Export to Prefab format.
 
-See also:
+Format specific options:
 - [`--prefab-artifact-id`](#prefab-artifact-id)
 - [`--prefab-group-id`](#prefab-group-id)
 - [`--prefab-maven`](#prefab-maven)
@@ -209,7 +209,7 @@ Specify the maintainer for the exported Chocolatey package.
 
 ### `--nuget-description=`
 
-Specifies the output description for [NuGet](#nuget) nupkgs.
+Specifies the output description for [NuGet](#nuget) .nupkg files.
 
 Defaults to "Vcpkg NuGet export".
 
@@ -217,7 +217,7 @@ Defaults to "Vcpkg NuGet export".
 
 ### `--nuget-id=`
 
-Specifies the output id for [NuGet](#nuget) nupkgs.
+Specifies the output id for [NuGet](#nuget) .nupkg files.
 
 This option overrides the [`--output`](#output) option specifically for the NuGet exporter. See `--output` for default values.
 
@@ -225,7 +225,7 @@ This option overrides the [`--output`](#output) option specifically for the NuGe
 
 ### `--nuget-version=`
 
-Specifies the output version for [NuGet](#nuget) nupkgs.
+Specifies the output version for [NuGet](#nuget) .nupkg files.
 
 Defaults to `1.0.0`.
 
@@ -251,19 +251,19 @@ All top-level SDK files will be produced into this directory. Defaults to the [v
 
 ### `--prefab-artifact-id=`
 
-Artifact Id is the name of the project according to maven specifications.
+Artifact Id is the name of the project according to Maven specifications.
 
 <a id="prefab-group-id"></a>
 
 ### `--prefab-group-id=`
 
-GroupId uniquely identifies your project according to maven specifications.
+GroupId uniquely identifies your project according to Maven specifications.
 
 <a id="prefab-maven"></a>
 
 ### `--prefab-maven`
 
-Enable maven.
+Enable Maven.
 
 <a id="prefab-min-sdk"></a>
 
@@ -281,7 +281,7 @@ Android target supported sdk version.
 
 ### `--prefab-version=`
 
-Version is the version of the project according to maven specifications.
+Version is the version of the project according to Maven specifications.
 
 <a id="version-suffix"></a>
 
