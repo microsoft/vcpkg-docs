@@ -13,7 +13,7 @@ In [Classic Mode](../users/classic-mode.md), vcpkg will use the `vcpkg-configura
 
 For an overview of using registries with vcpkg, see [Using Registries](../users/registries.md).
 
-The latest JSON Schema is available at [https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg-configuration.schema.json](). IDEs with JSON Schema support such as Visual Studio and Visual Studio Code can use this file to provide autocomplete and syntax checking. For most IDEs, you should set `"$schema"` in your `vcpkg-configuration.json` to this URL.
+The latest JSON Schema is available at [https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg-configuration.schema.json](https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg-configuration.schema.json). IDEs with JSON Schema support such as Visual Studio and Visual Studio Code can use this file to provide autocomplete and syntax checking. For most IDEs, you should set `"$schema"` in your `vcpkg-configuration.json` to this URL.
 
 ## Example
 
@@ -57,7 +57,7 @@ The example also configures custom overlays for ports and triplets that are pres
 
 The registry to use for all ports without a more specific registry. A [Registry][] or null. Optional.
 
-Ports that do not match a [`"packages"`](#registry-packages) specifier come from the default registry. If the default registry is specified as `null`, ports that do not match will fail to be found. If the default registry is omitted, it will implicitly be set to a [Builtin Registry][] using the value of [`"builtin-baseline"`](vcpkg-json.md#builtin-baseline) as the [`"baseline"`](#registry-baseline).
+Ports that do not match any [`"packages"`](#registry-packages) pattern are resolved to the default registry. If the default registry is specified as `null`, ports that do not match will fail to resolve. If the default registry is omitted, it will implicitly be set to a [Builtin Registry][] using the value of [`"builtin-baseline"`](vcpkg-json.md#builtin-baseline) as the [`"baseline"`](#registry-baseline).
 
 ### <a name="registries"></a> `"registries"`
 
@@ -137,7 +137,25 @@ Relative paths are resolved relative to the `vcpkg-configuration.json`.
 
 ### <a name="registry-packages"></a> [Registry][]: `"packages"`
 
-The list of ports to come from this registry. An array of strings. Required for all non-default registries.
+The list of port patterns assigned to this registry. An array of strings. Required for all registries outside [`"default-registry"`](#default-registry).
+
+Each entry must be either:
+* The name of a package
+* A package name prefix, followed by `*` (_Added in tool version 2022-12-14_)
+
+Package patterns may contain only lowercase letters, digits, and `-`, with an optional trailing `*`.
+
+**Examples of valid patterns:**
+* `*`: Matches all port names
+* `boost`: Matches only the port `boost`
+* `b*`: Matches ports that start with the letter `b`
+* `boost-*`: Matches ports that start with the prefix `boost-`
+
+**Examples of invalid patterns:**
+* `*a` (`*` must be the last character in the prefix)
+* `a**` (only one `*` is allowed)
+* `a+` (`+` is not a valid pattern character)
+* `a?` (`?` is not a valid pattern character)
 
 See the [Using Registries documentation](../users/registries.md#package-name-resolution) for more information on how port names are resolved.
 

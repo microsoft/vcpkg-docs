@@ -81,7 +81,7 @@ This field is optional and, if present, will be passed into the build as `CMAKE_
 
 See also the CMake documentation for `CMAKE_SYSTEM_VERSION`: https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_VERSION.html.
 
-### <a name="VCPKG_CHAINLOAD_TOOLCHAIN_FILE"></a> VCPKG_CHAINLOAD_TOOLCHAIN_FILE
+### VCPKG_CHAINLOAD_TOOLCHAIN_FILE
 
 Specifies an alternate CMake Toolchain file to use.
 
@@ -161,7 +161,7 @@ set(VCPKG_MAKE_CONFIGURE_OPTIONS "lt_cv_deplibs_check_method=pass_all")
 
 Also available as build-type specific `VCPKG_MAKE_CONFIGURE_OPTIONS_DEBUG` and `VCPKG_MAKE_CONFIGURE_OPTIONS_RELEASE` variables.
 
-### <a name="VCPKG_DEP_INFO_OVERRIDE_VARS"></a> VCPKG_DEP_INFO_OVERRIDE_VARS
+### VCPKG_DEP_INFO_OVERRIDE_VARS
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
@@ -181,7 +181,7 @@ This will cause [Binary Caching](binarycaching.md) to reuse builds from older or
 
 ## Windows-specific Variables
 
-### <a name="VCPKG_ENV_PASSTHROUGH"></a> VCPKG_ENV_PASSTHROUGH
+### VCPKG_ENV_PASSTHROUGH
 
 Instructs vcpkg to allow additional environment variables into the build process.
 
@@ -242,8 +242,9 @@ Valid values are, for example, `14.25` or `14.27.29110`.
 
 ### VCPKG_LOAD_VCVARS_ENV
 
-If `VCPKG_CHAINLOAD_TOOLCHAIN_FILE` is used, VCPKG will not setup the Visual Studio environment.
-Setting `VCPKG_LOAD_VCVARS_ENV` to (true|1|on) changes this behavior so that the Visual Studio environment is setup following the same rules as if `VCPKG_CHAINLOAD_TOOLCHAIN_FILE` was not set.
+Determines whether vcpkg will search for and use an instance of Visual Studio as part of the triplet environment.
+
+By default, this is `ON` for Windows triplets that do not specify [`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](#vcpkg_chainload_toolchain_file). For non-Windows triplets and triplets specifying `VCPKG_CHAINLOAD_TOOLCHAIN_FILE`, this defaults to `OFF`.
 
 ## Linux Variables
 

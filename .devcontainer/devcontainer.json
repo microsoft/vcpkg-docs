@@ -1,0 +1,12 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+{
+	"name": "vcpkg-docs Container",
+	"image": "mcr.microsoft.com/devcontainers/base:alpine-3.17",
+
+	"customizations": {
+		"vscode": {
+			"extensions": ["docsmsft.docs-authoring-pack"]
+		}
+	}
+}
