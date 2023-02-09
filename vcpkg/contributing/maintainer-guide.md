@@ -394,27 +394,6 @@ If a library generates CMake integration files (`foo-config.cmake`), renaming mu
 
 Finally, DLL files on Windows should never be renamed post-build because it breaks the generated LIBs.
 
-## Code format
-
-### vcpkg internal code
-
-We require the C++ code inside vcpkg to follow the clang-format, if you change them. Please perform the following steps after modification:
-
-- Use Visual Studio:
-
-  1. Configure your [clang-format tools](https://devblogs.microsoft.com/cppblog/clangformat-support-in-visual-studio-2017-15-7-preview-1/).
-  1. Open the modified file.
-  1. Use shortcut keys Ctrl+K, Ctrl+D to format the current file.
-  
-- Use tools:
-
-  1. Install [llvm clang-format](https://releases.llvm.org/download.html#10.0.0)
-  1. Run command:
-
-    ```cmd
-    > LLVM_PATH/bin/clang-format.exe -style=file -i changed_file.cpp
-    ```
-
 ### Manifests
 
 We require that the manifest file be formatted. Use the following command to format all manifest files:
@@ -422,6 +401,16 @@ We require that the manifest file be formatted. Use the following command to for
 ```cmd
 > vcpkg format-manifest --all
 ```
+
+## Triplets
+
+We are not accepting requests to add non-community triplets at this time. Promotion from community to full triplet status is primarily based on budget for the hardware to test such triplets and will be driven by metrics submitted by vcpkg to maximize the likelihood what people actually use is fully tested.
+
+We will add community triplets if:
+* It is demonstrated that people will actually use that community triplet; and,
+* we don't know that such a triplet is broken.
+
+For example, we did not add a triplet in https://github.com/microsoft/vcpkg/pull/29034 because the author was just trying to "complete the set" rather than indicating they would actually use such a thing, and we did not add linux-dynamic until the patchelf solution to make the results relocatable was created.
 
 ## Useful implementation notes
 
