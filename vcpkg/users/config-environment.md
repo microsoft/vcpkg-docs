@@ -107,10 +107,3 @@ This environment variable allows using a private mirror for all SHA512-tagged as
 Setting `VCPKG_NO_CI` disables vcpkg's CI environment detection heuristics.
 
 [Binary Caching]: binarycaching.md
-
-## VSLANG
-
-This environment variable sets the language vcpkg uses to display messages. It should be set to one of the 14 supported LCIDs (locale identifier, 4-byte value corresponding to a language). 
-
-For example: 1033 corresponds to the English (US) language. 
-For a full list of supported LCIDs see [Localization](https://github.com/microsoft/vcpkg-tool/blob/main/docs/localization.md).
