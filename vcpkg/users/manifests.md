@@ -1,7 +1,7 @@
 ---
 title: Manifest mode
 description: Use a manifest with vcpkg to configure libraries on a per project basis.
-ms.date: 11/30/2022
+ms.date: 2/10/2023
 ---
 # Manifest mode
 
@@ -12,6 +12,10 @@ In Manifest mode, vcpkg creates separate *installed trees* for each project and 
 Check out the [manifest CMake example](../examples/manifest-mode-cmake.md) for an example project using CMake and manifest mode.
 
 Check out the [`vcpkg.json` Syntax Reference](../reference/vcpkg-json.md) for a full list of fields and functionality.
+
+## How does it work?
+
+In manifest mode, vcpkg is integrated with CMake via a [toolchain](https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html), which must be [specified](https://github.com/microsoft/vcpkg#using-vcpkg-with-cmake) when the project is configured. The toolchain file is evaluated by CMake via [`include()`](https://cmake.org/cmake/help/latest/command/include.html) the first time CMake's [`project()`](https://cmake.org/cmake/help/latest/command/project.html) command is called. This evaluation sequence means that any vcpkg CMake variables must be set before the first call to `project()`. Note that changing the triplet requires a clean reconfigure since the results of `find_*` calls are stored in cache variables which won't get refreshed. During configuration, the toolchain CMake file effectively runs `vcpkg install`, with a project-local build tree, thus executing full builds of all manifest dependencies _during CMake configuration_.
 
 ## Example
 
