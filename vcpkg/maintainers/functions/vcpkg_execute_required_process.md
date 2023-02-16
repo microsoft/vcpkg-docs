@@ -17,7 +17,7 @@ vcpkg_execute_required_process(
     [TIMEOUT <seconds>]
     [OUTPUT_VARIABLE <var>]
     [ERROR_VARIABLE <var>]
-    [SAVE_LOG_FILES <relative-path> [<relative-path>...]]
+    [SAVE_LOG_FILES [<relative-path> [ALIAS <unique-alias>]]...]
 )
 ```
 ## Parameters
@@ -54,17 +54,21 @@ This should be a unique name for different triplets so that the logs don't confl
 ### SAVE_LOG_FILES
 
 Optional files to be moved from the working directory to `${CURRENT_BUILDTREES_DIR}`.
-The files are copied even if the process failed. 
+
+This helps to collect relevant log files in CI setups. The files are copied even if the process failed.
 The target file names are constructed from the `LOGNAME` parameter and the source filename.
 If the target file name doesn't end in `.log`, this suffix is appended.
-This helps to collect relevant log files in CI setups.
+
+_Added in vcpkg version 2023.01.10_
+
+The `ALIAS` parameter after a relative path name replaces the target file name generation with the value of `<unique-alias>`.
 
 ## Examples
 
+- [boost-build](https://github.com/Microsoft/vcpkg/blob/master/ports/boost-build/portfile.cmake)
 - [ffmpeg](https://github.com/Microsoft/vcpkg/blob/master/ports/ffmpeg/portfile.cmake)
-- [openssl](https://github.com/Microsoft/vcpkg/blob/master/ports/openssl/portfile.cmake)
-- [boost](https://github.com/Microsoft/vcpkg/blob/master/ports/boost/portfile.cmake)
-- [qt5](https://github.com/Microsoft/vcpkg/blob/master/ports/qt5/portfile.cmake)
+- [qt5-base](https://github.com/Microsoft/vcpkg/blob/master/ports/qt5-base/portfile.cmake)
+- [vcpkg-cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-cmake/vcpkg_cmake_configure.cmake)
 
 ## Source
 
