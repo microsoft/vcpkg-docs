@@ -3,7 +3,7 @@ title: Add an explicit usage file to a port.
 description: Learn about supplying specific usage instructions in ports
 ms.date: 2/16/2023
 ---
-## How to: Add an explicit usage file to a port.
+# Add an explicit usage file to a port.
 
 `vcpkg` generates usage text for users who install particular ports, if the user names that specific port. For example:
 
