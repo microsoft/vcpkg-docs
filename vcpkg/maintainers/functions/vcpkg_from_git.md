@@ -1,11 +1,13 @@
 ---
 title: vcpkg_from_git
 description: Learn how to use vcpkg_from_git.
-ms.date: 11/30/2022
+ms.date: 2/22/2022
 ---
 # vcpkg_from_git
 
-Download and extract a project from git
+Download and extract a project from git.
+
+This helper reuses `git` CLI credentials. See [Authentication](../../users/authentication.md) to configure credentials for your private git hosts.
 
 ## Usage
 

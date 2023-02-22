@@ -117,7 +117,3 @@ Sorting Options:
 - `topological` - (Default) Sort by increasing depth
 - `reverse` - Sort by decreasing depth
 - `x-tree` - (Experimental) Display an ASCII-art tree
-
-## Options
-
-All vcpkg commands support a set of [common options](common-options.md).
