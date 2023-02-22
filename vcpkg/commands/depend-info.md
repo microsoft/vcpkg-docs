@@ -1,22 +1,21 @@
 ---
 title: vcpkg depend-info
-description: Display a list of dependencies for a package. Or generate a depency tree diagram for a package.
-ms.date: 2023-02-09
+description: Command line reference for the depend-info command. Display all dependencies for a package.
+ms.date: 2/9/2023
 ---
 # vcpkg depend-info
 
-**The latest version of this documentation is available on [GitHub](https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/commands/depend-info.md).**
-
 ## Synopsis
 
-```console
-vcpkg depend-info [query] [options]
+```no-highlight
+vcpkg depend-info [options] <package>
 ```
 
 ## Description
 
-Display a list of dependencies for a package.
-Or generate a depency tree diagram for a package in the specified format (DGML/DOT).
+Display all dependencies for a package.
+
+`depend-info` displays all transitive dependencies for a package in several formats, including a plain text list, DGML, or DOT.
 
 ## Examples
 
@@ -89,19 +88,36 @@ graph TD;
 
 ## Options
 
-All vcpkg commands support a set of [common options](https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/commands/common-options.md).
+All vcpkg commands support a set of [common options](common-options.md).
 
 ### `--dot`
-Generate the depency tree in the [DOT](https://en.wikipedia.org/wiki/DOT_(graph_description_language)) graph description format.
+Generate the dependency tree in the [DOT](https://en.wikipedia.org/wiki/DOT_(graph_description_language)) graph description format.
 
 ### `--dgml`
-Generate the depency tree in the [DGML (Directed Graph Markup Language)](https://en.wikipedia.org/wiki/DGML) XML format.
+Generate the dependency tree in the [DGML (Directed Graph Markup Language)](https://en.wikipedia.org/wiki/DGML) XML format.
 
 ### `--show-depth`
 Show recursion depth in output.
 
+Only applies to plain text list output.
+
 ### `--max-recurse=<depth>`
-Set maximum recursion depth, a value of -1 indicates no limit.
+Set maximum depth to display.
+
+A value of -1 indicates no limit.
 
 ### `--sort=<type>`
-Set sort order for the list of dependencies, accepted values are: lexicographical, topological (default), x-tree, reverse.
+Set sort order for the list of dependencies.
+
+Only applies to plain text list output.
+
+Sorting Options:
+
+- `lexicographical` - Sort by name
+- `topological` - (Default) Sort by increasing depth
+- `reverse` - Sort by decreasing depth
+- `x-tree` - (Experimental) Display an ASCII-art tree
+
+## Options
+
+All vcpkg commands support a set of [common options](common-options.md).
