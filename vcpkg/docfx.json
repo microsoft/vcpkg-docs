@@ -44,7 +44,6 @@
     "externalReference": [],
     "globalMetadata": {
       "breadcrumb_path": "/vcpkg/breadcrumb/toc.json",
-      "extendBreadcrumb": "true",
       "feedback_system": "GitHub",
       "feedback_github_repo": "Microsoft/vcpkg-docs",
       "feedback_product_url": "https://github.com/Microsoft/vcpkg/issues/",
@@ -54,6 +53,7 @@
       "ms.prod": "vcpkg",
       "ms.topic": "conceptual",
       "audience": "developer",
+      "uhfHeaderId": "MSDocsHeader-Vcpkg",
       "defaultDevLang": "cpp",
       "ms.workload": [
         "cplusplus"
