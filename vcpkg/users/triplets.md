@@ -161,6 +161,17 @@ set(VCPKG_MAKE_CONFIGURE_OPTIONS "lt_cv_deplibs_check_method=pass_all")
 
 Also available as build-type specific `VCPKG_MAKE_CONFIGURE_OPTIONS_DEBUG` and `VCPKG_MAKE_CONFIGURE_OPTIONS_RELEASE` variables.
 
+### VCPKG_HASH_ADDITIONAL_FILES
+
+A cmake list of files to include into the calculation of the abi hash. This is for example required if files defined in `VCPKG_MESON_(NATIVE|CROSS)_FILE(_RELEASE|_DEBUG)?`
+should be part of the calculated abi or if files are included in the triplet/toolchain provided to vcpkg and those files should take part in the abi hash.
+
+This field is optional.
+
+```cmake
+set(VCPKG_HASH_ADDITIONAL_FILES "${CMAKE_CURRENT_LIST_DIR}/file1.cmake;${CMAKE_CURRENT_LIST_DIR}/meson-cross.txt")
+```
+
 ### VCPKG_DEP_INFO_OVERRIDE_VARS
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
