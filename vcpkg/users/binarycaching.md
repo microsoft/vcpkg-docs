@@ -55,6 +55,7 @@ Binary caching is configured with the environment variable `VCPKG_BINARY_SOURCES
 | [`x-aws,<prefix>[,<rw>]`](#aws)     | **Experimental: will change or be removed without warning**<br>Adds an AWS S3 source. |
 | [`x-aws-config,<parameter>`](#aws)  | **Experimental: will change or be removed without warning**<br>Configure all AWS S3 providers. |
 | [`x-cos,<prefix>[,<rw>]`](#cos)     | **Experimental: will change or be removed without warning**<br>Adds a Tencent Cloud Object Storage source. |
+| [`x-gha,<rw>]`](#gha)               | **Experimental: will change or be removed without warning**<br>Use the GitHub Actions cache as source. |
 | `interactive` | Enables interactive credential management for [NuGet](#nuget) (for debugging; requires `--debug` on the command line) |
 
 The `<rw>` optional parameter for certain sources controls whether they will be consulted for
@@ -154,6 +155,30 @@ x-gcs,gs://<bucket-name>/my-vcpkg-cache/maybe/with`,commas/too!/,readwrite
 ```
 
 Commas (`,`) are valid as part of a object prefix in GCS. Remember to escape them in the vcpkg configuration, as shown in the previous example. GCS does not have folders (some of the GCS tools simulate folders). It is not necessary to create or otherwise manipulate the prefix used by your vcpkg cache.
+
+## <a name="gha"></a> GitHub Actions cache
+
+[!INCLUDE [experimental](../../includes/experimental.md)]
+
+```
+x-gha[,<rw>]
+```
+
+Adds the GitHub Actions cache as a provider. Vcpkg needs to be executed by a GitHub Actions runner to be able to use this binary source, as well as the URL to the cache and the access token required to read and write to the cache.
+
+### <a name="gha-quickstart"></a> Quickstart
+
+You need to export two environment variables, `ACTIONS_RUNTIME_URL` and `ACTIONS_RUNTIME_TOKEN`, before vcpkg is able to use the GHA cache. You can do so as follows as a step inside a job:
+
+```yaml
+- uses: actions/github-script@v6
+  with:
+    script: |
+      core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
+      core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+# Now you can use vcpkg to install ports
+- run: vcpkg install zlib --binarysource="clear;x-gha,readwrite"
+```
 
 ## <a name="http"></a> HTTP provider
 
