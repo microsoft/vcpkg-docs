@@ -61,6 +61,8 @@ Binary caching is configured with the environment variable `VCPKG_BINARY_SOURCES
 The `<rw>` optional parameter for certain sources controls whether they will be consulted for
 downloading binaries (`read`)(default), whether on-demand builds will be uploaded to that remote (`write`), or both (`readwrite`).
 
+The additional command line option `--x-binary-cache-github-actions` is equivalent to a binary source of "clear;x-gha,readwrite".
+
 ## <a name="aws"></a> AWS S3 provider
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
