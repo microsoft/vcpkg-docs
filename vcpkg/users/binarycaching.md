@@ -170,7 +170,7 @@ Adds the GitHub Actions cache as a provider. Vcpkg needs to be executed by a Git
 
 ### <a name="gha-quickstart"></a> Quickstart
 
-You need to export two environment variables, `ACTIONS_RUNTIME_URL` and `ACTIONS_RUNTIME_TOKEN`, before vcpkg is able to use the GHA cache. You can do so as follows as a step inside a job:
+You need to export two environment variables, `ACTIONS_CACHE_URL` and `ACTIONS_RUNTIME_TOKEN`, before vcpkg is able to use the GHA cache. You can do so as follows as a step inside a job:
 
 ```yaml
 - uses: actions/github-script@v6
