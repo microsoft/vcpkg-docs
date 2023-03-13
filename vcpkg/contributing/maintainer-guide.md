@@ -127,6 +127,14 @@ This is discouraged in favour of [`vcpkg_install_copyright()`](../maintainers/fu
 
 `vcpkg_install_copyright` also includes the functionallity to handle multiple copyright files. See its [documentation](../maintainers/functions/vcpkg_install_copyright.md) for more info.
 
+### Special Ports
+
+Apart from normal ports for libraries there are different types of special ports which have fullfill different purposes. One the one hand there are [script ports](../maintainers/authoring-script-ports.md) like `vcpkg-cmake` which are designed to enable additional portfile functions with the added benefit of being versioned.
+
+Then there are ports like  e.g. `blas`/`lapack` which are metaports and give users an easy way to switch out the default `blas`/`lapack` implementation by providing an appropiate overlay for these ports.
+
+Ports commonly named like `vcpkg-tool-x` are ports which are [tool ports](../maintainers/authoring-tool-ports.md) and provide a required tool for other ports either by downloading a prebuild binary or by building a tool from source.
+
 ## Features
 
 ### Do not use features to implement alternatives
