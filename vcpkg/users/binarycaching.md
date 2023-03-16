@@ -164,11 +164,11 @@ Commas (`,`) are valid as part of a object prefix in GCS. Remember to escape the
 x-gha[,<rw>]
 ```
 
-Adds the GitHub Actions cache as a provider. Vcpkg needs to be executed by a GitHub Actions runner to be able to use this binary source, as well as the URL to the cache and the access token required to read and write to the cache.
+Adds the GitHub Actions cache as a provider. This binary caching provider is only valid in the context of a GitHub Actions workflow. This provider requires both of the `ACTIONS_CACHE_URL` and `ACTIONS_RUNTIME_TOKEN` environment variables to be set. Setting these environment variables correctly is covered in the following Quickstart section.
 
 ### <a name="gha-quickstart"></a> Quickstart
 
-You need to export two environment variables, `ACTIONS_CACHE_URL` and `ACTIONS_RUNTIME_TOKEN`, before vcpkg is able to use the GHA cache. You can do so as follows as a step inside a job:
+In order for vcpkg to make use of the GitHub Actions Cache we must provide it the Actions Cache URL and Runtime Token. To do this we export both values as environment variables in an workflow step similar to the following:
 
 ```yaml
 - uses: actions/github-script@v6
@@ -176,8 +176,15 @@ You need to export two environment variables, `ACTIONS_CACHE_URL` and `ACTIONS_R
     script: |
       core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
       core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
-# Now you can use vcpkg to install ports
-- run: vcpkg install zlib --binarysource="clear;x-gha,readwrite"
+```
+
+Specifying these values as environment variables instead of vcpkg command line arguments is by design as the GitHub Actions Cache binary caching provider can only be used from a GitHub Actions workflow.
+
+Once the environment variables have been exported, vcpkg can be then be run with the GitHub Actions binary caching provider like this:
+
+```yaml
+- name: Install dependencies via vcpkg
+  run: vcpkg install zlib --binarysource="clear;x-gha,readwrite"
 ```
 
 ## <a name="http"></a> HTTP provider
