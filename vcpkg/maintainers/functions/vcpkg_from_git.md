@@ -1,11 +1,13 @@
 ---
 title: vcpkg_from_git
 description: Learn how to use vcpkg_from_git.
-ms.date: 11/30/2022
+ms.date: 2/22/2022
 ---
 # vcpkg_from_git
 
-Download and extract a project from git
+Download and extract a project from git.
+
+This helper reuses `git` CLI credentials. See [Authentication](../../users/authentication.md) to configure credentials for your private git hosts.
 
 ## Usage
 
@@ -16,7 +18,7 @@ vcpkg_from_git(
     REF <59f7335e4d...>
     [HEAD_REF <ref>]
     [PATCHES <patch1.patch> <patch2.patch>...]
-    [LFS]
+    [LFS [<url>]]
 )
 ```
 
@@ -61,6 +63,10 @@ Only files pointed to by `REF` are fetched.
 
 This makes Git LFS mandatory for the port.
 It's a fatal error if the extension is not installed.
+
+_Added in vcpkg version 2023.01.23_
+
+If specified, `<url>` will be used instead of the original git URL for LFS.
 
 ## Notes
 

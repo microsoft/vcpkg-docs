@@ -64,6 +64,8 @@
       href: examples/packaging-zipfiles.md
     - name: Patching libpng 1.6.37 for UWP compatibility
       href: examples/patching.md
+    - name: Adding explicit usage text
+      href: examples/adding-usage.md
   - name: Authoring Script Ports
     displayName: helpers, scripts, reuseable, function, reuse
     href: maintainers/authoring-script-ports.md
