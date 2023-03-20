@@ -338,7 +338,7 @@ If the expression does not match the current configuration, the dependency will 
 A minimum version constraint on the dependency.
 
 This field specifies the minimum version of the dependency, optionally using a
-`#N` suffix to denote port-version if non-zero.
+`#N` suffix to also specify a minimum port-version if desired.
 
 For more information on versioning semantics, see [Versioning](../users/versioning.md#version).
 
