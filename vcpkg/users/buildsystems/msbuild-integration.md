@@ -86,7 +86,7 @@ This property must be set to `true` in order to consume from a local `vcpkg.json
 
 This currently defaults to `false`, but will default to `true` in the future.
 
-### `VcpkgTriplet` (Triplet)
+### <a name="vcpkgtriplet"></a> `VcpkgTriplet` (Triplet)
 
 This property controls the triplet to consume libraries from, such as `x64-windows-static` or `arm64-windows`.
 
@@ -100,7 +100,7 @@ You can see the automatically deduced triplet by setting your MSBuild verbosity 
 
 See also [Triplets](../triplets.md)
 
-### `VcpkgHostTriplet` (Host Triplet)
+### <a name="vcpkghosttriplet"></a> `VcpkgHostTriplet` (Host Triplet)
 
 This can be set to a custom triplet to use for resolving host dependencies.
 
