@@ -26,7 +26,7 @@ To select the host triplet for the current machine,
 
 ## Community triplets
 
-Triplets contained in the `triplets\community` folder are not tested by the Curated Catalog's continuous integration, but are commonly requested by the community. Because we do not have continuous coverage, port updates may break compatibility with community triplets. We will gladly accept and review contributions that aim to solve issues with these triplets.
+Triplets contained in the `triplets\community` folder are not tested by the curated catalog's continuous integration, but are commonly requested by the community. Because we do not have continuous coverage, port updates may break compatibility with community triplets. We will gladly accept and review contributions that aim to solve issues with these triplets.
 
 When using a community triplet, a message like the following one will be printed during a package install:
 
