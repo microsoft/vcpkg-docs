@@ -41,7 +41,7 @@ When building software for native windows environments, you must use a mingw sub
 After the basic installation of MSYS2, you will need to install a few additional packages for software development, for example, for x64:
 
 ```bash
-pacman -S --needed git base-devel mingw-w64-x86_64-toolchain
+pacman -S --needed git base-devel mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake
 ```
 
 The active subsystem is selected by running the MSYS2 MinGW app, or changed in a running terminal by
