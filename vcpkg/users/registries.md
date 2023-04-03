@@ -5,7 +5,7 @@ ms.date: 11/30/2022
 ---
 # Using Registries
 
-For information on creating your own registries, see [Creating Registries](../users/registries.md).
+For information on creating your own registries, see [Creating Registries](../maintainers/registries.md).
 
 vcpkg uses _Registries_ to manage ports and versions. By default, vcpkg finds libraries from the public curated registry at https://github.com/microsoft/vcpkg. This default set can be extended by adding additional registry definitions or replaced with your own mirror of the public registry.
 
