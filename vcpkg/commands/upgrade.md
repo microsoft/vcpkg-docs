@@ -13,12 +13,14 @@ vcpkg upgrade [options]
 
 ## Description
 
-Remove and reinstalls [Classic mode] packages that have different current available versions.
+Removes and reinstalls [Classic mode] packages that have different current available versions.
 
 > [!WARNING]
 > This command does not save the previous install state. If an error occurs while building replacement packages, the previous set of packages will not be restored.
 >
 > For robust version management, use [Manifest mode].
+
+By default, `upgrade` prints the plan of what will be modified. Pass [`--no-dry-run`](#no-dry-run) to perform that plan.
 
 ## Example
 
@@ -38,9 +40,9 @@ If you are sure you want to rebuild the above packages, run this command with th
 
 All vcpkg commands support a set of [common options](common-options.md).
 
-### `--no-dry-run`
+### <a name="no-dry-run"></a> `--no-dry-run`
 
-Perform the planned removals and reinstalls.
+Removes the packages that are outdated and reinstalls them at the versions listed in the user's local copy of the public vcpkg registry.
 
 ### `--no-keep-going`
 
