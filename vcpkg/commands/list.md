@@ -29,7 +29,7 @@ vcpkg-cmake:x64-windows          2022-08-18
 
 ## Options
 
-All vcpkg commands support a set of [common options](https://github.com/microsoft/vcpkg/blob/5fac018507e67a8b98141b9d4cebeb07c9bd5cba/docs/commands/common-options.md).
+All vcpkg commands support a set of [common options](common-options.md).
 
 ### `--x-full-desc`
 

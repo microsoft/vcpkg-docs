@@ -1,0 +1,56 @@
+---
+title: vcpkg upgrade
+description: Command line reference for the vcpkg upgrade command.
+ms.date: 4/3/2023
+---
+# vcpkg upgrade
+
+## Synopsis
+
+```console
+vcpkg upgrade [options]
+```
+
+## Description
+
+Remove and reinstalls [Classic mode] packages that have different current available versions.
+
+> [!WARNING]
+> This command does not save the previous install state. If an error occurs while building replacement packages, the previous set of packages will not be restored.
+>
+> For robust version management, use [Manifest mode].
+
+## Example
+
+```console
+$ vcpkg upgrade
+The following packages will be rebuilt:
+  * corrade[core,interconnect,pluginmanager,testsuite,utility]:x64-windows -> 2020.06#5
+  * magnum[al-info,anyaudioimporter,anyimageconverter,anyimageimporter,anysceneconverter,anysceneimporter,anyshaderconverter,audio,cglcontext,core,debugtools,distancefieldconverter,eglcontext,fontconverter,gl,gl-info,glfwapplication,glxcontext,imageconverter,magnumfont,magnumfontconverter,meshtools,objimporter,opengltester,primitives,sceneconverter,scenegraph,sdl2application,shaderconverter,shaders,shadertools,text,texturetools,tgaimageconverter,tgaimporter,trade,wglcontext,windowlesscglapplication,windowlesseglapplication,windowlessglxapplication,windowlesswglapplication]:x64-windows -> 2020.06#12
+  * openal-soft[core]:x64-windows -> 1.23.0
+  * ragel[core]:x64-windows -> 6.10#5
+  * sdl2[base,core]:x64-windows -> 2.26.4
+Additional packages (*) will be modified to complete this operation.
+If you are sure you want to rebuild the above packages, run this command with the --no-dry-run option.
+```
+
+## Options
+
+All vcpkg commands support a set of [common options](common-options.md).
+
+### `--no-dry-run`
+
+Perform the planned removals and reinstalls.
+
+### `--no-keep-going`
+
+Stop at the first failure.
+
+By default, on a package install failure, vcpkg will continue to attempt to install other unrelated packages.
+
+### `--allow-unsupported`
+
+Allow performing upgrades to unsupported packages.
+
+[Classic mode]: ../users/classic-mode.md
+[Manifest mode]: ../users/manifests.md
