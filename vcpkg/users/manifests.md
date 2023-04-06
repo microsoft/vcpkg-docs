@@ -22,10 +22,6 @@ Check out the [`vcpkg.json` Syntax Reference](../reference/vcpkg-json.md) for a 
   "version": "0.15.2",
   "dependencies": [
     "boost-system",
-    {
-      "name": "cpprestsdk",
-      "default-features": false
-    },
     "libxml2",
     "yajl"
   ]
