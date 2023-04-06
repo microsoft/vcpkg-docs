@@ -113,8 +113,30 @@ Default features are a set of features to be automatically activated if the top-
 
 For example, consider a library `"extract-any"` that supports over 10 different archive formats, including several that are quite obscure. Because they are all optional, if none are selected the library is not functional: it cannot extract any files.
 
-Default features ensure that a user simply running:
-```
-vcpkg install extract-any
+Default features ensure that a user who simply adds `"extract-any"` to the list of dependencies in their `vcpkg.json`:
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
+  "name": "my-application",
+  "version": "0.15.2",
+  "dependencies": [
+    "extract-any"
+  ]
+}
 ```
 will get a baseline level of functionality, for example automatically selecting `.zip` and `.tar.gz` decompressors.
+
+If the user wants to explicitly disable the default features, they can do so by adding `"default-features": false` to the dependency:
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
+  "name": "my-application",
+  "version": "0.15.2",
+  "dependencies": [
+    {
+      "name": "extract-any",
+      "default-features": false
+    }
+  ]
+}
+```
