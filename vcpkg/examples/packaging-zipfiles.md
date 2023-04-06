@@ -79,13 +79,13 @@ At this point, it is a matter of reading the error messages and log files while 
 
 ## Suggested example portfiles
 
-In the `ports/` directory are many libraries that can be used as examples, including many that are not based on CMake.
+In the [`ports/`](https://github.com/Microsoft/vcpkg/tree/master/ports) directory are many libraries that can be used as examples, including many that are not based on CMake.
 
 - Header only libraries
   - rapidjson
   - range-v3
 - MSBuild-based
-  - mpg123
+  - chakracore
 - Non-CMake, custom buildsystem
   - openssl
   - ffmpeg

@@ -57,7 +57,7 @@ In the [`ports/`](https://github.com/Microsoft/vcpkg/tree/master/ports) director
   - rapidjson
   - range-v3
 - MSBuild-based
-  - mpg123
+  - chakracore
 - Non-CMake, custom buildsystem
   - openssl
   - ffmpeg
