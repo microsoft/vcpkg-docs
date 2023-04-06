@@ -17,7 +17,7 @@ Check out the [`vcpkg.json` Syntax Reference](../reference/vcpkg-json.md) for a 
 
 ```json
 {
-  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "my-application",
   "version": "0.15.2",
   "dependencies": [
