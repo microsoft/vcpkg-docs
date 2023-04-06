@@ -116,7 +116,6 @@ For example, consider a library `"extract-any"` that supports over 10 different 
 Default features ensure that a user who simply adds `"extract-any"` to the list of dependencies in their `vcpkg.json`:
 ```json
 {
-  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
   "name": "my-application",
   "version": "0.15.2",
   "dependencies": [
@@ -129,7 +128,6 @@ will get a baseline level of functionality, for example automatically selecting 
 If the user wants to explicitly disable the default features, they can do so by adding `"default-features": false` to the dependency:
 ```json
 {
-  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
   "name": "my-application",
   "version": "0.15.2",
   "dependencies": [
