@@ -148,6 +148,8 @@
       href: maintainers/functions/vcpkg_extract_source_archive.md
     - name: vcpkg_extract_source_archive_ex
       href: maintainers/functions/vcpkg_extract_source_archive_ex.md
+    - name: vcpkg_fail_with_user_interaction_required
+      href: maintainers/functions/vcpkg_fail_with_user_interaction_required.md
     - name: vcpkg_fail_port_install
       href: maintainers/functions/vcpkg_fail_port_install.md
     - name: vcpkg_find_acquire_program
@@ -212,6 +214,8 @@
       href: maintainers/functions/vcpkg_replace_string.md
     - name: vcpkg_restore_env_variables
       href: maintainers/functions/vcpkg_restore_env_variables.md
+    - name: vcpkg_user_hint_on_failure
+      href: maintainers/functions/vcpkg_user_hint_on_failure.md
     - name: Internal
       items:
       - name: z_vcpkg_apply_patches
