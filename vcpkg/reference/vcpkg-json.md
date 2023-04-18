@@ -431,6 +431,7 @@ The following identifiers are defined based on the [triplet settings](../users/t
 | `windows` | `VCPKG_CMAKE_SYSTEM_NAME` == `""` or</br> `VCPKG_CMAKE_SYSTEM_NAME` == `"WindowsStore"` or</br> `VCPKG_CMAKE_SYSTEM_NAME` == `"MinGW"` |
 | `mingw` | `VCPKG_CMAKE_SYSTEM_NAME` == `"MinGW"` |
 | `uwp` | `VCPKG_CMAKE_SYSTEM_NAME` == `"WindowsStore"` |
+| `xbox` | `VCPKG_CMAKE_SYSTEM_NAME` == `""` and</br> `XBOX_CONSOLE_TARGET` is defined. |
 | `linux` | `VCPKG_CMAKE_SYSTEM_NAME` == `"Linux"` |
 | `osx` | `VCPKG_CMAKE_SYSTEM_NAME` == `"Darwin"` |
 | `ios` | `VCPKG_CMAKE_SYSTEM_NAME` == `"iOS"` |
