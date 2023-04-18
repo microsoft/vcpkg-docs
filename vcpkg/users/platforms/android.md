@@ -38,27 +38,11 @@ There are six different Android ABIs, each of which maps to a vcpkg triplet. The
 |x86-android                | x86                  |                  |
 |armv6-android              | armeabi              |                  |
 
-## Install libraries for Android using vcpkg
-
-Example for jsoncpp for `x64-android`:
-
-You can run `vcpkg install --triplet x64-android`
-
-`vcpkg.json`
-```json
-{
-  "dependencies": [
-    "jsoncpp"
-  ],
-  "builtin-baseline": "1e68748a7c6914642ed686b2e19c3d688bca150a"
-}
-```
-
 ## Building Android libraries in a Docker container
 
-You can also build Android libraries in a Ubuntu Docker container (same environment as our CI).
+You can build Android libraries, such as `jsoncpp` in a Ubuntu Docker container.
 
-Dockerfile
+`Dockerfile`
 ```
 FROM ubuntu:22.04
 
@@ -92,10 +76,17 @@ docker build . -t "vcpkg-android"
 docker run -it "vcpkg-android" bash
 ```
 
-In the docker container, run:
+`vcpkg.json`
+```json
+{
+  "dependencies": [
+    "jsoncpp"
+  ],
+  "builtin-baseline": "1e68748a7c6914642ed686b2e19c3d688bca150a"
+}
 ```
-./vcpkg install jsoncpp:x64-android
-```
+
+In this container, create a manifest, and run `vcpkg install --triplet x64-android`
 
 ### Using Vulkan SDK
 
