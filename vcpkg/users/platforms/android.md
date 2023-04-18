@@ -27,7 +27,7 @@ Note: you will still need to install g++ or a C++ compiler that targets your hos
 
 ## vcpkg triplets and their corresponding android ABI
 
-There are four different Android ABIs, each of which maps to a vcpkg triplet. The following table outlines the mapping from vcpkg architectures to android architectures:
+There are six different Android ABIs, each of which maps to a vcpkg triplet. The following table outlines the mapping from vcpkg architectures to android architectures:
 
 |VCPKG_TARGET_TRIPLET       | ANDROID_ABI          | ANDROID_ARM_NEON |
 |---------------------------|----------------------|------------------|
