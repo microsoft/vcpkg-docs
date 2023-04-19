@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(fibo-project CXX)
+project(fibonacci CXX)
 
 find_package(fmt REQUIRED)
 find_package(range-v3 REQUIRED)

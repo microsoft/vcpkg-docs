@@ -46,7 +46,7 @@ Next, create `main.cxx` with the following content:
 
 :::code language="cxx" source="manifest-mode-cmake/main.cxx":::
 
-Finally, we'll create `vcpkg.json` with our open source dependencies:
+Finally, we'll create [`vcpkg.json`](../reference/vcpkg-json.md) in the same directory as the project's `CMakeLists.txt` listing our open source dependencies:
 
 :::code language="json" source="manifest-mode-cmake/vcpkg.json":::
 
@@ -89,7 +89,6 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   Checking Build System
   Building Custom Rule D:/src/fibo/CMakeLists.txt
   main.cxx
-  The contents of <span> are available only with C++20 or later.
   fibo.vcxproj -> D:\src\fibo\build\Debug\fibo.exe
   Building Custom Rule D:/src/fibo/CMakeLists.txt
 ```
