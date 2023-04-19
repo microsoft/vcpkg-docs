@@ -40,15 +40,15 @@ fibo/
 
 First, create `CMakeLists.txt` with the following content:
 
-:::code language="cmake" source="manifest-mode-cmake/CMakeLists.txt":::
+:::code language="cmake" source="snippets/manifest-mode-cmake/CMakeLists.txt":::
 
 Next, create `main.cxx` with the following content:
 
-:::code language="cxx" source="manifest-mode-cmake/main.cxx":::
+:::code language="cxx" source="snippets/manifest-mode-cmake/main.cxx":::
 
 Finally, we'll create [`vcpkg.json`](../reference/vcpkg-json.md) in the same directory as the project's `CMakeLists.txt` listing our open source dependencies:
 
-:::code language="json" source="manifest-mode-cmake/vcpkg.json":::
+:::code language="json" source="snippets/manifest-mode-cmake/vcpkg.json":::
 
 ## Step 3. Configure and Build
 
