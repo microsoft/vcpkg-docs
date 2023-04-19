@@ -116,11 +116,11 @@ In manifest mode, this defaults to `$(VcpkgManifestRoot)\vcpkg_installed\$(Vcpkg
 
 ## Manifest mode configuration
 
-To use manifests (`vcpkg.json`) with MSBuild, first you need to use one of the integration methods above. Then, add a vcpkg.json above your project file (such as in the root of your source repository) and set the property `VcpkgEnableManifest` to `true`. You can set this property via the IDE in **Project Properties** > **Vcpkg** > **Use Vcpkg Manifest**. You may need to reload the IDE to see the vcpkg Property Page.
+To use [manifests](../manifests.md) ([`vcpkg.json`](../../reference/vcpkg-json.md)) with MSBuild, first you need to use one of the integration methods above. Then, add a vcpkg.json above your project file (such as in the root of your source repository) and set the property `VcpkgEnableManifest` to `true`. You can set this property via the IDE in **Project Properties** > **Vcpkg** > **Use Vcpkg Manifest**. You may need to reload the IDE to see the vcpkg Property Page.
 
-vcpkg will automatically run during your project's build and install any listed dependencies to `vcpkg_installed/$(VcpkgTriplet)/` adjacent to the `vcpkg.json` file; these libraries will then automatically be included in and linked to your MSBuild projects.
+vcpkg will run during your project's build and install any listed dependencies to `vcpkg_installed/$(VcpkgTriplet)/` adjacent to the `vcpkg.json` file; these libraries will then automatically be included in and linked to your MSBuild projects.
 
-## Known issues
+### Known issues
 
 - Visual Studio 2015 does not correctly track edits to the `vcpkg.json` and `vcpkg-configuration.json` files, and will not respond to changes unless a `.cpp` is edited.
 

@@ -99,8 +99,7 @@ By default, vcpkg will run several checks on built packages and emit warnings if
 
 ### <a name="feature"></a> `--x-feature=<feature>`
 
-> [!NOTE]
-> This option is experimental and may change or be removed at any time.
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 - **Manifest mode only**
 
@@ -124,8 +123,7 @@ By default, vcpkg will stop at the first package build failure. This flag instru
 
 ### `--x-no-default-features`
 
-> [!NOTE]
-> This option is experimental and may change or be removed at any time.
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 - **Manifest mode only**
 
@@ -161,15 +159,13 @@ In order to modify the set of features of an installed package, vcpkg must remov
 
 ### `--x-use-aria2`
 
-> [!NOTE]
-> This option is experimental and may change or be removed at any time.
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 Use aria2 to perform download tasks.
 
 ### <a name="write-nuget-packages-config"></a> `--x-write-nuget-packages-config`
 
-> [!NOTE]
-> This option is experimental and may change or be removed at any time.
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 Writes out a NuGet `packages.config`-formatted file for use with [binary caching](../users/binarycaching.md).
 

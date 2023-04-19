@@ -7,7 +7,9 @@ ms.date: 11/30/2022
 
 *Triplet* is a standard term used in cross compiling as a way to completely capture the target environment (cpu, os, compiler, runtime, etc.) in a single, convenient name.
 
-In vcpkg, we use triplets to describe an imaginary "target configuration set" for every library. Within a triplet, libraries are generally built with the same configuration, but it is not a requirement. For example, you could have one triplet that builds `openssl` statically and `zlib` dynamically, one that builds them both statically, and one that builds them both dynamically (all for the same target OS and architecture). A single build will consume files from a single triplet.
+In vcpkg, we use triplets to describe an imaginary "target configuration set" for every library. Within a triplet, libraries are generally built with the same configuration, but it is not a requirement. For example, you could have one triplet that builds `openssl` statically and `zlib` dynamically, one that builds them both statically, and one that builds them both dynamically (all for the same target OS and architecture).
+
+A single build will consume files from up to two triplets: the target triplet and the host triplet. If you need to apply different settings for different libraries, you must make a single custom triplet with that combination of settings. See [Per-port customization](#per-port-customization) below for how to accomplish this.
 
 vcpkg comes with pre-defined triplets for many common platforms and configurations. Run `vcpkg help triplet` to get the list available in your environment.
 
