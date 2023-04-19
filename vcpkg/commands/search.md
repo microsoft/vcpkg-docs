@@ -33,8 +33,7 @@ All vcpkg commands support a set of [common options](common-options.md).
 
 ### `--x-full-desc`
 
-> [!NOTE]
-> This option is experimental and may change or be removed at any time.
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 Do not truncate long descriptions.
 

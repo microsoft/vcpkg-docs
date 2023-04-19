@@ -5,8 +5,7 @@ ms.date: 11/30/2022
 ---
 # vcpkg x-update-baseline
 
-> [!NOTE]
-> This command is experimental and may change or be removed at any time.
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 ## Synopsis
 

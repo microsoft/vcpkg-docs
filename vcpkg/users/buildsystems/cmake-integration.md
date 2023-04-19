@@ -16,25 +16,9 @@ Projects configured to use the vcpkg toolchain file (via the CMake setting `CMAK
 cmake ../my/project -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
 ```
 
-Since version 3.21, CMake will use the environment variable [`CMAKE_TOOLCHAIN_FILE`](https://cmake.org/cmake/help/latest/envvar/CMAKE_TOOLCHAIN_FILE.html) as the default value for `CMAKE_TOOLCHAIN_FILE`.
+Since version 3.21, CMake will use the environment variable [`CMAKE_TOOLCHAIN_FILE`](https://cmake.org/cmake/help/latest/envvar/CMAKE_TOOLCHAIN_FILE.html) as the default value for `CMAKE_TOOLCHAIN_FILE`. You can set this environment variable to `<vcpkg-root>/scripts/buildsystems/vcpkg.cmake` to avoid needing to pass it as a command line parameter.
 
-- **cmd**
-
-    ```cmd
-    set CMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
-    ```
-
-- **Powershell**
-
-    ```powershell
-    $env:CMAKE_TOOLCHAIN_FILE="<vcpkg-root>/scripts/buildsystems/vcpkg.cmake"
-    ```
-
-- **bash**
-
-    ```sh
-    export CMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
-    ```
+## Header-only Libraries
 
 vcpkg does not automatically add any include or links paths into your project. To use a header-only library you can use `find_path()` which will correctly work on all platforms:
 
@@ -221,7 +205,7 @@ Defaults to `OFF`.
 
 This variable can be set to a list of feature flags to pass to the vcpkg tool during automatic installation to opt-in to experimental behavior.
 
-See the `--feature-flags=` command line option for more information.
+See the [`--feature-flags=`](../../commands/common-options.md#) command line option for more information.
 
 ### `VCPKG_TRACE_FIND_PACKAGE`
 

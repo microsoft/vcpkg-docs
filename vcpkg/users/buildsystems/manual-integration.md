@@ -28,7 +28,7 @@ See your build system specific documentation for how to use prebuilt binaries. F
 export CXXFLAGS=-I$(pwd)/installed/x64-linux/include
 export CFLAGS=-I$(pwd)/installed/x64-linux/include
 export LDFLAGS=-L$(pwd)/installed/x64-linux/lib
-export PKG_CONFIG_PATH=$(pwd)/installed/x64-linux/lib/pkgconfig:$PKG_CONFIG_PATH
+export PKG_CONFIG_PATH=$(pwd)/installed/x64-linux/lib/pkgconfig:$(pwd)/installed/x64-linux/share/pkgconfig:$PKG_CONFIG_PATH
 ```
 
-On Windows dynamic triplets, such as x64-windows: To run any produced executables you will also need to either copy the needed DLL files to the same folder as your executable or *prepend* the correct `bin\` directory to your path.
+On Windows dynamic triplets (such as x64-windows) you will also need to either copy the needed DLL files to the same folder as your executable or *prepend* the correct `bin\` directory to your path to run any produced executables.
