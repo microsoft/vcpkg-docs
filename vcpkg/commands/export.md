@@ -92,7 +92,7 @@ Format specific options:
 
 #### IFW
 
-**This export type is experimental and may change or be removed at any time**
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 ```no-highlight
 vcpkg export --ifw [options] <package>...
@@ -109,7 +109,7 @@ Format specific options:
 
 #### Chocolatey
 
-**This export type is experimental and may change or be removed at any time**
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 ```no-highlight
 vcpkg export --x-chocolatey [options] <package>...
@@ -123,7 +123,7 @@ Format specific options:
 
 #### Prefab
 
-**This export type is experimental and may change or be removed at any time**
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 ```no-highlight
 vcpkg export --prefab [options] <package>...
@@ -159,7 +159,7 @@ Package references without a triplet are automatically qualified by the [default
 
 ### `--x-all-installed`
 
-**This option is experimental and may change or be removed at any time**
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 Export all installed packages.
 

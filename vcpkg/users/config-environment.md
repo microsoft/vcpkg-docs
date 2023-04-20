@@ -97,8 +97,7 @@ This environment variable allows using NuGet's cache for every nuget-based binar
 
 ## X_VCPKG_ASSET_SOURCES
 
-> [!NOTE]
-> This feature is experimental and may change or be removed at any time.
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 This environment variable allows using a private mirror for all SHA512-tagged assets. See [Asset Caching](assetcaching.md) for more details.
 

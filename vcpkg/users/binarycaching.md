@@ -111,6 +111,8 @@ Azure Blob Storage includes a feature to remove cache entries that haven't been 
 
 ## <a name="cos"></a> Tencent Cloud Object Storage provider
 
+[!INCLUDE [experimental](../../includes/experimental.md)]
+
 ```
 x-cos,<prefix>[,<rw>]
 ```

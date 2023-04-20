@@ -11,8 +11,7 @@ Most vcpkg commands accept a group of common options that control cross-cutting 
 
 ### <a name="asset-sources"></a> `--x-asset-sources=<config>`
 
-> [!NOTE]
-> This option is experimental and may change or be removed at any time.
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 Specify the cache configuration for [Asset Caching](../users/assetcaching.md).
 
@@ -24,8 +23,7 @@ This option can be specified multiple times; see the Binary Caching documentatio
 
 ### <a name="buildtrees-root"></a> `--x-buildtrees-root=<path>`
 
-> [!NOTE]
-> This option is experimental and may change or be removed at any time.
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 Specifies the temporary path to store intermediate build files, such as objects or unpacked source code.
 
@@ -35,18 +33,21 @@ Defaults to `buildtrees/` under the vcpkg root folder.
 
 Specify where downloaded tools and source code archives should be kept.
 
-Defaults to the `VCPKG_DOWNLOADS` environment variable. If that is unset, defaults to `downloads/` under the vcpkg root folder.
+Defaults to the [`VCPKG_DOWNLOADS`](../users/config-environment.md#vcpkg_downloads) environment variable. If that is unset, defaults to `downloads/` under the vcpkg root folder.
+
+### <a name="feature-flags"></a> `--feature-flags=<flag1>,...`
+
+This variable can be set to a list of feature flags to opt-in to experimental behavior.
 
 ### <a name="host-triplet"></a> `--host-triplet=<triplet>`
 
-Specify the host [architecture triplet](../users/triplets.md).
+Specify the host [triplet](../users/triplets.md).
 
-Defaults to the `VCPKG_DEFAULT_HOST_TRIPLET` environment variable. If that is unset, deduced based on the host architecture and operating system.
+Defaults to the [`VCPKG_DEFAULT_HOST_TRIPLET`](../users/config-environment.md#vcpkg_default_host_triplet) environment variable. If that is also unset, the value is deduced based on the host architecture and operating system.
 
 ### <a name="install-root"></a> `--x-install-root=<path>`
 
-> [!NOTE]
-> This option is experimental and may change or be removed at any time.
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 Specifies the path to lay out installed packages.
 
@@ -56,8 +57,7 @@ In [Manifest mode](../users/manifests.md), defaults to `vcpkg_installed/` under 
 
 ### <a name="manifest-root"></a> `--x-manifest-root=<path>`
 
-> [!NOTE]
-> This option is experimental and may change or be removed at any time.
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 Specifies the directory containing [`vcpkg.json`](../users/manifests.md).
 
@@ -71,14 +71,13 @@ This option can be specified multiple times; ports will resolve to the first mat
 
 ### <a name="overlay-triplets"></a> `--overlay-triplets=<path>`
 
-Specifies a directory containing [overlay triplets](../users/examples/overlay-triplets-linux-dynamic.md).
+Specifies a directory containing [overlay triplets](../users/triplets.md#adding-or-replacing-triplets).
 
-This option can be specified multiple times; [triplets](../users/triplets.md) will resolve to the first match.
+This option can be specified multiple times to add multiple directories; triplets will resolve to the first match by name.
 
 ### <a name="packages-root"></a> `--x-packages-root=<path>`
 
-> [!NOTE]
-> This option is experimental and may change or be removed at any time.
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 Specifies the temporary path to stage intermediate package files before final install.
 
@@ -88,9 +87,12 @@ Defaults to `packages/` under the vcpkg root folder.
 
 Specify the target [architecture triplet](../users/triplets.md).
 
-Defaults to the `VCPKG_DEFAULT_TRIPLET` environment variable. If that is unset, deduced based on the host architecture and operating system.
+Defaults to the [`VCPKG_DEFAULT_TRIPLET`](../users/config-environment.md#vcpkg_default_triplet) environment variable. If that is unset, deduced based on the host architecture and operating system.
 
 On Windows operating systems, the architecture is always deduced as x86 for legacy reasons.
+
+> [!NOTE]
+> All releases made in and after September 2023 will default to the host triplet on Windows instead of x86-windows.
 
 ### <a name="vcpkg-root"></a> `--vcpkg-root=<path>`
 
