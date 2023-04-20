@@ -42,7 +42,7 @@ There are six different Android ABIs, each of which maps to a vcpkg triplet. The
 
 You can build Android libraries, such as `jsoncpp` in a Ubuntu Docker container.
 
-`Dockerfile`
+Create a `Dockerfile` with the following contents:
 ```
 FROM ubuntu:22.04
 
@@ -58,25 +58,28 @@ RUN \
 # Download Android NDK
 RUN \
   wget https://dl.google.com/android/repository/android-ndk-r25c-linux.zip && \
-  unzip android-ndk-r25c-linux.zip
+  unzip android-ndk-r25c-linux.zip && \
+  rm -rf android-ndk-r25c-linux.zip
 
 ENV ANDROID_NDK_HOME /android-ndk-r25c
 
-RUN \
-  git clone https://github.com/microsoft/vcpkg && \
-  cd vcpkg && \
-  ./bootstrap-vcpkg.sh
+RUN git clone https://github.com/microsoft/vcpkg
+WORKDIR vcpkg
+RUN ./bootstrap-vcpkg.sh
 
-WORKDIR /vcpkg
+ENV PATH "/vcpkg:$PATH"
+ENV VCPKG_ROOT "/vcpkg"
+
+WORKDIR /project
 ```
 
-To build docker:
-```
+Build the image and launch a new container:
+```sh
 docker build . -t "vcpkg-android"
 docker run -it "vcpkg-android" bash
 ```
 
-`vcpkg.json`
+In the container, create `/project/vcpkg.json` with the following contents:
 ```json
 {
   "dependencies": [
@@ -86,9 +89,9 @@ docker run -it "vcpkg-android" bash
 }
 ```
 
-In this container, create a manifest, and run `vcpkg install --triplet x64-android`
+Finally, run `vcpkg install --triplet x64-android` to build `jsoncpp` for android.
 
-### Using Vulkan SDK
+## Using Vulkan SDK
 
 vcpkg has a [`vulkan` package](https://github.com/microsoft/vcpkg/blob/master/ports/vulkan/portfile.cmake) which allows you to `find_package(Vulkan)`. To use it you have to provide the `VULKAN_SDK` environment variable.
 
@@ -180,11 +183,11 @@ The package vulkan-hpp:arm64-android is header only and can be used from CMake v
 
 </details>
 
-### Test on an example
+## Example Android Project
 
 The folder [docs/examples/vcpkg_android_example_cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake) provides a working example, with an android library that consumes the jsoncpp library:
 
-#### Details
+### Details
 
 - The [CMakeLists.txt](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake/CMakeLists.txt) simply uses `find_package` and `target_link_library`
 
@@ -195,13 +198,13 @@ The folder [docs/examples/vcpkg_android_example_cmake](https://github.com/Micros
 > [!NOTE]
 > This example only compiles an Android library, as the compilation of a full-fledged Android App is beyond the scope of this document.
 
-### Test on an example: `vcpkg_android.cmake`
+## Test on an example: `vcpkg_android.cmake`
 
 Test using [vcpkg_android.cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake).
 
 The folder [vcpkg_android_example_cmake_script](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script) provides the same example, and uses a cmake script in order to simplify the usage.
 
-#### Details
+### Details
 - The main [CMakeLists.txt](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/CMakeLists.txt) loads [vcpkg_android.cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake) if the flag `VCPKG_TARGET_ANDROID` is set:
 
   ```cmake
