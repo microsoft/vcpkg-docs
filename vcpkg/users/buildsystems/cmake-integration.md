@@ -56,9 +56,7 @@ include_directories(${CATCH_INCLUDE_DIR})
 
 We recommend using [CMake Presets] in both Visual Studio and Visual Studio Code.
 
-Learn more about Visual Studio at [Configure and build with CMake Presets in Visual Studio](/cpp/build/cmake-presets-vs).
-
-Learn more about Visual Studio Code at [Configure and build with CMake Presets in Visual Studio Code](https://github.com/microsoft/vscode-cmake-tools/blob/main/docs/cmake-presets.md).
+Learn more at [Configure and build with CMake Presets in Visual Studio](/cpp/build/cmake-presets-vs) and [Configure and build with CMake Presets in Visual Studio Code](https://github.com/microsoft/vscode-cmake-tools/blob/main/docs/cmake-presets.md).
 
 ### CLion
 
