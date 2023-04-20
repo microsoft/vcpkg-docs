@@ -64,6 +64,4 @@ Syntax: `x-script,<template>`
 
 Dispatches to an external tool to fetch the asset. Within the template, `{url}` will be replaced by the original url, `{sha512}` will be replaced by the SHA512 value, and `{dst}` will be replaced by the output path to save to. These substitutions will all be properly shell escaped, so an example template would be: `curl -L {url} --output {dst}`. `{{` will be replaced by `}` and `}}` will be replaced by `}` to avoid expansion. Note that this will be executed inside the build environment, so the PATH and other environment variables will be modified by the triplet.
 
-##### Examples
-
-This [example](../examples/assetcaching-script.md) uses `x-script` to support a different source than Azure Blob Storage.
+See [How to create an x-script Asset Caching source for NuGet](../examples/asset-caching-source-nuget.md) for a walkthrough using `x-script`.
