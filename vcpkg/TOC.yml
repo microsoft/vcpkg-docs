@@ -54,6 +54,8 @@
         href: users/examples/overlay-triplets-linux-dynamic.md
       - name: Getting Started with Versioning
         href: users/examples/versioning.getting-started.md
+      - name: Create a x-script Asset Caching source for NuGet
+        href: examples/asset-caching-source-nuget.md
 - name: Packaging Libraries
   items:
   - name: Tutorials
