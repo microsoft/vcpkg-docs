@@ -43,7 +43,7 @@ There are six different Android ABIs, each of which maps to a vcpkg triplet. The
 You can build Android libraries, such as `jsoncpp` in a Ubuntu Docker container.
 
 Create a `Dockerfile` with the following contents:
-```
+```Dockerfile
 FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND noninteractive
