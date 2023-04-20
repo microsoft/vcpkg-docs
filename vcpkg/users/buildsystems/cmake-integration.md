@@ -12,13 +12,35 @@ See [Installing and Using Packages Example: sqlite](../../examples/installing-an
 
 Projects configured to use the vcpkg toolchain file (via the CMake setting `CMAKE_TOOLCHAIN_FILE`) can find libraries from vcpkg using the standard CMake functions: `find_package()`, `find_path()`, and `find_library()`.
 
+We recommend using [CMake Presets] to specify your toolchain file. For example, if you have defined the environment variable `VCPKG_ROOT`, you can use the following `CMakePresets.json` and pass `--preset debug` on the configure line:
+
+:::code language="json" source="snippets/cmake-integration/CMakePresets.json":::
+
+```sh
+cmake -B build -S /my/project --preset debug
+```
+
+If you need to use an absolute path for vcpkg specific to your current machine, you can use `CMakeUserPresets.json` and add it to your `.gitignore` file.
+
+:::code language="json" source="snippets/cmake-integration/CMakeUserPresets.json":::
+
+CMake versions older than 3.19 must pass the toolchain file on the configure command line:
+
 ```console
 cmake ../my/project -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
 ```
 
-Since version 3.21, CMake will use the environment variable [`CMAKE_TOOLCHAIN_FILE`](https://cmake.org/cmake/help/latest/envvar/CMAKE_TOOLCHAIN_FILE.html) as the default value for `CMAKE_TOOLCHAIN_FILE`. You can set this environment variable to `<vcpkg-root>/scripts/buildsystems/vcpkg.cmake` to avoid needing to pass it as a command line parameter.
+## Using Libraries
 
-## Header-only Libraries
+vcpkg supports CMake's native mechanisms for finding libraries: `find_package()`, `find_library()`, and `find_path()`. When installing libraries with specific CMake support, vcpkg will display usage information on how to consume the library:
+
+```
+The package zlib is compatible with built-in CMake targets:
+
+    find_package(ZLIB REQUIRED)
+    target_link_libraries(main PRIVATE ZLIB::ZLIB)
+
+```
 
 vcpkg does not automatically add any include or links paths into your project. To use a header-only library you can use `find_path()` which will correctly work on all platforms:
 
@@ -30,25 +52,13 @@ include_directories(${CATCH_INCLUDE_DIR})
 
 ## IDE Integration
 
-### Visual Studio Code (CMake Tools Extension)
+### Visual Studio / Visual Studio Code
 
-Adding the following to your workspace `settings.json` will make CMake Tools automatically use vcpkg for libraries:
+We recommend using [CMake Presets] in both Visual Studio and Visual Studio Code.
 
-```json
-{
-  "cmake.configureSettings": {
-    "CMAKE_TOOLCHAIN_FILE": "<vcpkg-root>/scripts/buildsystems/vcpkg.cmake"
-  }
-}
-```
+Learn more about Visual Studio at [Configure and build with CMake Presets in Visual Studio](/cpp/build/cmake-presets-vs).
 
-### Visual Studio
-
-In the CMake Settings Editor, add the path to the vcpkg toolchain file under `CMake toolchain file`:
-
-```cmake
-<vcpkg-root>/scripts/buildsystems/vcpkg.cmake
-```
+Learn more about Visual Studio Code at [Configure and build with CMake Presets in Visual Studio Code](https://github.com/microsoft/vscode-cmake-tools/blob/main/docs/cmake-presets.md).
 
 ### CLion
 
@@ -62,7 +72,7 @@ You must add this line to each profile separately.
 
 ## Using Multiple Toolchain Files
 
-To combine vcpkg's toolchain file with another toolchain file, you can set the cmake variable `VCPKG_CHAINLOAD_TOOLCHAIN_FILE`:
+To combine vcpkg's toolchain file with another toolchain file, you can set the CMake cache variable `VCPKG_CHAINLOAD_TOOLCHAIN_FILE`:
 
 ```console
 cmake ../my/project \
@@ -84,7 +94,7 @@ include(/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake)
 
 ## Settings Reference
 
-All vcpkg-affecting variables must be defined before the first `project()` directive, such as via the command line or `set()` statements.
+All vcpkg-affecting variables must be defined before the first `project()` directive such as in a `CMakePresets.json`'s [`"cacheVariables"`](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#configure-preset) map, via the command line, or `set()` statements.
 
 ### `VCPKG_TARGET_TRIPLET`
 
@@ -165,6 +175,9 @@ For example, features can be used by projects to control building with additiona
   }
 }
 ```
+
+This setting can be controlled directly by [CMake Presets] with `"cacheVariables"` or indirectly based on other settings:
+
 ```cmake
 # CMakeLists.txt
 
@@ -210,3 +223,5 @@ See the [`--feature-flags=`](../../commands/common-options.md#) command line opt
 ### `VCPKG_TRACE_FIND_PACKAGE`
 
 When set to `ON`, Print every call to `find_package`. Nested calls (e.g. via `find_dependency`) are indented according to nesting depth.
+
+[CMake Presets]: https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
