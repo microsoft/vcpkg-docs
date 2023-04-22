@@ -12,8 +12,8 @@ Download and extract a project from Bitbucket.
 ```cmake
 vcpkg_from_bitbucket(
     OUT_SOURCE_PATH <SOURCE_PATH>
-    REPO <Microsoft/cpprestsdk>
-    [REF <v2.0.0>]
+    REPO <blaze-lib/blaze>
+    [REF <v3.8.1>]
     [SHA512 <45d0d7f8cc350...>]
     [HEAD_REF <master>]
     [PATCHES <patch1.patch> <patch2.patch>...]
@@ -35,13 +35,13 @@ The organization or user and repository on GitHub.
 
 A stable git commit-ish (ideally a tag) that will not change contents. **This should not be a branch.**
 
-For repositories without official releases, this can be set to the full commit id of the current latest master.
+For repositories without official releases, this can be set to the full commit id of the current latest master. `vcpkg_from_bitbucket()` will download a stable snapshot of the commit without any history information at `https://bitbucket.com/<REPO>/get/<REF>.tar.gz`.
 
 If `REF` is specified, `SHA512` must also be specified.
 
 ### SHA512
 
-The SHA512 hash that should match the archive (https://bitbucket.com/${REPO}/get/${REF}.tar.gz).
+The SHA512 hash of the source archive.
 
 This is most easily determined by first setting it to `0`, then trying to build the port. The error message will contain the full hash, which can be copied back into the portfile.
 
