@@ -440,7 +440,7 @@ The following identifiers are defined based on the [triplet settings](../users/t
 | `android` | `VCPKG_CMAKE_SYSTEM_NAME` == `"Android"` |
 | `emscripten` | `VCPKG_CMAKE_SYSTEM_NAME` == `"Emscripten"` |
 | `static` | `VCPKG_LIBRARY_LINKAGE` == `"static"` |
-| `static-crt` | `VCPKG_CRT_LINKAGE` == `"static"` |
+| `staticcrt` | `VCPKG_CRT_LINKAGE` == `"static"` |
 | `native` | `TARGET_TRIPLET` == `HOST_TRIPLET` |
 
 ### Examples
