@@ -66,8 +66,7 @@
       ],
       "searchScope": [
         "vcpkg"
-      ],
-      "uhfHeaderId": []
+      ]
     },
     "fileMetadata": {
       "author": {
