@@ -5,14 +5,13 @@ ms.date: 11/30/2022
 ---
 # Android
 
-> [!NOTE]
-> Android is not tested as part of vcpkg repository's CI process, so regressions can occur as part of library updates. PRs improving support are welcome!
+The triplets x64-android, arm-neon-android, and arm64-android are tested by vcpkg's public catalog CI.
 
-## Android build requirements
+## Android Build Requirements
 
-1. Download the [android ndk](https://developer.android.com/ndk/downloads/)
+1. Download the [Android NDK](https://developer.android.com/ndk/downloads/)
 
-1. Set environment variable `ANDROID_NDK_HOME` to your android ndk installation. For example:
+2. Set environment variable `ANDROID_NDK_HOME` to your Android NDK installation to set up the Android toolchain. For example:
 
    ```bash
    export ANDROID_NDK_HOME=/home/your-account/Android/Sdk/ndk-bundle
@@ -21,44 +20,78 @@ ms.date: 11/30/2022
    Or:
 
    ```bash
-   export ANDROID_NDK_HOME=/home/your-account/Android/android-ndk-r21b
+   export ANDROID_NDK_HOME=/home/your-account/Android/android-ndk-r25c
    ```
 
-1. Install [vcpkg](https://github.com/microsoft/vcpkg)
-
-1. Set environment variable `VCPKG_ROOT` to your vcpkg installation.
-
-   ```bash
-   export VCPKG_ROOT=/path/to/vcpkg
-   ```
+Note: you will still need to install g++ or a C++ compiler that targets your host for any host dependencies.
 
 ## vcpkg triplets and their corresponding android ABI
 
-There are four different Android ABIs, each of which maps to a vcpkg triplet. The following table outlines the mapping from vcpkg architectures to android architectures:
+There are six different Android ABIs, each of which maps to a vcpkg triplet. The following table outlines the mapping from vcpkg architectures to android architectures:
 
-|VCPKG_TARGET_TRIPLET       | ANDROID_ABI          |
-|---------------------------|----------------------|
-|arm64-android              | arm64-v8a            |
-|arm-android                | armeabi-v7a          |
-|x64-android                | x86_64               |
-|x86-android                | x86                  |
+|VCPKG_TARGET_TRIPLET       | ANDROID_ABI          | ANDROID_ARM_NEON |
+|---------------------------|----------------------|------------------|
+|arm64-android              | arm64-v8a            |                  |
+|arm-android                | armeabi-v7a          | OFF              |
+|arm-neon-android           | armeabi-v7a          | ON               |
+|x64-android                | x86_64               |                  |
+|x86-android                | x86                  |                  |
+|armv6-android              | armeabi              |                  |
 
-## Install libraries for Android using vcpkg
+## Building Android libraries in a Docker container
 
-Example for jsoncpp:
+You can build Android libraries, such as `jsoncpp` in a Ubuntu Docker container.
 
-```bash
-cd $VCPKG_ROOT
+Create a `Dockerfile` with the following contents:
+```Dockerfile
+FROM ubuntu:22.04
 
-# specify the triplet like this
-./vcpkg install jsoncpp --triplet arm-android
-# or like this
-./vcpkg install jsoncpp:arm64-android
-./vcpkg install jsoncpp:x86-android
-./vcpkg install jsoncpp:x64-android
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN \
+  apt-get update && \
+  apt-get -y upgrade
+
+RUN \
+  apt-get -y --no-install-recommends install git g++ wget curl zip vim pkg-config tar cmake unzip ca-certificates
+
+# Download Android NDK
+RUN \
+  wget https://dl.google.com/android/repository/android-ndk-r25c-linux.zip && \
+  unzip android-ndk-r25c-linux.zip && \
+  rm -rf android-ndk-r25c-linux.zip
+
+ENV ANDROID_NDK_HOME /android-ndk-r25c
+
+RUN git clone https://github.com/microsoft/vcpkg
+WORKDIR vcpkg
+RUN ./bootstrap-vcpkg.sh
+
+ENV PATH "/vcpkg:$PATH"
+ENV VCPKG_ROOT "/vcpkg"
+
+WORKDIR /project
 ```
 
-### Using Vulkan SDK
+Build the image and launch a new container:
+```sh
+docker build . -t "vcpkg-android"
+docker run -it "vcpkg-android" bash
+```
+
+In the container, create `/project/vcpkg.json` with the following contents:
+```json
+{
+  "dependencies": [
+    "jsoncpp"
+  ],
+  "builtin-baseline": "1e68748a7c6914642ed686b2e19c3d688bca150a"
+}
+```
+
+Finally, run `vcpkg install --triplet x64-android` to build `jsoncpp` for android.
+
+## Using Vulkan SDK
 
 vcpkg has a [`vulkan` package](https://github.com/microsoft/vcpkg/blob/master/ports/vulkan/portfile.cmake) which allows you to `find_package(Vulkan)`. To use it you have to provide the `VULKAN_SDK` environment variable.
 
@@ -150,68 +183,29 @@ The package vulkan-hpp:arm64-android is header only and can be used from CMake v
 
 </details>
 
-## Consume libraries using vpckg, cmake and the android toolchain
+## Example Android Project
 
-1. Combine vcpkg and Android toolchains
+The folder [docs/examples/vcpkg_android_example_cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake) provides a working example, with an android library that consumes the jsoncpp library:
 
-vcpkg and android both provide dedicated toolchains:
+### Details
 
-```bash
-vcpkg_toolchain_file=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
-android_toolchain_file=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake
-```
+- The [CMakeLists.txt](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake/CMakeLists.txt) simply uses `find_package` and `target_link_library`
 
-When using vcpkg, the vcpkg toolchain shall be specified first.
+- The [compile.sh](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake/compile.sh) script enables you to select any matching pair of "android abi" /  "vcpkg triplet" and to test the compilation
 
-However, vcpkg provides a way to preload and additional toolchain, with the VCPKG_CHAINLOAD_TOOLCHAIN_FILE option.
-
-```bash
-cmake \
-  -DCMAKE_TOOLCHAIN_FILE=$vcpkg_toolchain_file \
-  -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$android_toolchain_file \
-  ...
-```
-
-1. Specify the android abi and vcpkg triplet
-
-When compiling for android, you need to select a matching "android abi" / "vcpkg triplet" pair.
-
-For example:
-
-```bash
-android_abi=armeabi-v7a
-vcpkg_target_triplet=arm-android
-
-cmake 
-  ...
-  -DVCPKG_TARGET_TRIPLET=$vcpkg_target_triplet \
-  -DANDROID_ABI=$android_abi
-```
-
-### Test on an example
-
-The folder [docs/examples/vcpkg_android_example_cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake) provides a working example, with an android library that consumes the jsoncpp library:
-
-#### Details
-
-- The [CMakeLists](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake/CMakeLists.txt) simply uses `find_package` and `target_link_library`
-
-- The [compile.sh](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake/compile.sh) script enables you to select any matching pair of "android abi" /  "vcpkg triplet" and to test the compilation
-
-- The dummy [my_lib.cpp](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake/my_lib.cpp) file uses the jsoncpp library
+- The dummy [my_lib.cpp](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake/my_lib.cpp) file uses the jsoncpp library
 
 > [!NOTE]
 > This example only compiles an Android library, as the compilation of a full-fledged Android App is beyond the scope of this document.
 
-### Test on an example: `vcpkg_android.cmake`
+## Test on an example: `vcpkg_android.cmake`
 
-Test using [vcpkg_android.cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake).
+Test using [vcpkg_android.cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake).
 
-The folder [vcpkg_android_example_cmake_script](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script) provides the same example, and uses a cmake script in order to simplify the usage.
+The folder [vcpkg_android_example_cmake_script](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script) provides the same example, and uses a cmake script in order to simplify the usage.
 
-#### Details
-
-- The main [CMakeLists](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script/CMakeLists.txt) loads [vcpkg_android.cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake) if the flag `VCPKG_TARGET_ANDROID` is set:
+### Details
+- The main [CMakeLists.txt](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/CMakeLists.txt) loads [vcpkg_android.cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake) if the flag `VCPKG_TARGET_ANDROID` is set:
 
   ```cmake
   if (VCPKG_TARGET_ANDROID)
@@ -222,7 +216,7 @@ The folder [vcpkg_android_example_cmake_script](https://github.com/Microsoft/vcp
   > [!IMPORTANT]
   > Place these lines before calling `project()`.
 
-- The [compile.sh](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/users/examples/vcpkg_android_example_cmake_script/compile.sh) script shows that it is then possible to compile for android using a simple cmake invocation, for example:
+- The [compile.sh](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/compile.sh) script shows that it is then possible to compile for android using a simple cmake invocation, for example:
 
   ```bash
   cmake .. -DVCPKG_TARGET_ANDROID=ON -DANDROID_ABI=armeabi-v7a
