@@ -21,6 +21,8 @@ There are two variants of each triplet, selecting between static and dynamic lin
 | Xbox Series X\|S | x64-xbox-scarlett            |
 |                  | x64-xbox-scarlett-static     |
 
+The ``static`` linking triplets are set to use the MSVC Runtime as a DLL (i.e. ``VCPKG_CRT_LINKAGE dynamic``) as that's the recommended and supported usage scenario.
+
 ## Building with the Windows SDK
 
 The Windows SDK (19041) or later includes the system headers required to build against the ``WINAPI_FAMILY_GAMES`` API partition used by the Xbox Game OS. Therefore, most libraries can be built against these triplets without having access to the NDA *Microsoft GDK with Xbox Extensions*.
