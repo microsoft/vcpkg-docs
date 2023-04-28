@@ -33,6 +33,10 @@ For libraries that require these headers, they make use of **ms-gdkx** "stub" po
 
 > Note that Xbox developers are responsible for ensuring they and their publisher have appropriate and correct licensing terms for use of any 3rd party software components per the terms of their Title License Agreement. Be sure to seek appropriate legal advice for any use of open-source components in your title.
 
+## UWP on Xbox
+
+If building for [UWP on Xbox](https://learn.microsoft.com/windows/uwp/xbox-apps/getting-started), make use of the existing **x64-uwp** triplet instead.
+
 ## Further reading
 
 For more information, see [this blog post](https://walbourn.github.io/vcpkg-now-supports-targeting-xbox/).
