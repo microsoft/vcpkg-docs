@@ -52,7 +52,7 @@ If you wish to select a different clang/LLVM for Windows toolset, you can instal
 set LLVMInstallDir="C:\Program Files\LLVM"
 ```
 
-Note that MSBuild uses the same property variable to set a custom version of clang/LLVM as well. Be sure to also set the **LLVMToolsVersion** property variable to the correct value as well. See [Microsoft Learn](/cpp/build/clang-support-msbuild?view=msvc-170#custom_llvm_location).
+Note that MSBuild uses the same property variable to set a custom version of clang/LLVM as well. Be sure to also set the **LLVMToolsVersion** property variable to the correct value as well. See [Microsoft Learn](/cpp/build/clang-support-msbuild#custom_llvm_location).
 
 The vcpkg triplets will make use of the toolset pointed to by this variable if present.
 
