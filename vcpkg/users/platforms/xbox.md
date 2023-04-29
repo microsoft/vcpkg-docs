@@ -37,7 +37,7 @@ For libraries that require these headers, they make use of **ms-gdkx** "stub" po
 
 ## UWP on Xbox
 
-If building for [UWP on Xbox](https://learn.microsoft.com/windows/uwp/xbox-apps/getting-started), make use of the existing **x64-uwp** triplet instead.
+If building for [UWP on Xbox](/windows/uwp/xbox-apps/getting-started), make use of the existing **x64-uwp** triplet instead.
 
 ## Further reading
 
