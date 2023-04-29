@@ -39,6 +39,18 @@ For libraries that require these headers, they make use of **ms-gdkx** "stub" po
 
 If building for [UWP on Xbox](/windows/uwp/xbox-apps/getting-started), make use of the existing **x64-uwp** triplet instead.
 
+## Maintainer notes
+
+CMake projects for these triplets are built using ``CMAKE_SYSTEM_NAME`` set to "Windows". To indicate the Xbox console being targeted, the `XBOX_CONSOLE_TARGET` variable is set to "xboxone" or "scarlett".
+
+Xbox triplets build with ``/DWINAPI_FAMILY=WINAPI_FAMILY_GAMES`` and either `/arch:AVX` or `/arch:AVX2` depending on the target console.
+
+The Xbox triplets also build with ``/DUNICODE /D_UNICODE`` as these are both strongly recommended for modern development. See the [UTF-8 Everywhere manifesto](https://utf8everywhere.org/) for more information.
+
+For dynamic libraries, be sure to avoid explict linking to `KERNEL32.LIB` or `ONECORE.LIB`. For the Xbox platform, a platform umbrella library is used instead which conflicts with ``kernel32``, etc. See [Microsoft Learn](/windows/win32/apiindex/windows-apisets).
+
 ## Further reading
 
 For more information, see [this blog post](https://walbourn.github.io/vcpkg-now-supports-targeting-xbox/).
+
+See also the [CMakeExample sample on GitHub](https://github.com/microsoft/Xbox-GDK-Samples/tree/main/Samples/Tools/CMakeExample).
