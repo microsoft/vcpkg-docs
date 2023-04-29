@@ -23,7 +23,7 @@ There are two variants of each triplet, selecting between static and dynamic lin
 |              | arm64-clangcl-static       |                                    |
 |              | arm64-clangcl-uwp          |                                    |
 
-> Note that clang/LLVM for Windows does not support the C++/CX language extensions (``/ZW``, ``/AU``, ``/FU``, ``/WINMD``, and ``#using``) supported by the MSVC ``uwp`` triplets. You can make use of [C++/WinRT language projections](https://learn.microsoft.com/windows/uwp/cpp-and-winrt-apis/) with clang/LLVM for Windows.
+> Note that clang/LLVM for Windows does not support the C++/CX language extensions (``/ZW``, ``/AU``, ``/FU``, ``/WINMD``, and ``#using``) supported by the MSVC ``uwp`` triplets. You can make use of [C++/WinRT language projections](/windows/uwp/cpp-and-winrt-apis/) with clang/LLVM for Windows.
 
 In addition to triplets for the standard Windows and UWP platforms using clang/LLVM, there are four that target the Xbox platform as well.
 
@@ -42,7 +42,7 @@ The ``static`` linking triplets are set to use the MSVC Runtime as a DLL (i.e. `
 
 The easiest way to make use of clang/LLVM for Windows is to install it as part of the Visual Studio product. You can install them by opening the Visual Studio Installer and choosing **C++ Clang tools for Windows** under **Desktop development with C++** optional components (``Microsoft.VisualStudio.Component.VC.Llvm.Clang`` and/or ``Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang``). 
 
-![Visual Studio 2022 Install UI](https://learn.microsoft.com/en-us/cpp/build/media/clang-install-vs2022.png?view=msvc-170)
+![Visual Studio 2022 Install UI](/cpp/build/media/clang-install-vs2022.png)
 
 The vcpkg triplets will automatically make use of these tools by default.
 
@@ -54,7 +54,7 @@ If you wish to select a different clang/LLVM for Windows toolset, you can instal
 set LLVMInstallDir="C:\Program Files\LLVM"
 ```
 
-Note that MSBuild uses the same property variable to set a custom version of clang/LLVM as well. Be sure to also set the **LLVMToolsVersion** property variable to the correct value as well. See [Microsoft Learn](https://learn.microsoft.com/cpp/build/clang-support-msbuild?view=msvc-170#custom_llvm_location).
+Note that MSBuild uses the same property variable to set a custom version of clang/LLVM as well. Be sure to also set the **LLVMToolsVersion** property variable to the correct value as well. See [Microsoft Learn](/cpp/build/clang-support-msbuild?view=msvc-170#custom_llvm_location).
 
 The vcpkg triplets will make use of the toolset pointed to by this variable if present.
 
