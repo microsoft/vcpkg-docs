@@ -42,7 +42,7 @@ The easiest way to make use of clang/LLVM for Windows is to install it as part o
 
 ![Visual Studio 2022 Install UI](/cpp/build/media/clang-install-vs2022.png)
 
-The vcpkg triplets will automatically make use of these tools by default.
+The vcpkg clangcl triplets will automatically make use of these tools by default.
 
 ## Selecting a clang/LLVM for Windows Toolset
 
@@ -55,6 +55,12 @@ set LLVMInstallDir="C:\Program Files\LLVM"
 Note that MSBuild uses the same property variable to set a custom version of clang/LLVM as well. Be sure to also set the **LLVMToolsVersion** property variable to the correct value as well. See [Microsoft Learn](/cpp/build/clang-support-msbuild#custom_llvm_location).
 
 The vcpkg triplets will make use of the toolset pointed to by this variable if present.
+
+## C/C++ Runtime
+
+The clang/LLVM for Windows toolset makes use of the Microsoft Visual C/C++ Runtime, so is highly compatible with the MSVC compiler. It will use the version of the CRT that matches the Visual Studio installation. This also ensures that code built with clang/LLVM for Windows and the MSVC compiler are link-compatible.
+
+Keep in mind that the Microsoft Visual C/C++ Runtime is 'forward binary compatible'. This means you can build code with VS 2015 Update 3, VS 2017, VS 2019, and/or VS 2022 and link it all together. The key requirement is that the LINK must be done against the *newest* toolset in the mix. See [Microsoft Learn](/cpp/porting/binary-compat-2015-2017).
 
 ## Known Issues
 
