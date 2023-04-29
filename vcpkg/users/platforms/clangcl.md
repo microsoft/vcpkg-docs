@@ -23,8 +23,6 @@ There are two variants of each triplet, selecting between static and dynamic lin
 |              | arm64-clangcl-static       |                                    |
 |              | arm64-clangcl-uwp          |                                    |
 
-> Note that clang/LLVM for Windows does not support the C++/CX language extensions (``/ZW``, ``/AU``, ``/FU``, ``/WINMD``, and ``#using``) supported by the MSVC ``uwp`` triplets. You can make use of [C++/WinRT language projections](/windows/uwp/cpp-and-winrt-apis/) with clang/LLVM for Windows.
-
 In addition to triplets for the standard Windows and UWP platforms using clang/LLVM, there are four that target the Xbox platform as well.
 
 | Console          | vcpkg community triplets     |
@@ -36,7 +34,7 @@ In addition to triplets for the standard Windows and UWP platforms using clang/L
 
 The ``static`` linking triplets are set to use the MSVC Runtime as a DLL (i.e. ``VCPKG_CRT_LINKAGE dynamic``) as that's the recommended usage scenario.
 
-> The toolchain file can also support x86 and arm architectures as well, if needed, but those triplet files are left as an excercise to the reader to implement.
+> The toolchain file can also support x86 and arm architectures, if needed, but those triplet files are left as an excercise to the reader to implement.
 
 ## Visual Studio integration of clang/LLVM for Windows
 
@@ -65,3 +63,15 @@ The vcpkg triplets will make use of the toolset pointed to by this variable if p
 ```
 lld-link: warning/error: ignoring unknown debug$S subsection kind 0xFF in file libucrt.lib
 ```
+
+## Maintainer notes
+
+The ``clang-cl.exe`` MSVC-like front-end to clang/LLVM for Windows is designed to handle most existing MSVC ``cl.exe`` command-line options.
+
+* In CMake the ``MSVC`` and ``WIN32`` variables will be set for both cl.exe and clang-cl.exe.
+
+* ``/Qspectre`` and ``/analyze`` are not supported by the clang-cl.exe front-end. Only add one of these flags for ``CMAKE_CXX_COMPILER_ID`` being set to "MSVC".
+
+* clang-cl.exe does not support the C++/CX language extensions (``/ZW``, ``/AI``, ``/FU``, ``/WINMD``, and ``#using``) supported by cl.exe. You can make use of [C++/WinRT language projections](/windows/uwp/cpp-and-winrt-apis/) with both MSVC and clang/LLVM for Windows with `set(CMAKE_CXX_STANDARD 17)`
+
+* clang-cl.exe v12 added support for ``/guard:cf``. clang-cl.exe v13 added support for ``/guard:ehcont``.
