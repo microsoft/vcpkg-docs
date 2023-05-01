@@ -75,6 +75,11 @@ pass in environment variables that should cause rebuilds on change, see [`VCPKG_
 
 Example: `FOO_SDK_DIR;BAR_SDK_DIR`
 
+> [!NOTE]
+> Due to a known bug when vcpkg calls itself recursively, you may need to include VCPKG_KEEP_ENV_VARS itself in the list of environment variables.
+>
+> Example: `VCPKG_KEEP_ENV_VARS=NUGET;VCPKG_KEEP_ENV_VARS`
+
 ## VCPKG_MAX_CONCURRENCY
 
 This environment variables limits the amount of concurrency used by underlying buildsystems. If unspecified, this defaults to logical cores + 1.
