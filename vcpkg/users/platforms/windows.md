@@ -46,7 +46,7 @@ For examples, this would force the use of the VS 2017 toolset.
 set(VCPKG_PLATFORM_TOOLSET v141)
 ```
 
-See [Triplet files](../triplets) for more information.
+See [Triplet files](../triplets.md) for more information.
 
 ## C/C++ Runtime
 
@@ -163,4 +163,4 @@ endif()
 
 Note you may want to also provide an explicit CMake build option to control this as well.
 
-See [Microsoft Learn](cpp/build/reference/qspectre).
+See [Microsoft Learn](/cpp/build/reference/qspectre).
