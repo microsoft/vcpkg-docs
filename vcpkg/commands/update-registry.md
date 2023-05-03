@@ -10,12 +10,20 @@ ms.date: 05/03/2023
 ## Synopsis
 
 ```console
-vcpkg x-update-registry artifact-registry-name-or-uri...
+vcpkg x-update-registry [--all] artifact-registry-name-or-uri...
 ```
 
 ## Description
 
-Downloads the registry contents of the supplied artifact registry, identified by name or URI.
+Downloads the registry contents of the supplied artifact registry.
+
+## Options
+
+All vcpkg commands support a set of [common options](common-options.md).
+
+### `--all`
+
+Updates all registries declared in currently active vcpkg-configurations.
 
 ## Example
 
@@ -44,6 +52,7 @@ $ type vcpkg-configuration.json
       "name": "hello"
     }
   ]
+}
 $ .\vcpkg.exe x-update-registry microsoft
 warning: vcpkg-artifacts is experimental and may change at any time.
 Updating registry data from microsoft
@@ -56,6 +65,14 @@ $ .\vcpkg.exe x-update-registry microsoft hello
 warning: vcpkg-artifacts is experimental and may change at any time.
 Updating registry data from microsoft
 Updated microsoft. It contains 22 metadata files.
+Updating registry data from hello
+Updated hello. It contains 480 metadata files.
+$ .\vcpkg.exe x-update-registry --all
+warning: vcpkg-artifacts is experimental and may change at any time.
+Updating registry data from microsoft
+Updated microsoft. It contains 22 metadata files.
+Updating registry data from cmsis
+Updated cmsis. It contains 9 metadata files.
 Updating registry data from hello
 Updated hello. It contains 480 metadata files.
 ```
