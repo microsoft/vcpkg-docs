@@ -258,6 +258,8 @@
           href: commands/update.md
         - name: vcpkg x-update-baseline
           href: commands/update-baseline.md
+        - name: vcpkg x-update-registry
+          href: commands/update-registry.md
         - name: vcpkg upgrade
           href: commands/upgrade.md
         - name: vcpkg version
