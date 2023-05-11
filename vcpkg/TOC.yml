@@ -223,6 +223,8 @@
         href: maintainers/functions/internal/z_vcpkg_restore_pkgconfig_path.md
       - name: z_vcpkg_setup_pkgconfig_path
         href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
+  - name: Usage Files
+    href: maintainers/handling-usage-files.md
   - name: CONTROL Files (deprecated)
     href: maintainers/control-files.md
 - name: Reference
