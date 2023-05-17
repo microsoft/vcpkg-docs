@@ -270,10 +270,6 @@
     href: contributing/cmake-guidelines.md
   - name: PR Review Checklist
     href: contributing/pr-review-checklist.md
-  - name: Microsoft/vcpkg Release Process
-    href: contributing/vcpkg_catalog_release_process.md
-  - name: Microsoft/vcpkg-tool Release Process
-    href: contributing/vcpkg_tool_release_process.md
 - name: About
   items:
     - name: FAQ
