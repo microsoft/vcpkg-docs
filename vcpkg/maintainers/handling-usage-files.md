@@ -1,17 +1,17 @@
 ---
-title: Handling Usage Files
+title: Supplying Usage
 description: Guidance for handling usage files.
 ms.date: 05/11/2023
 ---
 
-# Handling Usage Files
+# Supplying Usage for Packages
 
 ## Overview
-Usage files play an important role in providing instructions, examples, or guidelines for utilizing packages within our repository. To ensure consistency and clarity, we have established the following guidelines for handling usage files:
+Providing usage documentation for vcpkg ports is highly valued as it allows users to easily adopt and utilize the packages within their projects. To this end, we highly encourage providing a text file named "usage" within the ports directory (i.e., `vcpkg/ports/<port-name>/usage`) describing the minimum buildsystem integration necessary to make the library function at all. It is intended for this file to be installed with the library.
 
-### Using `configure_file()` Function
+### Supplying Usage Files
 
-The recommended approach for handling usage files is by utilizing the `configure_file()` function provided by CMake. This function allows you to specify the source usage file and the destination path where it should be copied. 
+The recommended approach for handling usage files is by utilizing the `configure_file()` function provided by CMake. This function should be called from within the port's `portfile.cmake` and allows you to specify the source usage file and the destination path where it should be copied. 
 
 For example:
 
@@ -19,17 +19,18 @@ For example:
 configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" COPYONLY)
 ```
 
-This code snippet will copy the `usage` file located in the current directory to the destination path. `${CURRENT_PACKAGES_DIR}/share/${PORT}/usage`.
-
-### Naming Convention
-
-To maintain consistency, it is advisable to name the usage files as `usage` within the respective packages directories. This naming convention will make it easier for contributors and users to locate and refer to the usage files.
+This code snippet will copy the `usage` file to `${CURRENT_PACKAGES_DIR}/share/${PORT}/usage`.
 
 ### Content Format
 
-The content of the usage files should provide clear instructions, examples, or guidelines on how to effectively use the package. It should be concise, well-structured, and include any necessary code snippets, command-line instructions, or configuration details. 
+When structuring the content of the usage files, it is important to focus on providing clear instructions, examples, or guidelines that cover the essential aspects of using the package. The content should be concise, well-structured, and emphasize the minimum build system integration required to ensure the basic functionality of the library.
 
-For example:
+While it can be tempting to include extensive code snippets, command-line instructions, or configuration details, it is advisable to avoid overwhelming users with excessive information. Instead, prioritize clarity and conciseness in explaining the fundamental steps necessary to utilize the package effectively.
+
+For more comprehensive and detailed information, users can refer to the [documentation](https://learn.microsoft.com/vcpkg/users/manifests).
+
+This is an example of a `usage` file for the `adios2` port.
+
 ```
 The package adios2 provides CMake targets:
 
@@ -37,10 +38,8 @@ The package adios2 provides CMake targets:
     target_link_libraries(main PRIVATE adios2::adios2)
 ```
 
-### Update and Synchronization
-
-It is important to keep the usage files up to date with the latest changes and additions to the package. Whenever modifications are made to the usage instructions, ensure that the usage files are synchronized accordingly. 
-
-
-
-
+To find and use catch2 (header only library)
+```
+find_path(CATCH_INCLUDE_DIR NAMES catch.hpp PATH_SUFFIXES catch2)
+include_directories(${CATCH_INCLUDE_DIR})
+```
