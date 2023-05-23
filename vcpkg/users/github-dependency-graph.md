@@ -5,7 +5,7 @@ ms.date: 05/22/2023
 ---
 
 > [!TIP]
-> This page describes an experimental feature of vcpkg. We are actively developing this feature and would like to hear your feedback. Please let us know if you have any thoughts about the current functionality or any desired functionality. If you have feedback on any of the GitHub features that this enables, let us know tha too and we'll make sure it gets to the right folks at GitHub.
+> This page describes an experimental feature of vcpkg. We are actively developing this feature and would like to hear your feedback. Let us know if you have any thoughts about the current functionality or any desired functionality by emailing vcpkg@microsoft.com or by filing an issue in [vcpkg-docs](https://github.com/microsoft/vcpkg-docs/issues). If you have feedback on any of the GitHub features that this enables, let us know tha too and we'll make sure it gets to the right folks at GitHub.
 
 # About the GitHub dependency graph
 
