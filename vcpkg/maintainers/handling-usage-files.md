@@ -27,7 +27,7 @@ When structuring the content of the usage files, it is important to focus on pro
 
 While it can be tempting to include extensive code snippets, command-line instructions, or configuration details, it is advisable to avoid overwhelming users with excessive information. Instead, prioritize clarity and conciseness in explaining the fundamental steps necessary to utilize the package effectively.
 
-For more comprehensive and detailed information, users can refer to the [documentation](https://learn.microsoft.com/vcpkg/users/manifests).
+For more comprehensive and detailed information, users can refer to the [documentation](../users/manifests.md).
 
 The usage file should follow this template:
 
