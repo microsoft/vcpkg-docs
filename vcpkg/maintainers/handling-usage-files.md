@@ -29,17 +29,18 @@ While it can be tempting to include extensive code snippets, command-line instru
 
 For more comprehensive and detailed information, users can refer to the [documentation](https://learn.microsoft.com/vcpkg/users/manifests).
 
-This is an example of a `usage` file for the `adios2` port.
+The usage file should follow this template:
 
 ```
-The package adios2 provides CMake targets:
+To use <package_name> from CMake:
 
-    find_package(adios2 CONFIG REQUIRED)
-    target_link_libraries(main PRIVATE adios2::adios2)
+    <instructions>
 ```
 
-To find and use catch2 (header only library)
+Here is an example using ZLIB:
 ```
-find_path(CATCH_INCLUDE_DIR NAMES catch.hpp PATH_SUFFIXES catch2)
-include_directories(${CATCH_INCLUDE_DIR})
+To use ZLIB from CMake:
+
+    find_package(ZLIB REQUIRED)
+    target_link_libraries(main PRIVATE ZLIB::ZLIB)
 ```
