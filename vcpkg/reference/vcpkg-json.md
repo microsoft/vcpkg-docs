@@ -415,7 +415,7 @@ A Platform Expression is a JSON string which describes when a dependency is requ
 Expressions are built from primitive identifiers, logical operators, and grouping:
 
 - `!<expr>`, `not <expr>` - negation
-- `<expr>|<expr>`, `<expr>||<expr>`, `<expr>,<expr>`, `<expr> or <expr>` - logical OR
+- `<expr>|<expr>`, `<expr>||<expr>`, `<expr>,<expr>` - logical OR
 - `<expr>&<expr>`, `<expr>&&<expr>`, `<expr> and <expr>` - logical AND
 - `(<expr>)` - grouping/precedence
 
