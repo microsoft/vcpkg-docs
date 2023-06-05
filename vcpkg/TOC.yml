@@ -69,7 +69,7 @@
     - name: Adding explicit usage text
       href: examples/adding-usage.md
   - name: Authoring Script Ports
-    displayName: helpers, scripts, reuseable, function, reuse
+    displayName: helpers, scripts, reusable, function, reuse
     href: maintainers/authoring-script-ports.md
   - name: Creating Registries
     href: maintainers/registries.md
