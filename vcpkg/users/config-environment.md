@@ -113,3 +113,11 @@ This environment variable sets the language vcpkg uses to display messages. It s
 
 For example: 1033 corresponds to the English (US) language. 
 For a full list of supported LCIDs see [Localization](https://github.com/microsoft/vcpkg-tool/blob/main/docs/localization.md).
+
+## ACTIONS_CACHE_URL
+
+This environment variable is the URL to the GitHub Actions cache. See [Binary Caching](binarycaching.md#gha) for more details.
+
+## ACTIONS_RUNTIME_TOKEN
+
+This environment variable is the access token to the GitHub Actions cache. See [Binary Caching](binarycaching.md#gha) for more details.
