@@ -13,11 +13,11 @@ Binary caching saves copies of library binaries in a shared location that can be
 Binary caching is especially effective when using Continuous Integration, since local developers can reuse the binaries produced during a CI run. It also greatly enhances the performance of ephemeral or "hosted" build agents, since all local changes are otherwise lost between runs. By using binary caching backed by a cloud service, such as GitHub, Azure, or others, you can ensure your CI runs at maximum speed and only rebuilds your dependencies when they've changed.
 
 > [!TIP]
-> We recommend creating a writable binary cache for every CI pipeline or workflow. Individual developers should have read-only access to the CI binary cache.
+> It is recommended to create a writable binary cache for every continuous integration pipeline or workflow. Individual developers should have read-only access to the CI binary cache.
 
 Caches can be hosted in a variety of environments. The most basic examples are a folder on the local machine or a network file share. Caches can also be stored in any NuGet feed (such as GitHub Packages or Azure DevOps Artifacts), Azure Blob Storage, Google Cloud Storage, and many other services.
 
-If your CI provider offers a native "caching" function, we recommend using both vcpkg binary caching and the native method for the most performant results.
+If your CI provider offers a native "caching" function, it is recommended to use both vcpkg binary caching and the native method for the most performant results.
 
 Binary caching is enabled by default with a [`files` provider](#files) at the first valid location of:
 
