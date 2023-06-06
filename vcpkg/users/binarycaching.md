@@ -168,7 +168,7 @@ Adds the GitHub Actions cache as a provider. This binary caching provider is onl
 
 ### <a name="gha-quickstart"></a> Quickstart
 
-In order for vcpkg to make use of the GitHub Actions Cache we must provide it the Actions Cache URL and Runtime Token. To do this we export both values as environment variables in an workflow step similar to the following:
+In order for vcpkg to make use of the GitHub Actions Cache, it needs the Actions Cache URL and Runtime Token. To do this, both values should be exported as environment variables in a workflow step similar to the following:
 
 ```yaml
 - uses: actions/github-script@v6
@@ -180,7 +180,7 @@ In order for vcpkg to make use of the GitHub Actions Cache we must provide it th
 
 Specifying these values as environment variables instead of vcpkg command line arguments is by design as the GitHub Actions Cache binary caching provider can only be used from a GitHub Actions workflow.
 
-Once the environment variables have been exported, vcpkg can be then be run with the GitHub Actions binary caching provider like this:
+Once the environment variables have been exported, vcpkg can be run with the GitHub Actions binary caching provider like this:
 
 ```yaml
 - name: Install dependencies via vcpkg
@@ -277,14 +277,14 @@ NuGet's user-wide cache is not used by default. To use it for every nuget-based 
 
 ## Provider Examples
 
-If your CI system of choice is not listed, we welcome PRs to add them!
+If your CI system of choice is not listed, you are welcome to submit a PR to add it!
 
 ### <a name="quickstart-github"></a> GitHub Packages
 
-To use vcpkg with GitHub Packages, we recommend using the [NuGet provider](#nuget).
+To use vcpkg with GitHub Packages, it is recommended to use the [NuGet provider](#nuget).
 
 > [!NOTE]
-> **2020-09-21**: GitHub's hosted agents come with an older, pre-installed copy of vcpkg on the path that does not support the latest binary caching. This means that direct calls to `bootstrap-vcpkg` or `vcpkg` without a path prefix may call an unintended vcpkg instance. We recommend taking the following two steps to avoid issues if you want to use your own copy of vcpkg:
+> **2020-09-21**: GitHub's hosted agents come with an older, pre-installed copy of vcpkg on the path that does not support the latest binary caching. This means that direct calls to `bootstrap-vcpkg` or `vcpkg` without a path prefix may call an unintended vcpkg instance. If you want to use your own copy of vcpkg,  the following two steps to avoid issues if you want to use your own copy of vcpkg:
 >
 > 1. Run the equivalent of `rm -rf "$VCPKG_INSTALLATION_ROOT"` using `shell: 'bash'`.
 > 2. Always call `vcpkg` and `bootstrap-vcpkg` with a path prefix, such as `./vcpkg`, `vcpkg/vcpkg`, `.\bootstrap-vcpkg.bat`, etc.
@@ -304,7 +304,7 @@ matrix:
       mono: ''
     - os: 'ubuntu-20.04'
       triplet: 'x64-linux'
-      # To run `nuget.exe` on non-Windows platforms, we must use `mono`.
+      # To run `nuget.exe` on non-Windows platforms, `mono` must be used.
       mono: 'mono'
 
 steps:
@@ -337,7 +337,7 @@ See the [GitHub Packages' NuGet documentation](https://docs.github.com/packages/
 
 ### <a name="quickstart-ado"></a> Azure DevOps Artifacts
 
-To use vcpkg with Azure DevOps Artifacts, we recommend using the [NuGet provider](#nuget).
+To use vcpkg with Azure DevOps Artifacts, it is recommended to use the [NuGet provider](#nuget).
 
 First, ensure Artifacts has been enabled on your DevOps account. An Administrator can enable this through *Project Settings* -> *General* -> *Overview* -> *Azure DevOps Services* > *Artifacts*.
 
@@ -380,7 +380,7 @@ $ mono `vcpkg fetch nuget | tail -n1` sources add \
 $ export VCPKG_BINARY_SOURCES="nuget,ADO,readwrite"
 ```
 
-We recommend using a Personal Access Token (PAT) as the password for maximum security. You can generate a PAT in *User Settings* -> *Personal Access Tokens* or `https://dev.azure.com/<ORG>/_usersSettings/tokens`.
+Use a Personal Access Token (PAT) as the password for maximum security. You can generate a PAT in *User Settings* -> *Personal Access Tokens* or `https://dev.azure.com/<ORG>/_usersSettings/tokens`.
 
 ## ABI Hash
 
