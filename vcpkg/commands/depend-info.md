@@ -32,7 +32,7 @@ ableton: ableton-link
 
 #### DGML
 ```console
-$ vcpkg depend-info ableton --dgml
+$ vcpkg depend-info ableton --format=dgml
 
 <?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
@@ -56,7 +56,7 @@ $ vcpkg depend-info ableton --dgml
 
 #### DOT
 ```console
-$ vcpkg depend-info ableton --dot
+$ vcpkg depend-info ableton --format=dot
 
 digraph G{
     rankdir=LR;
@@ -75,9 +75,35 @@ digraph G{
 }
 ```
 
+#### Mermaid
+```console
+$ vcpkg depend-info ableton --format=mermaid
+
+flowchart TD;
+    ableton --> ableton-link;
+    ableton-link --> asio;
+    ableton-link --> vcpkg-cmake;
+    ableton-link --> vcpkg-cmake-config;
+    asio --> vcpkg-cmake;
+    asio --> vcpkg-cmake-config;
+```
+
+#### Tree
+```console
+$ vcpkg depend-info ableton --format=tree
+
+ableton
++-- ableton-link
+    +-- asio
+    |   +-- vcpkg-cmake
+    |   +-- vcpkg-cmake-config
+    +-- vcpkg-cmake
+    +-- vcpkg-cmake-config
+```
+
 #### Rendered diagram
 ```mermaid
-graph TD;
+flowchart TD;
     ableton-->ableton_link;
     ableton_link-->asio;
     ableton_link-->vcpkg_cmake;
@@ -90,11 +116,15 @@ graph TD;
 
 All vcpkg commands support a set of [common options](common-options.md).
 
-### `--dot`
-Generate the dependency tree in the [DOT](https://en.wikipedia.org/wiki/DOT_(graph_description_language)) graph description format.
+### `--format`
+Generate the dependency tree in a specified format.
 
-### `--dgml`
-Generate the dependency tree in the [DGML (Directed Graph Markup Language)](https://en.wikipedia.org/wiki/DGML) XML format.
+Format options:
+- `list` - (Default) plain text list format
+- `dgml` - [DGML (Directed Graph Markup Language)](https://en.wikipedia.org/wiki/DGML) XML format
+- `dot` - [DOT](https://en.wikipedia.org/wiki/DOT_(graph_description_language)) graph description format
+- `mermaid` - [Mermaid](https://mermaid.js.org/intro/) diagram syntax format
+- `tree` - ASCII-art format
 
 ### `--show-depth`
 Show recursion depth in output.
@@ -116,4 +146,10 @@ Sorting Options:
 - `lexicographical` - Sort by name
 - `topological` - (Default) Sort by increasing depth
 - `reverse` - Sort by decreasing depth
-- `x-tree` - (Experimental) Display an ASCII-art tree
+- `x-tree` - (Deprecated) Display an ASCII-art tree
+
+### `--dot` (deprecated)
+Generate the dependency tree in the DOT format.
+
+### `--dgml` (deprecated)
+Generate the dependency tree in the DGML format.
