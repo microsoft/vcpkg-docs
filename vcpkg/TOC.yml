@@ -233,7 +233,7 @@
   - name: CONTROL Files (deprecated)
     href: maintainers/control-files.md
 - name: GitHub Integration
-  href: users/github-integration.md
+  href: github-integration.md
 - name: Reference
   items:
     - name: vcpkg.json Reference

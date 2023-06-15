@@ -1,12 +1,14 @@
 ---
 title: Integrating with GitHub dependency graph
 description: Record the set of resolved libraries with the GitHub dependency graph
+author: michaelbprice
+ms.author: miprice
 ms.date: 05/22/2023
 ---
 
 # Integrating with the GitHub dependency graph
 
-[!INCLUDE [experimental](../../includes/experimental.md)]
+[!INCLUDE [experimental](./includes/experimental.md)]
 
 > [!TIP]
 > We are actively developing this feature and would like to hear your feedback. Let us know if you have any thoughts about the current functionality or any desired functionality by emailing [vcpkg@microsoft.com](mailto:vcpkg@microsoft.com) or by filing an issue in [vcpkg-docs](https://github.com/microsoft/vcpkg-docs/issues). If you have feedback on any of the GitHub features that this enables, let us know that too and we'll make sure it gets to the right folks at GitHub.
