@@ -1,9 +1,9 @@
 ---
-title: Integrating with GitHub dependency graph
-description: Record the set of resolved libraries with the GitHub dependency graph
+title: GitHub Integration
+description: Information on the available vcpkg integration points with GitHub
 author: michaelbprice
 ms.author: miprice
-ms.date: 05/22/2023
+ms.date: 06/15/2023
 ---
 
 # Integrating with the GitHub dependency graph
