@@ -56,10 +56,6 @@
         href: users/examples/versioning.getting-started.md
       - name: Create a x-script Asset Caching source for NuGet
         href: examples/asset-caching-source-nuget.md
-    - name: Experimental features
-      items:
-      - name: Integrating with the GitHub dependency graph
-        href: users/github-dependency-graph.md
 - name: Packaging Libraries
   items:
   - name: Tutorials
@@ -236,6 +232,8 @@
         href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
   - name: CONTROL Files (deprecated)
     href: maintainers/control-files.md
+- name: GitHub Integration
+  href: users/github-integration.md
 - name: Reference
   items:
     - name: vcpkg.json Reference
