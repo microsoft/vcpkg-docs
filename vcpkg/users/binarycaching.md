@@ -13,11 +13,11 @@ Binary caching saves copies of library binaries in a shared location that can be
 Binary caching is especially effective when using Continuous Integration, since local developers can reuse the binaries produced during a CI run. It also greatly enhances the performance of ephemeral or "hosted" build agents, since all local changes are otherwise lost between runs. By using binary caching backed by a cloud service, such as GitHub, Azure, or others, you can ensure your CI runs at maximum speed and only rebuilds your dependencies when they've changed.
 
 > [!TIP]
-> We recommend creating a writable binary cache for every CI pipeline or workflow. Individual developers should have read-only access to the CI binary cache.
+> It is recommended to create a writable binary cache for every continuous integration pipeline or workflow. Individual developers should have read-only access to the CI binary cache.
 
 Caches can be hosted in a variety of environments. The most basic examples are a folder on the local machine or a network file share. Caches can also be stored in any NuGet feed (such as GitHub Packages or Azure DevOps Artifacts), Azure Blob Storage, Google Cloud Storage, and many other services.
 
-If your CI provider offers a native "caching" function, we recommend using both vcpkg binary caching and the native method for the most performant results.
+If your CI provider offers a native "caching" function, it is recommended to use both vcpkg binary caching and the native method for the most performant results.
 
 Binary caching is enabled by default with a [`files` provider](#files) at the first valid location of:
 
@@ -55,6 +55,7 @@ Binary caching is configured with the environment variable `VCPKG_BINARY_SOURCES
 | [`x-aws,<prefix>[,<rw>]`](#aws)     | **Experimental: will change or be removed without warning**<br>Adds an AWS S3 source. |
 | [`x-aws-config,<parameter>`](#aws)  | **Experimental: will change or be removed without warning**<br>Configure all AWS S3 providers. |
 | [`x-cos,<prefix>[,<rw>]`](#cos)     | **Experimental: will change or be removed without warning**<br>Adds a Tencent Cloud Object Storage source. |
+| [`x-gha,<rw>]`](#gha)               | **Experimental: will change or be removed without warning**<br>Use the GitHub Actions cache as source. |
 | `interactive` | Enables interactive credential management for [NuGet](#nuget) (for debugging; requires `--debug` on the command line) |
 
 The `<rw>` optional parameter for certain sources controls whether they will be consulted for
@@ -157,6 +158,37 @@ x-gcs,gs://<bucket-name>/my-vcpkg-cache/maybe/with`,commas/too!/,readwrite
 
 Commas (`,`) are valid as part of a object prefix in GCS. Remember to escape them in the vcpkg configuration, as shown in the previous example. GCS does not have folders (some of the GCS tools simulate folders). It is not necessary to create or otherwise manipulate the prefix used by your vcpkg cache.
 
+## <a name="gha"></a> GitHub Actions cache
+
+[!INCLUDE [experimental](../../includes/experimental.md)]
+
+```
+x-gha[,<rw>]
+```
+
+Adds the GitHub Actions cache as a provider. This binary caching provider is only valid in the context of a GitHub Actions workflow. This provider requires both of the `ACTIONS_CACHE_URL` and `ACTIONS_RUNTIME_TOKEN` environment variables to be set. Setting these environment variables correctly is covered in the following Quickstart section.
+
+### <a name="gha-quickstart"></a> Quickstart
+
+In order for vcpkg to make use of the GitHub Actions Cache, it needs the Actions Cache URL and Runtime Token. To do this, both values should be exported as environment variables in a workflow step similar to the following:
+
+```yaml
+- uses: actions/github-script@v6
+  with:
+    script: |
+      core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
+      core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+```
+
+Specifying these values as environment variables instead of vcpkg command line arguments is by design as the GitHub Actions Cache binary caching provider can only be used from a GitHub Actions workflow.
+
+Once the environment variables have been exported, vcpkg can be run with the GitHub Actions binary caching provider like this:
+
+```yaml
+- name: Install dependencies via vcpkg
+  run: vcpkg install zlib --binarysource="clear;x-gha,readwrite"
+```
+
 ## <a name="http"></a> HTTP provider
 
 ```
@@ -247,14 +279,14 @@ NuGet's user-wide cache is not used by default. To use it for every nuget-based 
 
 ## Provider Examples
 
-If your CI system of choice is not listed, we welcome PRs to add them!
+If your CI system of choice is not listed, you are welcome to submit a PR to add it!
 
 ### <a name="quickstart-github"></a> GitHub Packages
 
-To use vcpkg with GitHub Packages, we recommend using the [NuGet provider](#nuget).
+To use vcpkg with GitHub Packages, it is recommended to use the [NuGet provider](#nuget).
 
 > [!NOTE]
-> **2020-09-21**: GitHub's hosted agents come with an older, pre-installed copy of vcpkg on the path that does not support the latest binary caching. This means that direct calls to `bootstrap-vcpkg` or `vcpkg` without a path prefix may call an unintended vcpkg instance. We recommend taking the following two steps to avoid issues if you want to use your own copy of vcpkg:
+> **2020-09-21**: GitHub's hosted agents come with an older, pre-installed copy of vcpkg on the path that does not support the latest binary caching. This means that direct calls to `bootstrap-vcpkg` or `vcpkg` without a path prefix may call an unintended vcpkg instance. If you want to use your own copy of vcpkg,  the following two steps to avoid issues if you want to use your own copy of vcpkg:
 >
 > 1. Run the equivalent of `rm -rf "$VCPKG_INSTALLATION_ROOT"` using `shell: 'bash'`.
 > 2. Always call `vcpkg` and `bootstrap-vcpkg` with a path prefix, such as `./vcpkg`, `vcpkg/vcpkg`, `.\bootstrap-vcpkg.bat`, etc.
@@ -274,7 +306,7 @@ matrix:
       mono: ''
     - os: 'ubuntu-20.04'
       triplet: 'x64-linux'
-      # To run `nuget.exe` on non-Windows platforms, we must use `mono`.
+      # To run `nuget.exe` on non-Windows platforms, `mono` must be used.
       mono: 'mono'
 
 steps:
@@ -307,7 +339,7 @@ See the [GitHub Packages' NuGet documentation](https://docs.github.com/packages/
 
 ### <a name="quickstart-ado"></a> Azure DevOps Artifacts
 
-To use vcpkg with Azure DevOps Artifacts, we recommend using the [NuGet provider](#nuget).
+To use vcpkg with Azure DevOps Artifacts, it is recommended to use the [NuGet provider](#nuget).
 
 First, ensure Artifacts has been enabled on your DevOps account. An Administrator can enable this through *Project Settings* -> *General* -> *Overview* -> *Azure DevOps Services* > *Artifacts*.
 
@@ -350,7 +382,7 @@ $ mono `vcpkg fetch nuget | tail -n1` sources add \
 $ export VCPKG_BINARY_SOURCES="nuget,ADO,readwrite"
 ```
 
-We recommend using a Personal Access Token (PAT) as the password for maximum security. You can generate a PAT in *User Settings* -> *Personal Access Tokens* or `https://dev.azure.com/<ORG>/_usersSettings/tokens`.
+Use a Personal Access Token (PAT) as the password for maximum security. You can generate a PAT in *User Settings* -> *Personal Access Tokens* or `https://dev.azure.com/<ORG>/_usersSettings/tokens`.
 
 ## ABI Hash
 
