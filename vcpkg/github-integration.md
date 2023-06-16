@@ -16,7 +16,7 @@ Repositories that use GitHub Actions for continuous integration can take advanta
 
 [!INCLUDE [experimental](../includes/experimental.md)]
 
-The [GitHub Actions cache](https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows) is intended to store a repository's intermediate build files that don't change often between jobs or workflow runs. GitHub provides a few different [tools to manage your Actions caches](https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows#managing-caches), which include REST APIs and an extension to the gh command line tool, so that you can optimize caches for your workflow. vcpkg's integration with GitHub Actions cache is through the [`x-gha` binary source provider](./users/binarycaching.md#gha).
+The [GitHub Actions cache](https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows) is intended to store a repository's intermediate build files that don't change often between jobs or workflow runs. GitHub provides a few different [tools to manage your Actions caches](https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows#managing-caches), which include REST APIs and an extension to the `gh` command line tool, so that you can optimize caches for your workflow. vcpkg's integration with GitHub Actions cache is through the [`x-gha` binary source provider](./users/binarycaching.md#gha).
 
 ### The GitHub Packages NuGet cache provider
 
