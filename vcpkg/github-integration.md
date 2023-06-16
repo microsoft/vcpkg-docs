@@ -46,7 +46,7 @@ permissions:
   contents: write
 ```
 
-Additionally, you must enable the GitHub dependency graph in your repository's settings (enabled by default on public repositories). For private repositories, follow the [GitHub documentation to enable the dependency graph](https://docs.github.com/code-security/supply-chain-security/understanding-your-software-supply-chain/configuring-the-dependency-graph#enabling-and-disabling-the-dependency-graph-for-a-private-repository) in order to satisfy this requirement.
+You must enable the GitHub dependency graph in your repository's settings (enabled by default on public repositories). For private repositories, follow the [GitHub documentation to enable the dependency graph](https://docs.github.com/code-security/supply-chain-security/understanding-your-software-supply-chain/configuring-the-dependency-graph#enabling-and-disabling-the-dependency-graph-for-a-private-repository) in order to satisfy this requirement.
 
 ### Known limitations
 
