@@ -29,18 +29,18 @@ While it can be tempting to include extensive code snippets, command-line instru
 
 For more comprehensive and detailed information, users can refer to the [documentation](../users/manifests.md).
 
-The usage file should follow this template:
+We ask that usage files follow a similar pattern to the templates below.
 
+Port with CMake targets:
 ```
-To use <package_name> from CMake:
+<port> provides CMake targets:
 
     <instructions>
 ```
 
-Here is an example using ZLIB:
+Header only:
 ```
-To use ZLIB from CMake:
+<port> is header-only and can be used from CMake via:
 
-    find_package(ZLIB REQUIRED)
-    target_link_libraries(main PRIVATE ZLIB::ZLIB)
+    <instructions>
 ```
