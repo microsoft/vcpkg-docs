@@ -16,11 +16,11 @@ Repositories that use GitHub Actions for continuous integration can take advanta
 
 [!INCLUDE [experimental](../includes/experimental.md)]
 
-The [GitHub Actions cache](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows) is intended to store a repository's intermediate build files that don't change often between jobs or workflow runs. GitHub provides a few different [tools to manage your Actions caches](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows#managing-caches), which include REST APIs and an extension to the gh command line tool, so that you can optimize caches for your workflow. vcpkg's integration with GitHub Actions cache is through the [`x-gha` binary source provider](./users/binarycaching.md#gha).
+The [GitHub Actions cache](https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows) is intended to store a repository's intermediate build files that don't change often between jobs or workflow runs. GitHub provides a few different [tools to manage your Actions caches](https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows#managing-caches), which include REST APIs and an extension to the gh command line tool, so that you can optimize caches for your workflow. vcpkg's integration with GitHub Actions cache is through the [`x-gha` binary source provider](./users/binarycaching.md#gha).
 
 ### The GitHub Packages NuGet cache provider
 
-[GitHub Packages](https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages) allows a repository to publish binary artifacts for public or private use. In addition to hosting storage for published packages, GitHub Packages supports a [variety of package management tools](https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages#supported-clients-and-formats) by acting as a package registry. vcpkg can use the NuGet registry interface to GitHub Packages as a cache for vcpkg binary artifacts, by using the [`nuget` binary source provider](./users/binarycaching.md#nuget).
+[GitHub Packages](https://docs.github.com/packages/learn-github-packages/introduction-to-github-packages) allows a repository to publish binary artifacts for public or private use. In addition to hosting storage for published packages, GitHub Packages supports a [variety of package management tools](https://docs.github.com/packages/learn-github-packages/introduction-to-github-packages#supported-clients-and-formats) by acting as a package registry. vcpkg can use the NuGet registry interface to GitHub Packages as a cache for vcpkg binary artifacts, by using the [`nuget` binary source provider](./users/binarycaching.md#nuget).
 
 ## The GitHub dependency graph
 
@@ -31,7 +31,7 @@ The [GitHub Actions cache](https://docs.github.com/en/actions/using-workflows/ca
 
 ### About the GitHub dependency graph
 
-The GitHub [dependency graph](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph) stores the set of dependencies for a repository. Beyond being able to visualize a repository's dependencies, GitHub builds several useful features on top of this data, including [dependency review](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-dependency-review) and [Dependabot alerts](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts).
+The GitHub [dependency graph](https://docs.github.com/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph) stores the set of dependencies for a repository. Beyond being able to visualize a repository's dependencies, GitHub builds several useful features on top of this data, including [dependency review](https://docs.github.com/code-security/supply-chain-security/understanding-your-software-supply-chain/about-dependency-review) and [Dependabot alerts](https://docs.github.com/code-security/dependabot/dependabot-alerts/about-dependabot-alerts).
 
 ### vcpkg integration with the GitHub dependency graph
 
@@ -46,7 +46,7 @@ permissions:
   contents: write
 ```
 
-Additionally, you must enable the GitHub dependency graph in your repository's settings (enabled by default on public repositories). For private repositories, follow the [GitHub documentation to enable the dependency graph](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/configuring-the-dependency-graph#enabling-and-disabling-the-dependency-graph-for-a-private-repository) in order to satisfy this requirement.
+Additionally, you must enable the GitHub dependency graph in your repository's settings (enabled by default on public repositories). For private repositories, follow the [GitHub documentation to enable the dependency graph](https://docs.github.com/code-security/supply-chain-security/understanding-your-software-supply-chain/configuring-the-dependency-graph#enabling-and-disabling-the-dependency-graph-for-a-private-repository) in order to satisfy this requirement.
 
 ### Known limitations
 
