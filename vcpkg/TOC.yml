@@ -42,6 +42,8 @@
       href: users/authentication.md
     - name: Environment variables
       href: users/config-environment.md
+    - name: GitHub Integration
+      href: github-integration.md
     - name: Examples
       items:
       - name: Selecting LLVM Features
@@ -232,8 +234,6 @@
         href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
   - name: CONTROL Files (deprecated)
     href: maintainers/control-files.md
-- name: GitHub Integration
-  href: github-integration.md
 - name: Reference
   items:
     - name: vcpkg.json Reference
