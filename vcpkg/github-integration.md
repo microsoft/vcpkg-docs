@@ -37,8 +37,8 @@ The GitHub [dependency graph](https://docs.github.com/en/code-security/supply-ch
 
 vcpkg has experimental support for populating the GitHub dependency graph from within a GitHub Actions workflow. To enable this feature, make the following changes in your workflow file:
 
-* Set the `dependencygraph` feature flag to the environment variable `VCPKG_FEATURE_FLAGS`.
-* Set the `GITHUB_TOKEN` environment variable with the GitHub workflow variable `${{ secrets.GITHUB_TOKEN }}`.
+* Set the `VCPKG_FEATURE_FLAGS` environment variable to include the value `dependencygraph`. 
+* Set the `GITHUB_TOKEN` environment variable to the value `${{ secrets.GITHUB_TOKEN }}`.
 * Give GitHub Actions write access to the contents of your repository by including the following permissions block. This is required to write the dependency graph metadata to your repository. This __will not__ add any commits to your repository or make any other modification to the contents of your repository.
 
 ```yaml
@@ -56,6 +56,9 @@ The following are known limitations in the current implementation. __Even though
 * Features that depend on the dependency graph, such as Dependabot alerts and Dependabot pull requests, are not yet available. Please let us know if you are interested in those features!
 
 ### Example GitHub Actions workflow
+
+> [!NOTE]
+> This example assumes that there is a valid `vcpkg.json` manifest that lists some dependent ports
 
 ```yaml
 name: Populate dependencies
