@@ -29,7 +29,7 @@ While it can be tempting to include extensive code snippets, command-line instru
 
 For more comprehensive and detailed information, users can refer to the [documentation](../users/manifests.md).
 
-We ask that usage files follow a similar pattern to the templates below.
+Usage files should follow a pattern similar to the following templates:
 
 Port with CMake targets:
 ```
