@@ -15,7 +15,7 @@ vcpkg depend-info [options] <package>
 
 Display all dependencies for a package.
 
-`depend-info` displays all transitive dependencies for a package in several formats, including a plain text list, DGML, or DOT.
+`depend-info` displays all transitive dependencies for a package in several formats, including  plain text, tree, DGML, or DOT.
 
 ## Examples
 
@@ -30,9 +30,43 @@ ableton-link: asio, vcpkg-cmake, vcpkg-cmake-config
 ableton: ableton-link
 ```
 
+#### Tree
+```console
+$ vcpkg depend-info ableton --format=tree
+
+ableton
++-- ableton-link
+    +-- asio
+    |   +-- vcpkg-cmake
+    |   +-- vcpkg-cmake-config
+    +-- vcpkg-cmake
+    +-- vcpkg-cmake-config
+```
+
+#### Dot
+```console
+$ vcpkg depend-info ableton --format=dot
+
+digraph G{
+    rankdir=LR;
+    edge [minlen=3];
+    overlap=false;
+    ableton;
+    ableton -> ableton_link;
+    ableton_link;
+    ableton_link -> asio;
+    ableton_link -> vcpkg_cmake;
+    ableton_link -> vcpkg_cmake_config;
+    asio;
+    asio -> vcpkg_cmake;
+    asio -> vcpkg_cmake_config;
+    empty [label="2 singletons..."];
+}
+```
+
 #### DGML
 ```console
-$ vcpkg depend-info ableton --dgml
+$ vcpkg depend-info ableton --format=dgml
 
 <?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
@@ -54,27 +88,6 @@ $ vcpkg depend-info ableton --dgml
 </DirectedGraph>
 ```
 
-#### DOT
-```console
-$ vcpkg depend-info ableton --dot
-
-digraph G{
-    rankdir=LR;
-    edge [minlen=3];
-    overlap=false;
-    ableton;
-    ableton -> ableton_link;
-    ableton_link;
-    ableton_link -> asio;
-    ableton_link -> vcpkg_cmake;
-    ableton_link -> vcpkg_cmake_config;
-    asio;
-    asio -> vcpkg_cmake;
-    asio -> vcpkg_cmake_config;
-    empty [label="2 singletons..."];
-}
-```
-
 #### Rendered diagram
 ```mermaid
 graph TD;
@@ -90,16 +103,24 @@ graph TD;
 
 All vcpkg commands support a set of [common options](common-options.md).
 
-### `--dot`
+### `--format=<format>`
+
+#### `list`
+The default format, prints a textual list.
+
+#### `tree`
+Prints a 'tree' similar to the console command `tree`.
+
+#### `dot`
 Generate the dependency tree in the [DOT](https://en.wikipedia.org/wiki/DOT_(graph_description_language)) graph description format.
 
-### `--dgml`
+#### `dgml`
 Generate the dependency tree in the [DGML (Directed Graph Markup Language)](https://en.wikipedia.org/wiki/DGML) XML format.
 
 ### `--show-depth`
 Show recursion depth in output.
 
-Only applies to plain text list output.
+Only accepted for list and tree formats.
 
 ### `--max-recurse=<depth>`
 Set maximum depth to display.
@@ -109,11 +130,10 @@ A value of -1 indicates no limit.
 ### `--sort=<type>`
 Set sort order for the list of dependencies.
 
-Only applies to plain text list output.
+Only accepted for list format.
 
 Sorting Options:
 
 - `lexicographical` - Sort by name
 - `topological` - (Default) Sort by increasing depth
 - `reverse` - Sort by decreasing depth
-- `x-tree` - (Experimental) Display an ASCII-art tree
