@@ -15,7 +15,7 @@ vcpkg depend-info [options] <package>
 
 Display all dependencies for a package.
 
-`depend-info` displays all transitive dependencies for a package in several formats, including  plain text, tree, DGML, or DOT.
+`depend-info` displays all transitive dependencies for a package in several formats, including  plain text, tree, DGML, DOT or Mermaid.
 
 ## Examples
 
