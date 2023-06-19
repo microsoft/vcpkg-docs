@@ -8,21 +8,21 @@ ms.date: 06/15/2023
 
 # Available GitHub Integrations
 
-## Caching vcpkg-built binaries for your GitHub Actions workflows
+## <a name="caching"></a> Caching vcpkg-built binaries for your GitHub Actions workflows
 
 Repositories that use GitHub Actions for continuous integration can take advantage of vcpkg's binary caching feature to reduce the amount of time it takes to build their projects. There are two binary cache providers that are available to GitHub repositories, the GitHub Actions cache provider and the GitHub Packages NuGet cache provider. For more information on these GitHub features, see [GitHub Actions cache](https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows) and [GitHub Packages](https://docs.github.com/packages/learn-github-packages/introduction-to-github-packages). For more information on vcpkg binary caching, see our [binary caching feature documentation](./users/binarycaching.md).
 
-### The GitHub Actions cache provider
+### <a name="caching-actions"></a> The GitHub Actions cache provider
 
 [!INCLUDE [experimental](../includes/experimental.md)]
 
 The GitHub Actions cache is intended to store a repository's intermediate build files that don't change often between jobs or workflow runs. For GitHub users, the GitHub Actions cache is a natural fit for vcpkg's binary caching, and it is easier to configure than vcpkg's GitHub Package binary caching integration. GitHub provides a few different tools to manage your Actions caches, which include REST APIs and an extension to the `gh` command line tool, so that you can optimize caches for your workflow. vcpkg's integration with GitHub Actions cache is through the `x-gha` binary source provider.
 
-### The GitHub Packages NuGet cache provider
+### <a name="caching-nuget"></a> The GitHub Packages NuGet cache provider
 
 GitHub Packages allows a repository to publish binary artifacts for public or private use. In addition to hosting storage for published packages, GitHub Packages supports a variety of package management tools by acting as a package registry. vcpkg can use the NuGet registry interface to GitHub Packages as a cache for vcpkg binary artifacts, by using the `nuget` binary source provider. This integration with GitHub Packages is not as straightforward as the GitHub Actions cache integration and management of the cached binaries is more difficult, making the GitHub Actions cache a better option for most users.
 
-## The GitHub dependency graph
+## <a name="dependency-graph"></a> The GitHub dependency graph
 
 [!INCLUDE [experimental](../includes/experimental.md)]
 
