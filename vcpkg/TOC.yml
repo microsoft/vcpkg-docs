@@ -42,7 +42,7 @@
       href: users/authentication.md
     - name: Environment variables
       href: users/config-environment.md
-    - name: GitHub Integration
+    - name: GitHub integration
       href: github-integration.md
     - name: Examples
       items:
