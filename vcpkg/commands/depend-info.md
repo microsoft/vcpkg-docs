@@ -15,7 +15,7 @@ vcpkg depend-info [options] <package>
 
 Display all dependencies for a package.
 
-`depend-info` displays all transitive dependencies for a package in several formats, including  plain text, tree, DGML, or DOT.
+`depend-info` displays all transitive dependencies for a package in several formats, including  plain text, tree, DGML, DOT or Mermaid.
 
 ## Examples
 
@@ -88,9 +88,22 @@ $ vcpkg depend-info ableton --format=dgml
 </DirectedGraph>
 ```
 
+#### Mermaid
+```console
+$ vcpkg depend-info ableton --format=mermaid
+
+flowchart TD;
+    ableton --> ableton-link;
+    ableton-link --> asio;
+    ableton-link --> vcpkg-cmake;
+    ableton-link --> vcpkg-cmake-config;
+    asio --> vcpkg-cmake;
+    asio --> vcpkg-cmake-config;
+```
+
 #### Rendered diagram
 ```mermaid
-graph TD;
+flowchart TD;
     ableton-->ableton_link;
     ableton_link-->asio;
     ableton_link-->vcpkg_cmake;
@@ -116,6 +129,9 @@ Generate the dependency tree in the [DOT](https://en.wikipedia.org/wiki/DOT_(gra
 
 #### `dgml`
 Generate the dependency tree in the [DGML (Directed Graph Markup Language)](https://en.wikipedia.org/wiki/DGML) XML format.
+
+#### `mermaid`
+Generate the dependency tree in the [Mermaid](https://mermaid.js.org/intro/) diagram syntax format.
 
 ### `--show-depth`
 Show recursion depth in output.
