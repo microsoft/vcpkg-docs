@@ -351,6 +351,7 @@ Each feature is an object with the following fields:
 | [description](#feature-description) | Yes      | string | The description of the feature |
 | [dependencies](#feature-dependencies) | No | [Dependency][][] | A list of dependencies |
 | [supports](#feature-supports) | No | [Platform Expression][] | Qualifier for which platforms and configurations the feature supports |
+| [license](#feature-license) | No | string or null | SPDX license expression |
 
 Check out the [Manifest mode](../users/manifests.md#features) documentation for a conceptual overview of features.
 
@@ -407,6 +408,13 @@ This is used to help users discover the feature as part of a [`search`](../comma
 The supported platform and build configurations for the [feature](../users/manifests.md#features). A [Platform Expression][]. Optional.
 
 This field documents the platform configurations where the feature will build and run successfully.
+
+### <a name="feature-license"></a> [Feature][]: `"license"`
+
+The SPDX short license expression of the feature. A string or null. Optional. 
+If not provided, the license is the same as specified in the top level [license](#license) field.
+
+For more information see the top level [license](#license) field.
 
 ## <a name="platform-expression"></a> Platform Expression
 
