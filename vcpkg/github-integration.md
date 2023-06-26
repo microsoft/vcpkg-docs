@@ -50,7 +50,6 @@ You must enable the GitHub dependency graph in your repository's settings (enabl
 
 ### Known limitations
 
-The following are known limitations in the current implementation. Even though we know of these, if they affect the value for you, we'd still like to hear from you so that we can prioritize what we need to fix and how we should fix it.
 
 * The version of vcpkg bundled with GitHub Actions runners may not be up to date. Ensure you are using tool version `2022-06-22` or later (merged with [commit SHA 8f3e8d6](https://github.com/microsoft/vcpkg/commit/8f3e8d6e95c7f91edea60c47a7d1414ab5ca9492)).
 * Features that depend on the dependency graph, such as Dependabot alerts and Dependabot pull requests, are not yet available. Please let us know if you are interested in those features!
