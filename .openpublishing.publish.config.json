@@ -16,9 +16,9 @@
     }
   ],
   "notification_subscribers": [
-    "corob@microsoft.com",
     "twhitney@microsoft.com",
     "roschuma@microsoft.com",
+    "viromer@microsoft.com",
     "aupopa@microsoft.com"
   ],
   "sync_notification_subscribers": [],
