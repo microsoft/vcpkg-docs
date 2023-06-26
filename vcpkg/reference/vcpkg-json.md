@@ -414,8 +414,6 @@ This field documents the platform configurations where the feature will build an
 The SPDX short license expression of the feature. A string or null. Optional. 
 If not provided, the license is the same as specified in the top level [license](#license) field.
 
-For more information see the top level [license](#license) field.
-
 ## <a name="platform-expression"></a> Platform Expression
 
 A Platform Expression is a JSON string which describes when a dependency is required or when a library or feature is expected to build.
