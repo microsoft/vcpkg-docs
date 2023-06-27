@@ -125,7 +125,7 @@ file(INSTALL "${SOURCE_PATH}LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/
 
 This is discouraged in favour of [`vcpkg_install_copyright()`](../maintainers/functions/vcpkg_install_copyright.md). New ports should use `vcpkg_install_copyright()` instead. However, it is still valid for existing ports to use something like the code above. You may replace this with `vcpkg_install_copyright` but you don't have to.
 
-`vcpkg_install_copyright` also includes the functionallity to handle multiple copyright files. See its [documentation](../maintainers/functions/vcpkg_install_copyright.md) for more info.
+`vcpkg_install_copyright` also includes the functionality to handle multiple copyright files. See its [documentation](../maintainers/functions/vcpkg_install_copyright.md) for more info.
 
 ## Features
 

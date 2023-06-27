@@ -42,6 +42,8 @@
       href: users/authentication.md
     - name: Environment variables
       href: users/config-environment.md
+    - name: GitHub integration
+      href: github-integration.md
     - name: Examples
       items:
       - name: Selecting LLVM Features
@@ -69,7 +71,7 @@
     - name: Adding explicit usage text
       href: examples/adding-usage.md
   - name: Authoring Script Ports
-    displayName: helpers, scripts, reuseable, function, reuse
+    displayName: helpers, scripts, reusable, function, reuse
     href: maintainers/authoring-script-ports.md
   - name: Creating Registries
     href: maintainers/registries.md
@@ -242,6 +244,8 @@
       items:
         - name: Common Command Options
           href: commands/common-options.md
+        - name: vcpkg depend-info
+          href: commands/depend-info.md
         - name: vcpkg export
           href: commands/export.md
         - name: vcpkg install
@@ -270,10 +274,6 @@
     href: contributing/cmake-guidelines.md
   - name: PR Review Checklist
     href: contributing/pr-review-checklist.md
-  - name: Microsoft/vcpkg Release Process
-    href: contributing/vcpkg_catalog_release_process.md
-  - name: Microsoft/vcpkg-tool Release Process
-    href: contributing/vcpkg_tool_release_process.md
 - name: About
   items:
     - name: FAQ
