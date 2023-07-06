@@ -254,6 +254,8 @@
           href: commands/integrate.md
         - name: vcpkg list
           href: commands/list.md
+        - name: vcpkg new
+          href: commands/new.md
         - name: vcpkg remove
           href: commands/remove.md
         - name: vcpkg search
