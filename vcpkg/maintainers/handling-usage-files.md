@@ -1,22 +1,22 @@
 ---
-title: Supplying usage for ports
-description: Guidance for handling usage files.
+title: Provide usage documentation for your packages
+description: Guidance for adding usage documentation to packages
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 06/30/2023
 ---
-# Suppyling usage for ports
+# Provide usage documentation for your packages
 
 ## Overview
 
-Providing usage documentation for ports allows users to easily adopt them in their
+Providing usage documentation for packages allows users to easily adopt them in their
 projects. We highly encourage providing a `usage` file within the ports directory (`ports/<port
 name>/usage`) that describes the minimal steps necessary to integrate with a buildsystem.
 
 ### Supplying a usage file
 
-To provide usage documentation put a `usage` text file in the port's `share`
-installation directory. The recommended approach is to call the `configure_file()` function in
+To provide usage documentation just put a text file named `usage` in the port's `share`
+installation directory. The recommended method is to call the `configure_file()` function in
 `portfile.cmake`.
 
 For example:
@@ -25,18 +25,15 @@ For example:
 configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" COPYONLY)
 ```
 
-This installs `${CURRENT_PACKAGES_DIR}/share/${PORT}/usage` which vcpkg will use to print usage
-instructions for the port whenever it gets installed.
+After installing packges, vcpkg detects files installed to `${CURRENT_PACKAGES_DIR}/share/${PORT}/usage`and prints their usage instructions.
 
 ### Content format
 
-When structuring the content of the usage files, it is important to focus on providing clear instructions that cover the essential aspects of using the package. The content should be concise, well-structured, and emphasize the minimum build system integration required to ensure the basic functionality of the library.
+It is important to focus on providing clear instructions that cover the essential aspects of using the package. The content should be concise, well-structured, and emphasize the minimum build system integration required to ensure the basic functionality of the library.
 
-While it can be tempting to include extensive code snippets, command-line instructions, or configuration details, it is advisable to avoid overwhelming users with excessive information. Instead, prioritize clarity and conciseness in explaining the fundamental steps to utilize the package effectively.
+Prioritize clarity and conciseness in explaining the fundamental steps to utilize the package effectively. Avoid overwhelming users with code snippets, command-line instructions, or configuration details. Instead, use the [`"documentation"` property in the port's `vcpkg.json` file](../users/manifests.md) so users can learn more about the specifics of your library.
 
-For comprehensive and detailed information, users can refer to the package's [documentation](../users/manifests.md).
-
-Usage files should follow a pattern similar to the following templates:
+Use the following templates as a pattern for your usage files:
 
 Packages with CMake targets:
 
