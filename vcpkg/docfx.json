@@ -48,7 +48,7 @@
       "feedback_github_repo": "Microsoft/vcpkg-docs",
       "feedback_product_url": "https://github.com/Microsoft/vcpkg/issues/",
       "ROBOTS": "INDEX,FOLLOW",
-      "manager": "roschuma",
+      "manager": "aupopa",
       "ms.date": "11/16/2020",
       "ms.prod": "vcpkg",
       "ms.topic": "conceptual",
@@ -59,10 +59,10 @@
         "cplusplus"
       ],
       "ms.reviewer": [
-        "roschuma",
         "aupopa",
-        "corob",
+        "victor.romero",
         "twhitney"
+
       ],
       "searchScope": [
         "vcpkg"
@@ -70,24 +70,24 @@
     },
     "fileMetadata": {
       "author": {
-        "index.md": "ras0219-msft",
-        "about/**.md": "ras0219-msft",
-        "commands/**.md": "ras0219-msft",
-        "examples/**.md": "ras0219-msft",
-        "maintainers/**.md": "ras0219-msft",
-        "contributing/**.md": "ras0219-msft",
-        "users/**.md": "ras0219-msft",
-        "reference/**.md": "ras0219-msft"
+        "index.md": "vicroms",
+        "about/**.md": "vicroms",
+        "commands/**.md": "vicroms",
+        "examples/**.md": "vicroms",
+        "maintainers/**.md": "vicroms",
+        "contributing/**.md": "vicroms",
+        "users/**.md": "vicroms",
+        "reference/**.md": "vicroms"
       },
       "ms.author": {
-        "index.md": "roschuma",
-        "about/**.md": "roschuma",
-        "commands/**.md": "roschuma",
-        "examples/**.md": "roschuma",
-        "maintainers/**.md": "roschuma",
-        "contributing/**.md": "roschuma",
-        "users/**.md": "roschuma",
-        "reference/**.md": "roschuma"
+        "index.md": "victor.romero",
+        "about/**.md": "victor.romero",
+        "commands/**.md": "victor.romero",
+        "examples/**.md": "victor.romero",
+        "maintainers/**.md": "victor.romero",
+        "contributing/**.md": "victor.romero",
+        "users/**.md": "victor.romero",
+        "reference/**.md": "victor.romero"
       }
     },
     "template": [],
