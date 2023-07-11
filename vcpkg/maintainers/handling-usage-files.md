@@ -3,7 +3,7 @@ title: Provide usage documentation for your packages
 description: Guidance for adding usage documentation to packages
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 06/30/2023
+ms.date: 07/10/2023
 ---
 # Provide usage documentation for your packages
 
@@ -37,7 +37,7 @@ Use the following templates as a pattern for your usage files:
 
 Packages with CMake targets:
 
-```no-highlight
+```text
 <port> provides CMake targets:
 
     <instructions>
@@ -45,7 +45,7 @@ Packages with CMake targets:
 
 Header-only packages:
 
-```no-highlight
+```text
 <port> is header-only and can be used from CMake via:
 
     <instructions>
