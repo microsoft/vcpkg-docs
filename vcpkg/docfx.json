@@ -60,7 +60,7 @@
       ],
       "ms.reviewer": [
         "aupopa",
-        "victor.romero",
+        "viromer",
         "twhitney"
 
       ],
@@ -80,14 +80,14 @@
         "reference/**.md": "vicroms"
       },
       "ms.author": {
-        "index.md": "victor.romero",
-        "about/**.md": "victor.romero",
-        "commands/**.md": "victor.romero",
-        "examples/**.md": "victor.romero",
-        "maintainers/**.md": "victor.romero",
-        "contributing/**.md": "victor.romero",
-        "users/**.md": "victor.romero",
-        "reference/**.md": "victor.romero"
+        "index.md": "viromer",
+        "about/**.md": "viromer",
+        "commands/**.md": "viromer",
+        "examples/**.md": "viromer",
+        "maintainers/**.md": "viromer",
+        "contributing/**.md": "viromer",
+        "users/**.md": "viromer",
+        "reference/**.md": "viromer"
       }
     },
     "template": [],
