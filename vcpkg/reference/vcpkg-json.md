@@ -432,6 +432,7 @@ The following identifiers are defined based on the [triplet settings](../users/t
 | `x64` | `VCPKG_TARGET_ARCHITECTURE` == `"x64"` |
 | `x86` | `VCPKG_TARGET_ARCHITECTURE` == `"x86"` |
 | `arm` | `VCPKG_TARGET_ARCHITECTURE` == `"arm"` or</br> `VCPKG_TARGET_ARCHITECTURE` == `"arm64"` |
+| `arm32` | `VCPKG_TARGET_ARCHITECTURE` == `"arm"` |
 | `arm64` | `VCPKG_TARGET_ARCHITECTURE` == `"arm64"` |
 | `wasm32` | `VCPKG_TARGET_ARCHITECTURE` == `"wasm32"` |
 | `windows` | `VCPKG_CMAKE_SYSTEM_NAME` == `""` or</br> `VCPKG_CMAKE_SYSTEM_NAME` == `"WindowsStore"` or</br> `VCPKG_CMAKE_SYSTEM_NAME` == `"MinGW"` |
