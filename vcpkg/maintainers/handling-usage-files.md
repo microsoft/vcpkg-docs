@@ -1,15 +1,16 @@
 ---
-title: Provide usage documentation for your packages
-description: Guidance for adding usage documentation to packages
+title: Provide usage documentation for your ports
+description: Guidance for adding usage documentation to vcpkg ports
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 07/10/2023
+ms.date: 07/17/2023
+ms.prod: vcpkg
 ---
-# Provide usage documentation for your packages
+# Provide usage documentation for your ports
 
 ## Overview
 
-Providing usage documentation for packages allows users to easily adopt them in their
+Providing usage documentation for ports allows users to easily adopt them in their
 projects. We highly encourage providing a `usage` file within the port's directory (`ports/<port
 name>/usage`) that describes the minimal steps necessary to integrate with a build system.
 
