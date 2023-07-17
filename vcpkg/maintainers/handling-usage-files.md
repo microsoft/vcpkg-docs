@@ -11,7 +11,7 @@ ms.date: 07/10/2023
 
 Providing usage documentation for packages allows users to easily adopt them in their
 projects. We highly encourage providing a `usage` file within the ports directory (`ports/<port
-name>/usage`) that describes the minimal steps necessary to integrate with a buildsystem.
+name>/usage`) that describes the minimal steps necessary to integrate with a build system.
 
 ### Supplying a usage file
 
@@ -25,15 +25,15 @@ For example:
 configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" COPYONLY)
 ```
 
-After installing packges, vcpkg detects files installed to `${CURRENT_PACKAGES_DIR}/share/${PORT}/usage`and prints their usage instructions.
+After installing packages, vcpkg detects files installed to `${CURRENT_PACKAGES_DIR}/share/${PORT}/usage` and prints their usage instructions.
 
 ### Content format
 
-It is important to focus on providing clear instructions that cover the essential aspects of using the package. The content should be concise, well-structured, and emphasize the minimum build system integration required to ensure the basic functionality of the library.
+Provide clear instructions on how to use the package. The content should be concise, well-structured, and emphasize the minimum build system integration required to use the library.
 
-Prioritize clarity and conciseness in explaining the fundamental steps to utilize the package effectively. Avoid overwhelming users with code snippets, command-line instructions, or configuration details. Instead, use the [`"documentation"` property in the port's `vcpkg.json` file](../users/manifests.md) so users can learn more about the specifics of your library.
+Be clear and concise about how to utilize the package effectively. Avoid overwhelming users with code snippets, command-line instructions, or configuration details. Instead, use the [`"documentation"` property in the port's `vcpkg.json` file](../users/manifests.md) so users can learn more about your library.
 
-Use the following templates as a pattern for your usage files:
+Use the following templates as a pattern for your `usage` files:
 
 Packages with CMake targets:
 
