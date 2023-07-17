@@ -10,12 +10,12 @@ ms.date: 07/10/2023
 ## Overview
 
 Providing usage documentation for packages allows users to easily adopt them in their
-projects. We highly encourage providing a `usage` file within the ports directory (`ports/<port
+projects. We highly encourage providing a `usage` file within the port's directory (`ports/<port
 name>/usage`) that describes the minimal steps necessary to integrate with a build system.
 
 ### Supplying a usage file
 
-To provide usage documentation just put a text file named `usage` in the port's `share`
+To provide usage documentation create a text file named `usage` in the port's `share`
 installation directory. The recommended method is to call the `configure_file()` function in
 `portfile.cmake`.
 
@@ -25,7 +25,7 @@ For example:
 configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" COPYONLY)
 ```
 
-After installing packages, vcpkg detects files installed to `${CURRENT_PACKAGES_DIR}/share/${PORT}/usage` and prints their usage instructions.
+After installing ports, vcpkg detects files installed to `${CURRENT_PACKAGES_DIR}/share/${PORT}/usage` and prints their usage instructions.
 
 ### Content format
 
@@ -43,7 +43,7 @@ Packages with CMake targets:
     <instructions>
 ```
 
-Header-only packages:
+Header-only libraries:
 
 ```text
 <port> is header-only and can be used from CMake via:
