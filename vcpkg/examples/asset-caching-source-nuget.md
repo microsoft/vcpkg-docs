@@ -8,21 +8,41 @@ ms.date: 4/18/2023
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
-In this example, we will set up a NuGet feed as a source, meaning we will use `nuget.exe` to pull and push assets.
+In this example, we'll set up a NuGet feed as an asset caching source by using a script to restore and push artifacts.
 
-First, we will set up the environment before any call to `vcpkg install`:
-```powershell
-$env:X_VCPKG_ASSET_SOURCES="clear;x-script,C:/path/to/asset-provider.bat {url} {sha512} {dst};x-block-origin"
-$env:NUGET=C:/path/to/nuget.exe
-$env:VCPKG_KEEP_ENV_VARS=NUGET
+## Prerequisites
+
+* nuget.exe
+* A NuGet packages feed
+
+## Step 1: Create `asset-source.nuspec`
+
+Create a NuGet package spec template with the following contents:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>$sha$</id>
+        <version>1.0.0</version>
+        <description>vcpkg download asset</description>
+        <authors>vcpkg</authors>
+    </metadata>
+    <files>
+        <file src="$file$" />
+    </files>
+</package>
 ```
-[`X_VCPKG_ASSET_SOURCES`](../users/config-environment.md#x_vcpkg_asset_sources) defines a single [`x-script`](../users/assetcaching.md#x-script) asset source while blocking fallback to the original url ([`x-block-origin`](../users/assetcaching.md#x-block-origin)). The `x-script` source is defined to call a script `sources.bat` which will handle `nuget` push and pull commands. This script must be able to run both inside and outside the inner build environment, so we pass it the path to `nuget.exe` in the environment with `NUGET` and [`VCPKG_KEEP_ENV_VARS`](../users/config-environment.md#vcpkg_keep_env_vars).
 
-The script `asset-provider.bat` checks if the asset is stored in the feed, and if so, installs it to the destination path. If the asset is not stored on the feed, the script fetches the url via curl, packs the asset in a `nuget` package and pushes it to the feed.
+## Step 2: Create an asset provider script
 
+Now you need to create a script that downloads packages from the NuGet feed if available and uploads
+missing packages to your feed if they are not.
 
-Create a `asset-provider.bat` file in your project with the following content:
+Create `asset-provider.bat` with the contents provided below, make sure to replace the NuGet feed URL and path to `asset-source.nuspec` with their correct values on your system.
+
 ```bat
+@echo off
 set url=%1
 set sha512=%2
 set dst=%3
@@ -30,7 +50,8 @@ set "_dst=%dst:/=\%"
 set "_sha512=%sha512:~0,90%"
 
 cd /d %~dp3
-%NUGET% install %sha512:~0,90% -Source <feed url>
+%NUGET% install %sha512:~0,90% -Source https://your-nuget-feed-url
+echo.
 if exist %_sha512%.1.0.0 (
     echo "Pull from the NuGet feed"
     cd %_sha512%.1.0.0
@@ -40,25 +61,36 @@ if exist %_sha512%.1.0.0 (
 ) else (
     echo "Fetch from the url"
     curl.exe -L %url% --create-dirs --output %dst%
+    REM Replace with the correct path
     %NUGET% pack C:\path\to\asset-source.nuspec -BasePath %~dp3 -Properties "sha=%_sha512%;file=%dst%" -OutputDirectory %TEMP%
-    %NUGET% push %TEMP%\%_sha512%.1.0.0.nupkg -Source <feed url>
+    %NUGET% push -ApiKey az -SkipDuplicate %TEMP%\%_sha512%.1.0.0.nupkg -Source https://your-nuget-feed-url
 )
 ```
 
-Create a `asset-source.nuspec` file with the following content:
-```
-<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-    <metadata>
-        <id>$sha$</id>
-        <version>1.0.0</version>
-        <description>example</description>
-        <authors>example</authors>
-    </metadata>
-    <files>
-        <file src="$file$" />
-    </files>
-</package>
+## Step 3: Configure the asset caching sources
+
+Now that you have created the asset provider script, you need to instruct vcpkg to use it as an
+asset caching source. To do that, set the following environment variables:
+
+```powershell
+$env:X_VCPKG_ASSET_SOURCES="clear;x-script,C:/path/to/asset-provider.bat {url} {sha512} {dst};x-block-origin"
+$env:NUGET="C:/path/to/nuget.exe"
+$env:VCPKG_KEEP_ENV_VARS="NUGET"
 ```
 
-You will notice that the NuGet package pushed to the feed is named the only the first 90 characters of the `sha`. This is because `nuget` feed ids are limited to 100 characters.
+NOTE: Make sure to replace the placeholder paths to the asset provider script and nuget.exe with the correct paths in your system.
+
+[`X_VCPKG_ASSET_SOURCES`](../users/config-environment.md#x_vcpkg_asset_sources) is the environment variable used to set asset caching sources for vcpkg to use. In this example we set the following values:
+
+* `clear` gets rid of the default asset caching location.
+* [`x-script`](../users/assetcaching.md#x-script) adds your script as an asset caching source, the first parameter indicates the command line vcpkg should invoke, in this example we call the `asset-provider.bat` script and forward some required parameters.
+* `x-block-origin` forces all downloads to come from the configured asset caching sources.
+
+[`VCPKG_KEEP_ENV_VARS`](../users/config-environment.md) is used to forward environment variables to
+vcpkg's build environmet. During builds vcpkg creates a clean environment, by adding `NUGET` to
+`VCPKG_KEEP_ENV_VARS` we ensure that the NuGet executable location is forwarded during builds.
+
+Once all has been properly set up, any time that vcpkg downloads an asset it will upload it to your
+NuGet feed to use in future downloads. You'll notice that cached assets are named after their file
+SHA512 and the version specified in `asset-source.nuspec`. If you'd like to have more meaninful
+names for your packages, you can modify the package template and asset provider script with your own logic.
