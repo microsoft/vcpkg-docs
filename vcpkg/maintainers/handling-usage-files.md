@@ -50,3 +50,12 @@ Header-only packages:
 
     <instructions>
 ```
+
+#### Example of `usage` file
+
+```text
+proj provides CMake targets:
+
+    find_package(PROJ CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE PROJ::proj)
+```
