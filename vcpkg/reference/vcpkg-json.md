@@ -53,7 +53,7 @@ This example demonstrates a manifest for an application using `boost-system`, `c
 
 A shortcut for specifying the `"baseline"` for version resolution in the default registry. A string. Optional, only used by top-level projects.
 
-This field indicates the commit of https://github.com/microsoft/vcpkg which provides global minimum version information for your manifest. It is required for top-level manifest files using versioning without a specified [`"default-registry"`](vcpkg-configuration-json.md#default-registry). It has the same semantic as defining your default registry to be:
+This field indicates the commit of <https://github.com/microsoft/vcpkg> which provides global minimum version information for your manifest. It is required for top-level manifest files using versioning without a specified [`"default-registry"`](vcpkg-configuration-json.md#default-registry). It has the same semantic as defining your default registry to be:
 
 ```json
 {
@@ -91,7 +91,7 @@ The list of dependencies required by the project. An array of [Dependency object
 
 This field lists all the dependencies needed to build and use your library or application.
 
-### Example
+#### Example port dependencies
 
 ```json
 "dependencies": [
@@ -129,7 +129,7 @@ The SPDX short license expression of the project. A string or null. Optional.
 
 The `"license"` should either be an [SPDX 3.19 license expression](https://spdx.org/licenses/) or should be `null` to indicate that users must read the deployed `/share/<port>/copyright` file. DocumentRefs are not supported.
 
-#### Example License Strings
+#### Example license strings
 
 - `MIT`
 - `LGPL-2.1-only AND BSD-2-Clause`
@@ -137,9 +137,9 @@ The `"license"` should either be an [SPDX 3.19 license expression](https://spdx.
 
 #### EBNF
 
-vcpkg uses the following EBNF to parse the license field:
+vcpkg uses the following [EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) to parse the license field:
 
-```ebnf
+```text
 idchar = ? regex /[-.a-zA-Z0-9]/ ?
 idstring = ( idchar ), { idchar } ;
 
@@ -195,7 +195,6 @@ Exact version pins to use for specific dependencies. An array of Override object
 
 `"overrides"` from transitive manifests (i.e. from dependencies) are ignored. Only overrides defined by the top-level project are used.
 
-
 | Name | Required | Type   | Description |
 |------|----------|--------|-------------|
 | name | Yes      | string | The port name |
@@ -206,7 +205,7 @@ Exact version pins to use for specific dependencies. An array of Override object
 
 See also [versioning](../users/versioning.md#overrides) for more semantic details.
 
-#### Example
+#### Example of version overrides
 
 ```json
   "overrides": [
@@ -238,7 +237,7 @@ Allows to embed vcpkg configuration properties inside the `vcpkg.json` file. Eve
 
 Having a `vcpkg-configuration` defined in `vcpkg.json` while also having a `vcpkg-configuration.json` file is not allowed and will result in the vcpkg command terminating with an error message.
 
-#### Example
+#### Example embedded `vcpkg-configuration`
 
 ```json
 {
@@ -311,6 +310,7 @@ For example,
   "features": [ "mp3lame" ]
 }
 ```
+
 Uses the `ffmpeg` library but only requires mp3 encoding support.
 
 ### <a name="dependency-host"></a> [Dependency][]: `"host"`
@@ -357,7 +357,7 @@ Check out the [Manifest mode](../users/manifests.md#features) documentation for 
 
 [Feature]: #feature
 
-### Example
+### Example port with features
 
 ```json
 {
@@ -421,7 +421,7 @@ A Platform Expression is a JSON string which describes when a dependency is requ
 Expressions are built from primitive identifiers, logical operators, and grouping:
 
 - `!<expr>`, `not <expr>` - negation
-- `<expr>|<expr>`, `<expr>||<expr>`, `<expr>,<expr>`, `<expr> or <expr>` - logical OR
+- `<expr>|<expr>`, `<expr>||<expr>`, `<expr>,<expr>` - logical OR (the keyword `or` is reserved but not valid in platform expressions)
 - `<expr>&<expr>`, `<expr>&&<expr>`, `<expr> and <expr>` - logical AND
 - `(<expr>)` - grouping/precedence
 
@@ -450,11 +450,11 @@ The following identifiers are defined based on the [triplet settings](../users/t
 | `staticcrt` | `VCPKG_CRT_LINKAGE` == `"static"` |
 | `native` | `TARGET_TRIPLET` == `HOST_TRIPLET` |
 
-### Examples
+### Example platform expression
 
 - **Needs `picosha2` for sha256 on non-Windows, but get it from the OS on Windows (BCrypt)**
 
-```jsonc
+```json
 {
   "name": "picosha2",
   "platform": "!windows"
@@ -463,7 +463,7 @@ The following identifiers are defined based on the [triplet settings](../users/t
 
 - **Require zlib on arm64 Windows and amd64 Linux**
 
-```jsonc
+```json
 {
   "name": "zlib",
   "platform": "(windows & arm64) | (linux & x64)"
