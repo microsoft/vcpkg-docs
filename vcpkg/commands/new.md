@@ -17,12 +17,15 @@ vcpkg new --name hello --version 1.0
 
 ## Description
 
-Writes a new manifest into the current working directory. In `--application` mode, the manifest
-contains no name or version, suitable for use in an end user application that ships in binary form.
+Creates a manifest file (`vcpkg.json`) and default configuration file (`vcpkg-configuration.json`)
+ready to use in your project.
 
-Otherwise, `--name` and `--version` are required. `--version-date`, `--version-relaxed`, or
-`--version-string` can force that a particular version format is selected. For more information
-about the versioning formats, see [Versioning reference](../users/versioning.md).
+Use the `--application` flag if your project is an end-user application.
+
+If not using `--application`, `--name` and `--version` are required. `--version-date`,
+`--version-relaxed`, or `--version-string` can force that a particular version format is selected.
+For more information about the versioning formats, see
+[Versioning reference](../users/versioning.md).
 
 ## Options
 
@@ -30,7 +33,8 @@ All vcpkg commands support a set of [common options](common-options.md).
 
 ### `--application`
 
-Indicates that the manifest will be used for an end user application shipped in binary forms.
+Creates a manifest suitable for use in applications, removing the requirement to supply name and
+version.
 
 ### `--name`
 
@@ -39,7 +43,7 @@ The name to write into the manifest.
 ### `--version`
 
 Indicates the version to write into the manifest. If none of the other version format switches are
-passed, guesses the appropriate form to use based on the form of the input.
+passed, infers the appropriate form to use based on the form of the input.
 
 ### `--version-relaxed`
 
@@ -57,6 +61,11 @@ Indicates that the version to write into the manfest is a 'string' version with 
 semantics.
 
 ## Examples
+
+> [!NOTE]
+> `vcpkg new` generates metadata in `vcpkg.json` and `vcpkg-configuration.json` files. This includes
+> integration with the experimental artifacts experience. In particular, the registries with
+> `"kind": "artifact"` are for the experimental vcpkg-artifacts feature.
 
 ### `--application`
 
