@@ -14,8 +14,8 @@ ms.prod: vcpkg
 > [!NOTE]
 > This command is only supported on Windows.
 
-```text
-vcpkg env [<optional command>] [--triplet <triplet>] [--options]
+```Console
+vcpkg env [<optional command>] [--triplet=<triplet>] [--options]
 ```
 
 ## Description
