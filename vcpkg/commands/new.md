@@ -1,7 +1,9 @@
 ---
 title: vcpkg new
 description: Command line reference for the vcpkg new command. Creates a new manifest in the current directory.
+ms.author: bion
 ms.date: 07/05/2023
+ms.prod: vcpkg
 ---
 # vcpkg new
 
@@ -15,8 +17,7 @@ vcpkg new --application
 vcpkg new --name hello --version 1.0
 ```
 
-## Description
-
+Creates a manifest file ([`vcpkg.json`](../reference/vcpkg-json.md)) and a default configuration file ([`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md)) in the current working directory.
 Creates a manifest file (`vcpkg.json`) and default configuration file (`vcpkg-configuration.json`)
 ready to use in your project.
 
@@ -66,7 +67,7 @@ semantics.
 > `vcpkg new` generates metadata in `vcpkg.json` and `vcpkg-configuration.json` files. This includes
 > integration with the experimental artifacts experience. In particular, the registries with
 > `"kind": "artifact"` are for the experimental vcpkg-artifacts feature.
-
+### With `--application`
 ### `--application`
 
 ```console
@@ -89,7 +90,7 @@ $ type .\vcpkg-configuration.json
   ]
 }
 ```
-
+### With `--name` and `--version`
 ### `--name` and `--version`
 
 ```console
@@ -115,7 +116,7 @@ $ type .\vcpkg-configuration.json
   ]
 }
 ```
-
+### With explicit version format selection
 ### Asserting particular version formats
 
 ```console
