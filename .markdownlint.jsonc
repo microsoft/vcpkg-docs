@@ -1,0 +1,8 @@
+{
+    "MD013": {
+        "code_block_line_length": 150
+    },
+    // Disable "Multiple top level headings in the same document" triggered by metadata and top-level
+    // heading on articles
+    "MD025": false
+}
