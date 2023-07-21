@@ -48,11 +48,25 @@ Now that you have a PAT, you need to create a repository secret to use in your w
 
 ### Step 3: Add Git authentication in your workflow
 
-Now is time to add an authentication step to your workflow, add the following lines
-in your workflow's YAML file. This step should run before vcpkg is invoked.
+Now is time to add an authentication step to your workflow, use the following template
+in your workflow's YAML file. This step should run before any other step that invokes
+vcpkg.
 
-```YAML
-    - name: Authenticate Git
+```yml
+    - name: Authenticate private registries
       shell: bash
-      run: git config --global credential.helper '!f() { echo username=unused; echo password=${{secrets.private_registry_pat}}; }; f'
+      run: git config --global credential.<url>.helper '!f() { echo username=unused; echo password=${{secrets.<pat variable>}}; }; f'
+```
+
+#### Example with multiple private repositories
+
+The following example shows how to provide Git credentials for multiple private
+repositories using the `credential.<url>.helper` pattern.
+
+```yml
+    - name: Authenticate private registries
+      shell: bash
+      run: |
+          git config --global credential.https://github.com/vcpkg/private_registry.helper '!f() { echo username=unused; echo password=${{secrets.private_registry_pat}}; }; f'
+          git config --global credential.https://github.com/vcpkg/secret_registry.helper `!f() { echo username=unused; echo password=${{secrets.secret_registry_pat}}; }; f'
 ```
