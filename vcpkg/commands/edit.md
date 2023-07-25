@@ -14,6 +14,21 @@ ms.prod: vcpkg
 vcpkg edit <ports> [--all] [--buildtrees] [options]
 ```
 
+## Examples
+
+### Open multiple ports
+
+```Console
+vcpkg edit fmt zlib 
+```
+
+### Open related folders
+
+```Console
+vcpkg install fmt
+vcpkg edit fmt --all
+```
+
 ## Description
 
 Opens a port for editing in a text editor window (defaults to Visual Studio Code).
