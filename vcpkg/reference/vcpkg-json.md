@@ -303,7 +303,7 @@ Each dependency is a string or an object with the following fields:
 | Name | Required | Type   | Description |
 |------|----------|--------|-------------|
 | [default-features](#dependency-default-features) | No | bool | Require the features listed as on-by-default |
-| [features](#dependency-features) | No | string\|[Feature Object][][] | The list of additional features to require |
+| [features](#dependency-features) | No | [Feature Object][][] | The list of additional features to require |
 | [host](#dependency-host) | No | bool | Require the dependency for the host machine instead of the target |
 | [name](#dependency-name) | Yes      | string | The name of the dependency |
 | [platform](#dependency-platform) | No | [Platform Expression][] | Qualifier for which platforms to use the dependency |
@@ -321,11 +321,13 @@ In most cases, this should be defined to `false` and any needed features should 
 
 ### <a name="dependency-features"></a> [Dependency][]: `"features"`
 
-The list of additional features to require. An array of strings and Feature Objects. Optional.
+The list of additional features to require. An array of Feature objects. Optional.
 
 A <a name="feature-object"></a>[Feature Object][] is an object with the following fields:
 - `name` - The name of the feature. A string. Required.
 - `platform` - A [Platform Expression][] that limits the platforms where the feature is required. Optional.
+
+A simple string is also a valid `Feature Object` equivalent to `{ "name": "<feature-name>" }`.
 
 [Feature Object]: #feature-object
 
@@ -345,7 +347,7 @@ For example,
 }
 ```
 
-Uses the `ffmpeg` library but only requires mp3 encoding support and on windows avisynthplus support.
+Uses the `ffmpeg` library with mp3 encoding support. On Windows only, `avisynthplus` support is also enabled.
 
 ### <a name="dependency-host"></a> [Dependency][]: `"host"`
 
