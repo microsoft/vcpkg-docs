@@ -115,17 +115,27 @@ Examples:
 
 ### Install copyright file
 
-Each port has to provide a file named `copyright` in the folder `${CURRENT_PACKAGES_DIR}/share/${PORT}`.
-
-Many ports are using this code to install a copyright file:
+Each port has to provide a file named `copyright` in the folder `${CURRENT_PACKAGES_DIR}/share/${PORT}`. If the license content for a port is available within the sources, this file should be created by a call to [`vcpkg_install_copyright()`](../maintainers/functions/vcpkg_install_copyright.md). `vcpkg_install_copyright` also bundles multiple copyright files if necessary.
 
 ```cmake
-file(INSTALL "${SOURCE_PATH}LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
+vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 ```
 
-This is discouraged in favour of [`vcpkg_install_copyright()`](../maintainers/functions/vcpkg_install_copyright.md). New ports should use `vcpkg_install_copyright()` instead. However, it is still valid for existing ports to use something like the code above. You may replace this with `vcpkg_install_copyright` but you don't have to.
+You might also see old-style manual creation of this file using CMake's built in `file` command. This form is discouraged in favor of `vcpkg_install_copyright` in new ports, but is still acceptable.
 
-`vcpkg_install_copyright` also includes the functionality to handle multiple copyright files. See its [documentation](../maintainers/functions/vcpkg_install_copyright.md) for more info.
+```cmake
+file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
+```
+
+If the license content is not available in the upstream sources in textual form, such as a license available in PDF only form, `copyright` should contain an explanation as to how a user can find the license requirements, and, if possible a link to the original sources indicating this so that a user can check that it is up to date.
+
+```cmake
+file(WRITE "${CURRENT_PACKAGES_DIR}/share/${PORT}/copyright" [[As of 2023-07-25, according to
+https://github.com/GPUOpen-LibrariesAndSDKs/display-library/blob/master/Public-Documents/README.md#end-user-license-agreement
+this software is bound by the "SOFTWARE DEVELOPMENT KIT LICENSE AGREEMENT" PDF located at
+https://github.com/GPUOpen-LibrariesAndSDKs/display-library/blob/master/Public-Documents/ADL%20SDK%20EULA.pdf
+]])
+```
 
 ## Features
 
