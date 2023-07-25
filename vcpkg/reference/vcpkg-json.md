@@ -77,7 +77,7 @@ The default features are automatically selected if either:
 
 Default features handle the specific case of providing a "default" configuration for transitive dependencies that the top-level project may not know about. Ports used by others should almost always use `"default-features": false` for their dependencies.
 
-You can also specify that a default features is only activated on a specific platform by using a [Feature Object][]:
+You can define platform-specific default features by using a [Feature Object][]:
 
 ```json
 {
