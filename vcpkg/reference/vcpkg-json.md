@@ -35,7 +35,7 @@ This example demonstrates a manifest for an application using `boost-system`, `c
 | Name | Required | Type   | Description |
 |------|----------|--------|-------------|
 | [builtin-baseline](#builtin-baseline) | No | string | Version pins to use when building as top-level |
-| [default-features](#default-features) | No | string\|[Feature Object][][] | Require the [features](../users/manifests.md#features) listed as on-by-default |
+| [default-features](#default-features) | No | [Feature Object][][] | Require the [features](../users/manifests.md#features) listed as on-by-default |
 | [dependencies](#dependencies) | No | [Dependency][][] | List of dependencies required to build and use this project |
 | [description](#description) | Libraries | string or string[] | The project description |
 | [documentation](#documentation) | No | string | URI to the upstream project's documentation |
