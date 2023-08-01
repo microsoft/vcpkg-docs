@@ -43,7 +43,7 @@ This will export the specified packages in zip format. Note: that `sqlite:x64-wi
 
 ## <a name="Manifest-Mode"></a>Manifest Mode
 
-In the manifest mode of `vcpkg export`, the command will automatically export everything that is currently installed as per the specifications in the manifest file (`vcpkg.json`). This streamlined approach reflects the philosophy of manifest mode, where the entire state of installed packages is determined by the manifest file.
+In manifest mode, the `vcpkg export` command will automatically export everything that is currently installed as per the specifications in the manifest file (`vcpkg.json`). This streamlined approach reflects the philosophy of manifest mode, where the entire state of installed packages is determined by the manifest file.
 
 This has a few important implication for how you use `vcpkg export` in this mode. Firstly, unlike in classic mode, you cannot specify individual `<portname:triplet>` arguments to the `vcpkg export` command. The command operates on the entire installed state as a single unity, respecting the dependencies and versions specified in the manifest file. 
 
