@@ -21,11 +21,11 @@ Export built packages from the [installed directory](common-options.md#install-r
 2. Their transitive dependencies
 3. [Integration files](#standard-integration), such as a [CMake toolchain][cmake] or [MSBuild props/targets][msbuild]
 
-`vcpkg export` can be used from [Classic Mode](../users.classic-mode.md) or [Manifest Mode](../users/manifests.md). However, their usage and behavior differ slightly.
+`vcpkg export` can be used from [Classic Mode](../users/classic-mode.md) or [Manifest Mode](../users/manifests.md). However, their usage and behavior differ slightly.
 
 Note: `vcpkg export` will not install any packages or transitive dependencies. It will only export packages that are already installed. 
 
-See [Manifest Mode](export.md#Manifest-Mode) or [Classic Mode](#export.md#Classic-Mode) for details.
+See [Manifest Mode](export.md#Manifest-Mode) or [Classic Mode](export.md#Classic-Mode) for details.
 
 ## <a name="Classic-Mode"></a>Classic Mode
 
