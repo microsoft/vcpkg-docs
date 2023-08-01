@@ -278,7 +278,7 @@ Defaults to `vcpkg-export-<date>-<time>`. Scripted use of `export` should always
 
 Specifies the output directory.
 
-All top-level SDK files will be produced into this directory. This option is mandatory in manfiest mode. In classic mode, this option is not required and defaults to the [vcpkg root directory](../users/config-environment.md#vcpkg_root).
+All top-level SDK files will be produced into this directory. This option is mandatory in manifest mode. In classic mode, this option is not required and defaults to the [vcpkg root directory](../users/config-environment.md#vcpkg_root).
 
 <a id="prefab-artifact-id"></a>
 
