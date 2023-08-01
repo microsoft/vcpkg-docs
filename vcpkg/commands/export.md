@@ -25,22 +25,13 @@ Export built packages from the [installed directory](common-options.md#install-r
 
 Note: `vcpkg export` will not install any packages or transitive dependencies. It will only export packages that are already installed. 
 
-See [Manifest Mode](#manifest-mode) or [Classic Mode](#classic-mode) for details.
+See [Manifest Mode](export.md#Manifest-Mode) or [Classic Mode](#export.md#Classic-Mode) for details.
 
-### Standard Integration
+## <a name="Classic-Mode"></a>Classic Mode
 
-Most export formats contain a standard set of integration files:
+In classic mode, `vcpkg export` operates on individual packages specified by `<portname:triplet>` arguments. This stands in contrast to manifest mode, where `<portname:triplet>` arguments are disallowed. 
 
-- A [CMake toolchain][cmake] at `/scripts/buildsystems/vcpkg.cmake`
-- [MSBuild props/targets][msbuild] at `/scripts/buildsystems/msbuild/vcpkg.props` and `/scripts/buildsystems/msbuild/vcpkg.targets`
-
-Some export formats differ from this standard set; see the individual format help below for more details.
-
-### <a name="Classic-Mode"></a>Classic Mode
-
-In classic mode, `vcpkg export` operates on individual packages specified by `<port:triplet>` arguments. This stands in contrast to manifest mode, where `<port:triplet>` arguments are disallowed. 
-
-When using `vcpkg export` in classic mode, you explicitly specify the packages to be exported by adding `<port:triplet>` arguments to the command line. Each argument corresponds to a particular package and its configuration (defined by the port and triplet).
+When using `vcpkg export` in classic mode, you explicitly specify the packages to be exported by adding `<portname:triplet>` arguments to the command line. Each argument corresponds to a particular package and its configuration (defined by the port and triplet).
 
 For example, to export the `sqlite` package for `x64-windows` and `x64-linux`, you would use:
 
@@ -48,13 +39,13 @@ For example, to export the `sqlite` package for `x64-windows` and `x64-linux`, y
 vcpkg export sqlite:x64-windows sqlite:x64-linux --zip
 ```
 
-This will export the specified packages in zip format. Note, that `sqlite:x64-windows` and `sqlite:x64-linux` must be installed prior to running `vcpkg export`. 
+This will export the specified packages in zip format. Note: that `sqlite:x64-windows` and `sqlite:x64-linux` must be installed prior to running `vcpkg export`. 
 
-### <a name="Manifest-Mode"></a>Manifest Mode
+## <a name="Manifest-Mode"></a>Manifest Mode
 
 In the manifest mode of `vcpkg export`, the command will automatically export everything that is currently installed as per the specifications in the manifest file (`vcpkg.json`). This streamlined approach reflects the philosophy of manifest mode, where the entire state of installed packages is determined by the manifest file.
 
-This has a few important implication for how you use `vcpkg export` in this mode. Firstly, unlike in classic mode, you cannot specify individual `<port:triplet>` arguments to the `vcpkg export` command. The command operates on the entire installed state as a single unity, respecting the dependencies and versions specified in the manifest file. 
+This has a few important implication for how you use `vcpkg export` in this mode. Firstly, unlike in classic mode, you cannot specify individual `<portname:triplet>` arguments to the `vcpkg export` command. The command operates on the entire installed state as a single unity, respecting the dependencies and versions specified in the manifest file. 
 
 Another key difference in manifest mode is the requirement of the `--output-dir` option. This option specifies the directory where the exported packages will be stored, and it must be provided when using `vcpkg export` in manifest mode. This contrasts with classic mode, where `vcpkg` will select a default output directory (`vcpkg-root`) if one is not provided.
 
@@ -64,6 +55,15 @@ vcpkg export --zip --output-dir=.\exports
 ```
 
 will export all packages currently installed to the `.\exports` directory in zip format. The `--zip` option specifies tht the exported packages should be compressed into a zip file.
+
+### Standard Integration
+
+Most export formats contain a standard set of integration files:
+
+- A [CMake toolchain][cmake] at `/scripts/buildsystems/vcpkg.cmake`
+- [MSBuild props/targets][msbuild] at `/scripts/buildsystems/msbuild/vcpkg.props` and `/scripts/buildsystems/msbuild/vcpkg.targets`
+
+Some export formats differ from this standard set; see the individual format help below for more details.
 
 ### Formats
 
