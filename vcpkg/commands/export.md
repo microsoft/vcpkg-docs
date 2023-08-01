@@ -13,7 +13,7 @@ vcpkg export [options] {<package>... | --x-all-installed}
 
 ## Description
 
-Export built packages from the [installed directory](common-options.md#install-root) into a standalone developer SDK.
+The `export` command exports built packages from the [installed directory](common-options.md#install-root) into a standalone developer SDK.
 
 `export` produces a standalone, distributable SDK (Software Development Kit) that can be used on another machine without separately acquiring vcpkg. It contains:
 
@@ -21,40 +21,41 @@ Export built packages from the [installed directory](common-options.md#install-r
 2. Their transitive dependencies
 3. [Integration files](#standard-integration), such as a [CMake toolchain][cmake] or [MSBuild props/targets][msbuild]
 
-`vcpkg export` can be used from [Classic Mode](../users/classic-mode.md) or [Manifest Mode](../users/manifests.md). However, their usage and behavior differ slightly.
+[!NOTE]
+This command behavior is different in [Classic Mode](../users/classic-mode.md) and [Manifest Mode](../users/manifests.md)
 
-Note: `vcpkg export` will not install any packages or transitive dependencies. It will only export packages that are already installed. 
+The `export` command does not install any packages or transitive dependencies. It only exports packages that are already installed. 
 
-See [Manifest Mode](export.md#Manifest-Mode) or [Classic Mode](export.md#Classic-Mode) for details.
+Refer to [Manifest Mode](export.md#Manifest-Mode) or [Classic Mode](export.md#Classic-Mode) for more details.
 
 ## <a name="Classic-Mode"></a>Classic Mode
 
-In classic mode, `vcpkg export` operates on individual packages specified by `<portname:triplet>` arguments. This stands in contrast to manifest mode, where `<portname:triplet>` arguments are disallowed. 
+In classic mode, `vcpkg export` accepts [triplet-qualified package specification](install.md#package-syntax) arguments (for example: `zlib:x64-windows`)
 
-When using `vcpkg export` in classic mode, you explicitly specify the packages to be exported by adding `<portname:triplet>` arguments to the command line. Each argument corresponds to a particular package and its configuration (defined by the port and triplet).
+When using `vcpkg export` in classic mode, you explicitly specify the packages to export by adding `<portname:triplet>` arguments to the command line. Each argument corresponds to a specific package and its configuration (defined by the port and triplet).
 
-For example, to export the `sqlite` package for `x64-windows` and `x64-linux`, you would use:
+For example, to export the `sqlite` package for `x64-windows` and `x64-linux`, use:
 
 ```no-highlight
 vcpkg export sqlite:x64-windows sqlite:x64-linux --zip
 ```
 
-This will export the specified packages in zip format. Note: that `sqlite:x64-windows` and `sqlite:x64-linux` must be installed prior to running `vcpkg export`. 
+This command exports the specified packages in zip format. Both `sqlite:x64-windows` and `sqlite:x64-linux` must be installed prior to running `vcpkg export`.
 
 ## <a name="Manifest-Mode"></a>Manifest Mode
 
-In manifest mode, the `vcpkg export` command will automatically export everything that is currently installed as per the specifications in the manifest file (`vcpkg.json`). This streamlined approach reflects the philosophy of manifest mode, where the entire state of installed packages is determined by the manifest file.
+In manifest mode, the `vcpkg export` command automatically exports everything currently installed according to the specifications in the manifest file (`vcpkg.json`). This streamlined approach embodies the philosophy of manifest mode, where the entire state of installed packages is determined by the manifest file.
 
-This has a few important implication for how you use `vcpkg export` in this mode. Firstly, unlike in classic mode, you cannot specify individual `<portname:triplet>` arguments to the `vcpkg export` command. The command operates on the entire installed state as a single unity, respecting the dependencies and versions specified in the manifest file. 
+This mode has a few important implications for how you use `vcpkg export`. Firstly, unlike in classic mode, you cannot specify individual `<portname:triplet>` arguments for the `vcpkg export` command. The command operates on the entire installed state as a single unity, respecting the dependencies and versions specified in the manifest file.
 
-Another key difference in manifest mode is the requirement of the `--output-dir` option. This option specifies the directory where the exported packages will be stored, and it must be provided when using `vcpkg export` in manifest mode. This contrasts with classic mode, where `vcpkg` will select a default output directory (`vcpkg-root`) if one is not provided.
+Another key difference in manifest mode is the requirement of the `--output-dir` option. This option specifies the directory where the exported packages will be stored, and you must provide it when using `vcpkg export` in manifest mode. This is different from classic mode, where `vcpkg` selects a default output directory (`vcpkg-root`) if one is not provided.
 
 For example, from the manifest directory
 ```no-highlight
 vcpkg export --zip --output-dir=.\exports
 ```
 
-will export all packages currently installed to the `.\exports` directory in zip format. The `--zip` option specifies tht the exported packages should be compressed into a zip file.
+exports all currently installed packages to the `.\exports` directory and compresses them into a zip file. The `--zip` option specifies that the exported packages should be compressed into a zip file.
 
 ### Standard Integration
 
