@@ -3,7 +3,7 @@ title: vcpkg edit
 description: Command-line reference for the vcpkg edit command. Opens a port's contents in a text editor window.
 author: vicroms
 ms.author: viromer
-ms.date: 7/24/2023
+ms.date: 8/2/2023
 ms.prod: vcpkg
 ---
 # vcpkg edit
@@ -38,7 +38,7 @@ This command does not work with ports from external registries, only ports from 
 registry can be opened.
 
 The `--buildtrees` option opens the package's `buildtrees` folder instead of the port's contents.
-The `--all` option also opens the port's related `packages`, and `buildtrees` folders in the same window.
+The `--all` option also opens the port's related `packages` and `buildtrees` folders in the same window.
 
 By default, vcpkg will search for Visual Studio Code in well-known installation paths.
 Set the `EDITOR` environment variable to specify a text editor program to use.
@@ -65,7 +65,7 @@ All vcpkg commands support a set of [common options](common-options.md).
 
 ### `--all`
 
-Opens the port's related `buildtrees`, and `packages` folders.
+Opens the port's related `buildtrees` and `packages` folders.
 
 ### `--buildtrees`
 
