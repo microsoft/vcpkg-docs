@@ -16,7 +16,7 @@ vcpkg create <port-name> <url-to-source> [archive-file-name]
 
 The `vcpkg create` command is a tool that facilitates the generation of new ports for libraries within the vcpkg ports tree. To do this, it requires a port name and a URL that points to the source code of the library in question.
 
-Upon execution, this command initiates a download of the source code from the provided URL. It then creates an initial "portfile.cmake" and "vcpkg.json" in a newly formed directory.
+Upon execution, this command initiates a download of the source code from the provided URL. It then creates an initial `portfile.cmake` and `vcpkg.json` in a newly formed directory.
 
 The command has the capability to save the downloaded source code using a specific file name, provided as an optional argument. If this archive file name isn't specified, the command automatically derives the file name from URL.
 
@@ -27,8 +27,8 @@ vcpkg create zlib2 https://github.com/madler/zlib/archive/v1.2.11.tar.gz zlib-1.
 
 In this case, the `vcpkg create` command performs the following actions:
 
-1. Creates a port named `zlib2` accompanied by a "portfile.cmake" and a "vcpkg.json"
-2. Downloads the  `v1.2.11.tar.gz` file from the given URL
+1. Creates a port named `zlib2` accompanied by a `portfile.cmake` and a `vcpkg.json`
+2. Downloads the `v1.2.11.tar.gz` file from the given URL
 3. Saves the source files as `zlib-1.2.11.tar.gz` in the downloads directory.
 
 portfile.cmake:
@@ -153,6 +153,6 @@ vcpkg edit zlib2
 
 It's important to understand that the port created by the `vcpkg create` command serves merely as a starting point and, in most cases, further edits are necessary for a successful build.
 
-Be aware that the `vcpkg create` command doesn't verify the uniqueness of th eport name within the vcpkg ports tree. The purpose of this command is to provide a foundation for port creation. If you require more guidance on adding ports to the vcpkg curated catalog, we recommend referring to one of our [tutorials](..\examples\packaging-zipfiles.md)
+Be aware that the `vcpkg create` command doesn't verify the uniqueness of the port name within the vcpkg ports tree. The purpose of this command is to provide a foundation for port creation. If you require more guidance on adding ports to the vcpkg curated catalog, we recommend referring to one of our [tutorials](..\examples\packaging-zipfiles.md)
 
 
