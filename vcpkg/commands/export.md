@@ -22,7 +22,7 @@ The `export` command exports built packages from the [installed directory](commo
 3. [Integration files](#standard-integration), such as a [CMake toolchain][cmake] or [MSBuild props/targets][msbuild]
 
 [!NOTE]
-This command behavior is different in [Classic Mode](../users/classic-mode.md) and [Manifest Mode](../users/manifests.md)
+This command's behavior is different in [Classic Mode](../users/classic-mode.md) and [Manifest Mode](../users/manifests.md)
 
 The `export` command does not install any packages or transitive dependencies. It only exports packages that are already installed. 
 
@@ -46,7 +46,7 @@ This command exports the specified packages in zip format. Both `sqlite:x64-wind
 
 In manifest mode, the `vcpkg export` command automatically exports everything currently installed according to the specifications in the manifest file (`vcpkg.json`). This streamlined approach embodies the philosophy of manifest mode, where the entire state of installed packages is determined by the manifest file.
 
-This mode has a few important implications for how you use `vcpkg export`. Firstly, unlike in classic mode, you cannot specify individual `<portname:triplet>` arguments for the `vcpkg export` command. The command operates on the entire installed state as a single unity, respecting the dependencies and versions specified in the manifest file.
+This mode has a few important implications for how you use `vcpkg export`. Firstly, unlike in classic mode, you cannot specify individual `<portname:triplet>` arguments for the `vcpkg export` command. The command operates on the entire installed state as a single entity, respecting the dependencies and versions specified in the manifest file.
 
 Another key difference in manifest mode is the requirement of the `--output-dir` option. This option specifies the directory where the exported packages will be stored, and you must provide it when using `vcpkg export` in manifest mode. This is different from classic mode, where `vcpkg` selects a default output directory (`vcpkg-root`) if one is not provided.
 
