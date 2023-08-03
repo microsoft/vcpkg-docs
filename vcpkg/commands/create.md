@@ -1,7 +1,10 @@
 ---
 title: vcpkg create
 description: Command line reference for the vcpkg create command. The `vcpkg create` command is used to generate a new vcpkg port from a specified URL.
+author: JavierMatosD
+ms.author: javiermat
 ms.date: 08/01/2023
+ms.prod: vcpkg
 ---
 
 # vcpkg create
@@ -14,24 +17,28 @@ vcpkg create <port-name> <url-to-source> [archive-file-name]
 
 ## Description
 
-The `vcpkg create` command is a tool that facilitates the generation of new ports for libraries within the vcpkg ports tree. To do this, it requires a port name and a URL that points to the source code of the library in question.
+Generates a port to package a source code project. Requires a port name and a URL for the source code to package.
 
-Upon execution, this command initiates a download of the source code from the provided URL. It then creates an initial `portfile.cmake` and `vcpkg.json` in a newly formed directory.
+This command downloads the source code from the provided URL and then creates a `portfile.cmake` file and a `vcpkg.json` file in a new port directory.
 
-The command has the capability to save the downloaded source code using a specific file name, provided as an optional argument. If this archive file name isn't specified, the command automatically derives the file name from URL.
+The command can save the downloaded source code using a specific file name, provided as an optional argument. If the archive file name isn't specified, the command derives a file name from its URL.
 
-Consider the example below:
+It's important to understand that the port created by the `vcpkg create` command serves merely as a starting point and, in most cases, further edits are necessary for a successful build.
+
+Be aware that the `vcpkg create` command doesn't verify the uniqueness of the port name within the vcpkg ports tree. The purpose of this command is to provide a foundation for port creation. If you require more guidance on adding ports to the vcpkg curated catalog, we recommend referring to one of our [tutorials](..\examples\packaging-zipfiles.md)
+
+## Example
 ```no-highlight
 vcpkg create zlib2 https://github.com/madler/zlib/archive/v1.2.11.tar.gz zlib-1.2.11.tar.gz
 ```
 
-In this case, the `vcpkg create` command performs the following actions:
+The command performs the following actions:
 
-1. Creates a port named `zlib2` accompanied by a `portfile.cmake` and a `vcpkg.json`
+1. Creates a port folder named `zlib2` containing a `portfile.cmake` file and a `vcpkg.json` file.
 2. Downloads the `v1.2.11.tar.gz` file from the given URL
-3. Saves the source files as `zlib-1.2.11.tar.gz` in the downloads directory.
+3. Saves the source archive as `zlib-1.2.11.tar.gz` in the `downloads` directory.
 
-portfile.cmake:
+`portfile.cmake` contents:
 ```
 # Common Ambient Variables:
 #   CURRENT_BUILDTREES_DIR    = ${VCPKG_ROOT_DIR}\buildtrees\${PORT}
@@ -120,7 +127,7 @@ vcpkg_cmake_install()
 
 ```
 
-vcpkg.json:
+`vcpkg.json` contents:
 ```
 {
   "name": "zlib2",
@@ -145,14 +152,9 @@ vcpkg.json:
 }
 ```
 
-To begin editing the newly created files, execute the following command:
+You can use the [`edit`](edit.md) command to modify the port files:
 
 ```no-highlight
 vcpkg edit zlib2
 ```
-
-It's important to understand that the port created by the `vcpkg create` command serves merely as a starting point and, in most cases, further edits are necessary for a successful build.
-
-Be aware that the `vcpkg create` command doesn't verify the uniqueness of the port name within the vcpkg ports tree. The purpose of this command is to provide a foundation for port creation. If you require more guidance on adding ports to the vcpkg curated catalog, we recommend referring to one of our [tutorials](..\examples\packaging-zipfiles.md)
-
 
