@@ -6,7 +6,7 @@ ms.date: 04/27/2023
 # Xbox
 
 > [!NOTE]
-> XBox is not tested as part of vcpkg repository's CI process, so regressions can occur as part of library updates. PRs improving support are welcome!
+> Xbox is not tested as part of vcpkg repository's CI process, so regressions can occur as part of library updates. PRs improving support are welcome!
 
 ## Xbox community triplets
 
@@ -29,7 +29,7 @@ The Windows SDK (19041) or later includes the system headers required to build a
 
 ## Building with the Microsoft GDK with Xbox Extensions
 
-Libraries that make use of DirectX graphics APIs must be built using a custom variant of Direct3D 12.X used by the Xbox Game OS, and this reuqires access to the NDA *Microsoft GDK with Xbox Extensions*. Note that the Xbox Game OS doe snot support Direct3D 11, Direct2D/DirectWrite, OpenGL, GDI, or any older version of Direct3D.
+Libraries that make use of DirectX graphics APIs must be built using a custom variant of Direct3D 12.X used by the Xbox Game OS, and this requires access to the NDA *Microsoft GDK with Xbox Extensions*. Note that the Xbox Game OS does not support Direct3D 11, Direct2D/DirectWrite, OpenGL, GDI, or any older version of Direct3D.
 
 For libraries that require these headers, they make use of **ms-gdkx** "stub" port to indicate this requirement. This port looks for paths pointed to by ``GameDKLatest``, ``GameGXDKLatest``, and ``GameGRDKLatest`` environment variables.
 
