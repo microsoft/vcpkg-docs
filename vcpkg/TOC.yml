@@ -232,7 +232,7 @@
         href: maintainers/functions/internal/z_vcpkg_restore_pkgconfig_path.md
       - name: z_vcpkg_setup_pkgconfig_path
         href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
-  - name: Provide usage documentation for your packages
+  - name: Provide Usage Documentation
     href: maintainers/handling-usage-files.md
   - name: CONTROL Files (deprecated)
     href: maintainers/control-files.md

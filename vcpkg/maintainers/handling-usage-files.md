@@ -30,7 +30,7 @@ After installing ports, vcpkg detects files installed to `${CURRENT_PACKAGES_DIR
 
 ### Content format
 
-Provide clear instructions on how to use the package. The content should be concise, well-structured, and emphasize the minimum build system integration required to use the library.
+Provide clear instructions on how to use the package. The content should be concise, well-structured, and emphasize the minimum build system integration required to use the library. Usage is intended to be useful to all downstream customers of a library, not a subset of those users.
 
 Be clear and concise about how to utilize the package effectively. Avoid overwhelming users with code snippets, command-line instructions, or configuration details. Instead, use the [`"documentation"` property in the port's `vcpkg.json` file](../users/manifests.md) so users can learn more about your library.
 
