@@ -1,5 +1,5 @@
 ---
-title: Provide usage documentation for your ports
+title: Provide Usage Documentation
 description: Guidance for adding usage documentation to vcpkg ports
 author: JavierMatosD
 ms.author: javiermat
