@@ -35,6 +35,7 @@ This example demonstrates a manifest for an application using `boost-system`, `c
 | Name | Required | Type   | Description |
 |------|----------|--------|-------------|
 | [builtin-baseline](#builtin-baseline) | No | string | Version pins to use when building as top-level |
+| [depend-defaults][] | No | bool | Default value for [default-features](#dependency-default-features) of dependencies |
 | [default-features](#default-features) | No | bool | Require the [features](../users/manifests.md#features) listed as on-by-default |
 | [dependencies](#dependencies) | No | [Dependency][][] | List of dependencies required to build and use this project |
 | [description](#description) | Libraries | string or string[] | The project description |
@@ -65,6 +66,14 @@ This field indicates the commit of <https://github.com/microsoft/vcpkg> which pr
 ```
 
 See [versioning](../users/versioning.md#baselines) and [Using registries](../users/registries.md) for more semantic details.
+
+### <a name="depend-defaults"></a> `"depend-defaults"`
+
+The default value for the [`"default-features"`](#dependency-default-features) field of dependencies. A boolean. `true` by default. Optional.
+
+If used at a top-level manifest, this field diables default features for all ports in the dependency tree. If used in a port, this field sets the default value for all dependencies in the port.
+
+[depend-defaults]: #depend-defaults
 
 ### <a name="default-features"></a> `"default-features"`
 
@@ -293,7 +302,7 @@ Strings are interpreted as an object with _name_ defined to the string value.
 
 ### <a name="dependency-default-features"></a> [Dependency][]: `"default-features"`
 
-A boolean indicating that the project depends on the 'on-by-default' features of the dependency. Defaults to `true`.
+A boolean indicating that the project depends on the 'on-by-default' features of the dependency. Defaults to `true` if [depend-defaults][] is not set.
 
 In most cases, this should be defined to `false` and any needed features should be explicitly depended upon.
 
