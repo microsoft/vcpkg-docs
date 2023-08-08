@@ -1,6 +1,6 @@
 ---
 title: vcpkg env
-description: Command line reference for the env command. Creates a clean build environment in your current terminal.
+description: Command-line reference for the env command. Creates a clean build environment in your current terminal.
 ms.author: viromer
 ms.date: 7/20/2023
 ms.prod: vcpkg
