@@ -238,38 +238,40 @@
     href: maintainers/control-files.md
 - name: Reference
   items:
-  - name: vcpkg.json Reference
-    href: reference/vcpkg-json.md
-  - name: vcpkg-configuration.json Reference
-    href: reference/vcpkg-configuration-json.md
-  - name: Command-Line
-    items:
-    - name: Common Command Options
-      href: commands/common-options.md
-    - name: vcpkg depend-info
-      href: commands/depend-info.md
-    - name: vcpkg edit
-      href: commands/edit.md
-    - name: vcpkg export
-      href: commands/export.md
-    - name: vcpkg install
-      href: commands/install.md
-    - name: vcpkg integrate
-      href: commands/integrate.md
-    - name: vcpkg list
-      href: commands/list.md
-    - name: vcpkg remove
-      href: commands/remove.md
-    - name: vcpkg search
-      href: commands/search.md
-    - name: vcpkg update
-      href: commands/update.md
-    - name: vcpkg x-update-baseline
-      href: commands/update-baseline.md
-    - name: vcpkg upgrade
-      href: commands/upgrade.md
-    - name: vcpkg version
-      href: commands/version.md
+    - name: vcpkg.json Reference
+      href: reference/vcpkg-json.md
+    - name: vcpkg-configuration.json Reference
+      href: reference/vcpkg-configuration-json.md
+    - name: Command-Line
+      items:
+        - name: Common Command Options
+          href: commands/common-options.md
+        - name: vcpkg depend-info
+          href: commands/depend-info.md
+        - name: vcpkg edit
+          href: commands/edit.md
+        - name: vcpkg env
+          href: commands/env.md
+        - name: vcpkg export
+          href: commands/export.md
+        - name: vcpkg install
+          href: commands/install.md
+        - name: vcpkg integrate
+          href: commands/integrate.md
+        - name: vcpkg list
+          href: commands/list.md
+        - name: vcpkg remove
+          href: commands/remove.md
+        - name: vcpkg search
+          href: commands/search.md
+        - name: vcpkg update
+          href: commands/update.md
+        - name: vcpkg x-update-baseline
+          href: commands/update-baseline.md
+        - name: vcpkg upgrade
+          href: commands/upgrade.md
+        - name: vcpkg version
+          href: commands/version.md
 - name: Contributing to vcpkg
   items:
   - name: Maintainer Guide
