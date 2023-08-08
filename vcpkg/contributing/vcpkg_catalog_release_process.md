@@ -8,4 +8,4 @@ ROBOTS: NOINDEX
 # Microsoft/vcpkg catalog release process
 
 > [!WARNING]
-> This content has been removed due to being intended for the vcpkg development team rather than for vcpkg users.
+> This article is obsolete and is no longer being updated.
