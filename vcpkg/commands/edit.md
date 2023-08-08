@@ -49,7 +49,7 @@ On Windows, vcpkg searches for a Visual Studio Code or Visual Studio Code Inside
 * the `%APPDATA%\Local\Programs` folder
 * the Windows Registry
 
-On Linux, vcpkg searches for the Visual Studio Code executable:
+On Linux, vcpkg searches for the Visual Studio Code executable in:
 
 * `/usr/bin/code`
 * `/usr/share/code/bin/code`
