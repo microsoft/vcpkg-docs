@@ -35,7 +35,8 @@ Libraries that make use of DirectX graphics APIs must be built using a custom va
 
 For libraries that require these headers, they make use of the **`ms-gdkx`** "stub" port to indicate this requirement. This port looks for paths pointed to by ``GameDKLatest``, ``GameGXDKLatest``, and ``GameGRDKLatest`` environment variables.
 
-> Note that Xbox developers are responsible for ensuring they and their publisher have appropriate and correct licensing terms for use of any 3rd party software components per the terms of their Title License Agreement. Be sure to seek appropriate legal advice for any use of open-source components in your title.
+> [!NOTE] 
+> Xbox game developers are responsible for ensuring that they and their publishers have appropriate and correct licensing terms for use of any 3rd party software components per the terms of their Title License Agreement. Be sure to seek appropriate legal advice for any use of open-source components in your title.
 
 ## UWP on Xbox
 
