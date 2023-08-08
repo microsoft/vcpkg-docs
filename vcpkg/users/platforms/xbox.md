@@ -40,7 +40,7 @@ For libraries that require these headers, they make use of the **`ms-gdkx`** "st
 
 ## UWP on Xbox
 
-If building for [UWP on Xbox](/windows/uwp/xbox-apps/getting-started), make use of the existing **x64-uwp** triplet instead.
+If building for [UWP on Xbox](/windows/uwp/xbox-apps/getting-started), use the existing `x64-uwp` triplet instead.
 
 ## Maintainer notes
 
