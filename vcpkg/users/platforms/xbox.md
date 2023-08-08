@@ -33,7 +33,7 @@ The Windows SDK (19041) or later includes the system headers required to build a
 
 Libraries that make use of DirectX graphics APIs must be built using a custom variant of Direct3D 12.X used by the Xbox Game OS, and this requires access to the NDA *Microsoft GDK with Xbox Extensions*. Note that the Xbox Game OS does not support Direct3D 11, Direct2D/DirectWrite, OpenGL, GDI, or any older version of Direct3D.
 
-For libraries that require these headers, they make use of **ms-gdkx** "stub" port to indicate this requirement. This port looks for paths pointed to by ``GameDKLatest``, ``GameGXDKLatest``, and ``GameGRDKLatest`` environment variables.
+For libraries that require these headers, they make use of the **`ms-gdkx`** "stub" port to indicate this requirement. This port looks for paths pointed to by ``GameDKLatest``, ``GameGXDKLatest``, and ``GameGRDKLatest`` environment variables.
 
 > Note that Xbox developers are responsible for ensuring they and their publisher have appropriate and correct licensing terms for use of any 3rd party software components per the terms of their Title License Agreement. Be sure to seek appropriate legal advice for any use of open-source components in your title.
 
