@@ -8,7 +8,7 @@ ms.date: 8/8/2023
 # Xbox
 
 > [!NOTE]
-> Xbox is not tested as part of vcpkg repository's CI process, so regressions can occur as part of library updates. PRs improving support are welcome!
+> Xbox is not tested as part of vcpkg repository's continuous integration process, so regressions can occur as part of library updates. 
 
 ## Xbox community triplets
 
