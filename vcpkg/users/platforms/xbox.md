@@ -44,7 +44,7 @@ If building for [UWP on Xbox](/windows/uwp/xbox-apps/getting-started), use the e
 
 ## Maintainer notes
 
-CMake projects for these triplets are built using ``CMAKE_SYSTEM_NAME`` set to "Windows". To indicate the Xbox console being targeted, the `XBOX_CONSOLE_TARGET` variable is set to "xboxone" or "scarlett".
+CMake projects for these triplets are built using ``CMAKE_SYSTEM_NAME`` set to "Windows". To indicate the Xbox console being targeted, the `XBOX_CONSOLE_TARGET` variable is set to "`xboxone`" or "`scarlett`".
 
 Xbox triplets build with ``/DWINAPI_FAMILY=WINAPI_FAMILY_GAMES`` and either `/arch:AVX` or `/arch:AVX2` depending on the target console.
 
