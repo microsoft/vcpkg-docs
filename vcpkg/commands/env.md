@@ -35,6 +35,7 @@ triplet setting.
 
 Using the `--bin`, `--debug-bin`, `--include`, `--tools`, or `--python` options prepends the
 respective paths from the triplet's `installed` folder to the session's environment variables.
+Use these if you want to make tools and libraries installed by vcpkg available in the session.
 See the build system [manual integration documentation](../users/buildsystems/manual-integration.md)
 to learn more about the `installed` folder's hierarchy.
 
