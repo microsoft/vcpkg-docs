@@ -6,6 +6,9 @@ ROBOTS: NOINDEX
 ---
 # Microsoft/vcpkg-tool release process
 
+> [!WARNING]
+> This article has been archived and is no longer updated.
+
 This document describes the acceptance criteria / process we use when doing a vcpkg-tool update, such as [this example PR](https://github.com/microsoft/vcpkg/pull/23757).
 
 1. Verify that all tests etc. are passing in the vcpkg-tool repo's `main` branch, and that the   contents therein are acceptable for release. (Steps after this will sign code there, so this review is responsible gating what has access to code signing.)

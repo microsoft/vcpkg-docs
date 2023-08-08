@@ -7,6 +7,9 @@ ROBOTS: NOINDEX
 
 # Microsoft/vcpkg catalog release process
 
+> [!WARNING]
+> This article has been archived and is no longer updated.
+
 This document describes the acceptance criteria / process we use when doing a vcpkg release.
 
 1. Generate a new GitHub Personal Access Token with repo permissions.
