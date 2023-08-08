@@ -14,7 +14,7 @@ ms.date: 8/8/2023
 
 vcpkg includes [community triplets](https://github.com/microsoft/vcpkg/tree/master/triplets/community) for [Microsoft GDK](https://aka.ms/gdk) PC and [Xbox](https://aka.ms/gdkx) development. They make use of the MSVC compiler toolset (Visual Studio 2019 version 16.11 or later).
 
-There are two variants of each triplet, selecting between static and dynamic linking.
+There are two variants for each triplet: static and dynamic linking.
 
 | Console          | vcpkg community triplets     |
 |------------------|------------------------------|
