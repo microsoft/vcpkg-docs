@@ -39,8 +39,7 @@ Use these if you want to make tools and libraries installed by vcpkg available i
 See the build system [manual integration documentation](../users/buildsystems/manual-integration.md)
 to learn more about the `installed` folder's hierarchy.
 
-Optionally, you can specify a single command to be executed and the session terminated immediately
-afterwards.
+Optionally, you can specify a single command to execute. The session will terminate immediately afterwards.
 
 ## Examples
 
