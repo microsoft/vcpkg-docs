@@ -34,7 +34,7 @@ vcpkg edit fmt --all
 Opens a port for editing in a text editor window (defaults to Visual Studio Code).
 
 If multiple port names are provided, all ports are opened in the same window.
-This command does not work with ports from external registries, only ports from the built-in
+This command does not work with ports from external registries. Only ports from the built-in
 registry can be opened.
 
 The `--buildtrees` option opens the package's `buildtrees` folder instead of the port's contents.
