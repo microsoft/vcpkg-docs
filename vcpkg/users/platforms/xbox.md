@@ -1,7 +1,9 @@
 ---
 title: Xbox
 description: Use x64 community triplets for Xbox development.
-ms.date: 04/27/2023
+author: walbourn
+ms.author: viromer
+ms.date: 8/8/2023
 ---
 # Xbox
 
