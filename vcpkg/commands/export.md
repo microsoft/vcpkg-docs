@@ -13,7 +13,7 @@ vcpkg export [options] {<package>... | --x-all-installed}
 
 ## Description
 
-Exports built packages from the [installed directory](common-options.md#install-root) into a standalone developer SDK.
+Export built packages from the [installed directory](common-options.md#install-root) into a standalone developer SDK.
 
 `export` produces a standalone, distributable SDK (Software Development Kit) that can be used on another machine without separately acquiring vcpkg. It contains:
 
@@ -21,41 +21,7 @@ Exports built packages from the [installed directory](common-options.md#install-
 2. Their transitive dependencies
 3. [Integration files](#standard-integration), such as a [CMake toolchain][cmake] or [MSBuild props/targets][msbuild]
 
-[!NOTE]
-This command's behavior is different in [Classic Mode](../users/classic-mode.md) and [Manifest Mode](../users/manifests.md)
-
-The `export` command does not install any packages or transitive dependencies. It only exports packages that are already installed. 
-
-Refer to [Manifest Mode](export.md#Manifest-Mode) or [Classic Mode](export.md#Classic-Mode) for more details.
-
-## <a name="Classic-Mode"></a>Classic Mode
-
-In classic mode, `vcpkg export` accepts [triplet-qualified package specification](install.md#package-syntax) arguments (for example: `zlib:x64-windows`)
-
-You specify packages to export by adding `<port name>:<triplet>` arguments to the command line.
-
-For example, to export the `sqlite` package for `x64-windows` and `x64-linux`, use:
-
-```no-highlight
-vcpkg export sqlite:x64-windows sqlite:x64-linux --zip
-```
-
-This command exports the specified packages in zip format. Both `sqlite:x64-windows` and `sqlite:x64-linux` must be installed prior to running `vcpkg export`.
-
-## <a name="Manifest-Mode"></a>Manifest Mode
-
-In manifest mode, the command exports all currently installed packes. The installation directory includes all the packages declared in the manifest (`vcpkg.json`) as well as their transitive dependencies. Run `vcpkg install` before using this command to ensure that all required packages are installed. 
-
-In this mode you can't specify individual packages to export. The command operates on the entire installed state as a single entity, respecting the dependencies and versions specified in the manifest file.
-
-Another difference is the requirement of the `--output-dir` option. This option specifies the directory where the exported packages will be stored.
-
-For example, from the manifest directory
-```no-highlight
-vcpkg export --zip --output-dir=.\exports
-```
-
-Exports all currently installed packages to the `.\exports` directory in a zip file. The `--zip` option specifies that the exported packages should be compressed into a zip file.
+`export` must be used from [Classic Mode](../users/classic-mode.md). [Manifest Mode](../users/manifests.md) is unsupported.
 
 ### Standard Integration
 
@@ -123,8 +89,9 @@ Format specific options:
 - [`--nuget-id`](#nuget-id)
 - [`--nuget-version`](#nuget-version)
 - [`--nuget-description`](#nuget-description)
-  
+
 #### IFW
+
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
 ```no-highlight
@@ -184,10 +151,9 @@ This is the list of top-level built packages which will be included in the SDK. 
 
 **Package Syntax**
 ```
-<port name>:<triplet>
+portname:triplet
 ```
 Package references without a triplet are automatically qualified by the [default target triplet](common-options.md#triplet).
-Note: `<port name>:<triplet>` arguments are not allowed when using `vcpkg export` in manifest mode.
 
 <a id="all-installed"></a>
 
@@ -195,7 +161,7 @@ Note: `<port name>:<triplet>` arguments are not allowed when using `vcpkg export
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
-Export all installed packages. This option is implied when using `vcpkg export` in manifest mode.
+Export all installed packages.
 
 <a id="dry-run"></a>
 
@@ -279,7 +245,7 @@ Defaults to `vcpkg-export-<date>-<time>`. Scripted use of `export` should always
 
 Specifies the output directory.
 
-All top-level SDK files will be produced into this directory. This option is required in manifest mode. In classic mode, this is optional and defaults to the [vcpkg root directory](../users/config-environment.md#vcpkg_root).
+All top-level SDK files will be produced into this directory. Defaults to the [vcpkg root directory](../users/config-environment.md#vcpkg_root).
 
 <a id="prefab-artifact-id"></a>
 
