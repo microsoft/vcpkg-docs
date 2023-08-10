@@ -240,7 +240,7 @@
           href: commands/common-options.md
         - name: vcpkg export
           href: commands/export.md
-        - name: \`vcpkg export-port\`
+        - name: `vcpkg export-port`
           href: commands/export-port.md
         - name: vcpkg install
           href: commands/install.md
