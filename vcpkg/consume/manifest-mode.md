@@ -8,8 +8,8 @@ ms.prod: vcpkg
 ---
 # Install a dependency from a manifest file (manifest mode)
 
-vcpkg has two operation modes, this article describes how to install packages using [manifest
-mode](../reference/manifest-mode.md).
+vcpkg has two operation modes, this article describes how to install packages using manifest
+mode.
 
 Manifest mode, uses a manifest file to install packages to a per-project installation tree. A
 manifest is a file named [`vcpkg.json`](../reference/vcpkg-json.md) where you declare your project's
