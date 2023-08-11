@@ -17,31 +17,23 @@ dependencies.
 
 This is the recommended operation mode for most users. Use this mode when you want to have different sets
 of dependencies installed in a per-project basis. Manifest mode is also required to engage some of
-vcpkg's advanced features like [versioning](../users/versioning.md) and 
+vcpkg's advanced features like [versioning](../users/versioning.md) and
 [custom registries](../users/registries.md).
 
 ## Pre-requisite: Create your project
 
-For this tutorial, we have a project with a source file (`main.cxx`) and a build system script
-(`CMakeLists.txt`). We are using CMake to integrate vcpkg's installed libraries into the project,
-read our documentation about [integrating with other build
-systems](../users/buildsystems/manual-integration.md) if you want to use a different one.
+For this tutorial, we have a source file (`main.cxx`).
 
 `main.cxx`:
 
 :::code language="cxx" source="snippets/manifest-mode-cmake/main.cxx":::
-
-`CMakeLists.txt`:
-
-:::code language="cmake" source="snippets/manifest-mode-cmake/CMakeLists.txt":::
 
 ## Step 1: Create the manifest file
 
 The project depends on three open-source libraries: `cxxopts`, `fmt`, and `range-v3`; these are all
 available in the vcpkg public registry at <https://github.com/Microsoft/vcpkg>.
 
-To satisfy these dependencies, we'll create a file named `vcpkg.json` in the project's folder, next
-to the `CMakeLists.txt` file.
+To satisfy these dependencies, we'll create a file named `vcpkg.json` in the project's folder.
 
 `vcpkg.json`:
 
@@ -96,15 +88,28 @@ range-v3 provides CMake targets:
 ```
 
 Once the command has finished, there will be a new folder named `vcpkg_installed` in your project's
-directory containing all the built packages.
+directory containing all the built packages. 
 
 # [CMake integration](#tab/cmake-integration)
 
 When using CMake, you can take advantage of the automatic integration through the [vcpkg toolchain
 file](../users/buildsystems/cmake-integration.md#cmake_toolchain_file).
 
+
+### Step 2.1: Create a `CMakeLists.txt` file
+
+Let's add the following `CMakeLists.txt` file in the project folder:
+
+`CMakeLists.txt`:
+
+:::code language="cmake" source="snippets/manifest-mode-cmake/CMakeLists.txt":::
+
+### Step 2.2: Configure the project
+
 Add `-DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake` as a parameter to the
 CMake configure call and vcpkg will be automatically invoked to install the manifest dependencies.
+
+The command should look something like this: `cmake -B <build directory> -S <source directory> -DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake`
 
 ```Console
 PS D:\projects\manifest-example> cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=D:\vcpkg\scripts\buildsystems\vcpkg.cmake
@@ -130,7 +135,9 @@ The following packages will be built and installed:
 -- Build files have been written to: D:/projects/manifest-example/build
 ```
 
-Once the configure step completes, build the project:
+### Step 2.3: Build the project
+
+Once the configure step is completed, build the project with `cmake --build <build directory>`:
 
 ```Console
 PS D:\projects\manifest-example> cmake --build build
