@@ -1,7 +1,7 @@
 {
     "redirections": [
         {
-            "source_path": "vcpkg/examples/manifest-mode-cmake.md",
+            "source_path": "vcpkg/examples/manifest-mode-cmake",
             "redirect_url": "/vcpkg/consume/manifest-mode",
             "redirect_document_id": true
         }
