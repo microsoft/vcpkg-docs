@@ -1,9 +1,9 @@
 - name: vcpkg Documentation
   href: index.yml
-- name: Consume Libraries
+- name: Consume packages
   items:
   - name: Install a dependency from a manifest file
-    href: examples/manifest-mode-cmake.md
+    href: consume/manifest-mode.md
   - name: Getting Started with Classic mode
     href: examples/installing-and-using-packages.md
   - name: Manifest mode
