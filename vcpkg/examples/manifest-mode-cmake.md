@@ -1,71 +1,122 @@
 ---
-title: Getting Started with Manifest mode
-description: Learn to get started in vcpkg with Manifest mode.
-ms.date: 11/30/2022
+title: Install a dependency from a manifest file
+description: Learn to install your project's dependencies with vcpkg by using a manifest file.
+author: vicroms
+ms.author: viromer
+ms.date: 8/10/2023
+ms.prod: vcpkg
 ---
-# Manifest mode: CMake example
+# Install a dependency from a manifest file (manifest mode)
 
-In this tutorial, you'll create a CMake project using the open source libraries [fmt](https://github.com/fmtlib/fmt), [range-v3](https://github.com/ericniebler/range-v3), and [cxxopts](https://github.com/jarro2783/cxxopts).
+vcpkg has two operation modes, this article describes how to install packages using [manifest
+mode](../reference/manifest-mode.md).
 
-## Step 1. Install vcpkg
+Manifest mode, uses a manifest file to install packages to a per-project installation tree. A
+manifest is a file named [`vcpkg.json`](../reference/vcpkg-json.md) where you declare your project's
+dependencies.
 
-Download vcpkg using Git and run bootstrap to get the tool.
+This is the recommended operation mode for most users. Use this mode when you want to have different sets
+of dependencies installed in a per-project basis. Manifest mode is also required to engage some of
+vcpkg's advanced features like [versioning](../users/versioning.md) and 
+[custom registries](../users/registries.md).
 
-```cmd
-D:\src> git clone https://github.com/microsoft/vcpkg
-Cloning into 'vcpkg'...
-remote: Enumerating objects: 190163, done.
-remote: Counting objects: 100% (1565/1565), done.
-remote: Compressing objects: 100% (590/590), done.
-remote: Total 190163 (delta 1041), reused 1436 (delta 975), pack-reused 188598     
-Receiving objects: 100% (190163/190163), 70.97 MiB | 20.73 MiB/s, done.
-Resolving deltas: 100% (122381/122381), done.
-Updating files: 100% (10014/10014), done.
-D:\src> cd vcpkg
-D:\src\vcpkg> .\bootstrap-vcpkg.bat
-```
+## Pre-requisite: Create your project
 
-In the rest of this tutorial, we will assume you have cloned vcpkg into `D:\src\vcpkg`.
+For this tutorial, we have a project with a source file (`main.cxx`) and a build system script
+(`CMakeLists.txt`). We are using CMake to integrate vcpkg's installed libraries into the project,
+read our documentation about [integrating with other build
+systems](../users/buildsystems/manual-integration.md) if you want to use a different one.
 
-## Step 2. Create the project
-
-Our project will have the following file layout:
-
-```
-fibo/
-  main.cxx
-  CMakeLists.txt
-  vcpkg.json
-```
-
-First, create `CMakeLists.txt` with the following content:
-
-:::code language="cmake" source="snippets/manifest-mode-cmake/CMakeLists.txt":::
-
-Next, create `main.cxx` with the following content:
+`main.cxx`:
 
 :::code language="cxx" source="snippets/manifest-mode-cmake/main.cxx":::
 
-Finally, we'll create [`vcpkg.json`](../reference/vcpkg-json.md) in the same directory as the project's `CMakeLists.txt` listing our open source dependencies:
+`CMakeLists.txt`:
+
+:::code language="cmake" source="snippets/manifest-mode-cmake/CMakeLists.txt":::
+
+## Step 1: Create the manifest file
+
+The project depends on three open-source libraries: `cxxopts`, `fmt`, and `range-v3`; these are all
+available in the vcpkg public registry at <https://github.com/Microsoft/vcpkg>.
+
+To satisfy these dependencies, we'll create a file named `vcpkg.json` in the project's folder, next
+to the `CMakeLists.txt` file.
+
+`vcpkg.json`:
 
 :::code language="json" source="snippets/manifest-mode-cmake/vcpkg.json":::
 
-## Step 3. Configure and Build
+The `"dependencies"` array should contain your project's direct dependencies, vcpkg will take care
+of resolving any transitive dependencies and install them as well.
 
-In a [Developer Command Prompt](/visualstudio/ide/reference/command-prompt-powershell) open to the `fibo/` project directory, run `cmake` to configure the project using the [vcpkg toolchain file](../users/buildsystems/cmake-integration.md#cmake_toolchain_file). vcpkg will run during the configure step to build your open source dependencies and provide them to `find_package()`.
+## Step 2. Install the dependencies
 
-```cmd
-D:\src\fibo> cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=D:\src\vcpkg\scripts\buildsystems\vcpkg.cmake
+# [Manual installation](#tab/manual-installation)
+
+In a [Developer Command Prompt](/visualstudio/ide/reference/command-prompt-powershell) open to the
+project's folder run the `vcpkg install` command.
+
+```Console
+PS D:\projects\manifest-example> D:\vcpkg\vcpkg.exe install
+Detecting compiler hash for triplet x64-windows...
+The following packages will be built and installed:
+    cxxopts:x64-windows -> 3.1.1
+    fmt:x64-windows -> 10.0.0
+    range-v3:x64-windows -> 0.12.0#1
+  * vcpkg-cmake:x64-windows -> 2023-05-04
+  * vcpkg-cmake-config:x64-windows -> 2022-02-06#1
+Additional packages (*) will be modified to complete this operation.
+Installing 1/5 vcpkg-cmake-config:x64-windows...
+Installing 2/5 vcpkg-cmake:x64-windows...
+Installing 3/5 cxxopts:x64-windows...
+Installing 4/5 fmt:x64-windows...
+Installing 5/5 range-v3:x64-windows...
+Total install time: 48 s
+cxxopts provides CMake targets:
+
+    # this is heuristically generated, and may not be correct
+    find_package(cxxopts CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE cxxopts::cxxopts)
+
+The package fmt provides CMake targets:
+
+    find_package(fmt CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE fmt::fmt)
+
+    # Or use the header-only version
+    find_package(fmt CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE fmt::fmt-header-only)
+
+range-v3 provides CMake targets:
+
+    # this is heuristically generated, and may not be correct
+    find_package(range-v3 CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE range-v3::meta range-v3::concepts range-v3::range-v3)
+```
+
+Once the command has finished, there will be a new folder named `vcpkg_installed` in your project's
+directory containing all the built packages.
+
+# [CMake integration](#tab/cmake-integration)
+
+When using CMake, you can take advantage of the automatic integration through the [vcpkg toolchain
+file](../users/buildsystems/cmake-integration.md#cmake_toolchain_file).
+
+Add `-DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake` as a parameter to the
+CMake configure call and vcpkg will be automatically invoked to install the manifest dependencies.
+
+```Console
+PS D:\projects\manifest-example> cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=D:\vcpkg\scripts\buildsystems\vcpkg.cmake
 -- Running vcpkg install
 Detecting compiler hash for triplet x64-windows...
 The following packages will be built and installed:
-    cxxopts[core]:x64-windows
-    fmt[core]:x64-windows
-    range-v3[core]:x64-windows
-Starting package 1/3: cxxopts:x64-windows
-...
-Total elapsed time: 1.742 s
-
+    cxxopts:x64-windows -> 3.1.1
+    fmt:x64-windows -> 10.0.0
+    range-v3:x64-windows -> 0.12.0#1
+  * vcpkg-cmake:x64-windows -> 2023-05-04
+  * vcpkg-cmake-config:x64-windows -> 2022-02-06#1
+<output ommited for brevity>
 -- Running vcpkg install - done
 -- Selecting Windows SDK version 10.0.18362.0 to target Windows 10.0.19041.
 -- The CXX compiler identification is MSVC 19.27.29111.0
@@ -76,42 +127,39 @@ Total elapsed time: 1.742 s
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: D:/src/fibo/build
+-- Build files have been written to: D:/projects/manifest-example/build
 ```
 
-Once the configure step completes, build the project using `cmake --build build`:
+Once the configure step completes, build the project:
 
-```cmd
-D:\src\fibo> cmake --build build
+```Console
+PS D:\projects\manifest-example> cmake --build build
 Microsoft (R) Build Engine version 16.7.0+b89cb5fde for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
   Checking Build System
-  Building Custom Rule D:/src/fibo/CMakeLists.txt
+  Building Custom Rule D:\projects\manifest-example\CMakeLists.txt
   main.cxx
-  fibo.vcxproj -> D:\src\fibo\build\Debug\fibo.exe
-  Building Custom Rule D:/src/fibo/CMakeLists.txt
+  fibo.vcxproj -> D:\projects\manifest-example\build\Debug\fibo.exe
+  Building Custom Rule D:\projects\manifest-example\CMakeLists.txt
 ```
 
-Finally, we can run our build program directly from the Debug directory (`build\Debug\fibo.exe`).
+# [MSBuild integration](#tab/msbuild-integration)
 
-```cmd
-D:\src\fibo> .\build\Debug\fibo.exe -n 7 
-fib(1) = 1
-fib(2) = 1
-fib(3) = 2
-fib(4) = 3
-fib(5) = 5
-fib(6) = 8
-fib(7) = 13
-```
+TBD
+
+# [Visual Studio integration](#tab/vs-integration)
+
+TBD
+
+---
 
 ## Next Steps
 
-In this tutorial, you created a simple command line application using multiple open source libraries.
+In this tutorial, you installed dependencies for a simple project using a manifest file.
 
 The next steps for this project include:
 
-- Lock down your versions for repeatable builds using [Versioning](../users/versioning.concepts.md)
-- Reuse binaries across Continuous Integration runs using [Binary Caching](../users/binarycaching.md)
-- Manage your private libraries with vcpkg using [Custom Registries](../maintainers/registries.md)
+* Locking down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
+* Reusing binaries across Continuous Integration runs using [binary caching](../users/binarycaching.md)
+* Managing your private libraries using [custom registries](../maintainers/registries.md)
