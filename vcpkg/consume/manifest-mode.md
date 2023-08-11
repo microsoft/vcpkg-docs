@@ -22,7 +22,7 @@ vcpkg's advanced features like [versioning](../users/versioning.md) and
 
 ## Pre-requisite: Create your project
 
-For this tutorial, we have a source file (`main.cxx`).
+For this tutorial, we'll use the following source file:
 
 `main.cxx`:
 
@@ -30,21 +30,21 @@ For this tutorial, we have a source file (`main.cxx`).
 
 ## Step 1: Create the manifest file
 
-The project depends on three open-source libraries: `cxxopts`, `fmt`, and `range-v3`; these are all
+The project depends on the open-source libraries: `cxxopts`, `fmt`, and `range-v3`; these are all
 available in the vcpkg public registry at <https://github.com/Microsoft/vcpkg>.
 
-To satisfy these dependencies, we'll create a file named `vcpkg.json` in the project's folder.
+To satisfy these dependencies, let's create a file named `vcpkg.json` in the project's folder.
 
 `vcpkg.json`:
 
 :::code language="json" source="../examples/snippets/manifest-mode-cmake/vcpkg.json":::
 
-The `"dependencies"` array should contain your project's direct dependencies, vcpkg will take care
+The `"dependencies"` list should contain your project's direct dependencies, vcpkg will take care
 of resolving any transitive dependencies and install them as well.
 
 ## Step 2. Install the dependencies
 
-# [Manual installation](#tab/manual-installation)
+### [Manual installation](#tab/manual-installation)
 
 In a [Developer Command Prompt](/visualstudio/ide/reference/command-prompt-powershell) open to the
 project's folder run the `vcpkg install` command.
@@ -88,13 +88,12 @@ range-v3 provides CMake targets:
 ```
 
 Once the command has finished, there will be a new folder named `vcpkg_installed` in your project's
-directory containing all the built packages. 
+directory containing all the built packages.
 
-# [CMake integration](#tab/cmake-integration)
+### [CMake integration](#tab/cmake-integration)
 
 When using CMake, you can take advantage of the automatic integration through the [vcpkg toolchain
 file](../users/buildsystems/cmake-integration.md#cmake_toolchain_file).
-
 
 ### Step 2.1: Create a `CMakeLists.txt` file
 
@@ -151,11 +150,11 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   Building Custom Rule D:\projects\manifest-example\CMakeLists.txt
 ```
 
-# [MSBuild integration](#tab/msbuild-integration)
+### [MSBuild integration](#tab/msbuild-integration)
 
 TBD
 
-# [Visual Studio integration](#tab/vs-integration)
+### [Visual Studio integration](#tab/vs-integration)
 
 TBD
 
