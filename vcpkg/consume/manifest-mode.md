@@ -90,7 +90,7 @@ range-v3 provides CMake targets:
 Once the command has finished, there will be a new folder named `vcpkg_installed` in your project's
 directory containing all the built packages.
 
-### [CMake integration](#tab/cmake-integration)
+### [CMake](#tab/cmake-integration)
 
 When using CMake, you can take advantage of the automatic integration through the [vcpkg toolchain
 file](../users/buildsystems/cmake-integration.md#cmake_toolchain_file).
@@ -134,7 +134,7 @@ The following packages will be built and installed:
 -- Build files have been written to: D:/projects/manifest-example/build
 ```
 
-### Step 2.3: Build the project
+### Step 2.3: Build the project (CMake)
 
 Once the configure step is completed, build the project with `cmake --build <build directory>`:
 
@@ -150,13 +150,125 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   Building Custom Rule D:\projects\manifest-example\CMakeLists.txt
 ```
 
-### [MSBuild integration](#tab/msbuild-integration)
+### [MSBuild](#tab/msbuild-integration)
 
-TBD
+### Step 2.1: Enable user-wide integration (MSBuild)
 
-### [Visual Studio integration](#tab/vs-integration)
+To use [vcpkg in your MSBuild projects](../users/buildsystems/msbuild-integration.md) run the
+following command:
 
-TBD
+```Console
+vcpkg integrate install
+```
+
+This integration method automatically adds vcpkg-installed packages to the project's Include Directories,
+Link Directories, and Link Libraries. Additionaly, this creates a post-build action that ensures
+that any required DLLs are copied in the build output folder. This works for all VS2015, VS2017,
+VS2019, and VS2022 projects.
+
+### Step 2.2: Build the project (MSBuild)
+
+To build the project you need to pass the `/p:VcpkgEnableManifest=true` parameter to MSBuild.
+
+`msbuild /p:VcpkgEnableManifest=true`
+
+```Console
+PS D:\projects\manifest-example> msbuild /p:VcpkgEnableManifest=true
+MSBuild version 17.7.0-preview-23319-02+6829506b8 for .NET Framework
+Build started 8/11/2023 11:29:50 AM.
+
+Project "D:\projects\manifest-example\manifest-example.sln" on node 1 (default targets).
+ValidateSolutionConfiguration:
+  Building solution configuration "Debug|x64".
+Project "D:\projects\manifest-example\manifest-example.sln" (1) is building "D:\projects\manifest-example\manifest-example.vcxproj" (2) on node 1 (default targets).
+PrepareForBuild:
+  (omitted)
+InitializeBuildStatus:
+  (omitted)
+ComputeStdModulesCompileInputs:
+  (omitted)
+SetModuleDependencies:
+  Creating directory "x64\Debug\manifest.ceffc6eb_MD.tlog\".
+VcpkgTripletSelection:
+  Using triplet "x64-windows" from "D:\projects\manifest-example\vcpkg_installed\x64-windows\x64-windows\"
+  Using normalized configuration "Debug"
+VcpkgInstallManifestDependencies:
+  Installing vcpkg dependencies to D:\projects\manifest-example\vcpkg_installed\x64-windows\
+  Creating directory "D:\projects\manifest-example\vcpkg_installed\x64-windows\".
+  "D:\vcpkg\vcpkg.exe" install  --x-wait-for-lock --triplet "x64-windows" --vcpkg-root "D:\vcpkg\" "--x-manifest-root=D:\projects\manifest-example\" "--x-install-root=D:\projects\manifest-example\vcpkg_installed\x64-windows\"
+  "D:\vcpkg\vcpkg.exe" install  --x-wait-for-lock --triplet "x64-windows" --vcpkg-root "D:\vcpkg\" "--x-manifest-root=D:\projects\manifest-example\" "--x-install-root=D:\projects\manifest-example\vcpkg_installed\x64-windows\"
+  Detecting compiler hash for triplet x64-windows...
+  The following packages will be built and installed:
+      cxxopts:x64-windows -> 3.1.1
+      fmt:x64-windows -> 10.0.0
+      range-v3:x64-windows -> 0.12.0#1
+    * vcpkg-cmake:x64-windows -> 2023-05-04
+    * vcpkg-cmake-config:x64-windows -> 2022-02-06#1
+  (omitted)
+ClCompile:
+  (omitted)
+Link:
+  (omitted)
+AppLocalFromInstalled:
+  pwsh.exe -ExecutionPolicy Bypass -noprofile -File "D:\vcpkg\scripts\buildsystems\msbuild\applocal.ps1" "D:\projects\manif
+  est-mode-msbuild\x64\Debug\manifest-example.exe" "D:\projects\manifest-example\vcpkg_installed\x64-windows\x64-windows\debug\bin"
+  "x64\Debug\manifest.ceffc6eb.tlog\manifest-example.write.1u.tlog" "x64\Debug\vcpkg.applocal.log"
+  D:\projects\manifest-example\x64\Debug\fmtd.dll
+FinalizeBuildStatus:
+  (omitted)
+Done Building Project "D:\projects\manifest-example\manifest-example.vcxproj" (default targets).
+
+Done Building Project "D:\projects\manifest-example\manifest-example.sln" (default targets).
+
+Build succeeded.
+```
+
+### [Visual Studio](#tab/vs-integration)
+
+### Step 2.1: Enable user-wide integration (Visual Studio)
+
+To use [vcpkg in your Visual Studio projects](../users/buildsystems/msbuild-integration.md) run the
+following command:
+
+```Console
+vcpkg integrate install
+```
+
+This integration method automatically adds vcpkg-installed packages to the project's Include Directories,
+Link Directories, and Link Libraries. Additionaly, this creates a post-build action that ensures
+that any required DLLs are copied in the build output folder. This works for all VS2015, VS2017,
+VS2019, and VS2022 projects.
+
+### Step 2.2: Enable vcpkg manifests
+
+By default, manifest mode is disabled in Visual Studio projects. To enable manifests, open the
+project's _Properties_ window and set _Use Vcpkg Manifest_ to _Yes_ in the _vcpkg_ tab.
+
+:::image type="content" source="/vcpkg/reesources/vs-enable-vcpkg-manifest.png" alt-text="The image
+shows a Visual Studio's project Properties window opened to the vcpkg tab with the Use Vcpkg Manifest
+option set to Yes":::
+
+### Step 2.3: Build the project (Visual Studio)
+
+```Console
+Build started...
+1>------ Build started: Project: manifest-example, Configuration: Debug x64 ------
+1>Installing vcpkg dependencies to D:\projects\manifest-example\vcpkg_installed\x64-windows\
+1>"D:\vcpkg\vcpkg.exe" install  --x-wait-for-lock --triplet "x64-windows" --vcpkg-root "D:\vcpkg\" "--x-manifest-root=D:\projects\manifest-example\" "--x-install-root=D:\projects\manifest-example\vcpkg_installed\x64-windows\"
+1>Detecting compiler hash for triplet x64-windows...
+1>The following packages will be built and installed:
+1>    cxxopts:x64-windows -> 3.1.1
+1>    fmt:x64-windows -> 10.0.0
+1>    range-v3:x64-windows -> 0.12.0#1
+1>  * vcpkg-cmake:x64-windows -> 2023-05-04
+1>  * vcpkg-cmake-config:x64-windows -> 2022-02-06#1
+1> (omitted)
+1>main.cxx
+1>manifest-example.vcxproj -> D:\projects\manifest-example\x64\Debug\manifest-example.exe
+1>Done building project "manifest-example.vcxproj".
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+========== Build started at 12:07 PM and took 15.320 seconds ==========
+```
 
 ---
 
