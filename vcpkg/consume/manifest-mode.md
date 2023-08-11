@@ -244,8 +244,8 @@ VS2019, and VS2022 projects.
 By default, manifest mode is disabled in Visual Studio projects. To enable manifests, open the
 project's _Properties_ window and set _Use Vcpkg Manifest_ to _Yes_ in the _vcpkg_ tab.
 
-:::image type="complex" source="../../resources/vs-enable-vcpkg-manifest.png" alt-text="Screenshot of a Visual Studio's project Properties window.":::
-Screenshot of a Visual Studio's project properties window. The VCPKG menu is selected. The
+:::image type="complex" source="../resources/vs-enable-vcpkg-manifest.png" alt-text="Screenshot of a Visual Studio's project Properties window.":::
+Screenshot of a Visual Studio's project properties window. The VCPKG tab is selected and highlighted. The
 option named "use VCPKG manifest" is highlighted with its value set to "Yes".
 :::image-end:::
 
