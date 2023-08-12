@@ -8,17 +8,15 @@ ms.prod: vcpkg
 ---
 # Install a dependency from a manifest file (manifest mode)
 
-vcpkg has two operation modes, this article describes how to install packages using manifest
-mode.
+vcpkg has two operation modes. This article describes how to install packages using manifest
+mode, the recommended operation mode for most users.
 
-Manifest mode, uses a manifest file to install packages to a per-project installation tree. A
-manifest is a file named [`vcpkg.json`](../reference/vcpkg-json.md) where you declare your project's
-dependencies.
+In this mode, you use a manifest (a file named [`vcpkg.json`](../reference/vcpkg-json.md)) to
+declare your project's direct dependencies.
 
-This is the recommended operation mode for most users. Use this mode when you want to have different sets
-of dependencies installed in a per-project basis. Manifest mode is also required to engage some of
-vcpkg's advanced features like [versioning](../users/versioning.md) and
-[custom registries](../users/registries.md).
+Use this mode when you want to have different sets of dependencies installed in a per-project basis.
+Manifest mode is also required to engage some of vcpkg's advanced features like
+[versioning](../users/versioning.md) and [custom registries](../users/registries.md).
 
 ## Pre-requisite: Create your project
 
@@ -92,10 +90,10 @@ directory containing all the built packages.
 
 ### [CMake](#tab/cmake-integration)
 
+### Step 2.1: Create a `CMakeLists.txt` file
+
 When using CMake, you can take advantage of the automatic integration through the [vcpkg toolchain
 file](../users/buildsystems/cmake-integration.md#cmake_toolchain_file).
-
-### Step 2.1: Create a `CMakeLists.txt` file
 
 Let's add the following `CMakeLists.txt` file in the project folder:
 
