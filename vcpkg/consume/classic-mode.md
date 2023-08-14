@@ -13,7 +13,7 @@ ms.prod: vcpkg
 > dependencies.
 
 > [!WARNING]
-> Some of vcpkg features are not available in classic mode.
+> Some vcpkg features are not available in classic mode.
 
 vcpkg has two operation modes, this article describes how to install packages using classic
 mode. For most users we recommend using manifest mode instead.
@@ -35,6 +35,10 @@ The project depends on the open-source libraries: `cxxopts`, `fmt`, and `range-v
 available in the vcpkg public registry at <https://github.com/Microsoft/vcpkg>.
 
 To install these packages use the [`vcpkg install`](../commands/install.md) command.
+
+```Console
+vcpkg install cxxopts fmt range-v3
+```
 
 ```Console
 $ ./vcpkg install cxxopts fmt range-v3
@@ -97,7 +101,7 @@ VS2019, and VS2022 projects.
 > configuration. Use `x64-windows` or `x64-windows-static` for your 64-bits projects and
 > `x86-windows` or `x86-windows-static` for your 32-bits projects.
 
-After the previous steps, all installed packages should be automatically available when building
+After the previous steps, all installed packages are automatically available when building
 your project. 
 
 Run `msbuild` to build the project:
@@ -164,7 +168,7 @@ VS2019, and VS2022 projects.
 > configuration. Use `x64-windows` or `x64-windows-static` for your 64-bits projects and
 > `x86-windows` or `x86-windows-static` for your 32-bits projects.
 
-After the previous steps, all installed packages should be automatically available when building
+After the previous steps, all installed packages are automatically available when building
 your project. 
 
 Build the project:
