@@ -9,18 +9,17 @@ ms.prod: vcpkg
 # Install a dependency from a command-line (classic mode)
 
 > [!TIP]
-> See "Install a dependency from a manifest file" for the recommended method of installing your
+> See ["Install a dependency from a manifest file"](manifest-mode.md) for the recommended method of installing your
 > dependencies.
 
-> [!CAUTION]
-> Some features like [versioning](../users/versioning) and [custom registries](../users/registries)
-> are not available in classic mode.
+> [!WARNING]
+> Some features are not available in classic mode.
 
 vcpkg has two operation modes. This article describes how to install packages using classic
 mode, for most users we recommend using manifest mode instead.
 
 In this mode, you use vcpkg as a command-line interface to install your dependencies in a global
-[installation tree](../users/buildsystems/manual-integration).
+[installation tree](../users/buildsystems/manual-integration.md).
 
 ## Pre-requisite: Create your project
 
@@ -35,7 +34,7 @@ For this tutorial, we'll use the following source file:
 The project depends on the open-source libraries: `cxxopts`, `fmt`, and `range-v3`; these are all
 available in the vcpkg public registry at <https://github.com/Microsoft/vcpkg>.
 
-To install these packages use the [`vcpkg install`](../comands/install) command.
+To install these packages use the [`vcpkg install`](../commands/install.md) command.
 
 ```Console
 $ ./vcpkg install cxxopts fmt range-v3
@@ -127,7 +126,7 @@ MSBuild version 17.7.0-preview-23319-02+6829506b8 for .NET Framework
 ### Step 2.1: Enable user-wide integration (MSBuild)
 
 To use [vcpkg in your MSBuild or Visual Studio projects](../users/buildsystems/msbuild-integration.md) run the
-[`vcpkg integrate`](../commands/integrate) command:
+[`vcpkg integrate`](../commands/integrate.md) command:
 
 ```Console
 vcpkg integrate install
@@ -140,8 +139,8 @@ VS2019, and VS2022 projects.
 
 ### Step 2.2: Build the project (MSBuild)
 
-> [!WARNING]
-> Make sure that the [triplet](../users/triplets) of your installed packages matches your project's
+> [!IMPORTANT]
+> Make sure that the [triplet](../users/triplets.md) of your installed packages matches your project's
 > configuration. Use `x64-windows` or `x64-windows-static` for your 64-bits projects and
 > `x86-windows` or `x86-windows-static` for your 32-bits projects.
 
@@ -190,13 +189,13 @@ Build succeeded.
 
 ### Step 2.1: Enable user-wide integration (Visual Studio)
 
-> [!WARNING]
-> Make sure that the [triplet](../users/triplets) of your installed packages matches your project's
+> [!IMPORTANT]
+> Make sure that the [triplet](../users/triplets.md) of your installed packages matches your project's
 > configuration. Use `x64-windows` or `x64-windows-static` for your 64-bits projects and
 > `x86-windows` or `x86-windows-static` for your 32-bits projects.
 
 To use [vcpkg in your MSBuild or Visual Studio projects](../users/buildsystems/msbuild-integration.md) run the
-[`vcpkg integrate`](../commands/integrate) command:
+[`vcpkg integrate`](../commands/integrate.md) command:
 
 ```Console
 vcpkg integrate install
