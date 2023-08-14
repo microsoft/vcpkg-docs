@@ -15,10 +15,10 @@ ms.prod: vcpkg
 > [!WARNING]
 > Some features are not available in classic mode.
 
-vcpkg has two operation modes. This article describes how to install packages using classic
-mode, for most users we recommend using manifest mode instead.
+vcpkg has two operation modes, this article describes how to install packages using classic
+mode. For most users we recommend using manifest mode instead.
 
-In this mode, you use vcpkg as a command-line interface to install your dependencies in a global
+In classic mode, you use vcpkg as a command-line interface to install your dependencies in a global
 [installation tree](../users/buildsystems/manual-integration.md).
 
 ## Pre-requisite: Create your project
@@ -71,59 +71,12 @@ range-v3 provides CMake targets:
 
 ## Step 2: Integrate with your project
 
-### [CMake](#tab/cmake)
-
-### Step 2.1: Create a `CMakeLists.txt` file
-
-When using CMake, you can take advantage of the automatic integration through the [vcpkg toolchain
-file](../users/buildsystems/cmake-integration.md#cmake_toolchain_file).
-
-Let's add the following `CMakeLists.txt` file in the project folder:
-
-`CMakeLists.txt`:
-
-:::code language="cmake" source="../examples/snippets/manifest-mode-cmake/CMakeLists.txt":::
-
-### Step 2.2: Configure the project
-
-Add `-DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake` as a parameter to the
-CMake configure call and vcpkg will be automatically invoked to install the manifest dependencies.
-
-The command should look something like this: `cmake -B <build directory> -S <source directory> -DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake`
-
-```Console
-PS D:\projects\manifest-example> cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=D:/vcpkg/scripts/buildsystems/vcpkg.cmake
--- Building for: Visual Studio 17 2022
--- Selecting Windows SDK version 10.0.19041.0 to target Windows 10.0.25921.
--- The CXX compiler identification is MSVC 19.37.32814.0
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/2022/Preview/VC/Tools/MSVC/14.37.32814/bin/Hostx64/x64/cl.exe - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Configuring done
--- Generating done
--- Build files have been written to: D:/projects/manifest-example/build
-```
-
-### Step 2.3: Build the project (CMake)
-
-Once the configure step is completed, build the project with `cmake --build <build directory>`:
-
-```Console
-PS D:\projects\manifest-example> cmake --build build
-MSBuild version 17.7.0-preview-23319-02+6829506b8 for .NET Framework
-
-  Checking Build System
-  Building Custom Rule D:/projects/manifest-example/CMakeLists.txt
-  main.cxx
-  fibo.vcxproj -> D:\projects\manifest-example\build\Debug\fibo.exe
-  Building Custom Rule D:/projects/manifest-example/CMakeLists.txt
-```
-
 ### [MSBuild](#tab/msbuild)
 
 ### Step 2.1: Enable user-wide integration (MSBuild)
+
+> [!div class="nextstepaction"]
+> [Learn more about using vcpkg from MSBuild](../users/buildsystems/msbuild-integration.md)
 
 To use [vcpkg in your MSBuild or Visual Studio projects](../users/buildsystems/msbuild-integration.md) run the
 [`vcpkg integrate`](../commands/integrate.md) command:
@@ -185,9 +138,12 @@ Done Building Project "D:\projects\manifest-example\manifest-example.sln" (defau
 Build succeeded.
 ```
 
-#### [Visual Studio](#tab/vs-integration)
+### [Visual Studio](#tab/visual-studio)
 
 ### Step 2.1: Enable user-wide integration (Visual Studio)
+
+> [!div class="nextstepaction"]
+> [Learn more about using vcpkg from MSBuild](../users/buildsystems/msbuild-integration.md)
 
 > [!IMPORTANT]
 > Make sure that the [triplet](../users/triplets.md) of your installed packages matches your project's
@@ -223,14 +179,68 @@ Build started...
 ========== Build started at 3:16 PM and took 18.608 seconds ==========
 ```
 
+### [CMake](#tab/cmake)
+
+### Step 2.1: Create a `CMakeLists.txt` file
+
+> [!div class="nextstepaction"]
+> [Learn more about using vcpkg from MSBuild](../users/buildsystems/cmake-integration.md)
+
+When using CMake, you can take advantage of the automatic integration through the [vcpkg toolchain
+file](../users/buildsystems/cmake-integration.md#cmake_toolchain_file).
+
+Let's add the following `CMakeLists.txt` file in the project folder:
+
+`CMakeLists.txt`:
+
+:::code language="cmake" source="../examples/snippets/manifest-mode-cmake/CMakeLists.txt":::
+
+### Step 2.2: Configure the project
+
+Add `-DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake` as a parameter to the
+CMake configure call and vcpkg will be automatically invoked to install the manifest dependencies.
+
+The command should look something like this: `cmake -B <build directory> -S <source directory> -DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake`
+
+```Console
+PS D:\projects\manifest-example> cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=D:/vcpkg/scripts/buildsystems/vcpkg.cmake
+-- Building for: Visual Studio 17 2022
+-- Selecting Windows SDK version 10.0.19041.0 to target Windows 10.0.25921.
+-- The CXX compiler identification is MSVC 19.37.32814.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/2022/Preview/VC/Tools/MSVC/14.37.32814/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/projects/manifest-example/build
+```
+
+### Step 2.3: Build the project (CMake)
+
+Once the configure step is completed, build the project with `cmake --build <build directory>`:
+
+```Console
+PS D:\projects\manifest-example> cmake --build build
+MSBuild version 17.7.0-preview-23319-02+6829506b8 for .NET Framework
+
+  Checking Build System
+  Building Custom Rule D:/projects/manifest-example/CMakeLists.txt
+  main.cxx
+  fibo.vcxproj -> D:\projects\manifest-example\build\Debug\fibo.exe
+  Building Custom Rule D:/projects/manifest-example/CMakeLists.txt
+```
+
 ---
 
 ## Next Steps
 
 In this tutorial, you installed dependencies for a simple project using a manifest file.
 
-The next steps for this project include:
+The next things you may want to try in your projects are:
 
-* Locking down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
-* Reusing binaries across Continuous Integration runs using [binary caching](../users/binarycaching.md)
-* Managing your private libraries using [custom registries](../maintainers/registries.md)
+* Install packages for custom platforms using [triplets](../users/triplets.md)
+* Lock down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
+* Reuse binaries across Continuous Integration runs using [binary caching](../users/binarycaching.md)
+* Manage your private libraries using [custom registries](../maintainers/registries.md)
