@@ -71,7 +71,7 @@ See [versioning](../users/versioning.md#baselines) and [Using registries](../use
 
 The default value for the [`"default-features"`](#dependency-default-features) field of dependencies. A boolean. `true` by default. Optional.
 
-If used at a top-level manifest, this field diables default features for all ports in the dependency tree. If used in a port, this field sets the default value for all dependencies in the port.
+Disables [default features](#default-features) for the port's dependencies. If used in the top-level manifest, disables default features for the whole dependency tree.
 
 [depend-defaults]: #depend-defaults
 
