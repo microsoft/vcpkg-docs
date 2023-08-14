@@ -6,14 +6,14 @@ ms.author: viromer
 ms.date: 8/10/2023
 ms.prod: vcpkg
 ---
-# Install a dependency from a command-line (classic mode)
+# Install a dependency from the command-line (classic mode)
 
 > [!TIP]
 > See ["Install a dependency from a manifest file"](manifest-mode.md) for the recommended method of installing your
 > dependencies.
 
 > [!WARNING]
-> Some features are not available in classic mode.
+> Some of vcpkg features are not available in classic mode.
 
 vcpkg has two operation modes, this article describes how to install packages using classic
 mode. For most users we recommend using manifest mode instead.
@@ -73,10 +73,10 @@ range-v3 provides CMake targets:
 
 ### [MSBuild](#tab/msbuild)
 
-### Step 2.1: Enable user-wide integration (MSBuild)
-
 > [!div class="nextstepaction"]
 > [Learn more about using vcpkg from MSBuild](../users/buildsystems/msbuild-integration.md)
+
+### Step 2.1: Enable user-wide integration (MSBuild)
 
 To use [vcpkg in your MSBuild or Visual Studio projects](../users/buildsystems/msbuild-integration.md) run the
 [`vcpkg integrate`](../commands/integrate.md) command:
@@ -97,7 +97,7 @@ VS2019, and VS2022 projects.
 > configuration. Use `x64-windows` or `x64-windows-static` for your 64-bits projects and
 > `x86-windows` or `x86-windows-static` for your 32-bits projects.
 
-After the previous steps, vcpkg-installed packages should be automatically available when building
+After the previous steps, all installed packages should be automatically available when building
 your project. 
 
 Run `msbuild` to build the project:
@@ -140,15 +140,10 @@ Build succeeded.
 
 ### [Visual Studio](#tab/visual-studio)
 
-### Step 2.1: Enable user-wide integration (Visual Studio)
-
 > [!div class="nextstepaction"]
-> [Learn more about using vcpkg from MSBuild](../users/buildsystems/msbuild-integration.md)
+> [Learn more about using vcpkg from Visual Studio](../users/buildsystems/msbuild-integration.md)
 
-> [!IMPORTANT]
-> Make sure that the [triplet](../users/triplets.md) of your installed packages matches your project's
-> configuration. Use `x64-windows` or `x64-windows-static` for your 64-bits projects and
-> `x86-windows` or `x86-windows-static` for your 32-bits projects.
+### Step 2.1: Enable user-wide integration (Visual Studio)
 
 To use [vcpkg in your MSBuild or Visual Studio projects](../users/buildsystems/msbuild-integration.md) run the
 [`vcpkg integrate`](../commands/integrate.md) command:
@@ -164,7 +159,12 @@ VS2019, and VS2022 projects.
 
 ### Step 2.2: Build the project (Visual Studio)
 
-After the previous steps, vcpkg-installed packages should be automatically available when building
+> [!IMPORTANT]
+> Make sure that the [triplet](../users/triplets.md) of your installed packages matches your project's
+> configuration. Use `x64-windows` or `x64-windows-static` for your 64-bits projects and
+> `x86-windows` or `x86-windows-static` for your 32-bits projects.
+
+After the previous steps, all installed packages should be automatically available when building
 your project. 
 
 Build the project:
@@ -181,10 +181,10 @@ Build started...
 
 ### [CMake](#tab/cmake)
 
-### Step 2.1: Create a `CMakeLists.txt` file
-
 > [!div class="nextstepaction"]
-> [Learn more about using vcpkg from MSBuild](../users/buildsystems/cmake-integration.md)
+> [Learn more about using vcpkg from CMake](../users/buildsystems/cmake-integration.md)
+
+### Step 2.1: Create a `CMakeLists.txt` file
 
 When using CMake, you can take advantage of the automatic integration through the [vcpkg toolchain
 file](../users/buildsystems/cmake-integration.md#cmake_toolchain_file).
