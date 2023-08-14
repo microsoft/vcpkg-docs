@@ -262,6 +262,8 @@
           href: commands/search.md
         - name: vcpkg update
           href: commands/update.md
+        - name: vcpkg x-add-version
+          href: commands/add-version.md
         - name: vcpkg x-update-baseline
           href: commands/update-baseline.md
         - name: vcpkg upgrade
