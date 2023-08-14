@@ -5,7 +5,9 @@ ms.date: 11/30/2022
 ---
 # vcpkg_build_msbuild
 
-Build a msbuild-based project. Prefer using [`vcpkg_install_msbuild()`](vcpkg_install_msbuild.md) when possible.
+**This function has been deprecated in favor of [`vcpkg_msbuild_install`](vcpkg_msbuild_install.md).**
+
+Build a msbuild-based project.
 
 ## Usage
 
@@ -74,10 +76,6 @@ Additional options passed to msbuild for Release builds. These are in addition t
 ### OPTIONS_DEBUG
 
 Additional options passed to msbuild for Debug builds. These are in addition to `OPTIONS`.
-
-## Examples
-
-- [chakracore](https://github.com/Microsoft/vcpkg/blob/master/ports/chakracore/portfile.cmake)
 
 ## Source
 
