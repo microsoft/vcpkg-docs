@@ -26,10 +26,10 @@ vcpkg_install_msbuild(
     [OPTIONS </p:ZLIB_INCLUDE_PATH=X>...]
     [OPTIONS_RELEASE </p:ZLIB_LIB=X>...]
     [OPTIONS_DEBUG </p:ZLIB_LIB=X>...]
-    [DEPENDENT_PKGCONFIG zlib]
-    [ADDITIONAL_LIBS getopt.lib]
-    [ADDITIONAL_LIBS_DEBUG zlibd.lib]
-    [ADDITIONAL_LIBS_RELEASE zlib.lib]
+    [DEPENDENT_PKGCONFIG <zlib>]
+    [ADDITIONAL_LIBS <getopt.lib>]
+    [ADDITIONAL_LIBS_DEBUG <zlibd.lib>]
+    [ADDITIONAL_LIBS_RELEASE <zlib.lib>]
 )
 ```
 
