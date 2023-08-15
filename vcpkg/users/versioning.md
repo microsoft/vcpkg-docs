@@ -20,14 +20,14 @@ For an example with context, see our guide to [getting started with versioning](
     - [`version-semver`](#version-semver)
     - [`version-date`](#version-date)
     - [`version-string`](#version-string)
-    - [ `port-version`](#-port-version)
+    - [ `port-version`](#port-version)
   - [Version constraints](#version-constraints)
     - [Baselines](#baselines)
       - [Example](#example)
-    - [ `version>=`](#-version)
-    - [ `overrides`](#-overrides)
+    - [ `version>=`](#version)
+    - [ `overrides`](#overrides)
 
-## Version schemes
+##  <a name="version-schemes"></a>Version schemes
 
 Ports in vcpkg should attempt to follow the versioning conventions used by the package's authors. For that reason, when declaring a package's version the appropriate scheme should be used.
 
@@ -47,7 +47,7 @@ A manifest must contain only one version declaration.
 > [!NOTE]
 > By design, vcpkg does not compare versions that use different schemes. For example, a package that has a `version-string: 7.1.3` cannot be compared with the same package using `version: 7.1.4`, even if the conversion seems obvious.
 
-### `version`
+### <a name="version"></a>`version`
 
 Accepts version strings that follow a relaxed, dot-separated-, semver-like scheme.
 

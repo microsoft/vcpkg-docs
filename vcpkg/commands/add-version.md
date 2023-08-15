@@ -19,7 +19,7 @@ vcpkg x-add-version [port-name] [options] [--all] [--overwrite-version] [--skip-
 
 ## Description
 
-The `x-add-version` command updates the [version database](..\users\versioning.concepts.md#acquiring-port-versions) for vcpkg ports. By default, it operates on a specified port. With the appropriate switches, users can choose to process all ports or change the default behavior regarding formatting checks and version updates.
+The `x-add-version` command updates the [version database](..\users\versioning.concepts.md#acquiring-port-version) for vcpkg ports. By default, it operates on a specified port. With the appropriate switches, users can choose to process all ports or change the default behavior regarding formatting checks and version updates.
 
 To use the command:
 1. After making changes to a port, navigate to the vcpkg directory. 
@@ -36,7 +36,7 @@ Specifies the name of the port to be updated. If not provided, the user should u
 
 ### `--all`
 
-Processes all the ports in the [built-in](..\maintainers\registries.md#builtin-registries) `ports` directory. If this option is used together with a port name, a warning is issued and the specific port is ignored. 
+Processes all the ports in the [built-in](..\maintainers\registries.md#built-in-registries) `ports` directory. If this option is used together with a port name, a warning is issued and the specific port is ignored. 
 
 ### `--overwrite-version`
 
@@ -47,7 +47,7 @@ This option is designed for ongoing development when preparing a version for reg
 
 ### `--skip-formatting-check`
 
-Skips the check for [proper formatting](../commands/format-manifest.md) in the manifest file (`vcpkg.json`) of the port. By default, proper formatting is checked and required.
+Skips the check for proper formatting in the manifest file (`vcpkg.json`) of the port. By default, proper formatting is checked and required.
 
 ### `--skip-version-format-check`
 
