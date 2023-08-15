@@ -5,9 +5,10 @@ ms.date: 11/30/2022
 ---
 # vcpkg_build_msbuild
 
-**This function has been deprecated in favor of [`vcpkg_msbuild_install`](vcpkg_msbuild_install.md).**
+> ![WARNING]
+> This function has been deprecated in favor of [`vcpkg_msbuild_install`](vcpkg_msbuild_install.md).
 
-Build a msbuild-based project.
+Builds a MSBuild project.
 
 ## Usage
 

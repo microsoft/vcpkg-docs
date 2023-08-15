@@ -1,13 +1,26 @@
 ---
 title: vcpkg_msbuild_install
 description: Learn how to use vcpkg_msbuild_install.
+author: Neumann-A
+ms.author: viromer
 ms.date: 08/14/2023
 ---
 
 # vcpkg_msbuild_install
 
-Build and install a msbuild-based project. This replaces `vcpkg_install_msbuild` and all other msbuild related functions.
-`vcpkg_msbuild_install` will generate a props and target file containing the cmake toolchain build flags and include it via `/p:ForceImportAfterCpp(Props|Targets)`
+Build and install a MSBuild project.
+
+This is the port version of `vcpkg_install_msbuild` and other MSBuild-related functions. Add `vcpkg-msbuild` as a host-dependency in your port to use this function.
+
+```json
+"dependencies": [
+   ...
+  { 
+    "name", "vcpkg-msbuild",
+    "host": "true"
+  }
+]
+`vcpkg_msbuild_install` will generate a props file and target file containing the CMake toolchain build flags and include it via `/p:ForceImportAfterCpp(Props|Targets)`
 
 ## Usage
 
@@ -38,7 +51,7 @@ vcpkg_install_msbuild(
 ### SOURCE_PATH
 The path to the root of the source tree.
 
-Because MSBuild uses in-source builds, the source tree will be copied into a temporary location for the build. This
+Because MSBuild uses in-source builds, the source tree is copied into a temporary location for the build. This
 parameter is the base for that copy and forms the base for all XYZ_SUBPATH options.
 
 
@@ -48,8 +61,8 @@ The subpath to the solution (`.sln`) or project (`.vcxproj`) file relative to `S
 
 ### ADD_BIN_TO_PATH
 
-Adds the configration dependent binary path to the `PATH` environment variable before the build.
-This is required to run tools build by the project itself. The `PATH` environment variable will not be mutated if `VCPKG_CROSSCOMPILING` is `true`
+Adds the configuration dependent binary path to the `PATH` environment variable before the build.
+This is required to run tools built by the project itself. The `PATH` environment variable is not be mutated if `VCPKG_CROSSCOMPILING` is `true`
 
 ### NO_TOOLCHAIN_PROPS
 
