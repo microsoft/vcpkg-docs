@@ -1,6 +1,6 @@
 ---
 title: vcpkg x-add-version
-description: Command line reference for the vcpkg x-add-version command. Update version database of vcpkg ports.
+description: Reference for the vcpkg x-add-version command. Update version database of vcpkg ports.
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 08/14/2023
@@ -19,7 +19,12 @@ vcpkg x-add-version [port-name] [options] [--all] [--overwrite-version] [--skip-
 
 ## Description
 
-The `x-add-version` command updates the version database for vcpkg ports. By default, it operates on a specified port. With the appropriate switches, users can choose to process all ports or change the default behavior regarding formatting checks and version updates.
+The `x-add-version` command updates the [version database](..\users\versioning.concepts.md#acquiring-port-versions) for vcpkg ports. By default, it operates on a specified port. With the appropriate switches, users can choose to process all ports or change the default behavior regarding formatting checks and version updates.
+
+To use the command:
+1. After making changes to a port, navigate to the vcpkg directory. 
+2. Run `vcpkg x-add-version <port-name>`, replacing `<port-name>` with the name of the port you've edited.
+3. This will add or update the version entry for your port in the version database.
 
 ## Options
 
@@ -31,19 +36,22 @@ Specifies the name of the port to be updated. If not provided, the user should u
 
 ### `--all`
 
-Processes all the ports in the built-in ports directory. If this option is used in conjunction with a specified port name, a warning will be issued, and the specific port will be ignored. 
+Processes all the ports in the built-in `ports` directory. If this option is used together with a port name, a warning is issued and the specific port is ignored. 
 
 ### `--overwrite-version`
 
 Overwrites an existing version in the database. Useful when updating an existing version entry. 
 
+[!NOTE]
+This option is designed for ongoing development when preparing a version for registry inclusion. For example, consider addressing an issue in the `foo` port and executing `vcpkg x-add-version foo`. For subsequent modifications to the port, utilize `vcpkg x-add-version foo --overwrite-version` to refresh the version entry prior to registry inclusion.
+
 ### `--skip-formatting-check`
 
-Skips the check for proper formatting in the manifest file (`vcpkg.json`) of the port. By default, proper formatting is checked and required.
+Skips the check for [proper formatting](../commands/format-manifest.md) in the manifest file (`vcpkg.json`) of the port. By default, proper formatting is checked and required.
 
 ### `--skip-version-format-check`
 
-Skips the version format check. By default, versions are checked to ensure they adhere to a specific format.
+Skips the version format check. By default, versions are checked to ensure they adhere to a specific [format](..\users\versioning.md#version-schemes).
 
 ### `--verbose`
 

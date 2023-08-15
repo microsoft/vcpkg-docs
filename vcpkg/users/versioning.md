@@ -13,15 +13,19 @@ For an example with context, see our guide to [getting started with versioning](
 
 ## Contents
 
-- [Version schemes](#version-schemes)
-  - [`version`](#version)
-  - [`version-semver`](#version-semver)
-  - [`version-date`](#version-date)
-  - [`version-string`](#version-string)
-- [Version constraints](#version-constraints)
-  - [Baselines](#baselines)
-  - [`version>=`](#version-gte)
-  - [`overrides`](#overrides)
+- [Versioning reference](#versioning-reference)
+  - [Contents](#contents)
+  - [Version schemes](#version-schemes)
+    - [`version`](#version)
+    - [`version-semver`](#version-semver)
+    - [`version-date`](#version-date)
+    - [`version-string`](#version-string)
+    - [ `port-version`](#-port-version)
+  - [Version constraints](#version-constraints)
+    - [Baselines](#baselines)
+      - [Example](#example)
+    - [ `version>=`](#-version)
+    - [ `overrides`](#-overrides)
 
 ## Version schemes
 
@@ -93,7 +97,9 @@ Examples:
 
 ### <a name="port-version"></a> `port-version`
 
-A positive integer value that increases each time the port changes without updating the sources.
+Port-versions in vcpkg allow for differentiation between changes in the vcpkg-specific configurations and changes in the source package itself.
+
+A port version is a positive integer value that increases each time the port changes without updating the sources.
 
 The rules for port versions are:
 
@@ -102,7 +108,7 @@ The rules for port versions are:
 - and reset to 0 each time the version of the package is updated.
 
 > [!NOTE]
-> Whenever vcpkg output a version it follows the format `<version>#<port version>`. For example `1.2.0#2` means version `1.2.0` port version `2`. When the port version is `0` the `#0` suffix is omitted (`1.2.0` implies version `1.2.0` port version `0`).
+> The representation in vcpkg output follows the format `<version>#<port version>`. For example `1.2.0#2` means version `1.2.0` port version `2`. If the port version is `0` the `#0` suffix is omitted (e.g., `1.2.0` implies version `1.2.0` port version `0`).
 
 *Sorting behavior*: If two versions compare equally, their port versions are compared by their numeric value, lower port versions take precedence.
 
@@ -111,6 +117,9 @@ Examples:
 - `1.2.0` < `1.2.0#1` < `1.2.0#2` < `1.2.0#10`
 - `2021-01-01#20` < `2021-01-01.1`
 - `windows#7` < `windows#8`
+
+[!NOTE]
+When making changes to a port, it's important to ensure that the [version database](versioning.concepts.md#acquiring-port-versions) is updated. To facilitate this, you can use the [`vcpkg x-add-version`](..\commands\add-version.md) command.
 
 ## Version constraints
 
