@@ -246,6 +246,8 @@
       items:
         - name: Common Command Options
           href: commands/common-options.md
+        - name: vcpkg contact
+          href: commands/contact.md
         - name: vcpkg depend-info
           href: commands/depend-info.md
         - name: vcpkg export
