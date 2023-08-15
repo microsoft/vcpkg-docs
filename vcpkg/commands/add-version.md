@@ -36,7 +36,7 @@ Specifies the name of the port to be updated. If not provided, the user should u
 
 ### `--all`
 
-Processes all the ports in the built-in `ports` directory. If this option is used together with a port name, a warning is issued and the specific port is ignored. 
+Processes all the ports in the [built-in](..\maintainers\registries.md#builtin-registries) `ports` directory. If this option is used together with a port name, a warning is issued and the specific port is ignored. 
 
 ### `--overwrite-version`
 
