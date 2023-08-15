@@ -119,7 +119,7 @@ Examples:
 - `windows#7` < `windows#8`
 
 [!NOTE]
-When making changes to a port, it's important to ensure that the [version database](versioning.concepts.md#acquiring-port-version) is updated. To facilitate this, you can use the [`vcpkg x-add-version`](..\commands\add-version.md) command.
+When making changes to a port, it's important to ensure that the [version database](versioning.concepts.md#acquiring-port-versions) is updated. To facilitate this, you can use the [`vcpkg x-add-version`](..\commands\add-version.md) command.
 
 ## Version constraints
 

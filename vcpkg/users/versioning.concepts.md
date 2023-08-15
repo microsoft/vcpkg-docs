@@ -98,7 +98,7 @@ To compute an installation plan, vcpkg follows roughly these steps:
   - Otherwise:
     - Report the conflicts to the user
 
-## <a name="acquiring-port-version"></a> Acquiring port versions
+## Acquiring port versions
 
 Although the concept of package versions has always been present in vcpkg, the concept of version constraints has been not.
 

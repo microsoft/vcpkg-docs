@@ -19,7 +19,7 @@ vcpkg x-add-version [port-name] [options] [--all] [--overwrite-version] [--skip-
 
 ## Description
 
-The `x-add-version` command updates the [version database](..\users\versioning.concepts.md#acquiring-port-version) for vcpkg ports. By default, it operates on a specified port. With the appropriate switches, users can choose to process all ports or change the default behavior regarding formatting checks and version updates.
+The `x-add-version` command updates the [version database](..\users\versioning.concepts.md#acquiring-port-versions) for vcpkg ports. By default, it operates on a specified port. With the appropriate switches, users can choose to process all ports or change the default behavior regarding formatting checks and version updates.
 
 To use the command:
 1. After making changes to a port, navigate to the vcpkg directory. 
