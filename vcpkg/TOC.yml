@@ -264,6 +264,8 @@
           href: commands/remove.md
         - name: vcpkg search
           href: commands/search.md
+        - name: vcpkg test-features
+          href: commands/test-features.md
         - name: vcpkg update
           href: commands/update.md
         - name: vcpkg x-update-baseline
