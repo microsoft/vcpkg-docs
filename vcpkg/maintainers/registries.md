@@ -79,7 +79,7 @@ In general, it's not important where you place port directories. However, the id
 > [!WARNING]
 > One other thing to keep in mind is that when you update a registry, all previous versions should also be accessible. Since your user will set their baseline to a commit ID, that commit ID must always exist, and be accessible from your HEAD commit, which is what is actually fetched. This means that your HEAD commit should be a child of all previous HEAD commits.
 
-### <a name="built-in-registries"></a> Builtin registries
+### <a name="builtin-registries"></a> Builtin registries
 
 Builtin registries are treated as special [Git registries](#git-registries). Instead of fetching from a remote url, builtin registries consult the `$VCPKG_ROOT/.git` directory of the vcpkg clone. They use the currently checked out `$VCPKG_ROOT/versions` directory as the source for versioning information.
 
