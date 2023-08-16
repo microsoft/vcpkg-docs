@@ -35,9 +35,6 @@
   - name: Asset Caching
     displayName: airgap, offline, source, mirror
     href: users/assetcaching.md
-  - name: Binary Caching
-    displayName: binaries, build
-    href: users/binarycaching.md
   - name: Remote Authentication
     href: users/authentication.md
   - name: Environment variables
@@ -236,6 +233,11 @@
     href: maintainers/handling-usage-files.md
   - name: CONTROL Files (deprecated)
     href: maintainers/control-files.md
+- name: Concepts
+  items:
+    - name: Binary caching
+      displayName: binaries, build
+      href: users/binarycaching.md
 - name: Reference
   items:
     - name: vcpkg.json Reference
