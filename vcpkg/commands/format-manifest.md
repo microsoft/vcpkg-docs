@@ -18,8 +18,8 @@ vcpkg format-manifest [--all] [--convert-control] [<path>...]
 ## Description
 Formats manifest (`vcpkg.json`) files and converts control (`CONTROL`) files into the manifest format.
 
-[!NOTE]
-If both `CONTROL` and `vcpkg.json` file are present in the same directory, the command will exit with an error.
+>[!NOTE]
+>If both `CONTROL` and `vcpkg.json` file are present in the same directory, the command will exit with an error.
 
 ## Examples
 
@@ -50,5 +50,5 @@ Formats all manifest files in the ports directory.
 
 Converts `CONTROL` files into `vcpkg.json` format when found in the ports directory.
 
-[!NOTE]
-Using `--convert-control` option with the `--all` option doesn't do anything: files passed explicitly are converted automatically.
+>[!NOTE]
+>Using `--convert-control` option with the `--all` option doesn't do anything: files passed explicitly are converted automatically.
