@@ -1,5 +1,5 @@
 ---
-title: vcpkg remove
+title: vcpkg add
 description: Reference for the vcpkg add command. Adds packages to the manifest or introduces new artifacts to the environment.
 author: JavierMatosD
 ms.author: javiermat
