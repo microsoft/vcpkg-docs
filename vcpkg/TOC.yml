@@ -250,6 +250,8 @@
           href: commands/depend-info.md
         - name: vcpkg export
           href: commands/export.md
+        - name: vcpkg hash
+          href: commands/hash.md
         - name: vcpkg install
           href: commands/install.md
         - name: vcpkg integrate
