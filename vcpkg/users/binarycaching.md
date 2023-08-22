@@ -1,23 +1,57 @@
 ---
+# Concepts/Binary Caching
 title: Binary Caching
 description: Reuse binaries built with vcpkg across different projects and machines.
-ms.date: 11/30/2022
+author: vicroms
+ms.author: viromer
+ms.date: 08/22/2023
+ms.prod: vcpkg
 ---
 
 # Binary Caching
 
-Libraries installed with vcpkg can always be built from source. However, this can duplicate work and waste time across multiple projects, developers, or machines.
+Most ports in the [vcpkg public registry](<https://github.com/Microsoft/vcpkg>) are built from
+source. By building from source, vcpkg can ensure maxiumum compatibility by using
+the same environment, build tools, compiler flags, linker flags, and other configurations that you
+use in your project to build your dependencies.
 
-Binary caching saves copies of library binaries in a shared location that can be accessed by vcpkg for future installs. This means that, as a user, you should only need to build dependencies from source once. If vcpkg is asked to install the same library with the same build configuration in the future, it will copy the built binaries from the cache and finish the operation in seconds.
+When binary caching is enabled, after each package is built from source, vcpkg creates a **binary
+package**. Binary packages contain the build-output of a package: binaries, build system integration files,
+usage documentation, license, etc. If a subsequent run requires a cached package to be installed,
+vcpkg determines whether to restore the cached binary package or trigger a build from source.
 
-Binary caching is especially effective when using Continuous Integration, since local developers can reuse the binaries produced during a CI run. It also greatly enhances the performance of ephemeral or "hosted" build agents, since all local changes are otherwise lost between runs. By using binary caching backed by a cloud service, such as GitHub, Azure, or others, you can ensure your CI runs at maximum speed and only rebuilds your dependencies when they've changed.
+This way, binary caching reduces the impact of the following downsides of building from source:
+
+* **Duplicated effort:** By reducing the number of times a package needs to be built from source.
+* **Long build times:** Restoring a binary package is usually a very fast operation that takes
+  seconds to complete.
+
+Binary caching is especially effective in CI scenarios where ephemeral containers or build agents
+force vcpkg to work with a clean-slate each time. By using a cloud-based binary cache (such as
+[GitHub Packages](<https://docs.github.com/packages>) or [Azure DevOps
+Artifacts](https://learn.microsoft.com/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&tabs=nuget))
+you can persist binary packages between runs to ensure maximum speed since rebuilds only happen
+when you make changes to your dependencies or configuration.
+
+While not recommended as a binary distribution mechanism, binary caching can be used to reuse build
+output from multiple systems. For example, developers can use the binary packages produced by a CI run on
+their local machines. For other methods to reuse and integrate vcpkg-produced binaries look at
+[`vcpkg export`](../commands/export.md).
 
 > [!TIP]
-> It is recommended to create a writable binary cache for every continuous integration pipeline or workflow. Individual developers should have read-only access to the CI binary cache.
+> It is recommended to create a binary cache with read and write permissions for every continuous
+> integration pipeline or workflow. Individual developers should have read-only access to the
+> CI-produced binary cache.
 
-Caches can be hosted in a variety of environments. The most basic examples are a folder on the local machine or a network file share. Caches can also be stored in any NuGet feed (such as GitHub Packages or Azure DevOps Artifacts), Azure Blob Storage, Google Cloud Storage, and many other services.
+Binary caches can be hosted in a variety of environments. The most basic from of a binary cache is a
+folder on the local machine or a network file share. Caches can also be stored in any NuGet feed
+(such as GitHub Packages or Azure DevOps Artifacts), Azure Blob Storage, Google Cloud Storage, and
+many other services.
 
-If your CI provider offers a native "caching" function, it is recommended to use both vcpkg binary caching and the native method for the most performant results.
+If your CI provider offers a native "caching" function, it is recommended to use both vcpkg binary
+caching and the native method for the most performant results.
+
+## Default binary cache
 
 Binary caching is enabled by default with a [`files` provider](#files) at the first valid location of:
 
