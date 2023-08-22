@@ -20,7 +20,7 @@ vcpkg hash <file-to-hash> [algorithm]
 Computes the hash of a specified file. By default, it computes the SHA-512 hash, but another algorithm can be optionally specified. The output will be the computed hash for the given file displayed directly on the console.
 
 >[!NOTE]
-> - The command requires two arguments:
+>The command requires two arguments:
 >1. A mandatory file path.
 >2. An optional hash algorithm, either `SHA256` or `SHA512``. If omitted, it will default to using SHA512 to compute the file's hash.
 
