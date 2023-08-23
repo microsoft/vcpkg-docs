@@ -6,8 +6,10 @@ author: AugP
 ms.author: aupopa
 ms.date: 8/23/2023
 ---
-# What is vcpkg? 
+# vcpkg overview
 
-# vcpkg compared to other package managers
+## What is vcpkg? 
 
-# Get started
+## vcpkg compared to other package managers
+
+## Get started
