@@ -50,7 +50,7 @@ You must enable the GitHub dependency graph in your repository's settings (enabl
 
 ### Known limitations
 
-* The version of vcpkg bundled with GitHub Actions runners may not be up to date. Ensure you are using tool version `2023-06-22` or later (merged with [commit SHA 8f3e8d6](https://github.com/microsoft/vcpkg/commit/8f3e8d6e95c7f91edea60c47a7d1414ab5ca9492)).
+* The version of vcpkg bundled with GitHub Actions runners may not be up to date. Use the most recent version of vcpkg to get access to this feature and receive the latest bug fixes.
 * Features that depend on the dependency graph, such as Dependabot alerts and Dependabot pull requests, are not yet available. Please let us know if you are interested in those features!
 
 ### Example GitHub Actions workflow
@@ -90,3 +90,4 @@ jobs:
       run: ${{ github.workspace }}/vcpkg/vcpkg install --dry-run
 
 ```
+
