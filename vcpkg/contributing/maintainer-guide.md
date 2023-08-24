@@ -127,7 +127,8 @@ You might also see old-style manual creation of this file using CMake's built in
 file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
 ```
 
-If the license content is not available in the upstream sources in textual form, such as a license available in PDF only form, `copyright` should contain an explanation as to how a user can find the license requirements, and, if possible a link to the original sources indicating this so that a user can check that it is up to date.
+If the license content in the upstream source files is not in text form (e.g. a PDF file), `copyright` should contain an explanation as to how a user can find the license requirements. If possible, it should also include a link to the original source files indicating this, so users can check if it is up to date.
+
 
 ```cmake
 file(WRITE "${CURRENT_PACKAGES_DIR}/share/${PORT}/copyright" [[As of 2023-07-25, according to
