@@ -121,7 +121,8 @@ Each port has to provide a file named `copyright` in the folder `${CURRENT_PACKA
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 ```
 
-You might also see old-style manual creation of this file using CMake's built in `file` command. This form is discouraged in favor of `vcpkg_install_copyright` in new ports, but is still acceptable.
+An older method to manually create this file is with CMake's built in `file` command. This is discouraged in favor of `vcpkg_install_copyright` in new ports but is still allowed.
+
 
 ```cmake
 file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
