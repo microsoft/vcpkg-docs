@@ -6,9 +6,27 @@ ms.date: 11/30/2022
 
 # CMake Integration
 
+It is important to understand when and how vcpkg executes its dependency acquisition and build steps in the CMake context.
+As background: by default, the first time CMake configures a build, it runs internal search routines to locate a viable
+"toolchain" (compiler, linker, etc.). This search happens when the first `project()` command is encountered in `CMakeLists.txt`.
+
+In order to customize this process, CMake supports "toolchain" files, which are really just CMake scripts.
+When a toolchain is specified, CMake **evaluates the `CMAKE_TOOLCHAIN_FILE` as a script**, just like `include("${CMAKE_TOOLCHAIN_FILE}")`
+This evaluation typically results in a set of variable definitions containing the paths of necessary build tools (along with other
+build parameters, such as cross-compilation flags).
+
+But because the toolchain file is just a CMake script, it is not limited to defining toolchain-related variables. vcpkg uses this
+fact as a hook into the CMake generation process. Evaluation of the `vcpkg.cmake` toolchain file effectively runs
+`execute_process("vcpkg install")`, after other precursor steps.
+
+**Therefore: all vcpkg-provided dependencies are downloaded and compiled the first time `project()` is called**. A key consequence
+of this sequence is that all CMake-level variables impacting vcpkg itself must be defined _before_ `project()`.
+
 See [Installing and Using Packages Example: sqlite](../../examples/installing-and-using-packages.md) for a fully worked example using CMake.
 
 ## `CMAKE_TOOLCHAIN_FILE`
+
+
 
 Projects configured to use the vcpkg toolchain file (via the CMake setting `CMAKE_TOOLCHAIN_FILE`) can find libraries from vcpkg using the standard CMake functions: `find_package()`, `find_path()`, and `find_library()`.
 
