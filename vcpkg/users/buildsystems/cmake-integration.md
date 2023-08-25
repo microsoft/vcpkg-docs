@@ -26,8 +26,6 @@ See [Installing and Using Packages Example: sqlite](../../examples/installing-an
 
 ## `CMAKE_TOOLCHAIN_FILE`
 
-
-
 Projects configured to use the vcpkg toolchain file (via the CMake setting `CMAKE_TOOLCHAIN_FILE`) can find libraries from vcpkg using the standard CMake functions: `find_package()`, `find_path()`, and `find_library()`.
 
 We recommend using [CMake Presets] to specify your toolchain file. For example, if you have defined the environment variable `VCPKG_ROOT`, you can use the following `CMakePresets.json` and pass `--preset debug` on the configure line:
