@@ -11,7 +11,7 @@ For more information about the vcpkg versioning algorithm and high level concept
 
 For an example with context, see our guide to [getting started with versioning](./examples/versioning.getting-started.md).
 
-##  <a name="version-schemes"></a>Version schemes
+##  <a name="version-schemes"></a>Version Schemes
 
 Ports in vcpkg should attempt to follow the versioning conventions used by the package's authors. For that reason, when declaring a package's version the appropriate scheme should be used.
 
@@ -102,7 +102,7 @@ Examples:
 - `2021-01-01#20` < `2021-01-01.1`
 - `windows#7` < `windows#8`
 
-## Version constraints
+## Version Constraints
 
 ### Baselines
 
