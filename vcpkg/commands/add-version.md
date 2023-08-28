@@ -24,7 +24,8 @@ The `x-add-version` command updates the [version database](..\users\versioning.c
 To use the command:
 1. After making changes to a port, navigate to the vcpkg directory. 
 2. Run `vcpkg x-add-version <port-name>`, replacing `<port-name>` with the name of the port you've edited.
-3. This will add or update the version entry for your port in the version database.
+
+This will add or update the version entry for your port in the version database.
 
 ## Options
 
@@ -35,15 +36,16 @@ All vcpkg commands support a set of [common options](common-options.md).
 Specifies the name of the port to be updated. If not provided, the user should use the `--all` option to process all ports.
 
 ### `--all`
-
-Processes all the ports in the [built-in](..\maintainers\registries.md#builtin-registries) `ports` directory. If this option is used together with a port name, a warning is issued.
+Processes all the ports in the [built-in](..\maintainers\registries.md#builtin-registries) `ports` directory.
 
 ### `--overwrite-version`
 
-Overwrites an existing version in the database. Useful when updating an existing version entry. 
+Allows overwriting an existing version in the database.
 
-[!NOTE]
-This option is designed for ongoing development when preparing a version for registry inclusion. For example, consider addressing an issue in the `foo` port and executing `vcpkg x-add-version foo`. For subsequent modifications to the port, utilize `vcpkg x-add-version foo --overwrite-version` to refresh the version entry prior to registry inclusion.
+Without this flag, vcpkg will refuse to overwrite existing versions.
+
+> [!NOTE]
+> This option is designed for ongoing development when preparing a version for registry inclusion. For example, consider addressing an issue in the `foo` port and executing `vcpkg x-add-version foo`. For subsequent modifications to the port, utilize `vcpkg x-add-version foo --overwrite-version` to refresh the version entry prior to registry inclusion.
 
 ### `--skip-formatting-check`
 
