@@ -23,22 +23,25 @@ This command downloads the source code from the provided URL and then creates a 
 
 The command can save the downloaded source code using a specific file name, provided as an optional argument. If the archive file name isn't specified, the command derives a file name from its URL.
 
-It's important to understand that the port created by the `vcpkg create` command serves merely as a starting point and, in most cases, further edits are necessary for a successful build.
-
-Be aware that the `vcpkg create` command doesn't verify the uniqueness of the port name within the vcpkg ports tree. The purpose of this command is to provide a foundation for port creation. If you require more guidance on adding ports to the vcpkg curated catalog, we recommend referring to one of our [tutorials](..\examples\packaging-zipfiles.md)
+It's important to understand that the port created by the `vcpkg create` command serves merely as a starting point and, in most cases, further edits are necessary for a successful build. For more guidance on adding ports to the vcpkg curated catalog, we recommend referring to one of our [tutorials](..\examples\packaging-zipfiles.md)
 
 ## Example
 ```no-highlight
 vcpkg create zlib2 https://github.com/madler/zlib/archive/v1.2.11.tar.gz zlib-1.2.11.tar.gz
+
+-- Downloading https://github.com/madler/zlib/archive/v1.2.11.tar.gz -> zlib-1.2.11.tar.gz...
+-- Generated portfile: C:\src\vcpkg\ports\zlib2\portfile.cmake
+-- Generated manifest: C:\src\vcpkg\ports\zlib2\vcpkg.json
+-- To launch an editor for these new files, run
+--     .\vcpkg edit zlib2
 ```
 
 The command performs the following actions:
 
 1. Creates a port folder named `zlib2` containing a `portfile.cmake` file and a `vcpkg.json` file.
-2. Downloads the `v1.2.11.tar.gz` file from the given URL
-3. Saves the source archive as `zlib-1.2.11.tar.gz` in the `downloads` directory.
+2. Downloads `https://github.com/madler/zlib/archive/v1.2.11.tar.gz` as `zlib-1.2.11.tar.gz` in the `downloads` directory.
 
-`portfile.cmake` contents:
+The new `portfile.cmake` has the content:
 ```
 # Common Ambient Variables:
 #   CURRENT_BUILDTREES_DIR    = ${VCPKG_ROOT_DIR}\buildtrees\${PORT}
@@ -127,7 +130,7 @@ vcpkg_cmake_install()
 
 ```
 
-`vcpkg.json` contents:
+The new `vcpkg.json` has the content:
 ```
 {
   "name": "zlib2",
