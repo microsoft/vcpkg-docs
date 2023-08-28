@@ -1,5 +1,9 @@
 - name: vcpkg Documentation
   href: index.yml
+- name: Get Started
+  items:
+    - name: Install and Use Packages on Linux
+      href: tutorials/get-started-linux.md
 - name: Consuming Libraries
   items:
     - name: Getting Started with Classic mode
