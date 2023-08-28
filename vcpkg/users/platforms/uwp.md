@@ -9,20 +9,16 @@ ms.date: 04/28/2023
 
 vcpkg includes [triplets](https://github.com/microsoft/vcpkg/tree/master/triplets) for building UWP applications using the MSVC ``cl.exe`` compiler.
 
-| Architecture | vcpkg triplets |
-|--------------|----------------|
-| x64          | x64-uwp        |
-| arm          | arm-uwp        |
-
-There are also additional [community triplets](https://github.com/microsoft/vcpkg/tree/master/triplets/community) for UWP as well.
-
-| Architecture | vcpkg community triplets |
-|--------------|--------------------------|
-| x86          | x86-uwp                  | 
-| arm64        | arm64-uwp                |
-
-> [!NOTE]
-> Community triplets are not tested as part of vcpkg repository's CI process, so regressions can occur as part of library updates. PRs improving support are welcome!
+| Architecture | vcpkg triplets      | Community |
+|--------------|---------------------|-----------|
+| x64          | x64-uwp             |           |
+|              | x64-uwp-static-md   | Yes       |
+| x86          | x86-uwp             | Yes       |
+|              | x86-uwp-static-md   | Yes       |
+| arm          | arm-uwp             |           |
+|              | arm-uwp-static-md   | Yes       |
+| arm64        | arm64-uwp           | Yes       |
+|              | arm64-uwp-static-md | Yes       |
 
 ## C++/CX vs. C++/WinRT projections
 
@@ -32,9 +28,9 @@ The UWP triplet toolchain leaves enabling C++/CX (``/ZW``) up to CMake, but does
 
 ## Maintainer notes
 
-CMake projects for these triplets are built using ``CMAKE_SYSTEM_NAME`` set to "WindowsStore" and ``CMAKE_SYSTEM_VERSION`` set to "10.0"
+CMake projects for these triplets are built using `CMAKE_SYSTEM_NAME` set to "WindowsStore" and `CMAKE_SYSTEM_VERSION` set to "10.0"
 
-For CMake 3.1 or later, you control the enabling of the MSVC C++/CX language extensions via the ``VS_WINRT_COMPONENT`` property for the *Visual Studio generator*.
+For CMake 3.1 or later, you control the enabling of the MSVC C++/CX language extensions via the `VS_WINRT_COMPONENT` property for the *Visual Studio generator*.
 
 The UWP triplets also build code using ``/DWINAPI_FAMILY=WINAPI_FAMILY_APP`` for the API partition, so libraries can fail to build if they are using unsupported versions of Win32 APIs. The general recommendation is to use the newer APIs in all cases, but if you need to build the same library for older versions of the Windows OS then you may need to use conditionally building code such as the following to support both scenarios.
 
@@ -56,6 +52,8 @@ The UWP triplets also build code using ``/DWINAPI_FAMILY=WINAPI_FAMILY_APP`` for
 ```
 
 UWP triplets also build with ``/DUNICODE /D_UNICODE`` as these are both strongly recommended for modern development. See the [UTF-8 Everywhere manifesto](https://utf8everywhere.org/) for more information.
+
+## Library author notes
 
 If using CMake for your library, consider using something similiar to the following:
 
