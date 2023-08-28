@@ -24,10 +24,14 @@ The command outputs a list of packages that have files matching the given substr
 
 ## Examples
 
-To search for installed packages that own a file matching the substring `zlib.dll`.
+To search for installed packages that own a file matching the substring `zlib.h`.
 
 ```console
-vcpkg owns zlib.dll
+vcpkg owns zlib.h
+
+-- zlib:x86-windows: x86-windows/include/zlib.h
+-- zlib:x64-windows: x64-windows/include/zlib.h
+-- bzip2:x64-windows: x64-windows/include/bzlib.h
 ```
 
 ## Options
