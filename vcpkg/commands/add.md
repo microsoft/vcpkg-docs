@@ -15,7 +15,60 @@ vcpkg add port [options] <port-name>...
 ```
 
 ## Description
-The `add` command adds packages to the manifest (`vcpkg.json`).
+The `vcpkg add port` command allows you to update the `vcpkg.json` manifest file by adding new package dependencies to your C++ project. 
+
+You can specify one or multiple port names to add. It's also possible to define specific features of a port that you would like to include as a dependency. The manifest (`vcpkg.json`) will then be updated to reflect these changes.
+
+### Examples
+
+Sample manifest:
+```json
+{
+  "name": "Example",
+  "version": "1.0"
+}
+```
+
+To add ports - `fmt`, `sqlite`, `zlib`:
+
+```console
+vcpkg add port fmt sqlite zlib
+```
+```json
+{
+  "name": "Example",
+  "version": "1.0",
+  "dependencies": [
+    "fmt",
+    "zlib",
+    "sqlite"
+  ]
+}
+```
+
+To specify port with feature - `sqlite[zlib]`
+```console
+vcpkg add port sqlite[zlib]
+```
+
+```json
+{
+  "name": "Example",
+  "version": "1.0",
+  "dependencies": [
+    "fmt",
+    {
+      "name": "sqlite",
+      "features": [
+        "zlib"
+      ]
+    },
+    "zlib"
+  ]
+}
+```
+> [!NOTE]
+> The `vcpkg add port` command does not validate the existence of specified features for a port. Ensure that the feature exists before adding it to the manifest.
 
 ## Options
 
