@@ -48,7 +48,7 @@ vcpkg add port fmt sqlitecpp zlib
 
 To specify port with feature - `sqlitecpp[sqlcipher]`
 ```console
-vcpkg add port sqlite[zlib]
+vcpkg add port sqlite[sqlcipher]
 ```
 
 ```json
