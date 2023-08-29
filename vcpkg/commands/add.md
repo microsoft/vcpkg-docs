@@ -29,10 +29,10 @@ Sample manifest:
 }
 ```
 
-To add ports - `fmt`, `sqlite`, `zlib`:
+To add ports - `fmt`, `sqlitecpp`, `zlib`:
 
 ```console
-vcpkg add port fmt sqlite zlib
+vcpkg add port fmt sqlitecpp zlib
 ```
 ```json
 {
@@ -41,12 +41,12 @@ vcpkg add port fmt sqlite zlib
   "dependencies": [
     "fmt",
     "zlib",
-    "sqlite"
+    "sqlitecpp"
   ]
 }
 ```
 
-To specify port with feature - `sqlite[zlib]`
+To specify port with feature - `sqlitecpp[sqlcipher]`
 ```console
 vcpkg add port sqlite[zlib]
 ```
@@ -58,9 +58,9 @@ vcpkg add port sqlite[zlib]
   "dependencies": [
     "fmt",
     {
-      "name": "sqlite",
+      "name": "sqlitecpp",
       "features": [
-        "zlib"
+        "sqlcipher"
       ]
     },
     "zlib"
