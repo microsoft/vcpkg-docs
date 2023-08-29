@@ -30,3 +30,10 @@ Send an email to vcpkg@microsoft.com with any feedback.
 
 All vcpkg commands support a set of [common options](common-options.md).
 
+### `--survey`
+
+> [!CAUTION]
+> This option is defunct and has been removed from vcpkg in current versions.
+
+Opens the vcpkg feedback survey in a web-browser window.
+
