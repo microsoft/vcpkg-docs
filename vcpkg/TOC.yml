@@ -260,6 +260,8 @@
           href: commands/integrate.md
         - name: vcpkg list
           href: commands/list.md
+        - name: vcpkg owns
+          href: commands/owns.md
         - name: vcpkg remove
           href: commands/remove.md
         - name: vcpkg search
