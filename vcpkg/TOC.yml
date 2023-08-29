@@ -246,6 +246,8 @@
       items:
         - name: Common Command Options
           href: commands/common-options.md
+        - name: vcpkg add
+          href: commands/add.md
         - name: vcpkg create
           href: commands/create.md
         - name: vcpkg depend-info
@@ -256,12 +258,16 @@
           href: commands/env.md
         - name: vcpkg export
           href: commands/export.md
+        - name: vcpkg hash
+          href: commands/hash.md
         - name: vcpkg install
           href: commands/install.md
         - name: vcpkg integrate
           href: commands/integrate.md
         - name: vcpkg list
           href: commands/list.md
+        - name: vcpkg owns
+          href: commands/owns.md
         - name: vcpkg remove
           href: commands/remove.md
         - name: vcpkg search
