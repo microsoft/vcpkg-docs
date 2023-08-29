@@ -35,7 +35,7 @@ This example demonstrates a manifest for an application using `boost-system`, `c
 | Name | Required | Type   | Description |
 |------|----------|--------|-------------|
 | [builtin-baseline](#builtin-baseline) | No | string | Version pins to use when building as top-level |
-| [default-features](#default-features) | No | bool | Require the [features](../users/manifests.md#features) listed as on-by-default |
+| [default-features](#default-features) | No | [Feature Object][][] | Require the [features](../users/manifests.md#features) listed as on-by-default |
 | [dependencies](#dependencies) | No | [Dependency][][] | List of dependencies required to build and use this project |
 | [description](#description) | Libraries | string or string[] | The project description |
 | [documentation](#documentation) | No | string | URI to the upstream project's documentation |
@@ -77,6 +77,22 @@ The default features are automatically selected if either:
 
 Default features handle the specific case of providing a "default" configuration for transitive dependencies that the top-level project may not know about. Ports used by others should almost always use `"default-features": false` for their dependencies.
 
+You can define platform-specific default features by using a [Feature Object][]:
+
+```json
+{
+  "name": "my-port",
+  "default-features": [
+    "png",
+    {
+      "name": "winssl",
+      "platform": "windows"
+    }
+  ]
+}
+```
+
+
 See [`"features"`](#features) for more information about features.
 
 ### <a id="description"></a> `"description"`
@@ -98,7 +114,13 @@ This field lists all the dependencies needed to build and use your library or ap
   {
     "name": "arrow",
     "default-features": false,
-    "features": [ "json" ]
+    "features": [
+      "json",
+      {
+        "name": "mimalloc",
+        "platform": "windows"
+      }
+    ]
   },
   "boost-asio",
   "openssl",
@@ -281,7 +303,7 @@ Each dependency is a string or an object with the following fields:
 | Name | Required | Type   | Description |
 |------|----------|--------|-------------|
 | [default-features](#dependency-default-features) | No | bool | Require the features listed as on-by-default |
-| [features](#dependency-features) | No | string[] | The list of additional features to require |
+| [features](#dependency-features) | No | [Feature Object][][] | The list of additional features to require |
 | [host](#dependency-host) | No | bool | Require the dependency for the host machine instead of the target |
 | [name](#dependency-name) | Yes      | string | The name of the dependency |
 | [platform](#dependency-platform) | No | [Platform Expression][] | Qualifier for which platforms to use the dependency |
@@ -299,7 +321,15 @@ In most cases, this should be defined to `false` and any needed features should 
 
 ### <a name="dependency-features"></a> [Dependency][]: `"features"`
 
-The list of additional features to require. An array of strings. Optional.
+The list of additional features to require. An array of Feature objects. Optional.
+
+A <a name="feature-object"></a>[Feature Object][] is an object with the following fields:
+- `name` - The name of the feature. A string. Required.
+- `platform` - A [Platform Expression][] that limits the platforms where the feature is required. Optional.
+
+A simple string is also a valid `Feature Object` equivalent to `{ "name": "<feature-name>" }`.
+
+[Feature Object]: #feature-object
 
 For example,
 
@@ -307,11 +337,17 @@ For example,
 {
   "name": "ffmpeg",
   "default-features": false,
-  "features": [ "mp3lame" ]
+  "features": [
+    "mp3lame",
+    {
+      "name": "avisynthplus",
+      "platform": "windows"
+    }  
+  ]
 }
 ```
 
-Uses the `ffmpeg` library but only requires mp3 encoding support.
+Uses the `ffmpeg` library with mp3 encoding support. On Windows only, `avisynthplus` support is also enabled.
 
 ### <a name="dependency-host"></a> [Dependency][]: `"host"`
 
