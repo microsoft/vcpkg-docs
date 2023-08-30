@@ -13,8 +13,8 @@ As background: by default, the first time CMake configures a build, it runs inte
 
 In order to customize this process, CMake supports "toolchain" files, which are really just CMake scripts.
 When a toolchain is specified, CMake **evaluates the `CMAKE_TOOLCHAIN_FILE` as a script**, just like `include("${CMAKE_TOOLCHAIN_FILE}")`
-This evaluation typically results in a set of variable definitions containing the paths of necessary build tools (along with other
-build parameters, such as cross-compilation flags).
+This evaluation typically results in a set of variable definitions containing the paths of necessary build tools along with other
+build parameters, such as cross-compilation flags.
 
 But because the toolchain file is just a CMake script, it is not limited to defining toolchain-related variables. vcpkg uses this
 fact as a hook into the CMake generation process. There are two ways this hook is used.
@@ -23,7 +23,7 @@ In [classic mode](https://learn.microsoft.com/en-us/vcpkg/users/classic-mode), v
 installed using `vcpkg install` available to `find_{package,library,path}`.
 
 In [manifest mode](https://learn.microsoft.com/en-us/vcpkg/users/manifests), evaluation of the `vcpkg.cmake` toolchain file
-effectively runs `execute_process("vcpkg install")` direct, after other precursor steps. **Therefore, in manifest mode, all
+effectively runs `execute_process("vcpkg install")` directly, after other precursor steps. **Therefore, in manifest mode, all
 vcpkg-provided dependencies are downloaded and compiled the first time `project()` is called**. A key consequence of this
 sequence is that all CMake-level variables impacting vcpkg's build steps must be defined _before_ `project()`.
 
