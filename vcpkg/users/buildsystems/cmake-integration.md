@@ -6,7 +6,8 @@ ms.date: 11/30/2022
 
 # CMake Integration
 
-It is important to understand when and how vcpkg executes its dependency acquisition and build steps in the CMake context.
+It is important to understand how vcpkg hooks in to CMake to make packages available, and especially when and how vcpkg executes its dependency acquisition and build steps for manifest mode.
+
 As background: by default, the first time CMake configures a build, it runs internal search routines to locate a viable
 "toolchain" (compiler, linker, etc.). This search happens when the first `project()` command is encountered in `CMakeLists.txt`.
 
@@ -16,13 +17,19 @@ This evaluation typically results in a set of variable definitions containing th
 build parameters, such as cross-compilation flags).
 
 But because the toolchain file is just a CMake script, it is not limited to defining toolchain-related variables. vcpkg uses this
-fact as a hook into the CMake generation process. Evaluation of the `vcpkg.cmake` toolchain file effectively runs
-`execute_process("vcpkg install")`, after other precursor steps.
+fact as a hook into the CMake generation process. There are two ways this hook is used.
 
-**Therefore: all vcpkg-provided dependencies are downloaded and compiled the first time `project()` is called**. A key consequence
-of this sequence is that all CMake-level variables impacting vcpkg itself must be defined _before_ `project()`.
+In [classic mode](https://learn.microsoft.com/en-us/vcpkg/users/classic-mode), vcpkg simply makes packages which were manually
+installed using `vcpkg install` available to `find_{package,library,path}`.
+
+In [manifest mode](https://learn.microsoft.com/en-us/vcpkg/users/manifests), evaluation of the `vcpkg.cmake` toolchain file
+effectively runs `execute_process("vcpkg install")` direct, after other precursor steps. **Therefore, in manifest mode, all
+vcpkg-provided dependencies are downloaded and compiled the first time `project()` is called**. A key consequence of this
+sequence is that all CMake-level variables impacting vcpkg's build steps must be defined _before_ `project()`.
 
 See [Installing and Using Packages Example: sqlite](../../examples/installing-and-using-packages.md) for a fully worked example using CMake.
+
+(note that 
 
 ## `CMAKE_TOOLCHAIN_FILE`
 
