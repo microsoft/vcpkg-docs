@@ -248,6 +248,8 @@
           href: commands/common-options.md
         - name: vcpkg add
           href: commands/add.md
+        - name: vcpkg x-add-version
+          href: commands/add-version.md
         - name: vcpkg depend-info
           href: commands/depend-info.md
         - name: vcpkg edit
