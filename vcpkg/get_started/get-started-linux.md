@@ -77,7 +77,7 @@ Let's dive into each line to understand it's purpose:
 * `"name": "helloworld,`: The `"name"` key specifies the name of the project. Here, it's set to `"helloworld"`.
 * `"version": "1.0"`: The `"version"` key indicates the version of your project. In this example, the version is set to `"1.0"`. This is valuable for dependency management and understanding the evolution of your project.
 
- For all things manifest (`vcpkg.json`), check out our reference [documentation](..\reference\vcpkg.json).
+ For all things manifest (`vcpkg.json`), check out our reference [documentation](..\reference\vcpkg-json.md).
 
 The `vcpkg-configuration.json` file serves a different purpose. This file essentially allows you to specify which registry vcpkg should use to look for packages (both by default and additionally). It should look like this:
 
@@ -112,6 +112,7 @@ This tutorial will only be using the default registry, but know that you can spe
 * `"location": https://github.com/microsoft/vcpkg-ce-catalog/archive/refs/heads/main.zip",`: The URL from which this artifact registry can be fetched.
 * `"name": "microsoft"`: Specifies the name for this additional registry, which is "microsoft".
 
+To learn more about `vcpkg-configuration.json` check out our reference [documentation](..\reference\vcpkg-configuration-json.md)
 Now that the project is properly set up, lets add the `fmt` library as a dependency and generate the project files.
 
 ## Adding dependencies and project files
