@@ -1,42 +1,44 @@
 ---
-title: Installing and Using Packages on Linux
+title: Install and use packages on Linux
 description: Tutorial guides the user through the process of installing and using packages on Linux with vcpkg.
 author: JavierMatosD
 ms.date: 08/23/2023
 ms.author: javiermat
 ms.prod: vcpkg
 ---
-# Installing and Using Packages on Linux
+# Install and use packages on Linux
 
 ## Description
 
-In this tutorial, you will learn how to use vcpkg to set up a new "Hello World" project using the `fmt` library, manage dependencies, build, and run your C++ application. 
+This tutorial guides you through setting up a new C++ project using the fmt library. You'll manage dependencies, build the application, and eventually run your project, all using vcpkg. For this tutorial, you'll need to have `git` and `bash` installed.
 
 ## Setup vcpkg
 
 1. **Clone the vcpkg repository**
 
-   Downloads the vcpkg registry.
+   The first step is to clone the vcpkg repository. The repository contains scripts to acquire the vcpkg executable and a registry of open-source packages that is curated and maintained by the vcpkg team and it's community of contributors.
 
     ```bash
     git clone https://github.com/microsoft/vcpkg.git
     ```
 
-   vcpkg's curated registry refers to a set of libraries that have been vetted and packaged to work smoothly with the vcpkg package management system. These libraries are usually open-source projects from various domains, and they are included in vcpkg's main GitHub repository. Each package or "port" in the curated registry typically contains:
+   The curated registry is a set of libraries that have been vetted and packaged to work smoothly with the vcpkg. vcpkg uses "ports" to package open-source projects and make them available to install. Ports typically contain:
 
-   **a.** `Portfile.cmake`: A CMake script that contains instructions for downloading, building, and installing the library.
+   **a.** `portfile.cmake`: A CMake script that contains instructions for downloading, building, and installing the library.
 
-   **b.** `vcpkg.json`: Information like version numbers, dependencies, and other data that vcpkg uses to manage the package.
+   **b.** `vcpkg.json`: A JSON file including package metadata: package version, dependencies, supported platforms and features, etc.
 
-   **c.** Patches: Any necessary patches to make the library work with vcpkg or to fix issues in the library itself.
+   **c.** Patches: Sometimes a port will contain patches to make the library work with vcpkg or to provide bug fixes in the library itself.
 
-2. **Navigate to vcpkg Directory and Bootstrap vcpkg**
+2. **Navigate to vcpkg directory and bootstrap vcpkg**
 
    Provides the vcpkg executable.
 
     ```bash
     cd vcpkg && ./bootstrap-vcpkg.sh
     ```
+
+    The shell script bootstraps the vcpkg package manager on Unix-like systems, handles command-line arguments for metrics and binary types, performs prerequisite checks, downloads the vcpkg executable, and manages telemetry settings.
 
 3. **Integrate vcpkg with Bash**
    Adds vcpkg tab-completion support to the current user's `.bashrc`.
@@ -45,9 +47,11 @@ In this tutorial, you will learn how to use vcpkg to set up a new "Hello World" 
     ./vcpkg integrate bash
     ```
 
-## Setup the Project
+    The `vcpkg integrate bash` command sets up bash shell integration for vcpkg.
 
-1. **Create and Navigate to the Project Directory**
+## Setup the project
+
+1. **Create and navigate to the project directory**
 
     ```bash
     cd .. && mkdir helloworld && cd helloworld
@@ -97,7 +101,7 @@ ready to use in your project.
 
     The `vcpkg.json` manifest file serves as the central configuration for specifying dependencies in a project that uses the vcpkg package manager. It lists all required libraries, potentially specific versions, and can even specify platform-dependent requirements. Optional features within those libraries can also be enabled or disabled via the manifest. 
 
-1. **Add dependencies**
+3. **Add dependencies**
 
     Adds a dependency to your existing `vcpkg.json`.
 
@@ -117,13 +121,13 @@ ready to use in your project.
     }
     ```
 
-2. **Create `CMakeLists.txt` and `main.cpp` Files**
+4. **Create `CMakeLists.txt` and `main.cpp` files**
 
     ```bash
     touch CMakeLists.txt main.cpp
     ```
 
-3. **Edit `CMakeLists.txt` and `main.cpp`**
+5. **Edit `CMakeLists.txt` and `main.cpp`**
 
     Edit `CMakeLists.txt` to look like this:
 
@@ -150,9 +154,9 @@ ready to use in your project.
     }
     ```
 
-## Build and Run the Project
+## Build and run the project
 
-1. Configure the Build with CMake:
+1. Configure the build with CMake:
 
     ```bash
     cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/vcpkg/scripts/buildsystems/vcpkg.cmake
@@ -166,7 +170,7 @@ ready to use in your project.
     cmake --build build
     ```
 
-3. Run the Executable
+3. Run the executable
 
     ```bash
     ./build/HelloWorld
