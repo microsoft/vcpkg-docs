@@ -15,10 +15,16 @@ In this tutorial, you will learn how to use vcpkg to set up a new "Hello World" 
 ## Setup vcpkg
 
 1. **Clone the vcpkg repository**
-   Downloads the vcpkg registry. A registry is a collection of ports that contain open source libraries.
+   Downloads the vcpkg registry. 
+
     ```bash
     git clone https://github.com/microsoft/vcpkg.git
     ```
+   vcpkg's curated registry refers to a set of libraries that have been vetted and packaged to work smoothly with the vcpkg package management system. These libraries are usually open-source projects from various domains, and they are included in vcpkg's main GitHub repository. Each package or "port" in the curated registry typically contains:
+   \
+   **a.** `Portfile.cmake`: A CMake script that contains instructions for downloading, building, and installing the library.
+   **b.** `vcpkg.json`: Information like version numbers, dependencies, and other data that vcpkg uses to manage the package.
+   **c.** Patches: Any necessary patches to make the library work with vcpkg or to fix issues in the library itself.
 
 1. **Navigate to vcpkg Directory and Bootstrap vcpkg**
    Provides the vcpkg executable.
@@ -47,7 +53,7 @@ ready to use in your project.
     ```
     >[!NOTE]
     >The name of the project should exactly match the projects directory.
-
+  
     The `vcpkg.json` and `vcpkg-configuration.json` should look like this:
     **`vcpkg.json`**
     ```json
@@ -125,11 +131,14 @@ ready to use in your project.
 
 ## Build and Run the Project
 
-1. Configure the Build with CMake
+1. Configure the Build with CMake:
 
     ```bash
-    cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=/path/to/vcpkg.cmake
+    cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/vcpkg/scripts/buildsystems/vcpkg.cmake
     ```
+
+    Ensure to replace \<vcpkg-root\> with the actual path to the vcpkg directory. The toolchain file teaches cmake where to find your installed libraries.
+
 2. Build the project
 
     ```bash
