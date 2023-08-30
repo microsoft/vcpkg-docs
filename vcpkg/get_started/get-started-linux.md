@@ -52,7 +52,7 @@ Create a directory for your new project navigate into it:
 cd .. && mkdir helloworld && cd helloworld
 ```
 
-Initiate a new project within this directory, creating the manifest (`vcpkg.json`) and default configuration files (`vcpkg-configuration.json`). This prepares the foundation for your project:
+Initiate a new project within this directory, creating the manifest (`vcpkg.json`) and default configuration files (`vcpkg-configuration.json`):
 
 ```bash
 ../vcpkg/vcpkg new --name helloworld --version 1.0
@@ -61,9 +61,7 @@ Initiate a new project within this directory, creating the manifest (`vcpkg.json
 >[!NOTE]
 >Ensure the project directory name matches exactly with the name you give to the `vcpkg new` command. This ensures the manifest file lands in the correct directory.
 
-The `vcpkg.json` and `vcpkg-configuration.json` should look like this:
-
-**`vcpkg.json`**
+As mentioned above, the `vcpkg new` command will add a `vcpkg.json` file and a `vcpkg-configuration.json` file to your projects directory. The `vcpkg.json` file should look like this:
 
 ```json
 {
@@ -72,7 +70,16 @@ The `vcpkg.json` and `vcpkg-configuration.json` should look like this:
 }
 ```
 
-**`vcpkg-configuration.json`**
+This `vcpkg.json` file serves as the foundation for your vcpkg-based C++ project. It identifies your project by name and version, setting the stage for additional attributes and dependencies that might be added as your project grows.
+
+Let's dive into each line to understand it's purpose:
+
+* `"name": "helloworld,`: The `"name"` key specifies the name of the project. Here, it's set to `"helloworld"`.
+* `"version": "1.0"`: The `"version"` key indicates the version of your project. In this example, the version is set to `"1.0"`. This is valuable for dependency management and understanding the evolution of your project.
+
+ For all things manifest (`vcpkg.json`), check out our reference [documentation](..\reference\vcpkg.json).
+
+The `vcpkg-configuration.json` file serves a different purpose. This file essentially allows you to specify which registry vcpkg should use to look for packages (both by default and additionally). It should look like this:
 
 ```json
 {
@@ -91,7 +98,21 @@ The `vcpkg.json` and `vcpkg-configuration.json` should look like this:
 }
 ```
 
-The `vcpkg.json` manifest file serves as the central configuration for specifying dependencies in a project that uses the vcpkg package manager. It lists all required libraries, potentially specific versions, and can even specify platform-dependent requirements. Optional features within those libraries can also be enabled or disabled via the manifest.
+There's a lot going on here, but lets break it down line-by-line starting with the `default-registry` JSON object:
+
+As the name suggests, the `"default-registry"` specifies the default location vcpkg should use to look for packages. The `"default-registry":{` key specifies the default package-registry settings containing details about the registry.
+
+* `"kind": "git",`: Specifies the type of registry. In this case, it's a Git repository.
+* `"baseline": "b98e11a16474488633d8a1ab3e160da1f94b98e2",`: Specifies a git-treeish object that points to a set of versions which are likely to work together.
+* "`"repository": "https://github.com/microsoft/vcpkg"`: Is the URL of the Git repository to be used as the default registry.
+
+This tutorial will only be using the default registry, but know that you can specify additional registries by adding them to the `registries` array. Note that different kinds of registries will have different attributes. In this case, the `registries` array contains one additional registry that's different from the default. Let's break it down:
+
+* `"kind": "artifact,"`: Specifies the type of this additional registry. In this example, it's an "artifact" type.
+* `"location": https://github.com/microsoft/vcpkg-ce-catalog/archive/refs/heads/main.zip",`: The URL from which this artifact registry can be fetched.
+* `"name": "microsoft"`: Specifies the name for this additional registry, which is "microsoft".
+
+Now that the project is properly set up, lets add the `fmt` library as a dependency and generate the project files.
 
 ## Adding dependencies and project files
 
