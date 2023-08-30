@@ -19,17 +19,16 @@ build parameters, such as cross-compilation flags.
 But because the toolchain file is just a CMake script, it is not limited to defining toolchain-related variables. vcpkg uses this
 fact as a hook into the CMake generation process. There are two ways this hook is used.
 
-In [classic mode](https://learn.microsoft.com/en-us/vcpkg/users/classic-mode), vcpkg simply makes packages which were manually
-installed using `vcpkg install` available to `find_{package,library,path}`.
+In [classic mode](https://learn.microsoft.com/en-us/vcpkg/users/classic-mode), vcpkg sets CMake search paths appropriately to make
+previously-installed packages available via `find_{package,library,path}`.
 
 In [manifest mode](https://learn.microsoft.com/en-us/vcpkg/users/manifests), evaluation of the `vcpkg.cmake` toolchain file
 effectively runs `execute_process("vcpkg install")` directly, after other precursor steps. **Therefore, in manifest mode, all
 vcpkg-provided dependencies are downloaded and compiled the first time `project()` is called**. A key consequence of this
-sequence is that all CMake-level variables impacting vcpkg's build steps must be defined _before_ `project()`.
+sequence is that all CMake-level variables impacting vcpkg's build steps must be defined _before_ `project()`. Packages will be
+rebuilt as necessary whenever `project()` is called if any CMakeList modifications impact the [ABI hash](https://learn.microsoft.com/en-us/vcpkg/users/binarycaching#abi-hash).
 
 See [Installing and Using Packages Example: sqlite](../../examples/installing-and-using-packages.md) for a fully worked example using CMake.
-
-(note that 
 
 ## `CMAKE_TOOLCHAIN_FILE`
 
