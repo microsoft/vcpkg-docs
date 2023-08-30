@@ -79,7 +79,10 @@ ready to use in your project.
        ]
     }
     ```
-
+    
+    The `vcpkg.json` manifest file serves as the central configuration for specifying dependencies in a project that uses the vcpkg package manager. It lists all required libraries, potentially specific versions, and can even specify platform-dependent requirements. Optional features within those libraries can also be enabled or disabled via the manifest. 
+    
+    
 3. **Add dependencies**
     Adds a dependency to your existing `vcpkg.json`.
    ```bash
