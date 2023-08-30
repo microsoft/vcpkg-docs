@@ -10,168 +10,156 @@ ms.prod: vcpkg
 
 ## Description
 
-This tutorial guides you through setting up a new C++ project using the fmt library. You'll manage dependencies, build the application, and eventually run your project, all using vcpkg. For this tutorial, you'll need to have `git` and `bash` installed.
+This tutorial guides you through setting up a new C++ "Hello World" project using the `fmt` library. You'll manage dependencies, build the application, and eventually run your project, all using vcpkg. For this tutorial, you'll need to have `git`, `bash`, `CMake`, and a C++ compiler installed.
 
 ## Setup vcpkg
 
-1. **Clone the vcpkg repository**
+The first step is to clone the vcpkg repository. The repository contains scripts to acquire the vcpkg executable and a registry of open-source packages that is curated and maintained by the vcpkg team and it's community of contributors. To do this, run:
 
-   The first step is to clone the vcpkg repository. The repository contains scripts to acquire the vcpkg executable and a registry of open-source packages that is curated and maintained by the vcpkg team and it's community of contributors.
+```bash
+git clone https://github.com/microsoft/vcpkg.git
+```
 
-    ```bash
-    git clone https://github.com/microsoft/vcpkg.git
-    ```
+The curated registry is a set of libraries that have been vetted and packaged to work smoothly with vcpkg. vcpkg uses "ports" to package open-source projects and make them available to install. Ports typically contain:
 
-   The curated registry is a set of libraries that have been vetted and packaged to work smoothly with the vcpkg. vcpkg uses "ports" to package open-source projects and make them available to install. Ports typically contain:
+1. `portfile.cmake`: A CMake script that contains instructions for downloading, building, and installing the library.
 
-   **a.** `portfile.cmake`: A CMake script that contains instructions for downloading, building, and installing the library.
+2. `vcpkg.json`: A JSON file including package metadata: package version, dependencies, supported platforms and features, etc.
 
-   **b.** `vcpkg.json`: A JSON file including package metadata: package version, dependencies, supported platforms and features, etc.
+3. Patches: Sometimes a port will contain patches to make the library work with vcpkg or to provide bug fixes in the library itself.
 
-   **c.** Patches: Sometimes a port will contain patches to make the library work with vcpkg or to provide bug fixes in the library itself.
+Once you have the repository, navigate to the `vcpkg` directory and execute the bootstrap script:
 
-2. **Navigate to vcpkg directory and bootstrap vcpkg**
+```bash
+cd vcpkg && ./bootstrap-vcpkg.sh
+```
 
-   Provides the vcpkg executable.
+The shell script bootstraps the vcpkg package manager, handles command-line arguments for metrics and binary types, performs prerequisite checks, downloads the vcpkg executable, and manages telemetry settings.
 
-    ```bash
-    cd vcpkg && ./bootstrap-vcpkg.sh
-    ```
+You'll want to integrate vcpkg into your bash shell to enjoy tab-completion features. To do this, run:
 
-    The shell script bootstraps the vcpkg package manager on Unix-like systems, handles command-line arguments for metrics and binary types, performs prerequisite checks, downloads the vcpkg executable, and manages telemetry settings.
+```bash
+./vcpkg integrate bash
+```
 
-3. **Integrate vcpkg with Bash**
-   Adds vcpkg tab-completion support to the current user's `.bashrc`.
-
-    ```bash
-    ./vcpkg integrate bash
-    ```
-
-    The `vcpkg integrate bash` command sets up bash shell integration for vcpkg.
+The `vcpkg integrate bash` command sets up bash shell integration for vcpkg, which adds vcpkg tab-completion support to the current user's `.bashrc`.
 
 ## Setup the project
 
-1. **Create and navigate to the project directory**
+Create a directory for your new project navigate into it:
 
-    ```bash
-    cd .. && mkdir helloworld && cd helloworld
-    ```
+```bash
+cd .. && mkdir helloworld && cd helloworld
+```
 
-2. **Create a new project**
+Initiate a new project within this directory, creating the manifest (`vcpkg.json`) and default configuration files (`vcpkg-configuration.json`). This prepares the foundation for your project:
 
-    Creates a manifest file (`vcpkg.json`) and default configuration file (`vcpkg-configuration.json`)
-ready to use in your project.
+```bash
+../vcpkg/vcpkg new --name helloworld --version 1.0
+```
 
-    ```bash
-    ../vcpkg/vcpkg new --name helloworld --version 1.0
-    ```
+>[!NOTE]
+>Ensure the project directory name matches exactly with the name you give to the `vcpkg new` command. This ensures the manifest file lands in the correct directory.
 
-    >[!NOTE]
-    >The `vcpkg new` command searches for a directory named "helloworld" to place the manifest file. Hence, the projects name should exactly match the name of the projects directory.
-  
-    The `vcpkg.json` and `vcpkg-configuration.json` should look like this:
+The `vcpkg.json` and `vcpkg-configuration.json` should look like this:
 
-    **`vcpkg.json`**
+**`vcpkg.json`**
 
-    ```json
-    {
-      "name": "helloworld",
-      "version": "1.0"
-    }
-    ```
+```json
+{
+    "name": "helloworld",
+    "version": "1.0"
+}
+```
 
-    **`vcpkg-configuration.json`**
+**`vcpkg-configuration.json`**
 
-    ```json
-    {
-      "default-registry": {
-          "kind": "git",
-          "baseline": "b98e11a16474488633d8a1ab3e160da1f94b98e2",
-          "repository": "https://github.com/microsoft/vcpkg"
-    },
-      "registries": [
-          {
-            "kind": "artifact",
-            "location": "https://github.com/microsoft/vcpkg-ce-catalog/archive/refs/heads/main.zip",
-            "name": "microsoft"
-          }
-       ]
-    }
-    ```
+```json
+{
+    "default-registry": {
+        "kind": "git",
+        "baseline": "b98e11a16474488633d8a1ab3e160da1f94b98e2",
+        "repository": "https://github.com/microsoft/vcpkg"
+},
+    "registries": [
+        {
+        "kind": "artifact",
+        "location": "https://github.com/microsoft/vcpkg-ce-catalog/archive/refs/heads/main.zip",
+        "name": "microsoft"
+        }
+    ]
+}
+```
 
-    The `vcpkg.json` manifest file serves as the central configuration for specifying dependencies in a project that uses the vcpkg package manager. It lists all required libraries, potentially specific versions, and can even specify platform-dependent requirements. Optional features within those libraries can also be enabled or disabled via the manifest. 
+The `vcpkg.json` manifest file serves as the central configuration for specifying dependencies in a project that uses the vcpkg package manager. It lists all required libraries, potentially specific versions, and can even specify platform-dependent requirements. Optional features within those libraries can also be enabled or disabled via the manifest.
 
-3. **Add dependencies**
+## Adding dependencies and project files
 
-    Adds a dependency to your existing `vcpkg.json`.
+Since this project will use the `fmt` library to print "Hello World", you'll want to add `fmt` to the "dependencies" list in the manifest. To do this, run:
 
-   ```bash
-   ../vcpkg/vcpkg add port fmt
-   ```
+```bash
+../vcpkg/vcpkg add port fmt
+```
 
-   Your `vcpkg.json` should look like this:
+Your `vcpkg.json` should look like this:
 
-    ```json
-    {
-      "name": "helloworld",
-      "version": "1.0",
-      "dependencies": [
-        "fmt"
-      ]
-    }
-    ```
+```json
+{
+    "name": "helloworld",
+    "version": "1.0",
+    "dependencies": [
+    "fmt"
+    ]
+}
+```
 
-4. **Create `CMakeLists.txt` and `main.cpp` files**
+Notice that your `vcpkg.json` file now lists `fmt` as a dependency. Now, create the `CMakeLists.txt` and `main.cpp` files:
 
-    ```bash
-    touch CMakeLists.txt main.cpp
-    ```
+```bash
+touch CMakeLists.txt main.cpp
+```
 
-5. **Edit `CMakeLists.txt` and `main.cpp`**
+Fill in `CMakeLists.txt` with the necessary information to find and link the `fmt` package. The `CMakeLists.txt` should look like this:
 
-    Edit `CMakeLists.txt` to look like this:
+```cmake
+cmake_minimum_required(VERSION 3.10)
 
-    ```cmake
-    cmake_minimum_required(VERSION 3.10)
+project(HelloWorld)
 
-    project(HelloWorld)
+find_package(fmt CONFIG REQUIRED)
 
-    find_package(fmt CONFIG REQUIRED)
+add_executable(HelloWorld main.cpp)
 
-    add_executable(HelloWorld main.cpp)
+target_link_libraries(HelloWorld PRIVATE fmt::fmt)
+```
 
-    target_link_libraries(HelloWorld PRIVATE fmt::fmt)
-    ```
+Likewise, populate `main.cpp` to print a simple "Hello World" using the `fmt` library. The `main.cpp` should look like this:
 
-    Edit `main.cpp` to look like this:
+```cpp
+#include <fmt/core.h>
 
-    ```cpp
-    #include <fmt/core.h>
+int main(){
+fmt::print("Hello World!\n");
+return 0;
+}
+```
 
-    int main(){
-    fmt::print("Hello World!\n");
-    return 0;
-    }
-    ```
+## Build and execute the project
 
-## Build and run the project
+Configure the build using CMake. Remember to point to the correct location of your vcpkg directory by updating the `<vcpkg-root>` placeholder:
 
-1. Configure the build with CMake:
+```bash
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/vcpkg/scripts/buildsystems/vcpkg.cmake
+```
 
-    ```bash
-    cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/vcpkg/scripts/buildsystems/vcpkg.cmake
-    ```
+The toolchain file teaches cmake where to find your installed libraries. Next, proceed to build the project:
 
-    Ensure to replace \<vcpkg-root\> with the actual path to the vcpkg directory. The toolchain file teaches cmake where to find your installed libraries.
+```bash
+cmake --build build
+```
 
-2. Build the project
+Finally, run the executable to see your application in action:
 
-    ```bash
-    cmake --build build
-    ```
-
-3. Run the executable
-
-    ```bash
-    ./build/HelloWorld
-    ```
+```bash
+./build/HelloWorld
+```
