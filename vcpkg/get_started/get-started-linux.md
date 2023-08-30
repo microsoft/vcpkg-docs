@@ -15,6 +15,7 @@ In this tutorial, you will learn how to use vcpkg to set up a new "Hello World" 
 ## Setup vcpkg
 
 1. **Clone the vcpkg repository**
+   
    Downloads the vcpkg registry. 
 
     ```bash
@@ -26,12 +27,12 @@ In this tutorial, you will learn how to use vcpkg to set up a new "Hello World" 
    **b.** `vcpkg.json`: Information like version numbers, dependencies, and other data that vcpkg uses to manage the package.
    **c.** Patches: Any necessary patches to make the library work with vcpkg or to fix issues in the library itself.
 
-1. **Navigate to vcpkg Directory and Bootstrap vcpkg**
+2. **Navigate to vcpkg Directory and Bootstrap vcpkg**
    Provides the vcpkg executable.
     ```bash
     cd vcpkg && ./bootstrap-vcpkg.sh
     ```
-2. **Integrate vcpkg with Bash**
+3. **Integrate vcpkg with Bash**
    Adds vcpkg tab-completion support to the current user's `.bashrc`.
     ```bash
     ./vcpkg integrate bash
@@ -52,7 +53,7 @@ ready to use in your project.
     ../vcpkg/vcpkg new --name helloworld --version 1.0
     ```
     >[!NOTE]
-    >The name of the project should exactly match the projects directory.
+    >The `vcpkg new` command searches for a directory named "helloworld" to place the manifest file. Hence, the projects name should exactly match the name of the projects directory.
   
     The `vcpkg.json` and `vcpkg-configuration.json` should look like this:
     **`vcpkg.json`**
@@ -83,7 +84,7 @@ ready to use in your project.
     The `vcpkg.json` manifest file serves as the central configuration for specifying dependencies in a project that uses the vcpkg package manager. It lists all required libraries, potentially specific versions, and can even specify platform-dependent requirements. Optional features within those libraries can also be enabled or disabled via the manifest. 
     
     
-3. **Add dependencies**
+1. **Add dependencies**
     Adds a dependency to your existing `vcpkg.json`.
    ```bash
    ../vcpkg/vcpkg add port fmt
@@ -100,13 +101,13 @@ ready to use in your project.
     }
     ```
 
-4. **Create `CMakeLists.txt` and `main.cpp` Files**
+2. **Create `CMakeLists.txt` and `main.cpp` Files**
 
     ```bash
     touch CMakeLists.txt main.cpp
     ```
 
-5. **Edit `CMakeLists.txt` and `main.cpp`**
+3. **Edit `CMakeLists.txt` and `main.cpp`**
 
     Edit `CMakeLists.txt` to look like this:
 
