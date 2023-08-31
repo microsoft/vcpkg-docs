@@ -8,25 +8,22 @@ ms.date: 11/30/2022
 
 It is important to understand how vcpkg hooks in to CMake to make packages available, and especially when and how vcpkg executes its dependency acquisition and build steps for manifest mode.
 
-As background: by default, the first time CMake configures a build, it runs internal search routines to locate a viable
-"toolchain" (compiler, linker, etc.). This search happens when the first `project()` command is encountered in `CMakeLists.txt`.
+By default, the first time CMake configures a build, it runs internal search routines to locate a viable
+"(toolchain)[<https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#id9>]" (compiler, linker, etc.). This search happens on the first call to `[project()](https://cmake.org/cmake/help/latest/command/project.html#command:project)` in your `CMakeLists.txt`.
 
-In order to customize this process, CMake supports "toolchain" files, which are really just CMake scripts.
-When a toolchain is specified, CMake **evaluates the `CMAKE_TOOLCHAIN_FILE` as a script**, just like `include("${CMAKE_TOOLCHAIN_FILE}")`
-This evaluation typically results in a set of variable definitions containing the paths of necessary build tools along with other
-build parameters, such as cross-compilation flags.
+To customize the toolchain selection process, CMake supports using custom CMake-language scripts, known as toolchain files. 
+A toolchain file is specified by setting `CMAKE_TOOLCHAIN_FILE`. CMake evaluates the contents of the toolchain script, and as result, sets variable definitions, paths to required build tools, and other build parameters, such as cross-compilation flags.
 
-But because the toolchain file is just a CMake script, it is not limited to defining toolchain-related variables. vcpkg uses this
-fact as a hook into the CMake generation process. There are two ways this hook is used.
+vcpkg takes advantage of the toolchain file mechanism to inject code to integrate with built-in CMake functions seamlessly.
+Th vcpkg integration works differently depending on the operation mode you're using:
 
-In [classic mode](../classic-mode.md), vcpkg sets CMake search paths appropriately to make
-previously-installed packages available via `find_{package,library,path}`.
+In [classic mode](../classic-mode.md), vcpkg sets CMake search paths appropriately to make 
+installed packages available via the `find_package()`, `find_library()`, and `find_path()` functions.
 
-In [manifest mode](../manifests.md), evaluation of the `vcpkg.cmake` toolchain file
-effectively runs `execute_process("vcpkg install")` directly, after other precursor steps. **Therefore, in manifest mode, all
-vcpkg-provided dependencies are downloaded and compiled the first time `project()` is called**. A key consequence of this
-sequence is that all CMake-level variables impacting vcpkg's build steps must be defined _before_ `project()`. Packages will be
-rebuilt as necessary whenever `project()` is called if any CMakeList modifications impact the [ABI hash](../binarycaching.md#abi-hash).
+In [manifest mode](../manifests.md), the vcpkg toolchain, after injecting the vcpkg integration code, executes `vcpkg install` to install all the dependencies specified in your `vcpkg.json` file.
+**Therefore, in manifest mode, all vcpkg-provided dependencies are downloaded and compiled the first time `project()` is called**. 
+A consequence of this is that all CMake-level variables impacting vcpkg's build steps must be defined _before_ the `project()` function call. 
+Packages are built as necessary when the project is configured, any modifications that modify the package's [ABI hash](../binarycaching.md#abi-hash) results in a rebuild of the dependencies.
 
 See [Installing and Using Packages Example: sqlite](../../examples/installing-and-using-packages.md) for a fully worked example using CMake.
 
