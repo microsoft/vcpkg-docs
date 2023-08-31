@@ -14,12 +14,12 @@ vcpkg new --application
 ```
 
 ```console
-vcpkg new --name hello --version 1.0
+vcpkg new --name hello --version 1.0 [--version-relaxed | --version-date | --version-string]
 ```
 
-Creates a manifest file ([`vcpkg.json`](../reference/vcpkg-json.md)) and a default configuration file ([`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md)) in the current working directory.
-Creates a manifest file (`vcpkg.json`) and default configuration file (`vcpkg-configuration.json`)
-ready to use in your project.
+Creates a manifest file ([`vcpkg.json`](../reference/vcpkg-json.md)) and a default configuration file
+([`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md)) ready to use in your project in the current
+working directory.
 
 Use the `--application` flag if your project is an end-user application.
 
@@ -68,7 +68,6 @@ semantics.
 > integration with the experimental artifacts experience. In particular, the registries with
 > `"kind": "artifact"` are for the experimental vcpkg-artifacts feature.
 ### With `--application`
-### `--application`
 
 ```console
 $ vcpkg new --application
@@ -91,7 +90,6 @@ $ type .\vcpkg-configuration.json
 }
 ```
 ### With `--name` and `--version`
-### `--name` and `--version`
 
 ```console
 $ vcpkg new --name hello --version 2023-07-05
@@ -117,7 +115,6 @@ $ type .\vcpkg-configuration.json
 }
 ```
 ### With explicit version format selection
-### Asserting particular version formats
 
 ```console
 $ vcpkg new --name hello --version 1.0 --version-date
