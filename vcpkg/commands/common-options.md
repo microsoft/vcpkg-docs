@@ -29,6 +29,36 @@ Specifies the temporary path to store intermediate build files, such as objects 
 
 Defaults to `buildtrees/` under the vcpkg root folder.
 
+### <a name="cmake-configure-debug"></a> `--x-cmake-configure-debug=<debugger-pipe>[;semicolon;port;list]`
+
+[!INCLUDE [experimental](../../includes/experimental.md)]
+
+Enables CMake's [`--debugger`](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-debugger)
+within upstream build systems' `CMakeLists.txt`, such as within
+[`vcpkg_cmake_build`](../maintainers/functions/vcpkg_cmake_build) or
+[`vcpkg_cmake_install`](../maintainers/functions/vcpkg_cmake_install).
+
+The `<debugger-pipe>` value is passed as
+[`--debugger-pipe`](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-debugger-pipe) on the CMake
+command line.
+
+If there is a semicolon-separated port list, the debugger is only used for ports in that list. Otherwise, it is used
+for all ports.
+
+### <a name="cmake-debug"></a> `--x-cmake-debug=<debugger-pipe>[;semicolon;port;list]`
+
+[!INCLUDE [experimental](../../includes/experimental.md)]
+
+Enables CMake's [`--debugger`](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-debugger) while
+running directly-invoked CMake scripts like triplet `.cmake`s or `portfile.cmake`s.
+
+The `<debugger-pipe>` value is passed as
+[`--debugger-pipe`](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-debugger-pipe) on the CMake
+command line.
+
+If there is a semicolon-separated port list, the debugger is only used for ports in that list. Otherwise, it is used
+for all ports.
+
 ### <a name="downloads-root"></a> `--downloads-root=<path>`
 
 Specify where downloaded tools and source code archives should be kept.
