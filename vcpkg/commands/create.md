@@ -1,6 +1,6 @@
 ---
 title: vcpkg create
-description: Command line reference for the vcpkg create command. Generates a port to package a source code project.
+description: Reference for the vcpkg create command. Generates a port to package a source code project.
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 08/01/2023
