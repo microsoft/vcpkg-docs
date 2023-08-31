@@ -174,3 +174,27 @@ This option can be used in conjunction with `--dry-run` to obtain the list of Nu
 ### `--no-print-usage`
 
 Suppress generation of usage text printed at the end of installation.
+
+### `--x-cmake-debug <pipe name>[;porta;portb;...]`
+
+[!INCLUDE [experimental](../../includes/experimental.md)]
+
+Passes `--debugger` and `--debugger-pipe <pipe name>` to the CMake script process vcpkg uses to execute portfiles. This allows debugging portfile execution with an external CMake debugger being attached to `<pipe name>` after invoking vcpkg with the command.
+
+Optional: After `<pipe name>` a semicolon seperated list of ports can be added, so that the debugging options are only passed for the mentioned list of ports
+
+Note: The debugger can be attached if `Waiting for debugger client to connect...` can be observed in the output of vcpkg and execution is halted until a debugger is connected.
+
+### `--x-cmake-configure-debug <pipe name>[;porta;portb;...]`
+
+[!INCLUDE [experimental](../../includes/experimental.md)]
+
+Passes `--debugger` and `--debugger-pipe <pipe name>` to the CMake configure call used inside of portfiles. This allows debugging the CMake configure call with an external CMake debugger being attached to `<pipe name>` after invoking vcpkg with the command.
+
+Optional: After `<pipe name>` a semicolon seperated list of ports can be added, so that the debugging options are only passed for the mentioned list of ports
+
+Note: The triplet variable `VCPKG_CMAKE_CONFIGURE_OPTIONS` is used to pass the options to the internal CMake configure call. As such it will not work for custom triplets overwriting `VCPKG_CMAKE_CONFIGURE_OPTIONS`. Either manually pass the debugging commands or append your options to `VCPKG_CMAKE_CONFIGURE_OPTIONS` instead.
+
+Note: Unlike `--x-cmake-debug` there will be no output indicating that the build is waiting for a debugger to connect. The output will simply stall at `Configuring <triplet>`.
+
+Note: Although all ports should be calling CMake inside of the portfile to obtain compile flags from the CMake toolchain. This command is mainly useful for ports actually using CMake as their build system.
