@@ -44,7 +44,7 @@ As mentioned above, the `vcpkg new` command will add a `vcpkg.json` file and a `
 
 This `vcpkg.json` file serves as the foundation for your vcpkg-based C++ project. It identifies your project by name and version, setting the stage for additional attributes and dependencies that might be added as your project grows.
 
-To lear more about `vcpkg.json`, check out our reference [documentation](..\reference\vcpkg-json.md).
+To learn more about `vcpkg.json`, check out our reference [documentation](..\reference\vcpkg-json.md).
 
 The `vcpkg-configuration.json` file serves a different purpose. This file essentially allows you to specify which registry vcpkg should use to look for packages (both by default and additionally). It should look like this:
 
@@ -88,7 +88,7 @@ Now that the project is properly set up, lets add the `fmt` library as a depende
 Since this project will use the `fmt` library to print "Hello World", you'll want to add `fmt` to the "dependencies" list in the manifest. To do this, run:
 
 ```bash
-vcpkg add port fmt
+..\vcpkg\vcpkg add port fmt
 ```
 
 Your `vcpkg.json` should look like this:
