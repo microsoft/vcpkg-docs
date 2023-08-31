@@ -44,7 +44,7 @@ As mentioned above, the `vcpkg new` command will add a `vcpkg.json` file and a `
 
 This `vcpkg.json` file serves as the foundation for your vcpkg-based C++ project. It identifies your project by name and version, setting the stage for additional attributes and dependencies that might be added as your project grows.
 
-For all things manifest (`vcpkg.json`), check out our reference [documentation](..\reference\vcpkg-json.md).
+To lear more about `vcpkg.json`, check out our reference [documentation](..\reference\vcpkg-json.md).
 
 The `vcpkg-configuration.json` file serves a different purpose. This file essentially allows you to specify which registry vcpkg should use to look for packages (both by default and additionally). It should look like this:
 
