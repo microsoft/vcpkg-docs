@@ -35,8 +35,8 @@ Defaults to `buildtrees/` under the vcpkg root folder.
 
 Enables CMake's [`--debugger`](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-debugger)
 within upstream build systems' `CMakeLists.txt`, such as within
-[`vcpkg_cmake_build`](../maintainers/functions/vcpkg_cmake_build) or
-[`vcpkg_cmake_install`](../maintainers/functions/vcpkg_cmake_install).
+[`vcpkg_cmake_build`](../maintainers/functions/vcpkg_cmake_build.md) or
+[`vcpkg_cmake_install`](../maintainers/functions/vcpkg_cmake_install.md).
 
 The `<debugger-pipe>` value is passed as
 [`--debugger-pipe`](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-debugger-pipe) on the CMake
