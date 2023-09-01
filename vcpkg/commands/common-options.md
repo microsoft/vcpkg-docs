@@ -35,8 +35,7 @@ Defaults to `buildtrees/` under the vcpkg root folder.
 
 Enables CMake's [`--debugger`](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-debugger)
 within upstream build systems' `CMakeLists.txt`, such as within
-[`vcpkg_cmake_build`](../maintainers/functions/vcpkg_cmake_build.md) or
-[`vcpkg_cmake_install`](../maintainers/functions/vcpkg_cmake_install.md).
+[`vcpkg_cmake_configure`](../maintainers/functions/vcpkg_cmake_configure.md).
 
 The `<debugger-pipe>` value is passed as
 [`--debugger-pipe`](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-debugger-pipe) on the CMake
@@ -44,6 +43,14 @@ command line.
 
 If there is a semicolon-separated port list, the debugger is only used for ports in that list. Otherwise, it is used
 for all ports.
+
+Note: The triplet variable `VCPKG_CMAKE_CONFIGURE_OPTIONS` is used to pass the options to the internal CMake configure call.
+As such it will not work for custom triplets overwriting `VCPKG_CMAKE_CONFIGURE_OPTIONS`.
+Either manually pass the debugging options or append your options to `VCPKG_CMAKE_CONFIGURE_OPTIONS` instead.
+
+Note: Unlike `--x-cmake-debug` there will be no output indicating that the build is waiting for a debugger to connect. The output will simply stall at `Configuring <triplet>`.
+
+Note: Although all ports should be calling CMake inside of the portfile to obtain compile flags from the CMake toolchain. This command is mainly useful for ports actually using CMake as their build system.
 
 ### <a name="cmake-debug"></a> `--x-cmake-debug=<debugger-pipe>[;semicolon;port;list]`
 
@@ -58,6 +65,8 @@ command line.
 
 If there is a semicolon-separated port list, the debugger is only used for ports in that list. Otherwise, it is used
 for all ports.
+
+Note: The debugger can be attached if `Waiting for debugger client to connect...` can be observed in the output of vcpkg and execution is halted until a debugger is connected.
 
 ### <a name="downloads-root"></a> `--downloads-root=<path>`
 
