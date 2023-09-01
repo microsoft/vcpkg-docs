@@ -57,7 +57,7 @@ Note: Although all ports should be calling CMake inside of the portfile to obtai
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
 Enables CMake's [`--debugger`](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-debugger) while
-running directly-invoked CMake scripts like triplet `.cmake`s or `portfile.cmake`s.
+running directly-invoked CMake scripts like triplet files (for example: `x64-windows.cmake`) or `portfile.cmake` files.
 
 The `<debugger-pipe>` value is passed as
 [`--debugger-pipe`](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-debugger-pipe) on the CMake
