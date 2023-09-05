@@ -1,7 +1,7 @@
 ---
 title: Common Command Options
 description: Common command line options reference for vcpkg.
-ms.date: 11/30/2022
+ms.date: 9/5/2022
 ---
 # Common Command Options
 
@@ -44,13 +44,13 @@ command line.
 If there is a semicolon-separated port list, the debugger is only used for ports in that list. Otherwise, it is used
 for all ports.
 
-Note: The triplet variable `VCPKG_CMAKE_CONFIGURE_OPTIONS` is used to pass the options to the internal CMake configure call.
+The triplet variable `VCPKG_CMAKE_CONFIGURE_OPTIONS` is used to pass the options to the internal CMake configure call.
 As such it will not work for custom triplets overwriting `VCPKG_CMAKE_CONFIGURE_OPTIONS`.
 Either manually pass the debugging options or append your options to `VCPKG_CMAKE_CONFIGURE_OPTIONS` instead.
 
-Note: Unlike `--x-cmake-debug` there will be no output indicating that the build is waiting for a debugger to connect. The output will simply stall at `Configuring <triplet>`.
+Unlike `--x-cmake-debug` there will be no output indicating that the build is waiting for a debugger to connect. The output will simply stall at `Configuring <triplet>`.
 
-Note: Although all ports should be calling CMake inside of the portfile to obtain compile flags from the CMake toolchain. This command is mainly useful for ports actually using CMake as their build system.
+Although all ports should be calling CMake inside of the portfile to obtain compile flags from the CMake toolchain. This command is mainly useful for ports actually using CMake as their build system.
 
 ### <a name="cmake-debug"></a> `--x-cmake-debug=<debugger-pipe>[;semicolon;port;list]`
 
@@ -90,7 +90,7 @@ Defaults to the [`VCPKG_DEFAULT_HOST_TRIPLET`](../users/config-environment.md#vc
 
 Specifies the path to lay out installed packages.
 
-In Classic mode, defaults to `installed/` under the vcpkg root folder.
+In [Classic mode](../users/classic-mode.md), defaults to `installed/` under the vcpkg root folder.
 
 In [Manifest mode](../users/manifests.md), defaults to `vcpkg_installed/` under the manifest folder.
 
