@@ -20,6 +20,8 @@ The following tests are performed:
 - Every feature gets installed with default featured disabled
 - All features combined gets installed
 
+Feature which are unsupported or marked as cascade for the target triplet are skipped.
+
 ## Example
 
 ```console
