@@ -37,7 +37,7 @@ From within the `helloworld` directory, run:
 >[!NOTE]
 >Ensure the project directory name matches exactly with the name you give to the `vcpkg new` command. This will ensure subsequent commands work smoothly.
 
-As mentioned above, the `vcpkg new` command will add a `vcpkg.json` file and a `vcpkg-configuration.json` file to your projects directory. The `vcpkg.json` file should look like this:
+The `vcpkg new` command will add a `vcpkg.json` file and a `vcpkg-configuration.json` file to your projects directory. The `vcpkg.json` file should look like this:
 
 ```json
 {
@@ -64,7 +64,7 @@ rm vcpkg-configuration.json
 
 Now that the project is properly set up, lets add the `fmt` library as a dependency and generate the project files.
 
-### Step 2.1: Add fmt dependency
+### Step 2.1: Add `fmt` dependency
 
 Since this project will use the `fmt` library to print "Hello World", you'll want to add `fmt` to the "dependencies" list in the manifest. To do this, run:
 
