@@ -14,9 +14,11 @@ This tutorial guides you through setting up a new C++ "Hello World" project usin
 
 ### Prerequisites
 
-For this tutorial, you'll need to have `git`, `bash`, `CMake`, and a C++ compiler installed.
+For this tutorial, you'll need: a terminal, `git`, `cmake`, and a C++ compiler.
 
-## Setup the project
+## Step 1: Setup the project
+
+### Step 1.1: Create the project directory
 
 Create a directory for your new project next to your vcpkg clone and navigate into it:
 
@@ -24,14 +26,16 @@ Create a directory for your new project next to your vcpkg clone and navigate in
 mkdir helloworld && cd helloworld
 ```
 
-Initiate a new project within this directory, creating the manifest (`vcpkg.json`) and default configuration files (`vcpkg-configuration.json`). From within the `helloworld` directory, run:
+### Step 1.2 Create the manifest
+
+From within the `helloworld` directory, run:
 
 ```bash
 ..\vcpkg\vcpkg new --name helloworld --version 1.0
 ```
 
 >[!NOTE]
->Ensure the project directory name matches exactly with the name you give to the `vcpkg new` command. This ensures the manifest files land in the correct directory.
+>Ensure the project directory name matches exactly with the name you give to the `vcpkg new` command. This will ensure subsequent commands work smoothly.
 
 As mentioned above, the `vcpkg new` command will add a `vcpkg.json` file and a `vcpkg-configuration.json` file to your projects directory. The `vcpkg.json` file should look like this:
 
@@ -42,48 +46,25 @@ As mentioned above, the `vcpkg new` command will add a `vcpkg.json` file and a `
 }
 ```
 
-This `vcpkg.json` file serves as the foundation for your vcpkg-based C++ project. It identifies your project by name and version, setting the stage for additional attributes and dependencies that might be added as your project grows.
+The `vcpkg.json` file serves as the foundation to integrate vcpkg in your C++ project. Initially, it contains your project's name and version; additional attributes like dependencies and supported features can be added as your project grows.
 
 To learn more about `vcpkg.json`, check out our reference [documentation](..\reference\vcpkg-json.md).
 
-The `vcpkg-configuration.json` file serves a different purpose. This file essentially allows you to specify which registry vcpkg should use to look for packages (both by default and additionally). It should look like this:
+### Step 1.3 Remove configuration file
 
-```json
-{
-    "default-registry": {
-        "kind": "git",
-        "baseline": "b98e11a16474488633d8a1ab3e160da1f94b98e2",
-        "repository": "https://github.com/microsoft/vcpkg"
-},
-    "registries": [
-        {
-        "kind": "artifact",
-        "location": "https://github.com/microsoft/vcpkg-ce-catalog/archive/refs/heads/main.zip",
-        "name": "microsoft"
-        }
-    ]
-}
+The `vcpkg-configuration.json` file serves a different purpose. This file allows full control over your dependencies' sources and it's out of scope for this tutorial.
+
+For this tutorial, our dependencies all come from the vcpkg registry at <https://github.com/Microsoft/vcpkg>. When there's no explicit configuration provided, vcpkg uses this registry as default. So the next step is to delete this file.
+
+```bash
+rm vcpkg-configuration.json
 ```
 
-There's a lot going on here, but lets break it down line-by-line starting with the `default-registry` JSON object:
-
-As the name suggests, the `"default-registry"` specifies the default location vcpkg should use to look for packages. The `"default-registry":{` key specifies the default package-registry settings containing details about the registry.
-
-* `"kind": "git",`: Specifies the type of registry. In this case, it's a Git repository.
-* `"baseline": "b98e11a16474488633d8a1ab3e160da1f94b98e2",`: Represents a set of versions which are likely to work together.
-* "`"repository": "https://github.com/microsoft/vcpkg"`: Is the URL of the Git repository to be used as the default registry.
-
-This tutorial only uses the default registry, but know that you can specify additional registries by adding them to the `registries` array. Note that different kinds of registries will have different attributes. In this case, the `registries` array contains one additional registry that's different from the default. Let's break it down:
-
-* `"kind": "artifact,"`: Specifies the type of this additional registry. In this example, it's an "artifact" type.
-* `"location": https://github.com/microsoft/vcpkg-ce-catalog/archive/refs/heads/main.zip",`: The URL from which this artifact registry can be fetched.
-* `"name": "microsoft"`: Specifies the name for this additional registry, which is "microsoft".
-
-To learn more about `vcpkg-configuration.json` check out our reference [documentation](..\reference\vcpkg-configuration-json.md).
+## Step 2: Add dependencies and project files
 
 Now that the project is properly set up, lets add the `fmt` library as a dependency and generate the project files.
 
-## Adding dependencies and project files
+### Step 2.1: Add fmt dependency
 
 Since this project will use the `fmt` library to print "Hello World", you'll want to add `fmt` to the "dependencies" list in the manifest. To do this, run:
 
@@ -103,7 +84,11 @@ Your `vcpkg.json` should look like this:
 }
 ```
 
-Notice that your `vcpkg.json` file now lists `fmt` as a dependency. Now, create the `CMakeLists.txt` and `main.cpp` files:
+Notice that your `vcpkg.json` file now lists `fmt` as a dependency.
+
+### Step 2.2: Create project files
+
+Now, create the `CMakeLists.txt` and `main.cpp` files:
 
 ```bash
 touch CMakeLists.txt main.cpp
@@ -111,30 +96,15 @@ touch CMakeLists.txt main.cpp
 
 Fill in `CMakeLists.txt` with the necessary information to find and link the `fmt` package. The `CMakeLists.txt` should look like this:
 
-```cmake
-cmake_minimum_required(VERSION 3.10)
-
-project(HelloWorld)
-
-find_package(fmt CONFIG REQUIRED)
-
-add_executable(HelloWorld main.cpp)
-
-target_link_libraries(HelloWorld PRIVATE fmt::fmt)
-```
+:::code language="cmake" source="../examples/snippets/get-started-linux/CMakeLists.txt":::
 
 Likewise, populate `main.cpp` to print a simple "Hello World" using the `fmt` library. The `main.cpp` should look like this:
 
-```cpp
-#include <fmt/core.h>
+:::code language="cpp" source="../examples/snippets/get-started-linux/main.cpp":::
 
-int main(){
-fmt::print("Hello World!\n");
-return 0;
-}
-```
+## Step 3: Build and execute the project
 
-## Build and execute the project
+### Step 3.1: Configure
 
 Configure the build using CMake. Remember to point to the correct location of your vcpkg directory by updating the `<vcpkg-root>` placeholder:
 
@@ -144,11 +114,15 @@ cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/vcpkg/scripts/buildsyste
 
 The toolchain file allows users to access vcpkg-provided libraries in their CMake project.
 
+### Step 3.2: Build
+
 Next, proceed to build the project:
 
 ```bash
 cmake --build build
 ```
+
+### Step 3.3: Execute
 
 Finally, run the executable to see your application in action:
 
