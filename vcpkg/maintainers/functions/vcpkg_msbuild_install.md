@@ -14,7 +14,6 @@ This function replaces [`vcpkg_install_msbuild`](vcpkg_install_msbuild.md).
 
 ```json
 "dependencies": [
-   ...
   { 
     "name", "vcpkg-msbuild",
     "host": "true"
