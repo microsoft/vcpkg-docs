@@ -2,7 +2,11 @@
 title: vcpkg new
 description: Command line reference for the vcpkg new command. Creates a new manifest in the current directory.
 ms.author: bion
-ms.date: 07/05/2023
+author: BillyONeal
+ms.author: bion
+ms.date: 09/11/2023
+ms.topic: reference
+ms.prod: vcpkg
 ms.prod: vcpkg
 ---
 # vcpkg new
