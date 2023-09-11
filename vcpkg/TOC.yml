@@ -2,62 +2,62 @@
   href: index.yml
 - name: Consuming Libraries
   items:
-    - name: Getting Started with Classic mode
-      href: examples/installing-and-using-packages.md
-    - name: Getting Started with Manifest mode
-      href: examples/manifest-mode-cmake.md
-    - name: Manifest mode
-      href: users/manifests.md
-    - name: Classic mode
-      href: users/classic-mode.md
-    - name: Triplets
-      href: users/triplets.md
-    - name: Buildsystems
-      items:
-      - name: CMake Integration
-        href: users/buildsystems/cmake-integration.md
-      - name: MSBuild (Visual Studio) Integration
-        href: users/buildsystems/msbuild-integration.md
-      - name: Manual Integration
-        href: users/buildsystems/manual-integration.md
-    - name: Platforms
-      items:
-      - name: Android
-        href: users/platforms/android.md
-      - name: MinGW
-        href: users/platforms/mingw.md
-    - name: Using Registries
-      href: users/registries.md
-    - name: Versioning Concepts
-      href: users/versioning.concepts.md
-    - name: Versioning Reference
-      href: users/versioning.md
-    - name: Asset Caching
-      displayName: airgap, offline, source, mirror
-      href: users/assetcaching.md
-    - name: Binary Caching
-      displayName: binaries, build
-      href: users/binarycaching.md
-    - name: Remote Authentication
-      href: users/authentication.md
-    - name: Environment variables
-      href: users/config-environment.md
-    - name: GitHub integration
-      href: github-integration.md
-    - name: Examples
-      items:
-      - name: Selecting LLVM Features
-        href: users/examples/selecting-llvm-features.md
-      - name: Selecting Boost Versions as a Set
-        displayName: baseline, baselines, versioning
-        href: users/examples/modify-baseline-to-pin-old-boost.md
-      - name: Creating a Custom Linux Triplet
-        displayName: dynamic, so, shared object, overlay
-        href: users/examples/overlay-triplets-linux-dynamic.md
-      - name: Getting Started with Versioning
-        href: users/examples/versioning.getting-started.md
-      - name: Create a x-script Asset Caching source for NuGet
-        href: examples/asset-caching-source-nuget.md
+  - name: Getting Started with Classic mode
+    href: examples/installing-and-using-packages.md
+  - name: Getting Started with Manifest mode
+    href: examples/manifest-mode-cmake.md
+  - name: Manifest mode
+    href: users/manifests.md
+  - name: Classic mode
+    href: users/classic-mode.md
+  - name: Triplets
+    href: users/triplets.md
+  - name: Buildsystems
+    items:
+    - name: CMake Integration
+      href: users/buildsystems/cmake-integration.md
+    - name: MSBuild (Visual Studio) Integration
+      href: users/buildsystems/msbuild-integration.md
+    - name: Manual Integration
+      href: users/buildsystems/manual-integration.md
+  - name: Platforms
+    items:
+    - name: Android
+      href: users/platforms/android.md
+    - name: MinGW
+      href: users/platforms/mingw.md
+  - name: Using Registries
+    href: users/registries.md
+  - name: Versioning Concepts
+    href: users/versioning.concepts.md
+  - name: Versioning Reference
+    href: users/versioning.md
+  - name: Asset Caching
+    displayName: airgap, offline, source, mirror
+    href: users/assetcaching.md
+  - name: Binary Caching
+    displayName: binaries, build
+    href: users/binarycaching.md
+  - name: Remote Authentication
+    href: users/authentication.md
+  - name: Environment variables
+    href: users/config-environment.md
+  - name: GitHub integration
+    href: github-integration.md
+  - name: Examples
+    items:
+    - name: Selecting LLVM Features
+      href: users/examples/selecting-llvm-features.md
+    - name: Selecting Boost Versions as a Set
+      displayName: baseline, baselines, versioning
+      href: users/examples/modify-baseline-to-pin-old-boost.md
+    - name: Creating a Custom Linux Triplet
+      displayName: dynamic, so, shared object, overlay
+      href: users/examples/overlay-triplets-linux-dynamic.md
+    - name: Getting Started with Versioning
+      href: users/examples/versioning.getting-started.md
+    - name: Create a x-script Asset Caching source for NuGet
+      href: examples/asset-caching-source-nuget.md
 - name: Packaging Libraries
   items:
   - name: Tutorials
@@ -246,16 +246,34 @@
       items:
         - name: Common Command Options
           href: commands/common-options.md
+        - name: vcpkg add
+          href: commands/add.md
+        - name: vcpkg x-add-version
+          href: commands/add-version.md
+        - name: vcpkg create
+          href: commands/create.md
         - name: vcpkg depend-info
           href: commands/depend-info.md
+        - name: vcpkg edit
+          href: commands/edit.md
+        - name: vcpkg env
+          href: commands/env.md
         - name: vcpkg export
           href: commands/export.md
+        - name: vcpkg format-manifest
+          href: commands/format-manifest.md
+        - name: vcpkg hash
+          href: commands/hash.md
         - name: vcpkg install
           href: commands/install.md
         - name: vcpkg integrate
           href: commands/integrate.md
         - name: vcpkg list
           href: commands/list.md
+        - name: vcpkg new
+          href: commands/new.md
+        - name: vcpkg owns
+          href: commands/owns.md
         - name: vcpkg remove
           href: commands/remove.md
         - name: vcpkg search
@@ -278,7 +296,7 @@
     href: contributing/pr-review-checklist.md
 - name: About
   items:
-    - name: FAQ
-      href: about/faq.md
-    - name: Privacy
-      href: about/privacy.md
+  - name: FAQ
+    href: about/faq.md
+  - name: Privacy
+    href: about/privacy.md
