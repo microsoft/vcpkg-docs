@@ -10,7 +10,7 @@ ms.date: 08/14/2023
 
 Build and install a MSBuild project.
 
-This is the port version of `vcpkg_install_msbuild` and other MSBuild-related functions. Add `vcpkg-msbuild` as a host-dependency in your port to use this function.
+This function replaces [`vcpkg_install_msbuild`](vcpkg_install_msbuild.md).
 
 ```json
 "dependencies": [
@@ -20,6 +20,7 @@ This is the port version of `vcpkg_install_msbuild` and other MSBuild-related fu
     "host": "true"
   }
 ]
+```
 `vcpkg_msbuild_install` will generate a props file and target file containing the CMake toolchain build flags and include it via `/p:ForceImportAfterCpp(Props|Targets)`
 
 ## Usage
@@ -103,7 +104,7 @@ When passing a `.sln` rather than a `.vcxproj`, this may need to be set back to 
 
 ### OPTIONS
 
-Additional options passed to msbuild for all builds.
+Additional options to pass to MSBuild for all builds.
 
 ### OPTIONS_RELEASE
 
@@ -115,7 +116,7 @@ Additional options passed to msbuild for Debug builds. These are in addition to 
 
 ### DEPENDENT_PKGCONFIG
 
-Lookup dependencies via `pkg-config`. Will add all required build flags (includes/defintions/libraries) to the properties of the build
+A list of `pkg-config` dependencies to add to the build. This adds all required build flags (includes/definitions/libraries) to the build properties.
 
 ### ADDITIONAL_LIBS
 
@@ -131,4 +132,4 @@ Additional libraries to add to msbuild for Debug builds. These are in addition t
 
 ## Source
 
-[ports/vcpkg-msbuild\vcpkg\_msbuild\_install.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-msbuild/vcpkg_msbuild_install.cmake)
+[ports/vcpkg-msbuild/vcpkg\_msbuild\_install.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-msbuild/vcpkg_msbuild_install.cmake)
