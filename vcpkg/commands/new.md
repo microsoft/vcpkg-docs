@@ -49,17 +49,21 @@ passed, infers the appropriate form to use based on the form of the input.
 ### `--version-relaxed`
 
 Indicates that the version to write into the manifest is a 'relaxed' version. Relaxed versions
-obey semantic versioning's format, but allow any number of numeric values.
+obey semantic versioning's format, but allow any number of numeric values. See [versioning reference](./users/versioning.md#version) for more information.
+
 
 ### `--version-date`
 
 Indicates that the version to write into the manifest is a 'date' version. Date versions are an
-ISO 8601 date.
+ISO 8601 date (e.g. "YYYY-MM-DD"). See [versioning reference](./users/versioning.md#version-date) for more information. 
+
 
 ### `--version-string`
 
-Indicates that the version to write into the manfest is a 'string' version with no ordering
-semantics.
+Indicates that the version to write into the manifest is a 'string' version with no ordering
+
+semantics. See [versioning reference](./users/versioning.md#version-string) for more information. 
+
 
 ## Examples
 
