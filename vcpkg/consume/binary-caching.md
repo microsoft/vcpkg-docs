@@ -119,3 +119,7 @@ Breaking down this configuration:
   same `files` backend but uses a local path instead (`D:\vcpkg-cache\archives`). By default, cache
   locations have `readwrite` permissions, so we don't need to specify permissions explicitly.
   
+## Next step
+
+> [!div class="nextstepaction"]
+> [Set up a NuGet-backed binary cache](binary-caching-nuget.md)
