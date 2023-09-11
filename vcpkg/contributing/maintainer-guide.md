@@ -115,7 +115,8 @@ Examples:
 
 ### Install copyright file
 
-Each port has to provide a file named `copyright` in the folder `${CURRENT_PACKAGES_DIR}/share/${PORT}`. If the license content for a port is available within the sources, this file should be created by a call to [`vcpkg_install_copyright()`](../maintainers/functions/vcpkg_install_copyright.md). `vcpkg_install_copyright` also bundles multiple copyright files if necessary.
+Each port has to provide a file named `copyright` in the folder `${CURRENT_PACKAGES_DIR}/share/${PORT}`. If a package's license content is available within its source files, this file should be created by a call to [`vcpkg_install_copyright()`](../maintainers/functions/vcpkg_install_copyright.md). `vcpkg_install_copyright` also bundles multiple copyright files if necessary.
+
 
 ```cmake
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
