@@ -12,14 +12,6 @@ Build and install a MSBuild project.
 
 This function replaces [`vcpkg_install_msbuild`](vcpkg_install_msbuild.md).
 
-```json
-"dependencies": [
-  { 
-    "name", "vcpkg-msbuild",
-    "host": "true"
-  }
-]
-```
 `vcpkg_msbuild_install` will generate a props file and target file containing the CMake toolchain build flags and include it via `/p:ForceImportAfterCpp(Props|Targets)`
 
 ## Usage
@@ -44,6 +36,17 @@ vcpkg_install_msbuild(
     [ADDITIONAL_LIBS_DEBUG <zlibd.lib>]
     [ADDITIONAL_LIBS_RELEASE <zlib.lib>]
 )
+```
+
+To use this function, you must depend on the helper port `vcpkg-msbuild`:
+
+```json
+"dependencies": [
+  { 
+    "name", "vcpkg-msbuild",
+    "host": "true"
+  }
+]
 ```
 
 ## Parameters
