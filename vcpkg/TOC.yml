@@ -300,3 +300,15 @@
     href: about/faq.md
   - name: Privacy
     href: about/privacy.md
+- name: Resources
+  items:
+  - name: vcpkg website
+    href: https://vcpkg.io/
+  - name: vcpkg open-source registry on GitHub
+    href: https://github.com/Microsoft/vcpkg
+  - name: vcpkg source code on GitHub
+    href: https://github.com/Microsoft/vcpkg-tool
+  - name: Microsoft C++ Team blog
+    href: https://devblogs.microsoft.com/search?query=vcpkg
+  - name: Support channels and social media
+    href: resources/support-channels.md
