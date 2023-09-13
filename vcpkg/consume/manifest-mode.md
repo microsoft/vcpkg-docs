@@ -252,8 +252,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 > [!div class="nextstepaction"]
 > [Learn more about manually integrating vcpkg in your build system](../users/buildsystems/manual-integration.md)
 
-In a [Developer Command Prompt](/visualstudio/ide/reference/command-prompt-powershell) open to the
-project's folder run the `vcpkg install` command.
+In a terminal open to the project's folder run the `vcpkg install` command.
 
 ```Console
 PS D:\projects\manifest-example> D:\vcpkg\vcpkg.exe install
