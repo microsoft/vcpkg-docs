@@ -8,14 +8,12 @@ ms.prod: vcpkg
 ---
 # Install a dependency from a manifest file (manifest mode)
 
-vcpkg has two operation modes, this article describes how to install packages using manifest
-mode. This is the recommended operation mode for most users.
+vcpkg has two operation modes: classic mode, and manifest mode. This article describes how to install packages using manifest mode, which is the recommended workflow for most users.
 
-In manifest mode, you use a manifest file (a file named [`vcpkg.json`](../reference/vcpkg-json.md)) to
-declare your project's direct dependencies.
+In manifest mode, you declare your project's direct dependencies in a manifest file named [`vcpkg.json`](../reference/vcpkg-json.md).
 
 Use this mode when you want to have different sets of dependencies installed in a per-project basis.
-Manifest mode is also required to engage some of vcpkg's advanced features like
+Manifest mode is also required to use some advanced features like
 [versioning](../users/versioning.md) and [custom registries](../users/registries.md).
 
 ## Pre-requisite: Create your project
@@ -37,8 +35,7 @@ To satisfy these dependencies, let's create a file named `vcpkg.json` in the pro
 
 :::code language="json" source="../examples/snippets/manifest-mode-cmake/vcpkg.json":::
 
-The `"dependencies"` list should contain your project's direct dependencies, vcpkg will take care
-of resolving any transitive dependencies and install them as well.
+The `"dependencies"` list should contain your project's direct dependencies. When it runs, vcpkg will install any required transitive dependencies as well, so you do not need to directly specify those in the manifest.
 
 ## Step 2. Install the dependencies
 
@@ -56,8 +53,7 @@ following command:
 vcpkg integrate install
 ```
 
-This integration method automatically adds vcpkg-installed packages to the project's Include Directories,
-Link Directories, and Link Libraries. Additionaly, this creates a post-build action that ensures
+This integration method automatically adds vcpkg-installed packages to the following project properties: Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action that ensures
 that any required DLLs are copied in the build output folder. This works for all VS2015, VS2017,
 VS2019, and VS2022 projects.
 
@@ -132,10 +128,8 @@ following command:
 vcpkg integrate install
 ```
 
-This integration method automatically adds vcpkg-installed packages to the project's Include Directories,
-Link Directories, and Link Libraries. Additionaly, this creates a post-build action that ensures
-that any required DLLs are copied in the build output folder. This works for all VS2015, VS2017,
-VS2019, and VS2022 projects.
+This integration method automatically adds vcpkg-installed packages to the following project properties: Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action that ensures
+that any required DLLs are copied in the build output folder. This works for all Visual Studio projects except projects older than Visual Studio 2015.
 
 ### Step 2.2: Enable vcpkg manifests
 
@@ -143,7 +137,7 @@ By default, manifest mode is disabled in Visual Studio projects. To enable manif
 project's _Properties_ window and set _Use Vcpkg Manifest_ to _Yes_ in the _vcpkg_ tab.
 
 :::image type="complex" source="../resources/vs-enable-vcpkg-manifest.png" alt-text="Screenshot of a Visual Studio's project Properties window.":::
-Screenshot of a Visual Studio's project properties window. The VCPKG tab is selected and highlighted. The
+Screenshot of a Visual Studio project properties window. The VCPKG tab is selected and highlighted. The
 option named "use VCPKG manifest" is highlighted with its value set to "Yes".
 :::image-end:::
 
@@ -176,10 +170,10 @@ Build started...
 
 ### Step 2.1: Create a `CMakeLists.txt` file
 
-When using CMake, you can take advantage of the automatic integration through the [vcpkg toolchain
+The vcpkg tool integrates with CMake through the [vcpkg toolchain
 file](../users/buildsystems/cmake-integration.md#cmake_toolchain_file).
 
-Let's add the following `CMakeLists.txt` file in the project folder:
+Add the following `CMakeLists.txt` file in the project folder:
 
 `CMakeLists.txt`:
 
@@ -285,11 +279,11 @@ directory containing all the built packages.
 
 ## Next Steps
 
-In this tutorial, you installed dependencies for a simple project using a manifest file.
+In this guide, you installed dependencies for a simple project using a manifest file.
 
-The next things you may want to try in your projects are:
+Here are some additional tasks to try:
 
 * Install packages for custom platforms using [triplets](../users/triplets.md)
 * Lock down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
-* Reuse binaries across Continuous Integration runs using [binary caching](../users/binarycaching.md)
+* Reuse binaries across continuous integration runs using [binary caching](../users/binarycaching.md)
 * Manage your private libraries using [custom registries](../maintainers/registries.md)
