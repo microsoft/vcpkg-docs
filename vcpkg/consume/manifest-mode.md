@@ -303,8 +303,7 @@ In this guide, you installed dependencies for a simple project using a manifest 
 
 Here are some additional tasks to try next:
 
-> [!div class="nextstepaction"]
-> [Install packages for custom platforms using triplets](../users/triplets.md)
-> [Lock down your versions for repeatable builds using versioning](../users/versioning.concepts.md)
-> [Reuse binaries across continuous integration runs using binary caching](../users/binarycaching.md)
-> [Manage your private libraries using custom registries](../maintainers/registries.md)
+* Install packages for custom platforms using [triplets](../users/triplets.md)
+* Lock down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
+* Reuse binaries across continuous integration runs using [binary caching](../users/binarycaching.md)
+* Manage your private libraries using custom [registries](../maintainers/registries.md)
