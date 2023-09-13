@@ -248,6 +248,12 @@
       items:
         - name: Common Command Options
           href: commands/common-options.md
+        - name: vcpkg add
+          href: commands/add.md
+        - name: vcpkg x-add-version
+          href: commands/add-version.md
+        - name: vcpkg create
+          href: commands/create.md
         - name: vcpkg depend-info
           href: commands/depend-info.md
         - name: vcpkg edit
@@ -256,12 +262,20 @@
           href: commands/env.md
         - name: vcpkg export
           href: commands/export.md
+        - name: vcpkg format-manifest
+          href: commands/format-manifest.md
+        - name: vcpkg hash
+          href: commands/hash.md
         - name: vcpkg install
           href: commands/install.md
         - name: vcpkg integrate
           href: commands/integrate.md
         - name: vcpkg list
           href: commands/list.md
+        - name: vcpkg new
+          href: commands/new.md
+        - name: vcpkg owns
+          href: commands/owns.md
         - name: vcpkg remove
           href: commands/remove.md
         - name: vcpkg search
@@ -288,3 +302,15 @@
     href: about/faq.md
   - name: Privacy
     href: about/privacy.md
+- name: Resources
+  items:
+  - name: vcpkg website
+    href: https://vcpkg.io/
+  - name: vcpkg open-source registry on GitHub
+    href: https://github.com/Microsoft/vcpkg
+  - name: vcpkg source code on GitHub
+    href: https://github.com/Microsoft/vcpkg-tool
+  - name: Microsoft C++ Team blog
+    href: https://devblogs.microsoft.com/search?query=vcpkg
+  - name: Support channels and social media
+    href: resources/support-channels.md

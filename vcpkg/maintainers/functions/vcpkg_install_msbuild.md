@@ -5,6 +5,9 @@ ms.date: 11/30/2022
 ---
 # vcpkg_install_msbuild
 
+> [!WARNING]
+> This function has been deprecated in favor of [`vcpkg_msbuild_install`](vcpkg_msbuild_install.md).
+
 Build and install a msbuild-based project. This replaces `vcpkg_build_msbuild()`.
 
 ## Usage
@@ -115,12 +118,6 @@ Additional options passed to msbuild for Release builds. These are in addition t
 ### OPTIONS_DEBUG
 
 Additional options passed to msbuild for Debug builds. These are in addition to `OPTIONS`.
-
-## Examples
-
-- [libfabric](https://github.com/Microsoft/vcpkg/blob/master/ports/libfabric/portfile.cmake)
-- [libirecovery](https://github.com/Microsoft/vcpkg/blob/master/ports/libirecovery/portfile.cmake)
-- [ngspice](https://github.com/Microsoft/vcpkg/blob/master/ports/ngspice/portfile.cmake) (example of setting `PLATFORM`)
 
 ## Source
 
