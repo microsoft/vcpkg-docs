@@ -10,41 +10,47 @@ ms.prod: vcpkg
 
 vcpkg has two operation modes: classic mode, and manifest mode. This article describes how to install packages using manifest mode, which is the recommended workflow for most users.
 
-In manifest mode, you declare your project's direct dependencies in a manifest file named [`vcpkg.json`](../reference/vcpkg-json.md).
+In manifest mode, you declare your project's direct dependencies in a manifest file named
+[`vcpkg.json`](../reference/vcpkg-json.md).
 
-Use this mode when you want to have different sets of dependencies installed in a per-project basis.
-Manifest mode is also required to use some advanced features like
+Manifest files have their own `vcpkg_installed` directory where they install their dependencies,
+unlike classic mode, where all packages are installed in a common `%VCPKG_ROOT%/installed`
+directory. Manifests are suitable for using vcpkg with multiple codebases, as each codebase can have
+a different set of dependencies that do not interfere with each other.
+
+Manifest mode is also required to use advanced features like
 [versioning](../users/versioning.md) and [custom registries](../users/registries.md).
 
-## Pre-requisite: Create your project
+## Create your project
 
-For this tutorial, we'll use the following source file:
+For this tutorial, we use the following source file:
 
 `main.cxx`:
 
 :::code language="cxx" source="../examples/snippets/manifest-mode-cmake/main.cxx":::
 
-## Step 1: Create the manifest file
+## Create the manifest file
 
-The project depends on the open-source libraries: `cxxopts`, `fmt`, and `range-v3`; these are all
+The code references the open-source libraries: `cxxopts`, `fmt`, and `range-v3`; which are all
 available in the vcpkg public registry at <https://github.com/Microsoft/vcpkg>.
 
-To satisfy these dependencies, let's create a file named `vcpkg.json` in the project's folder.
+To satisfy these dependencies, create a file named `vcpkg.json` in the project's folder:
 
 `vcpkg.json`:
 
 :::code language="json" source="../examples/snippets/manifest-mode-cmake/vcpkg.json":::
 
-The `"dependencies"` list should contain your project's direct dependencies. When it runs, vcpkg will install any required transitive dependencies as well, so you do not need to directly specify those in the manifest.
+You only need to specify your direct dependencies in the `"dependencies"` list. When it runs, vcpkg
+resolves and installs any required transitive dependencies.
 
-## Step 2. Install the dependencies
+## Install the dependencies
 
 ### [MSBuild](#tab/msbuild)
 
 > [!div class="nextstepaction"]
 > [Learn more about using vcpkg from MSBuild](../users/buildsystems/msbuild-integration.md)
 
-### Step 2.1: Enable user-wide integration (MSBuild)
+### Enable user-wide integration (MSBuild)
 
 To use [vcpkg in your MSBuild projects](../users/buildsystems/msbuild-integration.md) run the
 following command:
@@ -53,11 +59,14 @@ following command:
 vcpkg integrate install
 ```
 
-This integration method automatically adds vcpkg-installed packages to the following project properties: Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action that ensures
-that any required DLLs are copied in the build output folder. This works for all VS2015, VS2017,
-VS2019, and VS2022 projects.
+You only need to run the `vcpkg integrate install` command the first time you want to enable MSBuild
+integration. This enables MSBuild integration for all your existing and future projects. Use [`vcpkg integrate remove`](../commands/integrate.md#vcpkg-integrate-remove) to remove MSBuild system-wide integration.
 
-### Step 2.2: Build the project (MSBuild)
+This integration method automatically adds vcpkg-installed packages to the following project properties: Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action that ensures
+that any required DLLs are copied in the build output folder. This works for all projects using
+VS2015 or newer.
+
+### Build the project (MSBuild)
 
 To build the project you need to pass the `/p:VcpkgEnableManifest=true` parameter to MSBuild.
 
@@ -119,7 +128,7 @@ Build succeeded.
 > [!div class="nextstepaction"]
 > [Learn more about using vcpkg from Visual Studio](../users/buildsystems/msbuild-integration.md)
 
-### Step 2.1: Enable user-wide integration (Visual Studio)
+### Enable user-wide integration (Visual Studio)
 
 To use [vcpkg in your Visual Studio projects](../users/buildsystems/msbuild-integration.md) run the
 following command:
@@ -128,10 +137,14 @@ following command:
 vcpkg integrate install
 ```
 
-This integration method automatically adds vcpkg-installed packages to the following project properties: Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action that ensures
-that any required DLLs are copied in the build output folder. This works for all Visual Studio projects except projects older than Visual Studio 2015.
+You only need to run the `vcpkg integrate install` command the first time you want to enable MSBuild
+integration. This enables MSBuild integration for all your existing and future projects. Use [`vcpkg integrate remove`](../commands/integrate.md#vcpkg-integrate-remove) to remove MSBuild system-wide integration.
 
-### Step 2.2: Enable vcpkg manifests
+This integration method automatically adds vcpkg-installed packages to the following project properties: Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action that ensures
+that any required DLLs are copied in the build output folder. This works for all projects using
+VS2015 or newer.
+
+### Enable vcpkg manifests
 
 By default, manifest mode is disabled in Visual Studio projects. To enable manifests, open the
 project's _Properties_ window and set _Use Vcpkg Manifest_ to _Yes_ in the _vcpkg_ tab.
@@ -141,7 +154,7 @@ Screenshot of a Visual Studio project properties window. The VCPKG tab is select
 option named "use VCPKG manifest" is highlighted with its value set to "Yes".
 :::image-end:::
 
-### Step 2.3: Build the project (Visual Studio)
+### Build the project (Visual Studio)
 
 ```Console
 Build started...
@@ -168,7 +181,7 @@ Build started...
 > [!div class="nextstepaction"]
 > [Learn more about using vcpkg from CMake](../users/buildsystems/cmake-integration.md)
 
-### Step 2.1: Create a `CMakeLists.txt` file
+### Create a `CMakeLists.txt` file
 
 The vcpkg tool integrates with CMake through the [vcpkg toolchain
 file](../users/buildsystems/cmake-integration.md#cmake_toolchain_file).
@@ -179,7 +192,7 @@ Add the following `CMakeLists.txt` file in the project folder:
 
 :::code language="cmake" source="../examples/snippets/manifest-mode-cmake/CMakeLists.txt":::
 
-### Step 2.2: Configure the project
+### Configure the project
 
 Add `-DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake` as a parameter to the
 CMake configure call and vcpkg will be automatically invoked to install the manifest dependencies.
@@ -210,7 +223,7 @@ The following packages will be built and installed:
 -- Build files have been written to: D:/projects/manifest-example/build
 ```
 
-### Step 2.3: Build the project (CMake)
+### Build the project (CMake)
 
 Once the configure step is completed, build the project with `cmake --build <build directory>`:
 
@@ -281,9 +294,10 @@ directory containing all the built packages.
 
 In this guide, you installed dependencies for a simple project using a manifest file.
 
-Here are some additional tasks to try:
+Here are some additional tasks to try next:
 
-* Install packages for custom platforms using [triplets](../users/triplets.md)
-* Lock down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
-* Reuse binaries across continuous integration runs using [binary caching](../users/binarycaching.md)
-* Manage your private libraries using [custom registries](../maintainers/registries.md)
+> [!div class="nextstepaction"]
+> [Install packages for custom platforms using triplets](../users/triplets.md)
+> [Lock down your versions for repeatable builds using versioning](../users/versioning.concepts.md)
+> [Reuse binaries across continuous integration runs using binary caching](../users/binarycaching.md)
+> [Manage your private libraries using custom registries](../maintainers/registries.md)
