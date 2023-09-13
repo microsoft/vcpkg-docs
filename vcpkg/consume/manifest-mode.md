@@ -63,14 +63,22 @@ You only need to run the `vcpkg integrate install` command the first time you wa
 integration. This enables MSBuild integration for all your existing and future projects. Use [`vcpkg integrate remove`](../commands/integrate.md#vcpkg-integrate-remove) to remove MSBuild system-wide integration.
 
 This integration method automatically adds vcpkg-installed packages to the following project properties: Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action that ensures
-that any required DLLs are copied in the build output folder. This works for all projects using
+that any required DLLs are copied in the build output folder. This works for all solutions and projects using
 VS2015 or newer.
 
 ### Build the project (MSBuild)
 
-To build the project you need to pass the `/p:VcpkgEnableManifest=true` parameter to MSBuild.
+By default, manifest mode is disabled in MSBuild projects.
 
-`msbuild /p:VcpkgEnableManifest=true`
+To enable manifests in your project, set the `VcpkgEnableManifest` property in your `.vcxproj` file:
+  
+```xml
+<PropertyGroup Label="Vcpkg">
+  <VcpkgEnableManifest>true</VcpkgEnableManifest>
+</PropertyGroup>
+```
+
+Alternatively you can enable manifest mode in your MSBuild call: `msbuild /p:VcpkgEnableManifest=true`.
 
 ```Console
 PS D:\projects\manifest-example> msbuild /p:VcpkgEnableManifest=true
@@ -147,7 +155,7 @@ VS2015 or newer.
 ### Enable vcpkg manifests
 
 By default, manifest mode is disabled in Visual Studio projects. To enable manifests, open the
-project's _Properties_ window and set _Use Vcpkg Manifest_ to _Yes_ in the _vcpkg_ tab.
+project's Properties window and set `Use Vcpkg Manifest` to "Yes" in the vcpkg tab.
 
 :::image type="complex" source="../resources/vs-enable-vcpkg-manifest.png" alt-text="Screenshot of a Visual Studio's project Properties window.":::
 Screenshot of a Visual Studio project properties window. The VCPKG tab is selected and highlighted. The
