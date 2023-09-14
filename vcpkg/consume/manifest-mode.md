@@ -59,7 +59,7 @@ following command:
 vcpkg integrate install
 ```
 
-You only need to run the `vcpkg integrate install` command the first time you want to enable MSBuild
+You only need to run the [`vcpkg integrate install`](../commands/integrate.md#vcpkg-integrate-install) command the first time you want to enable MSBuild
 integration. This enables MSBuild integration for all your existing and future projects. Use [`vcpkg integrate remove`](../commands/integrate.md#vcpkg-integrate-remove) to remove MSBuild system-wide integration.
 
 This integration method automatically adds vcpkg-installed packages to the following project properties: Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action that ensures
@@ -131,7 +131,7 @@ Done Building Project "D:\projects\manifest-example\manifest-example.sln" (defau
 Build succeeded.
 ```
 
-### [Visual Studio](#tab/visual-studio)
+### [Visual Studio (MSBuild)](#tab/visual-studio-with-msbuild)
 
 > [!div class="nextstepaction"]
 > [Learn more about using vcpkg from Visual Studio](../users/buildsystems/msbuild-integration.md)
@@ -252,7 +252,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 > [!div class="nextstepaction"]
 > [Learn more about manually integrating vcpkg in your build system](../users/buildsystems/manual-integration.md)
 
-In a terminal open to the project's folder run the `vcpkg install` command.
+In a terminal, open the project's folder and run the [`vcpkg install`](../commands/install.md) command.
 
 ```Console
 PS D:\projects\manifest-example> D:\vcpkg\vcpkg.exe install
