@@ -19,7 +19,7 @@ The following is required for this tutorial:
 
 - A terminal to work in.
 - `git`, `CMake`, and a C++ compiler installed on your system
-- vcpkg installed on your system (see the [Install vcpkg tutorial](setup-vcpkg.md) for details).
+- vcpkg installed on your system
 
 ## 1 - Set up the project
 
