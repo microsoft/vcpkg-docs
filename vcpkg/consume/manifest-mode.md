@@ -1,12 +1,13 @@
 ---
-title: Install a dependency from a manifest file
+title: Tutorial: Install a dependency from a manifest file
 description: Learn to install your project's dependencies with vcpkg by using a manifest file.
 author: vicroms
 ms.author: viromer
 ms.date: 8/10/2023
 ms.prod: vcpkg
+ms.topic: tutorial
 ---
-# Install a dependency from a manifest file (manifest mode)
+# Tutorial: Install a dependency from a manifest file
 
 vcpkg has two operation modes: classic mode, and manifest mode. This article describes how to install packages using manifest mode, which is the recommended workflow for most users.
 
@@ -21,15 +22,20 @@ a different set of dependencies that do not interfere with each other.
 Manifest mode is also required to use advanced features like
 [versioning](../users/versioning.md) and [custom registries](../users/registries.md).
 
-## Create your project
+In this tutorial, you learn how to:
+
+> [!div class="checklist"]
+> * [Create a project with a manifest]
+> * [Install dependencies]
+> * [Build the project]
+
+## Create a project with a manifest
 
 For this tutorial, we use the following source file:
 
 `main.cxx`:
 
 :::code language="cxx" source="../examples/snippets/manifest-mode-cmake/main.cxx":::
-
-## Create the manifest file
 
 The code references the open-source libraries: `cxxopts`, `fmt`, and `range-v3`; which are all
 available in the vcpkg public registry at <https://github.com/Microsoft/vcpkg>.
@@ -59,12 +65,15 @@ following command:
 vcpkg integrate install
 ```
 
-You only need to run the [`vcpkg integrate install`](../commands/integrate.md#vcpkg-integrate-install) command the first time you want to enable MSBuild
-integration. This enables MSBuild integration for all your existing and future projects. Use [`vcpkg integrate remove`](../commands/integrate.md#vcpkg-integrate-remove) to remove MSBuild system-wide integration.
+You only need to run the [`vcpkg integrate install`](../commands/integrate.md#vcpkg-integrate-install)
+command the first time you want to enable MSBuild integration. This enables MSBuild integration for all
+your existing and future projects. Use [`vcpkg integrate remove`](../commands/integrate.md#vcpkg-integrate-remove)
+to remove MSBuild system-wide integration.
 
-This integration method automatically adds vcpkg-installed packages to the following project properties: Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action that ensures
-that any required DLLs are copied in the build output folder. This works for all solutions and projects using
-VS2015 or newer.
+This integration method automatically adds vcpkg-installed packages to the following project properties:
+Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action
+that ensures that any required DLLs are copied in the build output folder. This works for all solutions and
+projects using VS2015 or newer.
 
 ### Build the project (MSBuild)
 
@@ -145,12 +154,15 @@ following command:
 vcpkg integrate install
 ```
 
-You only need to run the `vcpkg integrate install` command the first time you want to enable MSBuild
-integration. This enables MSBuild integration for all your existing and future projects. Use [`vcpkg integrate remove`](../commands/integrate.md#vcpkg-integrate-remove) to remove MSBuild system-wide integration.
+You only need to run the [`vcpkg integrate install`](../commands/integrate.md#vcpkg-integrate-install)
+command the first time you want to enable MSBuild integration. This enables MSBuild integration for all
+your existing and future projects. Use [`vcpkg integrate remove`](../commands/integrate.md#vcpkg-integrate-remove)
+to remove MSBuild system-wide integration.
 
-This integration method automatically adds vcpkg-installed packages to the following project properties: Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action that ensures
-that any required DLLs are copied in the build output folder. This works for all projects using
-VS2015 or newer.
+This integration method automatically adds vcpkg-installed packages to the following project properties:
+Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action
+that ensures that any required DLLs are copied in the build output folder. This works for all solutions and
+projects using VS2015 or newer.
 
 ### Enable vcpkg manifests
 
