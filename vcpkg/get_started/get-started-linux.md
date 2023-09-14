@@ -25,7 +25,7 @@ The following is required for this tutorial:
 
 1. Create the project directory
 
-    This tutorial will assume your project will be located at the path `/home/helloworld`. If you intend to place your project somewhere else, replace any references to that path with your preferred path.
+    This tutorial assumes your project will be located at the path `/home/helloworld`. If you intend to place your project somewhere else, replace any references to that path with your preferred path.
 
     Create the "helloworld" directory for the new project next to your vcpkg clone and navigate into it:
 
@@ -35,7 +35,7 @@ The following is required for this tutorial:
 
 2. Create the manifest
 
-    Next, create a `vcpkg.json` manifest file in your project directory. vcpkg will read this file to learn what dependencies to install.
+    Next, create a `vcpkg.json` manifest file in your project directory. vcpkg reads this file to learn what dependencies to install.
 
     From within the `helloworld` directory, run:
 
@@ -43,7 +43,7 @@ The following is required for this tutorial:
     ..\vcpkg\vcpkg new --application
     ```
 
-    The `vcpkg new` command will add a `vcpkg.json` file and a `vcpkg-configuration.json` file to your projects directory. The `vcpkg.json` file should look like this:
+    The `vcpkg new` command adds a `vcpkg.json` file and a `vcpkg-configuration.json` file to your projects directory. The `vcpkg.json` file should look like this:
 
     ```json
     {}
@@ -54,8 +54,6 @@ The following is required for this tutorial:
     The `vcpkg-configuration.json` file serves a different purpose. This file allows full control over your dependencies' sources and it's out of scope for this tutorial.
 
     For this tutorial, all the dependencies come from the vcpkg registry at <https://github.com/Microsoft/vcpkg>. When there's no explicit configuration provided, vcpkg uses this registry as default.
-
-    To learn more about `vcpkg.json`, check out our reference [documentation](..\reference\vcpkg-json.md).
 
 ## 2 - Add dependencies and project files
 
@@ -99,13 +97,13 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
 
 1. Run CMake configuration
 
-    Configure the build using CMake. Remember to point to the correct location of your vcpkg directory by updating the `<vcpkg-root>` placeholder:
+    Configure the build using CMake. Update the `<vcpkg-root>` placeholder with the directory you installed vcpkg:
 
     ```bash
     cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/vcpkg/scripts/buildsystems/vcpkg.cmake
     ```
 
-    The toolchain file allows users to access vcpkg-provided libraries in their CMake project.
+    The vcpkg.cmake toolchain file allows the CMake project system to recognize C++ libraries provided by vcpkg. This makes it easy to use these libraries in your project with minimal effort.
 
 2. Build the project
 
@@ -124,3 +122,10 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
     
     Hello World!
     ```
+
+## Next steps
+
+To learn more about `vcpkg.json`, check out our reference documentation:
+
+- [vcpkg.json](..\reference\vcpkg-json.md)
+- [manifest](..\users\manifests.md)
