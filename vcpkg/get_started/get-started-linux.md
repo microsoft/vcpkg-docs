@@ -1,10 +1,10 @@
 ---
-title: Tutorial: Install and use packages on Linux
+title: Install and use packages on Linux
 description: Tutorial guides the user through the process of installing and using packages on Linux with vcpkg.
 author: JavierMatosD
+ms.author: javiermat
 ms.topic: tutorial
 ms.date: 08/23/2023
-ms.author: javiermat
 ms.prod: vcpkg
 #CustomerIntent: As a beginner C++ developer, I want to learn how to install and manage packages on a Linux environment using vcpkg, so that I can easily set up and maintain C++ projects with necessary dependencies.
 ---
