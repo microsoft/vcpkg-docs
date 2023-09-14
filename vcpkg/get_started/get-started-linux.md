@@ -1,131 +1,126 @@
 ---
-title: Install and use packages on Linux
+title: Tutorial: Install and use packages on Linux
 description: Tutorial guides the user through the process of installing and using packages on Linux with vcpkg.
 author: JavierMatosD
+ms.topic: tutorial
 ms.date: 08/23/2023
 ms.author: javiermat
 ms.prod: vcpkg
+#CustomerIntent: As a beginner C++ developer, I want to learn how to install and manage packages on a Linux environment using vcpkg, so that I can easily set up and maintain C++ projects with necessary dependencies.
 ---
-# Install and use packages on Linux
 
-## Description
+# Tutorial: Install and use packages on Linux with vcpkg
 
-This tutorial guides you through setting up a new C++ "Hello World" project using the `fmt` library. You'll manage dependencies, build the application, and eventually run your project, all using vcpkg. This tutorial assumes you have vcpkg setup and ready to use. If not, check out our initial setup [tutorial](setup-vcpkg.md).
+This tutorial shows how to set up a C++ "Hello World" CMake project using the `fmt` library. Manage dependencies, construct the application, and execute the project with the help of vcpkg.
 
-### Prerequisites
+## Prerequisites
 
-For this tutorial, you'll need: a terminal, `git`, `cmake`, and a C++ compiler.
+For this tutorial, you'll need:
 
-## Step 1: Setup the project
+- A terminal to work in.
+- `git`, `CMake`, and a C++ compiler installed on your system
+- vcpkg installed on your system (see the [Install vcpkg tutorial](setup-vcpkg.md) for details).
 
-### Step 1.1: Create the project directory
+## 1 - Set up the project
 
-Create a directory for your new project next to your vcpkg clone and navigate into it:
+    1. Create the project directory
+    
+    This tutorial will assume your project will be located at the path `/home/helloworld`. If you intend to place your project somewhere else, replace any references to that path with your preferred path.
 
-```bash
-mkdir helloworld && cd helloworld
-```
+    Create the "helloworld" directory for the new project next to your vcpkg clone and navigate into it:
+    
+    ```bash
+    mkdir helloworld && cd helloworld
+    ```
 
-### Step 1.2 Create the manifest
+    2.  Create the manifest
+    
+    Next, create a `vcpkg.json` manifest file in your project directory. vcpkg will read this file to learn what dependencies to install.
 
-From within the `helloworld` directory, run:
+    From within the `helloworld` directory, run:
+    
+    ```bash
+    ..\vcpkg\vcpkg new --application
+    ```
+    
+    The `vcpkg new` command will add a `vcpkg.json` file and a `vcpkg-configuration.json` file to your projects directory. The `vcpkg.json` file should look like this:
+    
+    ```json
+    {}
+    ```
+    
+    The `vcpkg.json` file serves as the foundation to integrate vcpkg in your C++ project. Initially, the file contains an empty JSON object; additional attributes like dependencies and supported features can be added as your project grows.
+    
+    To learn more about `vcpkg.json`, check out our reference [documentation](..\reference\vcpkg-json.md).
+    
+    3. Remove configuration file
+    
+    The `vcpkg-configuration.json` file serves a different purpose. This file allows full control over your dependencies' sources and it's out of scope for this tutorial.
+    
+    For this tutorial, all the dependencies come from the vcpkg registry at <https://github.com/Microsoft/vcpkg>. When there's no explicit configuration provided, vcpkg uses this registry as default. 
 
-```bash
-..\vcpkg\vcpkg new --name helloworld --version 1.0
-```
+## 2 - Add dependencies and project files
 
->[!NOTE]
->Ensure the project directory name matches exactly with the name you give to the `vcpkg new` command. This will ensure subsequent commands work smoothly.
+Now that the project is set up, add the `fmt` library as a dependency and generate the project files.
 
-The `vcpkg new` command will add a `vcpkg.json` file and a `vcpkg-configuration.json` file to your projects directory. The `vcpkg.json` file should look like this:
+    1. Add `fmt` dependency
 
-```json
-{
-    "name": "helloworld",
-    "version": "1.0"
-}
-```
+    To do so, run:
+    
+    ```bash
+    ..\vcpkg\vcpkg add port fmt
+    ```
+    
+    Your `vcpkg.json` should look like this:
+    
+    ```json
+    {
+        "dependencies": [
+        "fmt"
+        ]
+    }
+    ```
 
-The `vcpkg.json` file serves as the foundation to integrate vcpkg in your C++ project. Initially, it contains your project's name and version; additional attributes like dependencies and supported features can be added as your project grows.
+    2. Create project files
 
-To learn more about `vcpkg.json`, check out our reference [documentation](..\reference\vcpkg-json.md).
+    Create the `CMakeLists.txt` and `main.cpp` files:
+    
+    ```bash
+    touch CMakeLists.txt main.cpp
+    ```
+    
+    Fill in `CMakeLists.txt` with the necessary information to find and link the `fmt` package. The `CMakeLists.txt` should look like this:
+    
+    :::code language="cmake" source="../examples/snippets/get-started-linux/CMakeLists.txt":::
+    
+    Likewise, populate `main.cpp` to print a simple "Hello World" using the `fmt` library. The `main.cpp` should look like this:
+    
+    :::code language="cpp" source="../examples/snippets/get-started-linux/main.cpp":::
 
-### Step 1.3 Remove configuration file
+## 3 - Build and run the project
 
-The `vcpkg-configuration.json` file serves a different purpose. This file allows full control over your dependencies' sources and it's out of scope for this tutorial.
+    1. Run CMake configuration
 
-For this tutorial, our dependencies all come from the vcpkg registry at <https://github.com/Microsoft/vcpkg>. When there's no explicit configuration provided, vcpkg uses this registry as default. So the next step is to delete this file.
+    Configure the build using CMake. Remember to point to the correct location of your vcpkg directory by updating the `<vcpkg-root>` placeholder:
+    
+    ```bash
+    cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/vcpkg/scripts/buildsystems/vcpkg.cmake
+    ```
+    
+    The toolchain file allows users to access vcpkg-provided libraries in their CMake project.
 
-```bash
-rm vcpkg-configuration.json
-```
+    2. Build
 
-## Step 2: Add dependencies and project files
+    Next, proceed to build the project:
+    
+    ```bash
+    cmake --build build
+    ```
 
-Now that the project is properly set up, lets add the `fmt` library as a dependency and generate the project files.
+    3. Execute
 
-### Step 2.1: Add `fmt` dependency
-
-Since this project will use the `fmt` library to print "Hello World", you'll want to add `fmt` to the "dependencies" list in the manifest. To do this, run:
-
-```bash
-..\vcpkg\vcpkg add port fmt
-```
-
-Your `vcpkg.json` should look like this:
-
-```json
-{
-    "name": "helloworld",
-    "version": "1.0",
-    "dependencies": [
-    "fmt"
-    ]
-}
-```
-
-Notice that your `vcpkg.json` file now lists `fmt` as a dependency.
-
-### Step 2.2: Create project files
-
-Now, create the `CMakeLists.txt` and `main.cpp` files:
-
-```bash
-touch CMakeLists.txt main.cpp
-```
-
-Fill in `CMakeLists.txt` with the necessary information to find and link the `fmt` package. The `CMakeLists.txt` should look like this:
-
-:::code language="cmake" source="../examples/snippets/get-started-linux/CMakeLists.txt":::
-
-Likewise, populate `main.cpp` to print a simple "Hello World" using the `fmt` library. The `main.cpp` should look like this:
-
-:::code language="cpp" source="../examples/snippets/get-started-linux/main.cpp":::
-
-## Step 3: Build and execute the project
-
-### Step 3.1: Configure
-
-Configure the build using CMake. Remember to point to the correct location of your vcpkg directory by updating the `<vcpkg-root>` placeholder:
-
-```bash
-cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=<vcpkg-root>/vcpkg/scripts/buildsystems/vcpkg.cmake
-```
-
-The toolchain file allows users to access vcpkg-provided libraries in their CMake project.
-
-### Step 3.2: Build
-
-Next, proceed to build the project:
-
-```bash
-cmake --build build
-```
-
-### Step 3.3: Execute
-
-Finally, run the executable to see your application in action:
-
-```bash
-./build/HelloWorld
-```
+    Finally, run the executable to see your application in action:
+    
+    ```bash
+    ./build/HelloWorld
+    ```
