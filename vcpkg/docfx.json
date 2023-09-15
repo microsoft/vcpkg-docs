@@ -28,7 +28,8 @@
           "**/*.png",
           "**/*.jpg",
           "**/*.gif",
-          "**/*.svg"
+          "**/*.svg",
+          "**/zone-pivot-groups.json"
         ],
         "exclude": [
           "**/obj/**",
@@ -66,7 +67,8 @@
       ],
       "searchScope": [
         "vcpkg"
-      ]
+      ],
+      "zone_pivot_group_filename": "zone-pivot-groups.json"
     },
     "fileMetadata": {
       "author": {

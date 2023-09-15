@@ -6,7 +6,7 @@ ms.topic: tutorial
 ms.date: 08/31/2023
 ms.author: javiermat
 ms.prod: vcpkg
-zone_pivot_groups: platforms
+zone_pivot_groups: operating-systems
 ---
 
 # Tutorial: Install vcpkg
@@ -37,14 +37,14 @@ The vcpkg open-source registry is a set of over 2,000 free libraries that have b
 
 Now that you have cloned the vcpkg repository, navigate to the `vcpkg` directory and execute the bootstrap script:
 
-::: zone pivot="platform-windows"
+::: zone pivot="os-windows"
 
 ```bash
 cd vcpkg && ./bootstrap-vcpkg.bat
 ```
 
 ::: zone-end
-::: zone pivot="platform-linux,platform-macos"
+::: zone pivot="os-linux,os-macos"
 
 ```bash
 cd vcpkg && ./bootstrap-vcpkg.sh
@@ -58,21 +58,21 @@ The shell script performs prerequisite checks, downloads the vcpkg executable, a
 
 You'll want to integrate vcpkg into your terminal to enjoy tab-completion features. To do this, run:
 
-::: zone pivot="platform-windows"
+::: zone pivot="os-windows"
 
 ```bash
 ./vcpkg integrate powershell
 ```
 
 ::: zone-end
-::: zone pivot="platform-linux"
+::: zone pivot="os-linux"
 
 ```bash
 ./vcpkg integrate bash
 ```
 
 ::: zone-end
-::: zone pivot="platform-macos"
+::: zone pivot="os-macos"
 
 ```bash
 ./vcpkg integrate zsh
