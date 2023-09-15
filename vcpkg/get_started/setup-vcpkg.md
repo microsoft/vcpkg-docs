@@ -6,9 +6,8 @@ ms.topic: tutorial
 ms.date: 08/31/2023
 ms.author: javiermat
 ms.prod: vcpkg
----
-
 zone_pivot_groups: bootstrap-vcpkg
+---
 
 # Tutorial: Install vcpkg
 
@@ -38,7 +37,7 @@ The vcpkg open-source registry is a set of over 2,000 free libraries that have b
 
 Now that you have cloned the vcpkg repository, navigate to the `vcpkg` directory and execute the bootstrap script:
 
-:::zone target="{platform-linux}" pivot="{pivot}"
+:::zone target="{platform-linux}" pivot="{Linux}"
 {
 
 ```bash
@@ -48,7 +47,7 @@ cd vcpkg && ./bootstrap-vcpkg.sh
 }
 :::zone-end
 
-:::zone target="{platform-windows}" pivot="{pivot}"
+:::zone target="{platform-windows}" pivot="{Windows}"
 {
 
 ```bash
@@ -58,7 +57,7 @@ cd vcpkg && ./bootstrap-vcpkg.bat
 }
 :::zone-end
 
-:::zone target="{platform-windows}" pivot="{pivot}"
+:::zone target="{platform-macos}" pivot="{macOS}"
 {
 
 ```bash
