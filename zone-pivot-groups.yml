@@ -2,6 +2,7 @@
 groups:
 - id: bootstrap-vcpkg
   title: Platform 
+  prompt: Choose a platform
   pivots:
   - id: platform-windows
     title: Windows
