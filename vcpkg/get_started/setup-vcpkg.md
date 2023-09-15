@@ -80,6 +80,6 @@ You'll want to integrate vcpkg into your terminal to enjoy tab-completion featur
 
 ::: zone-end
 
-The `vcpkg integrate bash` command sets up bash shell integration for vcpkg, which adds vcpkg tab-completion support to the current user's `.bashrc`.
+The `vcpkg integrate` command sets up shell integration for vcpkg, which adds vcpkg tab-completion support..
 
 That's it! vcpkg is set up and ready to use.
