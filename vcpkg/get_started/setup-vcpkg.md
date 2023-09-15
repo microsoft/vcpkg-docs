@@ -28,7 +28,7 @@ The following is required for this tutorial:
 
 The first step is to clone the vcpkg repository from GitHub. The repository contains scripts to acquire the vcpkg executable and a registry of curated open-source libraries maintained by the vcpkg community. To do this, run:
 
-```bash
+```console
 git clone https://github.com/microsoft/vcpkg.git
 ```
 
@@ -40,14 +40,14 @@ Now that you have cloned the vcpkg repository, navigate to the `vcpkg` directory
 
 ::: zone pivot="os-windows"
 
-```bash
+```console
 cd vcpkg && ./bootstrap-vcpkg.bat
 ```
 
 ::: zone-end
 ::: zone pivot="os-linux,os-macos"
 
-```bash
+```console
 cd vcpkg && ./bootstrap-vcpkg.sh
 ```
 
@@ -61,21 +61,21 @@ You'll want to integrate vcpkg into your terminal to enjoy tab-completion featur
 
 ::: zone pivot="os-windows"
 
-```bash
+```console
 ./vcpkg integrate powershell
 ```
 
 ::: zone-end
 ::: zone pivot="os-linux"
 
-```bash
+```console
 ./vcpkg integrate bash
 ```
 
 ::: zone-end
 ::: zone pivot="os-macos"
 
-```bash
+```console
 ./vcpkg integrate zsh
 ```
 
