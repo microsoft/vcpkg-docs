@@ -6,7 +6,7 @@ ms.topic: tutorial
 ms.date: 08/31/2023
 ms.author: javiermat
 ms.prod: vcpkg
-zone_pivot_groups: platforms
+metadata: zone_pivot_groups: platforms
 ---
 
 # Tutorial: Install vcpkg
@@ -37,20 +37,20 @@ The vcpkg open-source registry is a set of over 2,000 free libraries that have b
 
 Now that you have cloned the vcpkg repository, navigate to the `vcpkg` directory and execute the bootstrap script:
 
-:::zone pivot="platform-windows"
+::: zone pivot="platform-windows"
 
 ```bash
 cd vcpkg && ./bootstrap-vcpkg.bat
 ```
 
-:::zone-end
-:::zone pivot="platform-linux,platform-macos"
+::: zone-end
+::: zone pivot="platform-linux,platform-macos"
 
 ```bash
 cd vcpkg && ./bootstrap-vcpkg.sh
 ```
 
-:::zone-end
+::: zone-end
 
 The shell script performs prerequisite checks, downloads the vcpkg executable, and manages telemetry settings.
 
@@ -58,27 +58,27 @@ The shell script performs prerequisite checks, downloads the vcpkg executable, a
 
 You'll want to integrate vcpkg into your terminal to enjoy tab-completion features. To do this, run:
 
-:::zone pivot="platform-windows"
+::: zone pivot="platform-windows"
 
 ```bash
 ./vcpkg integrate powershell
 ```
 
-:::zone-end
-:::zone pivot="platform-linux"
+::: zone-end
+::: zone pivot="platform-linux"
 
 ```bash
 ./vcpkg integrate bash
 ```
 
-:::zone-end
-:::zone pivot="platform-macos"
+::: zone-end
+::: zone pivot="platform-macos"
 
 ```bash
 ./vcpkg integrate zsh
 ```
 
-:::zone-end
+::: zone-end
 
 The `vcpkg integrate bash` command sets up bash shell integration for vcpkg, which adds vcpkg tab-completion support to the current user's `.bashrc`.
 

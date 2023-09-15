@@ -7,6 +7,6 @@ groups:
   - id: platform-windows
     title: Windows
   - id: platform-macos
-    title: macOS
+    title: Mac
   - id: platform-linux
     title: Linux
