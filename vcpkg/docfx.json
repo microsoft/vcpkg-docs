@@ -68,7 +68,7 @@
       "searchScope": [
         "vcpkg"
       ],
-      "zone_pivot_group_filename": "core/zone-pivot-groups.json"
+      "zone_pivot_group_filename": "zone-pivot-groups.json"
     },
     "fileMetadata": {
       "author": {
