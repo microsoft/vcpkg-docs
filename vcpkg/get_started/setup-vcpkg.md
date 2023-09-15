@@ -1,12 +1,12 @@
 ---
 title: Install vcpkg
 description: Tutorial for installing vcpkg on Windows, macOS, or Linux systems
+zone_pivot_groups: operating-systems
 author: JavierMatosD
 ms.topic: tutorial
 ms.date: 08/31/2023
 ms.author: javiermat
 ms.prod: vcpkg
-zone_pivot_groups: operating-systems
 ---
 
 # Tutorial: Install vcpkg
