@@ -264,6 +264,8 @@
           href: commands/format-manifest.md
         - name: vcpkg hash
           href: commands/hash.md
+        - name: commands/help
+          href: commands/help.md
         - name: vcpkg install
           href: commands/install.md
         - name: vcpkg integrate
