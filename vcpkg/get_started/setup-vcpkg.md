@@ -7,13 +7,15 @@ ms.date: 08/31/2023
 ms.author: javiermat
 ms.prod: vcpkg
 ---
+
+zone_pivot_groups: bootstrap-vcpkg
+
 # Tutorial: Install vcpkg
 
-This tutorial provides a step-by-step guide for installing vcpkg on a Windows, macOS, or Linux system. You should follow this tutorial if you want to set up vcpkg independently on a development machine or continuous integration system. If you are a Visual Studio or Visual Studio Code user, see the following tutorials for more specific instructions: 
+This tutorial provides a step-by-step guide for installing vcpkg on a Windows, macOS, or Linux system. You should follow this tutorial if you want to set up vcpkg independently on a development machine or continuous integration system. If you are a Visual Studio or Visual Studio Code user, see the following tutorials for more specific instructions:
 
 - [Use vckg from Visual Studio IDE]()
 - [Use vckg from Visual Studio Code]()
-
 
 ## Prerequisites
 
@@ -36,9 +38,35 @@ The vcpkg open-source registry is a set of over 2,000 free libraries that have b
 
 Now that you have cloned the vcpkg repository, navigate to the `vcpkg` directory and execute the bootstrap script:
 
+:::zone target="{platform-linux}" pivot="{pivot}"
+{
+
 ```bash
 cd vcpkg && ./bootstrap-vcpkg.sh
 ```
+
+}
+:::zone-end
+
+:::zone target="{platform-windows}" pivot="{pivot}"
+{
+
+```bash
+cd vcpkg && ./bootstrap-vcpkg.bat
+```
+
+}
+:::zone-end
+
+:::zone target="{platform-windows}" pivot="{pivot}"
+{
+
+```bash
+cd vcpkg && ./bootstrap-vcpkg.sh
+```
+
+}
+:::zone-end
 
 The shell script performs prerequisite checks, downloads the vcpkg executable, and manages telemetry settings.
 

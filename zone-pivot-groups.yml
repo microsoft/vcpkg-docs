@@ -1,0 +1,11 @@
+# YamlMime:ZonePivotGroups
+groups:
+- id: bootstrap-vcpkg
+  title: Bootstrap commands
+  pivots:
+  - id: platform-windows
+    title: Windows
+  - id: platform-macos
+    title: macOS
+  - id: platform-linux
+    title: Linux
