@@ -6,7 +6,7 @@ ms.topic: tutorial
 ms.date: 08/31/2023
 ms.author: javiermat
 ms.prod: vcpkg
-metadata: zone_pivot_groups: platforms
+zone_pivot_groups: platforms
 ---
 
 # Tutorial: Install vcpkg
