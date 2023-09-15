@@ -37,7 +37,7 @@ The vcpkg open-source registry is a set of over 2,000 free libraries that have b
 
 Now that you have cloned the vcpkg repository, navigate to the `vcpkg` directory and execute the bootstrap script:
 
-:::zone pivot="platform-windows"
+:::zone target="{target}" pivot="platform-windows"
 
 ```bash
 cd vcpkg && ./bootstrap-vcpkg.bat
