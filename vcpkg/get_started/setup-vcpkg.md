@@ -1,7 +1,7 @@
 ---
 title: Install vcpkg
 description: Tutorial for installing vcpkg on Windows, macOS, or Linux systems
-zone_pivot_group_filename: ../zone-pivot-groups.json
+zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: operating-systems
 author: JavierMatosD
 ms.topic: tutorial
