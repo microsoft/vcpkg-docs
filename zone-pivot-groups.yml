@@ -1,7 +1,7 @@
 # YamlMime:ZonePivotGroups
 groups:
-- id: bootstrap-vcpkg
-  title: Platform 
+- id: platforms
+  title: Platforms
   prompt: Choose a platform
   pivots:
   - id: platform-windows
