@@ -8,18 +8,17 @@ ms.topic: tutorial
 ms.date: 08/31/2023
 ms.author: javiermat
 ms.prod: vcpkg
+#CustomerIntent: As a user, I want to install vcpkg for my operating system.
 ---
 
 # Tutorial: Install vcpkg
 
-This tutorial provides a step-by-step guide for installing vcpkg on a Windows, macOS, or Linux system. You should follow this tutorial if you want to set up vcpkg independently on a development machine or continuous integration system. If you are a Visual Studio or Visual Studio Code user, see the following tutorials for more specific instructions:
+This tutorial provides a step-by-step guide for installing vcpkg on a Windows, macOS, or Linux system. Follow this tutorial if you want to set up vcpkg on a development machine or continuous integration system. If you are a Visual Studio or Visual Studio Code user, see the following tutorials instructions to use vcpkg within the editor:
 
 - [Use vckg from Visual Studio IDE]()
 - [Use vckg from Visual Studio Code]()
 
 ## Prerequisites
-
-The following is required for this tutorial:
 
 - A terminal to work in.
 - `Git`
@@ -53,9 +52,9 @@ cd vcpkg && ./bootstrap-vcpkg.sh
 
 ::: zone-end
 
-The shell script performs prerequisite checks, downloads the vcpkg executable, and manages telemetry settings.
+The bootstrap script performs prerequisite checks, downloads the vcpkg executable, and manages telemetry settings.
 
-## 3 - Integrate with terminal
+## 3 - Enable terminal auto-completion (optional)
 
 You'll want to integrate vcpkg into your terminal to enjoy tab-completion features. To do this, run:
 
