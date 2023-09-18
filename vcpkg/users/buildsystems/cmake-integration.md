@@ -1,29 +1,47 @@
 ---
-title: CMake Integration
+title: vcpkg in CMake projects
 description: Integrate vcpkg into a CMake project using Visual Studio, Visual Studio Code, a terminal, or other IDEs.
+author: vicroms
+ms.author: viromer
+ms.prod: vcpkg
 ms.date: 11/30/2022
+ms.topic: conceptual
 ---
+# vcpkg in CMake projects
 
-# CMake Integration
+vcpkg offers seamless integration with CMake to make installed packages available automatically in
+your CMake projects. The mecahnism in which vcpkg integrates is by providing a CMake toolchain file.
 
-It is important to understand how vcpkg hooks in to CMake to make packages available, and especially when and how vcpkg executes its dependency acquisition and build steps for manifest mode.
+The first time CMake configures a project, it runs internal search routines to locate a viable
+[toolchain](<https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#id9>) (compiler,
+linker, etc.). This search happens within the
+`[project()](https://cmake.org/cmake/help/latest/command/project.html#command:project)` function in
+your `CMakeLists.txt`.
 
-By default, the first time CMake configures a build, it runs internal search routines to locate a viable
-"(toolchain)[<https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#id9>]" (compiler, linker, etc.). This search happens on the first call to `[project()](https://cmake.org/cmake/help/latest/command/project.html#command:project)` in your `CMakeLists.txt`.
+To customize the toolchain selection process, CMake supports using custom CMake-language scripts,
+known as toolchain files. A toolchain file is specified by setting the `CMAKE_TOOLCHAIN_FILE`
+variable. CMake evaluates the contents of the provided toolchain script, and sets variable definitions, paths to
+required build tools, and other build parameters, such as cross-compilation flags accordingly.
 
-To customize the toolchain selection process, CMake supports using custom CMake-language scripts, known as toolchain files. 
-A toolchain file is specified by setting `CMAKE_TOOLCHAIN_FILE`. CMake evaluates the contents of the toolchain script, and as result, sets variable definitions, paths to required build tools, and other build parameters, such as cross-compilation flags.
+When users set `CMAKE_TOOLCHAIN_FILE` to use the vcpkg toolchain
+(`<vcpkg-root>/scripts/buildsystems/vcpkg.cmake`). vcpkg takes advantage of the toolchain file
+mechanism to inject code to integrate with built-in CMake functions transparently to the user.
 
-vcpkg takes advantage of the toolchain file mechanism to inject code to integrate with built-in CMake functions seamlessly.
+Users can still use a toolchain file to configure thei own toolsets by using the
+[]`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](../users/triplets.md#VCPKG_CHAINLOAD_TOOLCHAIN_FILE) triplet variable.
+
 Th vcpkg integration works differently depending on the operation mode you're using:
 
 In [classic mode](../classic-mode.md), vcpkg sets CMake search paths appropriately to make 
 installed packages available via the `find_package()`, `find_library()`, and `find_path()` functions.
 
-In [manifest mode](../manifests.md), the vcpkg toolchain, after injecting the vcpkg integration code, executes `vcpkg install` to install all the dependencies specified in your `vcpkg.json` file.
-**Therefore, in manifest mode, all vcpkg-provided dependencies are downloaded and compiled the first time `project()` is called**. 
-A consequence of this is that all CMake-level variables impacting vcpkg's build steps must be defined _before_ the `project()` function call. 
-Packages are built as necessary when the project is configured, any modifications that modify the package's [ABI hash](../binarycaching.md#abi-hash) results in a rebuild of the dependencies.
+In [manifest mode](../manifests.md), in addition to the above, the toolchain detects manifest files
+(`vcpkg.json` files) and runs `vcpkg install` to acquire the dependencies of the project automatically.
+
+Because the toolchain file is evaluated during the `project()` call. All CMake-level variables that
+modify a vcpkg setting must be set before the first call to `project()`. It may also be necessary to
+reconfigure your CMake project if you modify any vcpkg setting that results in any [ABI
+hashes](../binarycaching.md#abi-hash) to change.
 
 See [Installing and Using Packages Example: sqlite](../../examples/installing-and-using-packages.md) for a fully worked example using CMake.
 

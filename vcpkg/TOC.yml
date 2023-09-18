@@ -219,6 +219,8 @@
       href: users/buildsystems/cmake-integration.md
     - name: MSBuild integration
       href: users/buildsystems/msbuild-integration.md
+    - name: Manual integration
+      href: users/buildsystems/manual-integration.md
   - name: Classic mode
     href: users/classic-mode.md
   - name: Cross-compilation
