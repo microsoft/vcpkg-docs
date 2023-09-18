@@ -1,23 +1,39 @@
 ---
-title: MSBuild Integration
+title: vcpkg in MSBuild projects
 description: Integrate vcpkg into an MSBuild or Visual Studio project.
-ms.date: 11/30/2022
+author: vicroms
+ms.author: viromer
+ms.prod: vcpkg
+ms.date: 9/18/2023
 ---
-# MSBuild integration (Visual Studio)
+# vcpkg in MSBuild projects
 
 ## Integration methods
 
 ### User-wide integration
 
-```console
+To use vcpkg in your MSBuild projects run the following command:
+
+```Console
 vcpkg integrate install
 ```
 
-This will implicitly add Include Directories, Link Directories, and Link Libraries for all packages installed with vcpkg to all VS2015, VS2017, VS2019, and VS2022 MSBuild projects. We also add a post-build action for executable projects that will analyze and copy any DLLs you need to the output folder, enabling a seamless F5 experience.
+You only need to run the [`vcpkg integrate install`](../../commands/integrate.md#vcpkg-integrate-install)
+command the first time you want to enable MSBuild integration. This enables MSBuild integration for all
+your existing and future projects. Use [`vcpkg integrate remove`](../../commands/integrate.md#vcpkg-integrate-remove)
+to remove MSBuild user-wide integration.
 
-For the vast majority of libraries, this is all you need to do: open **File** > **New Project** and write code! However, some libraries perform conflicting behaviors such as redefining `main()`. Since you need to choose per-project which of these conflicting options you want, you will need to add those libraries to your linker inputs manually.
+This integration method automatically adds vcpkg-installed packages to the following project properties:
+Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action
+that ensures that any required DLLs are copied in the build output folder. This works for all solutions and
+projects using VS2015 or newer.
 
-Here are some examples, though this is not an exhaustive list:
+For the vast majority of libraries, this is all you need to do. However, some libraries perform
+conflicting behaviors such as redefining `main()`. Since you need to choose per-project which of
+these conflicting options you want, you will need to add those libraries to your linker inputs
+manually.
+
+Here is a not an exhaustive list of examples where manual linking is necessary:
 
 - Gtest provides `gtest`, `gmock`, `gtest_main`, and `gmock_main`
 - SDL2 provides `SDL2main`
