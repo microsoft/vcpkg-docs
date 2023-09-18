@@ -6,35 +6,10 @@
     href: examples/installing-and-using-packages.md
   - name: Getting Started with Manifest mode
     href: examples/manifest-mode-cmake.md
-  - name: Manifest mode
-    href: users/manifests.md
-  - name: Classic mode
-    href: users/classic-mode.md
-  - name: Triplets
-    href: users/triplets.md
-  - name: Buildsystems
-    items:
-    - name: CMake Integration
-      href: users/buildsystems/cmake-integration.md
-    - name: MSBuild (Visual Studio) Integration
-      href: users/buildsystems/msbuild-integration.md
-    - name: Manual Integration
-      href: users/buildsystems/manual-integration.md
-  - name: Platforms
-    items:
-    - name: Android
-      href: users/platforms/android.md
-    - name: MinGW
-      href: users/platforms/mingw.md
   - name: Using Registries
     href: users/registries.md
-  - name: Versioning Concepts
-    href: users/versioning.concepts.md
   - name: Versioning Reference
     href: users/versioning.md
-  - name: Asset Caching
-    displayName: airgap, offline, source, mirror
-    href: users/assetcaching.md
   - name: Binary Caching
     displayName: binaries, build
     href: users/binarycaching.md
@@ -236,6 +211,40 @@
     href: maintainers/handling-usage-files.md
   - name: CONTROL Files (deprecated)
     href: maintainers/control-files.md
+- name: Concepts
+  items:
+  - name: Build-system integration
+    items:
+    - name: CMake integration
+      href: users/buildsystems/cmake-integration.md
+    - name: MSBuild integration
+      href: users/buildsystems/msbuild-integration.md
+  - name: Classic mode
+    href: users/classic-mode.md
+  - name: Cross-compilation
+    items:
+    - name: Android
+      href: users/platforms/android.md
+    - name: MinGW
+      href: users/platforms/mingw.md
+    - name: Xbox
+      href: users/platforms/xbox.md
+  - name: Manifests
+    href: users/manifests.md
+  - name: Open-source registry
+    items:
+    - name: Maintainer Guide
+      href: contributing/maintainer-guide.md
+    - name: CMake Style Guide
+      href: contributing/cmake-guidelines.md
+    - name: PR Review Checklist
+      href: contributing/pr-review-checklist.md
+  - name: Script ports
+    href: users/authoring-script-ports.md
+  - name: Triplets
+    href: users/triplets.md
+  - name: Versioning
+    href: users/versioning.concepts.md
 - name: Reference
   items:
     - name: vcpkg.json Reference
@@ -286,14 +295,9 @@
           href: commands/upgrade.md
         - name: vcpkg version
           href: commands/version.md
-- name: Contributing to vcpkg
-  items:
-  - name: Maintainer Guide
-    href: contributing/maintainer-guide.md
-  - name: CMake Style Guide
-    href: contributing/cmake-guidelines.md
-  - name: PR Review Checklist
-    href: contributing/pr-review-checklist.md
+    - name: Asset Caching
+      displayName: airgap, offline, source, mirror
+      href: users/assetcaching.md
 - name: About
   items:
   - name: FAQ
