@@ -1,6 +1,7 @@
 - name: vcpkg Documentation
   href: index.yml
-- name: Consuming Libraries
+- name: Consume packages
+  expanded: true
   items:
   - name: Getting Started with Classic mode
     href: examples/installing-and-using-packages.md
@@ -24,7 +25,8 @@
       href: users/examples/versioning.getting-started.md
     - name: Create a x-script Asset Caching source for NuGet
       href: examples/asset-caching-source-nuget.md
-- name: Packaging Libraries
+- name: Produce packages
+  expanded: true
   items:
   - name: Tutorials
     items:
