@@ -1,5 +1,5 @@
 ---
-title: Install and use packages on Linux
+title: Install and use packages on Linux with vcpkg
 description: Tutorial guides the user through the process of installing and using packages on Linux with vcpkg.
 author: JavierMatosD
 ms.author: javiermat
@@ -15,8 +15,6 @@ This tutorial shows how to set up a C++ "Hello World" CMake project using the `f
 
 ## Prerequisites
 
-The following is required for this tutorial:
-
 - A terminal to work in.
 - `git`, `CMake`, and a C++ compiler installed on your system
 - vcpkg installed on your system
@@ -25,9 +23,9 @@ The following is required for this tutorial:
 
 1. Create the project directory
 
-    This tutorial assumes your project will be located at the path `/home/helloworld`. If you intend to place your project somewhere else, replace any references to that path with your preferred path.
+    This tutorial assumes your project is located in `/home/helloworld`. If you intend to place your project somewhere else, replace any references to that path with your preferred path.
 
-    Create the "helloworld" directory for the new project next to your vcpkg clone and navigate into it:
+    Create a directory named "helloworld" to contain your project files, put it right next to your vcpkg directory. Then, navigate to your project directory.
 
     ```bash
     mkdir helloworld && cd helloworld
@@ -35,7 +33,7 @@ The following is required for this tutorial:
 
 2. Create the manifest
 
-    Next, create a `vcpkg.json` manifest file in your project directory. vcpkg reads this file to learn what dependencies to install.
+    Next, create a file named `vcpkg.json` in your project's directory, this is your manifest file. vcpkg reads the manifest file to learn what dependencies to install.
 
     From within the `helloworld` directory, run:
 
