@@ -17,7 +17,7 @@ vcpkg help [topic]
 
 ## Description
 
-The help command displays information about various vcpkg commands and topics on the terminal. You can specify a particular topic to get information about, or use it without any arguments to see the usage of all available commands.
+The help command displays information about various vcpkg commands and topics on the terminal. You can specify a particular topic to get information about or use it without any arguments to see a list of all available commands.
 
 ### Examples
 
