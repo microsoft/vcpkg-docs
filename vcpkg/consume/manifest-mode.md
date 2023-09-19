@@ -26,22 +26,30 @@ Manifest mode is also required to use advanced features like
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
-> * [Create a project with a manifest]
-> * [Install dependencies]
-> * [Build the project]
+> * [1 - Create a project with a manifest]
+> * [2 - Integrate vcpkg with your buildsystem]
+> * [3 - Install the manifest dependencies]
+> * [4 - Build the project]
 
-## Create a project with a manifest
 
-For this tutorial, we use the following source file:
+## Prerequisites
 
-`main.cxx`:
+* vcpkg
+* A terminal
+* A code editor
+* A C++ compiler
+* (Optional) CMake or MSBuild
+
+## 1 - Create a project with a manifest
+
+In a new folder, create a source file named `main.cxx` with these contents:
 
 :::code language="cxx" source="../examples/snippets/manifest-mode-cmake/main.cxx":::
 
 The code references the open-source libraries: `cxxopts`, `fmt`, and `range-v3`; which are all
 available in the vcpkg public registry at <https://github.com/Microsoft/vcpkg>.
 
-To satisfy these dependencies, create a file named `vcpkg.json` in the project's folder:
+To declare these dependencies, create a file named `vcpkg.json` in the project's folder:
 
 `vcpkg.json`:
 
@@ -50,16 +58,18 @@ To satisfy these dependencies, create a file named `vcpkg.json` in the project's
 You only need to specify your direct dependencies in the `"dependencies"` list. When it runs, vcpkg
 resolves and installs any required transitive dependencies.
 
-## Install the dependencies
+## 2 - Integrate vcpkg with your buildsystem
+
+In this step we show you how to integrate vcpkg with CMake or MSBuild, so that your project dependencies get
+automatically installed whenever you build the project. If you're using a different build system skip to the
+next step: [3 - Install the manifest dependencies]().
 
 ### [MSBuild](#tab/msbuild)
 
 > [!div class="nextstepaction"]
 > [Learn more about using vcpkg from MSBuild](../users/buildsystems/msbuild-integration.md)
 
-### Enable user-wide integration (MSBuild)
-
-To use [vcpkg in your MSBuild projects](../users/buildsystems/msbuild-integration.md) run the
+To use [vcpkg in your MSBuild projects](../users/buildsystems/msbuild-integration.md), run the
 following command:
 
 ```Console
@@ -76,7 +86,77 @@ Include Directories, Link Directories, and Link Libraries. Additionally, this cr
 that ensures that any required DLLs are copied into the build output folder. This works for all solutions and
 projects using VS2015 or newer.
 
-### Build the project (MSBuild)
+### [CMake](#tab/cmake)
+
+> [!div class="nextstepaction"]
+> [Lear more about using vcpkg from CMake](../users/buildsystems/cmake-integration.md)
+
+To use [vcpkg in your CMake projects](../users/buildsystems/cmake-integration.md), you need to set the
+`CMAKE_TOOLCHAIN_FILE` variable to use vcpkg's CMake toolchain file. The vcpkg toolchain is located in
+`%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake`, where `%VCPKG_ROOT%` is your vcpkg's installation path.
+
+To set the toolchain file use any of these methods:
+
+* Set the `CMAKE_TOOLCHAIN_FILE` in your CMakePresets.json file.
+* Pass `-DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake` as a parameter in your
+CMake configure call.
+* Set the `CMAKE_TOOLCHAIN_FILE` CMake variable before the first call to `project()` in your
+`CMakeLists.txt` file.
+
+---
+
+## 3 - Install the manifest dependencies
+
+If you're using CMake or MSBuild and followed the previous step, you can skip ahead to the next step:
+[4 - Build the project]().
+
+If you're using a different build system or want to install the dependencies manually, all you need to do
+is run the `vcpkg install` command in the directory containing your manifest file.
+
+```console
+PS D:\projects\manifest-example> vcpkg install
+Detecting compiler hash for triplet x64-windows...
+The following packages will be built and installed:
+    cxxopts:x64-windows -> 3.1.1
+    fmt:x64-windows -> 10.0.0
+    range-v3:x64-windows -> 0.12.0#1
+  * vcpkg-cmake:x64-windows -> 2023-05-04
+  * vcpkg-cmake-config:x64-windows -> 2022-02-06#1
+Additional packages (*) will be modified to complete this operation.
+Installing 1/5 vcpkg-cmake-config:x64-windows...
+Installing 2/5 vcpkg-cmake:x64-windows...
+Installing 3/5 cxxopts:x64-windows...
+Installing 4/5 fmt:x64-windows...
+Installing 5/5 range-v3:x64-windows...
+Total install time: 48 s
+cxxopts provides CMake targets:
+
+    # this is heuristically generated, and may not be correct
+    find_package(cxxopts CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE cxxopts::cxxopts)
+
+The package fmt provides CMake targets:
+
+    find_package(fmt CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE fmt::fmt)
+
+    # Or use the header-only version
+    find_package(fmt CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE fmt::fmt-header-only)
+
+range-v3 provides CMake targets:
+
+    # this is heuristically generated, and may not be correct
+    find_package(range-v3 CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE range-v3::meta range-v3::concepts range-v3::range-v3)
+```
+
+Once the command has finished, all built packages are installed in a `vcpkg_installed` in the
+directory containing the manifest file.
+
+## 4 - Build the project
+
+### [MSBuild](#tab/build-MSBuild)
 
 By default, manifest mode is disabled in MSBuild projects.
 
@@ -88,7 +168,7 @@ To enable manifests in your project, set the `VcpkgEnableManifest` property in y
 </PropertyGroup>
 ```
 
-Alternatively you can enable manifest mode in your MSBuild call: `msbuild /p:VcpkgEnableManifest=true`.
+Alternatively you can enable manifest mode in your MSBuild call by passing `msbuild /p:VcpkgEnableManifest=true` as a parameter.
 
 ```Console
 PS D:\projects\manifest-example> msbuild /p:VcpkgEnableManifest=true
@@ -141,31 +221,7 @@ Done Building Project "D:\projects\manifest-example\manifest-example.sln" (defau
 Build succeeded.
 ```
 
-### [Visual Studio (MSBuild)](#tab/visual-studio-with-msbuild)
-
-> [!div class="nextstepaction"]
-> [Learn more about using vcpkg from Visual Studio](../users/buildsystems/msbuild-integration.md)
-
-### Enable user-wide integration (Visual Studio)
-
-To use [vcpkg in your Visual Studio projects](../users/buildsystems/msbuild-integration.md) run the
-following command:
-
-```Console
-vcpkg integrate install
-```
-
-You only need to run the [`vcpkg integrate install`](../commands/integrate.md#vcpkg-integrate-install)
-command the first time you want to enable MSBuild integration. This enables MSBuild integration for all
-your existing and future projects. Use [`vcpkg integrate remove`](../commands/integrate.md#vcpkg-integrate-remove)
-to remove MSBuild system-wide integration.
-
-This integration method automatically adds vcpkg-installed packages to the following project properties:
-Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action
-that ensures that any required DLLs are copied into the build output folder. This works for all solutions and
-projects using VS2015 or newer.
-
-### Enable vcpkg manifests
+### [Visual Studio](#tab/build-visual-studio)
 
 By default, manifest mode is disabled in Visual Studio projects. To enable manifests, open the
 project's Properties window and set `Use Vcpkg Manifest` to "Yes" in the vcpkg tab.
@@ -175,7 +231,7 @@ Screenshot of a Visual Studio project properties window. The VCPKG tab is select
 option named "use VCPKG manifest" is highlighted with its value set to "Yes".
 :::image-end:::
 
-### Build the project (Visual Studio)
+Build the project.
 
 ```Console
 Build started...
@@ -197,15 +253,9 @@ Build started...
 ========== Build started at 12:07 PM and took 15.320 seconds ==========
 ```
 
-### [CMake](#tab/cmake-integration)
+### [CMake](#tab/build-cmake)
 
-> [!div class="nextstepaction"]
-> [Learn more about using vcpkg from CMake](../users/buildsystems/cmake-integration.md)
-
-### Create a `CMakeLists.txt` file
-
-The vcpkg tool integrates with CMake through the [vcpkg toolchain
-file](../users/buildsystems/cmake-integration.md#cmake_toolchain_file).
+1 - Create a CMakeLists.txt file
 
 Add the following `CMakeLists.txt` file in the project folder:
 
@@ -213,14 +263,14 @@ Add the following `CMakeLists.txt` file in the project folder:
 
 :::code language="cmake" source="../examples/snippets/manifest-mode-cmake/CMakeLists.txt":::
 
-### Configure the project
+2 - Configure your CMake project
 
-Add `-DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake` as a parameter to the
-CMake configure call and vcpkg will be automatically invoked to install the manifest dependencies.
+Run the following command: `cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake`,
+substitute `%VCPKG_ROOT%` with your vcpkg intallation path.
 
-The command should look something like this: `cmake -B <build directory> -S <source directory> -DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake`
+Notice how the project's dependencies are automatically installed while configuring the project.
 
-```Console
+```
 PS D:\projects\manifest-example> cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=D:\vcpkg\scripts\buildsystems\vcpkg.cmake
 -- Running vcpkg install
 Detecting compiler hash for triplet x64-windows...
@@ -244,9 +294,9 @@ The following packages will be built and installed:
 -- Build files have been written to: D:/projects/manifest-example/build
 ```
 
-### Build the project (CMake)
+3 - Build the CMake project
 
-Once the configure step is completed, build the project with `cmake --build <build directory>`:
+Run the follwogin command to build the project: `cmake --build build`:
 
 ```Console
 PS D:\projects\manifest-example> cmake --build build
@@ -259,54 +309,6 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   fibo.vcxproj -> D:\projects\manifest-example\build\Debug\fibo.exe
   Building Custom Rule D:\projects\manifest-example\CMakeLists.txt
 ```
-
-### [Manual installation](#tab/manual-installation)
-
-> [!div class="nextstepaction"]
-> [Learn more about manually integrating vcpkg in your build system](../users/buildsystems/manual-integration.md)
-
-In a terminal, open the project's folder and run the [`vcpkg install`](../commands/install.md) command.
-
-```Console
-PS D:\projects\manifest-example> D:\vcpkg\vcpkg.exe install
-Detecting compiler hash for triplet x64-windows...
-The following packages will be built and installed:
-    cxxopts:x64-windows -> 3.1.1
-    fmt:x64-windows -> 10.0.0
-    range-v3:x64-windows -> 0.12.0#1
-  * vcpkg-cmake:x64-windows -> 2023-05-04
-  * vcpkg-cmake-config:x64-windows -> 2022-02-06#1
-Additional packages (*) will be modified to complete this operation.
-Installing 1/5 vcpkg-cmake-config:x64-windows...
-Installing 2/5 vcpkg-cmake:x64-windows...
-Installing 3/5 cxxopts:x64-windows...
-Installing 4/5 fmt:x64-windows...
-Installing 5/5 range-v3:x64-windows...
-Total install time: 48 s
-cxxopts provides CMake targets:
-
-    # this is heuristically generated, and may not be correct
-    find_package(cxxopts CONFIG REQUIRED)
-    target_link_libraries(main PRIVATE cxxopts::cxxopts)
-
-The package fmt provides CMake targets:
-
-    find_package(fmt CONFIG REQUIRED)
-    target_link_libraries(main PRIVATE fmt::fmt)
-
-    # Or use the header-only version
-    find_package(fmt CONFIG REQUIRED)
-    target_link_libraries(main PRIVATE fmt::fmt-header-only)
-
-range-v3 provides CMake targets:
-
-    # this is heuristically generated, and may not be correct
-    find_package(range-v3 CONFIG REQUIRED)
-    target_link_libraries(main PRIVATE range-v3::meta range-v3::concepts range-v3::range-v3)
-```
-
-Once the command has finished, there will be a new folder named `vcpkg_installed` in your project's
-directory containing all the built packages.
 
 ---
 
