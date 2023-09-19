@@ -6,10 +6,11 @@ ms.author: viromer
 ms.date: 8/10/2023
 ms.prod: vcpkg
 ms.topic: tutorial
+#CustomerIntent: As a beginner vcpkg user, I want to learn how to install my project dependencies using vcpkg in manifest mode
 ---
 # Tutorial: Install a dependency from a manifest file
 
-vcpkg has two operation modes: classic mode, and manifest mode. This article describes how to install packages using manifest mode, which is the recommended workflow for most users.
+vcpkg has two operation modes: classic mode and manifest mode. This article describes how to install packages using manifest mode, which is the recommended workflow for most users.
 
 In manifest mode, you declare your project's direct dependencies in a manifest file named
 [`vcpkg.json`](../reference/vcpkg-json.md).
@@ -72,7 +73,7 @@ to remove MSBuild system-wide integration.
 
 This integration method automatically adds vcpkg-installed packages to the following project properties:
 Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action
-that ensures that any required DLLs are copied in the build output folder. This works for all solutions and
+that ensures that any required DLLs are copied into the build output folder. This works for all solutions and
 projects using VS2015 or newer.
 
 ### Build the project (MSBuild)
@@ -161,7 +162,7 @@ to remove MSBuild system-wide integration.
 
 This integration method automatically adds vcpkg-installed packages to the following project properties:
 Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action
-that ensures that any required DLLs are copied in the build output folder. This works for all solutions and
+that ensures that any required DLLs are copied into the build output folder. This works for all solutions and
 projects using VS2015 or newer.
 
 ### Enable vcpkg manifests
