@@ -8,11 +8,6 @@
     href: examples/manifest-mode-cmake.md
   - name: Using Registries
     href: users/registries.md
-  - name: Versioning Reference
-    href: users/versioning.md
-  - name: Binary Caching
-    displayName: binaries, build
-    href: users/binarycaching.md
   - name: Remote Authentication
     href: users/authentication.md
   - name: Examples
@@ -41,9 +36,6 @@
       href: examples/patching.md
     - name: Adding explicit usage text
       href: examples/adding-usage.md
-  - name: Authoring Script Ports
-    displayName: helpers, scripts, reusable, function, reuse
-    href: maintainers/authoring-script-ports.md
   - name: Creating Registries
     href: maintainers/registries.md
   - name: Provide usage documentation for your packages
@@ -86,7 +78,7 @@
     - name: PR Review Checklist
       href: contributing/pr-review-checklist.md
   - name: Script ports
-    href: users/authoring-script-ports.md
+    href: maintainers/authoring-script-ports.md
   - name: Triplets
     href: users/triplets.md
   - name: Versioning
@@ -144,6 +136,9 @@
     - name: Asset Caching
       displayName: airgap, offline, source, mirror
       href: users/assetcaching.md
+    - name: Binary Caching
+      displayName: binaries, build
+      href: users/binarycaching.md
     - name: Environment variables
       href: users/config-environment.md
     - name: Portfile functions
@@ -300,6 +295,8 @@
           href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
     - name: Portfile variables
       href: maintainers/variables.md
+    - name: Versioning
+      href: users/versioning.md
 - name: About
   items:
   - name: FAQ
