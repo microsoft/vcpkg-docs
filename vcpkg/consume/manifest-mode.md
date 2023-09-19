@@ -62,7 +62,7 @@ resolves and installs any required transitive dependencies.
 
 In this step we show you how to integrate vcpkg with CMake or MSBuild, so that your project dependencies get
 automatically installed whenever you build the project. If you're using a different build system skip to the
-next step: [3 - Install the manifest dependencies]().
+next step: [3 - Install the manifest dependencies].
 
 ### [MSBuild](#tab/msbuild)
 
@@ -108,7 +108,7 @@ CMake configure call.
 ## 3 - Install the manifest dependencies
 
 If you're using CMake or MSBuild and followed the previous step, you can skip ahead to the next step:
-[4 - Build the project]().
+[4 - Build the project].
 
 If you're using a different build system or want to install the dependencies manually, all you need to do
 is run the `vcpkg install` command in the directory containing your manifest file.
@@ -322,3 +322,10 @@ Here are some additional tasks to try next:
 * Lock down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
 * Reuse binaries across continuous integration runs using [binary caching](../users/binarycaching.md)
 * Manage your private libraries using custom [registries](../maintainers/registries.md)
+
+
+
+[1 - Create a project with a manifest]: #1---create-a-project-with-a-manifest
+[2 - Integrate vcpkg with your buildsystem]: #2---integrate-vcpkg-with-your-buildsystem
+[3 - Install the manifest dependencies]: #3---install-the-manifest-dependencies
+[4 - Build the project]: #4---build-the-project
