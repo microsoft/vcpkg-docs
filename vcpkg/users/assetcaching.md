@@ -11,13 +11,13 @@ ms.date: 9/18/2023
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
-vcpkg can use download mirrors to upload and restore assets, ensuring continued operation even when
-the original download endpoints change or disappear.
+vcpkg can use download mirrors to upload and restore assets, such as sources and build tools.
 
 Asset caching can help with these common development scenarios:
 
-* Ensuring that download assets are available for continuous integration runs.
-* Mirroring download assets in a trusted location for air-gapped environments.
+* Improving reliability of continuous integration runs.
+* Mirroring download assets in trusted locations for air-gapped environments.
+* Maintaining continuity of business if third party sources are changed or become unavailable.
 
 This article describes configuring asset caching and the available storage backend options.
 
