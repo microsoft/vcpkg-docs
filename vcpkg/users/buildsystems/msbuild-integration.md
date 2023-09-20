@@ -82,7 +82,8 @@ section of the official MSBuild documentation for more information on `Directory
 
 ### Linked NuGet package
 
-> [!NOTE] This approach is not recommended for new projects, since it makes them difficult to share
+> [!NOTE] 
+> This approach is not recommended for new projects, since it makes them difficult to share
 > with others. For a portable, self-contained NuGet package, see the [`export
 > command`](../../commands/export.md).
 
