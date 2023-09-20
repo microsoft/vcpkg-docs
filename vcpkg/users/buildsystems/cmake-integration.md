@@ -4,7 +4,7 @@ description: Integrate vcpkg into a CMake project using a terminal, Visual Studi
 author: vicroms
 ms.author: viromer
 ms.prod: vcpkg
-ms.date: 11/30/2022
+ms.date: 9/20/2023
 ms.topic: conceptual
 ---
 # vcpkg in CMake projects
