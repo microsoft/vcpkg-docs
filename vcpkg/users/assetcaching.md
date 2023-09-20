@@ -16,16 +16,16 @@ the original download endpoints change or disappear.
 
 Asset caching can help with these common development scenarios:
 
-* Ensuring that download assets are available for continous integration runs.
+* Ensuring that download assets are available for continuous integration runs.
 * Mirroring download assets in a trusted location for air-gapped environments.
 
-This article describes the method to configure asset caching and the available storage backend options.
+This article describes configuring asset caching and the available storage backend options.
 
 ## Configuration
 
 Asset caching is configured via:
-* the `X_VCPKG_ASSET_SOURCES` environment variable, or
-* the `--x-asset-sources` command-line option.
+* The `X_VCPKG_ASSET_SOURCES` environment variable, or
+* The `--x-asset-sources` command-line option.
 
 In both cases, the expected value is a semicolon-delimited list of sources. Each source has a
 specific syntax depending on its storage backend.
@@ -34,8 +34,8 @@ Use a backtick (\`) to escape characters inside the source strings.
 
 ## Sources
 
-The `<rw>` parameter is optional and common to most of the sources described below. It controls
-access permisions for the specific source and accpets the values `read`, `write`, or `readwrite`
+The `<rw>` parameter is optional and common to most sources described below. It controls
+access permissions for the specific source and accepts the values `read`, `write`, or `readwrite`
 (defaults to `read`).
 
 ### `clear`
@@ -64,7 +64,7 @@ GET and PUT requests of the form `<url>/<sha512>?<sas>`.
 
 For example, a source configured as follows: `azurl,https://mydomain.com/vcpkg/,token=abc123,readwrite`, produces a request in the form: `https://mydomain.com/vcpkg/<sha512>?token=abc123`.
 
-Alternatively, you can use a fielsystem location as the endpoint, by using the
+Alternatively, you can use a filesystem location as the endpoint by using the
 `x-azurl,file://<filesystem-location>[,,<rw>]` pattern. 
 
 For example, `x-azurl,file:///Z:/vcpkg/assetcache/,,readwrite` configures a cache in the `Z:/`
@@ -76,7 +76,7 @@ The workflow of this asset source is:
 1. (If step 1 failed) Read from the original url
 1. (If step 2 succeeded) Write back to the mirror
 
-You can enable/disable steps 1 and 3 via the [`<rw>`](#sources) specifier and you can disable step 2 via
+You can enable/disable steps 1 and 3 via the [`<rw>`](#sources) specifier, and you can disable step 2 via
 `x-block-origin` below.
 
 See also the [binary caching documentation for Azure Blob Storage](binarycaching.md#azblob) for more information on how to set up an `x-azurl` source.
@@ -101,13 +101,13 @@ and `{dst}` parameters.
 The logic to restore and upload assets and to connect to the cache storage endpoint are responsibility
 of the command provided within the template.
 
-vcpkg will substitute this arguments when executing the command:
+vcpkg will substitute these arguments when executing the command:
 
 * `{url}`: the original download URL for the asset.
 * `{sha512}`: the expected SHA512 of the downloaded asset.
 * `{dst}`: the location where the downloaded asset is expected.
 
-The template command is run within vcpkg's build environment, this means that some environment
+The template command is run within vcpkg's build environment; this means that some environment
 variables like `PATH` may be modified by the triplet.
 
 ## Next step

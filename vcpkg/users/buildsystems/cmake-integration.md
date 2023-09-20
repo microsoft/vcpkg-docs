@@ -9,8 +9,8 @@ ms.topic: conceptual
 ---
 # vcpkg in CMake projects
 
-vcpkg offers seamless integration with CMake to make installed packages available automatically in
-your CMake projects. The mecahnism in which vcpkg integrates is by providing a CMake toolchain file.
+vcpkg offers seamless integration with CMake to make installed packages available in
+your projects automatically. The mechanism in which vcpkg integrates is by providing a CMake toolchain file.
 
 The first time CMake configures a project, it runs internal search routines to locate a viable
 [toolchain](<https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#id9>) (compiler,
@@ -20,14 +20,14 @@ your `CMakeLists.txt`.
 
 To customize the toolchain selection process, CMake supports using custom CMake-language scripts,
 known as toolchain files. A toolchain file is specified by setting the `CMAKE_TOOLCHAIN_FILE`
-variable. CMake evaluates the contents of the provided toolchain script, and sets variable definitions, paths to
-required build tools, and other build parameters, such as cross-compilation flags accordingly.
+variable. CMake evaluates the contents of the provided toolchain script and sets variable definitions, paths to
+required build tools, and other build parameters, such as cross-compilation flags, accordingly.
 
 When users set `CMAKE_TOOLCHAIN_FILE` to use the vcpkg toolchain
 (`<vcpkg-root>/scripts/buildsystems/vcpkg.cmake`). vcpkg takes advantage of the toolchain file
 mechanism to inject code to integrate with built-in CMake functions transparently to the user.
 
-Users can still use a toolchain file to configure thei own toolsets by using the
+Users can still use a toolchain file to configure their own toolsets by using the
 []`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](../users/triplets.md#VCPKG_CHAINLOAD_TOOLCHAIN_FILE) triplet variable.
 
 Th vcpkg integration works differently depending on the operation mode you're using:
@@ -36,12 +36,12 @@ In [classic mode](../classic-mode.md), vcpkg sets CMake search paths appropriate
 installed packages available via the `find_package()`, `find_library()`, and `find_path()` functions.
 
 In [manifest mode](../manifests.md), in addition to the above, the toolchain detects manifest files
-(`vcpkg.json` files) and runs `vcpkg install` to acquire the dependencies of the project automatically.
+(`vcpkg.json` files) and runs `vcpkg install` to automatically acquire the project's dependencies.
 
 Because the toolchain file is evaluated during the `project()` call. All CMake-level variables that
 modify a vcpkg setting must be set before the first call to `project()`. It may also be necessary to
 reconfigure your CMake project if you modify any vcpkg setting that results in any [ABI
-hashes](../binarycaching.md#abi-hash) to change.
+hashes](../binarycaching.md#abi-hash) changing.
 
 See [Installing and Using Packages Example: sqlite](../../examples/installing-and-using-packages.md) for a fully worked example using CMake.
 

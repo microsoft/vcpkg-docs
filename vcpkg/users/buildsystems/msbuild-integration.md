@@ -25,13 +25,12 @@ to remove MSBuild user-wide integration.
 
 This integration method automatically adds vcpkg-installed packages to the following project properties:
 Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action
-that ensures that any required DLLs are copied in the build output folder. This works for all solutions and
+that ensures that any required DLLs are copied into the build output folder. This works for all solutions and
 projects using VS2015 or newer.
 
-For the vast majority of libraries, this is all you need to do. However, some libraries perform
-conflicting behaviors such as redefining `main()`. Since you need to choose per-project which of
-these conflicting options you want, you will need to add those libraries to your linker inputs
-manually.
+This is all you need to do for the vast majority of libraries. However, some libraries perform
+conflicting behaviors, such as redefining `main()`. Since you need to choose per-project which of
+these conflicting options you want, you must manually add those libraries to your linker inputs.
 
 Here is a not an exhaustive list of examples where manual linking is necessary:
 
