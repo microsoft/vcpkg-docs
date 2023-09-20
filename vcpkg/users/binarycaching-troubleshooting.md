@@ -152,14 +152,12 @@ Possible solutions:
 
 ### Version of CMake, PowerShell, or your compiler changes between runs
 
-Somehow, your environment changes between runs. To verify that this indeed is the issue, temporarily disable including the compiler hash in your ABI by setting `VCPKG_DISABLE_COMPILER_TRACKING` to `ON` in your custom triplet. If the issue persists, fix tool versions with `--x-abi-tools-use-exact-versions`. It is not recommended to use these options in development or a production environment as they can cause errors that are very hard to diagnose.
+In these cases, vcpkg is behaving correctly. It is expected for toolchain changes to cause ABI hash changes as well. Rebuilds can be expensive, so we suggest the following:
 
-In these cases, vcpkg is behaving correctly. It is expected for toolchain changes to cause ABI hash changes as well. Rebuilds can be expensive however, so we have some suggestions for the following environments:
-
-* Continuous integration systems: Some continuous integration systems (such as GitHub Hosted Runners) use images that can update your C/C++ compiler or CMake version periodically. To minimize this, choose a versioned stable image if possible.
+* Continuous integration systems: Some systems such as GitHub Hosted Runners update the underlying image periodically. Updates may change your C/C++ compiler or CMake version, which will cause a rebuild. If possible, choose a versioned stable image.
 * MSVC compiler updates: Major, minor and patch updates to the MSVC compiler will cause your library ABI hash to change. To minimize this, turn off automatic Visual Studio updates.
 
-If the above options do not work, consider the following solutions:
+If the above options do not work, consider the following workarounds:
 
 * Use `vcpkg export` to package your libraries instead
 * Consider using a Docker image to build your libraries
