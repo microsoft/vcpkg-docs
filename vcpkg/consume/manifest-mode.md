@@ -17,20 +17,19 @@ workflow for most users.
 In manifest mode, you declare your project's direct dependencies in a manifest file named
 [`vcpkg.json`](../reference/vcpkg-json.md).
 
-Manifest files have their own `vcpkg_installed` directory where they install their dependencies,
+Manifest files have their own `vcpkg_installed` directory where they install dependencies,
 unlike classic mode, where all packages are installed in a common `%VCPKG_ROOT%/installed`
-directory. Manifests are suitable for using vcpkg with multiple codebases, as each codebase can have
-a different set of dependencies that do not interfere with each other.
+directory. Therefore, each project can have its own manifest and its own set of dependencies that do not conflict with other projects' dependencies.
 
 Manifest mode is also required to use advanced features like
 [versioning](../users/versioning.md) and [custom registries](../users/registries.md).
 
-In this tutorial, you learn how to:
+In this tutorial, you will learn how to:
 
 > [!div class="checklist"]
 > * [1 - Create a project with a manifest]
-> * [2 - Integrate vcpkg with your buildsystem]
-> * [3 - Install the manifest dependencies]
+> * [2 - Integrate vcpkg with your build system]
+> * [3 - Install dependencies]
 > * [4 - Build the project]
 
 
@@ -51,7 +50,7 @@ In a new folder, create a source file named `main.cxx` with these contents:
 The code references the open-source libraries: `cxxopts`, `fmt`, and `range-v3`; which are all
 available in the vcpkg public registry at <https://github.com/Microsoft/vcpkg>.
 
-To declare these dependencies, create a file named `vcpkg.json` in the project's folder:
+To declare these dependencies, create a file named `vcpkg.json` in the same directory as your project:
 
 `vcpkg.json`:
 
@@ -60,11 +59,11 @@ To declare these dependencies, create a file named `vcpkg.json` in the project's
 You only need to specify your direct dependencies in the `"dependencies"` list. When it runs, vcpkg
 resolves and installs any required transitive dependencies.
 
-## 2 - Integrate vcpkg with your buildsystem
+## 2 - Integrate vcpkg with your build system
 
-In this step we show you how to integrate vcpkg with CMake or MSBuild, so that your project dependencies get
-automatically installed whenever you build the project. If you're using a different build system skip to the
-next step: [3 - Install the manifest dependencies].
+In this step we show you how to integrate vcpkg with CMake or MSBuild, so that your project dependencies get automatically installed or restored whenever you build the project. 
+
+If you're using a different build system, skip to the next step: [3 - Install the manifest dependencies].
 
 ### [MSBuild](#tab/msbuild)
 
@@ -84,18 +83,18 @@ your existing and future projects. Use [`vcpkg integrate remove`](../commands/in
 to remove MSBuild system-wide integration.
 
 This integration method automatically adds vcpkg-installed packages to the following project properties:
-Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action
+`Include Directories`, `Link Directories`, and `Link Libraries`. Additionally, this creates a post-build action
 that ensures that any required DLLs are copied into the build output folder. This works for all solutions and
-projects using VS2015 or newer.
+projects using Visual Studio 2015 or newer.
 
 ### [CMake](#tab/cmake)
 
 > [!div class="nextstepaction"]
-> [Lear more about using vcpkg from CMake](../users/buildsystems/cmake-integration.md)
+> [Learn more about using vcpkg from CMake](../users/buildsystems/cmake-integration.md)
 
 To use [vcpkg in your CMake projects](../users/buildsystems/cmake-integration.md), you need to set the
 `CMAKE_TOOLCHAIN_FILE` variable to use vcpkg's CMake toolchain file. The vcpkg toolchain is in
-`%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake`, where `%VCPKG_ROOT%` is your vcpkg's installation path.
+`%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake`, where `%VCPKG_ROOT%` is your vcpkg installation path.
 
 To set the toolchain file use any of these methods:
 
@@ -107,13 +106,13 @@ CMake configure call.
 
 ---
 
-## 3 - Install the manifest dependencies
+## 3 - Install dependencies
 
 If you're using CMake or MSBuild and followed the previous step, you can skip ahead to the next step:
 [4 - Build the project].
 
 If you're using a different build system or want to install the dependencies manually, all you need to do
-is run the `vcpkg install` command in the directory containing your manifest file.
+is run `vcpkg install` in the directory containing your manifest file.
 
 ```console
 PS D:\projects\manifest-example> vcpkg install
@@ -153,8 +152,7 @@ range-v3 provides CMake targets:
     target_link_libraries(main PRIVATE range-v3::meta range-v3::concepts range-v3::range-v3)
 ```
 
-Once the command has finished, all built packages are installed in a `vcpkg_installed` in the
-directory containing the manifest file.
+When the command finishes, all built packages will be present in a `vcpkg_installed` directory. The specific location of this directory depends on your build system; usually, inside the build system's default output folder, or next to your `vcpkg.json` file. 
 
 ## 4 - Build the project
 
@@ -170,7 +168,7 @@ To enable manifests in your project, set the `VcpkgEnableManifest` property in y
 </PropertyGroup>
 ```
 
-Alternatively you can enable manifest mode in your MSBuild call by passing `msbuild /p:VcpkgEnableManifest=true` as a parameter.
+Alternatively, you can enable manifest mode in your MSBuild call by passing `msbuild /p:VcpkgEnableManifest=true` as a parameter.
 
 ```Console
 PS D:\projects\manifest-example> msbuild /p:VcpkgEnableManifest=true
@@ -225,15 +223,14 @@ Build succeeded.
 
 ### [Visual Studio](#tab/build-visual-studio)
 
-By default, manifest mode is disabled in Visual Studio projects. To enable manifests, open the
-project's Properties window and set `Use Vcpkg Manifest` to "Yes" in the vcpkg tab.
+By default, manifest mode is disabled in Visual Studio projects. To enable manifests, right-click your project in **Solution Explorer**, select **Properties**, select the **vcpkg** tab on the left, and set `Use Vcpkg Manifest` to **Yes**.
 
 :::image type="complex" source="../resources/vs-enable-vcpkg-manifest.png" alt-text="Screenshot of a Visual Studio's project Properties window.":::
 Screenshot of a Visual Studio project properties window. The VCPKG tab is selected and highlighted. The
 option named "use VCPKG manifest" is highlighted with its value set to "Yes".
 :::image-end:::
 
-Build the project.
+Build the project by right-clicking it in **Solution Explorer** and selecting **Build**.
 
 ```Console
 Build started...
@@ -257,7 +254,7 @@ Build started...
 
 ### [CMake](#tab/build-cmake)
 
-1 - Create a CMakeLists.txt file
+#### 1 - Create a CMakeLists.txt file
 
 Add the following `CMakeLists.txt` file in the project folder:
 
@@ -265,9 +262,9 @@ Add the following `CMakeLists.txt` file in the project folder:
 
 :::code language="cmake" source="../examples/snippets/manifest-mode-cmake/CMakeLists.txt":::
 
-2 - Configure your CMake project
+#### 2 - Configure your CMake project
 
-Run the following command: `cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake`,
+Run the following command: `cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake`, but
 substitute `%VCPKG_ROOT%` with your vcpkg installation path.
 
 Notice how the project's dependencies are automatically installed while configuring the project.
@@ -296,7 +293,7 @@ The following packages will be built and installed:
 -- Build files have been written to: D:/projects/manifest-example/build
 ```
 
-3 - Build the CMake project
+#### 3 - Build the CMake project
 
 Run the following command to build the project: `cmake --build build`:
 
@@ -320,12 +317,12 @@ In this guide, you installed dependencies for a simple project using a manifest 
 
 Here are some additional tasks to try next:
 
-* Install packages for custom platforms using [triplets](../users/triplets.md)
+* Install packages for custom platforms, compilers, or build architectures using [triplets](../users/triplets.md)
 * Lock down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
-* Reuse binaries across continuous integration runs using [binary caching](../users/binarycaching.md)
+* Reuse binaries across local or continuous integration runs using [binary caching](../users/binarycaching.md)
 * Manage your private libraries using custom [registries](../maintainers/registries.md)
 
 [1 - Create a project with a manifest]: #1---create-a-project-with-a-manifest
-[2 - Integrate vcpkg with your buildsystem]: #2---integrate-vcpkg-with-your-buildsystem
-[3 - Install the manifest dependencies]: #3---install-the-manifest-dependencies
+[2 - Integrate vcpkg with your build system]: #2---integrate-vcpkg-with-your-build-system
+[3 - Install dependencies]: #3---install-dependencies
 [4 - Build the project]: #4---build-the-project
