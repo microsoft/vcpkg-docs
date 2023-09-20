@@ -26,13 +26,13 @@ to remove MSBuild user-wide integration.
 This integration method automatically adds vcpkg-installed packages to the following project properties:
 Include Directories, Link Directories, and Link Libraries. Additionally, this creates a post-build action
 that ensures that any required DLLs are copied into the build output folder. This works for all solutions and
-projects using VS2015 or newer.
+projects using Visual Studio 2015 or newer.
 
 This is all you need to do for the vast majority of libraries. However, some libraries perform
 conflicting behaviors, such as redefining `main()`. Since you need to choose per-project which of
 these conflicting options you want, you must manually add those libraries to your linker inputs.
 
-Here is a not an exhaustive list of examples where manual linking is necessary:
+Here are some examples where manual linking is necessary (not an exhaustive list):
 
 - Gtest provides `gtest`, `gmock`, `gtest_main`, and `gmock_main`
 - SDL2 provides `SDL2main`

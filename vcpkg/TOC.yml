@@ -1,4 +1,5 @@
-- name: vcpkg Documentation
+- name: vcpkg documentation
+
   href: index.yml
 - name: Consume packages
   expanded: true
@@ -135,10 +136,12 @@
           href: commands/upgrade.md
         - name: vcpkg version
           href: commands/version.md
-    - name: Asset Caching
+    - name: Asset caching
+
       displayName: airgap, offline, source, mirror
       href: users/assetcaching.md
-    - name: Binary Caching
+    - name: Binary caching
+
       displayName: binaries, build
       href: users/binarycaching.md
     - name: Environment variables
