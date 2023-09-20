@@ -17,7 +17,7 @@ really no limit on what you can put in a private registry.
 
 In this tutorial we show how to:
 
-> [!div class="nextstepaction"]
+> [!div class="checklist"]
 > * [Create a vcpkg registry using Git](#1---create-a-vcpkg-registry-using-git)
 > * [Create the registry layout](#2---create-the-registry-layout)
 > * [Add ports to the registry](#3---add-ports-to-the-registry)
@@ -32,8 +32,7 @@ In this tutorial we show how to:
 
 ## 1 - Create a vcpkg registry using Git
 
-vcpkg's Git-based registries are actually just Git repositories with a specific layout that vcpkg
-understands.
+vcpkg's Git-based registries are Git repositories with a specific layout that vcpkg understands.
 
 Initialize a Git registry:
 
