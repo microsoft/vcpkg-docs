@@ -82,7 +82,7 @@ section of the official MSBuild documentation for more information on `Directory
 
 ### Linked NuGet package
 
-> [!NOTE] 
+> [!NOTE]
 > This approach is not recommended for new projects, since it makes them difficult to share
 > with others. For a portable, self-contained NuGet package, see the [`export
 > command`](../../commands/export.md).
@@ -98,7 +98,8 @@ With a project open, go to Tools->NuGet Package Manager->Package Manager Console
     Install-Package vcpkg.D.src.vcpkg -Source "D:/src/vcpkg/scripts/buildsystems"
 ```
 
-> [!NOTE] The generated NuGet package does not contain the actual libraries. It instead acts like a
+> [!NOTE]
+> The generated NuGet package does not contain the actual libraries. It instead acts like a
 > shortcut (or symlink) to the vcpkg install and will "automatically" update with any changes
 > (install/remove) to the libraries. You do not need to regenerate or update the NuGet package.
 
