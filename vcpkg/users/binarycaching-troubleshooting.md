@@ -149,7 +149,6 @@ Internal vcpkg helper functions like vcpkg_from_github, vcpkg_copy_pdbs, vcpkg_f
 Possible solutions:
 
 * (recommended) The copy of the vcpkg catalog must be pinned to a specific commit. When you run `git clone vcpkg`, make sure you run `git checkout [commit_id]` or add vcpkg as a submodule in your project. The reason is the ABI of a library is calculated based on the hashes of scripts and ports in the vcpkg repository. Pulling the latest changes will likely cause frequent rebuilds.
-* Set `builtin-baseline` in your [vcpkg manifest](../reference/vcpkg-json.md#builtin-baseline).
 
 ### Version of CMake, PowerShell, or your compiler changes between runs
 
