@@ -10,7 +10,9 @@ ms.topic: tutorial
 ---
 # Tutorial: Install a dependency from a manifest file
 
-vcpkg has two operation modes: classic mode and manifest mode. This article describes how to install packages using manifest mode, which is the recommended workflow for most users.
+vcpkg has two operation modes: classic mode and manifest mode. This article
+describes how to install packages using manifest mode, which is the recommended
+workflow for most users.
 
 In manifest mode, you declare your project's direct dependencies in a manifest file named
 [`vcpkg.json`](../reference/vcpkg-json.md).
@@ -92,7 +94,7 @@ projects using VS2015 or newer.
 > [Lear more about using vcpkg from CMake](../users/buildsystems/cmake-integration.md)
 
 To use [vcpkg in your CMake projects](../users/buildsystems/cmake-integration.md), you need to set the
-`CMAKE_TOOLCHAIN_FILE` variable to use vcpkg's CMake toolchain file. The vcpkg toolchain is located in
+`CMAKE_TOOLCHAIN_FILE` variable to use vcpkg's CMake toolchain file. The vcpkg toolchain is in
 `%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake`, where `%VCPKG_ROOT%` is your vcpkg's installation path.
 
 To set the toolchain file use any of these methods:
@@ -266,7 +268,7 @@ Add the following `CMakeLists.txt` file in the project folder:
 2 - Configure your CMake project
 
 Run the following command: `cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake`,
-substitute `%VCPKG_ROOT%` with your vcpkg intallation path.
+substitute `%VCPKG_ROOT%` with your vcpkg installation path.
 
 Notice how the project's dependencies are automatically installed while configuring the project.
 
@@ -280,7 +282,7 @@ The following packages will be built and installed:
     range-v3:x64-windows -> 0.12.0#1
   * vcpkg-cmake:x64-windows -> 2023-05-04
   * vcpkg-cmake-config:x64-windows -> 2022-02-06#1
-<output ommited for brevity>
+<omitted output>
 -- Running vcpkg install - done
 -- Selecting Windows SDK version 10.0.18362.0 to target Windows 10.0.19041.
 -- The CXX compiler identification is MSVC 19.27.29111.0
@@ -296,7 +298,7 @@ The following packages will be built and installed:
 
 3 - Build the CMake project
 
-Run the follwogin command to build the project: `cmake --build build`:
+Run the following command to build the project: `cmake --build build`:
 
 ```Console
 PS D:\projects\manifest-example> cmake --build build
@@ -322,8 +324,6 @@ Here are some additional tasks to try next:
 * Lock down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
 * Reuse binaries across continuous integration runs using [binary caching](../users/binarycaching.md)
 * Manage your private libraries using custom [registries](../maintainers/registries.md)
-
-
 
 [1 - Create a project with a manifest]: #1---create-a-project-with-a-manifest
 [2 - Integrate vcpkg with your buildsystem]: #2---integrate-vcpkg-with-your-buildsystem
