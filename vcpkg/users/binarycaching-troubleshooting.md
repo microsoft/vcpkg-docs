@@ -92,7 +92,7 @@ If the ABI hash of your package differs between runs, see the next section.
 
 ## Fixing your binary cache setup
 
-If you have correctly configured binary caching for both reads and writes but vcpkg is sometimes or always rebuilding your libraries instead of using existing cached binaries, read on. In this section, we will set up debug mode for vcpkg to get more information and look at common problems and recommended solutions.
+If you have correctly configured binary caching for both reads and writes but vcpkg is sometimes or always rebuilding your libraries instead of using existing cached binaries, read on.
 
 If your vcpkg binary cache is constantly rebuilding, it's important to figure out what changed in your [ABI hash](./binarycaching.md#abi-hash). Suppose we are building `zlib` for `x86-windows`. What information in the debug output is relevant?
 
