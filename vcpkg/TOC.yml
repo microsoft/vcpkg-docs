@@ -30,28 +30,25 @@
 - name: Produce packages
   expanded: true
   items:
-  - name: Tutorials
-    items:
-    - name: Packaging libogg 1.3.3 for vcpkg
-      href: examples/packaging-github-repos.md
-    - name: Packaging zlib 1.2.13 for vcpkg
-      href: examples/packaging-zipfiles.md
-    - name: Patching libpng 1.6.37 for UWP compatibility
-      href: examples/patching.md
-    - name: Adding explicit usage text
-      href: examples/adding-usage.md
+    # TODO: Modernize: examples/packaging-github-repos.md
+  - name: Package a dependency from a public GitHub repository
+    href: examples/packaging-github-repos.md
+    # TODO: Modernize: examples/packaging-zipfiles.md
+  - name: Package a dependency from a source archive
+    href: examples/packaging-zipfiles.md
+    # TODO: Modernize: examples/patching.md
+  - name: Apply patches to a dependency's source code
+    href: examples/patching.md
+  - name: Provide usage documentation for your packages
+    href: maintainers/handling-usage-files.md
   - name: Publish dependencies
     expanded: true
     items:
+    # TODO: Modernize: maintainers/registries.md
+    - name: Create custom registries
+      href: maintainers/registries.md
     - name: Publish to a Git registry
       href: produce/publish-to-a-git-registry.md
-  - name: Creating Registries
-    # TODO: break down this article and archive it
-    href: maintainers/registries.md
-  - name: Provide usage documentation for your packages
-    href: maintainers/handling-usage-files.md
-  - name: CONTROL Files (deprecated)
-    href: maintainers/control-files.md
 - name: Concepts
   items:
   - name: Build-system integration
@@ -144,11 +141,9 @@
         - name: vcpkg version
           href: commands/version.md
     - name: Asset caching
-
       displayName: airgap, offline, source, mirror
       href: users/assetcaching.md
     - name: Binary caching
-
       displayName: binaries, build
       href: users/binarycaching.md
     - name: Environment variables
@@ -309,6 +304,10 @@
       href: maintainers/variables.md
     - name: Versioning
       href: users/versioning.md
+    - name: Deprecated features
+      items:
+      - name: CONTROL Files
+        href: maintainers/control-files.md
 - name: About
   items:
   - name: FAQ
