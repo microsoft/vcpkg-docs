@@ -1,49 +1,18 @@
-- name: vcpkg Documentation
+- name: vcpkg documentation
   href: index.yml
 - name: Consume packages
+  expanded: true
   items:
   - name: Install a dependency from a manifest file
     href: consume/manifest-mode.md
   - name: Getting Started with Classic mode
     href: examples/installing-and-using-packages.md
-  - name: Manifest mode
-    href: users/manifests.md
-  - name: Classic mode
-    href: users/classic-mode.md
-  - name: Triplets
-    href: users/triplets.md
-  - name: Buildsystems
-    items:
-    - name: CMake Integration
-      href: users/buildsystems/cmake-integration.md
-    - name: MSBuild (Visual Studio) Integration
-      href: users/buildsystems/msbuild-integration.md
-    - name: Manual Integration
-      href: users/buildsystems/manual-integration.md
-  - name: Platforms
-    items:
-    - name: Android
-      href: users/platforms/android.md
-    - name: MinGW
-      href: users/platforms/mingw.md
+  - name: Getting Started with Manifest mode
+    href: examples/manifest-mode-cmake.md
   - name: Using Registries
     href: users/registries.md
-  - name: Versioning Concepts
-    href: users/versioning.concepts.md
-  - name: Versioning Reference
-    href: users/versioning.md
-  - name: Asset Caching
-    displayName: airgap, offline, source, mirror
-    href: users/assetcaching.md
-  - name: Binary Caching
-    displayName: binaries, build
-    href: users/binarycaching.md
   - name: Remote Authentication
     href: users/authentication.md
-  - name: Environment variables
-    href: users/config-environment.md
-  - name: GitHub integration
-    href: github-integration.md
   - name: Examples
     items:
     - name: Selecting LLVM Features
@@ -58,7 +27,8 @@
       href: users/examples/versioning.getting-started.md
     - name: Create a x-script Asset Caching source for NuGet
       href: examples/asset-caching-source-nuget.md
-- name: Packaging Libraries
+- name: Produce packages
+  expanded: true
   items:
   - name: Tutorials
     items:
@@ -70,230 +40,269 @@
       href: examples/patching.md
     - name: Adding explicit usage text
       href: examples/adding-usage.md
-  - name: Authoring Script Ports
-    displayName: helpers, scripts, reusable, function, reuse
-    href: maintainers/authoring-script-ports.md
   - name: Creating Registries
     href: maintainers/registries.md
-  - name: Host Dependencies
-    displayName: host, dependencies
-    href: users/host-dependencies.md
-  - name: Portfile Variable Reference
-    href: maintainers/variables.md
-  - name: Portfile Function Reference
-    items:
-    - name: vcpkg_acquire_msys
-      href: maintainers/functions/vcpkg_acquire_msys.md
-    - name: vcpkg_add_to_path
-      href: maintainers/functions/vcpkg_add_to_path.md
-    - name: vcpkg_apply_patches
-      href: maintainers/functions/vcpkg_apply_patches.md
-    - name: vcpkg_backup_env_variables
-      href: maintainers/functions/vcpkg_backup_env_variables.md
-    - name: vcpkg_build_cmake
-      href: maintainers/functions/vcpkg_build_cmake.md
-    - name: vcpkg_build_make
-      href: maintainers/functions/vcpkg_build_make.md
-    - name: vcpkg_build_msbuild
-      href: maintainers/functions/vcpkg_build_msbuild.md
-    - name: vcpkg_build_ninja
-      href: maintainers/functions/vcpkg_build_ninja.md
-    - name: vcpkg_build_nmake
-      href: maintainers/functions/vcpkg_build_nmake.md
-    - name: vcpkg_build_qmake
-      href: maintainers/functions/vcpkg_build_qmake.md
-    - name: vcpkg_buildpath_length_warning
-      href: maintainers/functions/vcpkg_buildpath_length_warning.md
-    - name: vcpkg_check_features
-      href: maintainers/functions/vcpkg_check_features.md
-    - name: vcpkg_check_linkage
-      href: maintainers/functions/vcpkg_check_linkage.md
-    - name: vcpkg_clean_executables_in_bin
-      href: maintainers/functions/vcpkg_clean_executables_in_bin.md
-    - name: vcpkg_clean_msbuild
-      href: maintainers/functions/vcpkg_clean_msbuild.md
-    - name: vcpkg_cmake_build
-      href: maintainers/functions/vcpkg_cmake_build.md
-    - name: vcpkg_cmake_config_fixup
-      href: maintainers/functions/vcpkg_cmake_config_fixup.md
-    - name: vcpkg_cmake_configure
-      href: maintainers/functions/vcpkg_cmake_configure.md
-    - name: vcpkg_cmake_get_vars
-      href: maintainers/functions/vcpkg_cmake_get_vars.md
-    - name: vcpkg_cmake_install
-      href: maintainers/functions/vcpkg_cmake_install.md
-    - name: vcpkg_configure_cmake
-      href: maintainers/functions/vcpkg_configure_cmake.md
-    - name: vcpkg_configure_gn
-      href: maintainers/functions/vcpkg_configure_gn.md
-    - name: vcpkg_configure_make
-      href: maintainers/functions/vcpkg_configure_make.md
-    - name: vcpkg_configure_meson
-      href: maintainers/functions/vcpkg_configure_meson.md
-    - name: vcpkg_configure_qmake
-      href: maintainers/functions/vcpkg_configure_qmake.md
-    - name: vcpkg_copy_pdbs
-      href: maintainers/functions/vcpkg_copy_pdbs.md
-    - name: vcpkg_copy_tool_dependencies
-      href: maintainers/functions/vcpkg_copy_tool_dependencies.md
-    - name: vcpkg_copy_tools
-      href: maintainers/functions/vcpkg_copy_tools.md
-    - name: vcpkg_download_distfile
-      href: maintainers/functions/vcpkg_download_distfile.md
-    - name: vcpkg_execute_build_process
-      href: maintainers/functions/vcpkg_execute_build_process.md
-    - name: vcpkg_execute_in_download_mode
-      href: maintainers/functions/vcpkg_execute_in_download_mode.md
-    - name: vcpkg_execute_required_process
-      href: maintainers/functions/vcpkg_execute_required_process.md
-    - name: vcpkg_execute_required_process_repeat
-      href: maintainers/functions/vcpkg_execute_required_process_repeat.md
-    - name: vcpkg_extract_source_archive
-      href: maintainers/functions/vcpkg_extract_source_archive.md
-    - name: vcpkg_extract_source_archive_ex
-      href: maintainers/functions/vcpkg_extract_source_archive_ex.md
-    - name: vcpkg_fail_port_install
-      href: maintainers/functions/vcpkg_fail_port_install.md
-    - name: vcpkg_find_acquire_program
-      href: maintainers/functions/vcpkg_find_acquire_program.md
-    - name: vcpkg_find_fortran
-      href: maintainers/functions/vcpkg_find_fortran.md
-    - name: vcpkg_fixup_cmake_targets
-      href: maintainers/functions/vcpkg_fixup_cmake_targets.md
-    - name: vcpkg_fixup_pkgconfig
-      href: maintainers/functions/vcpkg_fixup_pkgconfig.md
-    - name: vcpkg_from_bitbucket
-      href: maintainers/functions/vcpkg_from_bitbucket.md
-    - name: vcpkg_from_git
-      href: maintainers/functions/vcpkg_from_git.md
-    - name: vcpkg_from_github
-      href: maintainers/functions/vcpkg_from_github.md
-    - name: vcpkg_from_gitlab
-      href: maintainers/functions/vcpkg_from_gitlab.md
-    - name: vcpkg_from_sourceforge
-      href: maintainers/functions/vcpkg_from_sourceforge.md
-    - name: vcpkg_get_program_files_platform_bitness
-      href: maintainers/functions/vcpkg_get_program_files_platform_bitness.md
-    - name: x_vcpkg_get_python_packages
-      href: maintainers/functions/vcpkg_get_python_packages.md
-    - name: vcpkg_get_windows_sdk
-      href: maintainers/functions/vcpkg_get_windows_sdk.md
-    - name: vcpkg_gn_configure
-      href: maintainers/functions/vcpkg_gn_configure.md
-    - name: vcpkg_gn_install
-      href: maintainers/functions/vcpkg_gn_install.md
-    - name: vcpkg_host_path_list
-      href: maintainers/functions/vcpkg_host_path_list.md
-    - name: vcpkg_install_cmake
-      href: maintainers/functions/vcpkg_install_cmake.md
-    - name: vcpkg_install_copyright
-      href: maintainers/functions/vcpkg_install_copyright.md
-    - name: vcpkg_install_gn
-      href: maintainers/functions/vcpkg_install_gn.md
-    - name: vcpkg_install_make
-      href: maintainers/functions/vcpkg_install_make.md
-    - name: vcpkg_install_meson
-      href: maintainers/functions/vcpkg_install_meson.md
-    - name: vcpkg_install_msbuild
-      href: maintainers/functions/vcpkg_install_msbuild.md
-    - name: vcpkg_install_nmake
-      href: maintainers/functions/vcpkg_install_nmake.md
-    - name: vcpkg_install_qmake
-      href: maintainers/functions/vcpkg_install_qmake.md
-    - name: vcpkg_list
-      href: maintainers/functions/vcpkg_list.md
-    - name: vcpkg_minimum_required
-      href: maintainers/functions/vcpkg_minimum_required.md
-    - name: x_vcpkg_pkgconfig_get_modules
-      href: maintainers/functions/vcpkg_pkgconfig_get_modules.md
-    - name: vcpkg_qmake_build
-      href: maintainers/functions/vcpkg_qmake_build.md
-    - name: vcpkg_qmake_configure
-      href: maintainers/functions/vcpkg_qmake_configure.md
-    - name: vcpkg_qmake_install
-      href: maintainers/functions/vcpkg_qmake_install.md
-    - name: vcpkg_replace_string
-      href: maintainers/functions/vcpkg_replace_string.md
-    - name: vcpkg_restore_env_variables
-      href: maintainers/functions/vcpkg_restore_env_variables.md
-    - name: Internal
-      items:
-      - name: z_vcpkg_apply_patches
-        href: maintainers/functions/internal/z_vcpkg_apply_patches.md
-      - name: z_vcpkg_forward_output_variable
-        href: maintainers/functions/internal/z_vcpkg_forward_output_variable.md
-      - name: z_vcpkg_function_arguments
-        href: maintainers/functions/internal/z_vcpkg_function_arguments.md
-      - name: z_vcpkg_get_cmake_vars
-        href: maintainers/functions/internal/z_vcpkg_get_cmake_vars.md
-      - name: z_vcpkg_prettify_command_line
-        href: maintainers/functions/internal/z_vcpkg_prettify_command_line.md
-      - name: z_vcpkg_restore_pkgconfig_path
-        href: maintainers/functions/internal/z_vcpkg_restore_pkgconfig_path.md
-      - name: z_vcpkg_setup_pkgconfig_path
-        href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
   - name: Provide usage documentation for your packages
     href: maintainers/handling-usage-files.md
   - name: CONTROL Files (deprecated)
     href: maintainers/control-files.md
+- name: Concepts
+  items:
+  - name: Build-system integration
+    items:
+    - name: CMake integration
+      href: users/buildsystems/cmake-integration.md
+    - name: MSBuild integration
+      href: users/buildsystems/msbuild-integration.md
+    - name: Manual integration
+      href: users/buildsystems/manual-integration.md
+  - name: Classic mode
+    href: users/classic-mode.md
+  - name: Cross-compilation
+    items:
+    - name: Android
+      href: users/platforms/android.md
+    - name: MinGW
+      href: users/platforms/mingw.md
+    - name: Xbox
+      href: users/platforms/xbox.md
+  - name: GitHub integration
+    href: github-integration.md
+  - name: Host Dependencies
+    displayName: host, dependencies
+    href: users/host-dependencies.md
+  - name: Manifests
+    href: users/manifests.md
+  - name: Open-source registry
+    items:
+    - name: Maintainer Guide
+      href: contributing/maintainer-guide.md
+    - name: CMake Style Guide
+      href: contributing/cmake-guidelines.md
+    - name: PR Review Checklist
+      href: contributing/pr-review-checklist.md
+  - name: Script ports
+    href: maintainers/authoring-script-ports.md
+  - name: Triplets
+    href: users/triplets.md
+  - name: Versioning
+    href: users/versioning.concepts.md
 - name: Reference
   items:
-  - name: vcpkg.json Reference
-    href: reference/vcpkg-json.md
-  - name: vcpkg-configuration.json Reference
-    href: reference/vcpkg-configuration-json.md
-  - name: Command-Line
-    items:
-    - name: Common Command Options
-      href: commands/common-options.md
-    - name: vcpkg add
-      href: commands/add.md
-    - name: vcpkg x-add-version
-      href: commands/add-version.md
-    - name: vcpkg create
-      href: commands/create.md
-    - name: vcpkg depend-info
-      href: commands/depend-info.md
-    - name: vcpkg edit
-      href: commands/edit.md
-    - name: vcpkg env
-      href: commands/env.md
-    - name: vcpkg export
-      href: commands/export.md
-    - name: vcpkg format-manifest
-      href: commands/format-manifest.md
-    - name: vcpkg hash
-      href: commands/hash.md
-    - name: vcpkg install
-      href: commands/install.md
-    - name: vcpkg integrate
-      href: commands/integrate.md
-    - name: vcpkg list
-      href: commands/list.md
-    - name: vcpkg new
-      href: commands/new.md
-    - name: vcpkg owns
-      href: commands/owns.md
-    - name: vcpkg remove
-      href: commands/remove.md
-    - name: vcpkg search
-      href: commands/search.md
-    - name: vcpkg update
-      href: commands/update.md
-    - name: vcpkg x-update-baseline
-      href: commands/update-baseline.md
-    - name: vcpkg upgrade
-      href: commands/upgrade.md
-    - name: vcpkg version
-      href: commands/version.md
-- name: Contributing to vcpkg
-  items:
-  - name: Maintainer Guide
-    href: contributing/maintainer-guide.md
-  - name: CMake Style Guide
-    href: contributing/cmake-guidelines.md
-  - name: PR Review Checklist
-    href: contributing/pr-review-checklist.md
+    - name: vcpkg.json Reference
+      href: reference/vcpkg-json.md
+    - name: vcpkg-configuration.json Reference
+      href: reference/vcpkg-configuration-json.md
+    - name: Command-Line
+      items:
+        - name: Common Command Options
+          href: commands/common-options.md
+        - name: vcpkg add
+          href: commands/add.md
+        - name: vcpkg x-add-version
+          href: commands/add-version.md
+        - name: vcpkg create
+          href: commands/create.md
+        - name: vcpkg depend-info
+          href: commands/depend-info.md
+        - name: vcpkg edit
+          href: commands/edit.md
+        - name: vcpkg env
+          href: commands/env.md
+        - name: vcpkg export
+          href: commands/export.md
+        - name: vcpkg format-manifest
+          href: commands/format-manifest.md
+        - name: vcpkg hash
+          href: commands/hash.md
+        - name: vcpkg install
+          href: commands/install.md
+        - name: vcpkg integrate
+          href: commands/integrate.md
+        - name: vcpkg list
+          href: commands/list.md
+        - name: vcpkg new
+          href: commands/new.md
+        - name: vcpkg owns
+          href: commands/owns.md
+        - name: vcpkg remove
+          href: commands/remove.md
+        - name: vcpkg search
+          href: commands/search.md
+        - name: vcpkg update
+          href: commands/update.md
+        - name: vcpkg x-update-baseline
+          href: commands/update-baseline.md
+        - name: vcpkg upgrade
+          href: commands/upgrade.md
+        - name: vcpkg version
+          href: commands/version.md
+    - name: Asset caching
+
+      displayName: airgap, offline, source, mirror
+      href: users/assetcaching.md
+    - name: Binary caching
+
+      displayName: binaries, build
+      href: users/binarycaching.md
+    - name: Environment variables
+      href: users/config-environment.md
+    - name: Portfile functions
+      items:
+      - name: vcpkg_acquire_msys
+        href: maintainers/functions/vcpkg_acquire_msys.md
+      - name: vcpkg_add_to_path
+        href: maintainers/functions/vcpkg_add_to_path.md
+      - name: vcpkg_apply_patches
+        href: maintainers/functions/vcpkg_apply_patches.md
+      - name: vcpkg_backup_env_variables
+        href: maintainers/functions/vcpkg_backup_env_variables.md
+      - name: vcpkg_build_cmake
+        href: maintainers/functions/vcpkg_build_cmake.md
+      - name: vcpkg_build_make
+        href: maintainers/functions/vcpkg_build_make.md
+      - name: vcpkg_build_msbuild
+        href: maintainers/functions/vcpkg_build_msbuild.md
+      - name: vcpkg_build_ninja
+        href: maintainers/functions/vcpkg_build_ninja.md
+      - name: vcpkg_build_nmake
+        href: maintainers/functions/vcpkg_build_nmake.md
+      - name: vcpkg_build_qmake
+        href: maintainers/functions/vcpkg_build_qmake.md
+      - name: vcpkg_buildpath_length_warning
+        href: maintainers/functions/vcpkg_buildpath_length_warning.md
+      - name: vcpkg_check_features
+        href: maintainers/functions/vcpkg_check_features.md
+      - name: vcpkg_check_linkage
+        href: maintainers/functions/vcpkg_check_linkage.md
+      - name: vcpkg_clean_executables_in_bin
+        href: maintainers/functions/vcpkg_clean_executables_in_bin.md
+      - name: vcpkg_clean_msbuild
+        href: maintainers/functions/vcpkg_clean_msbuild.md
+      - name: vcpkg_cmake_build
+        href: maintainers/functions/vcpkg_cmake_build.md
+      - name: vcpkg_cmake_config_fixup
+        href: maintainers/functions/vcpkg_cmake_config_fixup.md
+      - name: vcpkg_cmake_configure
+        href: maintainers/functions/vcpkg_cmake_configure.md
+      - name: vcpkg_cmake_get_vars
+        href: maintainers/functions/vcpkg_cmake_get_vars.md
+      - name: vcpkg_cmake_install
+        href: maintainers/functions/vcpkg_cmake_install.md
+      - name: vcpkg_configure_cmake
+        href: maintainers/functions/vcpkg_configure_cmake.md
+      - name: vcpkg_configure_gn
+        href: maintainers/functions/vcpkg_configure_gn.md
+      - name: vcpkg_configure_make
+        href: maintainers/functions/vcpkg_configure_make.md
+      - name: vcpkg_configure_meson
+        href: maintainers/functions/vcpkg_configure_meson.md
+      - name: vcpkg_configure_qmake
+        href: maintainers/functions/vcpkg_configure_qmake.md
+      - name: vcpkg_copy_pdbs
+        href: maintainers/functions/vcpkg_copy_pdbs.md
+      - name: vcpkg_copy_tool_dependencies
+        href: maintainers/functions/vcpkg_copy_tool_dependencies.md
+      - name: vcpkg_copy_tools
+        href: maintainers/functions/vcpkg_copy_tools.md
+      - name: vcpkg_download_distfile
+        href: maintainers/functions/vcpkg_download_distfile.md
+      - name: vcpkg_execute_build_process
+        href: maintainers/functions/vcpkg_execute_build_process.md
+      - name: vcpkg_execute_in_download_mode
+        href: maintainers/functions/vcpkg_execute_in_download_mode.md
+      - name: vcpkg_execute_required_process
+        href: maintainers/functions/vcpkg_execute_required_process.md
+      - name: vcpkg_execute_required_process_repeat
+        href: maintainers/functions/vcpkg_execute_required_process_repeat.md
+      - name: vcpkg_extract_source_archive
+        href: maintainers/functions/vcpkg_extract_source_archive.md
+      - name: vcpkg_extract_source_archive_ex
+        href: maintainers/functions/vcpkg_extract_source_archive_ex.md
+      - name: vcpkg_fail_port_install
+        href: maintainers/functions/vcpkg_fail_port_install.md
+      - name: vcpkg_find_acquire_program
+        href: maintainers/functions/vcpkg_find_acquire_program.md
+      - name: vcpkg_find_fortran
+        href: maintainers/functions/vcpkg_find_fortran.md
+      - name: vcpkg_fixup_cmake_targets
+        href: maintainers/functions/vcpkg_fixup_cmake_targets.md
+      - name: vcpkg_fixup_pkgconfig
+        href: maintainers/functions/vcpkg_fixup_pkgconfig.md
+      - name: vcpkg_from_bitbucket
+        href: maintainers/functions/vcpkg_from_bitbucket.md
+      - name: vcpkg_from_git
+        href: maintainers/functions/vcpkg_from_git.md
+      - name: vcpkg_from_github
+        href: maintainers/functions/vcpkg_from_github.md
+      - name: vcpkg_from_gitlab
+        href: maintainers/functions/vcpkg_from_gitlab.md
+      - name: vcpkg_from_sourceforge
+        href: maintainers/functions/vcpkg_from_sourceforge.md
+      - name: vcpkg_get_program_files_platform_bitness
+        href: maintainers/functions/vcpkg_get_program_files_platform_bitness.md
+      - name: x_vcpkg_get_python_packages
+        href: maintainers/functions/vcpkg_get_python_packages.md
+      - name: vcpkg_get_windows_sdk
+        href: maintainers/functions/vcpkg_get_windows_sdk.md
+      - name: vcpkg_gn_configure
+        href: maintainers/functions/vcpkg_gn_configure.md
+      - name: vcpkg_gn_install
+        href: maintainers/functions/vcpkg_gn_install.md
+      - name: vcpkg_host_path_list
+        href: maintainers/functions/vcpkg_host_path_list.md
+      - name: vcpkg_install_cmake
+        href: maintainers/functions/vcpkg_install_cmake.md
+      - name: vcpkg_install_copyright
+        href: maintainers/functions/vcpkg_install_copyright.md
+      - name: vcpkg_install_gn
+        href: maintainers/functions/vcpkg_install_gn.md
+      - name: vcpkg_install_make
+        href: maintainers/functions/vcpkg_install_make.md
+      - name: vcpkg_install_meson
+        href: maintainers/functions/vcpkg_install_meson.md
+      - name: vcpkg_install_msbuild
+        href: maintainers/functions/vcpkg_install_msbuild.md
+      - name: vcpkg_install_nmake
+        href: maintainers/functions/vcpkg_install_nmake.md
+      - name: vcpkg_install_qmake
+        href: maintainers/functions/vcpkg_install_qmake.md
+      - name: vcpkg_list
+        href: maintainers/functions/vcpkg_list.md
+      - name: vcpkg_minimum_required
+        href: maintainers/functions/vcpkg_minimum_required.md
+      - name: x_vcpkg_pkgconfig_get_modules
+        href: maintainers/functions/vcpkg_pkgconfig_get_modules.md
+      - name: vcpkg_qmake_build
+        href: maintainers/functions/vcpkg_qmake_build.md
+      - name: vcpkg_qmake_configure
+        href: maintainers/functions/vcpkg_qmake_configure.md
+      - name: vcpkg_qmake_install
+        href: maintainers/functions/vcpkg_qmake_install.md
+      - name: vcpkg_replace_string
+        href: maintainers/functions/vcpkg_replace_string.md
+      - name: vcpkg_restore_env_variables
+        href: maintainers/functions/vcpkg_restore_env_variables.md
+      - name: Internal
+        items:
+        - name: z_vcpkg_apply_patches
+          href: maintainers/functions/internal/z_vcpkg_apply_patches.md
+        - name: z_vcpkg_forward_output_variable
+          href: maintainers/functions/internal/z_vcpkg_forward_output_variable.md
+        - name: z_vcpkg_function_arguments
+          href: maintainers/functions/internal/z_vcpkg_function_arguments.md
+        - name: z_vcpkg_get_cmake_vars
+          href: maintainers/functions/internal/z_vcpkg_get_cmake_vars.md
+        - name: z_vcpkg_prettify_command_line
+          href: maintainers/functions/internal/z_vcpkg_prettify_command_line.md
+        - name: z_vcpkg_restore_pkgconfig_path
+          href: maintainers/functions/internal/z_vcpkg_restore_pkgconfig_path.md
+        - name: z_vcpkg_setup_pkgconfig_path
+          href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
+    - name: Portfile variables
+      href: maintainers/variables.md
+    - name: Versioning
+      href: users/versioning.md
 - name: About
   items:
   - name: FAQ
