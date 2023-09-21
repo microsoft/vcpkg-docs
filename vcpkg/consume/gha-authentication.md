@@ -44,7 +44,7 @@ The next step is to follow [GitHub's instructions to store the PAT as a secret a
 GitHub Actions
 workflows](<https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository>).
 
-### 3 - Authenticate to private Git repositories in your workflow
+## 3 - Authenticate to private Git repositories in your workflow
 
 Now is time to add an authentication step to your workflow, use the following template
 in your workflow's YAML file. Replace `PRIVATE_REPO_URL` with the URL of your private repository,
