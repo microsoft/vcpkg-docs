@@ -17,8 +17,7 @@
   - name: Install private or custom dependencies
     items:
     - name: Install a dependency from a Git-based registry
-      # TODO: Modernize article: users/registries.md
-      href: users/registries.md
+      href: consume/git-registries.md
     - name: Authenticate to private Git registries
       # TODO: Modernize article: users/authentication.md
       href: users/authentication.md
@@ -87,6 +86,8 @@
       href: contributing/cmake-guidelines.md
     - name: PR Review Checklist
       href: contributing/pr-review-checklist.md
+  - name: Registries
+    href: users/registries.md
   - name: Script ports
     href: maintainers/authoring-script-ports.md
   - name: Triplets
