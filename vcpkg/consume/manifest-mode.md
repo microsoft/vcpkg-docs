@@ -61,7 +61,7 @@ resolves and installs any required transitive dependencies.
 
 ## 2 - Integrate vcpkg with your build system
 
-In this step we show you how to integrate vcpkg with CMake or MSBuild, so that your project dependencies get automatically installed or restored whenever you build the project. 
+In this step we show you how to integrate vcpkg with CMake or MSBuild, so that your project dependencies get automatically installed or restored whenever you build the project.
 
 If you're using a different build system, skip to the next step: [Install dependencies].
 

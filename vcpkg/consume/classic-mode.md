@@ -1,12 +1,14 @@
 ---
-title: Install a dependency from the command line
+title: "Tutorial: Install a dependency from the command line"
 description: Learn to install your project's dependencies with vcpkg using the command line.
 author: vicroms
 ms.author: viromer
 ms.date: 8/10/2023
 ms.prod: vcpkg
+ms.topic: tutorial
+#CustomerIntent: As a beginner vcpkg user, I want to learn how to install my project dependencies using vcpkg's command-line interface.
 ---
-# Install a dependency from the command line (classic mode)
+# Tutoria: Install a dependency from the command line
 
 > [!TIP]
 > See ["Install a dependency from a manifest file"](manifest-mode.md) for the recommended method of installing your
@@ -18,18 +20,85 @@ ms.prod: vcpkg
 vcpkg has two operation modes: classic mode, and manifest mode. This article describes how to install packages using classic
 mode. For most users we recommend using manifest mode instead.
 
-In classic mode, you use vcpkg as a command-line interface to install your dependencies in a global
-[installation tree](../users/buildsystems/manual-integration.md).
+In classic mode, you use vcpkg as a command-line interface to install your
+dependencies in a common [installation
+directory](../users/buildsystems/manual-integration.md). Usually, located in
+`%VCPKG_ROOT%/installed`, where `%VCPKG_ROOT%` is the vcpkg's installation
+directory.
 
-## Create your project
+In this tutorial, you will learn to:
 
-For this tutorial, we use the following source file:
+> [!div class="checklist"]
+> * [Create a project]
+> * [Integrate vcpkg with your build system]
+> * [Install dependencies]
+> * [Build the project]
 
-`main.cxx`:
+## Prerequisites
+
+* vcpkg
+* A terminal
+* A code editor
+* A C++ compiler
+* (Optional) CMake or MSBuild
+
+## 1 - Create a project
+
+In a new folder, create a source file named `main.cxx` with these contents:
 
 :::code language="cxx" source="../examples/snippets/manifest-mode-cmake/main.cxx":::
 
-## Install the dependencies
+The code references the open-source libraries: `cxxopts`, `fmt`, and `range-v3`; which are all
+available in the vcpkg public registry at <https://github.com/Microsoft/vcpkg>.
+
+## 2 - Integrate vcpkg with your build system
+
+In this step we show you how to integrate vcpkg with CMake or MSBuild, so that your project dependencies get automatically installed or restored whenever you build the project.
+
+If you're using a different build system, skip to the next step: [Install dependencies].
+
+### [MSBuild](#tab/msbuild)
+
+> [!div class="nextstepaction"]
+> [Learn more about using vcpkg from MSBuild](../users/buildsystems/msbuild-integration.md)
+
+To use [vcpkg in your MSBuild projects](../users/buildsystems/msbuild-integration.md), run the
+following command:
+
+```Console
+vcpkg integrate install
+```
+
+You only need to run the [`vcpkg integrate install`](../commands/integrate.md#vcpkg-integrate-install)
+command the first time you want to enable MSBuild integration. This enables MSBuild integration for all
+your existing and future projects. Use [`vcpkg integrate remove`](../commands/integrate.md#vcpkg-integrate-remove)
+to remove MSBuild system-wide integration.
+
+This integration method automatically adds vcpkg-installed packages to the following project properties:
+`Include Directories`, `Link Directories`, and `Link Libraries`. Additionally, this creates a post-build action
+that ensures that any required DLLs are copied into the build output folder. This works for all solutions and
+projects using Visual Studio 2015 or newer.
+
+### [CMake](#tab/cmake)
+
+> [!div class="nextstepaction"]
+> [Learn more about using vcpkg from CMake](../users/buildsystems/cmake-integration.md)
+
+To use [vcpkg in your CMake projects](../users/buildsystems/cmake-integration.md), you need to set the
+`CMAKE_TOOLCHAIN_FILE` variable to use vcpkg's CMake toolchain file. The vcpkg toolchain is in
+`%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake`, where `%VCPKG_ROOT%` is your vcpkg installation path.
+
+To set the toolchain file use any of these methods:
+
+* Set the `CMAKE_TOOLCHAIN_FILE` in your CMakePresets.json file.
+* Pass `-DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake` as a parameter in your
+CMake configure call.
+* Set the `CMAKE_TOOLCHAIN_FILE` CMake variable before the first call to `project()` in your
+`CMakeLists.txt` file.
+
+---
+
+## 3 - Install dependencies
 
 The code references the open-source libraries: `cxxopts`, `fmt`, and `range-v3`; these are all
 available in the vcpkg public registry at <https://github.com/Microsoft/vcpkg>.
@@ -73,38 +142,14 @@ range-v3 provides CMake targets:
     target_link_libraries(main PRIVATE range-v3::meta range-v3::concepts range-v3::range-v3)
 ```
 
-## Integrate with your project
-
-### [MSBuild](#tab/msbuild)
-
-> [!div class="nextstepaction"]
-> [Learn more about using vcpkg from MSBuild](../users/buildsystems/msbuild-integration.md)
-
-### Enable user-wide integration (MSBuild)
-
-To use [vcpkg in your MSBuild or Visual Studio projects](../users/buildsystems/msbuild-integration.md) run the
-[`vcpkg integrate`](../commands/integrate.md) command:
-
-```Console
-vcpkg integrate install
-```
-
-You only need to run the `vcpkg integrate install` command the first time you want to enable MSBuild
-integration. This enables MSBuild integration for all your existing and future projects. Use [vcpkg
-integrate remove](../commands/integrate.md#vcpkg-integrate-remove) to remove MSBuild system-wide
-integration.
-
-This integration method automatically adds vcpkg-installed packages to the following project
-properties: Include Directories, Link Directories, and Link Libraries. Additionally, ,this creates a
-post-build action that ensures that any required DLLs are copied in the build output folder. This
-works for all solutions and projects using VS2015 or newer.
-
-### Build the project (MSBuild)
+## 4 - Build the project
 
 > [!IMPORTANT]
 > Make sure that the [triplet](../users/triplets.md) of your installed packages matches your project's
-> configuration. Use `x64-windows` or `x64-windows-static` for your 64-bits projects and
-> `x86-windows` or `x86-windows-static` for your 32-bits projects.
+> configuration. Use `x64-windows` or `x64-windows-static` for your 64-bit projects and
+> `x86-windows` or `x86-windows-static` for your 32-bit projects.
+
+### [MSBuild](#tab/build-MSBuild)
 
 With system-wide integration enabled, just run `msbuild` to build the project:
 
@@ -144,38 +189,12 @@ Done Building Project "D:\projects\manifest-example\manifest-example.sln" (defau
 Build succeeded.
 ```
 
-### [Visual Studio](#tab/visual-studio)
+### [Visual Studio](#tab/build-visual-studio)
 
 > [!div class="nextstepaction"]
 > [Learn more about using vcpkg from Visual Studio](../users/buildsystems/msbuild-integration.md)
 
-### Enable user-wide integration (Visual Studio)
-
-To use [vcpkg in your MSBuild or Visual Studio projects](../users/buildsystems/msbuild-integration.md) run the
-[`vcpkg integrate`](../commands/integrate.md) command:
-
-```Console
-vcpkg integrate install
-```
-
-You only need to run the `vcpkg integrate install` command the first time you want to enable MSBuild
-integration. This enables MSBuild integration for all your existing and future projects. Use [vcpkg
-integrate remove](../commands/integrate.md#vcpkg-integrate-remove) to remove MSBuild system-wide
-integration.
-
-This integration method automatically adds vcpkg-installed packages to the following project
-properties: Include Directories, Link Directories, and Link Libraries. Additionally, ,this creates a
-post-build action that ensures that any required DLLs are copied in the build output folder. This
-works for all solutions and projects using VS2015 or newer.
-
-### Build the project (Visual Studio)
-
-> [!IMPORTANT]
-> Make sure that the [triplet](../users/triplets.md) of your installed packages matches your project's
-> configuration. Use `x64-windows` or `x64-windows-static` for your 64-bits projects and
-> `x86-windows` or `x86-windows-static` for your 32-bits projects.
-
-With system-wide integration enabled, just build the project:
+Build the project by right-clicking it in **Solution Explorer** and selecting **Build**.
 
 ```Console
 Build started...
@@ -187,15 +206,9 @@ Build started...
 ========== Build started at 3:16 PM and took 18.608 seconds ==========
 ```
 
-### [CMake](#tab/cmake)
+### [CMake](#tab/build-cmake)
 
-> [!div class="nextstepaction"]
-> [Learn more about using vcpkg from CMake](../users/buildsystems/cmake-integration.md)
-
-### Create a `CMakeLists.txt` file
-
-The vcpkg tool integrates with CMake through the [vcpkg toolchain
-file](../users/buildsystems/cmake-integration.md#cmake_toolchain_file).
+#### 1 - Create a CMakeLists.txt file
 
 Add the following `CMakeLists.txt` file in the project folder:
 
@@ -203,12 +216,10 @@ Add the following `CMakeLists.txt` file in the project folder:
 
 :::code language="cmake" source="../examples/snippets/manifest-mode-cmake/CMakeLists.txt":::
 
-### Configure the project
+#### 2 - Configure your CMake project
 
-Add `-DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake` as a parameter to the
-CMake configure call and vcpkg will be automatically invoked to install the manifest dependencies.
-
-The command should look something like this: `cmake -B <build directory> -S <source directory> -DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake`
+Run the following command: `cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake`, but
+substitute `%VCPKG_ROOT%` with your vcpkg installation path.
 
 ```Console
 PS D:\projects\manifest-example> cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=D:/vcpkg/scripts/buildsystems/vcpkg.cmake
@@ -225,9 +236,9 @@ PS D:\projects\manifest-example> cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=D:/v
 -- Build files have been written to: D:/projects/manifest-example/build
 ```
 
-### Build the project (CMake)
+#### 3 - Build the CMake project
 
-Once the configure step is completed, build the project with `cmake --build <build directory>`:
+Run the following command to build the project: `cmake --build build`:
 
 ```Console
 PS D:\projects\manifest-example> cmake --build build
@@ -244,7 +255,7 @@ MSBuild version 17.7.0-preview-23319-02+6829506b8 for .NET Framework
 
 ## Next Steps
 
-In this tutorial, you installed dependencies for a simple project using vcpkg's command-line interface.
+In this tutorial, you installed dependencies for a simple project using vcpkg as a command-line interface.
 
 Here are some additional tasks to try next:
 
@@ -253,3 +264,8 @@ Here are some additional tasks to try next:
 * Lock down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
 * Reuse binaries across Continuous Integration runs using [binary caching](../users/binarycaching.md)
 * Manage your private libraries using [custom registries](../maintainers/registries.md)
+
+[Create a project]: #1---create-a-project
+[Integrate vcpkg with your build system]: #2---integrate-vcpkg-with-your-build-system
+[Install dependencies]: #3---install-dependencies
+[Build the project]: #4---build-the-project
