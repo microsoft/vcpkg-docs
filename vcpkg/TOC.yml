@@ -10,23 +10,25 @@
   - name: Install a specific version of a package
     displayName: version, pin version, lock version
     href: consume/lock-package-versions.md
-  - name: Using Registries
-    href: users/registries.md
-  - name: Remote Authentication
-    href: users/authentication.md
-  - name: Examples
+  - name: Enable optional features for a dependency
+    # TODO: Modernize article: users/examples/selecting-llvm-features.md
+    href: users/examples/selecting-llvm-features.md
+  - name: Install a package for a custom build configuration
+    # TODO: Modernize article: users/examples/overlay-triplets-linux-dynamic.md
+    displayName: dynamic, so, shared object, overlay
+    href: users/examples/overlay-triplets-linux-dynamic.md
+  - name: Install private or custom dependencies
     items:
-    - name: Selecting LLVM Features
-      href: users/examples/selecting-llvm-features.md
-    - name: Selecting Boost Versions as a Set
-      displayName: baseline, baselines, versioning
-      href: users/examples/modify-baseline-to-pin-old-boost.md
-    - name: Creating a Custom Linux Triplet
-      displayName: dynamic, so, shared object, overlay
-      href: users/examples/overlay-triplets-linux-dynamic.md
-    - name: Getting Started with Versioning
-      href: users/examples/versioning.getting-started.md
-    - name: Create a x-script Asset Caching source for NuGet
+    - name: Install a dependency from a Git-based registry
+      # TODO: Modernize article: users/registries.md
+      href: users/registries.md
+    - name: Authenticate to private Git registries
+      # TODO: Modernize article: users/authentication.md
+      href: users/authentication.md
+  - name: Improve reliability by caching dependencies assets
+    items:
+    - name: Use a custom script as an asset caching storage provider
+      # TODO: Modernize article: examples/asset-caching-source-nuget.md
       href: examples/asset-caching-source-nuget.md
 - name: Produce packages
   expanded: true
