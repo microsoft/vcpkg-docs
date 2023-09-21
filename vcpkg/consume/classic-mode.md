@@ -8,7 +8,7 @@ ms.prod: vcpkg
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to learn how to install my project dependencies using vcpkg's command-line interface.
 ---
-# Tutoria: Install a dependency from the command line
+# Tutorial: Install a dependency from the command line
 
 > [!TIP]
 > See ["Install a dependency from a manifest file"](manifest-mode.md) for the recommended method of installing your
@@ -190,9 +190,6 @@ Build succeeded.
 ```
 
 ### [Visual Studio](#tab/build-visual-studio)
-
-> [!div class="nextstepaction"]
-> [Learn more about using vcpkg from Visual Studio](../users/buildsystems/msbuild-integration.md)
 
 Build the project by right-clicking it in **Solution Explorer** and selecting **Build**.
 
