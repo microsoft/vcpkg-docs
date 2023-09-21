@@ -140,5 +140,6 @@ And that's it! You have set up your own private Git-based registry to use with v
 
 Here are some additional tasks to try next:
 
-* Install dependencies from a private registry.
-* Authenticate to registries using private Git repositories.
+* [Install dependencies from a private registry](../users/registries.md)
+* [Authenticate to registries using private Git repositories](../users/authentication.md)
+<!--[Set up package validation in your private registry]-->
