@@ -40,7 +40,13 @@
       href: examples/patching.md
     - name: Adding explicit usage text
       href: examples/adding-usage.md
+  - name: Publish dependencies
+    expanded: true
+    items:
+    - name: Publish to a Git registry
+      href: produce/publish-to-a-git-registry.md
   - name: Creating Registries
+    # TODO: break down this article and archive it
     href: maintainers/registries.md
   - name: Provide usage documentation for your packages
     href: maintainers/handling-usage-files.md
