@@ -1,5 +1,10 @@
 - name: vcpkg documentation
   href: index.yml
+- name: Get started
+  expanded: true
+  items:
+  - name: Install vcpkg
+    href: get_started/setup-vcpkg.md
 - name: Consume packages
   expanded: true
   items:
