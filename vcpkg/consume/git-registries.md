@@ -14,8 +14,7 @@ vcpkg uses a concept called registries to manage repositories of packages. By de
 libraries from the public curated registry at <https://github.com/Microsoft/vcpkg>. You can add
 third-party or private registries to make additional packages available to install.
 
-For information on creating your own registries, read the [registries](../maintainers/registries.md)
-documentation.
+For information on creating your own registries, read the tutorial to [publish packages to a registry](../produce/publish-to-a-git-registry.md).
 
 Registries are configured using a
 [`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md) file.
@@ -136,15 +135,14 @@ Add the `beicode` and `beison` dependencies in your `vcpkg.json` file:
 vcpkg add port beicode beison
 ```
 
-Build and run the project (substitute `%VCPKG_ROOT%` with your vcpkg installation path):
+Build and run the project (substitute `$VCPKG_ROOT` with your vcpkg installation path):
 
-```
-cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake
+```bash
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
 cmake --build build
-./build/Debug/main.exe
 ```
 
-The output should look like this:
+Run the program, the output should look like this:
 
 ```Console
 {
