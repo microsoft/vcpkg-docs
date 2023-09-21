@@ -7,8 +7,9 @@
     href: consume/manifest-mode.md
   - name: Install a dependency from the command line
     href: consume/classic-mode.md
-  - name: Getting Started with Manifest mode
-    href: examples/manifest-mode-cmake.md
+  - name: Install a specific version of a package
+    displayName: version, pin version, lock version
+    href: consume/lock-package-versions.md
   - name: Using Registries
     href: users/registries.md
   - name: Remote Authentication
