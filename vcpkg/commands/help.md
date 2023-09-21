@@ -23,7 +23,7 @@ The help command displays information about various vcpkg commands and topics on
 
 For a list of all commands:
 
-```bash
+```Console
 > vcpkg help
 
 usage: vcpkg <command> [--switches] [--options=values] [arguments] @response_file
@@ -77,7 +77,8 @@ For more help (including examples) see https://learn.microsoft.com/vcpkg
 ```
 
 For help with a specific command:
-```bash
+
+```Console
 > vcpkg help add
 
 Synopsis: Adds dependency to manifest
@@ -166,7 +167,4 @@ Extended documentation available at 'https://learn.microsoft.com/vcpkg/users/ver
 ## Options
 
 All vcpkg commands support a set of [common options](common-options.md).
-
-
-
 
