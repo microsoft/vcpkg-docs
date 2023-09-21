@@ -23,7 +23,6 @@ In this tutorial we show how to:
 > * [Add ports to the registry](#3---add-ports-to-the-registry)
 > * [Update the versions database](#4---update-the-versions-database)
 
-
 ## Prerequisites:
 
 * vcpkg
