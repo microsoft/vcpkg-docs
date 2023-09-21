@@ -75,7 +75,7 @@ database.
 3 - Commit your changes to the repository
 
 ```Console
-git add .
+git add versions/baseline.json
 git commit -m "Initial commit"
 ```
 
@@ -118,8 +118,8 @@ The `--all` option makes vcpkg scan the `ports` directory for all available port
 all at once. Lastly, the `--verbose` option makes the command print each operation it executes to
 standard output, you can suppress the output by removing this option.
 
-The `x-add-version` requires that all port changes have been committed to the repository's Git
-registry. Read the [`x-add-version` command] documentation to learn more.
+The `x-add-version` requires that all port changes have been committed to the registry's Git
+repository. Read the [`x-add-version` command] documentation to learn more.
 
 When all the output looks correct, run:
 
