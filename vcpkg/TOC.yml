@@ -84,6 +84,8 @@
       href: contributing/cmake-guidelines.md
     - name: PR Review Checklist
       href: contributing/pr-review-checklist.md
+  - name: Ports
+    href: concepts/ports.md
   - name: Script ports
     href: maintainers/authoring-script-ports.md
   - name: Triplets
