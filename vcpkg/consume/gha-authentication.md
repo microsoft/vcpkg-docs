@@ -59,7 +59,7 @@ This workflow step must run before any other workflow step that invokes vcpkg.
     run: git config --global credential.PRIVATE_REPO_URL.helper '!f() { echo username=unused; echo password=${{secrets.PRIVATE_REGISTRY_PAT }}; }; f'
 ```
 
-#### Example with multiple private repositories
+### Example with multiple private repositories
 
 The following example shows how to provide Git credentials for multiple private
 repositories using the `credential.<url>.helper` pattern.
