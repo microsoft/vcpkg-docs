@@ -1,5 +1,10 @@
 - name: vcpkg documentation
   href: index.yml
+- name: Get started
+  expanded: true
+  items:
+  - name: Install vcpkg
+    href: get_started/setup-vcpkg.md
 - name: Consume packages
   expanded: true
   items:
@@ -17,11 +22,11 @@
   - name: Install private or custom dependencies
     items:
     - name: Install a dependency from a Git-based registry
-      # TODO: Modernize article: users/registries.md
-      href: users/registries.md
+      href: consume/git-registries.md
     - name: Authenticate to private Git registries
-      # TODO: Modernize article: users/authentication.md
       href: users/authentication.md
+    - name: Authenticate to private Git registries in your GitHub Actions workflows
+      href: consume/gha-authentication.md
   - name: Improve reliability by caching dependencies assets
     items:
     - name: Use a custom script as an asset caching storage provider
@@ -86,6 +91,8 @@
       href: contributing/pr-review-checklist.md
   - name: Ports
     href: concepts/ports.md
+  - name: Registries
+    href: users/registries.md
   - name: Script ports
     href: maintainers/authoring-script-ports.md
   - name: Triplets
@@ -120,6 +127,8 @@
           href: commands/format-manifest.md
         - name: vcpkg hash
           href: commands/hash.md
+        - name: vcpkg help
+          href: commands/help.md
         - name: vcpkg install
           href: commands/install.md
         - name: vcpkg integrate
