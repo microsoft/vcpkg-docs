@@ -24,8 +24,9 @@
     - name: Install a dependency from a Git-based registry
       href: consume/git-registries.md
     - name: Authenticate to private Git registries
-      # TODO: Modernize article: users/authentication.md
       href: users/authentication.md
+    - name: Authenticate to private Git registries in your GitHub Actions workflows
+      href: consume/gha-authentication.md
   - name: Improve reliability by caching dependencies assets
     items:
     - name: Use a custom script as an asset caching storage provider
