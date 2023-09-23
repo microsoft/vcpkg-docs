@@ -220,10 +220,10 @@ Exact version pins to use for specific dependencies. An array of Override object
 | Name | Required | Type   | Description |
 |------|----------|--------|-------------|
 | name | Yes      | string | The port name |
-| version | Yes   | string | The pinned version |
-| port-version | No | integer | The pinned port version |
+| [version<br>version-semver<br>version-date<br>version-string](#version) | Yes | string | Upstream version information to pin |
+| [port-version](#port-version) | No | integer | Port files revision to pin |
 
-`"port-version"` can also be specified as a `#N` suffix in the `"version"` field. For example, `1.2.3#7`.
+`"port-version"` can also be specified as a `#N` suffix in one of the fields. For example, `1.2.3#7`.
 
 See also [versioning](../users/versioning.md#overrides) for more semantic details.
 
@@ -233,6 +233,9 @@ See also [versioning](../users/versioning.md#overrides) for more semantic detail
   "overrides": [
     {
       "name": "arrow", "version": "1.2.3", "port-version": 7
+    },
+    {
+      "name": "openssl", "version-string": "1.1.1h#3"
     }
   ]
 ```

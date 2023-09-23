@@ -161,12 +161,14 @@ For an override to take effect, the overridden package must form part of the dep
   "name": "project",
   "version-semver": "1.0.0",
   "dependencies": [
+    { "name": "curl" }
     { "name": "zlib", "version>=": "1.2.11#9" },
     "fmt"
   ],
   "builtin-baseline":"3426db05b996481ca31e95fff3734cf23e0f51bc",
   "overrides": [
-    { "name": "fmt", "version": "6.0.0" }
+    { "name": "fmt", "version": "6.0.0" },
+    { "name": "openssl", "version-string": "1.1.1h#3" }
   ]
 }
 ```
