@@ -161,7 +161,7 @@ For an override to take effect, the overridden package must form part of the dep
   "name": "project",
   "version-semver": "1.0.0",
   "dependencies": [
-    { "name": "curl" }
+    "curl",
     { "name": "zlib", "version>=": "1.2.11#9" },
     "fmt"
   ],
