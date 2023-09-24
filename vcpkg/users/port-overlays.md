@@ -13,7 +13,7 @@ ms.topic: conceptual
 ## Overview
 The default catalog contains vcpkg team and user maintained libraries designed for general use. However, some libraries do not exist in the default catalog due to a variety of reasons: a library missing a version, a custom library, a library without CI support, a missing library. 
 
-vcpkg uses port overlays so that you can use a library without requiring you to add it to the default catalog or maintain a custom registry. Port overlays are effective when don't want to worry about versioning and simply want to use a library.
+vcpkg uses port overlays so that you can use a library without requiring you to add it to the default catalog or maintain a custom registry. Port overlays are effective when you don't want to worry about versioning and simply want to use a library.
 
 ## Overlay Ports
 An overlay port refers to a new port or a drop-in replacement for an existing port. In either case, the overlay port will have the highest precedence in vcpkg dependency resolution and will always be selected. However, multiple ports added as overlays can introduce naming conflicts. 
@@ -29,8 +29,8 @@ For example, `--overlay-ports=C:\custom-ports\sqlite3` refers to a single port a
 
 Syntax:
 * Command-line: Add one or multiple `--overlay-ports=<directory>` options to your vcpkg command
-* [Manifest](): Populate the `"overlay-ports"` array in `vcpkg-configuration.json`
-* [Environmental variable](): Set `VCPKG_OVERLAY_PORTS` to a list of paths
+* [Manifest](../reference/vcpkg-configuration-json.md#overlay-ports): Populate the `"overlay-ports"` array in `vcpkg-configuration.json`
+* [Environmental variable](./config-environment.md#vcpkg_overlay_ports): Set `VCPKG_OVERLAY_PORTS` to a list of paths
 
 ### Example: Overlay Ports Example
 
@@ -82,4 +82,4 @@ Installs:
 
 ### Example: Using overlay ports to replace system package manager
 
-To use an overlay port to replace a dependency from the system package manager, see our [blog post]().
+To use an overlay port to replace a dependency from the system package manager, see our [blog post](https://devblogs.microsoft.com/cppblog/using-system-package-manager-dependencies-with-vcpkg/).
