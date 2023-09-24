@@ -1,50 +1,59 @@
 - name: vcpkg documentation
-
   href: index.yml
+- name: Get started
+  expanded: true
+  items:
+  - name: Install vcpkg
+    href: get_started/setup-vcpkg.md
 - name: Consume packages
   expanded: true
   items:
-  - name: Getting Started with Classic mode
-    href: examples/installing-and-using-packages.md
-  - name: Getting Started with Manifest mode
-    href: examples/manifest-mode-cmake.md
-  - name: Using Registries
-    href: users/registries.md
-  - name: Remote Authentication
-    href: users/authentication.md
-  - name: Examples
+  - name: Install a dependency from a manifest file
+    href: consume/manifest-mode.md
+  - name: Install a dependency from the command line
+    href: consume/classic-mode.md
+  - name: Enable optional features for a dependency
+    # TODO: Modernize article: users/examples/selecting-llvm-features.md
+    href: users/examples/selecting-llvm-features.md
+  - name: Install a package for a custom build configuration
+    # TODO: Modernize article: users/examples/overlay-triplets-linux-dynamic.md
+    displayName: dynamic, so, shared object, overlay
+    href: users/examples/overlay-triplets-linux-dynamic.md
+  - name: Install private or custom dependencies
     items:
-    - name: Selecting LLVM Features
-      href: users/examples/selecting-llvm-features.md
-    - name: Selecting Boost Versions as a Set
-      displayName: baseline, baselines, versioning
-      href: users/examples/modify-baseline-to-pin-old-boost.md
-    - name: Creating a Custom Linux Triplet
-      displayName: dynamic, so, shared object, overlay
-      href: users/examples/overlay-triplets-linux-dynamic.md
-    - name: Getting Started with Versioning
-      href: users/examples/versioning.getting-started.md
-    - name: Create a x-script Asset Caching source for NuGet
+    - name: Install a dependency from a Git-based registry
+      href: consume/git-registries.md
+    - name: Authenticate to private Git registries
+      href: users/authentication.md
+    - name: Authenticate to private Git registries in your GitHub Actions workflows
+      href: consume/gha-authentication.md
+  - name: Improve reliability by caching dependencies assets
+    items:
+    - name: Use a custom script as an asset caching storage provider
+      # TODO: Modernize article: examples/asset-caching-source-nuget.md
       href: examples/asset-caching-source-nuget.md
 - name: Produce packages
   expanded: true
   items:
-  - name: Tutorials
-    items:
-    - name: Packaging libogg 1.3.3 for vcpkg
-      href: examples/packaging-github-repos.md
-    - name: Packaging zlib 1.2.13 for vcpkg
-      href: examples/packaging-zipfiles.md
-    - name: Patching libpng 1.6.37 for UWP compatibility
-      href: examples/patching.md
-    - name: Adding explicit usage text
-      href: examples/adding-usage.md
-  - name: Creating Registries
-    href: maintainers/registries.md
+    # TODO: Modernize: examples/packaging-github-repos.md
+  - name: Package a dependency from a public GitHub repository
+    href: examples/packaging-github-repos.md
+    # TODO: Modernize: examples/packaging-zipfiles.md
+  - name: Package a dependency from a source archive
+    href: examples/packaging-zipfiles.md
+    # TODO: Modernize: examples/patching.md
+  - name: Apply patches to a dependency's source code
+    href: examples/patching.md
   - name: Provide usage documentation for your packages
     href: maintainers/handling-usage-files.md
-  - name: CONTROL Files (deprecated)
-    href: maintainers/control-files.md
+  - name: Publish dependencies
+    expanded: true
+    items:
+    # TODO: Modernize: maintainers/registries.md
+    - name: Create custom registries
+      href: maintainers/registries.md
+    - name: Publish to a Git registry
+      href: produce/publish-to-a-git-registry.md
 - name: Concepts
   items:
   - name: Build-system integration
@@ -80,6 +89,8 @@
       href: contributing/cmake-guidelines.md
     - name: PR Review Checklist
       href: contributing/pr-review-checklist.md
+  - name: Registries
+    href: users/registries.md
   - name: Script ports
     href: maintainers/authoring-script-ports.md
   - name: Triplets
@@ -114,6 +125,8 @@
           href: commands/format-manifest.md
         - name: vcpkg hash
           href: commands/hash.md
+        - name: vcpkg help
+          href: commands/help.md
         - name: vcpkg install
           href: commands/install.md
         - name: vcpkg integrate
@@ -137,11 +150,9 @@
         - name: vcpkg version
           href: commands/version.md
     - name: Asset caching
-
       displayName: airgap, offline, source, mirror
       href: users/assetcaching.md
     - name: Binary caching
-
       displayName: binaries, build
       href: users/binarycaching.md
     - name: Environment variables
@@ -302,6 +313,10 @@
       href: maintainers/variables.md
     - name: Versioning
       href: users/versioning.md
+    - name: Deprecated features
+      items:
+      - name: CONTROL Files
+        href: maintainers/control-files.md
 - name: About
   items:
   - name: FAQ
