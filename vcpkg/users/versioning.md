@@ -1,7 +1,10 @@
 ---
+# Reference/Versioning
 title: Versioning reference
-description: Use vcpkg versioning to control the versions of dependencies used by your project.
-ms.date: 11/30/2022
+description: Reference documentation for the vcpkg versioning feature.
+author: vicroms
+ms.author: viromer
+ms.date: 9/20/2023
 ---
 # Versioning reference
 

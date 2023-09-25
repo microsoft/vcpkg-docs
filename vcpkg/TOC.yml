@@ -12,6 +12,9 @@
     href: consume/manifest-mode.md
   - name: Install a dependency from the command line
     href: consume/classic-mode.md
+  - name: Install a specific version of a package
+    displayName: version, pin version, lock version
+    href: consume/lock-package-versions.md
   - name: Enable optional features for a dependency
     # TODO: Modernize article: users/examples/selecting-llvm-features.md
     href: users/examples/selecting-llvm-features.md
@@ -111,6 +114,8 @@
           href: commands/add.md
         - name: vcpkg x-add-version
           href: commands/add-version.md
+        - name: vcpkg contact
+          href: commands/contact.md
         - name: vcpkg create
           href: commands/create.md
         - name: vcpkg depend-info
