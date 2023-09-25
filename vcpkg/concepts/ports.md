@@ -10,7 +10,7 @@ ms.topic: concept-article
 
 # Concept: Ports
 
-A port in vcpkg is a versioned recipe that produces a set of files. It also imposes constraints on the install graph, ensuring compatible dependency resolution. At a minimum, a port contains:
+A port in vcpkg is a versioned recipe that produces a set of files. Executing a port affects the installation graph by producing new header or binary files. Ports may have dependencies on other ports and may require additional dependencies when certain features are enabled, these dependencies must be reflected in the ports metadata. At a minimum, a port contains:
 
 * Metadata about the package: name, version, supported features, dependencies, etc.
 * Instructions to acquire, build if necessary, and install the package.
