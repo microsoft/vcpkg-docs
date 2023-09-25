@@ -201,7 +201,7 @@ Modify the `vcpkg.json` contents to:
 
 Any package included in the `"overrides"` list will use the specified version while ignoring all
 other version constraints. In this example, the baseline `3426db05b996481ca31e95fff3734cf23e0f51bc`
-adds a `"version>=": "1.2.11"` constraint on `zlib` but the override declaration forces version
+adds a minimum version constraint on `zlib` of `1.2.11` but the override declaration forces version
 `1.2.8` instead.
 
 Build and run the project, replace `%VCPKG_ROOT%` with your vcpkg installation path:
