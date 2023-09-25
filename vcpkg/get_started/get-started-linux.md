@@ -23,17 +23,17 @@ This tutorial shows how to set up a C++ "Hello World" CMake project using the `f
 
 1. Create the project directory
 
-    This tutorial assumes your project is located in `/home/helloworld`. If you intend to place your project somewhere else, replace any references to that path with your preferred path.
-
-    Create a directory named "helloworld" to contain your project files, put it right next to your vcpkg directory. Then, navigate to your project directory.
-
+    This tutorial assumes your project is located in `~/helloworld` and that it should be placed next to your vcpkg directory. If you intend to place your project somewhere else, replace any references to that path with your preferred path.
+    
+    To create the directory and navigate into it, run:
+    
     ```bash
-    mkdir helloworld && cd helloworld
+    mkdir -p ~/helloworld && cd ~/helloworld
     ```
 
 2. Create the manifest
 
-    Next, create a file named `vcpkg.json` in your project's directory, this is your manifest file. vcpkg reads the manifest file to learn what dependencies to install.
+    Next, create a file named `vcpkg.json` in your project's directory, this is your manifest file. vcpkg reads the manifest file to learn what dependencies to install. The `vcpkg.json` file serves as the foundation to integrate vcpkg in your C++ project. Initially, the file contains an empty JSON object; additional attributes like dependencies and supported features can be added as your project grows.
 
     From within the `helloworld` directory, run:
 
@@ -47,11 +47,7 @@ This tutorial shows how to set up a C++ "Hello World" CMake project using the `f
     {}
     ```
 
-    The `vcpkg.json` file serves as the foundation to integrate vcpkg in your C++ project. Initially, the file contains an empty JSON object; additional attributes like dependencies and supported features can be added as your project grows.
-
     The `vcpkg-configuration.json` file serves a different purpose. This file allows full control over your dependencies' sources and it's out of scope for this tutorial.
-
-    For this tutorial, all the dependencies come from the vcpkg registry at <https://github.com/Microsoft/vcpkg>. When there's no explicit configuration provided, vcpkg uses this registry as default.
 
 ## 2 - Add dependencies and project files
 
