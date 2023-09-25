@@ -114,6 +114,8 @@
           href: commands/add.md
         - name: vcpkg x-add-version
           href: commands/add-version.md
+        - name: vcpkg contact
+          href: commands/contact.md
         - name: vcpkg create
           href: commands/create.md
         - name: vcpkg depend-info
