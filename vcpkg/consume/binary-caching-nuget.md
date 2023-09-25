@@ -34,7 +34,7 @@ If you don’t have an Azure DevOps subscription, create a free trial account...
 * [NuGet](<https://dist.nuget.org/win-x86-commandline/latest/nuget.exe>)
 * [vcpkg](TODO: link to "installing vcpkg")
 
-## Set up an Azure Artifacts NuGet fee
+## Set up an Azure Artifacts NuGet feed
 
 TODO: Add introduction sentence(s)
 [Include a sentence or two to explain only what is needed to complete the procedure.]

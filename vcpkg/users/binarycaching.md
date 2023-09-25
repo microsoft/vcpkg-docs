@@ -11,7 +11,7 @@ ms.prod: vcpkg
 # Binary Caching
 
 Most ports in the [vcpkg public registry](<https://github.com/Microsoft/vcpkg>) are built from
-source. By building from source, vcpkg can ensure maxiumum compatibility by using
+source. By building from source, vcpkg can ensure maximum compatibility by using
 the same environment, build tools, compiler flags, linker flags, and other configurations that you
 use in your project to build your dependencies.
 
@@ -35,7 +35,7 @@ when you make changes to your dependencies or configuration.
 
 While not recommended as a binary distribution mechanism, binary caching can be used to reuse build
 output from multiple systems. For example, developers can use the binary packages produced by a CI run on
-their local machines. For other methods to reuse and integrate vcpkg-produced binaries look at
+their local machines. For other methods to reuse and integrate vcpkg-produced binaries, look at
 [`vcpkg export`](../commands/export.md).
 
 > [!TIP]
