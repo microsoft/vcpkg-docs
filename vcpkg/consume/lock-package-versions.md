@@ -141,7 +141,7 @@ Modify the contents of `vcpkg.json` to:
 }
 ```
 
-The manifest file above uses the [dependency object](../reference/vcpkg-json.md#dependency-fields)
+The manifest file above uses the [dependency object](../reference/vcpkg-json.md#dependency)
 notation to set a minimum version constraint (`version>=`) on `fmt`. In order to satisfy the
 dependencies vcpkg needs to satisfy two constraints, one comfing from the baseline and one coming
 from the minimum version constraint in the `dependencies` list.
