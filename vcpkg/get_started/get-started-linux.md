@@ -11,13 +11,13 @@ ms.prod: vcpkg
 
 # Tutorial: Install and use packages on Linux with vcpkg
 
-This tutorial shows how to set up a C++ "Hello World" CMake project using the `fmt` library. Manage dependencies, construct the application, and execute the project with the help of vcpkg. This guide is tailored for a Linux environment.
+This tutorial shows you how to set up a C++ "Hello World" CMake project using the `fmt` library. Manage dependencies, construct the application, and execute the project with the help of vcpkg. This guide is tailored for a Linux environment.
 
 ## Prerequisites
 
 - A terminal to work in.
 - `git`, `CMake`, and a C++ compiler installed on your system
-- vcpkg installed on your system
+- vcpkg installed on your system and on your PATH
 
 ## 1 - Set up the project
 
@@ -33,12 +33,12 @@ This tutorial shows how to set up a C++ "Hello World" CMake project using the `f
 
 2. Create the manifest
 
-    Next, create a file named `vcpkg.json` in your project's directory, this is your manifest file. vcpkg reads the manifest file to learn what dependencies to install.
+    Next, create a file named `vcpkg.json` in your project's directory. This is your manifest file. vcpkg reads the manifest file to learn what dependencies to install.
 
     From within the `helloworld` directory, run:
 
     ```bash
-    ..\vcpkg\vcpkg new --application
+    vcpkg new --application
     ```
 
     The `vcpkg new` command adds a `vcpkg.json` file and a `vcpkg-configuration.json` file to your projects directory. The `vcpkg.json` file should look like this:
@@ -70,7 +70,7 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
     ```json
     {
         "dependencies": [
-        "fmt"
+            "fmt"
         ]
     }
     ```
