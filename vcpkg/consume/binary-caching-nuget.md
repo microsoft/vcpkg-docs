@@ -26,9 +26,9 @@ In this tutorial, you'll learn how to:
 
 > [!div class="checklist"]
 >
-> * [Set up an Azure Artifacts NuGet feed]
-> * [Add a NuGet source]
-> * [Configure vcpkg to use your NuGet feed]
+> * [Set up an Azure Artifacts NuGet feed](#1---set-up-an-azure-artifacts-nuget-feed)
+> * [Add a NuGet source](#2---add-a-nuget-source)
+> * [Configure vcpkg to use your NuGet feed](#3---configure-vcpkg-to-use-your-nuget-feed)
 
 ## Prerequisites
 
