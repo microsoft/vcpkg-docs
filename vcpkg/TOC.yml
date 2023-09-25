@@ -30,6 +30,14 @@
       href: users/authentication.md
     - name: Authenticate to private Git registries in your GitHub Actions workflows
       href: consume/gha-authentication.md
+  - name: Reduce build times with binary caching
+    items:
+    - name: "What is binary caching?"
+      href: consume/binary-caching-overview.md
+    - name: Default binary cache
+      href: consume/binary-caching-default.md
+    - name: Set up a vcpkg binary cache using filesystem directories
+      href: consume/binary-caching-local.md
   - name: Improve reliability by caching dependencies assets
     items:
     - name: Use a custom script as an asset caching storage provider
