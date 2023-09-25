@@ -25,7 +25,8 @@ dependencies.
 Binary caches can be hosted in a variety of environments, the most basic form of binary caching is a
 directory containing zipped archives of a package's build output. More advanced scenarios include
 NuGet package feeds hosted in [GitHub Packages](<https://docs.github.com/en/packages>), [Azure
-DevOps Artifacts](azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&tabs=nuget),
+DevOps
+Artifacts](/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&tabs=nuget&preserve-view=true),
 or other such services.
 
 Binary caching is especially effective in scenarios where dependencies and configuration
@@ -45,4 +46,3 @@ See the [binary caching documentation](../users/binarycaching.md) to learn about
 Here are some additional tasks to try next:
 
 * [Change the default binary cache location](binary-caching-default.md)
-* [Set up a binary cache using a NuGet feed](binary-caching-nuget.md)

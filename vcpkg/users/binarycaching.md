@@ -29,8 +29,7 @@ This way, binary caching reduces the impact of the following downsides of buildi
 Binary caching is especially effective in CI scenarios where ephemeral containers or build agents
 force vcpkg to work with a clean-slate each time. By using a cloud-based binary cache (such as
 [GitHub Packages](<https://docs.github.com/packages>) or [Azure DevOps
-Artifacts](https://learn.microsoft.com/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&tabs=nuget))
-you can persist binary packages between runs to ensure maximum speed since rebuilds only happen
+Artifacts](/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&tabs=nuget&preserve-view=true) you can persist binary packages between runs to ensure maximum speed since rebuilds only happen
 when you make changes to your dependencies or configuration.
 
 While not recommended as a binary distribution mechanism, binary caching can be used to reuse build
