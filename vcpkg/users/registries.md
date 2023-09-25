@@ -1,36 +1,14 @@
 ---
-title: Using Registries
-description: Understand the use and content of registries in vcpkg.
-ms.date: 11/30/2022
+title: Registries concepts
+description: Learn about concepts relating to vcpkg registries.
+author: vicroms
+ms.author: viromer
+ms.date: 8/21/2023
+# TODO: Split this article apart
+ms.prod: vcpkg
 ---
-# Using Registries
+# Registries concepts
 
-For information on creating your own registries, see [Creating Registries](../maintainers/registries.md).
-
-vcpkg uses _Registries_ to manage ports and versions. By default, vcpkg finds libraries from the public curated registry at https://github.com/microsoft/vcpkg. This default set can be extended by adding additional registry definitions or replaced with your own mirror of the public registry.
-
-Registries are configured in the [`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md).
-
-## Example vcpkg-configuration.json
-
-```json
-{
-  "default-registry": {
-    "kind": "git",
-    "repository": "https://internal/mirror/of/github.com/Microsoft/vcpkg",
-    "baseline": "eefee7408133f3a0fef711ef9c6a3677b7e06fd7"
-  },
-  "registries": [
-    {
-      "kind": "git",
-      "repository": "https://github.com/northwindtraders/vcpkg-registry",
-      "baseline": "dacf4de488094a384ca2c202b923ccc097956e0c",
-      "packages": [ "beicode", "beison" ]
-    }
-  ]
-}
-```
-This example adds a private registry, `https://github.com/northwindtraders/vcpkg-registry`, as the source for the libraries `beicode` and `beison`. All other ports are found from an internal mirror of the Curated Catalog hosted at `https://internal/mirror/of/github.com/Microsoft/vcpkg`.
 
 ## Package name resolution
 
