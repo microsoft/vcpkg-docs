@@ -157,6 +157,8 @@
       href: users/binarycaching.md
     - name: Environment variables
       href: users/config-environment.md
+    - name: Installation tree layout
+      href: reference/installation-tree-layout.md
     - name: Portfile functions
       items:
       - name: vcpkg_acquire_msys
