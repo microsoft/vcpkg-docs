@@ -44,13 +44,13 @@ A source file (`main.cpp`):
 
 A CMake project file (`CMakeLists.txt`):
 
-:::code language="cmake" source="snippets/git-registries/CMakeLists.txt":::
+:::code language="CMake" source="snippets/git-registries/CMakeLists.txt":::
 
 ## 2 - Create the manifest and configuration files
 
 Run the following command:
 
-```bash
+```Console
 vcpkg new --application
 ```
 
@@ -131,13 +131,13 @@ correct registry when following the usual installation machinery.
 
 Add the `beicode` and `beison` dependencies in your `vcpkg.json` file:
 
-```bash
+```Console
 vcpkg add port beicode beison
 ```
 
 Build and run the project (substitute `$VCPKG_ROOT` with your vcpkg installation path):
 
-```bash
+```Console
 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
 cmake --build build
 ```

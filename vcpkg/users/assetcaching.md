@@ -11,7 +11,7 @@ ms.date: 9/18/2023
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
-vcpkg can use download mirrors to upload and restore assets, such as sources and build tools.
+vcpkg can use download-mirrors to upload and restore assets, such as sources and build tools.
 
 Asset caching can help with these common development scenarios:
 

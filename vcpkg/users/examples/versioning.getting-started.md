@@ -2,6 +2,10 @@
 title: Getting started with versioning
 description: Learn how to use versioning in vcpkg
 ms.date: 11/30/2022
+# Replaced by:
+# vcpkg/consume/lock-package-versions.md
+ROBOTS: NOINDEX
+is_archived: true
 ---
 # Getting started with versioning
 

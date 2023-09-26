@@ -64,7 +64,7 @@ This workflow step must run before any other workflow step that invokes vcpkg.
 The following example shows how to provide Git credentials for multiple private
 repositories using the `credential.<url>.helper` pattern.
 
-```yml
+```YAML
     - name: Authenticate private registries
       shell: bash
       run: |
