@@ -1,6 +1,8 @@
 ---
 title: Install and use packages with vcpkg
 description: Tutorial guides the user through the process of installing and using packages with vcpkg.
+zone_pivot_group_filename: zone-pivot-groups.json
+zone_pivot_groups: operating-systems
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
@@ -23,12 +25,12 @@ In this tutorial you'll create a C++ "Hello World" CMake project using vcpkg and
 
 1. Create the project directory
 
-    This tutorial assumes that your project will be located in `~/helloworld`. The `helloworld` directory should be a sibling (or peer) of your vcpkg directory, meaning both should reside under the same parent directory. If you intend to place your project somewhere else, replace any references to that path with your preferred path.
+    This tutorial assumes that your project will be located in a directory named `helloworld`. The `helloworld` directory should be a sibling (or peer) of your vcpkg directory, meaning both should reside under the same parent directory. If you intend to place your project somewhere else, replace any references to that path with your preferred path.
     
     To create the directory and navigate into it, run:
-    
+
     ```console
-    mkdir -p ~/helloworld && cd ~/helloworld
+    mkdir helloworld && cd helloworld
     ```
 
 2. Create the manifest
@@ -101,12 +103,28 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
 
     First, set the `VCPKG_ROOT` environment variable for the current shell session:
 
+    ::: zone pivot="os-linux,os-macos"
+
     ```console
     export VCPKG_ROOT=/path/to/your/vcpkg/directory
     ```
 
     > [!NOTE]
     > Setting the `VCPKG_ROOT` using the `export` command will only affect the current shell session. To make this change permanent across sessions, you'll need to add the `export` command to your shell's profile script (e.g., `~/.bashrc` or `~/.zshrc`).
+
+    ::: zone-end
+
+    ::: zone pivot="os-windows"
+
+    ```console
+    set VCPKG_ROOT="/path/to/your/vcpkg/directory"
+    ```
+
+    > [!NOTE]
+    > Setting the `VCPKG_ROOT` environment variable using the `set` command will only affect the current shell session. To make this change permanent across sessions, you can use the `setx` command and restart the shell session.
+
+    ::: zone-end
+
 
     Next, create a `CMakePresets.json` file in the "helloworld" directory with the following content:
 
@@ -124,7 +142,7 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
 
 2. Build the project
 
-    Next, proceed to build the project:
+    Run:
 
     ```console
     cmake --build build
