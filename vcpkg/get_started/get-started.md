@@ -13,19 +13,23 @@ ms.prod: vcpkg
 
 # Tutorial: Install and use packages with vcpkg
 
-In this tutorial you'll create a C++ "Hello World" CMake project using vcpkg and the fmt library. You'll manage dependencies and build and run a simple application.
+This tutorial shows you how to create a C++ "Hello World" program that uses the `fmt` library with CMake and vcpkg. You'll install dependencies, configure, build, and run a simple application.
 
 ## Prerequisites
 
 - A terminal to work in.
-- `git`, `CMake`, and a C++ compiler installed on your system
-- vcpkg installed on your system
+- A C++ compiler
+- [CMake](https://cmake.org/download/)
+- [Git](https://git-scm.com/downloads)
 
-## 1 - Set up the project
+[!INCLUDE [setup-vcpkg](setup-vcpkg.md)]
+
+
+## 2 - Set up the project
 
 1. Create the project directory
 
-    This tutorial assumes that your project will be located in a directory named `helloworld`. The `helloworld` directory should be a sibling (or peer) of your vcpkg directory, meaning both should reside under the same parent directory. If you intend to place your project somewhere else, replace any references to that path with your preferred path.
+    This tutorial assumes that your project will be located in a directory named `helloworld`. The `helloworld` directory should be a sibling (or peer) of your vcpkg directory, meaning both should reside under the same parent directory. If you intend to place your project somewhere else, replace any references to that path with your chosen path.
     
     To create the directory and navigate into it, run:
 
@@ -35,9 +39,7 @@ In this tutorial you'll create a C++ "Hello World" CMake project using vcpkg and
 
 2. Create the manifest
 
-    In this step, you'll create a file named `vcpkg.json` in your project's directory. 
-    
-    From within the `helloworld` directory, run:
+    Create a manifest file (`vcpkg.json`) in your project's directory by running the [`vcpkg new`](../commands/new.md) command from within the `helloworld` directory:
 
     ```console
     ../vcpkg/vcpkg new --application
@@ -49,11 +51,11 @@ In this tutorial you'll create a C++ "Hello World" CMake project using vcpkg and
     {}
     ```
 
-    This is your manifest file. vcpkg reads the manifest file to learn what dependencies to install. The manifest integrates vcpkg into your C++ project by providing a list of dependencies and supported features that are part of your project. Initially, the file contains an empty JSON object; additional attributes like dependencies and supported features can be added as your project grows.
+    This is your manifest file. vcpkg reads the manifest file to learn what dependencies to install and integrates with CMake to provide the dependencies required by your project. Initially, the file contains an empty JSON object; additional attributes like dependencies and supported features can be added as your project grows.
 
-    The `vcpkg-configuration.json` file serves a different purpose. This file allows full control over your dependencies' sources and it's out of scope for this tutorial.
+    The default `vcpkg-configuration.json` file introduces [baseline](../reference/vcpkg-configuration-json.md#registry-baseline) constraints, specifying the minimum versions of dependencies that your project should use. While this allows for more granular control over your project's dependencies, a detailed discussion is beyond the scope of this tutorial.
 
-## 2 - Add dependencies and project files
+## 3 - Add dependencies and project files
 
 Now that the project is set up, add the `fmt` library as a dependency and generate the project files.
 
@@ -95,7 +97,7 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
 
     In this `main.cpp` file, the `<fmt/core.h>` header is included for using the `fmt` library. The `main()` function then utilizes `fmt::print()` to output the "Hello World!" message to the console.
 
-## 3 - Build and run the project
+## 4 - Build and run the project
 
 1. Run CMake configuration
 

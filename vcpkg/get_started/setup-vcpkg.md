@@ -1,85 +1,73 @@
 ---
-title: Install vcpkg
-description: Tutorial for installing vcpkg on Windows, macOS, or Linux systems
+description: Tutorial guides the user through the process of installing and using packages with vcpkg.
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: operating-systems
 author: JavierMatosD
-ms.topic: tutorial
-ms.date: 08/31/2023
 ms.author: javiermat
+ms.topic: tutorial
+ms.date: 08/23/2023
 ms.prod: vcpkg
-#CustomerIntent: As a user, I want to install vcpkg for my operating system.
 ---
 
-# Tutorial: Install vcpkg
+## 1 - Install vcpkg
 
-This tutorial provides a step-by-step guide for installing vcpkg on a Windows, macOS, or Linux system. Follow this tutorial if you want to set up vcpkg on a development machine or continuous integration system. If you are a Visual Studio or Visual Studio Code user, see the following tutorials instructions to use vcpkg within the editor:
+1. Clone the repository
 
-- [Use vckg from Visual Studio IDE]()
-- [Use vckg from Visual Studio Code]()
+    The first step is to clone the vcpkg repository from GitHub. The repository contains scripts to acquire the vcpkg executable and a registry of curated open-source libraries maintained by the vcpkg community. To do this, run:
 
-## Prerequisites
+    ```console
+    git clone https://github.com/microsoft/vcpkg.git
+    ```
 
-- A terminal to work in.
-- `Git`
+    The vcpkg open-source registry is a set of over 2,000 free libraries that have been tested together and optimized to work smoothly with vcpkg. While the vcpkg repo does not contain the source code for these libraries, it does contain build recipes and metadata about each library. These files will be included when vcpkg is installed to your system.
 
-## 1 - Clone the repository
+2. Run the bootstrap script
 
-The first step is to clone the vcpkg repository from GitHub. The repository contains scripts to acquire the vcpkg executable and a registry of curated open-source libraries maintained by the vcpkg community. To do this, run:
+    Now that you have cloned the vcpkg repository, navigate to the `vcpkg` directory and execute the bootstrap script:
 
-```console
-git clone https://github.com/microsoft/vcpkg.git
-```
+    ::: zone pivot="os-windows"
 
-The vcpkg open-source registry is a set of over 2,000 free libraries that have been tested together and optimized to work smoothly with vcpkg. While the vcpkg repo does not contain the source code for these libraries, it does contain build recipes and metadata about each library. These files will be included when vcpkg is installed to your system.
+    ```console
+    cd vcpkg && ./bootstrap-vcpkg.bat
+    ```
 
-## 2 - Run the bootstrap script
+    ::: zone-end
+    ::: zone pivot="os-linux,os-macos"
 
-Now that you have cloned the vcpkg repository, navigate to the `vcpkg` directory and execute the bootstrap script:
+    ```console
+    cd vcpkg && ./bootstrap-vcpkg.sh
+    ```
 
-::: zone pivot="os-windows"
+    ::: zone-end
 
-```console
-cd vcpkg && ./bootstrap-vcpkg.bat
-```
+    The bootstrap script performs prerequisite checks, downloads the vcpkg executable, and manages telemetry settings.
 
-::: zone-end
-::: zone pivot="os-linux,os-macos"
+3. Enable terminal auto-completion (optional)
 
-```console
-cd vcpkg && ./bootstrap-vcpkg.sh
-```
+    You'll want to integrate vcpkg into your terminal to enjoy tab-completion features. To do this, run:
 
-::: zone-end
+    ::: zone pivot="os-windows"
 
-The bootstrap script performs prerequisite checks, downloads the vcpkg executable, and manages telemetry settings.
+    ```console
+    ./vcpkg integrate powershell
+    ```
 
-## 3 - Enable terminal auto-completion (optional)
+    ::: zone-end
+    ::: zone pivot="os-linux"
 
-You'll want to integrate vcpkg into your terminal to enjoy tab-completion features. To do this, run:
+    ```console
+    ./vcpkg integrate bash
+    ```
 
-::: zone pivot="os-windows"
+    ::: zone-end
+    ::: zone pivot="os-macos"
 
-```console
-./vcpkg integrate powershell
-```
+    ```console
+    ./vcpkg integrate zsh
+    ```
 
-::: zone-end
-::: zone pivot="os-linux"
+    ::: zone-end
 
-```console
-./vcpkg integrate bash
-```
+    The `vcpkg integrate` command sets up shell integration for vcpkg, which adds vcpkg tab-completion support.
 
-::: zone-end
-::: zone pivot="os-macos"
-
-```console
-./vcpkg integrate zsh
-```
-
-::: zone-end
-
-The `vcpkg integrate` command sets up shell integration for vcpkg, which adds vcpkg tab-completion support.
-
-That's it! vcpkg is set up and ready to use.
+    That's it! vcpkg is set up and ready to use.
