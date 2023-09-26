@@ -34,11 +34,17 @@ All ports must contain a portfile (a file named `portfile.cmake`). A portfile is
 The `vcpkg.json` file describes metadata about the package contained in the vcpkg port. This file defines attributes like the package’s name, version, description, dependencies, supported features and platforms, etc.
 See the [`vcpkg.json`](../reference/vcpkg-json.md) file reference to learn more.
 
+## CONTROL files
+
+`CONTROL` files in vcpkg serve as metadata files that specify details about a package, or "port," that vcpkg can install. These files are deprecated and have largely been replaced by `vcpkg.json` manifest files for new ports. However, they are retained for backward compatibility. See [control-files](../maintainers/control-files.md) for more information.
+
 ## Patch files
 
-In certain scenarios, a port might include patch files. These files carry modifications to the library's source code, which are essential to either fix existing issues or to maintain compatibility with other components. Before the build process, patches are applied as part of the portfile execution steps, aiding in a seamless and error-free library integration.
+In certain scenarios, a port might include patch files. These files carry modifications to the library's source code, which are essential to either fix existing issues or to maintain compatibility with other components. Before the build process, patches are applied as part of the portfile execution steps, aiding in a seamless and error-free library integration. Reference the [maintainer-guide](../contributing/maintainer-guide.md#patching) to learn more.
 
 ## Port categories
+
+Port categories are colloquial terms that maintainers use to articulate the roles different ports play within vcpkg. While these categories help describe general functionalities, it's worth noting that any given port can belong to multiple categories or perhaps none at all, based on its features and use-cases.
 
 ### Standard port
 
@@ -57,4 +63,4 @@ helper function.
 
 This document provides an overview of ports in vcpkg, detailing their essential elements and various categories. For more advanced topics and detailed guides, refer to the following:
 
-* [Script ports](..\maintainers\authoring-script-ports)
+* [Script ports](..\maintainers\authoring-script-ports.md)
