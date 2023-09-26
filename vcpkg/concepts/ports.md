@@ -36,6 +36,9 @@ See the [`vcpkg.json`](../reference/vcpkg-json.md) file reference to learn more.
 
 ## CONTROL files
 
+> [!WARNING]
+> `CONTROL` files are deprecated and only retained for backwards compatibility.
+
 `CONTROL` files in vcpkg serve as metadata files that specify details about a package, or "port," that vcpkg can install. These files are deprecated and have largely been replaced by `vcpkg.json` manifest files for new ports. However, they are retained for backward compatibility. See [control-files](../maintainers/control-files.md) for more information.
 
 ## Patch files
