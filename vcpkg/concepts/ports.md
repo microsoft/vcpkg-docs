@@ -10,7 +10,7 @@ ms.topic: concept-article
 
 # Concept: Ports
 
-A port in vcpkg is a versioned recipe that produces a set of files. Executing a port affects the installation graph by producing new header or binary files. Ports may have dependencies on other ports and may require additional dependencies when certain features are enabled, these dependencies must be reflected in the ports metadata. At a minimum, a port contains:
+A port in vcpkg is a versioned recipe that produces a set of files. Executing a port affects the installation graph by producing new header or binary files. Ports may have dependencies on other ports and may require additional dependencies when certain features are enabled. These dependencies must be reflected in the ports metadata. At a minimum, a port contains:
 
 * Metadata about the package: name, version, supported features, dependencies, etc.
 * Instructions to acquire, build if necessary, and install the package.
@@ -40,7 +40,7 @@ See the [`vcpkg.json`](../reference/vcpkg-json.md) file reference to learn more.
 
 ## Patch files
 
-In certain scenarios, a port might include patch files. These files carry modifications to the library's source code, which are essential to either fix existing issues or to maintain compatibility with other components. Before the build process, patches are applied as part of the portfile execution steps, aiding in a seamless and error-free library integration. Reference the [maintainer-guide](../contributing/maintainer-guide.md#patching) to learn more.
+In certain scenarios, a port might include patch files. These files carry modifications to the library's source code, which are essential to either fix existing issues or to maintain compatibility with other components. Before the build process begins, patches are applied as part of the steps executed by the portfile, facilitating seamless and error-free library integration. Reference the [maintainer-guide](../contributing/maintainer-guide.md#patching) to learn more.
 
 ## Port categories
 
@@ -56,11 +56,11 @@ A meta port serves to impose constraints on the install graph without having its
 
 ### Script port
 
-A script port contains utility scripts that are primarily intended for internal tasks within vcpkg or for consumption by other ports. These ports enable versioning of the utility scripts, thereby maintaining compatibility and standardization. For example, `vcpkg-cmake` is a script port that exposes  the `vcpkg_cmake_configure()`
+A script port contains utility scripts that are primarily intended for internal tasks within vcpkg or for consumption by other ports. These ports enable versioning of the utility scripts, thereby maintaining compatibility and standardization. For example, `vcpkg-cmake` is a script port that exposes the `vcpkg_cmake_configure()`
 helper function.
 
 ## Next steps
 
 This document provides an overview of ports in vcpkg, detailing their essential elements and various categories. For more advanced topics and detailed guides, refer to the following:
 
-* [Script ports](..\maintainers\authoring-script-ports.md)
+* [Script ports](../maintainers/authoring-script-ports.md)
