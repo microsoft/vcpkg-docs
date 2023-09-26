@@ -1,5 +1,4 @@
 ---
-description: Tutorial guides the user through the process of installing and using packages with vcpkg.
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: operating-systems
 author: JavierMatosD
