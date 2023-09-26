@@ -1,17 +1,17 @@
 ---
-title: Install and use packages on Linux with vcpkg
-description: Tutorial guides the user through the process of installing and using packages on Linux with vcpkg.
+title: Install and use packages with vcpkg
+description: Tutorial guides the user through the process of installing and using packages with vcpkg.
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
 ms.date: 08/23/2023
 ms.prod: vcpkg
-#CustomerIntent: As a beginner C++ developer, I want to learn how to install and manage packages on a Linux environment using vcpkg, so that I can easily set up and maintain C++ projects with necessary dependencies.
+#CustomerIntent: As a beginner C++ developer, I want to learn how to install and manage packages using vcpkg, so that I can easily set up and maintain C++ projects with necessary dependencies.
 ---
 
-# Tutorial: Install and use packages on Linux with vcpkg
+# Tutorial: Install and use packages with vcpkg
 
-In this tutorial you'll create a C++ "Hello World" CMake project using vcpkg and the fmt library. You'll manage dependencies and build and run a simple application in a Linux environment.
+In this tutorial you'll create a C++ "Hello World" CMake project using vcpkg and the fmt library. You'll manage dependencies and build and run a simple application.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ In this tutorial you'll create a C++ "Hello World" CMake project using vcpkg and
     
     To create the directory and navigate into it, run:
     
-    ```bash
+    ```console
     mkdir -p ~/helloworld && cd ~/helloworld
     ```
 
@@ -37,8 +37,8 @@ In this tutorial you'll create a C++ "Hello World" CMake project using vcpkg and
     
     From within the `helloworld` directory, run:
 
-    ```bash
-    ..\vcpkg\vcpkg new --application
+    ```console
+    ../vcpkg/vcpkg new --application
     ```
 
     The `vcpkg new` command adds a `vcpkg.json` file and a `vcpkg-configuration.json` file to your projects directory. The `vcpkg.json` file should look like this:
@@ -59,8 +59,8 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
 
     Run:
 
-    ```bash
-    ..\vcpkg\vcpkg add port fmt
+    ```console
+    ../vcpkg/vcpkg add port fmt
     ```
 
     Your `vcpkg.json` should look like this:
@@ -77,7 +77,7 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
 
     Create the `CMakeLists.txt` file with the following content:
 
-    :::code language="cmake" source="../examples/snippets/get-started-linux/CMakeLists.txt":::
+    :::code language="cmake" source="../examples/snippets/get-started/CMakeLists.txt":::
 
     Now, let's break down what each line in the `CMakeLists.txt` file does:
 
@@ -89,7 +89,7 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
 
     Create the `main.cpp` file with the following content:
 
-    :::code language="cpp" source="../examples/snippets/get-started-linux/main.cpp":::
+    :::code language="cpp" source="../examples/snippets/get-started/main.cpp":::
 
     In this `main.cpp` file, the `<fmt/core.h>` header is included for using the `fmt` library. The `main()` function then utilizes `fmt::print()` to output the "Hello World!" message to the console.
 
@@ -99,21 +99,24 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
 
     To allow the CMake project system to recognize C++ libraries provided by vcpkg, you'll need to provide the `vcpkg.cmake` toolchain file. 
 
-    First, set the `VCPKG_ROOT` environment variable:
+    First, set the `VCPKG_ROOT` environment variable for the current shell session:
 
-    ```bash
+    ```console
     export VCPKG_ROOT=/path/to/your/vcpkg/directory
     ```
 
+    > [!NOTE]
+    > Setting the `VCPKG_ROOT` using the `export` command will only affect the current shell session. To make this change permanent across sessions, you'll need to add the `export` command to your shell's profile script (e.g., `~/.bashrc` or `~/.zshrc`).
+
     Next, create a `CMakePresets.json` file in the "helloworld" directory with the following content:
 
-    :::code language="cmake" source="../examples/snippets/get-started-linux/CMakePresets.json":::
+    :::code language="cmake" source="../examples/snippets/get-started/CMakePresets.json":::
 
     This `CMakePresets.json` file contains a single "default" preset for CMake. It uses version 3 of the schema and sets the `CMAKE_TOOLCHAIN_FILE` variable, pointing to a toolchain file in the `VCPKG_ROOT` environment variable. This automates the process of specifying the toolchain when running CMake.
 
     Finally, configure the build using CMake:
 
-    ```bash
+    ```console
     cmake -B build -S . --presets=default
     ```
 
@@ -123,7 +126,7 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
 
     Next, proceed to build the project:
 
-    ```bash
+    ```console
     cmake --build build
     ```
 
@@ -131,7 +134,7 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
 
     Finally, run the executable to see your application in action:
 
-    ```bash
+    ```console
     ./build/HelloWorld
     
     Hello World!
