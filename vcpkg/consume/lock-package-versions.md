@@ -41,7 +41,7 @@ A source file (`main.cpp`):
 
 A CMake project file (`CMakeLists.txt`):
 
-:::code language="cmake" source="snippets/versioning-cmakelists.txt":::
+:::code language="CMake" source="snippets/versioning-cmakelists.txt":::
 
 A vcpkg manifest (`vcpkg.json`):
 
@@ -53,7 +53,7 @@ A vcpkg manifest (`vcpkg.json`):
 
 Build the project, replace `%VCPKG_ROOT%` with your vcpkg installation path:
 
-```bash
+```Console
 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake
 cmake --build build
 ```
@@ -92,7 +92,7 @@ version for all the packages.
 
 You can use Git to examine the versions for that particular baseline:
 
-```bash
+```Console
 git show 3426db05b996481ca31e95fff3734cf23e0f51bc:versions/baseline.json | egrep -A 3 -e '"zlib"|"fmt"'
     "fmt": {
       "baseline": "7.1.3",
@@ -110,7 +110,7 @@ git show 3426db05b996481ca31e95fff3734cf23e0f51bc:versions/baseline.json | egrep
 Baselines offer a convenient mechanism to update the versions of all your dependencies at once. To
 update your baseline run the following command:
 
-```bash
+```Console
 vcpkg x-update-baseline
 ```
 
@@ -151,7 +151,7 @@ from the minimum version constraint in the `dependencies` list.
 
 Build and run the project, replace `%VCPKG_ROOT%` with your vcpkg installation path:
 
-```bash
+```Console
 rm -r build
 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake
 cmake --build build
@@ -206,7 +206,7 @@ adds a minimum version constraint on `zlib` of `1.2.11` but the override declara
 
 Build and run the project, replace `%VCPKG_ROOT%` with your vcpkg installation path:
 
-```bash
+```Console
 rm -r build
 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake
 cmake --build build

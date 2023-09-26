@@ -46,7 +46,7 @@ In this tutorial, you will learn to:
 
 In a new folder, create a source file named `main.cxx` with these contents:
 
-:::code language="cxx" source="../examples/snippets/manifest-mode-cmake/main.cxx":::
+:::code language="cpp" source="../examples/snippets/manifest-mode-cmake/main.cxx":::
 
 The code references the open-source libraries: `cxxopts`, `fmt`, and `range-v3`; which are all
 available in the vcpkg public registry at <https://github.com/Microsoft/vcpkg>.
@@ -211,7 +211,7 @@ Add the following `CMakeLists.txt` file in the project folder:
 
 `CMakeLists.txt`:
 
-:::code language="cmake" source="../examples/snippets/manifest-mode-cmake/CMakeLists.txt":::
+:::code language="CMake" source="../examples/snippets/manifest-mode-cmake/CMakeLists.txt":::
 
 #### 2 - Configure your CMake project
 

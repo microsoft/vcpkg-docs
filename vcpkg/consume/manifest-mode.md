@@ -45,7 +45,7 @@ In this tutorial, you will learn how to:
 
 In a new folder, create a source file named `main.cxx` with these contents:
 
-:::code language="cxx" source="../examples/snippets/manifest-mode-cmake/main.cxx":::
+:::code language="cpp" source="../examples/snippets/manifest-mode-cmake/main.cxx":::
 
 The code references the open-source libraries: `cxxopts`, `fmt`, and `range-v3`; which are all
 available in the vcpkg public registry at <https://github.com/Microsoft/vcpkg>.
@@ -114,7 +114,7 @@ If you're using CMake or MSBuild and followed the previous step, you can skip ah
 If you're using a different build system or want to install the dependencies manually, all you need to do
 is run `vcpkg install` in the directory containing your manifest file.
 
-```console
+```Console
 PS D:\projects\manifest-example> vcpkg install
 Detecting compiler hash for triplet x64-windows...
 The following packages will be built and installed:
@@ -260,7 +260,7 @@ Add the following `CMakeLists.txt` file in the project folder:
 
 `CMakeLists.txt`:
 
-:::code language="cmake" source="../examples/snippets/manifest-mode-cmake/CMakeLists.txt":::
+:::code language="CMake" source="../examples/snippets/manifest-mode-cmake/CMakeLists.txt":::
 
 #### 2 - Configure your CMake project
 
@@ -269,7 +269,7 @@ substitute `%VCPKG_ROOT%` with your vcpkg installation path.
 
 Notice how the project's dependencies are automatically installed while configuring the project.
 
-```
+```Console
 PS D:\projects\manifest-example> cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=D:\vcpkg\scripts\buildsystems\vcpkg.cmake
 -- Running vcpkg install
 Detecting compiler hash for triplet x64-windows...

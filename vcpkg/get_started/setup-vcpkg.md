@@ -8,6 +8,7 @@ ms.topic: tutorial
 ms.date: 08/31/2023
 ms.author: javiermat
 ms.prod: vcpkg
+ROBOTS: NOINDEX
 #CustomerIntent: As a user, I want to install vcpkg for my operating system.
 ---
 

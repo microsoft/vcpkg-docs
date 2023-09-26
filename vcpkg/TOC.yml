@@ -1,10 +1,5 @@
 - name: vcpkg documentation
   href: index.yml
-- name: Get started
-  expanded: true
-  items:
-  - name: Install vcpkg
-    href: get_started/setup-vcpkg.md
 - name: Consume packages
   expanded: true
   items:
@@ -86,11 +81,11 @@
     href: users/manifests.md
   - name: Open-source registry
     items:
-    - name: Maintainer Guide
+    - name: Maintainer guide
       href: contributing/maintainer-guide.md
-    - name: CMake Style Guide
+    - name: CMake style guide
       href: contributing/cmake-guidelines.md
-    - name: PR Review Checklist
+    - name: PR review checklist
       href: contributing/pr-review-checklist.md
   - name: Registries
     href: users/registries.md
