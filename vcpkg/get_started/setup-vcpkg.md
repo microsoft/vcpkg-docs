@@ -1,13 +1,3 @@
----
-zone_pivot_group_filename: zone-pivot-groups.json
-zone_pivot_groups: operating-systems
-author: JavierMatosD
-ms.author: javiermat
-ms.topic: tutorial
-ms.date: 08/23/2023
-ms.prod: vcpkg
----
-
 ## 1 - Install vcpkg
 
 1. Clone the repository
