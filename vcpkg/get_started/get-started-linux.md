@@ -97,7 +97,7 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
 
 1. Run CMake configuration
 
-    To allows the CMake project system to recognize C++ libraries provided by vcpkg, you'll need to provide the `vcpkg.cmake` toolchain file. 
+    To allow the CMake project system to recognize C++ libraries provided by vcpkg, you'll need to provide the `vcpkg.cmake` toolchain file. 
 
     First, set the `VCPKG_ROOT` environment variable:
 
@@ -109,11 +109,14 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
 
     :::code language="cmake" source="../examples/snippets/get-started-linux/CMakePresets.json":::
 
+    This `CMakePresets.json` file contains a single "default" preset for CMake. It uses version 3 of the schema and sets the `CMAKE_TOOLCHAIN_FILE` variable, pointing to a toolchain file in the `VCPKG_ROOT` environment variable. This automates the process of specifying the toolchain when running CMake.
+
     Finally, configure the build using CMake:
 
     ```bash
     cmake -B build -S . --presets=default
     ```
+
     This will use the settings in the `CMakePresets.json` file, including the specified toolchain file, to configure the project.
 
 2. Build the project
