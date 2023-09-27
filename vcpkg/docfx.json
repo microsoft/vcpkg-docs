@@ -28,7 +28,8 @@
           "**/*.png",
           "**/*.jpg",
           "**/*.gif",
-          "**/*.svg"
+          "**/*.svg",
+          "**/zone-pivot-groups.json"
         ],
         "exclude": [
           "**/obj/**",
@@ -49,9 +50,9 @@
       "feedback_product_url": "https://github.com/Microsoft/vcpkg/issues/",
       "ROBOTS": "INDEX,FOLLOW",
       "manager": "aupopa",
-      "ms.date": "11/16/2020",
+      "ms.date": "09/25/2023",
       "ms.prod": "vcpkg",
-      "ms.topic": "conceptual",
+      "ms.topic": "reference",
       "audience": "developer",
       "uhfHeaderId": "MSDocsHeader-Vcpkg",
       "defaultDevLang": "cpp",
@@ -66,7 +67,8 @@
       ],
       "searchScope": [
         "vcpkg"
-      ]
+      ],
+      "zone_pivot_group_filename": "core/zone-pivot-groups.json"
     },
     "fileMetadata": {
       "author": {
