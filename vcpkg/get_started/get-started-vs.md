@@ -28,7 +28,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 1. Create the project directory
 
-    TWe'll be working within a directory named `helloworld`. Ensure that this directory is a sibling of your vcpkg directory, meaning both directories should reside under the same parent directory.
+    We'll be working within a directory named `helloworld`. Ensure that this directory is a sibling of your vcpkg directory, meaning both directories should reside under the same parent directory.
     
     * Open Visual Studio
     * Click on "Create a new project."
