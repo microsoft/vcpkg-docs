@@ -22,10 +22,10 @@ Registries are configured using a
 In this tutorial, you will learn to:
 
 > [!div class="checklist"]
-> * [Create a project]
-> * [Create the manifest and configuration files]
-> * [Add private registries to your vcpkg configuration file]
-> * [Install packages from custom registries]
+> * [Create a project](#1---create-a-project)
+> * [Create the manifest and configuration files](#2---create-the-manifest-and-configuration-files)
+> * [Add private registries to your vcpkg configuration file](#3---add-private-registries-to-your-vcpkg-configuration-file)
+> * [Install packages from custom registries](#4---install-packages-from-a-registry)
 
 ## Prerequisites
 
@@ -123,7 +123,7 @@ packages. Additional registries must explicitly declare the packages they provid
 an additional registry will be defaulted to the `"default-registry"`. Learn more about [package name
 resolution](../users/registries.md#package-name-resolution) in the registries documentation.
 
-## 3 - Install packages from a registry
+## 4 - Install packages from a registry
 
 Once a registry has been added to the configuration file, nothing special needs to be done to
 install packages from it. vcpkg will transparently resolve package names in your `vcpkg.json` to the
