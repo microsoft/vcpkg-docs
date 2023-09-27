@@ -58,7 +58,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
     The default `vcpkg-configuration.json` file introduces [baseline](../reference/vcpkg-configuration-json.md#registry-baseline) constraints, specifying the minimum versions of dependencies that your project should use. While this allows for more granular control over your project's dependencies, a detailed discussion is beyond the scope of this tutorial.
 
-## 3 - Add dependencies and creatw project files
+## 3 - Add dependencies and create project files
 
 Now that the project is set up, add the `fmt` library as a dependency and generate the project files.
 
