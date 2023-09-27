@@ -1,9 +1,9 @@
 ---
-title: Common Command Options
+title: Common command options
 description: Common command line options reference for vcpkg.
 ms.date: 9/5/2022
 ---
-# Common Command Options
+# Common command options
 
 Most vcpkg commands accept a group of common options that control cross-cutting aspects of the tool. Not all options affect every command. For example, a command that does not download any files will be unaffected by changing the downloads directory.
 
