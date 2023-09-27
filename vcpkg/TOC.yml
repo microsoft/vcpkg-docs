@@ -5,6 +5,8 @@
   items:
   - name: Install and use packages with vcpkg
     href: get_started/get-started.md
+  - name: Install and use packages with vcpkg in Visual Studio
+    href: get_started/get-started-vs.md
 - name: Consume packages
   expanded: true
   items:
