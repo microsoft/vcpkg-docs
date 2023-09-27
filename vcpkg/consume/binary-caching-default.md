@@ -9,8 +9,7 @@ ms.topic: concept-article
 ---
 # Default local vcpkg binary cache
 
-By default, vcpkg creates a local binary cache. This helps save time when installing the same
-package on the same machine.
+By default, vcpkg creates a local binary cache. This saves time when installing a package that has been previously installed in the same machine.
 
 The location of the default binary cache depends on your operating system.
 

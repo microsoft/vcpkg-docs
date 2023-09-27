@@ -52,10 +52,10 @@ $env:VCPKG_BINARY_SOURCES="clear;files,\\remote\shared\vcpkg\binary-cache,read;f
 
 This `VCPKG_BINARY_SOURCES` configuration adds the following source strings:
 
-* `clear`, disables any previously configured binary cache, in this case it disables the [default
+* `clear`, disables any previously configured binary cache, in this case, it disables the [default
   binary cache](binary-caching-local.md).
 * `files,\\remote\shared\vcpkg\binary-cache,read`, sets a binary cache using the filesystem backend,
-  `files`, located in `\\remote\shared\vcpkg\binary-cache` and gives it read-only permissions
+  `files`, located in `\\remote\shared\vcpkg\binary-cache`, and gives it read-only permissions
   (`read`).
 * `files,D:\vcpkg\binary-cache`, sets a second filesystem binary cache, located in
   `D:\vcpkg\binary-cache`, with read-write permissions (`readwrite` is omitted since it is the
