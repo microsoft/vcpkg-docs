@@ -5,7 +5,7 @@ author: vicroms
 ms.author: viromer
 ms.date: 9/25/2023
 ms.prod: vcpkg
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 # Default local vcpkg binary cache
 
