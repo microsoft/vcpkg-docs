@@ -7,7 +7,7 @@ ms.date: 9/21/2023
 ---
 # Installation tree layout
 
-This article describes the installation directory layout conventions used by vcpkg. After each
+This article describes the layout conventions used by vcpkg for the packages' installation directory. After each
 package installation, vcpkg copies the produced output into a specific location depending on the
 file's type.
 
