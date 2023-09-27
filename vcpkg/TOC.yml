@@ -40,6 +40,8 @@
       href: consume/binary-caching-local.md
     - name: Set up a vcpkg binary cache using a NuGet feed
       href: consume/binary-caching-nuget.md
+    - name: Set up a vcpkg binary cache using GitHub Packages in your GitHub Actions workflow
+      href: consume/binary-caching-github-packages.md
   - name: Improve reliability by caching dependencies assets
     items:
     - name: Use a custom script as an asset caching storage provider
