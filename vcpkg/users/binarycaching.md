@@ -12,12 +12,12 @@ ms.prod: vcpkg
 
 Most ports in the [vcpkg public registry](<https://github.com/Microsoft/vcpkg>) are built from
 source. By building from source, vcpkg can ensure maximum compatibility by using
-the same environment, build tools, compiler flags, linker flags, and other configurations that you
+the same environment, build-tools, compiler flags, linker flags, and other configurations that you
 use in your project to build your dependencies.
 
 When binary caching is enabled, after each package is built from source, vcpkg creates a **binary
-package**. Binary packages contain the build-output of a package: binaries, build system integration files,
-usage documentation, license, etc. If a subsequent run requires a cached package to be installed,
+package**. Binary packages hold the build-output of a package: binaries, build system integration files,
+usage documentation, license, and other files. If a later run requires a cached package to be installed,
 vcpkg determines whether to restore the cached binary package or trigger a build from source.
 
 This way, binary caching reduces the impact of the following downsides of building from source:
