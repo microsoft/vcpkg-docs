@@ -66,7 +66,7 @@ zlib version is 1.2.11
 ```
 
 It is likely, that when you run the program the versions of these libraries are different than the
-output above. In the next step, we show you how to pin the versions of these dependencies so that
+output above. In the next step, we show you how to lock the versions of these dependencies so that
 they stay consistent each time you build the project.
 
 ## 2 - Add version constraints using a baseline
@@ -92,8 +92,23 @@ version for all the packages.
 
 You can use Git to examine the versions for that particular baseline:
 
-```Console
+### [PowerShell](#tab/inspect-powershell)
+
+```Powershell
+git show 3426db05b996481ca31e95fff3734cf23e0f51bc:versions/baseline.json | Select-String -Pattern '"zlib"|"fmt"' -Context 0,3
+```
+
+### [bash](#tab/inspect-bash)
+
+```bash
 git show 3426db05b996481ca31e95fff3734cf23e0f51bc:versions/baseline.json | egrep -A 3 -e '"zlib"|"fmt"'
+```
+
+---
+
+The output should look similar to this:
+
+```
     "fmt": {
       "baseline": "7.1.3",
       "port-version": 1
