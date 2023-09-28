@@ -23,7 +23,8 @@ In this tutorial, you'll learn how to:
 > [!div class="checklist"]
 >
 > * [Export required GitHub Actions environment variables](#1---export-required-github-actions-envrionment-variables)
-> * [Configure vcpkg to use the GitHub Actions cache](#2)
+> * [Configure vcpkg to use the GitHub Actions
+>   cache](#2---configure-vcpkg-to-use-the-github-actions-cache)
 
 ## Prerequisites
 
@@ -59,12 +60,11 @@ And that's it! vcpkg will now upload or restore packages from your GitHub Action
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Set up a binary cache using a NuGet feed](binary-caching-nuget.md)
+> [Authenticate to private NuGet feeds](../users/binarycaching.md#nuget-credentials)
 
 Here are other tasks to try next:
 
 * [Change the default binary cache location](binary-caching-default.md)
-* [Set up a local binary cache](binary-caching-localmd)
+* [Set up a local binary cache](binary-caching-local.md)
 * [Set up a binary cache using a NuGet feed](binary-caching-nuget.md)
 * [Set up a binary cache in your GitHub Actions workflow using GitHub Packages](binary-caching-github-packages.md)
-* [Set up a binary cache in your GitHub Actions workflow using GitHub Actions Cache](binary-caching-github-actions-cache.md)
