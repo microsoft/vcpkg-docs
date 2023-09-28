@@ -21,9 +21,9 @@ installation directory try installing some packages first.
 
 The root level of the installation directory contains:
 
-* A `vcpkg` directory, the vcpkg database, keeps track of installed packages and files
-* A directory per each [triplet](../users/triplets.md) that has installed packages, contains the
-  packages build output
+* A `vcpkg` directory which keeps track of installed packages and files
+* A directory for each [triplet](../users/triplets.md) that has installed packages which contains the
+  packages' build output
 
 ## `vcpkg` directory
 
@@ -50,28 +50,30 @@ The layout for the subdirectories inside each triplet directory is the same:
 
 | Subdirectory            | File type                                         | 
 | ----------------------- | ------------------------------------------------- |
-| `bin`                   | Release `.dll` and `.pdb` files                   |
+| [`bin`](#layout-bin)                   | Release `.dll` and `.pdb` files                   |
 | `debug/bin`             | Debug `.dll` and `.pdb` files                     |
-| `debug/lib`             | Debug `.lib`, `.so`, and `.a` files               |
-| `debug/lib/manual-link` | Manually-linkable debug `.dll` and `.pdb` files   |
+| `debug/lib`             | Debug `.lib`, `.so`, `.dylib`, and `.a` files               |
+| `debug/lib/manual-link` | Manually-linkable debug `.lib`, `.so`, `.dylib`, and `.a` files   |
 | `debug/lib/pkgconfig`   | pkgconfig files (`.pc`)                           |
 | `include`               | Header-files (`.h`, `.hpp`, `.hxx`)               |
 | `lib`                   | Release `.lib`, `.so`, and `.a` files             |
 | `lib/manual-link`       | Manually-linkable release `.dll` and `.pdb` files |
 | `lib/pkgconfig`         | Pkgconfig files (`.pc`)                           |
-| `share/<port>`          | Miscellaneous files.                              |
-| `share/pkconfig`        | pkgconfig files (`.pc`)                           |
+| `share/<port>`          | Additional configuration-independent files.                              |
+| `share/<port>/copyright`          | The license text for the package.                              |
+| `share/<cmakepackagename>/<CMakePackageName>Config.cmake`          | CMake integration files for `find_package(CMakePackageName)`.                              |
+| `share/pkconfig`        | configuration-independent pkgconfig files (`.pc`)                           |
 | `tools/<port>`          | Executable tools                                  |
 
 
-### `bin` and `debug/bin` directories
+### <a name="layout-bin></a> `bin` and `debug/bin` directories
 
 On Windows, these directories contain DLL and PDB files for release and debug configuration
 respectively.
 
 ### `lib` and `debug/lib` directories
 
-Contain object files, any file with the `.lib`, `.so`, and `.a` extensions is placed in these
+Contains static libraries, import libraries (on Windows), and shared libraries (on non-Windows).
 configuration-dependent directories.
 
 ### `lib/manual-link` and `debug/lib/manual-link` directories
@@ -81,7 +83,7 @@ Each port must make sure to place manually-linkable files in these directories e
 
 ### `lib/pkgconfig` and `share/pkgconfig` directories
 
-Contain pkconfig integration files (`.pc`).
+Contain pkgconfig integration files (`.pc`).
 
 ### `share/<port>`
 
@@ -95,4 +97,4 @@ files contained in this directory are: CMake integration files,
 Contains executable tools produced by a port, it is not required, but is highly recommended that
 each installed executable goes into a subdirectory matching the name of the port that produced it.
 For example, the `minizip` ports installs `minizip.exe` to
-`installed/<triplet>/tools/minizip/minizip.exe`.
+`tools/minizip/minizip.exe`.
