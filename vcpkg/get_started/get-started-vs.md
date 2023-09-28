@@ -1,6 +1,6 @@
 ---
-title: Install and use packages with vcpkg in Visual Studio
-description: Tutorial guides the user through the process of installing and using packages with vcpkg and Visual Studio.
+title: Install and use packages with CMake in Visual Studio
+description: Tutorial guides the user through the process of installing and using packages with CMake and Visual Studio.
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: operating-systems
 author: JavierMatosD
@@ -8,7 +8,7 @@ ms.author: javiermat
 ms.topic: tutorial
 ms.date: 09/27/2023
 ms.prod: vcpkg
-#CustomerIntent: As a beginner C++ developer, I want to learn how to install and manage packages using vcpkg, so that I can easily set up and maintain C++ projects with necessary dependencies.
+#CustomerIntent: As a beginner C++ developer, I want to learn how to install and manage packages using CMake and Visual Studio, so that I can easily set up and maintain C++ projects with necessary dependencies.
 ---
 
 # Tutorial: Install and use packages with vcpkg
@@ -17,78 +17,102 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 ## Prerequisites
 
-- [Visual Studio with C++ development workload](https://visualstudio.microsoft.com/downloads/)
-- [CMake](https://cmake.org/download/)
+- [Visual Studio with C++ development workload and CMake component](https://visualstudio.microsoft.com/downloads/)
 - [Git](https://git-scm.com/downloads)
+
+## 1 - Set up vcpkg
 
 [!INCLUDE [setup-vcpkg](setup-vcpkg.md)]
 
-
 ## 2 - Set up the Visual Studio project
 
-1. Create the project directory
-
-    We'll be working within a directory named `helloworld`. Ensure that this directory is a sibling of your vcpkg directory, meaning both directories should reside under the same parent directory.
+1. Create the Visual Studio project
     
     * Open Visual Studio
-    * Click on "Create a new project."
-    * Choose "Empty Project" as the template.
-    * Name your project "helloworld."
-    * Set the location to be the parent directory of your vcpkg installation.
+    * Click on "Create a new project"
+    * Choose "CMake Project" as the template.
+    * Name your project "helloworld"
     * Check the box for "Place solution and project in the same directory."
-    * Click the "Create."
-  
-2. Generate a Manifest file
+    * Click the "Create"
 
-    Create a vcpkg manifest file (`vcpkg.json`) by executing the following command in Visual Studio's built-in terminal:
-
-    ```console
-    ../vcpkg/vcpkg new --application
-    ```
-
-    The `vcpkg new` command adds a `vcpkg.json` file and a `vcpkg-configuration.json` file to your projects directory. To view the manifest file (`vcpkg.json`) toggle the "Folder view" in the solution explorer.
-
-    The `vcpkg.json` file should look like this:
-
-    ```json
-    {}
-    ```
-
-    This is your manifest file. vcpkg reads the manifest file to learn what dependencies to install and integrates with CMake to provide the dependencies required by your project. Initially, the file contains an empty JSON object; additional attributes like dependencies and supported features can be added as your project grows.
-
-    The default `vcpkg-configuration.json` file introduces [baseline](../reference/vcpkg-configuration-json.md#registry-baseline) constraints, specifying the minimum versions of dependencies that your project should use. While this allows for more granular control over your project's dependencies, a detailed discussion is beyond the scope of this tutorial.
-
-## 3 - Add dependencies and create project files
-
-Now that the project is set up, add the `fmt` library as a dependency and generate the project files.
-
-1. Add the `fmt` dependency
-
-    From within Visual Studio's built-in terminal, run:
+2. Configure the `VCPKG_ROOT` environment variable.
+   
+    Open the built-in Developer PowerShell window (``Ctrl+` ``) in Visual Studio and run the following commands:
 
     ```console
-    ../vcpkg/vcpkg add port fmt
+    $env:VCPKG_ROOT = "C:\path\to\vcpkg"
+    $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
     ```
 
-    Your `vcpkg.json` should look like this:
+    Setting `VCPKG_ROOT` helps Visual Studio locate where your vcpkg instance is located.
+    Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
+
+3. Generate a Manifest file and add dependencies.
+
+    Run the following command to create a vcpkg manifest file (`vcpkg.json`):
+
+    ```console
+    vcpkg new --application
+    ```
+
+    The command adds a `vcpkg.json` and a `vcpkg-configuration.json` file to your project directory. 
+
+    Add the `fmt` package as a dependency:
+
+    ```console
+    vcpkg add port fmt
+    ```
+
+    Your `vcpkg.json` should now contain:
 
     ```json
     {
         "dependencies": [
-        "fmt"
+            "fmt"
         ]
     }
     ```
 
-2. Create project files
+    This is your manifest file. vcpkg reads the manifest file to learn what dependencies to install and integrates with CMake to provide the dependencies required by your project.
 
-    Create the `main.cpp` file with the following content:
+    The default `vcpkg-configuration.json` file introduces [baseline](../reference/vcpkg-configuration-json.md#registry-baseline) constraints, specifying the minimum versions of dependencies that your project should use. While modifying this file is beyond the scope of this tutorial, it plays a crucial role in defining version constraints for your project's dependencies. Therefore, even though it's not strictly necessary for this tutorial, it's a good practice to add `vcpkg-configuration.json` to your source control to ensure version consistency across different development environments.
+
+## 3 - Set up the project files
+
+1. Modify the `helloworld.cpp` file.
+
+    Replace the content of `helloworld.cpp` with the following code:
 
     :::code language="cpp" source="../examples/snippets/get-started/main.cpp":::
 
-    In this `main.cpp` file, the `<fmt/core.h>` header is included for using the `fmt` library. The `main()` function then utilizes `fmt::print()` to output the "Hello World!" message to the console.
+    In this `helloworld.cpp` file, the `<fmt/core.h>` header is included for using the `fmt` library. The `main()` function then calls `fmt::print()` to output the "Hello World!" message to the console.
 
-    Create the `CMakeLists.txt` file with the following content:
+2. Configure the `CMakePresets.json` file.
+   
+   * Rename the `CMakePresets.json` to `CMakeUserPresets.json`
+   * Update its contents as shown below. Replace `<VCPKG_ROOT>` with the path to your vcpkg directory.
+  
+  ```json
+  {
+    "version": 3,
+    "configurePresets": [
+      {
+        "name": "default",
+        "cacheVariables": {
+          "CMAKE_TOOLCHAIN_FILE": "<VCPKG_ROOT>/scripts/buildsystems/vcpkg.cmake"
+        }
+      }
+    ]
+  }
+  ```
+
+  * Add `CMakeUserPresets.json` to you `.gitignore` file if you're using version control. 
+  
+   This `CMakeUserPresets.json` file contains a single "default" preset for CMake and sets the `CMAKE_TOOLCHAIN_FILE` variable. The `CMAKE_TOOLCHAIN_FILE` allows the CMake project system to recognize C++ libraries provided by vcpkg. Adding the `CMakeUserPresets.json` automates the process of specifying the toolchain when running CMake.
+
+3. Edit the `CMakeLists.txt` file.
+   
+    Replace the contents of the `CMakeLists.txt` file with the following code:
 
     :::code language="cmake" source="../examples/snippets/get-started/CMakeLists.txt":::
 
@@ -97,17 +121,17 @@ Now that the project is set up, add the `fmt` library as a dependency and genera
     - `cmake_minimum_required(VERSION 3.10)`: Specifies that the minimum version of CMake required to build the project is 3.10. If the version of CMake installed on your system is lower than this, an error will be generated.
     - `project(HelloWorld)`: Sets the name of the project to "HelloWorld."
     - `find_package(fmt CONFIG REQUIRED)`: Looks for the `fmt` library using its CMake configuration file. The `REQUIRED` keyword ensures that an error is generated if the package is not found.
-    - `add_executable(HelloWorld main.cpp)`: Adds an executable target named "HelloWorld," built from the source file `main.cpp`.
+    - `add_executable(HelloWorld helloworld.cpp)`: Adds an executable target named "HelloWorld," built from the source file `helloworld.cpp`.
     - `target_link_libraries(HelloWorld PRIVATE fmt::fmt)`: Specifies that the `HelloWorld` executable should link against the `fmt` library. The `PRIVATE` keyword indicates that `fmt` is only needed for building `HelloWorld` and should not propagate to other dependent projects.
 
 ## 4 - Build and run the project
 
-1. Build
+1. Build the project.
    
    Press `Ctrl+Shift+B` to build the project in Visual Studio.
    
 
-2. Run the application
+2. Run the application.
 
     Finally, run the executable:
 
