@@ -117,7 +117,7 @@ Add the following step in your GitHub Actions workflow file:
 
 ### [Linux](#tab/step4-linux)
 
-On Linux we use `mono` to execute `nuget.exe`. GitHub Actions runners using Ubuntu come with `mono`
+On Linux you need `mono` to execute `nuget.exe`. GitHub Actions runners using Ubuntu come with `mono`
 preinstalled. Otherwise, you can install `mono` using your distribution's system package manager.
 
 ```YAML

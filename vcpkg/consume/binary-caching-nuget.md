@@ -11,8 +11,8 @@ ms.date: 09/11/2023
 # Tutorial: Set up a vcpkg binary cache using a NuGet feed
 
 > [!NOTE]
-> This tutorial uses NuGet feeds hosted in Azure Artifacts but the same instructions can be used for
-> other NuGet feed providers, for example: GitHub Packages, with minimal changes.
+> This tutorial uses a NuGet feed hosted in Azure Artifacts but the same instructions can be used for
+> other NuGet feed providers, for example: GitHub Packages, with some changes.
 
 vcpkg supports using NuGet package feeds to upload and restore binary packages in a convenient way.
 
@@ -26,28 +26,95 @@ In this tutorial, you'll learn how to:
 
 > [!div class="checklist"]
 >
-> * [Set up an Azure Artifacts NuGet feed](#1---set-up-an-azure-artifacts-nuget-feed)
+> * [Set up a NuGet feed](#1---set-up-a-nuget-feed)
 > * [Add a NuGet source](#2---add-a-nuget-source)
 > * [Configure vcpkg to use your NuGet feed](#3---configure-vcpkg-to-use-your-nuget-feed)
 
 ## Prerequisites
 
 * A terminal
-* An Azure DevOps account
-* [NuGet](<https://dist.nuget.org/win-x86-commandline/latest/nuget.exe>)
 * [vcpkg](../get_started/setup-vcpkg.md)
+* A NuGet packages feed, or if you don't, an Azure DevOps account to follow along
+* (On Linux) The `mono` package installed in your system
 
-## 1 - Set up an Azure Artifacts NuGet feed
+## 1 - Set up a NuGet feed
+
+Skip this step if you already have an existing NuGet packages feed.
 
 Follow the instructions to [set up an Azure Artifacts NuGet
 feed](/azure/devops/artifacts/get-started-nuget?view=azure-devops&preserve-view=true).
 
+You can also use any other NuGet packages feed provider of your choice.
+
 ## 2 - Add a NuGet source
 
-### [`nuget.config`](#tab/nuget-config)
+> [!NOTE]
+> On Linux you need `mono` to execute `nuget.exe`. You can install `mono` using your distribution's
+> system package manager.
 
-Create a `nuget.config` following the template below, replace `<feed url>` and `<feed name>` with
-the proper values for your NuGet feed:
+vcpkg acquires its own copy of the `nuget.exe` executable that it uses during binary caching
+operations. This tutorial uses the vcpkg-acquired `nuget.exe`. The `vcpkg fetch nuget` command
+outputs the location of the vcpkg-acquired `nuget.exe`, downloading the executable if necessary.
+
+Run the following command to add your NuGet feed as a source, replace `<feed name>` with any name of
+your choosing and `<feed url>` with the URL to your NuGet feed.
+
+### [Windows](#tab/windows-nuget-source)
+
+```PowerShell
+.$(vcpkg fetch nuget) sources add -Name <feed name> -Source <feed url>
+```
+
+### [Linux](#tab/linux-nuget-source)
+
+```bash
+mono `vcpkg fetch nuget | tail -n 1` sources add -Name <feed name> - Source <feed url>
+```
+
+---
+
+### Provide an API key
+
+Some providers require that you push your NuGet packages to the feed using an API key. For example,
+GitHub Packages requires a GitHub PAT (Personal Access Token) as the API key; if you're using Azure
+Artifacts the API key is `AzureDevOps` instead.
+
+Use the following command to set the API key for all the packages pushed to your NuGet feed, replace
+`<apiKey>` with your feed's API key.
+
+#### [Windows](#tab/windows-nuget-apikey)
+
+```PowerShell
+.$(vcpkg fetch nuget) setapikey <apikey> -Source <feed url>
+```
+
+#### [Linux](#tab/linux-nuget-apikey)
+
+```bash
+mono `vcpkg fetch nuget | tail -n 1` sources setapikey <apiKey> - Source <feed url>
+```
+
+---
+
+### Provide authentication credentials
+
+Your NuGet feed may require authentication to let you download and upload packages. If that's the
+case you can provide credentials by adding them as parameters to the `nuget sources add` command.
+
+For example: 
+
+```Console
+nuget sources add -Name my-packages -Source https://my.nuget.feed/vcpkg-cache/index.json -UserName myusername -Password mypassword -StorePasswordInClearText
+```
+
+Some providers like Azure Artifacts may require different authentication methods, read the 
+[Authenticate to private NuGet feeds](../users/binarycaching.md#nuget-credentials) article to learn
+more.
+
+### Use a `nuget.config` file
+
+Alternatively, you can use a `nuget.config` file to configure your NuGet sources, following the
+template below:
 
 `nuget.config`
 
@@ -58,16 +125,42 @@ the proper values for your NuGet feed:
     <add key="defaultPushSource" value="<feed url>" />
   </config>
   <apiKeys>
-    <add
-      key="<feed url>"
-      value="AzureDevOps" />
+    <add key="<feed url>" value="<apikey>" />
   </apiKeys>
   <packageSources>
     <clear />
-    <add 
-       key="<feed name>"
-       value="<feed url>" />
+    <add  key="<feed name>" value="<feed url>" />
   </packageSources>
+  <packageSourcesCredentials>
+    <<feed name>>
+      <add key="Username" value="<username>" />
+      <add key="Password" value="<password>" />
+    </<feed name>>
+  </packageSourcesCredentials>
+</configuration>
+```
+
+Example `nuget.config` file :
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <config>
+    <add key="defaultPushSource" value="https://contoso.org/packages/" />
+  </config>
+  <apiKeys>
+    <add key="https://contoso.org/packages/" value="encrypted_api_key" />
+  </apiKeys>
+  <packageSources>
+    <clear />
+    <add key="Contoso" value="https://contoso.org/packages/" />
+  </packageSources>
+  <packageSourcesCredentials>
+    <Contoso>
+      <add key="Username" value="user" />
+      <add key="Password" value="..." />
+    </Contoso>
+  </packageSourcesCredentials>
 </configuration>
 ```
 
@@ -75,28 +168,25 @@ vcpkg requires that you set a `defaultPushSource` in your `nuget.config` file, u
 URL as the default source to push binary packages. 
 
 If you're uploading your packages to an Azure Artifacts NuGet feed, use `AzureDevOps` as your
-source's API Key. Replace the value with your feed's proper API Key if you have one.
+source's API Key. Otherwise, replace the value with your feed's proper API Key if you have one.
 
 Add the `<clear />` source to ignore other previously configured values. If you want, you can define multiple
 sources in this file, use a `<add key="<feed name>" value="<feed url>" />` entry for each source.
 
-### [NuGet CLI](#tab/nuget-cli)
+Run the following command to add a NuGet source using a `nuget.config` file, replace 
+`<path to nuget.config>` with the path to your `nuget.config` file:
 
-Use the `vcpkg fetch nuget` command to get the NuGet executable vcpkg uses.
-
-```PowerShell
-vcpkg fetch nuget
-```
-
-Add your NuGet feed as a source
+#### [Windows](#tab/nuget-config-windows)
 
 ```PowerShell
-.$(vcpkg fetch nuget) sources add -Name vcpkg-cache -Source <your feed URL>
-.$(vcpkg fetch nuget) setapikey AzureDevOps -Source vcpkg-cache
+.$(vcpkg fetch nuget) sources add -ConfigFile <path to nuget.config>
 ```
 
-If you're uploading your packages to an Azure Artifacts NuGet feed, use `AzureDevOps` as your
-source's API Key. Replace the value with your feed's proper API Key if you have one.
+#### [Linux](#tab/nuget-config-linux)
+
+```bash
+mono `vcpkg fetch nuget | tail -n 1` sources add -ConfigFile <path to nuget.config>
+```
 
 ---
 
@@ -104,26 +194,38 @@ source's API Key. Replace the value with your feed's proper API Key if you have 
 
 Set the `VCPKG_BINARY_SOURCES` environment variable as follows:
 
-### [`nuget.config`](#tab/configure-nuget-config)
+### [Windows](#tab/setup-sources-windows)
 
 ```PowerShell
-$env:VCPKG_BINARY_SOURCES="clear;nugetconfig,<nuget.config path>"
+$env:VCPKG_BINARY_SOURCES="clear;nuget,<feed url>,readwrite"
 ```
 
-Replace `<nuget.config path>` with the path to your `nuget.config` file.
-
-### [NuGet CLI](#tab/configure-nuget-cli)
+If you're using a `nuget.config` file, instead do:
 
 ```PowerShell
-$env:VCPKG_BINARY_SOURCES="clear;nuget,<feed URL>"
+$env:VCPKG_BINARY_SOURCES="clear;nugetconfig,<path to nuget.config>"
 ```
 
-Replace `<feed URL>` with your NuGet feed's URL.
+### [Linux](#tab/setup-sources-linux)
+
+> [!NOTE]
+> Setting `VCPKG_BINARY_SOURCES` using the `export` command will only affect the current shell
+> session. To make this change permanent across sessions, you'll need to add the `export` command to
+> your shell's profile script (e.g., `~/.bashrc` or `~/.zshrc`).
+
+```bash
+export VCPKG_BINARY_SOURCES="clear;nuget,<feed url>,readwrite"
+```
+
+If you're using a `nuget.config` file, instead do:
+
+```bash
+export VCPKG_BINARY_SOURCES="clear;nugetconfig,<path to nuget.config>"
+```
 
 ---
 
-And that's it! vcpkg will now upload or restore packages from your NuGet feed in Azure
-Artifacts.
+And that's it! vcpkg will now upload or restore packages from your NuGet feed.
 
 ## Next steps
 
@@ -135,4 +237,5 @@ Here are other tasks to try next:
 * [Change the default binary cache location](binary-caching-default.md)
 * [Set up a local binary cache](binary-caching-local.md)
 * [Set up a binary cache in your GitHub Actions workflow using GitHub Packages](binary-caching-github-packages.md)
-* [Set up a binary cache in your GitHub Actions workflow using GitHub Actions Cache](binary-caching-github-actions-cache.md)
+* [Set up a binary cache in your GitHub Actions workflow using GitHub Actions
+  Cache](binary-caching-github-actions-cache.md)
