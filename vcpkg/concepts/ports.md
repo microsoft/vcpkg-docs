@@ -1,6 +1,6 @@
 ---
 title: Ports
-description: Ports as a vcpkg concept
+description: This article explains the concept of ports, their capabilities, and their expected contents in detail.
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 09/21/2023
@@ -59,7 +59,7 @@ A meta port serves to impose constraints on the install graph without having its
 
 ### Script port
 
-A script port contains utility scripts that are primarily intended for internal tasks within vcpkg or for consumption by other ports. These ports enable versioning of the utility scripts, thereby maintaining compatibility and standardization. For example, `vcpkg-cmake` is a script port that exposes the `vcpkg_cmake_configure()`
+A script port contains utility scripts that are primarily intended for internal tasks within vcpkg or for consumption by other ports. These ports enable versioning of the utility scripts, thereby maintaining compatibility and standardization. For example, `vcpkg-cmake` is a script port that exposes the [`vcpkg_cmake_configure()`](../maintainers/functions/vcpkg_cmake_configure.md)
 helper function.
 
 ## Next steps
