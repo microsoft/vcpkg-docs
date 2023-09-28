@@ -60,4 +60,12 @@ VCPKG_BINARY_SOURCES=clear
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Setup a local filesystem binary cache](binary-caching-local.md)
+> [Set up a local binary cache](binary-caching-local.md)
+
+Here are other tasks to try next:
+
+* [Change the default binary cache location](binary-caching-default.md)
+* [Set up a local binary cache](binary-caching-localmd)
+* [Set up a binary cache using a NuGet feed](binary-caching-nuget.md)
+* [Set up a binary cache in your GitHub Actions workflow using GitHub Packages](binary-caching-github-packages.md)
+* [Set up a binary cache in your GitHub Actions workflow using GitHub Actions Cache](binary-caching-github-actions-cache.md)

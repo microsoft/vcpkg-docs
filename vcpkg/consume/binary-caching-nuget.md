@@ -91,8 +91,8 @@ vcpkg fetch nuget
 Add your NuGet feed as a source
 
 ```PowerShell
-nuget sources add -Name vcpkg-cache -Source <your feed URL>
-nuget setapikey AzureDevOps -Source vcpkg-cache
+.$(vcpkg fetch nuget) sources add -Name vcpkg-cache -Source <your feed URL>
+.$(vcpkg fetch nuget) setapikey AzureDevOps -Source vcpkg-cache
 ```
 
 If you're uploading your packages to an Azure Artifacts NuGet feed, use `AzureDevOps` as your
@@ -129,3 +129,11 @@ Artifacts.
 
 > [!div class="nextstepaction"]
 > [Authenticate to private NuGet feeds](../users/binarycaching.md#nuget-credentials)
+
+Here are other tasks to try next:
+
+* [Change the default binary cache location](binary-caching-default.md)
+* [Set up a local binary cache](binary-caching-localmd)
+* [Set up a binary cache using a NuGet feed](binary-caching-nuget.md)
+* [Set up a binary cache in your GitHub Actions workflow using GitHub Packages](binary-caching-github-packages.md)
+* [Set up a binary cache in your GitHub Actions workflow using GitHub Actions Cache](binary-caching-github-actions-cache.md)

@@ -10,6 +10,10 @@ ms.date: 09/27/2023
 ---
 # Tutorial: Set up a vcpkg binary cache using GitHub Packages in a GitHub Actions workflow
 
+> [!NOTE]
+> This tutorial uses NuGet feeds hosted in GitHub Packages but the same instructions can be used for
+> other NuGet feed providers, for example: Azure Artifacts, with minimal changes.
+
 GitHub Packages offers a convenient repository for your NuGet binary packages produced by vcpkg.
 In this tutorial, we show you how to set up a binary cache in your GitHub Actions workflow that uses
 GitHub Packages as the remote storage.
@@ -147,4 +151,13 @@ Packages inside your GitHub Acions workflow.
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Authenticate to private NuGet feeds](../users/binarycaching.md#nuget-credentials)
+> [Set up a binary cache in your GitHub Actions workflow using GitHub Packages](binary-caching-github-packages.md)
+
+Here are other tasks to try next:
+
+* [Change the default binary cache location](binary-caching-default.md)
+* [Set up a local binary cache](binary-caching-localmd)
+* [Set up a binary cache using a NuGet feed](binary-caching-nuget.md)
+* [Set up a binary cache in your GitHub Actions workflow using GitHub Packages](binary-caching-github-packages.md)
+* [Set up a binary cache in your GitHub Actions workflow using GitHub Actions Cache](binary-caching-github-actions-cache.md)
+
