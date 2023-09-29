@@ -17,7 +17,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 ## Prerequisites
 
-- [Visual Studio](<https://visualstudio.microsoft.com/downloads/>) with C++ development workload and [CMake component](<https://learn.microsoft.com/cpp/build/cmake-projects-in-visual-studio?view=msvc-170#installation>)
+- [Visual Studio](<https://visualstudio.microsoft.com/downloads/>) with C++ development workload and [CMake component](<https://learn.microsoft.com/cpp/build/cmake-projects-in-visual-studio#installation>)
 - [Git](<https://git-scm.com/downloads>)
 
 ## 1 - Set up vcpkg
@@ -29,11 +29,11 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 1. Create the Visual Studio project
     
     * Create a new project in Visual Studio using the "CMake Project" template
-    ![visual-studio-create-cmake-project](../resources/get_started/visual-studio-create-project.png)
+    ![vs-create-new-cmake-project](../resources/get_started/visual-studio-create-project.png)
     * Name your project "helloworld"
     * Check the box for "Place solution and project in the same directory."
     * Click the "Create"
-    ![visual-studio-name-project](../resources/get_started/visual-studio-name-project.png)
+    ![vs-name-the-project](../resources/get_started/visual-studio-name-project.png)
 
 1. Configure the `VCPKG_ROOT` environment variable.
    
@@ -136,10 +136,10 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 2. Run the application.
 
     Finally, run the executable:
-    ![visual-studio-run-project](../resources/get_started/visual-studio-run-project.png)
+    ![run-the-vs-project](../resources/get_started/visual-studio-run-project.png)
 
     You should see the output:
-    ![visual-studio-helloworld-output](../resources/get_started/visual-studio-helloworld-output.png)
+    ![see-the-output](../resources/get_started/visual-studio-helloworld-output.png)
 
 
 ## Next steps
