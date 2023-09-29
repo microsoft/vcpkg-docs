@@ -32,7 +32,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
     ::: zone pivot="os-linux,os-macos"
 
-    ```console
+    ```bash
     export VCPKG_ROOT=/path/to/vcpkg
     export PATH=$VCPKG_ROOT:$PATH
     ```
