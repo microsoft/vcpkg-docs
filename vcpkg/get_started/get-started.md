@@ -18,7 +18,12 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 ## Prerequisites
 
 - A terminal
+::: zone-pivot="os-windows"
+- Visual C++ compiler
+::: zone-end
+::: zone-pivot="os-linux, os-macos"
 - A C++ compiler
+::: zone-end
 - [CMake](https://cmake.org/download/)
 - [Git](https://git-scm.com/downloads)
 
