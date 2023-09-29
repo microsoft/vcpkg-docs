@@ -24,7 +24,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 ::: zone pivot="os-windows"
 
-> ![NOTE]
+> [!NOTE]
 > For Windows users, Visual Studio's MSVC (Microsoft Visual C++ Compiler) is the required compiler for C++ development.
 
 ::: zone-end
