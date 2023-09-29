@@ -22,6 +22,11 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 - [CMake](https://cmake.org/download/)
 - [Git](https://git-scm.com/downloads)
 
+::: zone pivot="os-windows"
+>![NOTE]
+>FFor Windows users, Visual Studio's MSVC (Microsoft Visual C++ Compiler) is the required compiler for C++ development.
+::: zone-end
+
 ## 1 - Set up vcpkg
 
 [!INCLUDE [setup-vcpkg](setup-vcpkg.md)]
