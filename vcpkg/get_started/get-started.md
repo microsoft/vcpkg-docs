@@ -87,6 +87,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
             "fmt"
         ]
     }
+    ```
 
     This is your manifest file. vcpkg reads the manifest file to learn what dependencies to install and integrates with CMake to provide the dependencies required by your project.
 
