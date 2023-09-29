@@ -29,11 +29,13 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 1. Create the Visual Studio project
     
     * Create a new project in Visual Studio using the "CMake Project" template
+    ![visual-studio-create-cmake-project](../resources/get_started/visual-studio-create-project.png)
     * Name your project "helloworld"
     * Check the box for "Place solution and project in the same directory."
     * Click the "Create"
+    ![visual-studio-name-project](../resources/get_started/visual-studio-name-project.png)
 
-2. Configure the `VCPKG_ROOT` environment variable.
+1. Configure the `VCPKG_ROOT` environment variable.
    
     Open the built-in Developer PowerShell window (``Ctrl+` ``) in Visual Studio and run the following commands:
 
@@ -42,10 +44,12 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
     ```
 
+    ![visual-studio-developer-powershell](../resources/get_started/visual-studio-environment-variable-setup.png)
+
     Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
     Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
 
-3. Generate a manifest file and add dependencies.
+2. Generate a manifest file and add dependencies.
 
     Run the following command to create a vcpkg manifest file (`vcpkg.json`):
 
@@ -90,23 +94,23 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
    * Rename the `CMakePresets.json` file to `CMakeUserPresets.json`
    * Update its contents as shown below. Replace `<VCPKG_ROOT>` with the path to your vcpkg directory.
   
-  ```json
-  {
+    ```json
+    {
     "version": 3,
     "configurePresets": [
-      {
+        {
         "name": "default",
         "cacheVariables": {
-          "CMAKE_TOOLCHAIN_FILE": "<VCPKG_ROOT>/scripts/buildsystems/vcpkg.cmake"
+            "CMAKE_TOOLCHAIN_FILE": "<VCPKG_ROOT>/scripts/buildsystems/vcpkg.cmake"
         }
-      }
+        }
     ]
-  }
-  ```
+    }
+    ```
 
-   * Since this file includes a hardcoded absolute path, it is recommended that you don't keep this file under source control. If you're using Git, add `CMakeUserPresets.json` to your `.gitignore` file.
+    * Since this file includes a hardcoded absolute path, it is recommended that you don't keep this file under source control. If you're using Git, add `CMakeUserPresets.json` to your `.gitignore` file.
 
-   The `CMakeUserPresets.json` file contains a single preset named "default", this preset sets the [`CMAKE_TOOLCHAIN_FILE`](<https://cmake.org/cmake/help/latest/variable/CMAKE_TOOLCHAIN_FILE.html>) to use vcpkg's CMake toolchain file. This lets vcpkg provide packages to CMake when you configure and build the project. Read the [vcpkg CMake integration documentation](../users/buildsystems/cmake-integration.md) to learn more.
+    The `CMakeUserPresets.json` file contains a single preset named "default", this preset sets the [`CMAKE_TOOLCHAIN_FILE`](<https://cmake.org/cmake/help/latest/variable/CMAKE_TOOLCHAIN_FILE.html>) to use vcpkg's CMake toolchain file. This lets vcpkg provide packages to CMake when you configure and build the project. Read the [vcpkg CMake integration documentation](../users/buildsystems/cmake-integration.md) to learn more.
 
 3. Edit the `CMakeLists.txt` file.
    
@@ -132,12 +136,10 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 2. Run the application.
 
     Finally, run the executable:
+    ![visual-studio-run-project](../resources/get_started/visual-studio-run-project.png)
 
     You should see the output:
-
-    ```console
-    Hello world!
-    ```
+    ![visual-studio-helloworld-output](../resources/get_started/visual-studio-helloworld-output.png)
 
 
 ## Next steps
