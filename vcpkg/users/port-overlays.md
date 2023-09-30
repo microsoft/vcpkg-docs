@@ -16,18 +16,19 @@ The default catalog contains vcpkg team and user maintained libraries designed f
 vcpkg uses port overlays so that you can use a library without requiring you to add it to the default catalog or maintain a custom registry. Port overlays are effective when you don't want to worry about versioning and simply want to use a library.
 
 ## Overlay Ports
-An overlay port refers to a new port or a drop-in replacement for an existing port. In either case, the overlay port will have the highest precedence in vcpkg dependency resolution and will always be selected. However, multiple ports added as overlays can introduce naming conflicts. 
+An overlay port typically refers to a new port or a drop-in replacement for an existing port. In either case, the overlay port will have the highest precedence in vcpkg dependency resolution and will always be selected. However, ports added by multiple overlays can introduce naming conflicts. 
 
 For example, `overlay-dir-A` and `overlay-dir-B` may both introduce the same overlay port `zlib`. vcpkg chooses `zlib` based on the lookup order in the list of overlay port paths.
 
 ## Configuration Syntax
 Overlay port paths can be specified directly on the vcpkg command line, added as a part of the manifest in `vcpkg-configuration` or introduced as an environmental variable. Path lookup order is also the same as above: first from a list in the command line, the manifest, and finally the environment.
 
-You can add the path to a directory containing several ports or the path to the port directory itself. 
+Overlay port syntax:
+- Single overlay port: `--overlay-ports=<directory>\sqlite3` refers to a single port and
+- Directory of overlay ports: `--overlay-ports=<directory>` refers to a directory of ports.
+A valid port must contain both `vcpkg.json` and `portfile.cmake`.
 
-For example, `--overlay-ports=C:\custom-ports\sqlite3` refers to a single port and `--overlay-ports=C:\custom-ports` refers to a directory of ports. A valid port must contain both `vcpkg.json` and `portfile.cmake`.
-
-Syntax:
+You can add an overlay port in several ways:
 * Command-line: Add one or multiple `--overlay-ports=<directory>` options to your vcpkg command
 * [Manifest](../reference/vcpkg-configuration-json.md#overlay-ports): Populate the `"overlay-ports"` array in `vcpkg-configuration.json`
 * [Environmental variable](./config-environment.md#vcpkg_overlay_ports): Set `VCPKG_OVERLAY_PORTS` to a list of paths
