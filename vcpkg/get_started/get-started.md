@@ -45,7 +45,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     ```
 
     > [!NOTE]
-    > Setting the `VCPKG_ROOT` using the `export` command will only affect the current shell session. To make this change permanent across sessions, you'll need to add the `export` command to your shell's profile script (e.g., `~/.bashrc` or `~/.zshrc`).
+    > Setting the `VCPKG_ROOT` environment variable using the `export` command only affects the current shell session. To make this change permanent across sessions, you'll need to add the `export` command to your shell's profile script (e.g., `~/.bashrc` or `~/.zshrc`).
 
     ::: zone-end
 
@@ -57,7 +57,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     ```
 
     > [!NOTE]
-    > Setting the `VCPKG_ROOT` environment variable using the `set` command will only affect the current shell session. To make this change permanent across sessions, you can use the `setx` command and restart the shell session.
+    > Setting the `VCPKG_ROOT` environment variable using the `set` command only affects the current shell session. To make this change permanent across sessions, you can use the `setx` command and restart the shell session.
 
     ::: zone-end
 

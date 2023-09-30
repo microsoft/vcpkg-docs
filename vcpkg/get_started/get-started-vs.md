@@ -29,13 +29,15 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 1. Create the Visual Studio project
     
     * Create a new project in Visual Studio using the "CMake Project" template
-    ![vs-create-new-cmake-project](../resources/get_started/visual-studio-create-project.png)
+    :::image type="complex" source="../resources/get_started/visual-studio-create-project.png" alt-text="create a new CMake project":::
+        Screenshot of how to create a new CMake project in Visual Studio
+    :::image-end:::
     * Name your project "helloworld"
     * Check the box for "Place solution and project in the same directory."
-    * Click the "Create"
+    * Click the "Create" button
     ![vs-name-the-project](../resources/get_started/visual-studio-name-project.png)
 
-1. Configure the `VCPKG_ROOT` environment variable.
+2. Configure the `VCPKG_ROOT` environment variable.
    
     Open the built-in Developer PowerShell window (``Ctrl+` ``) in Visual Studio and run the following commands:
 
@@ -49,7 +51,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
     Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
 
-2. Generate a manifest file and add dependencies.
+3. Generate a manifest file and add dependencies.
 
     Run the following command to create a vcpkg manifest file (`vcpkg.json`):
 
