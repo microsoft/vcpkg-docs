@@ -106,7 +106,7 @@ Options:
 
 For help with a specific topic:
 
-```bash
+```Console
 > vcpkg help versioning
 
 Versioning allows you to deterministically control the precise revisions of dependencies used by

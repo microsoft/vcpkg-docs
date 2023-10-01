@@ -90,7 +90,7 @@ Yes. While vcpkg will only produce the standard "Release" and "Debug" configurat
 
 First of all, vcpkg will automatically assume any custom configuration starting with "Release" (resp. "Debug") as a configuration that is compatible with the standard "Release" (resp. "Debug") configuration and will act accordingly.
 
-For other configurations, you only need to override the MSBuild `$(VcpkgConfiguration)` macro in your project file (.vcxproj) to declare the compatibility between your configuration, and the target standard configuration. Unfortunately, due to the sequential nature of MSBuild, you'll need to add those settings much higher in your vcxproj so that it is declared before the Vcpk integration is loaded. It is recommend that the `$(VcpkgConfiguration)` macro is added to the "Globals" PropertyGroup.
+For other configurations, you only need to override the MSBuild `$(VcpkgConfiguration)` macro in your project file (.vcxproj) to declare the compatibility between your configuration, and the target standard configuration. Unfortunately, due to the sequential nature of MSBuild, you'll need to add those settings much higher in your vcxproj so that it is declared before the vcpkg integration is loaded. It is recommend that the `$(VcpkgConfiguration)` macro is added to the "Globals" PropertyGroup.
 
 For example, you can add support for your "MyRelease" configuration by adding in your project file:
 
