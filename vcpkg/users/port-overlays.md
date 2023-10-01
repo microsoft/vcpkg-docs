@@ -11,31 +11,32 @@ ms.topic: conceptual
 # Port Overlays
 
 ## Overview
-The default catalog contains vcpkg team and user maintained libraries designed for general use. However, some libraries do not exist in the default catalog due to a variety of reasons: a library missing a version, a custom library, a library without CI support, a missing library. 
+The default catalog in vcpkg comprises libraries maintained by both the vcpkg team and users. The catalog does not contain the entire universe of libraries, every possible version or patch.
 
-vcpkg uses port overlays so that you can use a library without requiring you to add it to the default catalog or maintain a custom registry. Port overlays are effective when you don't want to worry about versioning and simply want to use a library.
+To facilitate the usage of these missing libraries without having to either add them to the default catalog or manage a custom registry, vcpkg uses port overlays. Port overlays are effective when you don't want to worry about versioning and simply want to use a library.
 
 ## Overlay Ports
-An overlay port typically refers to a new port or a drop-in replacement for an existing port. In either case, the overlay port will have the highest precedence in vcpkg dependency resolution and will always be selected. However, ports added by multiple overlays can introduce naming conflicts. 
+An overlay port typically refers to a new port or a drop-in replacement for an existing port. In either case, the overlay port takes priority in vcpkg dependency resolution, ensuring it gets selected. However, a potential pitfall is the naming conflict that can arise when multiple overlays introduce the same port.
 
-For example, `overlay-dir-A` and `overlay-dir-B` may both introduce the same overlay port `zlib`. vcpkg chooses `zlib` based on the lookup order in the list of overlay port paths.
+For instance, `overlay-dir-A` and `overlay-dir-B` may both introduce the same overlay port `zlib`. In this situation, vcpkg resolves `zlib` based on the lookup order in the list of overlay port paths.
 
 ## Configuration Syntax
-Overlay port paths can be specified directly on the vcpkg command line, added as a part of the manifest in `vcpkg-configuration` or introduced as an environmental variable. Path lookup order is also the same as above: first from a list in the command line, the manifest, and finally the environment.
 
-Overlay port syntax:
-- Single overlay port: `--overlay-ports=<directory>\sqlite3` refers to a single port and
-- Directory of overlay ports: `--overlay-ports=<directory>` refers to a directory of ports.
+A directory refers to a set of overlay ports and can be specified as follows: 
+- Single overlay port: `<directory>/sqlite3` refers to a single port
+- Directory of overlay ports: `<directory>` refers to a directory of ports
 A valid port must contain both `vcpkg.json` and `portfile.cmake`.
 
 You can add an overlay port in several ways:
 * Command-line: Add one or multiple `--overlay-ports=<directory>` options to your vcpkg command
 * [Manifest](../reference/vcpkg-configuration-json.md#overlay-ports): Populate the `"overlay-ports"` array in `vcpkg-configuration.json`
-* [Environmental variable](./config-environment.md#vcpkg_overlay_ports): Set `VCPKG_OVERLAY_PORTS` to a list of paths
+* [Environmental variable](./config-environment.md#vcpkg_overlay_ports): Set `VCPKG_OVERLAY_PORTS` to a list of directory paths
+
+Path lookup order follows first from a list in the command line, the manifest, and finally the environment.
 
 ### Example: Overlay Ports Example
 
-Consider the following directory structure:
+Given this directory structure:
 ```
 team-ports/
 |-- sqlite3/
@@ -81,6 +82,6 @@ Installs:
 - `rapidjson` from `my-ports`
 - `curl` from `vcpkg/ports
 
-### Example: Using overlay ports to replace system package manager
+### Example: Using overlay ports to use a system package manager dependency
 
-To use an overlay port to replace a dependency from the system package manager, see our [blog post](https://devblogs.microsoft.com/cppblog/using-system-package-manager-dependencies-with-vcpkg/).
+To use a system package manager dependency over a vcpkg one, refer to our [blog post](https://devblogs.microsoft.com/cppblog/using-system-package-manager-dependencies-with-vcpkg/).
