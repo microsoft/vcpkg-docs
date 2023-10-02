@@ -30,12 +30,14 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     
     * Create a new project in Visual Studio using the "CMake Project" template
     :::image type="complex" source="../resources/get_started/visual-studio-create-project.png" alt-text="create a new CMake project":::
-        Screenshot of how to create a new CMake project in Visual Studio
+        Screenshot of the Visual Studio UI for showing how to create a new CMake project in Visual Studio
     :::image-end:::
     * Name your project "helloworld"
     * Check the box for "Place solution and project in the same directory."
     * Click the "Create" button
-    ![vs-name-the-project](../resources/get_started/visual-studio-name-project.png)
+    :::image type="complex" source="../resources/get_started/visual-studio-name-project.png" alt-text="naming your CMake project":::
+        Screenshot of Visual Studio UI for naming your CMake project and clicking the "create" button.
+    :::image-end:::
 
 2. Configure the `VCPKG_ROOT` environment variable.
    
@@ -46,7 +48,9 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
     ```
 
-    ![visual-studio-developer-powershell](../resources/get_started/visual-studio-environment-variable-setup.png)
+    :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup.png" alt-text="setting up your environment variables":::
+        Screenshot of Visual Studio UI for the built-in PowerShell developer window showing how to set up VCPKG_ROOT and and add it to PATH
+    :::image-end:::
 
     Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
     Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
@@ -138,11 +142,14 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 2. Run the application.
 
     Finally, run the executable:
-    ![run-the-vs-project](../resources/get_started/visual-studio-run-project.png)
+    :::image type="complex" source="../resources/get_started/visual-studio-run-project.png" alt-text="Running the executable":::
+        Screenshot of Visual Studio UI for running the executable.
+    :::image-end:::
 
     You should see the output:
-    ![see-the-output](../resources/get_started/visual-studio-helloworld-output.png)
-
+    :::image type="complex" source="../resources/get_started/visual-studio-helloworld-output.png" alt-text="Program output":::
+        Screenshot of the program outputs - "Hello World!"
+    :::image-end:::
 
 ## Next steps
 
