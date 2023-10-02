@@ -17,11 +17,12 @@ the output produced by each package build a "binary package".
 ## Why use binary caching?
 
 Most ports in the [vcpkg public registry](<https://github.com/Microsoft/vcpkg>) are built from
-source. Building from source ensures maximum compatibility by using the same environment, build-tools, and configurations you use for your project in your dependencies. However, this  can also
+source. Building from source ensures maximum compatibility by using the same environment, build-tools,
+and configurations you use for your project in your dependencies. However, this  can also
 result in duplicated builds when multiple projects, developers, or machines require the same
 dependencies.
 
-Binary caches can be hosted in a variety of environments, the most basic form of binary caching is a
+Binary caches can be hosted in a variety of environments. The most basic form of binary caching is a
 directory thath holds zipped archives of a package's build output. More advanced scenarios include
 NuGet package feeds hosted in [GitHub Packages](<https://docs.github.com/en/packages>), [Azure
 DevOps
@@ -35,7 +36,8 @@ tools, or vcpkg-specific script changes) which makes sharing them between develo
 difficult. See the [`vcpkg export`](../commands/export.md) for a different option to share built
 packages.
 
-See the [binary caching documentation](../users/binarycaching.md) to learn about the different [storage backends](../users/binarycaching.md#providers).
+See the [binary caching documentation](../users/binarycaching.md) to learn about
+the different [storage backends](../users/binarycaching.md#providers).
 
 ## Next steps
 
