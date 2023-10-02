@@ -1,6 +1,6 @@
 ---
 title: Port overlays
-description: Port overlays
+description: This article describes overlay ports in vcpkg. Overlay ports are used to force a specific port definition to be used by vcpkg during the package installation process.
 author: data-queue
 ms.author: danshaw2
 ms.date: 9/20/2023
@@ -8,17 +8,12 @@ ms.prod: vcpkg
 ms.topic: conceptual
 ---
 
-# Port Overlays
+# Overlay ports
 
 ## Overview
-The default catalog in vcpkg comprises libraries maintained by both the vcpkg team and users. The catalog does not contain the entire universe of libraries, every possible version or patch.
+An overlay port can act as a drop-in replacement for an existing port. An overlay port can also add a new port that is otherwise not available in a [registry](../maintainers/registries.md). While [resolving package names](registries.md#package-name-resolution), overlay ports take priority, forcing overlay ports to be selected.
 
-To facilitate the usage of these missing libraries without having to either add them to the default catalog or manage a custom registry, vcpkg uses port overlays. Port overlays are effective when you don't want to worry about versioning and simply want to use a library.
-
-## Overlay Ports
-An overlay port typically refers to a new port or a drop-in replacement for an existing port. In either case, the overlay port takes priority in vcpkg dependency resolution, ensuring it gets selected. However, a potential pitfall is the naming conflict that can arise when multiple overlays introduce the same port.
-
-For instance, `overlay-dir-A` and `overlay-dir-B` may both introduce the same overlay port `zlib`. In this situation, vcpkg resolves `zlib` based on the lookup order in the list of overlay port paths.
+Naming conflicts can arise when multiple overlays introduce the same port. For instance, overlay directories `[dirA, dirB]` may both introduce a port with the same name: `dirA/zlib` and `dirB/zlib`. vcpkg resolves `zlib` in order of which directory is specified first. In this example, `dirA/zlib` is selected as the `zlib` port. If overlay port options are specified in multiple places, overlay resolution priority follows first from the command line, the manifest, and finally the environment.
 
 ## Configuration Syntax
 
@@ -31,8 +26,6 @@ You can add an overlay port in several ways:
 * Command-line: Add one or multiple `--overlay-ports=<directory>` options to your vcpkg command
 * [Manifest](../reference/vcpkg-configuration-json.md#overlay-ports): Populate the `"overlay-ports"` array in `vcpkg-configuration.json`
 * [Environmental variable](./config-environment.md#vcpkg_overlay_ports): Set `VCPKG_OVERLAY_PORTS` to a list of directory paths
-
-Path lookup order follows first from a list in the command line, the manifest, and finally the environment.
 
 ### Example: Overlay Ports Example
 
