@@ -35,16 +35,31 @@ In this tutorial you'll learn how to:
 When using the [`files`](../users/binarycaching.md#files) backend, you can use filesystem
 directories to store your binary packages, including network locations.
 
+::: zone-pivot="os-windows"
+
 ```PowerShell
 mkdir D:\vcpkg\binary-cache
 mkdir \\remote\shared\vcpkg\binary-cache
 ```
+
+::: zone-end
+
+::: zone-pivot="os-windows"
+
+```bash
+mkdir /home/vcpkg/binary-cache
+mkdir /mnt/remote/shared/vcpkg/binary-cache
+```
+
+::: zone-end
 
 Substitute these locations with any locations of your choosing.
 
 ## 2 - Configure `VCPKG_BINARY_SOURCES`
 
 Next set the value of `VCPKG_BINARY_SOURCES` as follows:
+
+::: zone-pivot="os-windows"
 
 ```PowerShell
 $env:VCPKG_BINARY_SOURCES="clear;files,\\remote\shared\vcpkg\binary-cache,read;files,D:\vcpkg\binary-cache"
@@ -60,6 +75,27 @@ This `VCPKG_BINARY_SOURCES` configuration adds the following source strings:
 * `files,D:\vcpkg\binary-cache`, sets a second filesystem binary cache, located in
   `D:\vcpkg\binary-cache`, with read-write permissions (`readwrite` is omitted since it is the
   default permission).
+
+::: zone-end
+
+::: zone-pivot="os-linux, os-macos"
+
+```bash
+export VCPKG_BINARY_SOURCES="clear;files,/mnt/remote/shared/vcpkg/binary-cache,read;files,/home/vcpkg/binary-cache"
+```
+
+This `VCPKG_BINARY_SOURCES` configuration adds the following source strings:
+
+* `clear`, disables any previously configured binary cache, in this case, it disables the [default
+  binary cache](binary-caching-local.md).
+* `files,/mnt/remote/shared/vcpkg/binary-cache,read`, sets a binary cache using the filesystem backend,
+  `files`, located in `/mnt/remote/shared/vcpkg/binary-cache`, and gives it read-only permissions
+  (`read`).
+* `files,/home/vcpkg/binary-cache`, sets a second filesystem binary cache, located in
+  `/home/vcpkg/binary-cache`, with read-write permissions (`readwrite` is omitted since it is the
+  default permission).
+
+::: zone-end
 
 ## Next steps
 
