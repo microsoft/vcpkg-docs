@@ -25,7 +25,7 @@ By default, binary caching is enabled at the first valid location among the foll
 
 ::: zone-end
 
-::: zone-pivot="os-linux, os-macos"
+::: zone pivot="os-linux, os-macos"
 
 By default, binary caching is enabled at the first valid location among the following:
 

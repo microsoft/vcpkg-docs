@@ -53,7 +53,7 @@ operations. This tutorial uses the vcpkg-acquired `nuget.exe`.
 
 Add a step to bootstrap vcpkg in your workflow:
 
-::: zone-pivot="os-windows"
+::: zone pivot="os-windows"
 
 ```YAML
 - name: Bootstrap vcpkg
@@ -63,7 +63,7 @@ Add a step to bootstrap vcpkg in your workflow:
 
 ::: zone-end
 
-::: zone-pivot="os-linux, os-macos"
+::: zone pivot="os-linux, os-macos"
 
 ```YAML
 - name: Bootstrap vcpkg
@@ -101,7 +101,7 @@ the executable if necessary.
 
 Add the following step in your GitHub Actions workflow file:
 
-::: zone-pivot="os-windows"
+::: zone pivot="os-windows"
 
 ```YAML
 - name: Add NuGet sources
@@ -121,7 +121,7 @@ Add the following step in your GitHub Actions workflow file:
 
 ::: zone-end
 
-::: zone-pivot="os-linux, os-macos"
+::: zone pivot="os-linux, os-macos"
 
 On Linux, you need `mono` to execute `nuget.exe`. GitHub Actions runners using Ubuntu come with `mono`
 preinstalled. Otherwise, you can install `mono` using your distribution's system package manager.

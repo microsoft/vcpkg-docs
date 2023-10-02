@@ -37,7 +37,7 @@ In this tutorial you'll learn how to:
 When using the [`files`](../users/binarycaching.md#files) backend, you can use filesystem
 directories to store your binary packages, including network locations.
 
-::: zone-pivot="os-windows"
+::: zone pivot="os-windows"
 
 ```PowerShell
 mkdir D:\vcpkg\binary-cache
@@ -46,7 +46,7 @@ mkdir \\remote\shared\vcpkg\binary-cache
 
 ::: zone-end
 
-::: zone-pivot="os-windows"
+::: zone pivot="os-windows"
 
 ```bash
 mkdir /home/vcpkg/binary-cache
@@ -61,7 +61,7 @@ Substitute these locations with any locations of your choosing.
 
 Next set the value of `VCPKG_BINARY_SOURCES` as follows:
 
-::: zone-pivot="os-windows"
+::: zone pivot="os-windows"
 
 ```PowerShell
 $env:VCPKG_BINARY_SOURCES="clear;files,\\remote\shared\vcpkg\binary-cache,read;files,D:\vcpkg\binary-cache"
@@ -80,7 +80,7 @@ This `VCPKG_BINARY_SOURCES` configuration adds the following source strings:
 
 ::: zone-end
 
-::: zone-pivot="os-linux, os-macos"
+::: zone pivot="os-linux, os-macos"
 
 ```bash
 export VCPKG_BINARY_SOURCES="clear;files,/mnt/remote/shared/vcpkg/binary-cache,read;files,/home/vcpkg/binary-cache"
