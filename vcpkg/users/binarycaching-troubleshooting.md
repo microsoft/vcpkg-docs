@@ -12,13 +12,11 @@ ms.topic: troubleshooting-general
 
 This guide is intended for vcpkg users that are running into issues with [binary caching](./binarycaching.md).
 
-## General
-
 ## One or more {vendor} credential providers requested manual action. Add the binary source 'interactive' to allow interactivity.
 
 Refer to the [binary caching syntax](./binarycaching.md#configuration-syntax) to introduce a new binary source.
 
-## <a name="push-failure"> Pushing NuGet/NuGet config to {url} failed. Use --debug for more information.
+## <a name="push-failure"></a> Pushing NuGet/NuGet config to {url} failed. Use --debug for more information.
 Try the following:
 - Enable [debug output](#debug-output) for comprehensive error logs
 - For personal access tokens or API keys, ensure the correct scope for feed writing and verify it's not expired. Private or public feeds might require particular scopes.
@@ -38,7 +36,7 @@ Mode                 LastWriteTime         Length Name
 -a---           8/16/2023  8:53 PM         529044 zlib_x86-windows.1.2.13-vcpkgbb1c96759ac96102b4b18215db138daedd3eb16c2cd3302ae7bffab2b643eb87.nupkg
 ```
 
-## <a name="storage-providers"> Failures and issues when uploading/pushing to a binary caching provider
+## <a name="storage-providers"></a> Failures and issues when uploading/pushing to a binary caching provider
 
 Each cloud storage provider has different authentication methods and error messages, so we recommend referring to the troubleshooting guide or documentation of your specific provider.
 
@@ -48,13 +46,13 @@ Try the following:
 - Ensure your machine has enough disk space for creating archived packages when uploading. Some libraries use up significant disk space even when compressed.
 - Confirm write permissions for your binary cache provider. Make sure you don't have a read only lock on the cache.
 
-## <a name="empty-cache"> Binary cache is empty
+## <a name="empty-cache"></a> Binary cache is empty
 Try the following:
 - Enable [debug output](#debug-output) for comprehensive error logs
 - Refer to troubleshooting guidelines for [cloud providers](#storage-providers) and [NuGet](#push-failure) if there are any push/upload failures
 - Ensure your [binary cache configuration](binarycaching.md#configuration-syntax) is set to `write` or `readwrite`
 
-## <a name="cloud-cache"> Using local cache instead of cloud binary cache
+## <a name="cloud-cache"></a> Using local cache instead of cloud binary cache
 Try the following:
 - Enable [debug output](#debug-output) for comprehensive error logs
 - Ensure your [binary cache configuration](binarycaching.md#configuration-syntax) is set to `read` or `readwrite`
@@ -78,7 +76,7 @@ In debug mode, vcpkg outputs additional information, such as the compiler versio
 * CMake toolchain: set `-DVCPKG_INSTALL_OPTIONS="--debug"` in your `cmake` command call or in your `CMakePresets.json` file.
 * MSBuild/Visual Studio: set the property `VcpkgAdditionalInstallOptions` to `--debug`
 
-## <a name="compare-abi">Troubleshoot why two packages have different ABI hashes
+## <a name="compare-abi"></a>Troubleshoot why two packages have different ABI hashes
 
 Enable [debug output](#debug-output) to identify the full Application Binary Interface (ABI) hash of a pacakge. For zlib:
 
