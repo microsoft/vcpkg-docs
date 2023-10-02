@@ -17,7 +17,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 ## Prerequisites
 
-- [Visual Studio](<https://visualstudio.microsoft.com/downloads/>) with C++ development workload and [CMake component](<https://learn.microsoft.com/cpp/build/cmake-projects-in-visual-studio#installation>)
+- [Visual Studio](<https://visualstudio.microsoft.com/downloads/>) with C++ development workload and [CMake component](</cpp/build/cmake-projects-in-visual-studio#installation>)
 - [Git](<https://git-scm.com/downloads>)
 
 ## 1 - Set up vcpkg
