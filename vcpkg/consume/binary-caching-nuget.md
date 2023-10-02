@@ -6,6 +6,8 @@ ms.author: viromer
 ms.prod: vcpkg
 ms.topic: tutorial
 ms.date: 09/11/2023
+zone_pivot_group_filename: zone-pivot-groups.json
+zone_pivot_groups: operating-systems
 ---
 
 # Tutorial: Set up a vcpkg binary cache using a NuGet feed
@@ -32,10 +34,22 @@ In this tutorial, you'll learn how to:
 
 ## Prerequisites
 
+::: zone-pivot="os-windows"
+
 * A terminal
 * [vcpkg](../get_started/setup-vcpkg.md)
 * A NuGet packages feed, or if you don't, an Azure DevOps account to follow along
-* (On Linux) The `mono` package installed in your system
+
+::: zone-end
+
+::: zone-pivot="os-linux, os-macos"
+
+* A terminal
+* [vcpkg](../get_started/setup-vcpkg.md)
+* A NuGet packages feed, or if you don't, an Azure DevOps account to follow along
+* The `mono` package installed in your system
+
+::: zone-end
 
 ## 1 - Set up a NuGet feed
 
@@ -48,9 +62,11 @@ You can also use any other NuGet packages feed provider of your choice.
 
 ## 2 - Add a NuGet source
 
+::: zone-pivot="os-linux, os-macos"
 > [!NOTE]
 > On Linux you need `mono` to execute `nuget.exe`. You can install `mono` using your distribution's
 > system package manager.
+::: zone-end
 
 vcpkg acquires its own copy of the `nuget.exe` executable that it uses during binary caching
 operations. This tutorial uses the vcpkg-acquired `nuget.exe`. The `vcpkg fetch nuget` command
@@ -59,19 +75,20 @@ outputs the location of the vcpkg-acquired `nuget.exe`, downloading the executab
 Run the following command to add your NuGet feed as a source, replace `<feed name>` with any name of
 your choosing and `<feed url>` with the URL to your NuGet feed.
 
-### [Windows](#tab/windows-nuget-source)
+::: zone-pivot="os-windows"
 
 ```PowerShell
 .$(vcpkg fetch nuget) sources add -Name <feed name> -Source <feed url>
 ```
 
-### [Linux](#tab/linux-nuget-source)
+::: zone-end
+::: zone-pivot="os-linux, os-macos"
 
 ```bash
 mono `vcpkg fetch nuget | tail -n 1` sources add -Name <feed name> - Source <feed url>
 ```
 
----
+::: zone-end
 
 ### Provide an API key
 
@@ -82,26 +99,27 @@ Artifacts the API key is `AzureDevOps` instead.
 Use the following command to set the API key for all the packages pushed to your NuGet feed, replace
 `<apiKey>` with your feed's API key.
 
-#### [Windows](#tab/windows-nuget-apikey)
+::: zone-pivot="os-windows"
 
 ```PowerShell
 .$(vcpkg fetch nuget) setapikey <apikey> -Source <feed url>
 ```
 
-#### [Linux](#tab/linux-nuget-apikey)
+::: zone-end
+::: zone-pivot="os-linux, os-macos"
 
 ```bash
 mono `vcpkg fetch nuget | tail -n 1` sources setapikey <apiKey> - Source <feed url>
 ```
 
----
+::: zone-end
 
 ### Provide authentication credentials
 
 Your NuGet feed may require authentication to let you download and upload packages. If that's the
 case you can provide credentials by adding them as parameters to the `nuget sources add` command.
 
-For example: 
+For example:
 
 ```Console
 nuget sources add -Name my-packages -Source https://my.nuget.feed/vcpkg-cache/index.json -UserName myusername -Password mypassword -StorePasswordInClearText
@@ -176,25 +194,26 @@ sources in this file, use a `<add key="<feed name>" value="<feed url>" />` entry
 Run the following command to add a NuGet source using a `nuget.config` file, replace 
 `<path to nuget.config>` with the path to your `nuget.config` file:
 
-#### [Windows](#tab/nuget-config-windows)
+::: zone-pivot="os-windows"
 
 ```PowerShell
 .$(vcpkg fetch nuget) sources add -ConfigFile <path to nuget.config>
 ```
 
-#### [Linux](#tab/nuget-config-linux)
+::: zone-end
+::: zone-pivot="os-linux, os-macos"
 
 ```bash
 mono `vcpkg fetch nuget | tail -n 1` sources add -ConfigFile <path to nuget.config>
 ```
 
----
+::: zone-end
 
 ## 3 - Configure vcpkg to use your NuGet feed
 
 Set the `VCPKG_BINARY_SOURCES` environment variable as follows:
 
-### [Windows](#tab/setup-sources-windows)
+::: zone-pivot="os-windows"
 
 ```PowerShell
 $env:VCPKG_BINARY_SOURCES="clear;nuget,<feed url>,readwrite"
@@ -206,7 +225,8 @@ If you're using a `nuget.config` file, instead do:
 $env:VCPKG_BINARY_SOURCES="clear;nugetconfig,<path to nuget.config>"
 ```
 
-### [Linux](#tab/setup-sources-linux)
+::: zone-end
+::: zone-pivot="os-linux, os-macos"
 
 > [!NOTE]
 > Setting `VCPKG_BINARY_SOURCES` using the `export` command will only affect the current shell
@@ -223,7 +243,7 @@ If you're using a `nuget.config` file, instead do:
 export VCPKG_BINARY_SOURCES="clear;nugetconfig,<path to nuget.config>"
 ```
 
----
+::: zone-end
 
 And that's it! vcpkg will now upload or restore packages from your NuGet feed.
 
