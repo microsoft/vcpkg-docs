@@ -7,6 +7,8 @@ ms.prod: vcpkg
 ms.topic: tutorial
 ms.date: 09/27/2023
 #CustomerIntent: As a vcpkg user, I want to setup binary caching in my GitHub Actions workflow using GitHub Packages as the binary cache storage
+zone_pivot_group_filename: zone-pivot-groups.json
+zone_pivot_groups: operating-systems
 ---
 # Tutorial: Set up a vcpkg binary cache using GitHub Packages in a GitHub Actions workflow
 
@@ -51,7 +53,7 @@ operations. This tutorial uses the vcpkg-acquired `nuget.exe`.
 
 Add a step to bootstrap vcpkg in your workflow:
 
-### [Windows](#tab/step2-windows)
+::: zone-pivot="os-windows"
 
 ```YAML
 - name: Bootstrap vcpkg
@@ -59,7 +61,9 @@ Add a step to bootstrap vcpkg in your workflow:
   run: ${{ github.workspace }}/vcpkg/bootstrap-vcpkg.bat
 ```
 
-### [Linux](#tab/step2-linux)
+::: zone-end
+
+::: zone-pivot="os-linux, os-macos"
 
 ```YAML
 - name: Bootstrap vcpkg
@@ -67,7 +71,7 @@ Add a step to bootstrap vcpkg in your workflow:
   run: ${{ github.workspace }}/vcpkg/bootstrap-vcpkg.sh
 ```
 
----
+::: zone-end
 
 You may need to replace the location of the vcpkg bootstrap script with the correct one for your
 workflow, this tutorial assumes that vcpkg is located in a `vcpkg` folder in the root of the repository.
@@ -97,7 +101,7 @@ the executable if necessary.
 
 Add the following step in your GitHub Actions workflow file:
 
-### [Windows](#tab/step4-windows)
+::: zone-pivot="os-windows"
 
 ```YAML
 - name: Add NuGet sources
@@ -115,9 +119,11 @@ Add the following step in your GitHub Actions workflow file:
       -Source "${{ env.FEED_URL }}"
 ```
 
-### [Linux](#tab/step4-linux)
+::: zone-end
 
-On Linux you need `mono` to execute `nuget.exe`. GitHub Actions runners using Ubuntu come with `mono`
+::: zone-pivot="os-linux, os-macos"
+
+On Linux, you need `mono` to execute `nuget.exe`. GitHub Actions runners using Ubuntu come with `mono`
 preinstalled. Otherwise, you can install `mono` using your distribution's system package manager.
 
 ```YAML
@@ -140,7 +146,7 @@ preinstalled. Otherwise, you can install `mono` using your distribution's system
       -Source "${{ env.FEED_URL }}"
 ```
 
----
+::: zone-end
 
 You may need to replace `GH_PACKAGES_TOKEN` with the correct secret name you gave to the PAT
 generated in the [provide a GitHub Personal Access Token step](#1---provide-a-github-personal-access-token).
@@ -159,4 +165,3 @@ Here are other tasks to try next:
 * [Set up a local binary cache](binary-caching-local.md)
 * [Set up a binary cache using a NuGet feed](binary-caching-nuget.md)
 * [Set up a binary cache in your GitHub Actions workflow using GitHub Actions Cache](binary-caching-github-actions-cache.md)
-

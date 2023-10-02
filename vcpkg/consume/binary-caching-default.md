@@ -6,7 +6,7 @@ ms.author: viromer
 ms.date: 9/25/2023
 ms.prod: vcpkg
 ms.topic: concept-article
-zone_pivot_group_filename: zone_pivot-groups.json
+zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: operating-systems
 ---
 # Default local vcpkg binary cache
