@@ -6,6 +6,8 @@ ms.author: viromer
 ms.date: 9/25/2023
 ms.prod: vcpkg
 ms.topic: concept-article
+zone_pivot_group_filename: zone_pivot-groups.json
+zone_pivot_groups: operating-systems
 ---
 # Default local vcpkg binary cache
 
@@ -13,7 +15,7 @@ By default, vcpkg creates a local binary cache. This saves time when installing 
 
 The location of the default binary cache depends on your operating system.
 
-## [Windows](#tab/default-windows)
+::: zone pivot="os-windows"
 
 By default, binary caching is enabled at the first valid location among the following:
 
@@ -21,7 +23,9 @@ By default, binary caching is enabled at the first valid location among the foll
 * `%LOCALAPPDATA%\vcpkg\archives`
 * `%APPDATA%\vcpkg\archives`
 
-## [Unix](#tab/unix)
+::: zone-end
+
+::: zone-pivot="os-linux, os-macos"
 
 By default, binary caching is enabled at the first valid location among the following:
 
@@ -29,7 +33,7 @@ By default, binary caching is enabled at the first valid location among the foll
 * `$XDG_CACHE_HOME/vcpkg/archives`
 * `$HOME/.cache/vcpkg/archives`
 
----
+::: zone-end
 
 Use the `VCPKG_DEFAULT_BINARY_CACHE` environment variable to change the default binary cache
 location.
@@ -42,20 +46,21 @@ directory.
 
 To disable the default binary cache, set the [`VCPKG_BINARY_SOURCES` environment variable](../users/binarycaching.md#configuration-syntax) to `clear`.
 
-### [Windows](#tab/disable-windows)
+::: zone pivot="os-windows"
 
 ```PowerShell
 $env:VCPKG_BINARY_SOURCES="clear"
 ```
 
-### [Unix](#tab/disable-unix)
+::: zone-end
+
+::: zone pivot="os-linux, os-macos"
 
 ```bash
 VCPKG_BINARY_SOURCES=clear
 ```
 
----
-
+::: zone-end
 
 ## Next steps
 
