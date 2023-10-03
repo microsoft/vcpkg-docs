@@ -31,7 +31,7 @@ Create a new console application project, **File > New Project > Console Applica
 
 ## Add a vcpkg manifest to your project
 
-The [manifest](./manifest.md) will contain the set of C++ dependencies from vcpkg. In the Solution Explorer, under your project, navigate to **Source Files**, and right click to **Add > New Item > Type in "vcpkg.json"** to create a new manifest.
+The [manifest](./manifest.md) will contain the set of C++ dependencies from vcpkg. In `Solution Explorer - Folder View`, right click to  **Add > New File > Type in "vcpkg.json"** to create a new manifest in the root of your project
 
 ```json
 {
@@ -52,13 +52,13 @@ The builtin-baseline sets the global minimum version information for your manife
 
 ## Enable manifest mode in Visual Studio
 
-Navigate to **Console Application > Properties**. Under **Configuration Properties > vcpkg**, set `Use vcpkg manifest` to `Yes`. MSBuild will check if this property is set before installing any dependencies from the vcpkg manifest.
+Navigate to the Project Properties pages of your project. Under **Configuration Properties > vcpkg**, set `Use vcpkg manifest` to `Yes`. MSBuild will check if this property is set before installing any dependencies from the vcpkg manifest.
 
-Other settings, such as [triplets](./triplet.md), will be useful when configuring your project. 
+Other settings, such as [triplets](./triplet.md), are filled in with default values vcpkg detects from your project and will be useful when configuring your project. 
 
 ## Use the zlib library
 
-In your `main.cpp`
+In your `main.cpp`, add:
 ```cpp
 #include <zlib.h>
 #include <iostream>
@@ -68,6 +68,8 @@ int main()
     std::cout << zlibVersion();
 }
 ```
+> [!NOTE]
+> There will be error squiggles in your project when MSBuilds it for the first time. Build the project to acquire vcpkg dependencies to remove them.
 
 ## Build and Run
 
@@ -76,56 +78,29 @@ If MSBuild detects a vcpkg manifest and it is enabled, MSBuild will install the 
 Building and running for the default configuration and project platform (Debug, x64):
 
 ```
-Build started...
 1>------ Build started: Project: ConsoleApplication1, Configuration: Debug x64 ------
-1>Installing vcpkg dependencies to C:\Users\danshaw2\source\repos\ConsoleApplication1\ConsoleApplication1\vcpkg_installed\x64-windows\
-1>"C:\Users\danshaw2\workspace\vcpkg\vcpkg.exe" install  --x-wait-for-lock --triplet "x64-windows" --vcpkg-root "C:\Users\danshaw2\workspace\vcpkg\\" "--x-manifest-root=C:\Users\danshaw2\source\repos\ConsoleApplication1\ConsoleApplication1\\" "--x-install-root=C:\Users\danshaw2\source\repos\ConsoleApplication1\ConsoleApplication1\vcpkg_installed\x64-windows\\"
+1>Installing vcpkg dependencies to C:\Users\<user>\source\repos\ConsoleApplication1\vcpkg_installed\x64-windows\
+1>"C:\Users\<user>\workspace\vcpkg\vcpkg.exe" install  --x-wait-for-lock --triplet "x64-windows" --vcpkg-root "C:\Users\<user>\workspace\vcpkg\\" "--x-manifest-root=C:\Users\<user>\source\repos\ConsoleApplication1\\" "--x-install-root=C:\Users\<user>\source\repos\ConsoleApplication1\vcpkg_installed\x64-windows\\"
 1>Detecting compiler hash for triplet x64-windows...
 1>The following packages will be built and installed:
-1>    rapidjson:x64-windows -> 2023-04-27
-1>  * vcpkg-cmake:x64-windows -> 2023-05-04
-1>  * vcpkg-cmake-config:x64-windows -> 2022-02-06#1
-1>    zlib:x64-windows -> 1.3
+1>  * vcpkg-cmake:x64-windows -> 2023-05-04 -- C:\Users\<user>\workspace\vcpkg\buildtrees\versioning_\versions\vcpkg-cmake\88a7058fc7fa73a9c4c99cfcae9d79e2abf87a5a
+1>    zlib:x64-windows -> 1.3 -- C:\Users\<user>\workspace\vcpkg\buildtrees\versioning_\versions\zlib\5ac18c6e6e3e2bf5a9e3d0bc8a845f198e4c4e05
 1>Additional packages (*) will be modified to complete this operation.
-1>Restored 3 package(s) from C:\Users\danshaw2\AppData\Local\vcpkg\archives in 160 ms. Use --debug to see more details.
-1>Installing 1/4 vcpkg-cmake-config:x64-windows...
-1>Elapsed time to handle vcpkg-cmake-config:x64-windows: 12.5 ms
-1>Installing 2/4 vcpkg-cmake:x64-windows...
-1>Elapsed time to handle vcpkg-cmake:x64-windows: 17.8 ms
-1>Installing 3/4 rapidjson:x64-windows...
-1>Building rapidjson:x64-windows...
-1>-- Downloading https://github.com/Tencent/rapidjson/archive/949c771b03de448bdedea80c44a4a5f65284bfeb.tar.gz -> Tencent-rapidjson-949c771b03de448bdedea80c44a4a5f65284bfeb-2.tar.gz...
-1>-- Extracting source C:/Users/danshaw2/workspace/vcpkg/downloads/Tencent-rapidjson-949c771b03de448bdedea80c44a4a5f65284bfeb-2.tar.gz
-1>-- Using source at C:/Users/danshaw2/workspace/vcpkg/buildtrees/rapidjson/src/f65284bfeb-9c9325ad06.clean
-1>-- Found external ninja('1.11.0').
-1>-- Configuring x64-windows
-1>-- Building x64-windows-dbg
-1>-- Building x64-windows-rel
-1>-- Using cached mingw-w64-i686-pkgconf-1~1.8.0-2-any.pkg.tar.zst.
-1>-- Using cached msys2-msys2-runtime-3.4.6-1-x86_64.pkg.tar.zst.
-1>-- Using msys root at C:/Users/danshaw2/workspace/vcpkg/downloads/tools/msys2/6f3fa1a12ef85a6f
-1>-- Installing: C:/Users/danshaw2/workspace/vcpkg/packages/rapidjson_x64-windows/share/rapidjson/copyright
-1>-- Performing post-build validation
-1>Stored binaries in 1 destinations in 86 ms.
-1>Elapsed time to handle rapidjson:x64-windows: 5.4 s
-1>Installing 4/4 zlib:x64-windows...
-1>Elapsed time to handle zlib:x64-windows: 21.8 ms
-1>Total install time: 5.4 s
-1>rapidjson provides CMake targets:
-1>
-1>  # this is heuristically generated, and may not be correct
-1>  find_package(RapidJSON CONFIG REQUIRED)
-1>  target_link_libraries(main PRIVATE rapidjson)
-1>
+1>Restored 2 package(s) from C:\Users\<user>\AppData\Local\vcpkg\archives in 157 ms. Use --debug to see more details.
+1>Installing 1/2 vcpkg-cmake:x64-windows...
+1>Elapsed time to handle vcpkg-cmake:x64-windows: 14.6 ms
+1>Installing 2/2 zlib:x64-windows...
+1>Elapsed time to handle zlib:x64-windows: 42.3 ms
+1>Total install time: 57 ms
 1>The package zlib is compatible with built-in CMake targets:
 1>
 1>    find_package(ZLIB REQUIRED)
 1>    target_link_libraries(main PRIVATE ZLIB::ZLIB)
 1>
 1>ConsoleApplication1.cpp
-1>ConsoleApplication1.vcxproj -> C:\Users\danshaw2\source\repos\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe
+1>ConsoleApplication1.vcxproj -> C:\Users\<user>\source\repos\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe
 ========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
-========== Build started at 3:04 PM and took 16.921 seconds ==========
+========== Build started at 11:31 AM and took 14.614 seconds ==========
 ```
 
 > [!NOTE]
