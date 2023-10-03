@@ -22,7 +22,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 ## 1 - Set up vcpkg
 
-[!INCLUDE [setup-vcpkg](setup-vcpkg.md)]
+[!INCLUDE [setup-vcpkg](includes/setup-vcpkg.md)]
 
 ## 2 - Set up the Visual Studio project
 
