@@ -3,7 +3,7 @@
 This guide sets up a simple C++ project using the library `zlib` with the MSBuild project build system.
 
 ## Prerequisites:
-- Visual Studio 2015 Update 3 or later with the English Language Pack
+- Visual Studio 2015 Update 3 or later with the C++ Desktop Development workload
 - Windows 7 or newer
 - Git
 
@@ -12,7 +12,7 @@ This guide sets up a simple C++ project using the library `zlib` with the MSBuil
 In a command prompt, run:
 ```
 git clone https://github.com/microsoft/vcpkg
-.\bootstrap.bat
+cd vcpkg && .\bootstrap.bat
 .\vcpkg.exe integrate install
 ```
 Outputs:
@@ -31,7 +31,7 @@ Create a new console application project, **File > New Project > Console Applica
 
 ## Add a vcpkg manifest to your project
 
-The manifest will contain the set of C++ dependencies you will use from vcpkg. In the Solution Explorer, under your project, navigate to **Source Files**, and right click to **Add > New Item > Type in "vcpkg.json"**
+The [manifest](./manifest.md) will contain the set of C++ dependencies from vcpkg. In the Solution Explorer, under your project, navigate to **Source Files**, and right click to **Add > New Item > Type in "vcpkg.json"** to create a new manifest.
 
 ```json
 {
@@ -45,25 +45,20 @@ The manifest will contain the set of C++ dependencies you will use from vcpkg. I
 }
 ```
 
-The builtin-baseline sets the global minimum version information for your manifest. While we can set it to any git commit hash in the vcpkg project, we recommend setting it to the latest commit. In the terminal where you acquired vcpkg, you can run `git rev-parse HEAD` or simply copy the latest commit from `git log`. For more information, see the reference on `vcpkg.json`. 
+The builtin-baseline sets the global minimum version information for your manifest. While we can set it to any git commit hash in the vcpkg project, we recommend setting it to the latest commit. In the terminal where you acquired vcpkg, you can run `git rev-parse HEAD` or simply copy the latest commit from `git log`. For more information, see the [reference](../reference/vcpkg-json.md) on `vcpkg.json`. 
 
 > [!NOTE]
-> Classic mode users will need to install dependencies directly in their terminal, i.e. `vcpkg install zlib`. In a post-build step, any dynamic libraries will be copied to the application folder, so the program can work correctly.
+> [Classic mode](./classic-mode.md) users need to install dependencies directly in their terminal, i.e. `vcpkg install zlib`. In a post-build step, any dynamic libraries will be copied to the application folder, so the program can work correctly.
 
 ## Enable manifest mode in Visual Studio
 
 Navigate to **Console Application > Properties**. Under **Configuration Properties > vcpkg**, set `Use vcpkg manifest` to `Yes`. MSBuild will check if this property is set before installing any dependencies from the vcpkg manifest.
 
-A triplet in vcpkg is the set of configuration properties for your libraries. The default x64-windows triplet builds dynamic libraries. The default triplet is your host triplet?, but it can be set to something else.
-
-For a reference on other properties, see reference.
-
-> [!NOTE]
-> If you are using the command line toolset, Visual Studio Build Tools, make sure to pass `/p:UseVcpkgManifest=True???` in your msbuild invocation. Or add a property group to your MSBuild project file.
+Other settings, such as [triplets](./triplet.md), will be useful when configuring your project. 
 
 ## Use the zlib library
 
-Use the following for you `main.cpp`
+In your `main.cpp`
 ```cpp
 #include <zlib.h>
 #include <iostream>
@@ -76,9 +71,9 @@ int main()
 
 ## Build and Run
 
-If MSBuild detects a vcpkg manifest and it is enabled, it will install the manifest's C++ dependencies as a pre-build step. Any headers can be directly used, and any libraries installed will be automatically linked.
+If MSBuild detects a vcpkg manifest and it is enabled, MSBuild will install the manifest's C++ dependencies as a pre-build step. Relevant artifacts are installed in a folder `vcpkg_installed` in the build directory of your project. Any headers installed by the library can be directly used, and any libraries installed will be automatically linked.
 
-You can build and run for the default configuration and project platform (Debug, x64):
+Building and running for the default configuration and project platform (Debug, x64):
 
 ```
 Build started...
@@ -134,10 +129,10 @@ Build started...
 ```
 
 > [!NOTE]
-> You might notice that `vcpkg install` builds both Debug and Release configurations for a library. This will make it easier to switch between configurations. To build release only, set `VCPKG_RELEASE_ONLY` in your triplet.
+> You might notice that `vcpkg install` builds both Debug and Release configurations for a library. This will make it easier to switch between configurations when developing with Visual Studio. To only build release libraries, add `VCPKG_RELEASE_ONLY` to your triplet.
 
 Running the program yields `1.3` which is the expected version for `zlib`.
 
 ## Folder View of the project
 
-Navigate to the Folder View in Solution Explorer. vcpkg creates a new directory `vcpkg_installed` which contains all relevant build artifacts libraries, headers, debugging information. Required libraries for running and deployment (such as `zlibd1.dll`) are copied next to the application binary.
+Navigate to the Folder View in Solution Explorer. vcpkg creates a new directory `vcpkg_installed` which contains all relevant build artifacts libraries, headers, debugging information. Additionally, required libraries for running and deployment (such as `zlibd1.dll`) are copied next to the application binary.
