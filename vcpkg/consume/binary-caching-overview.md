@@ -23,7 +23,7 @@ result in duplicated builds when multiple projects, developers, or machines requ
 dependencies.
 
 Binary caches can be hosted in a variety of environments. The most basic form of binary caching is a
-directory thath holds zipped archives of a package's build output. More advanced scenarios include
+directory that holds zipped archives of a package's build output. More advanced scenarios include
 NuGet package feeds hosted in [GitHub Packages](<https://docs.github.com/en/packages>), [Azure
 DevOps
 Artifacts](/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&tabs=nuget&preserve-view=true),
