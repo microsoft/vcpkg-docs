@@ -1,5 +1,12 @@
 - name: vcpkg documentation
   href: index.yml
+- name: Get started
+  expanded: true
+  items:
+  - name: Install and use packages with CMake
+    href: get_started/get-started.md
+  - name: Install and use packages with CMake in Visual Studio
+    href: get_started/get-started-vs.md
 - name: Consume packages
   expanded: true
   items:
