@@ -1,4 +1,14 @@
-# Getting started with vcpkg in Visual Studio with MSBuild
+---
+title: Install and use packages with MSBuild in Visual Studio
+description: Tutorial guides the user through the process of installing and using packages with MSBuild and Visual Studio.
+author: data-queue
+ms.author: danshaw2
+ms.date: 10/03/2023
+ms.prod: vcpkg
+ms.topic: tutorial
+---
+
+# Tutorial: Install and use packages with MSBuild in Visual Studio
 
 This guide sets up a simple C++ project using the library `zlib` with the MSBuild project build system.
 
