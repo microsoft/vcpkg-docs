@@ -29,31 +29,10 @@ You can add an overlay port in several ways:
 ### Example: Overlay Ports Example
 
 Given this directory structure:
-```
-team-ports/
-|-- sqlite3/
-|---- vcpkg.json
-|---- portfile.cmake
-|-- rapidjson/
-|---- vcpkg.json
-|---- portfile.cmake
-|-- curl/
-|---- vcpkg.json
-|---- portfile.cmake
 
-my-ports/
-|-- sqlite3/
-|---- vcpkg.json
-|---- portfile.cmake
-|-- rapidjson/
-|---- vcpkg.json
-|---- portfile.cmake
-
-vcpkg
-|-- ports/
-|---- <upstream ports>
-|-- vcpkg.exe
-```
+:::image type="complex" source="../resources/ports-overlay-example.png" alt-text="Example with multiple overlay port directories":::
+Overlay directory named team-ports contains ports sqlite3, rapidjson and curl. Overlay directory named my-ports contains ports sqlite3 and rapidjson. The vcpkg directory contains the default catalog.
+:::image-end:::
 
 Run:
 ```bash
