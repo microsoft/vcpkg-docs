@@ -19,7 +19,7 @@ In debug mode, vcpkg outputs additional information, such as the compiler versio
 * CMake toolchain: set `-DVCPKG_INSTALL_OPTIONS="--debug"` in your `cmake` command call or in your `CMakePresets.json` file.
 * MSBuild/Visual Studio: set the property `VcpkgAdditionalInstallOptions` to `--debug`
 
-## Manual intervention required for {vendor} credential providers
+## <a name="interactive-source"></a>Manual intervention required for {vendor} credential providers
 
 You might see the error message:
 ```
@@ -42,7 +42,7 @@ Pushing NuGet config to {url} failed. Use --debug for more information.
 Try the following:
 - Enable [debug output](#debug-output) for comprehensive error logs
 - For personal access tokens or API keys, ensure the correct scope for feed writing and verify it's not expired. Private or public feeds might require particular scopes.
-- Review [troubleshooting guidelines](#storage-providers) for cloud storage providers
+- Review [troubleshooting guidelines](#cache-upload) for cloud storage providers
 
 If successful, you should see the following message:
 ```
@@ -58,7 +58,7 @@ Mode                 LastWriteTime         Length Name
 -a---           8/16/2023  8:53 PM         529044 zlib_x86-windows.1.2.13-vcpkgbb1c96759ac96102b4b18215db138daedd3eb16c2cd3302ae7bffab2b643eb87.nupkg
 ```
 
-## <a name="storage-providers"></a> Errors during cache uploads
+## <a name="cache-upload"></a> Errors during cache uploads
 
 Each cloud storage provider has different authentication methods and error messages, so we recommend referring to the troubleshooting guide or documentation of your specific provider.
 
@@ -71,27 +71,27 @@ Try the following:
 ## <a name="empty-cache"></a> Binary cache is empty
 Try the following:
 - Enable [debug output](#debug-output) for comprehensive error logs
-- Refer to troubleshooting guidelines for [cloud providers](#storage-providers) and [NuGet](#push-failure) if there are any push/upload failures
+- Refer to troubleshooting guidelines for [cloud providers](#cache-upload) and [NuGet](#push-failure) if there are any push/upload failures
 - Ensure your [binary cache configuration](binarycaching.md#configuration-syntax) is set to `write` or `readwrite`
 
 ## <a name="cloud-cache"></a> Using local cache instead of cloud binary cache
 Try the following:
 - Enable [debug output](#debug-output) for comprehensive error logs
 - Ensure your [binary cache configuration](binarycaching.md#configuration-syntax) is set to `read` or `readwrite`
-- [Compare ABI hashes](#compare-abi) between the packages built locally and packages in your binary cache. If you have have a pipeline building those packages, different environments in your image and local machine will produce packages with different ABI hashes. To workaround this issue, either use the same versions of the tools as you are using in your CI pipeline to create the packages, or simply use the packages created locally. 
+- [Compare ABI hashes](#abi-mismatch) between the packages built locally and packages in your binary cache. If you have have a pipeline building those packages, different environments in your image and local machine will produce packages with different ABI hashes. To workaround this issue, either use the same versions of the tools as you are using in your CI pipeline to create the packages, or simply use the packages created locally. 
 
 > [!NOTE]
 > We typically discourage developers pushing or uploading local packages to a cloud storage provider due to supply chain security concerns.
 
-## Frequent or unexpected library rebuilds
+## <a name="frequent-rebuilds"></a>Frequent or unexpected library rebuilds
 
 Try the following:
 - Enable [debug output](#debug-output) for comprehensive error logs
 - Refer to [troubleshooting guidelines](#empty-cache) if your binary cache is empty
 - Ensure you are using the correct binary cache. Refer to [troubleshooting guidelines](#cloud-cache) if you are using the local cache instead of the cloud binary cache.
-- [Compare ABI hashes](#compare-abi) of packages between a successful run (where it is fetching from the cache) and an unsuccessful run (where it is not)
+- [Compare ABI hashes](#abi-mismatch) of packages between a successful run (where it is fetching from the cache) and an unsuccessful run (where it is not)
 
-## <a name="compare-abi"></a>Troubleshooting ABI hash mismatch
+## <a name="abi-mismatch"></a>Troubleshooting ABI hash mismatch
 
 Enable [debug output](#debug-output) to identify the full Application Binary Interface (ABI) hash of a pacakge. For zlib:
 
@@ -139,14 +139,14 @@ After that, check for differences in the hashes of `abientries`. Relevant files 
 > [!NOTE]
 > The `triplet_abi` entry contains three hashes: the hash of the file content of the `x86-windows` triplet, the `windows.cmake` toolchain, and the compiler hash. These hashes would change if you decided to target a different platform.
 
-### vcpkg CMake helper functions changes between packages
+### <a name="abi-mismatch-helpers">vcpkg CMake helper functions changes between packages
 
 Internal vcpkg helper functions like vcpkg_from_github, vcpkg_copy_pdbs, vcpkg_fixup_pkgconfig, etc. are a part of computing the final ABI calculation. If you are getting new ABI hashes for these helper functions, it is likely because you are pulling the latest vcpkg changes.
 
 Try the following:
 - Pin the vcpkg catalog to a specific commit. If you are cloning vcpkg, run `git checkout [commit_id]` or add vcpkg as a submodule in your project. Since the ABI hash is calculated from both scripts and ports in the vcpkg repository, pulling the latest changes will likely cause frequent rebuilds.
 
-### Files used to build your library (`portfile.cmake`, `*.patch`, or `vcpkg.json`) change between runs
+### <a name="abi-mismatch-files">Files used to build your library (`portfile.cmake`, `*.patch`, or `vcpkg.json`) change between runs
 
 This indicates the baseline of your libraries is not fixed and that you are fetching `HEAD` from the vcpkg repository.
 
@@ -154,7 +154,7 @@ Try the following:
 - Pin the vcpkg catalog to a specific commit. If you are cloning vcpkg, run `git checkout [commit_id]` or add vcpkg as a submodule in your project. Because the ABI hash is calculated from both scripts and ports in the vcpkg repository, pulling the latest changes will likely cause frequent rebuilds.
 - Set `builtin-baseline` in your [vcpkg manifest](../reference/vcpkg-json.md#builtin-baseline).
 
-### Compiler version changes between runs
+### <a name="abi-mismatch-compiler">Compiler version changes between runs
 
 Try the following:
 - Turn off automatic compiler updates. For example, major, minor and patch updates to the MSVC compiler can cause your library to be built with two different versions between runs.
@@ -168,7 +168,7 @@ If the above options do not work, consider the following workarounds:
 - Consider using a Docker self-hosted image to build your libraries
 - Have an auxiliary continuous integration run that builds vcpkg libraries on a regular cadence (e.g. daily or weekly)
 
-### Tool versions (CMake/PowerShell) changes between runs
+### <a name="abi-mismatch-tools">Tool versions (CMake/PowerShell) changes between runs
 
 Try the following:
 - Add `--x-abi-tools-use-exact-versions` to your vcpkg invocation. This fixes the ABI of your tools based on the version in `vcpkgTools.xml`; vcpkg fetches its own copy if necessary.
