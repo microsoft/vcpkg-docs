@@ -5,15 +5,14 @@ author: data-queue
 ms.author: danshaw2
 ms.date: 9/20/2023
 ms.prod: vcpkg
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Overlay ports
 
-## Overview
 An overlay port can act as a drop-in replacement for an existing port. An overlay port can also add a new port that is otherwise not available in a [registry](../maintainers/registries.md). While [resolving package names](registries.md#package-name-resolution), overlay ports take priority, forcing overlay ports to be selected.
 
-Naming conflicts can arise when multiple overlays introduce the same port. For instance, overlay directories `[dirA, dirB]` may both introduce a port with the same name: `dirA/zlib` and `dirB/zlib`. vcpkg resolves `zlib` in order of which directory is specified first. In this example, `dirA/zlib` is selected as the `zlib` port. If overlay port options are specified in multiple places, overlay resolution priority follows first from the command line, the manifest, and finally the environment.
+Naming conflicts can arise when multiple overlays introduce the same port. For instance, overlay directories `[dirA, dirB]` may introduce a port with the same name: `dirA/zlib` and `dirB/zlib`. vcpkg resolves `zlib` in order of which directory is specified first. This example selects `dirA/zlib` as the `zlib` port. If overlay port options are specified in multiple places, overlay resolution priority follows first from the command line, then the manifest, and finally, the environment.
 
 ## Configuration Syntax
 
@@ -56,21 +55,21 @@ vcpkg
 |-- vcpkg.exe
 ```
 
-Running:
+Run:
+```bash
+vcpkg install sqlite3 --overlay-ports=my-ports --overlay-ports=team-ports
 ```
-vcpkg.exe install sqlite3 --overlay-ports=my-ports --overlay-ports=team-ports
-```
-Installs:
+To install:
 - `sqlite3` from `my-ports`
 
-Running:
+Run:
 ```
 vcpkg/vcpkg.exe install sqlite3 rapidjson curl 
     --overlay-ports=my-ports/rapidjson 
     --overlay-ports=vcpkg/ports/curl
     --overlay-ports=team-ports
 ```
-Installs:
+To install:
 - `sqlite3` from `team-ports`
 - `rapidjson` from `my-ports`
 - `curl` from `vcpkg/ports
