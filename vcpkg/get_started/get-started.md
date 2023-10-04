@@ -1,8 +1,6 @@
 ---
 title: Install and use packages with CMake
 description: Tutorial guides the user through the process of installing and using packages with CMake.
-zone_pivot_group_filename: zone-pivot-groups.json
-zone_pivot_groups: operating-systems
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
@@ -13,7 +11,7 @@ ms.prod: vcpkg
 
 # Tutorial: Install and use packages with vcpkg
 
-This tutorial shows you how to create a C++ "Hello World" program that uses the `fmt` library with CMake and vcpkg. You'll install dependencies, configure, build, and run a simple application.
+This tutorial shows you how to create a C++ "Hello World" program that uses the `fmt` library with CMake and vcpkg. You'll install dependencies, configure, build, and run a simple application. 
 
 ## Prerequisites
 
