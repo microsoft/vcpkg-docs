@@ -18,6 +18,17 @@
             "title": "macOS"
           }
         ]
+      },
+      {
+        "id": "opeating-system-windows-only",
+        "title": "Operating System",
+        "prompt":"",
+        "pivots": [
+          {
+            "id": "os-windows",
+            "title": "Windows"
+          }
+        ]
       }
     ]
   }
