@@ -20,8 +20,8 @@
         ]
       },
       {
-        "id": "opeating-system-windows-only",
-        "title": "Operating System",
+        "id": "operating-systems-windows-only",
+        "title": "Operating System",  
         "prompt":"",
         "pivots": [
           {

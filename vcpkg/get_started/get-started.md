@@ -6,6 +6,8 @@ ms.author: javiermat
 ms.topic: tutorial
 ms.date: 08/23/2023
 ms.prod: vcpkg
+zone_pivot_group_filename: zone-pivot-groups.json
+zone_pivot_groups: operating-systems-windows-only
 #CustomerIntent: As a beginner C++ developer, I want to learn how to install and manage packages using CMake and vcpkg, so that I can easily set up and maintain C++ projects with necessary dependencies.
 ---
 
