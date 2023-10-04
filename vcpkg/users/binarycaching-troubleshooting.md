@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot binary caching issues
 description: Troubleshooting guide for common binary caching issues
-author: dan-shaw
+author: data-queue
 ms.author: danshaw2
 ms.date: 9/20/2023
 ms.prod: vcpkg
@@ -19,11 +19,26 @@ In debug mode, vcpkg outputs additional information, such as the compiler versio
 * CMake toolchain: set `-DVCPKG_INSTALL_OPTIONS="--debug"` in your `cmake` command call or in your `CMakePresets.json` file.
 * MSBuild/Visual Studio: set the property `VcpkgAdditionalInstallOptions` to `--debug`
 
-## One or more {vendor} credential providers requested manual action. Add the binary source 'interactive' to allow interactivity.
+## Manual intervention required for {vendor} credential providers
+
+You might see the error message:
+```
+One or more {vendor} credential providers requested manual action. Add the binary source 'interactive' to allow interactivity.
+```
 
 Refer to the [binary caching syntax](./binarycaching.md#configuration-syntax) to introduce a new binary source.
 
-## <a name="push-failure"></a> Pushing NuGet/NuGet config to {url} failed. Use --debug for more information.
+## <a name="push-failure"></a> NuGet push to {url} failed
+If you are using a NuGet binary source, the error message is:
+```
+Pushing NuGet to {url} failed. Use --debug for more information.
+```
+
+If you are using a NuGet config binary source, the error message is:
+```
+Pushing NuGet config to {url} failed. Use --debug for more information.
+```
+
 Try the following:
 - Enable [debug output](#debug-output) for comprehensive error logs
 - For personal access tokens or API keys, ensure the correct scope for feed writing and verify it's not expired. Private or public feeds might require particular scopes.
@@ -43,7 +58,7 @@ Mode                 LastWriteTime         Length Name
 -a---           8/16/2023  8:53 PM         529044 zlib_x86-windows.1.2.13-vcpkgbb1c96759ac96102b4b18215db138daedd3eb16c2cd3302ae7bffab2b643eb87.nupkg
 ```
 
-## <a name="storage-providers"></a> Failures and issues when uploading/pushing to a binary caching provider
+## <a name="storage-providers"></a> Errors during cache uploads
 
 Each cloud storage provider has different authentication methods and error messages, so we recommend referring to the troubleshooting guide or documentation of your specific provider.
 
@@ -68,7 +83,7 @@ Try the following:
 > [!NOTE]
 > We typically discourage developers pushing or uploading local packages to a cloud storage provider due to supply chain security concerns.
 
-## Libraries are rebuilding a majority of the runs / Libraries rebuild unexpectedly
+## Frequent or unexpected library rebuilds
 
 Try the following:
 - Enable [debug output](#debug-output) for comprehensive error logs
@@ -76,7 +91,7 @@ Try the following:
 - Ensure you are using the correct binary cache. Refer to [troubleshooting guidelines](#cloud-cache) if you are using the local cache instead of the cloud binary cache.
 - [Compare ABI hashes](#compare-abi) of packages between a successful run (where it is fetching from the cache) and an unsuccessful run (where it is not)
 
-## <a name="compare-abi"></a>Troubleshoot why two packages have different ABI hashes
+## <a name="compare-abi"></a>Troubleshooting ABI hash mismatch
 
 Enable [debug output](#debug-output) to identify the full Application Binary Interface (ABI) hash of a pacakge. For zlib:
 
@@ -139,16 +154,25 @@ Try the following:
 - Pin the vcpkg catalog to a specific commit. If you are cloning vcpkg, run `git checkout [commit_id]` or add vcpkg as a submodule in your project. Because the ABI hash is calculated from both scripts and ports in the vcpkg repository, pulling the latest changes will likely cause frequent rebuilds.
 - Set `builtin-baseline` in your [vcpkg manifest](../reference/vcpkg-json.md#builtin-baseline).
 
-### Compiler version changes between runs / Tool versions (CMake/PowerShell) changes between runs
+### Compiler version changes between runs
 
 Try the following:
 - Turn off automatic compiler updates. For example, major, minor and patch updates to the MSVC compiler can cause your library to be built with two different versions between runs.
-- If using a hosted image, choose a stable and versioned image. Updates to your underlying image may change your C/C++ compiler or CMake version, causing a rebuild.
+- If using a hosted image, choose a stable and versioned image. Updates to your underlying image may change your C/C++ compiler version, causing a rebuild.
+
+> [!NOTE]
+> The expected behavior of vcpkg is to rebuild libraries if the compiler version changes.
 
 If the above options do not work, consider the following workarounds:
 - Use [`vcpkg export`](../commands/export.md) to produce a standalone archive of your dependencies instead of restoring them from a manifest.
 - Consider using a Docker self-hosted image to build your libraries
 - Have an auxiliary continuous integration run that builds vcpkg libraries on a regular cadence (e.g. daily or weekly)
+
+### Tool versions (CMake/PowerShell) changes between runs
+
+Try the following:
+- Add `--x-abi-tools-use-exact-versions` to your vcpkg invocation. This fixes the ABI of your tools based on the version in `vcpkgTools.xml`; vcpkg fetches its own copy if necessary.
+- If using a hosted image, choose a stable and versioned image. Updates to your underlying image may change the version of your tools, causing a rebuild.
 
 ## Issue isn't listed here
 
