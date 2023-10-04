@@ -10,7 +10,7 @@ ms.topic: concept-article
 
 # Overlay ports
 
-An overlay port can act as a drop-in replacement for an existing port. An overlay port can also add a new port that is otherwise not available in a [registry](../maintainers/registries.md). While [resolving package names](registries.md#package-name-resolution), overlay ports take priority, forcing overlay ports to be selected.
+An overlay port can act as a drop-in replacement for an existing port. An overlay port can also add a new port that is otherwise not available in a [registry](../maintainers/registries.md). While [resolving package names](../users/registries.md#package-name-resolution), overlay ports take priority, forcing overlay ports to be selected.
 
 Naming conflicts can arise when multiple overlays introduce the same port. For instance, overlay directories `[dirA, dirB]` may introduce a port with the same name: `dirA/zlib` and `dirB/zlib`. vcpkg resolves `zlib` in order of which directory is specified first. This example selects `dirA/zlib` as the `zlib` port. If overlay port options are specified in multiple places, overlay resolution priority follows first from the command line, then the manifest, and finally, the environment.
 
@@ -24,7 +24,7 @@ A valid port must contain both `vcpkg.json` and `portfile.cmake`.
 You can add an overlay port in several ways:
 * Command-line: Add one or multiple `--overlay-ports=<directory>` options to your vcpkg command
 * [Manifest](../reference/vcpkg-configuration-json.md#overlay-ports): Populate the `"overlay-ports"` array in `vcpkg-configuration.json`
-* [Environmental variable](./config-environment.md#vcpkg_overlay_ports): Set `VCPKG_OVERLAY_PORTS` to a list of directory paths
+* [Environmental variable](../users/config-environment.md#vcpkg_overlay_ports): Set `VCPKG_OVERLAY_PORTS` to a list of directory paths
 
 ### Example: Overlay Ports Example
 
