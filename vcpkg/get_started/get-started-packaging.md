@@ -1,6 +1,8 @@
 ---
 title: "Tutorial: Create and publish packages"
 description: Tutorial guides the user through the process of packaging a library for vcpkg.
+zone_pivot_group_filename: zone-pivot-groups.json
+zone_pivot_groups: operating-systems
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
