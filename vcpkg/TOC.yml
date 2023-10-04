@@ -87,6 +87,8 @@
       href: contributing/cmake-guidelines.md
     - name: PR review checklist
       href: contributing/pr-review-checklist.md
+  - name: Overlay ports
+    href: concepts/overlay-ports.md
   - name: Ports
     href: concepts/ports.md
   - name: Registries
