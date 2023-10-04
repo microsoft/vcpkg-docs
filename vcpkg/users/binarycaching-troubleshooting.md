@@ -12,6 +12,13 @@ ms.topic: troubleshooting-general
 
 This guide is intended for vcpkg users that are running into issues with [binary caching](./binarycaching.md).
 
+## <a name="debug-output"></a>Set up vcpkg to print debugging information
+In debug mode, vcpkg outputs additional information, such as the compiler version and ABI hashes, which makes diagnosing binary caching issues easier.
+
+* [Classic mode](./classic-mode.md): add `--debug` to your command invocation.
+* CMake toolchain: set `-DVCPKG_INSTALL_OPTIONS="--debug"` in your `cmake` command call or in your `CMakePresets.json` file.
+* MSBuild/Visual Studio: set the property `VcpkgAdditionalInstallOptions` to `--debug`
+
 ## One or more {vendor} credential providers requested manual action. Add the binary source 'interactive' to allow interactivity.
 
 Refer to the [binary caching syntax](./binarycaching.md#configuration-syntax) to introduce a new binary source.
@@ -68,13 +75,6 @@ Try the following:
 - Refer to [troubleshooting guidelines](#empty-cache) if your binary cache is empty
 - Ensure you are using the correct binary cache. Refer to [troubleshooting guidelines](#cloud-cache) if you are using the local cache instead of the cloud binary cache.
 - [Compare ABI hashes](#compare-abi) of packages between a successful run (where it is fetching from the cache) and an unsuccessful run (where it is not)
-
-## <a name="debug-output"></a>Set up vcpkg to print debugging information
-In debug mode, vcpkg outputs additional information, such as the compiler version and ABI hashes, which makes diagnosing binary caching issues easier.
-
-* [Classic mode](./classic-mode.md): add `--debug` to your command invocation.
-* CMake toolchain: set `-DVCPKG_INSTALL_OPTIONS="--debug"` in your `cmake` command call or in your `CMakePresets.json` file.
-* MSBuild/Visual Studio: set the property `VcpkgAdditionalInstallOptions` to `--debug`
 
 ## <a name="compare-abi"></a>Troubleshoot why two packages have different ABI hashes
 
