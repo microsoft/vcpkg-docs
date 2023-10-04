@@ -14,7 +14,7 @@ An overlay port can act as a drop-in replacement for an existing port. An overla
 
 Naming conflicts can arise when multiple overlays introduce the same port. For instance, overlay directories `[dirA, dirB]` may introduce a port with the same name: `dirA/zlib` and `dirB/zlib`. vcpkg resolves `zlib` in order of which directory is specified first. This example selects `dirA/zlib` as the `zlib` port. If overlay port options are specified in multiple places, overlay resolution priority follows first from the command line, then the manifest, and finally, the environment.
 
-## Configuration Syntax
+## Using an overlay port
 
 A directory refers to a set of overlay ports and can be specified as follows: 
 - Single overlay port: `<directory>/sqlite3` refers to a single port
