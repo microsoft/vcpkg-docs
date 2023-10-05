@@ -2,7 +2,7 @@
 title: Install and use packages with CMake in Visual Studio
 description: Tutorial guides the user through the process of installing and using packages with CMake and Visual Studio.
 zone_pivot_group_filename: zone-pivot-groups.json
-zone_pivot_groups: operating-systems
+zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
@@ -41,9 +41,15 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 2. Configure the `VCPKG_ROOT` environment variable.
    
-    Open the built-in Developer PowerShell window (``Ctrl+` ``) in Visual Studio and run the following commands:
+    Open the built-in Developer PowerShell window in Visual Studio.
+    
+    :::image type="complex" source="../resources/get_started/visual-studio-developer-powershell.png" alt-text="opening built-in developer powershell":::
+        Screenshot of Visual Studio UI for the built-in PowerShell developer window
+    :::image-end:::
 
-    ```PowerShell
+    Run the following commands:
+
+    ```powershell
     $env:VCPKG_ROOT = "C:\path\to\vcpkg"
     $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
     ```
