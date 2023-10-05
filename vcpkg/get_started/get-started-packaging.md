@@ -61,7 +61,7 @@ set PATH=%VCPKG_ROOT%;%PATH%
 
 ::: zone-end
 
-Setting `VCPKG_ROOT` tells vcpkg where your vcpkg instance is located.
+Setting `VCPKG_ROOT` tells vcpkg where your vcpkg instance is located. (TODO: FIX THIS DESCRIPTION)
 Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
 
 ## 3 - Set up the port files
@@ -72,24 +72,22 @@ Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
    
    ```json
     {
-    "name": "vcpkg-sample-library",
-    "version": "1.0.3",
-    "homepage": "https://github.com/JavierMatosD/vcpkg-sample-library",
-    "description": "A sample C++ library designed to serve as a foundational example for a tutorial on packaging libraries with vcpkg.",
-    "license": "MIT",
-    "dependencies": [
+      "name": "vcpkg-sample-library",
+      "version": "1.0.3",
+      "homepage": "https://github.com/JavierMatosD/vcpkg-sample-library",
+      "description": "A sample C++ library designed to serve as a foundational example for a tutorial on packaging libraries with vcpkg.",
+      "license": "MIT",
+      "dependencies": [
         {
-        "name" : "vcpkg-cmake",
-        "host" : true
+          "name" : "vcpkg-cmake",
+          "host" : true
         },
         {
-        "name" : "vcpkg-cmake-config",
-        "host" : true
+          "name" : "vcpkg-cmake-config",
+          "host" : true
         },
-        {
-        "name": "fmt"
-        }
-    ]
+        "fmt"
+      ]
     }
     ```
     TODO: provide line-by-line explanation
@@ -103,6 +101,7 @@ Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
    find_package(my_sample_lib CONFIG REQUIRED)
    target_link_libraries(main PRIVATE my_sample_lib::my_sample_lib)
    ```
+   
    Providing usage documentation for ports allows users to easily adopt them in their projects. We highly encourage providing a `usage` file within the port's directory (`ports/<port name>/usage`) that describes the minimal steps necessary to integrate with a build system.
 
    TODO: link to usage reference documentation
@@ -148,11 +147,8 @@ vcpkg install vcpkg-sample-library
 ```
 
 You will get a long error message. Scan the output until you find:
-```console
-.
-.
-.
 
+```console
 Expected hash: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 Actual hash: 56cffcf9bfb6e9c6bc41e28ae58e8ad25c112db49eafa63f20f95c1ced5712ba7bada9e0990741f70a3f45a4cfd6cb25a3500ef04d36037309b1b65e2f8b569d
 ```
@@ -160,10 +156,12 @@ Actual hash: 56cffcf9bfb6e9c6bc41e28ae58e8ad25c112db49eafa63f20f95c1ced5712ba7ba
 Copy the "Actual hash"  `56cffcf9bfb6e9c6bc41e28ae58e8ad25c112db49eafa63f20f95c1ced5712ba7bada9e0990741f70a3f45a4cfd6cb25a3500ef04d36037309b1b65e2f8b569d`, and replace the `SHA512` value in the `portfile.cmake` with its value.
 
 Re-run the install command:
-```
+
+```console
 vcpkg install vcpkg-sample-library
+```
 
-
+```
 Computing installation plan...
 The following packages will be built and installed:
     vcpkg-sample-library:x64-windows -> 1.0.3
