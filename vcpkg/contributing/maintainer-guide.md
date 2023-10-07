@@ -216,12 +216,15 @@ Additionally, when appropriate, it can be easier and more maintainable to rewrit
 
 Examples: [abseil](https://github.com/Microsoft/vcpkg/tree/master/ports/abseil/portfile.cmake)
 
-### Choose either static or shared binaries
+### <a name="only-static-or-shared"></a>Choose either static or shared binaries
 
-By default, `vcpkg_cmake_configure()` will pass in the appropriate setting for `BUILD_SHARED_LIBS`,
-however for libraries that don't respect that variable, you can switch on `VCPKG_LIBRARY_LINKAGE`:
+When building CMake libraries, [`vcpkg_cmake_configure()`](../maintainers/functions/vcpkg_cmake_configure.md) will pass in the correct value for `BUILD_SHARED_LIBS` based on the user's requested variant.
+
+You can calculate alternative configure parameters by using `string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" ...)`.
 
 ```cmake
+# portfile.cmake
+
 string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "static" KEYSTONE_BUILD_STATIC)
 string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "dynamic" KEYSTONE_BUILD_SHARED)
 
@@ -231,6 +234,70 @@ vcpkg_cmake_configure(
         -DKEYSTONE_BUILD_STATIC=${KEYSTONE_BUILD_STATIC}
         -DKEYSTONE_BUILD_SHARED=${KEYSTONE_BUILD_SHARED}
 )
+```
+
+If a library does not offer configure options to select the build variant, the build must be patched. When patching a build, you should always attempt to maximize the future maintainability of the port. Typically this means minimizing the number of lines that need to be touched to fix the issue at hand.
+
+After all unwanted variants have been disabled, the produced CMake config or pkg-config files should be modified to [provide all variant names](#provide-cmake-variants) to maximize compatibility with downstream builds which may have hardcoded a variant name.
+
+#### Example: Patching a CMake library to avoid building unwanted variants
+
+For example, when patching a CMake-based library, it may be sufficient to add [`EXCLUDE_FROM_ALL`](https://cmake.org/cmake/help/latest/prop_tgt/EXCLUDE_FROM_ALL.html) to unwanted targets and wrap the `install(TARGETS ...)` call in an `if(BUILD_SHARED_LIBS)`. This will be shorter than wrapping or deleting every line that mentions the unwanted variant.
+
+For a project `CMakeLists.txt` with the following contents:
+```cmake
+add_library(contoso SHARED contoso.c)
+add_library(contoso_static STATIC contoso.c)
+
+install(TARGETS contoso contoso_static EXPORT ContosoTargets)
+
+install(EXPORT ContosoTargets
+  FILE ContosoTargets
+  NAMESPACE contoso::
+  DESTINATION share/contoso)
+```
+
+Only the `install(TARGETS)` line needs to be patched.
+```cmake
+add_library(contoso SHARED contoso.c)
+add_library(contoso_static STATIC contoso.c)
+
+if(BUILD_SHARED_LIBS)
+  set_target_properties(contoso_static PROPERTIES EXCLUDE_FROM_ALL 1)
+  install(TARGETS contoso EXPORT ContosoTargets)
+else()
+  set_target_properties(contoso PROPERTIES EXCLUDE_FROM_ALL 1)
+  install(TARGETS contoso_static EXPORT ContosoTargets)
+endif()
+
+install(EXPORT ContosoTargets
+  FILE ContosoTargets
+  NAMESPACE contoso::
+  DESTINATION share/contoso)
+```
+
+If a buildsystem patch is required for [Choose either static or shared binaries](#only-static-or-shared), you can also resolve [Provide all CMake variant targets](#provide-cmake-variants) by introducing stubs that have the original variant's [`EXPORT_NAME`](https://cmake.org/cmake/help/latest/prop_tgt/EXPORT_NAME.html). These stubs can be introduced as part of the same patch hunk.
+
+```cmake
+add_library(contoso SHARED contoso.c)
+add_library(contoso_static STATIC contoso.c)
+
+if(BUILD_SHARED_LIBS)
+  set_target_properties(contoso_static PROPERTIES EXCLUDE_FROM_ALL 1)
+  add_library(contoso_static_stub INTERFACE)
+  set_target_properties(contoso_static_stub PROPERTIES EXPORT_NAME contoso_static INTERFACE_LINK_LIBRARIES contoso)
+  install(TARGETS contoso contoso_static_stub EXPORT ContosoTargets)
+else()
+  set_target_properties(contoso PROPERTIES EXCLUDE_FROM_ALL 1)
+  add_library(contoso_stub INTERFACE)
+  set_target_properties(contoso_stub PROPERTIES EXPORT_NAME contoso INTERFACE_LINK_LIBRARIES contoso_static)
+  install(TARGETS contoso_stub contoso_static EXPORT ContosoTargets)
+endif()
+
+install(EXPORT ContosoTargets
+  FILE ContosoTargets
+  NAMESPACE contoso::
+  DESTINATION share/contoso)
 ```
 
 ### When defining features, explicitly control dependencies
@@ -392,11 +459,11 @@ Using `vcpkg`'s built-in toolchains this works, because the value of `VCPKG_<LAN
 
 Because of this, it is preferable to patch the buildsystem directly when setting `CMAKE_<LANG>_FLAGS`.
 
-### Minimize patches
+### <a name="minimize-patches"></a>Minimize patches
 
-When making changes to a library, strive to minimize the final diff. This means you should _not_ reformat the upstream source code when making changes that affect a region. Also, when disabling a conditional, it is better to add a `AND FALSE` or `&& 0` to the condition than to delete every line of the conditional.
+When making changes to a library, strive to minimize the final diff. This means you should not reformat the upstream source code when making changes that affect a region. When disabling a conditional, it is better to add an `AND FALSE` or `&& 0` to the condition than to delete every line of the conditional. If a large region needs to be disabled, it is shorter to add an `if(0)` or `#if 0` around the region instead of deleting every line in the patch.
 
-Don't add patches if the port is outdated and updating the port to a newer released version would solve the same issue. vcpkg prefers updating ports over patching outdated versions unless the version bump breaks a considerable amount of dependent ports.
+Don't add patches if the port is outdated and updating the port to a newer released version would solve the same issue. vcpkg prefers updating ports over patching outdated versions.
 
 This helps to keep the size of the vcpkg repository down as well as improves the likelihood that the patch will apply to future code versions.
 
@@ -415,6 +482,72 @@ Optionally, you can add a `test` feature which enables building the tests, howev
 ### Do not add `CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS`
 
 Unless the author of the library is already using it, we should not use this CMake functionality because it interacts poorly with C++ templates and breaks certain compiler features. Libraries that don't provide a .def file and do not use __declspec() declarations simply do not support shared builds for Windows and should be marked as such with `vcpkg_check_linkage(ONLY_STATIC_LIBRARY)`.
+
+### <a name="provide-cmake-variants"></a>Provide all CMake variant targets
+
+Some CMake-based projects offer the ability to build both static and shared variants of a library in the same build. For example:
+```cmake
+# contoso/CMakeLists.txt
+add_library(contoso SHARED contoso.c)
+add_library(contoso_static STATIC contoso.c)
+```
+This violates [Choose either static or shared binaries](#only-static-or-shared) and the portfile should arrange for only one of the variants to be installed.
+
+After the build has been configured to only provide one set of binaries, many downstream customers are still likely to be broken. For example, if a consumer expects `contoso` to always be available, they may fail to build when static libraries are selected.
+```cmake
+# myapp/CMakeLists.txt
+add_executable(consumer main.c)
+
+find_package(Contoso CONFIG REQUIRED)
+target_link_libraries(consumer PRIVATE contoso)
+```
+If the target is namespaced as `contoso::contoso`, the consuming project will fail at configure time.
+```console
+CMake Error at CMakeLists.txt:6 (target_link_libraries):
+  Target "consumer" links to:
+
+    contoso::contoso
+
+  but the target was not found.  Possible reasons include:
+
+    * There is a typo in the target name.
+    * A find_package call is missing for an IMPORTED target.
+    * An ALIAS target is missing.
+```
+
+Otherwise, it will fail at build time.
+```console
+LINK : fatal error LNK1104: cannot open file 'contoso.lib'
+```
+
+To resolve this issue, the installed CMake config files should be modified to provide all upstream variant names. This improves the ecosystem maintainability because it solves the problem in one place for all consumers, instead of needing to patch every consumer of the library. This also improves compatibility with existing code outside the ecosystem, such as applications that may have hardcoded dependencies on one or the other target names.
+
+To provide all upstream variant names, the CMake config file should be extended with additional `add_library(variant IMPORTED)` calls.
+```cmake
+# Inside ContosoConfig.cmake
+if(TARGET contoso AND NOT TARGET contoso_static)
+    add_library(contoso_static INTERFACE IMPORTED)
+    set_target_properties(contoso_static PROPERTIES INTERFACE_LINK_LIBRARIES contoso)
+elseif(TARGET contoso_static AND NOT TARGET contoso)
+    add_library(contoso INTERFACE IMPORTED)
+    set_target_properties(contoso PROPERTIES INTERFACE_LINK_LIBRARIES contoso_static)
+endif()
+```
+Usually, these lines can be added to the end of the installed CMake config file after [`vcpkg_cmake_config_fixup()`](../maintainers/functions/vcpkg_cmake_config_fixup.md).
+```cmake
+# In portfile.cmake
+vcpkg_cmake_config_fixup(PACKAGE_NAME Contoso)
+
+file(APPEND "${CURRENT_PACKAGES_DIR}/share/ContosoConfig.cmake" "
+if(TARGET contoso AND NOT TARGET contoso_static)
+    add_library(contoso_static INTERFACE IMPORTED)
+    set_target_properties(contoso_static PROPERTIES INTERFACE_LINK_LIBRARIES contoso)
+elseif(TARGET contoso_static AND NOT TARGET contoso)
+    add_library(contoso INTERFACE IMPORTED)
+    set_target_properties(contoso PROPERTIES INTERFACE_LINK_LIBRARIES contoso_static)
+endif()
+")
+```
 
 ### Do not rename binaries outside the names given by upstream
 
