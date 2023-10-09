@@ -13,7 +13,7 @@ ms.prod: vcpkg
 
 # Tutorial: Create and publish packages
 
-This tutorial shows you how to publish a simple library for the vcpkg registry.
+This tutorial guides you on how to package a library for vcpkg using a custom overlay. Before you proceed, ensure you've followed the [Install and use packages with CMake](get-started.md) tutorial as a starting point.
 
 ## Prerequisites
 
@@ -64,86 +64,89 @@ set PATH=%VCPKG_ROOT%;%PATH%
 Setting `VCPKG_ROOT` tells vcpkg where your vcpkg instance is located. (TODO: FIX THIS DESCRIPTION)
 Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
 
-## 3 - Set up the port files
+## 3 - Set up the custom overlay
 
-1. First, create a new folder under the `vcpkg/ports/` directory named `vcpkg-sample-library`
+1. Create a new directory called `custom-overlay` next to the `Hello World` project you created in the [Install and use packages with CMake](get-started.md).
+2. Within `custom-overlay` directory, create a folder named `vcpkg-sample-library`.
 
-2. Next, create the `vcpkg.json` file within the `vcpkg-sample-library` folder with the following content:
+## 4 - Set up the port files
+
+First, create the `vcpkg.json` file within the `custom-overlay\vcpkg-sample-library` folder with the following content:
    
-   ```json
+```json
+{
+  "name": "vcpkg-sample-library",
+  "version": "1.0.3",
+  "homepage": "https://github.com/JavierMatosD/vcpkg-sample-library",
+  "description": "A sample C++ library designed to serve as a foundational example for a tutorial on packaging libraries with vcpkg.",
+  "license": "MIT",
+  "dependencies": [
     {
-      "name": "vcpkg-sample-library",
-      "version": "1.0.3",
-      "homepage": "https://github.com/JavierMatosD/vcpkg-sample-library",
-      "description": "A sample C++ library designed to serve as a foundational example for a tutorial on packaging libraries with vcpkg.",
-      "license": "MIT",
-      "dependencies": [
-        {
-          "name" : "vcpkg-cmake",
-          "host" : true
-        },
-        {
-          "name" : "vcpkg-cmake-config",
-          "host" : true
-        },
-        "fmt"
-      ]
-    }
-    ```
-    TODO: provide line-by-line explanation
-    TODO: For more information on `vcpkg.json`, see the following:
+      "name" : "vcpkg-cmake",
+      "host" : true
+    },
+    {
+      "name" : "vcpkg-cmake-config",
+      "host" : true
+    },
+    "fmt"
+  ]
+}
+```
+TODO: provide line-by-line explanation
+TODO: For more information on `vcpkg.json`, see the following:
 
-3. Now, create the `usage` file within the `vcpkg-sample-library` folder with the following content:
+Now, create the `usage` file within the `custom-overlay\vcpkg-sample-library` directory with the following content:
 
-   ```
-   vcpkg-sample-library provides CMake targets:
-   
-   find_package(my_sample_lib CONFIG REQUIRED)
-   target_link_libraries(main PRIVATE my_sample_lib::my_sample_lib)
-   ```
-   
-   Providing usage documentation for ports allows users to easily adopt them in their projects. We highly encourage providing a `usage` file within the port's directory (`ports/<port name>/usage`) that describes the minimal steps necessary to integrate with a build system.
+```
+vcpkg-sample-library provides CMake targets:
 
-   TODO: link to usage reference documentation
+find_package(my_sample_lib CONFIG REQUIRED)
+target_link_libraries(main PRIVATE my_sample_lib::my_sample_lib)
+```
 
-4. Finally, create the `portfile.cmake` file within the `vcpkg-sample-library` folder with the following content:
+Providing usage documentation for ports allows users to easily adopt them in their projects. We highly encourage providing a `usage` file within the port's directory (`ports/<port name>/usage`) that describes the minimal steps necessary to integrate with a build system.
+
+TODO: link to usage reference documentation
+
+Finally, create the `portfile.cmake` file within the `custom-overlay\vcpkg-sample-library` directory with the following content:
       
-   ```
-    vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
+```
+vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 
-    vcpkg_from_github(
-        OUT_SOURCE_PATH SOURCE_PATH
-        REPO JavierMatosD/vcpkg-sample-library
-        REF "${VERSION}"
-        SHA512 0  # This is a temporary value. We will modify this value in the next section.
-        HEAD_REF main
-    )
+vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH
+    REPO JavierMatosD/vcpkg-sample-library
+    REF "${VERSION}"
+    SHA512 0  # This is a temporary value. We will modify this value in the next section.
+    HEAD_REF main
+)
 
 
-    vcpkg_cmake_configure(
-        SOURCE_PATH "${SOURCE_PATH}"
-    )
+vcpkg_cmake_configure(
+    SOURCE_PATH "${SOURCE_PATH}"
+)
 
-    vcpkg_cmake_install()
+vcpkg_cmake_install()
 
-    vcpkg_cmake_config_fixup(PACKAGE_NAME "my_sample_lib")
+vcpkg_cmake_config_fixup(PACKAGE_NAME "my_sample_lib")
 
-    file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
+file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 
-    file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
-    configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" COPYONLY)
-    ```
+file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
+configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" COPYONLY)
+```
 
-    TODO: Line-by-line explanation:
+TODO: Line-by-line explanation:
 
-    TODO: link to portfile reference documentation
+TODO: link to portfile reference documentation
 
-## 4 - Update SHA512 for `portfile.cmake`
+## 5 - Update SHA512 for `portfile.cmake`
 
 Run:
 
 ```console
-vcpkg install vcpkg-sample-library
+vcpkg install vcpkg-sample-library --overlay-ports=C:\path\to\custom-overlay
 ```
 
 You will get a long error message. Scan the output until you find:
@@ -158,7 +161,7 @@ Copy the "Actual hash"  `56cffcf9bfb6e9c6bc41e28ae58e8ad25c112db49eafa63f20f95c1
 Re-run the install command:
 
 ```console
-vcpkg install vcpkg-sample-library
+vcpkg install vcpkg-sample-library --overlay-ports=C:\path\to\custom-overlay
 ```
 
 ```
@@ -188,14 +191,8 @@ vcpkg-sample-library provides CMake targets:
   target_link_libraries(main PRIVATE my_sample_lib::my_sample_lib)
 ```
 
-## 5 - Set up versioning
-
-TODO: instructions for setting up the version db, i.e., `x-add-version`
-TODO: link to x-add-version reference documentation
-
 ## 6 - Verify the port build
 
-TODO: provide a method for verifying the library builds
 
 ## Next steps
 
