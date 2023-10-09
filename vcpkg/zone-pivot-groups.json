@@ -18,6 +18,21 @@
             "title": "Bash"
           }
         ]
+      },
+      {
+        "id": "os-runner",
+        "title": "OS Runner",
+        "prompt": "Operating System Runner",
+        "pivots": [
+          {
+            "id": "windows-runner",
+            "title": "Windows runner"
+          },
+          {
+            "id": "linux-runner",
+            "title": "Linux runner"
+          }
+        ]
       }
     ]
   }

@@ -8,7 +8,7 @@ ms.topic: tutorial
 ms.date: 09/27/2023
 #CustomerIntent: As a vcpkg user, I want to setup binary caching in my GitHub Actions workflow using GitHub Packages as the binary cache storage
 zone_pivot_group_filename: zone-pivot-groups.json
-zone_pivot_groups: operating-systems
+zone_pivot_groups: os-runner
 ---
 # Tutorial: Set up a vcpkg binary cache using GitHub Packages in a GitHub Actions workflow
 
@@ -53,7 +53,7 @@ operations. This tutorial uses the vcpkg-acquired `nuget.exe`.
 
 Add a step to bootstrap vcpkg in your workflow:
 
-::: zone pivot="os-windows"
+::: zone pivot="windows-runner"
 
 ```YAML
 - name: Bootstrap vcpkg
@@ -63,7 +63,7 @@ Add a step to bootstrap vcpkg in your workflow:
 
 ::: zone-end
 
-::: zone pivot="os-linux, os-macos"
+::: zone pivot="linux-runner"
 
 ```YAML
 - name: Bootstrap vcpkg
@@ -101,7 +101,7 @@ the executable if necessary.
 
 Add the following step in your GitHub Actions workflow file:
 
-::: zone pivot="os-windows"
+::: zone pivot="windows-runner"
 
 ```YAML
 - name: Add NuGet sources
@@ -121,7 +121,7 @@ Add the following step in your GitHub Actions workflow file:
 
 ::: zone-end
 
-::: zone pivot="os-linux, os-macos"
+::: zone pivot="linux-runner"
 
 On Linux, you need `mono` to execute `nuget.exe`. GitHub Actions runners using Ubuntu come with `mono`
 preinstalled. Otherwise, you can install `mono` using your distribution's system package manager.
