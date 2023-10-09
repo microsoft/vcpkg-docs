@@ -7,7 +7,7 @@ ms.date: 9/25/2023
 ms.prod: vcpkg
 ms.topic: concept-article
 zone_pivot_group_filename: zone-pivot-groups.json
-zone_pivot_groups: operating-systems
+zone_pivot_groups: shell-selections
 ---
 # Default local vcpkg binary cache
 
@@ -15,7 +15,7 @@ By default, vcpkg creates a local binary cache. This saves time when installing 
 
 The location of the default binary cache depends on your operating system.
 
-::: zone pivot="os-windows"
+::: zone pivot="shell-cmd, shell-powershell"
 
 By default, binary caching is enabled at the first valid location among the following:
 
@@ -25,7 +25,7 @@ By default, binary caching is enabled at the first valid location among the foll
 
 ::: zone-end
 
-::: zone pivot="os-linux, os-macos"
+::: zone pivot="shell-bash"
 
 By default, binary caching is enabled at the first valid location among the following:
 
@@ -46,18 +46,24 @@ directory.
 
 To disable the default binary cache, set the [`VCPKG_BINARY_SOURCES` environment variable](../users/binarycaching.md#configuration-syntax) to `clear`.
 
-::: zone pivot="os-windows"
+::: zone pivot="shell-powershell"
 
 ```PowerShell
 $env:VCPKG_BINARY_SOURCES="clear"
 ```
 
 ::: zone-end
+::: zone pivot="shell-cmd"
 
-::: zone pivot="os-linux, os-macos"
+```console
+set VCPKG_BINARY_SOURCES=clear
+```
+
+::: zone-end
+::: zone pivot="shell-bash"
 
 ```bash
-VCPKG_BINARY_SOURCES=clear
+export VCPKG_BINARY_SOURCES=clear
 ```
 
 ::: zone-end
