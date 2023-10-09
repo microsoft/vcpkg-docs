@@ -37,7 +37,7 @@ In this tutorial, you'll learn how to:
 ::: zone pivot="shell-cmd, shell-powershell"
 
 * A terminal
-* [vcpkg](../get_started/setup-vcpkg.md)
+* [vcpkg](../get_started/includes/setup-vcpkg.md)
 * A NuGet packages feed, or if you don't, an Azure DevOps account to follow along
 
 ::: zone-end
@@ -45,7 +45,7 @@ In this tutorial, you'll learn how to:
 ::: zone pivot="shell-bash"
 
 * A terminal
-* [vcpkg](../get_started/setup-vcpkg.md)
+* [vcpkg](../get_started/includes/setup-vcpkg.md)
 * A NuGet packages feed, or if you don't, an Azure DevOps account to follow along
 * The `mono` package installed in your system
 
