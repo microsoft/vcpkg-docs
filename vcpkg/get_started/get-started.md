@@ -68,8 +68,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     ```
 
     > [!NOTE]
-    > Setting the `VCPKG_ROOT` environment variable in this way only affects the current shell session. To make this change permanent across sessions, you would typically modify them through the Windows System Properties.
-
+    > Setting the `VCPKG_ROOT` and updating the `PATH` environment variables in this manner only affects the current PowerShell session. To make these changes permanent across all sessions, you should add them to your PowerShell profile or set them through the Windows System Environment Variables panel.
     ::: zone-end
 
     Setting `VCPKG_ROOT` tells vcpkg where your vcpkg instance is located.
