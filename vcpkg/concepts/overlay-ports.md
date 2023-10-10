@@ -16,7 +16,7 @@ Naming conflicts can arise when multiple overlays introduce the same port. For i
 
 ## Using an overlay port
 
-A directory refers to a set of overlay ports and can be specified as follows: 
+A directory can represent a set of overlay ports and can be specified in one of two ways:
 - Single overlay port: `<directory>/sqlite3` refers to a single port
 - Directory of overlay ports: `<directory>` refers to a directory of ports
 A valid port must contain both `vcpkg.json` and `portfile.cmake`.
@@ -43,7 +43,7 @@ To install:
 
 Run:
 ```
-vcpkg/vcpkg.exe install sqlite3 rapidjson curl 
+vcpkg install sqlite3 rapidjson curl 
     --overlay-ports=my-ports/rapidjson 
     --overlay-ports=vcpkg/ports/curl
     --overlay-ports=team-ports
