@@ -44,7 +44,7 @@ Create the two binary cache locations (substitute with any locations of your cho
 
 ::: zone pivot="shell-powershell, shell-cmd"
 
-```PowerShell
+```console
 mkdir D:\vcpkg\binary-cache
 mkdir \\remote\shared\vcpkg\binary-cache
 ```
