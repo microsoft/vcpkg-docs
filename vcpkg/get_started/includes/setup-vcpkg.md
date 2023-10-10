@@ -12,14 +12,21 @@
 
     Now that you have cloned the vcpkg repository, navigate to the `vcpkg` directory and execute the bootstrap script:
 
-    ::: zone pivot="os-windows"
+    ::: zone pivot="shell-cmd"
 
     ```console
-    cd vcpkg && ./bootstrap-vcpkg.bat
+    cd vcpkg && bootstrap-vcpkg.bat
     ```
 
     ::: zone-end
-    ::: zone pivot="os-linux,os-macos"
+    ::: zone pivot="shell-powershell"
+
+    ```console
+    cd vcpkg; .\bootstrap-vcpkg.bat
+    ```
+
+    ::: zone-end
+    ::: zone pivot="shell-bash"
 
     ```console
     cd vcpkg && ./bootstrap-vcpkg.sh

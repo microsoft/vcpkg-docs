@@ -7,7 +7,7 @@ ms.prod: vcpkg
 ms.topic: tutorial
 ms.date: 09/11/2023
 zone_pivot_group_filename: zone-pivot-groups.json
-zone_pivot_groups: operating-systems
+zone_pivot_groups: shell-selections
 ---
 
 # Tutorial: Set up a vcpkg binary cache using a NuGet feed
@@ -34,23 +34,22 @@ In this tutorial, you'll learn how to:
 
 ## Prerequisites
 
-::: zone pivot="os-windows"
+::: zone pivot="shell-cmd, shell-powershell"
 
 * A terminal
-* [vcpkg](../get_started/setup-vcpkg.md)
+* [vcpkg](../get_started/get-started.md#1---set-up-vcpkg)
 * A NuGet packages feed, or if you don't, an Azure DevOps account to follow along
 
 ::: zone-end
 
-::: zone pivot="os-linux, os-macos"
+::: zone pivot="shell-bash"
 
 * A terminal
-* [vcpkg](../get_started/setup-vcpkg.md)
+* [vcpkg](../get_started/get-started.md#1---set-up-vcpkg)
 * A NuGet packages feed, or if you don't, an Azure DevOps account to follow along
 * The `mono` package installed in your system
 
 ::: zone-end
-
 ## 1 - Set up a NuGet feed
 
 Skip this step if you already have an existing NuGet packages feed.
@@ -62,7 +61,7 @@ You can also use any other NuGet packages feed provider of your choice.
 
 ## 2 - Add a NuGet source
 
-::: zone pivot="os-linux, os-macos"
+::: zone pivot="shell-bash"
 > [!NOTE]
 > On Linux you need `mono` to execute `nuget.exe`. You can install `mono` using your distribution's
 > system package manager.
@@ -75,14 +74,30 @@ outputs the location of the vcpkg-acquired `nuget.exe`, downloading the executab
 Run the following command to add your NuGet feed as a source, replace `<feed name>` with any name of
 your choosing and `<feed url>` with the URL to your NuGet feed.
 
-::: zone pivot="os-windows"
+::: zone pivot="shell-powershell"
 
 ```PowerShell
 .$(vcpkg fetch nuget) sources add -Name <feed name> -Source <feed url>
 ```
 
 ::: zone-end
-::: zone pivot="os-linux, os-macos"
+::: zone pivot="shell-cmd"
+
+Execute the command below to fetch the path to the NuGet executable:
+
+```console
+vcpkg fetch nuget
+```
+
+This will provide an output that looks something like `C:\path\to\nuget.exe`. Make a note of this path.
+Using the path obtained from the previous step, run the following command:
+
+```console
+C:\path\to\nuget.exe sources add -Name <feed name> -Source <feed url>
+```
+
+::: zone-end
+::: zone pivot="shell-bash"
 
 ```bash
 mono `vcpkg fetch nuget | tail -n 1` sources add -Name <feed name> - Source <feed url>
@@ -99,14 +114,30 @@ Artifacts the API key is `AzureDevOps` instead.
 Use the following command to set the API key for all the packages pushed to your NuGet feed, replace
 `<apiKey>` with your feed's API key.
 
-::: zone pivot="os-windows"
+::: zone pivot="shell-powershell"
 
 ```PowerShell
 .$(vcpkg fetch nuget) setapikey <apikey> -Source <feed url>
 ```
 
 ::: zone-end
-::: zone pivot="os-linux, os-macos"
+::: zone pivot="shell-cmd"
+
+Execute the command below to fetch the path to the NuGet executable:
+
+```console
+vcpkg fetch nuget
+```
+
+This will provide an output that looks something like `C:\path\to\nuget.exe`. Make a note of this path.
+Using the path obtained from the previous step, run the following command:
+
+```console
+C:\path\to\nuget.exe setapikey <apikey> -Source <feed url>
+```
+
+::: zone-end
+::: zone pivot="shell-bash"
 
 ```bash
 mono `vcpkg fetch nuget | tail -n 1` sources setapikey <apiKey> - Source <feed url>
@@ -194,14 +225,29 @@ sources in this file, use a `<add key="<feed name>" value="<feed url>" />` entry
 Run the following command to add a NuGet source using a `nuget.config` file, replace 
 `<path to nuget.config>` with the path to your `nuget.config` file:
 
-::: zone pivot="os-windows"
+::: zone pivot="shell-powershell"
 
 ```PowerShell
 .$(vcpkg fetch nuget) sources add -ConfigFile <path to nuget.config>
 ```
 
 ::: zone-end
-::: zone pivot="os-linux, os-macos"
+::: zone pivot="shell-cmd"
+
+Execute the command below to fetch the path to the NuGet executable:
+
+```console
+vcpkg fetch nuget
+```
+This will provide an output that looks something like `C:\path\to\nuget.exe`. Make a note of this path.
+Using the path obtained from the previous step, run the following command:
+
+```console
+C:\path\to\nuget.exe sources add -ConfigFile <path to nuget.config>
+```
+
+::: zone-end
+::: zone pivot="shell-bash"
 
 ```bash
 mono `vcpkg fetch nuget | tail -n 1` sources add -ConfigFile <path to nuget.config>
@@ -213,7 +259,7 @@ mono `vcpkg fetch nuget | tail -n 1` sources add -ConfigFile <path to nuget.conf
 
 Set the `VCPKG_BINARY_SOURCES` environment variable as follows:
 
-::: zone pivot="os-windows"
+::: zone pivot="shell-powershell"
 
 ```PowerShell
 $env:VCPKG_BINARY_SOURCES="clear;nuget,<feed url>,readwrite"
@@ -226,7 +272,20 @@ $env:VCPKG_BINARY_SOURCES="clear;nugetconfig,<path to nuget.config>"
 ```
 
 ::: zone-end
-::: zone pivot="os-linux, os-macos"
+::: zone pivot="shell-cmd"
+
+```console
+set VCPKG_BINARY_SOURCES="clear;nuget,<feed url>,readwrite"
+```
+
+If you're using a `nuget.config` file, instead do:
+
+```console
+set VCPKG_BINARY_SOURCES="clear;nugetconfig,<path to nuget.config>"
+```
+
+::: zone-end
+::: zone pivot="shell-bash"
 
 > [!NOTE]
 > Setting `VCPKG_BINARY_SOURCES` using the `export` command will only affect the current shell
