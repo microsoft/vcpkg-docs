@@ -3,113 +3,166 @@ title: Troubleshoot binary caching issues
 description: Troubleshooting guide for common binary caching issues
 author: data-queue
 ms.author: danshaw2
-ms.date: 9/20/2023
+ms.date: 10/11/2023
 ms.prod: vcpkg
 ms.topic: troubleshooting-general
 ---
 
 # Binary caching troubleshooting guide
 
-This guide is intended for vcpkg users that are running into issues with [binary caching](./binarycaching.md).
+This guide is intended for users that are running into issues with [binary caching](./binarycaching.md).
 
 ## <a name="debug-output"></a>Set up vcpkg to print debugging information
-In debug mode, vcpkg outputs additional information, such as the compiler version and ABI hashes, which makes diagnosing binary caching issues easier.
+In debug mode, vcpkg outputs additional information, such as the compiler version, which makes diagnosing binary caching issues easier.
 
 * [Classic mode](./classic-mode.md): add `--debug` to your command invocation.
-* CMake toolchain: set `-DVCPKG_INSTALL_OPTIONS="--debug"` in your `cmake` command call or in your `CMakePresets.json` file.
-* MSBuild/Visual Studio: set the property `VcpkgAdditionalInstallOptions` to `--debug`
+* CMake toolchain: add `-DVCPKG_INSTALL_OPTIONS="--debug"` in your CMake configure call or in your `CMakePresets.json` file.
+* MSBuild/Visual Studio: set the property `VcpkgAdditionalInstallOptions` to `--debug`.
 
-## <a name="interactive-source"></a>Manual intervention required for {vendor} credential providers
+## <a name="push-failure"></a> NuGet push to {url} fails 
+<!-- should be an include -->
+> [!IMPORTANT]
+> Update your vcpkg tool to the latest release. Additionally, enable [debug output](#debug-output) for comprehensive error logs.
 
-You might see the error message:
-```
-One or more {vendor} credential providers requested manual action. Add the binary source 'interactive' to allow interactivity.
-```
-
-Refer to the [binary caching syntax](./binarycaching.md#configuration-syntax) to introduce a new binary source.
-
-## <a name="push-failure"></a> NuGet push to {url} failed
-If you are using a NuGet binary source, the error message is:
+If you are using a NuGet binary source, the complete error message is:
 ```
 Pushing NuGet to {url} failed. Use --debug for more information.
 ```
 
-If you are using a NuGet config binary source, the error message is:
+If you are using a NuGet config binary source, the complete error message is:
 ```
 Pushing NuGet config to {url} failed. Use --debug for more information.
 ```
 
-Try the following:
-- Enable [debug output](#debug-output) for comprehensive error logs
-- For personal access tokens or API keys, ensure the correct scope for feed writing and verify it's not expired. Private or public feeds might require particular scopes.
-- Review [troubleshooting guidelines](#cache-upload) for cloud storage providers
+An error occurred while vcpkg was invoking the NuGet command line to push NuGet packages to a feed. 
 
-If successful, you should see the following message:
-```
-Pushing zlib_x86-windows.1.2.13-vcpkgbb1c96759ac96102b4b18215db138daedd3eb16c2cd3302ae7bffab2b643eb87.nupkg to '<NuGet Feed>'...
-Your package was pushed.
-Stored binaries in 1 destinations in 1.8 s.
-```
+### Cause 1: The user lacks write permissions.
+<!-- 
+Steps to reproduce:
+1. Create a NuGet Feed
+2. Set your role to a Reader and remove any write permissions you have
+3. `vcpkg` install with variables set `$env:VCPKG_BINARY_SOURCES="clear;nuget,<feed url>,readwrite"`
+-->
 
-Your feed contains the expected NuGet package:
+You see the error:
 ```
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a---           8/16/2023  8:53 PM         529044 zlib_x86-windows.1.2.13-vcpkgbb1c96759ac96102b4b18215db138daedd3eb16c2cd3302ae7bffab2b643eb87.nupkg
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 403 (Forbidden - User <user> lacks permission to complete this action. You need to have 'AddPackage'.
 ```
 
-## <a name="cache-upload"></a> Errors during cache uploads
+Push was rejected by remote source because the user does not have sufficient write permissions. 
+* Ensure the user or your user group has write permissions. In NuGet, the user must have at least a [Contributor role](https://learn.microsoft.com/en-us/azure/devops/artifacts/feeds/feed-permissions?view=azure-devops#permissions-table) to the feed.
 
-Each cloud storage provider has different authentication methods and error messages, so we recommend referring to the troubleshooting guide or documentation of your specific provider.
+### Cause 2: The URL to the NuGet feed is incorrect.
+<!--
+Steps to reproduce:
+1. Push a binary package to an existing NuGet feed with an incorrect URI.
+2. Set $env:VCPKG_BINARY_SOURCES="clear;nuget,<incorrect url>,readwrite"
+-->
+You may see the error:
+```
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 405 (Method Not Allowed).
+```
 
-Try the following:
-- Enable [debug output](#debug-output) for comprehensive error logs
-- Ensure you've authenticated to your cloud storage provider. Some providers require you to run a tool.
-- Ensure your machine has enough disk space for creating archived packages when uploading. Some libraries use up significant disk space even when compressed.
-- Confirm write permissions for your binary cache provider. Make sure you don't have a read only lock on the cache.
+The server rejected NuGet's push request because it did not recognize the request method.
+* Check if you have specified the correct URI in your binary source. The URI should point to the service index of the feed, usually `<feed>/nuget/v3/index.json`.
+
+### Additional resources for diagnosing NuGet issues
+Review [NuGet documentation](https://learn.microsoft.com/en-us/azure/devops/artifacts/nuget/publish?view=azure-devops) for connecting and publishing to a NuGet feed.
+
+## <a name="cache-upload"></a> Errors occur during cache uploads
+
+You encounter errors when uploading a binary package to your cache.
+
+Uploads can fail for a variety of reasons.
+* Ensure you are authenticated to your cache.  Different providers authenticate differently.
+* Check if you've specified the correct URI for your cache.
+* Refer to [push troubleshooting](#push-failure) if you are using NuGet as a binary source.
+* Review documentation or the troubleshooting guide of your specific provider.
 
 ## <a name="empty-cache"></a> Binary cache is empty
-Try the following:
-- Enable [debug output](#debug-output) for comprehensive error logs
-- Refer to troubleshooting guidelines for [cloud providers](#cache-upload) and [NuGet](#push-failure) if there are any push/upload failures
-- Ensure your [binary cache configuration](binarycaching.md#configuration-syntax) is set to `write` or `readwrite`
 
-## <a name="cloud-cache"></a> Using local cache instead of cloud binary cache
-Try the following:
-- Enable [debug output](#debug-output) for comprehensive error logs
-- Ensure your [binary cache configuration](binarycaching.md#configuration-syntax) is set to `read` or `readwrite`
-- [Compare ABI hashes](#abi-mismatch) between the packages built locally and packages in your binary cache. If you have have a pipeline building those packages, different environments in your image and local machine will produce packages with different ABI hashes. To workaround this issue, either use the same versions of the tools as you are using in your CI pipeline to create the packages, or simply use the packages created locally. 
+You didn't see any errors, vcpkg installation succeeded, but the binary cache is still empty. If you did see errors, refer to [push troubleshooting](#push-failure) for NuGet and [upload troubleshooting](#cache-upload) for other providers.
 
-> [!NOTE]
-> We typically discourage developers pushing or uploading local packages to a cloud storage provider due to supply chain security concerns.
+### Cause 1: Vcpkg doesn't have permissions to write to the binary cache.
+<!--
+Steps to reproduce:
+1. Create a NuGet feed
+2. $env:VCPKG_BINARY_SOURCES="clear;nuget,C:/nugetfeed,read"
+3. Run ./vcpkg install rapidjson
+-->
+You are missing the following message in your output.
+```
+Uploading binaries for 'rapidjson:x64-windows' to <binary source> source <url>.
+Stored binaries in 1 destinations in 1.5 s.
+```
 
-## <a name="frequent-rebuilds"></a>Frequent or unexpected library rebuilds
+Vcpkg skipped uploading the binary package to your binary cache.
+* Ensure your [binary cache configuration](binarycaching.md#configuration-syntax) is set to `write` or `readwrite`
 
-Try the following:
-- Enable [debug output](#debug-output) for comprehensive error logs
-- Refer to [troubleshooting guidelines](#empty-cache) if your binary cache is empty
-- Ensure you are using the correct binary cache. Refer to [troubleshooting guidelines](#cloud-cache) if you are using the local cache instead of the cloud binary cache.
-- [Compare ABI hashes](#abi-mismatch) of packages between a successful run (where it is fetching from the cache) and an unsuccessful run (where it is not)
+## Libraries rebuild instead of consuming from the remote binary cache
 
-## <a name="abi-mismatch"></a>Troubleshooting ABI hash mismatch
+You are rebuilding libraries locally even though the remote binary cache contains the binary package you need.
 
-Enable [debug output](#debug-output) to identify the full Application Binary Interface (ABI) hash of a pacakge. For zlib:
+There is the absence of the following output:
+```
+Restored 1 package(s) from <remote binary cache> in 1.1 s. Use --debug to see more details.
+```
 
+### Cause 1: Vcpkg doesn't have permissions to read from the remote binary cache.
+
+Vcpkg choose to read your default binary cache over the remote one.
+* Ensure your [binary cache configuration](binarycaching.md#configuration-syntax) is set to `read` or `readwrite`
+
+### Cause 2: The remote binary cache is empty.
+
+The remote cache should contain a list of binary packages you've pushed. 
+* Refer to the [empty binary cache](#empty-cache) section.
+
+### Cause 3: The remote package was built in a different environment than your local setup.
+
+Each package in binary cache is labeled with an [ABI hash](./binarycaching.md#abi-hash) which contains compiler versions, sources, and other information to distinguish between binary packages. The ABI hash calculated locally was unable to retrieve the package stored remotely.
+* Review the [ABI Hash mismatch troubleshooting guide](#abi-mismatch) to determine the root cause.
+
+## Libraries are rebuilding more frequently or sporadically than expected.
+
+You are building libraries in the same environment as you did before. You did not update vcpkg, but occassionally you need to rebuild libraries again.
+
+### Cause 1: Something in the build environment changed without you knowing about it.
+
+Each package in binary cache is labeled with an [ABI hash](./binarycaching.md#abi-hash) which contains compiler versions, sources, and other information to distinguish between binary packages. The ABI hash calculated locally was unable to retrieve the package stored remotely.
+* Review the [ABI Hash mismatch troubleshooting guide](#abi-mismatch) to determine the root cause.
+
+## <a name="abi-mismatch"></a> Troubleshooting ABI hash mismatch
+
+This guide is intended for users to diagnose why they have different ABI hashes for two identically named binary packages.
+
+### Comparing two binary packages
+
+To determine how two identically named packages are different, you will need to compare a tremendous amount of information, sources, tool versions, compilers, target platforms. The [ABI hash](./binarycaching.md#abi-hash) serves as a convinient way to represent that in a single hash. To calculate the ABI hash of a package, vcpkg lists every piece of relevant information including file content, tool versions, system information of how the package is built. Each entry in that list is hashed. The final hash for a binary package is constructed by taking that list of hashes and combining it to form a single hash.
+
+#### Comparing the binary package ABI hashes
+
+The [ABI hash](./binarycaching.md#abi-hash) of the library zlib is `bb1c96759ac96102b4b18215db138daedd3eb16c2cd3302ae7bffab2b643eb87`:
 ```
 [DEBUG] Trying to hash <path>\buildtrees\zlib\x86-windows.vcpkg_abi_info.txt
 [DEBUG] <path>\buildtrees\zlib\x86-windows.vcpkg_abi_info.txt has hash bb1c96759ac96102b4b18215db138daedd3eb16c2cd3302ae7bffab2b643eb87
 ```
 
-The [ABI hash](./binarycaching.md#abi-hash) `bb1c96759ac96102b4b18215db138daedd3eb16c2cd3302ae7bffab2b643eb87` for package zlib is constructed by hashing all the possible relevant information to distinguish binary packages. The binary cache provider uses this as a key to refer to the package artifact. If this hash were to change between runs for the same package, it would mean some part of the package had changed.
+If this hash were to change between runs for the same package, it would mean you have two different packages, each with a different key when stored in a binary cache. Compare the ABI hashes between the two packages: it should be different.
 
-First check the version of your compiler to see if it has changed between runs. In the debug output:
+#### Comparing the ABI hash for the compiler version
+
+Check if the version of your compiler changed between runs.
 ```
 [DEBUG] -- The C compiler identification is MSVC 19.36.32538.0
 [DEBUG] -- The CXX compiler identification is MSVC 19.36.32538.0
 [DEBUG] #COMPILER_HASH#f5d02a6542664cfbd4a38db478133cbb1a18f315
 ```
+The compiler hash is `f5d02a6542664cfbd4a38db478133cbb1a18f315`.
 
-After that, check for differences in the hashes of `abientries`. Relevant files are hashed to compute the final ABI hash:
+#### Comparing the ABI hash entries
+
+Check for differences in each ABI entry between the two packages. A entry represents a piece of information needed to compute the final hash.
 ```
 [DEBUG] <abientries for zlib:x86-windows>
 [DEBUG]   0001-Prevent-invalid-inclusions-when-HAVE_-is-set-to-0.patch|750b9542cb55e6328cca01d3ca997f1373b9530afa95e04213168676936e7bfa
@@ -139,41 +192,84 @@ After that, check for differences in the hashes of `abientries`. Relevant files 
 > [!NOTE]
 > The `triplet_abi` entry contains three hashes: the hash of the file content of the `x86-windows` triplet, the `windows.cmake` toolchain, and the compiler hash. These hashes would change if you decided to target a different platform.
 
-### <a name="abi-mismatch-helpers">vcpkg CMake helper functions changes between packages
 
-Internal vcpkg helper functions like vcpkg_from_github, vcpkg_copy_pdbs, vcpkg_fixup_pkgconfig, etc. are a part of computing the final ABI calculation. If you are getting new ABI hashes for these helper functions, it is likely because you are pulling the latest vcpkg changes.
+### Mismatch 1: Port files
+Port files include port scripts (`portfile.cmake`, `vcpkg.json`), patch files (`*.patch`), or any other file in the ports directory: `ports/<library>/*`.
 
-Try the following:
-- Pin the vcpkg catalog to a specific commit. If you are cloning vcpkg, run `git checkout [commit_id]` or add vcpkg as a submodule in your project. Since the ABI hash is calculated from both scripts and ports in the vcpkg repository, pulling the latest changes will likely cause frequent rebuilds.
+#### Cause 1: CI or pipeline pulled the latest port catalog before building.
+Before running vcpkg in your CI, there was a step that cloned the latest vcpkg repository.
+* If your setup involves `git clone https://github.com/microsoft/vcpkg` and then running the `bootstrap` script, ensure you checkout your vcpkg repository to a specific commit.
+* Consider adding vcpkg as a git submodule to your project.
 
-### <a name="abi-mismatch-files">Files used to build your library (`portfile.cmake`, `*.patch`, or `vcpkg.json`) change between runs
+#### Cause 2: GitHub Actions updated vcpkg as a system dependency.
+You are using the system copy of vcpkg, which GitHub Actions updated.
+* Clone your own copy of vcpkg.
+* Consider adding vcpkg as a git submodule to your project.
 
-This indicates the baseline of your libraries is not fixed and that you are fetching `HEAD` from the vcpkg repository.
+### Mismatch 2: vcpkg CMake helper functions
+CMake helper functions include any file that live in the scripts directory: `scripts/*`, typically prefixed by `vcpkg_`.
 
-Try the following:
-- Pin the vcpkg catalog to a specific commit. If you are cloning vcpkg, run `git checkout [commit_id]` or add vcpkg as a submodule in your project. Because the ABI hash is calculated from both scripts and ports in the vcpkg repository, pulling the latest changes will likely cause frequent rebuilds.
-- Set `builtin-baseline` in your [vcpkg manifest](../reference/vcpkg-json.md#builtin-baseline).
+#### Cause 1: CI or pipeline pulled the latest helper script changes before building.
+Before running vcpkg in your CI, there was a step that cloned the latest vcpkg repository.
+* If your setup involves `git clone https://github.com/microsoft/vcpkg` and then running the `bootstrap` script, ensure you checkout your vcpkg repository to a specific commit.
+* Consider adding vcpkg as a git submodule to your project.
 
-### <a name="abi-mismatch-compiler">Compiler version changes between runs
+#### Cause 2: GitHub Actions updated vcpkg as a system dependency.
+You are using the system copy of vcpkg, which GitHub Actions updated.
+* Clone your own copy of vcpkg and checkout to a specific commit.
+* Consider adding vcpkg as a git submodule to your project.
 
-Try the following:
-- Turn off automatic compiler updates. For example, major, minor and patch updates to the MSVC compiler can cause your library to be built with two different versions between runs.
-- If using a hosted image, choose a stable and versioned image. Updates to your underlying image may change your C/C++ compiler version, causing a rebuild.
+### Mismatch 3: Compiler version
+vcpkg rebuilt your dependencies with a different version of the compiler.
 
-> [!NOTE]
-> The expected behavior of vcpkg is to rebuild libraries if the compiler version changes.
+#### Cause 1: The Visual Studio C++ compiler automatically updated.
+Visual Studio automatically updated the C++ workload, including the compiler, between runs. Even minor version updates will result in vcpkg rebuilding the set of libraries.
+* [Disable automatic compiler updates](https://learn.microsoft.com/en-us/visualstudio/install/update-visual-studio?view=vs-2022#always-update-on-close-and-other-download-behaviors).
 
+#### Cause 2: The library was built on a different machine than the machine used to consume it.
+One machine created and published the binary package to a remote cache. Another machine typically used for development consumed the cached library. 
+* Install a C++ compiler locally with the same version as your remote machine's. For Visual Studio, you want to use a [fixed version bootstrapper](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-history#fixed-version-bootstrappers).
+* Rebuild your dependencies locally for development purposes. Test and fix issues later during continuous integration.
+
+#### Cause 3: The self-hosted image updated the compiler.
+The underlying image you used to build vcpkg dependencies changed, which updated the compiler version.
+* Pin to a stable and versioned image. Ensure you are not fetching the latest image so it does not automatically update underlying tools or compilers between runs.
+* If you need to update the image frequently, pin the C++ compiler tools to a specific version when creating your image.
+
+#### Cause 4: GitHub Hosted Runners updated the underlying compiler.
+Hosted GitHub runners update compilers and tools weekly.
+* Currently, there is no way to fix your image and prevent the tools and compiler version from updating periodically. See the [other options](#other-options) section for alternative solutions.
+
+### Mismatch 4: The version of the tools changed between runs.
+The version of tools used to build your libraries, CMake or PowerShell, changed between runs.
+
+#### Cause 1: Visual Studio automatically updated.
+Visual Studio automatically updated, including any tools, between runs. Even minor version updates will result in vcpkg rebuilding the set of libraries.
+* [Disable automatic Visual Studio updates](https://learn.microsoft.com/en-us/visualstudio/install/update-visual-studio?view=vs-2022#always-update-on-close-and-other-download-behaviors).
+* Add `--x-abi-tools-use-exact-versions` to your vcpkg invocation. This fixes the ABI of your tools based on the version in `vcpkgTools.xml`; vcpkg fetches its own copy if necessary.
+
+#### Cause 2: The library was built on a different machine than the machine used to consume it.
+One machine created and published the binary package to a remote cache. Another machine typically used for development consumed the cached library. 
+* Install a tools locally with the same version as your remote machine's.
+* Rebuild your dependencies locally for development purposes. Test and fix issues later during continuous integration.
+* Add `--x-abi-tools-use-exact-versions` to your vcpkg invocation. This fixes the ABI of your tools based on the version in `vcpkgTools.xml`; vcpkg fetches its own copy if necessary.
+
+#### Cause 3: Self-hosted image updated the tools.
+The underlying image you used to build vcpkg dependencies changed, which the versions of any tools used.
+* Pin to a stable and versioned image. Ensure you are not fetching the latest image so it does not automatically update underlying tools between runs.
+* If you need to update the image frequently, pin any relevant tools to a specific version when creating your image.
+* Add `--x-abi-tools-use-exact-versions` to your vcpkg invocation. This fixes the ABI of your tools based on the version in `vcpkgTools.xml`; vcpkg fetches its own copy if necessary.
+
+#### Cause 4: GitHub Hosted Runners updated underlying tools.
+Hosted GitHub runners update compilers and tools weekly.
+* Add `--x-abi-tools-use-exact-versions` to your vcpkg invocation. This fixes the ABI of your tools based on the version in `vcpkgTools.xml`; vcpkg fetches its own copy if necessary.
+
+### <a name="other-options"></a> Other Options
 If the above options do not work, consider the following workarounds:
 - Use [`vcpkg export`](../commands/export.md) to produce a standalone archive of your dependencies instead of restoring them from a manifest.
 - Consider using a Docker self-hosted image to build your libraries
 - Have an auxiliary continuous integration run that builds vcpkg libraries on a regular cadence (e.g. daily or weekly)
 
-### <a name="abi-mismatch-tools">Tool versions (CMake/PowerShell) changes between runs
-
-Try the following:
-- Add `--x-abi-tools-use-exact-versions` to your vcpkg invocation. This fixes the ABI of your tools based on the version in `vcpkgTools.xml`; vcpkg fetches its own copy if necessary.
-- If using a hosted image, choose a stable and versioned image. Updates to your underlying image may change the version of your tools, causing a rebuild.
-
 ## Issue isn't listed here
 
-If you're issue isn't listed here, see our [repo](https://github.com/microsoft/vcpkg/issues) to create a new issue.
+If your issue isn't listed here, visit [our repository](https://github.com/microsoft/vcpkg/issues) to create a new issue.
