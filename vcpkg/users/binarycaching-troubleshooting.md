@@ -49,7 +49,7 @@ System.Net.Http.HttpRequestException: Response status code does not indicate suc
 ```
 
 Push was rejected by remote source because the user does not have sufficient write permissions. 
-* Confirm that your user or user group has write permissions. In NuGet, the user must be at least a [Contributor role](https://learn.microsoft.com/en-us/azure/devops/artifacts/feeds/feed-permissions?view=azure-devops#permissions-table) to the feed.
+* Confirm that your user or user group has write permissions. In NuGet, the user must be at least a [Contributor role](https://learn.microsoft.com/azure/devops/artifacts/feeds/feed-permissions#permissions-table) to the feed.
 
 ### Cause 2: Misconfigured NuGet Feed url
 <!--
@@ -66,7 +66,7 @@ The server rejected NuGet's push request because it did not recognize the reques
 * Verify the URI in your binary source. Ensure the URI directs to the service index of the feed, typically `<feed>/nuget/v3/index.json`.
 
 ### Additional NuGet Resources
-Consult the [NuGet documentation](https://learn.microsoft.com/en-us/azure/devops/artifacts/nuget/publish?view=azure-devops) for guidelines on connecting to and publishing on a NuGet feed.
+Consult the [NuGet documentation](https://learn.microsoft.com/azure/devops/artifacts/nuget/publish) for guidelines on connecting to and publishing on a NuGet feed.
 
 ## <a name="cache-upload"></a> Cache upload errors
 
@@ -235,11 +235,11 @@ vcpkg rebuilt your dependencies with a different version of the compiler.
 
 #### Cause 1: The Visual Studio C++ compiler automatically updated.
 Visual Studio automatically updated the C++ workload, including the compiler, between runs. Even minor version updates will result in vcpkg rebuilding the set of libraries.
-* [Disable automatic compiler updates](https://learn.microsoft.com/en-us/visualstudio/install/update-visual-studio?view=vs-2022#always-update-on-close-and-other-download-behaviors).
+* [Disable automatic compiler updates](https://learn.microsoft.com/visualstudio/install/update-visual-studio#always-update-on-close-and-other-download-behaviors).
 
 #### Cause 2: The library was built on a different machine than the machine used to consume it.
 One machine created and published the binary package to a remote cache. Another machine typically used for development consumed the cached library. 
-* Use the same C++ compiler version locally as on your remote machine. For Visual Studio, consider a [fixed version bootstrapper](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-history#fixed-version-bootstrappers).
+* Use the same C++ compiler version locally as on your remote machine. For Visual Studio, consider a [fixed version bootstrapper](https://learn.microsoft.com/visualstudio/releases/2022/release-history#fixed-version-bootstrappers).
 * Rebuild your dependencies locally for development purposes. Test and address issues later during continuous integration.
 
 #### Cause 3: The self-hosted image updated the compiler.
@@ -256,7 +256,7 @@ The version of tools used to build your libraries, CMake or PowerShell, changed 
 
 #### Cause 1: Visual Studio automatically updated.
 Visual Studio automatically updated, including any tools, between runs. Even minor version updates will result in vcpkg rebuilding the set of libraries.
-* [Disable automatic Visual Studio updates](https://learn.microsoft.com/en-us/visualstudio/install/update-visual-studio?view=vs-2022#always-update-on-close-and-other-download-behaviors).
+* [Disable automatic Visual Studio updates](https://learn.microsoft.com/visualstudio/install/update-visual-studio#always-update-on-close-and-other-download-behaviors).
 * Add `--x-abi-tools-use-exact-versions` to your vcpkg invocation. This fixes the ABI of your tools based on the version in `vcpkgTools.xml`; vcpkg fetches its own copy if necessary.
 
 #### Cause 2: The library was built on a different machine than the machine used to consume it.
