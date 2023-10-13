@@ -20,9 +20,8 @@ When in debug mode, vcpkg outputs additional information, helping users to diagn
 * MSBuild/Visual Studio: set the property `VcpkgAdditionalInstallOptions` to `--debug`.
 
 ## <a name="push-failure"></a> NuGet push to {url} fails 
-<!-- should be an include -->
-> [!IMPORTANT]
-> Update your vcpkg tool to the latest release. Additionally, enable [debug output](#debug-output) for comprehensive error logs.
+
+[!INCLUDE [debug](../../includes/debug.md)]
 
 If you are utilizing a NuGet binary source, the error message reads:
 ```
@@ -71,6 +70,8 @@ Consult the [NuGet documentation](https://learn.microsoft.com/en-us/azure/devops
 
 ## <a name="cache-upload"></a> Cache upload errors
 
+[!INCLUDE [debug](../../includes/debug.md)]
+
 You encounter errors uploading a binary package to your cache.
 
 ### Cause 1: Binary cache provider failed to upload
@@ -82,6 +83,8 @@ Uploads can fail for a variety of reasons, and error messages are usually provid
 * Review documentation or the troubleshooting guide of your specific provider.
 
 ## <a name="empty-cache"></a> Empty binary cache
+
+[!INCLUDE [debug](../../includes/debug.md)]
 
 Although you encountered no errors and vcpkg installation was successful, the binary cache remains empty. If you observed errors, consult [push troubleshooting for NuGet](#push-failure) and [upload troubleshooting for other providers](#cache-upload).
 
@@ -102,6 +105,9 @@ Vcpkg skipped uploading the binary package to your binary cache.
 * Ensure your [binary cache configuration](binarycaching.md#configuration-syntax) is set to `write` or `readwrite`
 
 ## Libraries rebuild instead of using remote binary cache
+
+[!INCLUDE [debug](../../includes/debug.md)]
+
 Your system rebuilds libraries locally, even when the required binary package is available in the remote binary cache.
 
 There is the absence of the following output:
@@ -126,6 +132,8 @@ Each package in binary cache is labeled with an [ABI hash](./binarycaching.md#ab
 
 ## Unexpected or frequent library rebuilds
 
+[!INCLUDE [debug](../../includes/debug.md)]
+
 In an unchanged environment and without updating vcpkg, you still find yourself rebuilding libraries occassionally.
 
 ### Cause 1: Undetected changes in the build environment
@@ -134,6 +142,8 @@ Each package in binary cache is labeled with an [ABI hash](./binarycaching.md#ab
 * Consult the [ABI Hash mismatch troubleshooting guide](#abi-mismatch) to determine the root cause.
 
 ## <a name="abi-mismatch"></a> Troubleshooting ABI hash mismatch
+
+[!INCLUDE [debug](../../includes/debug.md)]
 
 This guide is intended for users to diagnose why they have different ABI hashes for two identically named binary packages.
 
