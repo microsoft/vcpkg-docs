@@ -157,6 +157,9 @@
     - name: Binary caching
       displayName: binaries, build
       href: users/binarycaching.md
+    - name: Troubleshoot binary caching issues
+      displayName: binaries, build
+      href: users/binarycaching-troubleshooting.md
     - name: Environment variables
       href: users/config-environment.md
     - name: Portfile functions
