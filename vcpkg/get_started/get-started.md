@@ -2,7 +2,7 @@
 title: Install and use packages with CMake
 description: Tutorial guides the user through the process of installing and using packages with CMake.
 zone_pivot_group_filename: zone-pivot-groups.json
-zone_pivot_groups: operating-systems
+zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
@@ -22,7 +22,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 - [CMake](https://cmake.org/download/)
 - [Git](https://git-scm.com/downloads)
 
-::: zone pivot="os-windows"
+::: zone pivot="shell-cmd, shell-powershell"
 
 > [!NOTE]
 > For Windows users, Visual Studio's MSVC (Microsoft Visual C++ Compiler) is the required compiler for C++ development.
@@ -37,7 +37,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 1. Configure the `VCPKG_ROOT` environment variable.
 
-    ::: zone pivot="os-linux,os-macos"
+    ::: zone pivot="shell-bash"
 
     ```bash
     export VCPKG_ROOT=/path/to/vcpkg
@@ -49,7 +49,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
     ::: zone-end
 
-    ::: zone pivot="os-windows"
+    ::: zone pivot="shell-cmd"
 
     ```console
     set VCPKG_ROOT="C:\path\to\vcpkg"
@@ -59,6 +59,16 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     > [!NOTE]
     > Setting the `VCPKG_ROOT` environment variable using the `set` command only affects the current shell session. To make this change permanent across sessions, you can use the `setx` command and restart the shell session.
 
+    ::: zone-end
+    ::: zone pivot="shell-powershell"
+
+    ```powershell
+    $env:VCPKG_ROOT = "C:\path\to\vcpkg"
+    $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
+    ```
+
+    > [!NOTE]
+    > Setting the `VCPKG_ROOT` and updating the `PATH` environment variables in this manner only affects the current PowerShell session. To make these changes permanent across all sessions, you should add them to your PowerShell profile or set them through the Windows System Environment Variables panel.
     ::: zone-end
 
     Setting `VCPKG_ROOT` tells vcpkg where your vcpkg instance is located.

@@ -2,7 +2,7 @@
 title: Install and use packages with CMake in Visual Studio
 description: Tutorial guides the user through the process of installing and using packages with CMake and Visual Studio.
 zone_pivot_group_filename: zone-pivot-groups.json
-zone_pivot_groups: operating-systems
+zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
@@ -41,21 +41,47 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 2. Configure the `VCPKG_ROOT` environment variable.
    
-    Open the built-in Developer PowerShell window (``Ctrl+` ``) in Visual Studio and run the following commands:
+    ::: zone pivot="shell-powershell"
+    Open the built-in Developer PowerShell window in Visual Studio.
+    
+    :::image type="complex" source="../resources/get_started/visual-studio-developer-powershell.png" alt-text="opening built-in developer powershell":::
+        Screenshot of Visual Studio UI for the built-in PowerShell developer window
+    :::image-end:::
+
+    Run the following commands:
 
     ```PowerShell
     $env:VCPKG_ROOT = "C:\path\to\vcpkg"
     $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
     ```
 
-    :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup.png" alt-text="setting up your environment variables":::
-        Screenshot of Visual Studio UI for the built-in PowerShell developer window showing how to set up VCPKG_ROOT and and add it to PATH
+    :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-powershell.png" alt-text="setting up your environment variables":::
+        Screenshot of Visual Studio UI for the built-in PowerShell developer window showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
+    ::: zone-end
+    ::: zone pivot="shell-cmd"
+    Open the Developer command prompt in Visual Studio.
+    
+    :::image type="complex" source="../resources/get_started/visual-studio-developer-cmd.png" alt-text="opening Visual Studio developer command prompt.":::
+        Screenshot of Visual Studio UI for developer command prompt.
+    :::image-end:::
+
+    Run the following commands:
+
+    ```console
+    set VCPKG_ROOT="C:\path\to\vcpkg"
+    set PATH=%VCPKG_ROOT%;%PATH%
+    ```
+
+    :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-cmd.png" alt-text="setting up your environment variables":::
+        Screenshot of Visual Studio developer command prompt showing how to set up VCPKG_ROOT and and add it to PATH.
+    :::image-end:::
+    ::: zone-end
 
     Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
     Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
 
-3. Generate a manifest file and add dependencies.
+1. Generate a manifest file and add dependencies.
 
     Run the following command to create a vcpkg manifest file (`vcpkg.json`):
 

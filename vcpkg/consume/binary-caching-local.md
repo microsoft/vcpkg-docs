@@ -8,7 +8,7 @@ ms.prod: vcpkg
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to set up a local binary cache so that I save time on package rebuilds
 zone_pivot_group_filename: zone-pivot-groups.json
-zone_pivot_groups: operating-systems
+zone_pivot_groups: shell-selections
 ---
 # Tutorial: Set up a vcpkg binary cache using filesystem directories
 
@@ -42,15 +42,15 @@ access and a second one with only read access.
 
 Create the two binary cache locations (substitute with any locations of your choosing):
 
-::: zone pivot="os-windows"
+::: zone pivot="shell-powershell, shell-cmd"
 
-```PowerShell
+```console
 mkdir D:\vcpkg\binary-cache
 mkdir \\remote\shared\vcpkg\binary-cache
 ```
 
 ::: zone-end
-::: zone pivot="os-linux, os-macos"
+::: zone pivot="shell-bash"
 
 ```bash
 mkdir /home/vcpkg/binary-cache
@@ -63,12 +63,21 @@ mkdir /mnt/remote/shared/vcpkg/binary-cache
 
 Next set the value of `VCPKG_BINARY_SOURCES` as follows:
 
-::: zone pivot="os-windows"
+::: zone pivot="shell-powershell"
 
 ```PowerShell
 $env:VCPKG_BINARY_SOURCES="clear;files,\\remote\shared\vcpkg\binary-cache,read;files,D:\vcpkg\binary-cache"
 ```
 
+::: zone-end
+::: zone pivot="shell-cmd"
+
+```console
+set VCPKG_BINARY_SOURCES="clear;files,\\remote\shared\vcpkg\binary-cache,read;files,D:\vcpkg\binary-cache"
+```
+
+::: zone-end
+::: zone pivot="shell-cmd, shell-powershell"
 This `VCPKG_BINARY_SOURCES` configuration adds the following source strings:
 
 * `clear`, disables any previously configured binary cache, in this case, it disables the [default
@@ -79,10 +88,9 @@ This `VCPKG_BINARY_SOURCES` configuration adds the following source strings:
 * `files,D:\vcpkg\binary-cache`, sets a second filesystem binary cache, located in
   `D:\vcpkg\binary-cache`, with read-write permissions (`readwrite` is omitted since it is the
   default permission).
-
 ::: zone-end
 
-::: zone pivot="os-linux, os-macos"
+::: zone pivot="shell-bash"
 
 ```bash
 export VCPKG_BINARY_SOURCES="clear;files,/mnt/remote/shared/vcpkg/binary-cache,read;files,/home/vcpkg/binary-cache"
