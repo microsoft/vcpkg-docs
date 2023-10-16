@@ -2,7 +2,7 @@
 title: "Tutorial: Create and publish packages"
 description: Tutorial guides the user through the process of packaging a library for vcpkg.
 zone_pivot_group_filename: zone-pivot-groups.json
-zone_pivot_groups: operating-systems
+zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
@@ -22,7 +22,7 @@ This tutorial guides you on how to package a library for vcpkg using a custom ov
 - [CMake](https://cmake.org/download/)
 - [Git](https://git-scm.com/downloads)
 
-::: zone pivot="os-windows"
+::: zone pivot="shell-cmd, shell-powershell"
 
 > [!NOTE]
 > For Windows users, Visual Studio's MSVC (Microsoft Visual C++ Compiler) is the required compiler for C++ development.
@@ -37,7 +37,7 @@ This tutorial guides you on how to package a library for vcpkg using a custom ov
 
 To set the `VCPKG_ROOT` environment variables, run the following commands:
 
-::: zone pivot="os-linux,os-macos"
+::: zone pivot="shell-bash"
 
 ```bash
 export VCPKG_ROOT=/path/to/vcpkg
@@ -48,8 +48,7 @@ export PATH=$VCPKG_ROOT:$PATH
 > Setting the `VCPKG_ROOT` environment variable using the `export` command only affects the current shell session. To make this change permanent across sessions, you'll need to add the `export` command to your shell's profile script (e.g., `~/.bashrc` or `~/.zshrc`).
 
 ::: zone-end
-
-::: zone pivot="os-windows"
+::: zone pivot="shell-cmd"
 
 ```console
 set VCPKG_ROOT="C:\path\to\vcpkg"
@@ -60,8 +59,18 @@ set PATH=%VCPKG_ROOT%;%PATH%
 > Setting the `VCPKG_ROOT` environment variable using the `set` command only affects the current shell session. To make this change permanent across sessions, you can use the `setx` command and restart the shell session.
 
 ::: zone-end
+::: zone pivot="shell-powershell"
 
-Setting `VCPKG_ROOT` tells vcpkg where your vcpkg instance is located. (TODO: FIX THIS DESCRIPTION)
+```powershell
+$env:VCPKG_ROOT = "C:\path\to\vcpkg"
+$env:PATH = "$env:VCPKG_ROOT;$env:PATH"
+```
+
+> [!NOTE]
+> Setting the `VCPKG_ROOT` and updating the `PATH` environment variables in this manner only affects the current PowerShell session. To make these changes permanent across all sessions, you should add them to your PowerShell profile or set them through the Windows System Environment Variables panel.
+::: zone-end
+
+Setting `VCPKG_ROOT` tells vcpkg where your vcpkg instance is located.
 Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
 
 ## 3 - Set up the custom overlay
@@ -93,8 +102,22 @@ First, create the `vcpkg.json` file within the `custom-overlay\vcpkg-sample-libr
   ]
 }
 ```
-TODO: provide line-by-line explanation
-TODO: For more information on `vcpkg.json`, see the following:
+The `vcpkg.json` file serves as a manifest that defines metadata and dependencies for a C++ library, providing vcpkg with the necessary information to build, install, and manage the package.
+
+Each line is essentially a configuration parameter for vcpkg, giving it instructions on how to handle the package.
+
+- `name`: Specifies the name of the library. This is used as the package identifier.
+- `version`: Indicates the version number of the library.
+- `homepage`: URL to the project's homepage, often its repository. Useful for those who want to know more or contribute.
+- `description`: Brief text describing what the library does. This is for documentation and users.
+- `license`: Specifies the license under which the library is distributed.
+- `dependencies`: An array containing the list of dependencies that the library needs.
+- `name`: `vcpkg-cmake`: Specifies a dependency on `vcpkg-cmake`, which provides CMake functions and macros commonly used in vcpkg ports.
+- `host`: true: Specifies that `vcpkg-cmake` is a host dependency, meaning it's required for building the package but not for using it.
+- `name`: `vcpkg-cmake-config`: Specifies a dependency on `vcpkg-cmake-config`, which assists in using CMake config scripts.
+- `fmt`: Specifies a run-time dependency on the `fmt` library. This means `fmt` is required for both building and using the package.
+
+For more information on `vcpkg.json`, see the following documentation on [manifests](../reference/vcpkg-json.md).
 
 Now, create the `usage` file within the `custom-overlay\vcpkg-sample-library` directory with the following content:
 
@@ -107,7 +130,7 @@ target_link_libraries(main PRIVATE my_sample_lib::my_sample_lib)
 
 Providing usage documentation for ports allows users to easily adopt them in their projects. We highly encourage providing a `usage` file within the port's directory (`ports/<port name>/usage`) that describes the minimal steps necessary to integrate with a build system.
 
-TODO: link to usage reference documentation
+For more guidance, see [handling usage files](../maintainers/handling-usage-files.md)
 
 Finally, create the `portfile.cmake` file within the `custom-overlay\vcpkg-sample-library` directory with the following content:
       
@@ -137,9 +160,24 @@ file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share
 configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" COPYONLY)
 ```
 
-TODO: Line-by-line explanation:
+This `portfile` defines how to download, build, install, and package a specific C++ library from GitHub using vcpkg.
 
-TODO: link to portfile reference documentation
+- `vcpkg_check_linkage(ONLY_STATIC_LIBRARY)`: Specifies that only static linking is supported for this package.
+- `vcpkg_from_github`: Starts the function to download the source code from a GitHub repository.
+  - `OUT_SOURCE_PATH SOURCE_PATH`: Sets the directory where the source code will be extracted.
+  - `REPO JavierMatosD/vcpkg-sample-library`: The GitHub repository containing the source code.
+  - `REF "${VERSION}"`: The version of the source code to download.
+  - `SHA512 0`: Placeholder for the SHA-512 hash of the source code for integrity verification.
+  - `HEAD_REF main`: Specifies the default branch for the repository.
+- `vcpkg_cmake_configure`: Configures the project using CMake, setting up the build.
+  - `SOURCE_PATH "${SOURCE_PATH}"`: The path to the source code downloaded earlier.
+- `vcpkg_cmake_install()`: Builds and installs the package using CMake.
+- `vcpkg_cmake_config_fixup(PACKAGE_NAME "my_sample_lib")`: Fixes the CMake package configuration files to be compatible with Vcpkg.
+- `file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")`: Deletes the include directory from the debug installation to prevent overlap.
+- `file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION ...)`: Installs the LICENSE file to the package's share directory and renames it to copyright.
+- `configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" ...)`: Copies a usage instruction file to the package's share directory.
+
+For mor information, refer to the [maintainer guide](../contributing/maintainer-guide.md).
 
 ## 5 - Update SHA512 for `portfile.cmake`
 
