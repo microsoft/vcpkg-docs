@@ -17,7 +17,7 @@ corresponding `vcpkg_installed` directory. Regardless of the operation mode, the
 installation directory remains the same. The location of the installation directory can be changed
 with the [`--x-install-root`](../commands/common-options.md#install-root) option.
 
-The installation directory is created the first time a package is installed, if you don't see a
+The installation directory is created the first time a package is installed, if you don't see an
 installation directory try [installing some packages first](../consume/manifest-mode.md).
 
 The root level of the installation directory contains:
@@ -26,49 +26,46 @@ The root level of the installation directory contains:
 * A directory for each [triplet](../users/triplets.md) that has installed packages which contains the
   packages' build output
 
-## `vcpkg` directory
-
-The vcpkg directory serves as a database of installed package, it has files to keep track of
-installed packages and ownership of installed files.
-
 ## Triplet directories
 
-The output of each package installation is contained in a triplet-specific directory, for example,
+The output of each package installation is contained in a triplet-specific directory. For example,
 packages installed for the `x64-windows` triplet are located in `installed/x64-windows` directory.
 
 The layout for the subdirectories inside each triplet directory is the same:
 
-| Subdirectory                                                       | File type                                                       |
-| ------------------------------------------------------------------ | --------------------------------------------------------------- |
-| [`bin`](#layout-bin)                                               | Release `.dll` and `.pdb` files                                 |
-| [`debug/bin`](#layout-bin)                                         | Debug `.dll` and `.pdb` files                                   |
-| [`debug/lib`](#layout-lib)                                         | Debug `.lib`, `.so`, `.dylib`, and `.a` files                   |
-| [`debug/lib/manual-link`](#layout-manual-link)                     | Manually-linkable debug `.lib`, `.so`, `.dylib`, and `.a` files |
-| [`debug/plugins/<group>`](#layout-plugins)                         | Runtime-load debug `.dll` files                                 |
-| [`debug/lib/pkgconfig`](#layout-pkgconfig)                         | pkgconfig files (`.pc`)                                         |
-| [`include`](#layout-include)                                       | Header-files (`.h`, `.hpp`, `.hxx`)                             |
-| [`lib`](#layout-lib)                                               | Release `.lib`, `.so`, and `.a` files                           |
-| [`lib/manual-link`](#layout-manual-link)                           | Manually-linkable release `.dll` and `.pdb` files               |
-| [`lib/pkgconfig`](#layout-pkgconfig)                               | Pkgconfig files (`.pc`)                                         |
-| [`plugins/<group>`](#layout-plugins)                               | Runtime-load release `.dll` files                               |
-| [`share/<port>`](#layout-share)                                    | Additional configuration-independent files.                     |
-| [`share/<port>/copyright`](#layout-copyright)                      | The license text for the package.                               |
-| [`share/<lowercase-package>/<package>Config.cmake`](#layout-cmake) | CMake integration files for `find_package(package)`.            |
-| [`share/pkconfig`](#layout-pkgconfig)                              | configuration-independent pkgconfig files (`.pc`)               |
-| [`tools/<port>`](#layout-tools)                                    | Executable tools                                                |
+| Subdirectory                                                       | File type                                                         |
+| ------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| [`bin`](#layout-bin)                                               | Release `.dll` and `.pdb` files                                   |
+| [`debug/bin`](#layout-bin)                                         | Debug `.dll` and `.pdb` files                                     |
+| [`debug/lib`](#layout-lib)                                         | Debug `.lib`, `.so`, `.dylib`, and `.a` files                     |
+| [`debug/lib/manual-link`](#layout-manual-link)                     | Manually-linkable debug `.lib`, `.so`, `.dylib`, and `.a` files   |
+| [`debug/plugins/<group>`](#layout-plugins)                         | Runtime-load debug `.dll` files                                   |
+| [`debug/lib/pkgconfig`](#layout-pkgconfig)                         | Debug pkgconfig files (`.pc`)                                     |
+| [`include`](#layout-include)                                       | Header-files (`.h`, `.hpp`, `.hxx`)                               |
+| [`lib`](#layout-lib)                                               | Release `.lib`, `.so`, `.dylib` and `.a` files                    |
+| [`lib/manual-link`](#layout-manual-link)                           | Manually-linkable release `.lib`, `.so`, `.dylib`, and `.a` files |
+| [`lib/pkgconfig`](#layout-pkgconfig)                               | Pkgconfig files (`.pc`)                                           |
+| [`plugins/<group>`](#layout-plugins)                               | Runtime-load release `.dll` files                                 |
+| [`share/<port>`](#layout-share)                                    | Additional configuration-independent files                        |
+| [`share/<port>/copyright`](#layout-copyright)                      | The license text for the package                                  |
+| [`share/<port>/usage`](#layout-usage)                              | Buildsystem integration instructions file                         |
+| `share/<port>/vcpkg-port-config.cmake`                             | Port-defined CMake functions and variables                        |
+| [`share/<lowercase-package>/<package>Config.cmake`](#layout-cmake) | CMake integration files for `find_package(package)`               |
+| `share/<cmakepackagename>/vcpkg-cmake-wrapper.cmake`               | CMake `find_package(<cmakepackagename>)` override                 |
+| [`share/pkgconfig`](#layout-pkgconfig)                             | Configuration-independent pkgconfig files (`.pc`)                 |
+| [`tools/<port>`](#layout-tools)                                    | Executable tools                                                  |
 
 
 ### <a name="layout-bin"></a> `bin` and `debug/bin` directories
 
 On Windows, these directories contain DLL and PDB files for release and debug configuration
-respectively. Any executable file produced by a port should be moved to a `tools/<port>` directory.
+respectively. Any executable file produced by a port should be moved to a [`tools/<port>`](#layout-tools) directory.
 
 ### <a name="layout-include"></a> `include`
 
-Contains header files (`.h`, `.hpp`, `.hxx`), the internal layout of this directory should reflect
-upstream usage of the package's header files. For example, a `contoso` library that provides
-`contoso/contoso.h` should create the necessary subdirectories to reflect the relative path, in this
-case, the header file should be placed in `include/contoso/contoso.h`.
+Contains header files (`.h`, `.hpp`, `.hxx`). The layout under this directory should reflect
+the intended usage of the package's header files. For example, a `contoso` library that intends to use
+`#include <contoso/contoso.h>` should provide the header file `include/contoso/contoso.h`.
 
 vcpkg forbids installing some reserved header file names in the root of the `include` directory, for
 example: `err.h`, `user.h`, `time.h`, and others. Libraries that provide a forbidden header file name should
@@ -79,39 +76,42 @@ system header file, it should set the `VCPKG_POLICY_ALLOW_RESTRICTED_HEADERS` po
 ### <a name="layout-lib"></a> `lib` and `debug/lib` directories
 
 Contains static libraries, import libraries (on Windows), and shared libraries (on non-Windows).
-configuration-dependent directories.
 
 ### <a name="layout-manual-link"></a> `lib/manual-link` and `debug/lib/manual-link` directories
 
-Contains object files that must be manually linked, these directories are configuration dependent.
-Each port must make sure to place manually-linkable files in these directories explicitly.
+Contains libraries that must be manually linked.
 
 Files that may cause issues when linked automatically must be placed in the `lib/manual-link`
 folders instead of the `lib` directory. For example, if a library is intended to define the
-`main()` function for a program. 
+`main()` function for a program.
 
-### <a name="layout-pkgconfig"></a> `lib/pkgconfig` and `share/pkgconfig` directories
+### <a name="layout-pkgconfig"></a> `lib/pkgconfig`, `debug/lib/pkgconfig` and `share/pkgconfig` directories
 
-Contains pkgconfig integration files (`.pc`).
+Contains pkgconfig integration files (`.pc`). A library should not provide configuration-dependent
+and configuration-independent pkgconfig files at the same time. For examplen: don't install 
+`lib/pkgconfig/contoso.pc` and `share/pkgconfig/contoso.pc`.
 
 ### <a name="layout-plugins"></a> `plugins/<group>` and `debug/plugins/<group>`
 
 Contains shared libraries that are meant to be loaded during runtime by consuming
-applications. Libraries in these directories are not automatically linked by any
-of vcpkg's integration methods.
+applications.
 
 ### <a name="layout-share"></a> `share/<port>`
 
-Contains miscellaneous files installed by each port, at the very least, each port is required to
-provide a `LICENSE` file in `share/<port>` (replace `<port>` with the port name). Some examples of
-files contained in this directory are: CMake integration files,
-[usage](../maintainers/handling-usage-files.md) files, SPDX files, etc.
+Contains miscellaneous files installed by each port.
+For example, SPDX files.
 
 ### <a name="layout-copyright"></a> `share/<port>/copyright`
 
 vcpkg expects ports to provide a `copyright` file that contains the license information for the
 installed package. See the [maintainer
 guide](../contributing/maintainer-guide.md#install-copyright-file) for more information.
+
+### <a name="layout-usage"></a> `share/<port>/usage`
+
+A text file with instructions to integrate a library within a project.
+See the [provide usage for packages guide](../maintainers/handling-usage-files.md)
+for more information.
 
 ### <a name="layout-cmake"></a> `share/<lowercase-package>/<package>Config.cmake`, `share/<package>/<package>-config.cmake`
 
@@ -122,12 +122,12 @@ in `CONFIG` mode.
 ### <a name="layout-tools"></a> `tools/<port>`
 
 > [!IMPORTANT]
-> vcpkg is first and foremost a C++ library dependency manager, port authors should
+> vcpkg is first and foremost a C++ library dependency manager. Port authors should
 > be deliberate when deciding to include tools in the installation output. For example:
 > consider installing only a release executable when the debug tool is not needed.
 
-Contains executable tools produced by a port, it is not required, but is highly
-recommended that each installed executable goes into a subdirectory matching the
+Contains executable tools produced by a port. It is highly recommended, 
+but not required, that each installed executable goes into a subdirectory matching the
 name of the port that produced it. For example, a `contoso` port might install a
 `ContosoGenerator.exe` to `tools/contoso/ContosoGenerator.exe`.
 
