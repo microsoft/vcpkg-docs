@@ -1,6 +1,7 @@
 ---
 title: Microsoft/vcpkg README
 description: README for vcpkg registry
+author: JavierMatosD
 ms.author: javiermat
 ms.date: 10/17/2023
 ms.prod: vcpkg
