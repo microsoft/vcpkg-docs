@@ -1,7 +1,9 @@
 ---
 title: Microsoft/vcpkg README
 description: README for vcpkg registry
+ms.author: javiermat
 ms.date: 10/17/2023
+ms.prod: vcpkg
 ROBOTS: NOINDEX
 ---
 
@@ -299,7 +301,7 @@ Here are some ways you can contribute:
 * [Submit Issues][contributing:submit-issue] in vcpkg or existing packages
 * [Submit Fixes and New Packages][contributing:submit-pr]
 
-Please refer to our [Contributing Guide](CONTRIBUTING.md) for more details.
+Please refer to our [Contributing Guide](../contributing/maintainer-guide.md) for more details.
 
 This project has adopted the [Microsoft Open Source Code of Conduct][contributing:coc].
 For more information see the [Code of Conduct FAQ][contributing:coc-faq]
