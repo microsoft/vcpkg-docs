@@ -13,22 +13,23 @@ ms.topic: troubleshooting-general
 This guide is intended for users experiencing issues with [binary caching](./binarycaching.md).
 
 ## <a name="debug-output"></a> Enable vcpkg debugging information
-When in debug mode, vcpkg outputs additional information, helping users to diagnose binary caching problems.
+It is highly recommended that you enable debug output when following this guide.
 
-* [Classic mode](./classic-mode.md): add `--debug` to your command invocation.
+* [Classic mode](classic-mode.md): add `--debug` to your command invocation.
 * CMake toolchain: add `-DVCPKG_INSTALL_OPTIONS="--debug"` in your CMake configure call or in your `CMakePresets.json` file.
 * MSBuild/Visual Studio: set the property `VcpkgAdditionalInstallOptions` to `--debug`.
+* Set the `VCPKG_INSTALL_OPTIONS` environment variable to `--debug`.
 
 ## <a name="push-failure"></a> NuGet push to {url} fails 
 
 [!INCLUDE [debug](../../includes/debug.md)]
 
-If you are utilizing a NuGet binary source, the error message reads:
+When using a NuGet binary source the following error appears:
 ```
 Pushing NuGet to {url} failed. Use --debug for more information.
 ```
 
-If you are utilizing a NuGet config binary source, the error message reads:
+When using a NuGet config file binary source the following error appears:
 ```
 Pushing NuGet config to {url} failed. Use --debug for more information.
 ```
@@ -43,12 +44,13 @@ Steps to reproduce:
 3. `vcpkg` install with variables set `$env:VCPKG_BINARY_SOURCES="clear;nuget,<feed url>,readwrite"`
 -->
 
-You might encounter this error:
+You encounter the following error message:
 ```
 System.Net.Http.HttpRequestException: Response status code does not indicate success: 403 (Forbidden - User <user> lacks permission to complete this action. You need to have 'AddPackage'.
 ```
 
-Push was rejected by remote source because the user does not have sufficient write permissions. 
+Push was rejected by remote source because the user does not have sufficient write permissions.
+
 * Confirm that your user or user group has write permissions. In NuGet, the user must be at least a [Contributor role](https://learn.microsoft.com/azure/devops/artifacts/feeds/feed-permissions#permissions-table) to the feed.
 
 ### Cause 2: Misconfigured NuGet Feed url
@@ -63,7 +65,8 @@ System.Net.Http.HttpRequestException: Response status code does not indicate suc
 ```
 
 The server rejected NuGet's push request because it did not recognize the request method.
-* Verify the URI in your binary source. Ensure the URI directs to the service index of the feed, typically `<feed>/nuget/v3/index.json`.
+
+* Verify that the URI in your binary source is correct and that it directs to the service index of the feed, typically `<feed base url>/nuget/v3/index.json`.
 
 ### Additional NuGet Resources
 Consult the [NuGet documentation](https://learn.microsoft.com/azure/devops/artifacts/nuget/publish) for guidelines on connecting to and publishing on a NuGet feed.
@@ -88,20 +91,20 @@ Uploads can fail for a variety of reasons, and error messages are usually provid
 
 Although you encountered no errors and vcpkg installation was successful, the binary cache remains empty. If you observed errors, consult [push troubleshooting for NuGet](#push-failure) and [upload troubleshooting for other providers](#cache-upload).
 
-### Cause 1: Vcpkg lacks write permissions to the binary cache
+### Cause 1: vcpkg lacks write permissions to the binary cache
 <!--
 Steps to reproduce:
 1. Create a NuGet feed
 2. $env:VCPKG_BINARY_SOURCES="clear;nuget,C:/nugetfeed,read"
 3. Run ./vcpkg install rapidjson
 -->
-You are missing the following message in your output.
+The following message is missing in your output.
 ```
 Uploading binaries for 'rapidjson:x64-windows' to <binary source> source <url>.
 Stored binaries in 1 destinations in 1.5 s.
 ```
 
-Vcpkg skipped uploading the binary package to your binary cache.
+vcpkg skipped uploading the binary package to your binary cache.
 * Ensure your [binary cache configuration](binarycaching.md#configuration-syntax) is set to `write` or `readwrite`
 
 ## Libraries rebuild instead of using remote binary cache
@@ -110,14 +113,14 @@ Vcpkg skipped uploading the binary package to your binary cache.
 
 Your system rebuilds libraries locally, even when the required binary package is available in the remote binary cache.
 
-There is the absence of the following output:
+The following message is missing in your output.
 ```
 Restored 1 package(s) from <remote binary cache> in 1.1 s. Use --debug to see more details.
 ```
 
-### Cause 1: Vcpkg lacks read permissions from the remote binary cache
+### Cause 1: vcpkg lacks read permissions from the remote binary cache
 
-Vcpkg choose to read your default binary cache over the remote one.
+vcpkg choose to read your default binary cache over the remote one.
 * Ensure your [binary cache configuration](binarycaching.md#configuration-syntax) is set to `read` or `readwrite`
 
 ### Cause 2: The remote binary cache is empty
