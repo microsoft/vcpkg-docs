@@ -1,19 +1,19 @@
 ---
-title: "Tutorial: Create and publish packages"
+title: "Tutorial: Packaging a library"
 description: Tutorial guides the user through the process of packaging a library for vcpkg.
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
-ms.date: 08/23/2023
+ms.date: 10/17/2023
 ms.prod: vcpkg
-#CustomerIntent: As a beginner C++ developer, I want to learn how to package libraries for vcpkg.
+#CustomerIntent: As a beginner C++ developer, I want to learn how to package libraries for vcpkg using custom overlays.
 ---
 
 # Tutorial: Create and publish packages
 
-This tutorial guides you on how to package a library for vcpkg using a custom overlay. Before you proceed, ensure you've followed the [Install and use packages with CMake](get-started.md) tutorial as a starting point.
+This tutorial guides you on how to package a library for vcpkg using a custom overlay. We recommended that you read the [Install and use packages with CMake](get-started.md) tutorial before proceeding.
 
 ## Prerequisites
 
@@ -231,13 +231,66 @@ vcpkg-sample-library provides CMake targets:
 
 ## 6 - Verify the port build
 
+To verify the library builds and links properly, modify the `CMakeLists.txt` and `main.cpp` created in the [Install and use packages with CMake](get-started.md) tutorial.
+
+Modify the `CMakeLists.txt` with the following content:
+
+```cmake
+cmake_minimum_required(VERSION 3.10)
+
+project(HelloWorld)
+
+find_package(fmt CONFIG REQUIRED)
+find_package(my_sample_lib CONFIG REQUIRED)  # Add this line
+
+add_executable(HelloWorld helloworld.cpp)
+
+target_link_libraries(HelloWorld PRIVATE fmt::fmt)
+target_link_libraries(HelloWorld PRIVATE my_sample_lib::my_sample_lib)  # Add this line
+```
+
+Modify the `main.cpp` with the following content:
+
+```cpp
+#include "my_sample_lib.h"  // Replace #include <fmt/core.h> with "my_sample_lib.h"
+
+int main()
+{
+    greet("World!");  // Replace fmt::print("Hello World!\n) with this line
+    return 0;
+}
+
+```
+
+Configure, build, and run the application.
+
+1. Configure the build using CMake:
+   
+  ```console
+  cmake --presets=default
+  ```
+
+2. Build the project:
+
+  ```console
+  cmake --build build
+  ```
+
+3. Run the application:
+
+  ```console
+  ./build/HelloWorld
+  ```
+
+  ```
+  Hello World!
+  ```
 
 ## Next steps
 
-To learn more about packaging libraries, see our reference documentation:
+Now that the `vcpkg-sample-library` has been packaged as port, the next step is to add it to the vcpkg curated registry. See, [Adding port to vcpkg registry](get-started-adding-to-registry.md)
 
-TODO: add appropriate next steps
+For more information, see:
 
-- Ports concepts
-- Updating a library in vcpkg
-- maintainer guide
+- [Ports](../concepts/ports.md)
+- [Maintainer guide](../contributing/maintainer-guide.md)
