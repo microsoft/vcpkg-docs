@@ -1,5 +1,12 @@
 - name: vcpkg documentation
   href: index.yml
+- name: Get started
+  expanded: true
+  items:
+  - name: Install and use packages with CMake
+    href: get_started/get-started.md
+  - name: Install and use packages with CMake in Visual Studio
+    href: get_started/get-started-vs.md
 - name: Consume packages
   expanded: true
   items:
@@ -25,6 +32,20 @@
       href: users/authentication.md
     - name: Authenticate to private Git registries in your GitHub Actions workflows
       href: consume/gha-authentication.md
+  - name: Reduce build times with binary caching
+    items:
+    - name: "What is binary caching?"
+      href: consume/binary-caching-overview.md
+    - name: Default binary cache
+      href: consume/binary-caching-default.md
+    - name: Set up a binary cache using filesystem directories
+      href: consume/binary-caching-local.md
+    - name: Set up a binary cache using a NuGet feed
+      href: consume/binary-caching-nuget.md
+    - name: Set up a binary cache using GitHub Actions cache
+      href: consume/binary-caching-github-actions-cache.md
+    - name: Set up a binary cache using GitHub Packages in your GitHub Actions workflow
+      href: consume/binary-caching-github-packages.md
   - name: Improve reliability by caching dependencies assets
     items:
     - name: Use a custom script as an asset caching storage provider
@@ -87,6 +108,8 @@
       href: contributing/cmake-guidelines.md
     - name: PR review checklist
       href: contributing/pr-review-checklist.md
+  - name: Ports
+    href: concepts/ports.md
   - name: Registries
     href: users/registries.md
   - name: Script ports
