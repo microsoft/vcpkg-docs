@@ -138,7 +138,7 @@ This source file includes the `<fmt/core.h>` header which is part of the `fmt` l
 
 ## 4 - Enable manifest mode
 
-Navigate to the Project Properties pages of your project. Under **Configuration Properties > vcpkg**, set `Use vcpkg manifest` to `Yes`. MSBuild will check if this property is set before installing any dependencies from the vcpkg manifest.
+Navigate to the Project Properties pages of your project. Under **Configuration Properties > vcpkg**, set `Use vcpkg manifest` to `Yes`. MSBuild checks whether this property is set before installing any dependencies from the vcpkg manifest.
 
 :::image type="complex" source="../resources/get_started/visual-studio-manifest-msbuild.png" alt-text="Enable manifest mode in project properties":::
     Screenshot of enabling vcpkg manifest mode in Visual Studio Project Properties
