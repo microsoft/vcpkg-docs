@@ -3,121 +3,175 @@ title: Install and use packages with MSBuild in Visual Studio
 description: Tutorial guides the user through the process of installing and using packages with MSBuild and Visual Studio.
 author: data-queue
 ms.author: danshaw2
-ms.date: 10/03/2023
+ms.date: 10/16/2023
 ms.prod: vcpkg
 ms.topic: tutorial
 ---
 
 # Tutorial: Install and use packages with MSBuild in Visual Studio
 
-This guide sets up a simple C++ project using the library `zlib` with the MSBuild project build system.
+This tutorial shows you how to create a C++ "Hello World" program that uses the `fmt` library with MSBuild, vcpkg and Visual Studio. You'll install dependencies, configure, build, and run a simple application.
 
 ## Prerequisites:
-- Visual Studio 2015 Update 3 or later with the C++ Desktop Development workload
+- [Visual Studio](<https://visualstudio.microsoft.com/downloads/>) with C++ development workload
+- [Git](<https://git-scm.com/downloads>)
 - Windows 7 or newer
-- Git
 
-## Install `vcpkg`
+## 1 - Set up vcpkg
 
-In a command prompt, run:
+[!INCLUDE [setup-vcpkg](includes/setup-vcpkg.md)]
+
+3. Integrate with Visual Studio MSBuild
+
+The next step is to set the user-wide instance of vcpkg so that MSBuild will be able to find it:
 ```
-git clone https://github.com/microsoft/vcpkg
-cd vcpkg && .\bootstrap.bat
 .\vcpkg.exe integrate install
 ```
-Outputs:
+
+This outputs:
 ```
 All MSBuild C++ projects can now #include any installed libraries. Linking will be handled automatically. Installing new libraries will make them instantly available.
 ```
 
-The `bootstrap.bat` script fetches a copy of `vcpkg.exe` that we will use to install dependencies. The `integrate install` command sets the user wide vcpkg instance in `%APPDATA%\Local\vcpkg` so MSBuild will be able to find it.
+## 2 - Set up the Visual Studio project
 
-> [!NOTE]
-> The C++ Desktop Development workload for Visual Studio 17.6 and later comes with a copy of vcpkg, which is intended for experimental use. While you will be able to use this directly in the Visual Studio Developer Command Prompt, we recommend users to obtain a seperate copy of vcpkg instead.
+1. Create the Visual Studio project
+    
+    * Create a new project in Visual Studio using the "Console Application" template
+    :::image type="complex" source="../resources/get_started/visual-studio-create-project-msbuild.png" alt-text="create a new C++ Windows console application":::
+        Screenshot of the Visual Studio UI for showing how to create a new C++ Windows console application in Visual Studio
+    :::image-end:::
+    * Name your project "helloworld"
+    * Check the box for "Place solution and project in the same directory."
+    * Click the "Create" button
+    :::image type="complex" source="../resources/get_started/visual-studio-name-project-msbuild.png" alt-text="naming your MSBuild C++ project":::
+        Screenshot of Visual Studio UI for naming your MSBuild C++ project and clicking the "create" button.
+    :::image-end:::
 
-## Create a new project in Visual Studio
+2. Configure the `VCPKG_ROOT` environment variable.
+   
+    ::: zone pivot="shell-powershell"
+    Open the built-in Developer PowerShell window in Visual Studio.
+    
+    :::image type="complex" source="../resources/get_started/visual-studio-developer-powershell.png" alt-text="opening built-in developer powershell":::
+        Screenshot of Visual Studio UI for the built-in PowerShell developer window
+    :::image-end:::
 
-Create a new console application project, **File > New Project > Console Application (C++ for Windows)**. This prints "Hello World" by default.
+    Run the following commands:
 
-## Add a vcpkg manifest to your project
+    ```PowerShell
+    $env:VCPKG_ROOT = "C:\path\to\vcpkg"
+    $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
+    ```
 
-The [manifest](./manifest.md) will contain the set of C++ dependencies from vcpkg. In `Solution Explorer - Folder View`, right click to  **Add > New File > Type in "vcpkg.json"** to create a new manifest in the root of your project
+    :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-powershell.png" alt-text="setting up your environment variables":::
+        Screenshot of Visual Studio UI for the built-in PowerShell developer window showing how to set up VCPKG_ROOT and and add it to PATH.
+    :::image-end:::
+    ::: zone-end
+    ::: zone pivot="shell-cmd"
+    Open the Developer command prompt in Visual Studio.
+    
+    :::image type="complex" source="../resources/get_started/visual-studio-developer-cmd.png" alt-text="opening Visual Studio developer command prompt.":::
+        Screenshot of Visual Studio UI for developer command prompt.
+    :::image-end:::
 
-```json
-{
-  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
-  "name": "my-application",
-  "builtin-baseline": "78ba9711d30c64a6b40462c72f356c681e2255f3",
-  "version": "0.15.2",
-  "dependencies": [
-    "zlib"
-   ]
-}
-```
+    Run the following commands:
 
-The builtin-baseline sets the global minimum version information for your manifest. While we can set it to any git commit hash in the vcpkg project, we recommend setting it to the latest commit. In the terminal where you acquired vcpkg, you can run `git rev-parse HEAD` or simply copy the latest commit from `git log`. For more information, see the [reference](../reference/vcpkg-json.md) on `vcpkg.json`. 
+    ```console
+    set VCPKG_ROOT="C:\path\to\vcpkg"
+    set PATH=%VCPKG_ROOT%;%PATH%
+    ```
 
-> [!NOTE]
-> [Classic mode](./classic-mode.md) users need to install dependencies directly in their terminal, i.e. `vcpkg install zlib`. In a post-build step, any dynamic libraries will be copied to the application folder, so the program can work correctly.
+    :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-cmd.png" alt-text="setting up your environment variables":::
+        Screenshot of Visual Studio developer command prompt showing how to set up VCPKG_ROOT and and add it to PATH.
+    :::image-end:::
+    ::: zone-end
 
-## Enable manifest mode in Visual Studio
+    Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
+    Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
 
-Navigate to the Project Properties pages of your project. Under **Configuration Properties > vcpkg**, set `Use vcpkg manifest` to `Yes`. MSBuild will check if this property is set before installing any dependencies from the vcpkg manifest.
+1. Generate a manifest file and add dependencies.
 
-Other settings, such as [triplets](./triplet.md), are filled in with default values vcpkg detects from your project and will be useful when configuring your project. 
+    Run the following command to create a vcpkg manifest file (`vcpkg.json`):
 
-## Use the zlib library
+    ```console
+    vcpkg new --application
+    ```
 
-In your `main.cpp`, add:
-```cpp
-#include <zlib.h>
-#include <iostream>
+    The [`vcpkg new`](../commands/new.md) command adds a `vcpkg.json` file and a `vcpkg-configuration.json` file in the project's directory.
 
-int main()
-{
-    std::cout << zlibVersion();
-}
-```
+    Add the `fmt` package as a dependency:
+
+    ```console
+    vcpkg add port fmt
+    ```
+
+    Your `vcpkg.json` should now contain:
+
+    ```json
+    {
+        "dependencies": [
+            "fmt"
+        ]
+    }
+    ```
+
+    This is your manifest file. vcpkg reads the manifest file to learn what dependencies to install and integrates with MSBuild to provide the dependencies required by your project.
+
+    The generated `vcpkg-configuration.json` file introduces a [baseline](../reference/vcpkg-configuration-json.md#registry-baseline) that places [minimum version constraints](../users/versioning.md) on the project's dependencies. Modifying this file is beyond the scope of this tutorial. While not applicable in this tutorial, it's a good practice to keep the `vcpkg-configuration.json` file under source control to ensure version consistency across different development environments.
+
+## 3 - Set up the project files
+
+Modify the `helloworld.cpp` file.
+
+Replace the content of `helloworld.cpp` with the following code:
+
+:::code language="cpp" source="../examples/snippets/get-started/main.cpp":::
+
+This source file includes the `<fmt/core.h>` header which is part of the `fmt` library. The `main()` function calls `fmt::print()` to output the "Hello World!" message to the console.
+
 > [!NOTE]
 > There will be error squiggles in your project when MSBuilds it for the first time. Build the project to acquire vcpkg dependencies to remove them.
 
-## Build and Run
 
-If MSBuild detects a vcpkg manifest and it is enabled, MSBuild will install the manifest's C++ dependencies as a pre-build step. Relevant artifacts are installed in a folder `vcpkg_installed` in the build directory of your project. Any headers installed by the library can be directly used, and any libraries installed will be automatically linked.
+## 4 - Enable manifest mode
 
-Building and running for the default configuration and project platform (Debug, x64):
+Navigate to the Project Properties pages of your project. Under **Configuration Properties > vcpkg**, set `Use vcpkg manifest` to `Yes`. MSBuild will check if this property is set before installing any dependencies from the vcpkg manifest.
 
-```
-1>------ Build started: Project: ConsoleApplication1, Configuration: Debug x64 ------
-1>Installing vcpkg dependencies to C:\Users\<user>\source\repos\ConsoleApplication1\vcpkg_installed\x64-windows\
-1>"C:\Users\<user>\workspace\vcpkg\vcpkg.exe" install  --x-wait-for-lock --triplet "x64-windows" --vcpkg-root "C:\Users\<user>\workspace\vcpkg\\" "--x-manifest-root=C:\Users\<user>\source\repos\ConsoleApplication1\\" "--x-install-root=C:\Users\<user>\source\repos\ConsoleApplication1\vcpkg_installed\x64-windows\\"
-1>Detecting compiler hash for triplet x64-windows...
-1>The following packages will be built and installed:
-1>  * vcpkg-cmake:x64-windows -> 2023-05-04 -- C:\Users\<user>\workspace\vcpkg\buildtrees\versioning_\versions\vcpkg-cmake\88a7058fc7fa73a9c4c99cfcae9d79e2abf87a5a
-1>    zlib:x64-windows -> 1.3 -- C:\Users\<user>\workspace\vcpkg\buildtrees\versioning_\versions\zlib\5ac18c6e6e3e2bf5a9e3d0bc8a845f198e4c4e05
-1>Additional packages (*) will be modified to complete this operation.
-1>Restored 2 package(s) from C:\Users\<user>\AppData\Local\vcpkg\archives in 157 ms. Use --debug to see more details.
-1>Installing 1/2 vcpkg-cmake:x64-windows...
-1>Elapsed time to handle vcpkg-cmake:x64-windows: 14.6 ms
-1>Installing 2/2 zlib:x64-windows...
-1>Elapsed time to handle zlib:x64-windows: 42.3 ms
-1>Total install time: 57 ms
-1>The package zlib is compatible with built-in CMake targets:
-1>
-1>    find_package(ZLIB REQUIRED)
-1>    target_link_libraries(main PRIVATE ZLIB::ZLIB)
-1>
-1>ConsoleApplication1.cpp
-1>ConsoleApplication1.vcxproj -> C:\Users\<user>\source\repos\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
-========== Build started at 11:31 AM and took 14.614 seconds ==========
-```
+:::image type="complex" source="../resources/get_started/visual-studio-manifest-msbuild.png" alt-text="Enable manifest mode in project properties":::
+        Screenshot of enabling vcpkg manifest mode in Visual Studio Project Properties
+    :::image-end:::
+    ::: zone-end
+
+Other settings, such as [triplets](./triplet.md), are filled in with default values vcpkg detects from your project and will be useful when configuring your project. 
+
+## 5 - Build and run the project
+
+1. Build the project.
+   
+   Press `Ctrl+Shift+B` to build the project in Visual Studio and acquire the vcpkg dependencies.
+
+If MSBuild detects a `vcpkg.json` file and manifests are enabled in your project, MSBuild installs the manifest's dependencies as a pre-build step. Dependencies are installed in a `vcpkg_installed` directory in the project's build output directory. Any headers installed by the library can be directly used, and any libraries installed will be automatically linked.
 
 > [!NOTE]
-> You might notice that `vcpkg install` builds both Debug and Release configurations for a library. This will make it easier to switch between configurations when developing with Visual Studio. To only build release libraries, add `VCPKG_RELEASE_ONLY` to your triplet.
+> `vcpkg install` builds both Debug and Release configurations for a library. To only build release libraries, add `VCPKG_RELEASE_ONLY` to your triplet.
 
-Running the program yields `1.3` which is the expected version for `zlib`.
+2. Run the application.
 
-## Folder View of the project
+    Finally, run the executable:
+    :::image type="complex" source="../resources/get_started/visual-studio-run-project.png" alt-text="Running the executable":::
+        Screenshot of Visual Studio UI for running the executable.
+    :::image-end:::
 
-Navigate to the Folder View in Solution Explorer. vcpkg creates a new directory `vcpkg_installed` which contains all relevant build artifacts libraries, headers, debugging information. Additionally, required libraries for running and deployment (such as `zlibd1.dll`) are copied next to the application binary.
+    You should see the output:
+    :::image type="complex" source="../resources/get_started/visual-studio-msbuild-output.png" alt-text="Program output":::
+        Screenshot of the program outputs - "Hello World!"
+    :::image-end:::
+
+## Next steps
+
+To learn more about `vcpkg.json` and vcpkg MSBuild integration, see our reference documentation:
+
+- [vcpkg.json](..\reference\vcpkg-json.md)
+- [manifest](..\users\manifests.md)
+- [vcpkg in MSBuild projects](..\users\buildsystems\msbuild-integration.md)
