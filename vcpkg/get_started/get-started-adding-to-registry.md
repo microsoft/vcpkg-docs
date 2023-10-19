@@ -86,8 +86,13 @@ Copy-Item -Path <path/to/vcpkg-sample-library> -Destination <ports/vcpkg-sample-
    ```console
    vcpkg x-add-version vcpkg-sample-library
    ```
+3. Commit version changes
+   
+   ```
+    git commit -m "version database"
+   ```
 
-3. Push the changes to your fork:
+4. Push the changes to your fork:
    
    ```console
    git push myfork <topic-branch-name>
