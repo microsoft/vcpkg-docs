@@ -288,7 +288,7 @@ Configure, build, and run the application.
 
 ## Next steps
 
-Now that the `vcpkg-sample-library` has been packaged as port, the next step is to add it to the vcpkg curated registry. See, [Adding port to vcpkg registry](get-started-adding-to-registry.md)
+Now that the `vcpkg-sample-library` has been packaged as port, the next step is to add it to the vcpkg curated registry. See, [Adding ports to vcpkg registry](get-started-adding-to-registry.md)
 
 For more information, see:
 
