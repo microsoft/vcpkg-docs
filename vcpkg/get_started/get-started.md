@@ -143,7 +143,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     Configure the build using CMake:
 
     ```console
-    cmake --presets=default
+    cmake --preset=default
     ```
 
 2. Build the project

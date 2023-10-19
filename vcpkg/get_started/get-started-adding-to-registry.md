@@ -34,7 +34,7 @@ Navigate to the directory where you've cloned the original vcpkg repository, the
 git remote add myfork https://github.com/<Your-GitHub-Username>/vcpkg.git
 ```
 
-You cant check that the remote was added correctly by running:
+You can check that the remote was added correctly by running:
 
 ```console
 git remote -v
@@ -54,10 +54,25 @@ git checkout -b <topic-branch-name>
 
 Add the `vcpkg-sample-library` port that was created in the [packaging a library](get-started-packaging.md) tutorial to the `vcpkg\ports` directory:
 
+::: zone pivot="shell-bash"
+
+```bash
+cp -R <path/to/vcpkg-sample-library> <ports/vcpkg-sample-library>
+```
+::: zone-end
+::: zone pivot="shell-cmd"
+
 ```console
-cp -R <path/to/vcpkg-sample-library> ports/vcpkg-sample-library
+xcopy <path/to/vcpkg-sample-library> <ports/vcpkg-sample-library> /E
+```
+::: zone-end
+::: zone pivot="shell-powershell"
+
+```powershell
+Copy-Item -Path <path/to/vcpkg-sample-library> -Destination <ports/vcpkg-sample-library> -Recurse
 ```
 
+::: zone-end
 ## 5 - Commit and push changes
 
 1. Commit the changes:
@@ -82,6 +97,18 @@ cp -R <path/to/vcpkg-sample-library> ports/vcpkg-sample-library
 
 1. Navigate to your forked repository on GitHub.
 2. Click on "Compare & pull request" button.
-3. Verify the changes, add a descriptive title and comments, and then click "Create pull request."
+   1. Verify the changes
+   2. Add a descriptive title and comments
+   3. Fill out the [pr review checklist](../contributing/pr-review-checklist.md)
+3. Click "Create pull request."
 
 That's it! You've successfully added a `port` to vcpkg's curated registry.
+
+## Next steps
+For more information, see:
+
+- [CMake guidelines](../contributing/cmake-guidelines.md)
+- [Maintainer guide](../contributing/maintainer-guide.md)
+- [Ports](../concepts/ports.md)
+- [Publishing to a private git registry](../produce/publish-to-a-git-registry.md)
+
