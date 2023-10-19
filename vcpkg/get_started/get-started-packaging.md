@@ -128,12 +128,12 @@ find_package(my_sample_lib CONFIG REQUIRED)
 target_link_libraries(main PRIVATE my_sample_lib::my_sample_lib)
 ```
 
-Providing usage documentation for ports allows users to easily adopt them in their projects. We highly encourage providing a `usage` file within the port's directory (`ports/<port name>/usage`) that describes the minimal steps necessary to integrate with a build system.
+Providing usage documentation for ports allows users to easily adopt them in their projects. We highly encourage providing a `usage` file within the port's directory (`ports/<port name>/usage`) that describes the minimal steps necessary to integrate with a build system. To determine the correct usage instructions it is recommended to follow upstream's guidance. In the case that upstream does not provide usage information, it may be necessary to dig through their build system to find the exported targets.
 
 For more guidance, see [handling usage files](../maintainers/handling-usage-files.md)
 
 Finally, create the `portfile.cmake` file within the `custom-overlay\vcpkg-sample-library` directory with the following content:
-      
+
 ```
 vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 
