@@ -1,6 +1,8 @@
 ---
 title: Install and use packages with MSBuild in Visual Studio
 description: Tutorial guides the user through the process of installing and using packages with MSBuild and Visual Studio.
+zone_pivot_group_filename: zone-pivot-groups.json
+zone_pivot_groups: shell-selections
 author: data-queue
 ms.author: danshaw2
 ms.date: 10/16/2023
@@ -139,11 +141,11 @@ This source file includes the `<fmt/core.h>` header which is part of the `fmt` l
 Navigate to the Project Properties pages of your project. Under **Configuration Properties > vcpkg**, set `Use vcpkg manifest` to `Yes`. MSBuild will check if this property is set before installing any dependencies from the vcpkg manifest.
 
 :::image type="complex" source="../resources/get_started/visual-studio-manifest-msbuild.png" alt-text="Enable manifest mode in project properties":::
-        Screenshot of enabling vcpkg manifest mode in Visual Studio Project Properties
-    :::image-end:::
-    ::: zone-end
+    Screenshot of enabling vcpkg manifest mode in Visual Studio Project Properties
+:::image-end:::
+::: zone-end
 
-Other settings, such as [triplets](./triplet.md), are filled in with default values vcpkg detects from your project and will be useful when configuring your project. 
+Other settings, such as [triplets](..\users\triplets.md), are filled in with default values vcpkg detects from your project and will be useful when configuring your project. 
 
 ## 5 - Build and run the project
 
@@ -159,7 +161,7 @@ If MSBuild detects a `vcpkg.json` file and manifests are enabled in your project
 2. Run the application.
 
     Finally, run the executable:
-    :::image type="complex" source="../resources/get_started/visual-studio-run-project.png" alt-text="Running the executable":::
+    :::image type="complex" source="../resources/get_started/visual-studio-msbuild-project.png" alt-text="Running the executable":::
         Screenshot of Visual Studio UI for running the executable.
     :::image-end:::
 
