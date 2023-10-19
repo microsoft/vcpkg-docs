@@ -10,9 +10,17 @@ ms.topic: concept-article
 
 # Overlay ports
 
-An overlay port is a port that can act as a drop-in replacement for an existing port. An overlay port can also be a new port that is otherwise not available in a [registry](../maintainers/registries.md). While [resolving package names](../users/registries.md#package-name-resolution), overlay ports take priority, forcing overlay ports to be selected.
+Usually, vcpkg ports are obtained from [registries](../users/registries.md). It is very likely that most of the ports you install come from the official vcpkg registry at <https://github.com/Microsoft/vcpkg>. vcpkg lets you install ports available to you via the file system, we call these ports, overlay ports.
 
-Naming conflicts can arise when multiple overlays introduce the same port. For instance, overlay directories `[dirA, dirB]` may introduce a port with the same name: `dirA/zlib` and `dirB/zlib`. vcpkg resolves `zlib` in order of which directory is specified first. This example selects `dirA/zlib` as the `zlib` port. If overlay port options are specified in multiple places, overlay resolution priority follows first from the command line, then the manifest, and finally, the environment.
+An overlay port can act as a drop-in replacement for an existing port or as a new port that is otherwise not available in a [registry](../maintainers/registries.md). While [resolving package names](../users/registries.md#package-name-resolution), overlay ports take priority.
+
+Overlay ports are evaluated in the following order:
+
+* Overlay locations specified in the command-line via [`--overlay-ports`](../commands/common-options.md#overlay-ports).
+* Overlay locations specified in a `vcpkg-configuration.json` file via [`overlay-ports`](../reference/vcpkg-configuration-json.md).
+* Overlay locations specified by the [`VCPKG_OVERLAY_PORTS`](../users/config-environment.md#vcpkg_overlay_ports) environment variable.
+
+When resolving port names, the first location that contains a matching overlay port is selected.
 
 ## Using an overlay port
 
