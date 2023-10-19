@@ -182,9 +182,6 @@
     - name: Binary caching
       displayName: binaries, build
       href: users/binarycaching.md
-    - name: Troubleshoot binary caching issues
-      displayName: binaries, build
-      href: users/binarycaching-troubleshooting.md
     - name: Environment variables
       href: users/config-environment.md
     - name: Installation tree layout
@@ -349,6 +346,10 @@
       items:
       - name: CONTROL Files
         href: maintainers/control-files.md
+- name: Troubleshooting
+  items:
+    - name: Troubleshoot binary caching issues
+      href: users/binarycaching-troubleshooting.md
 - name: About
   items:
   - name: FAQ
