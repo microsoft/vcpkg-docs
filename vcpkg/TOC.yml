@@ -346,6 +346,10 @@
       items:
       - name: CONTROL Files
         href: maintainers/control-files.md
+- name: Troubleshooting
+  items:
+    - name: Troubleshoot binary caching issues
+      href: users/binarycaching-troubleshooting.md
 - name: About
   items:
   - name: FAQ
