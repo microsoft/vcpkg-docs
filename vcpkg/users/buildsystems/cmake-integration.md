@@ -84,7 +84,7 @@ vcpkg does not automatically add any include or links paths into your project. T
 ```cmake
 # To find and use catch2
 find_path(CATCH_INCLUDE_DIR NAMES catch.hpp PATH_SUFFIXES catch2)
-include_directories(${CATCH_INCLUDE_DIR})
+target_include_directories(main PRIVATE ${CATCH_INCLUDE_DIR})
 ```
 
 ## IDE Integration

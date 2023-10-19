@@ -1,23 +1,56 @@
 ---
+# Concepts/Binary Caching
 title: Binary Caching
 description: Reuse binaries built with vcpkg across different projects and machines.
-ms.date: 11/30/2022
+author: vicroms
+ms.author: viromer
+ms.date: 08/22/2023
+ms.prod: vcpkg
 ---
 
 # Binary Caching
 
-Libraries installed with vcpkg can always be built from source. However, this can duplicate work and waste time across multiple projects, developers, or machines.
+Most ports in the [vcpkg public registry](<https://github.com/Microsoft/vcpkg>) are built from
+source. By building from source, vcpkg can ensure maximum compatibility by using
+the same environment, build-tools, compiler flags, linker flags, and other configurations that you
+use in your project to build your dependencies.
 
-Binary caching saves copies of library binaries in a shared location that can be accessed by vcpkg for future installs. This means that, as a user, you should only need to build dependencies from source once. If vcpkg is asked to install the same library with the same build configuration in the future, it will copy the built binaries from the cache and finish the operation in seconds.
+When binary caching is enabled, after each package is built from source, vcpkg creates a **binary
+package**. Binary packages hold the build-output of a package: binaries, build system integration files,
+usage documentation, license, and other files. If a later run requires a cached package to be installed,
+vcpkg determines whether to restore the cached binary package or trigger a build from source.
 
-Binary caching is especially effective when using Continuous Integration, since local developers can reuse the binaries produced during a CI run. It also greatly enhances the performance of ephemeral or "hosted" build agents, since all local changes are otherwise lost between runs. By using binary caching backed by a cloud service, such as GitHub, Azure, or others, you can ensure your CI runs at maximum speed and only rebuilds your dependencies when they've changed.
+This way, binary caching reduces the impact of the following downsides of building from source:
+
+* **Duplicated effort:** By reducing the number of times a package needs to be built from source.
+* **Long build times:** Restoring a binary package is usually a very fast operation that takes
+  seconds to complete.
+
+Binary caching is especially effective in CI scenarios where ephemeral containers or build agents
+force vcpkg to work with a clean-slate each time. By using a cloud-based binary cache (such as
+[GitHub Packages](<https://docs.github.com/packages>) or [Azure DevOps
+Artifacts](/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&tabs=nuget&preserve-view=true) you can persist binary packages between runs to ensure maximum speed since rebuilds only happen
+when you make changes to your dependencies or configuration.
+
+While not recommended as a binary distribution mechanism, binary caching can be used to reuse build
+output from multiple systems. For example, developers can use the binary packages produced by a CI run on
+their local machines. For other methods to reuse and integrate vcpkg-produced binaries, look at
+[`vcpkg export`](../commands/export.md).
 
 > [!TIP]
-> It is recommended to create a writable binary cache for every continuous integration pipeline or workflow. Individual developers should have read-only access to the CI binary cache.
+> It is recommended to create a binary cache with read and write permissions for every continuous
+> integration pipeline or workflow. Individual developers should have read-only access to the
+> CI-produced binary cache.
 
-Caches can be hosted in a variety of environments. The most basic examples are a folder on the local machine or a network file share. Caches can also be stored in any NuGet feed (such as GitHub Packages or Azure DevOps Artifacts), Azure Blob Storage, Google Cloud Storage, and many other services.
+Binary caches can be hosted in a variety of environments. The most basic from of a binary cache is a
+folder on the local machine or a network file share. Caches can also be stored in any NuGet feed
+(such as GitHub Packages or Azure DevOps Artifacts), Azure Blob Storage, Google Cloud Storage, and
+many other services.
 
-If your CI provider offers a native "caching" function, it is recommended to use both vcpkg binary caching and the native method for the most performant results.
+If your CI provider offers a native "caching" function, it is recommended to use both vcpkg binary
+caching and the native method for the most performant results.
+
+## Default binary cache
 
 Binary caching is enabled by default with a [`files` provider](#files) at the first valid location of:
 
@@ -59,9 +92,12 @@ Binary caching is configured with the environment variable `VCPKG_BINARY_SOURCES
 | `interactive` | Enables interactive credential management for [NuGet](#nuget) (for debugging; requires `--debug` on the command line) |
 
 The `<rw>` optional parameter for certain sources controls whether they will be consulted for
-downloading binaries (`read`)(default), whether on-demand builds will be uploaded to that remote (`write`), or both (`readwrite`).
+downloading binaries (`read`)(default), whether on-demand builds will be uploaded to that remote
+(`write`), or both (`readwrite`).
 
-## <a name="aws"></a> AWS S3 provider
+## Providers
+
+### <a name="aws"></a> AWS S3 provider
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
@@ -75,7 +111,7 @@ x-aws-config,no-sign-request
 ```
 Pass `--no-sign-request` to the AWS CLI.
 
-## <a name="azblob"></a> Azure Blob provider
+### <a name="azblob"></a> Azure Blob provider
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
@@ -85,7 +121,7 @@ x-azblob,<baseuri>,<sas>[,<rw>]
 
 Adds an Azure Blob Storage provider using Shared Access Signature validation. `<baseuri>` should include the container path.
 
-### <a name="azblob-quickstart"></a> Quickstart
+#### <a name="azblob-quickstart"></a> Quickstart
 
 First, you need to create an Azure Storage Account as well as a container. See the [Azure Storage Quick Start Documentation](/azure/storage/blobs/storage-quickstart-blobs-portal) for instructions.
 
@@ -110,7 +146,7 @@ vcpkg will attempt to avoid revealing the SAS during normal operations, however:
 
 Azure Blob Storage includes a feature to remove cache entries that haven't been accessed in a given number of days which can be used to automatically manage the size of your binary cache. See [Data Lifecycle Management on Microsoft Docs](/azure/storage/blobs/lifecycle-management-overview) for more information, or look for *Data management* -> *Lifecycle management* in the Azure Portal for your storage account.
 
-## <a name="cos"></a> Tencent Cloud Object Storage provider
+### <a name="cos"></a> Tencent Cloud Object Storage provider
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
@@ -119,7 +155,7 @@ x-cos,<prefix>[,<rw>]
 ```
 Adds a COS source. `<prefix>` should start with `cos://` and end with `/`.
 
-## <a name="files"></a> Files provider
+### <a name="files"></a> Files provider
 
 ```
 files,<absolute path>[,<rw>]
@@ -127,7 +163,7 @@ files,<absolute path>[,<rw>]
 
 Stores zip-compressed archives at the path based on the [binary caching ID](#abi-hash).
 
-## <a name="gcs"></a> Google Cloud Storage provider
+### <a name="gcs"></a> Google Cloud Storage provider
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
@@ -137,7 +173,7 @@ x-gcs,<prefix>[,<rw>]
 
 Adds a Google Cloud Storage provider. `<prefix>` should start with `gs://` and end with `/`.
 
-### <a name="gcs-quickstart"></a> Quickstart
+#### <a name="gcs-quickstart"></a> Quickstart
 
 First, you need to create an Google Cloud Platform Account as well as a storage bucket ([GCS Quick Start](https://cloud.google.com/storage/docs/quickstart-gsutil)].
 
@@ -158,7 +194,7 @@ x-gcs,gs://<bucket-name>/my-vcpkg-cache/maybe/with`,commas/too!/,readwrite
 
 Commas (`,`) are valid as part of a object prefix in GCS. Remember to escape them in the vcpkg configuration, as shown in the previous example. GCS does not have folders (some of the GCS tools simulate folders). It is not necessary to create or otherwise manipulate the prefix used by your vcpkg cache.
 
-## <a name="gha"></a> GitHub Actions cache
+### <a name="gha"></a> GitHub Actions cache
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
@@ -168,7 +204,7 @@ x-gha[,<rw>]
 
 Adds the GitHub Actions cache as a provider. This binary caching provider is only valid in the context of a GitHub Actions workflow. This provider requires both of the `ACTIONS_CACHE_URL` and `ACTIONS_RUNTIME_TOKEN` environment variables to be set. Setting these environment variables correctly is covered in the following Quickstart section.
 
-### <a name="gha-quickstart"></a> Quickstart
+#### <a name="gha-quickstart"></a> Quickstart
 
 In order for vcpkg to make use of the GitHub Actions Cache, it needs the Actions Cache URL and Runtime Token. To do this, both values should be exported as environment variables in a workflow step similar to the following:
 
@@ -189,7 +225,7 @@ Once the environment variables have been exported, vcpkg can be run with the Git
   run: vcpkg install zlib --binarysource="clear;x-gha,readwrite"
 ```
 
-## <a name="http"></a> HTTP provider
+### <a name="http"></a> HTTP provider
 
 ```
 http,<url_template>[,<rw>[,<header>]]
@@ -201,13 +237,13 @@ Each binary caching operation is mapped to an HTTP verb:
 - Upload - `PUT`
 - Check Existence - `HEAD`
 
-### URL Template
+#### URL Template
 
 The template uses curly-brackets for variable expansion. You can use the variables 'name', 'version', 'sha' and 'triplet'. For example:
 
 `https://cache.example.com/{name}/{version}/{sha}`
 
-### Header
+#### Header
 
 > [!WARNING]
 > This value may appear on the command line of external process calls, which may have security implications in your environment.
@@ -218,7 +254,7 @@ Authentication is supported by specifying an HTTP [Authorization Header](https:/
 http,https://cache.example.com/{name}/{version}/{sha},readwrite,Authorization: Bearer BearerTokenValue
 ```
 
-## <a name="nuget"></a> NuGet provider
+### <a name="nuget"></a> NuGet provider
 
 Add a NuGet server with the `-Source` NuGet CLI parameter:
 ```
@@ -235,7 +271,7 @@ nugettimeout,<seconds>
 
 Config files must define a `defaultPushSource` to support writing packages back to the feed.
 
-### <a name="nuget-credentials"></a> Credentials
+#### <a name="nuget-credentials"></a> Credentials
 
 Many NuGet servers require additional credentials to access. The most flexible way to supply credentials is via the `nugetconfig` source with a custom `nuget.config` file. See [Consuming packages from authenticated feeds](/nuget/consume-packages/consuming-packages-authenticated-feeds) for more information.
 
@@ -273,7 +309,7 @@ or
 
 if the appropriate environment variables are defined and non-empty. This is specifically used to associate packages in GitHub Packages with the *building* project and not intended to associate with the original package sources.
 
-### NuGet Cache
+#### NuGet Cache
 
 NuGet's user-wide cache is not used by default. To use it for every nuget-based source, set the [environment variable](config-environment.md#vcpkg_use_nuget_cache) `VCPKG_USE_NUGET_CACHE` to `true` (case-insensitive) or `1`.
 

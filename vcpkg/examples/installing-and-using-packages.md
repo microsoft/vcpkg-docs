@@ -189,15 +189,11 @@ Unlike other platforms, we do not automatically add the `include\` directory to 
 ```cmake
 # To find and use catch
 find_path(CATCH_INCLUDE_DIR catch.hpp)
-include_directories(${CATCH_INCLUDE_DIR})
+target_include_directories(main PRIVATE ${CATCH_INCLUDE_DIR})
 
 # To find and use azure-storage-cpp
 find_path(WASTORAGE_INCLUDE_DIR was/blob.h)
 find_library(WASTORAGE_LIBRARY wastorage)
-include_directories(${WASTORAGE_INCLUDE_DIR})
-link_libraries(${WASTORAGE_LIBRARY})
-
-# We recommend using the target-specific directives for a cleaner cmake:
-#     target_include_directories(main ${LIBRARY})
-#     target_link_libraries(main PRIVATE ${LIBRARY})
+target_include_directories(main PRIVATE ${WASTORAGE_INCLUDE_DIR})
+target_link_libraries(main PRIVATE ${WASTORAGE_LIBRARY})
 ```
