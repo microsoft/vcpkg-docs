@@ -1,7 +1,10 @@
 ---
+# Reference/Versioning
 title: Versioning reference
-description: Use vcpkg versioning to control the versions of dependencies used by your project.
-ms.date: 11/30/2022
+description: Reference documentation for the vcpkg versioning feature.
+author: vicroms
+ms.author: viromer
+ms.date: 9/20/2023
 ---
 # Versioning reference
 
@@ -11,19 +14,7 @@ For more information about the vcpkg versioning algorithm and high level concept
 
 For an example with context, see our guide to [getting started with versioning](./examples/versioning.getting-started.md).
 
-## Contents
-
-- [Version schemes](#version-schemes)
-  - [`version`](#version)
-  - [`version-semver`](#version-semver)
-  - [`version-date`](#version-date)
-  - [`version-string`](#version-string)
-- [Version constraints](#version-constraints)
-  - [Baselines](#baselines)
-  - [`version>=`](#version-gte)
-  - [`overrides`](#overrides)
-
-## Version schemes
+##  <a name="version-schemes"></a>Version Schemes
 
 Ports in vcpkg should attempt to follow the versioning conventions used by the package's authors. For that reason, when declaring a package's version the appropriate scheme should be used.
 
@@ -43,7 +34,7 @@ A manifest must contain only one version declaration.
 > [!NOTE]
 > By design, vcpkg does not compare versions that use different schemes. For example, a package that has a `version-string: 7.1.3` cannot be compared with the same package using `version: 7.1.4`, even if the conversion seems obvious.
 
-### `version`
+### <a name="version"></a>`version`
 
 Accepts version strings that follow a relaxed, dot-separated-, semver-like scheme.
 
@@ -93,7 +84,9 @@ Examples:
 
 ### <a name="port-version"></a> `port-version`
 
-A positive integer value that increases each time the port changes without updating the sources.
+Port-versions track changes in the packaging files (`vcpkg.json`, `portfile.cmake`, etc) without any changes to the upstream library version.
+
+A port version is a non-negative integer value.
 
 The rules for port versions are:
 
@@ -102,7 +95,7 @@ The rules for port versions are:
 - and reset to 0 each time the version of the package is updated.
 
 > [!NOTE]
-> Whenever vcpkg output a version it follows the format `<version>#<port version>`. For example `1.2.0#2` means version `1.2.0` port version `2`. When the port version is `0` the `#0` suffix is omitted (`1.2.0` implies version `1.2.0` port version `0`).
+> vcpkg follows the text format `<version>#<port version>`. For example `1.2.0#2` means version `1.2.0` port version `2`. If the port version is `0` the `#0` suffix is omitted (e.g., `1.2.0` implies version `1.2.0` port version `0`).
 
 *Sorting behavior*: If two versions compare equally, their port versions are compared by their numeric value, lower port versions take precedence.
 
@@ -112,7 +105,7 @@ Examples:
 - `2021-01-01#20` < `2021-01-01.1`
 - `windows#7` < `windows#8`
 
-## Version constraints
+## Version Constraints
 
 ### Baselines
 
@@ -171,12 +164,14 @@ For an override to take effect, the overridden package must form part of the dep
   "name": "project",
   "version-semver": "1.0.0",
   "dependencies": [
+    "curl",
     { "name": "zlib", "version>=": "1.2.11#9" },
     "fmt"
   ],
   "builtin-baseline":"3426db05b996481ca31e95fff3734cf23e0f51bc",
   "overrides": [
-    { "name": "fmt", "version": "6.0.0" }
+    { "name": "fmt", "version": "6.0.0" },
+    { "name": "openssl", "version-string": "1.1.1h#3" }
   ]
 }
 ```
