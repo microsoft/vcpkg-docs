@@ -12,7 +12,7 @@ ms.topic: glossary
 
 Some of the terms used in this documentation have similar meaning when discussed
 by the community. Because of that, and to avoid confusion and ambiguity. This
-article provides psecific meaning to these terms. 
+article provides specific meaning to these terms. 
 
 ## L
 

@@ -79,6 +79,8 @@
       href: produce/publish-to-a-git-registry.md
 - name: Concepts
   items:
+  - name: Glossary
+    href: concepts/glossary.md
   - name: Build-system integration
     items:
     - name: CMake integration
