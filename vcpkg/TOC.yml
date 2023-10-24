@@ -114,6 +114,8 @@
       href: contributing/pr-review-checklist.md
   - name: Overlay ports
     href: concepts/overlay-ports.md
+  - name: Package name resolution
+    href: concepts/package-name-resolution.md
   - name: Ports
     href: concepts/ports.md
   - name: Registries

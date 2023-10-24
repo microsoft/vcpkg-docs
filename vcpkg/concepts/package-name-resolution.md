@@ -210,5 +210,4 @@ Overlay settings are evaluated in this order:
    [`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md#overlay-ports)
    in order; then
 3. Overlays from the `VCPKG_OVERLAY_[PORTS|TRIPLETS]` [environment
-   variables](config-environment.md#vcpkg_overlay_ports) in order
-
+   variables](../users/config-environment.md#vcpkg_overlay_ports) in order.
