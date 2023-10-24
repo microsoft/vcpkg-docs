@@ -81,6 +81,8 @@
   items:
   - name: Build-system integration
     items:
+    - name: Available build system integrations
+      href: concepts/build-system-integration.md
     - name: CMake integration
       href: users/buildsystems/cmake-integration.md
     - name: MSBuild integration
