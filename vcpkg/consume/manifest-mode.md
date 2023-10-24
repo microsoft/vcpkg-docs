@@ -22,7 +22,7 @@ unlike classic mode, where all packages are installed in a common `%VCPKG_ROOT%/
 directory. Therefore, each project can have its own manifest and its own set of dependencies that do not conflict with other projects' dependencies.
 
 Manifest mode is also required to use advanced features like
-[versioning](../users/versioning.md) and [custom registries](../users/registries.md).
+[versioning](../users/versioning.md) and [custom registries](../concepts/registries.md).
 
 In this tutorial, you will learn how to:
 

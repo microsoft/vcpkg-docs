@@ -6,7 +6,7 @@ ms.topic: tutorial
 ---
 # Creating registries
 
-For information on consuming registries, see [Using registries](../users/registries.md).
+For information on consuming registries, see [Using registries](../consume/git-registries.md).
 
 ## Overview
 

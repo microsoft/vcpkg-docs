@@ -45,7 +45,7 @@ vcpkg has a unique way of handling [package versions](../users/versioning.concep
 
 ### Registries
 
-A [registry](../users/registries.md) is a catalog of ports and available versions that a vcpkg user can install. vcpkg provides a public registry of open-source libraries by default, but you can also define your own registries for custom libraries.
+A [registry](../concepts/registries.md) is a catalog of ports and available versions that a vcpkg user can install. vcpkg provides a public registry of open-source libraries by default, but you can also define your own registries for custom libraries.
 
 ### Asset caching
 
