@@ -9,8 +9,8 @@ ms.topic: concept-article
 
 # Triplets
 
-*Triplet* is a standard term used in cross compiling as a way to completely
-capture the target environment (cpu, os, compiler, runtime, etc.) in a single,
+*Triplet* is a standard term used in cross-compiling as a way to completely
+capture the target environment (CPU, OS, compiler, runtime, etc.) in a single,
 convenient name.
 
 In vcpkg, triplets describe an imaginary "target configuration set" for every
