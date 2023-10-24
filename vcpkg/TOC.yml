@@ -54,6 +54,8 @@
       href: consume/binary-caching-github-packages.md
   - name: Improve reliability by caching dependencies assets
     items:
+    - name: Set up a vcpkg asset cache
+      href: consume/asset-caching.md
     - name: Use a custom script as an asset caching storage provider
       # TODO: Modernize article: examples/asset-caching-source-nuget.md
       href: examples/asset-caching-source-nuget.md
@@ -81,6 +83,8 @@
       href: produce/publish-to-a-git-registry.md
 - name: Concepts
   items:
+  - name: Asset caching
+    href: concepts/asset-caching.md
   - name: Build-system integration
     items:
     - name: Available build system integrations
