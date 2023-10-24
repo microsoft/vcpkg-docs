@@ -7,7 +7,7 @@ ms.prod: vcpkg
 ms.topic: reference
 ms.date: 10/24/2023
 ---
-# Asset caching with vcpkg
+# Asset caching reference
 
 ## Sources
 
