@@ -2,6 +2,7 @@
 title: Frequently Asked Questions
 description: Common questions and answers about vcpkg
 ms.date: 11/30/2022
+ms.topic: faq
 ---
 # Frequently Asked Questions
 

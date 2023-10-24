@@ -2,6 +2,7 @@
 title: vcpkg CMake Style Guide
 description: The CMake Style Guide for contributing to vcpkg.
 ms.date: 11/30/2022
+ms.topic: concept-article
 ---
 # CMake Style Guide
 

@@ -1,6 +1,6 @@
 ---
 title: "Tutorial: Set up a vcpkg binary cache using GitHub Actions Cache"
-description: This tutorial shows how to set up a vcpkg binary cache using a NuGet feed hosted using GitHubs Actions Cache
+description: This tutorial shows how to set up a vcpkg binary cache using a NuGet feed hosted using GitHub Actions Cache
 author: vicroms
 ms.author: viromer
 ms.prod: vcpkg

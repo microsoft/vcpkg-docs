@@ -5,7 +5,7 @@ author: vicroms
 ms.author: viromer
 ms.date: 9/25/2023
 ms.prod: vcpkg
-ms.topic: overview
+ms.topic: concept-article
 #CustomerIntent: As a beginner vcpkg user, I want to learn what is binary caching and why should I use it
 ---
 # What is binary caching?

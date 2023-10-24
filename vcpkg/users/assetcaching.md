@@ -4,7 +4,7 @@ description: Use asset caching with vcpkg to mirror your asset's downloads to im
 author: vicroms
 ms.author: viromer
 ms.prod: vcpkg
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 9/18/2023
 ---
 # Asset caching with vcpkg
@@ -48,24 +48,24 @@ Removes all previous sources in the configuration string. Useful in combination 
 
 ### `x-azurl`
 
-**Syntax**: 
+**Syntax**:
 1. `x-azurl,<url>[,<sas>[,<rw>]]`
 2. `x-azurl,file://<network-location>[,,<rw>]`
 
 Adds an Azure Blob Storage source.
 
 `<url>`: Required. The Azure Blob Storage connection URL. It must include the container path and a trailing
-`/`. 
+`/`.
 
 `<sas>`: Optional. For endpoints using Shared Access Signature validation, use this parameter to provide the generated SAS.
 
 Non-Azure endpoints can provide an access token using this parameter. As long as they can respond to
-GET and PUT requests of the form `<url>/<sha512>?<sas>`. 
+GET and PUT requests of the form `<url>/<sha512>?<sas>`.
 
 For example, a source configured as follows: `azurl,https://mydomain.com/vcpkg/,token=abc123,readwrite`, produces a request in the form: `https://mydomain.com/vcpkg/<sha512>?token=abc123`.
 
 Alternatively, you can use a filesystem location as the endpoint by using the
-`x-azurl,file://<filesystem-location>[,,<rw>]` pattern. 
+`x-azurl,file://<filesystem-location>[,,<rw>]` pattern.
 
 For example, `x-azurl,file:///Z:/vcpkg/assetcache/,,readwrite` configures a cache in the `Z:/`
 network folder.
@@ -92,7 +92,7 @@ configured sources.
 
 Syntax: `x-script,<template>`
 
-Dispatches to an external tool to fetch the asset. 
+Dispatches to an external tool to fetch the asset.
 
 `<template>`: Required. A command template that vcpkg executes to acquire an asset. For example:
 `x-script,curl -L {url} --output {dst}` configures vcpkg to execute `curl` and provide the `{url}`

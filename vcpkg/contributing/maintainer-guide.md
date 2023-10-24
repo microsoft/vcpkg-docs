@@ -2,6 +2,7 @@
 title: vcpkg Maintainer Guide
 description: The Guide for maintainers contributing to vcpkg.
 ms.date: 2/10/2023
+ms.topic: concept-article
 ---
 # Maintainer Guide
 

@@ -2,6 +2,7 @@
 title: Portfile Variable Reference
 description: These are variables set automatically by vcpkg for use in any port.
 ms.date: 11/30/2022
+ms.topic: reference
 ---
 
 # Portfile Variable Reference

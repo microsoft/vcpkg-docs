@@ -2,6 +2,7 @@
 title: Versioning concepts
 description: Understand how vcpkg manages versioning.
 ms.date: 11/30/2022
+ms.topic: concept-article
 ---
 # Versioning concepts
 

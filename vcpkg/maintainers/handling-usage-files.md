@@ -5,6 +5,7 @@ author: JavierMatosD
 ms.author: javiermat
 ms.date: 07/17/2023
 ms.prod: vcpkg
+ms.topic: concept-article
 ---
 # Provide usage documentation for your ports
 

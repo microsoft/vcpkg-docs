@@ -2,6 +2,7 @@
 title:  Triplet files
 description: Understand the use and content of triplets in vcpkg.
 ms.date: 11/30/2022
+ms.topic: concept-article
 ---
 # Triplet files
 
