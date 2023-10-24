@@ -25,7 +25,7 @@ vcpkg (always spelled lowercase) is a free and open-source C/C++ package manager
 
 ### Ports and triplets
 
-A [port](../concepts/ports.md) in vcpkg is a versioned build recipe that produces a package consisting of a set of files. The most common package that can get produced when a port is installed is a C/C++ library consisting of headers, source code, and binaries.
+A [port](../concepts/ports.md) in vcpkg is a versioned build recipe that produces a package. The most common type of package is a C/C++ library consisting of headers, source code, and binaries.
 
 A [triplet](../users/triplets.md) captures the target build environment (cpu, os, compiler, runtime, etc.) in a single, convenient name. vcpkg provides over 70 triplets by default, but you can also define your own.
 
