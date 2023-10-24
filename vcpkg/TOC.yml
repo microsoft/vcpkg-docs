@@ -117,7 +117,7 @@
   - name: Ports
     href: concepts/ports.md
   - name: Registries
-    href: users/registries.md
+    href: concepts/registries.md
   - name: Script ports
     href: maintainers/authoring-script-ports.md
   - name: Triplets

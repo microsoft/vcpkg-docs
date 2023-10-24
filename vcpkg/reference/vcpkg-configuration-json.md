@@ -12,7 +12,7 @@ In [Manifest Mode](../users/manifests.md), `vcpkg-configuration.json` can be in 
 
 In [Classic Mode](../users/classic-mode.md), vcpkg will use the `vcpkg-configuration.json` file in the [root](../commands/common-options.md#vcpkg-root) of the vcpkg instance.
 
-For an overview of using registries with vcpkg, see [Using Registries](../users/registries.md).
+For an overview of using registries with vcpkg, see [Using Registries](../consume/git-registries.md).
 
 The latest JSON Schema is available at [https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg-configuration.schema.json](https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg-configuration.schema.json). IDEs with JSON Schema support such as Visual Studio and Visual Studio Code can use this file to provide autocomplete and syntax checking. For most IDEs, you should set `"$schema"` in your `vcpkg-configuration.json` to this URL.
 
