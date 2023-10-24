@@ -13,9 +13,8 @@ ms.date: 10/24/2023
 
 Asset caching is a feature that allows vcpkg to use alternative download
 endpoints to acquire a package's assets. When asset caching is enabled vcpkg
-attempst to download assets (such as, source code and build tools) from a
-configured mirror location, if not available, vcpkg can download the file from
-the network and then store a copy in the mirror location.
+attempts to download assets (such as source code and build tools) from a
+configured mirror location. If the asset is not available in the mirror location, vcpkg will download it from its original source and then store a copy in the mirror for future use.
 
 Asset caching can help with these common development scenarios:
 
