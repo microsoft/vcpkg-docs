@@ -20,8 +20,7 @@ vcpkg provides user-wide MSBuild integration via the
 command and per-project integration via the `vcpkg.props` and `vcpkg.target`
 files.
 
-When this integration is enabled all MSBuild and Visual Studio projects will get
-their dependencies linked automatically.
+When you enable this integration, all MSBuild and Visual Studio projects will automatically link their dependencies.
 
 Read more about how this integration works in the [MSBuild integration
 documentation](../users/buildsystems/msbuild-integration.md).
@@ -33,9 +32,7 @@ custom toolchain file. You can enable this integration by adding the provided
 toolchain file in `<vcpkg root>/scripts/buildsystems/vcpkg.cmake` in your CMake
 configure calls via `CMAKE_TOOLCHAIN_FILE` or with a `CMakePresets.json` file.
 
-When this integration is enabled, `find_package()`, `find_library()` and
-`find_path()` will search the vcpkg installation directories to find your
-dependencies. Furthermore, vcpkg is also able to install your dependencies
+Once this integration is activated, functions like `find_package()`, `find_library()`, and `find_path()` will automatically search through the vcpkg installation directories to find the required dependencies. Furthermore, vcpkg is also able to install your dependencies
 declared in a manifest file automatically.
 
 Read more about how this integration works in the [CMake integration
