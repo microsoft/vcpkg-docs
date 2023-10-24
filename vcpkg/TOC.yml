@@ -21,6 +21,8 @@
   - name: Install a specific version of a package
     displayName: version, pin version, lock version
     href: consume/lock-package-versions.md
+  - name: Install a specific version of the Boost libraries
+    href: consume/boost-versions.md
   - name: Enable optional features for a dependency
     # TODO: Modernize article: users/examples/selecting-llvm-features.md
     href: users/examples/selecting-llvm-features.md
@@ -52,6 +54,8 @@
       href: consume/binary-caching-github-packages.md
   - name: Improve reliability by caching dependencies assets
     items:
+    - name: Set up a vcpkg asset cache
+      href: consume/asset-caching.md
     - name: Use a custom script as an asset caching storage provider
       # TODO: Modernize article: examples/asset-caching-source-nuget.md
       href: examples/asset-caching-source-nuget.md
@@ -79,8 +83,12 @@
       href: produce/publish-to-a-git-registry.md
 - name: Concepts
   items:
+  - name: Asset caching
+    href: concepts/asset-caching.md
   - name: Build-system integration
     items:
+    - name: Available build system integrations
+      href: concepts/build-system-integration.md
     - name: CMake integration
       href: users/buildsystems/cmake-integration.md
     - name: MSBuild integration
@@ -114,10 +122,12 @@
       href: contributing/pr-review-checklist.md
   - name: Overlay ports
     href: concepts/overlay-ports.md
+  - name: Package name resolution
+    href: concepts/package-name-resolution.md
   - name: Ports
     href: concepts/ports.md
   - name: Registries
-    href: users/registries.md
+    href: concepts/registries.md
   - name: Script ports
     href: maintainers/authoring-script-ports.md
   - name: Triplets
