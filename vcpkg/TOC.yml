@@ -3,6 +3,8 @@
 - name: Get started
   expanded: true
   items:
+  - name: vcpkg overview
+    href: get_started/overview.md
   - name: Install and use packages with CMake
     href: get_started/get-started.md
   - name: Install and use packages with CMake in Visual Studio

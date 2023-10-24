@@ -2,6 +2,7 @@
 title: Authoring Script Ports
 description: Learn to create a Script Port to reuse functions in multiple vcpkg portfiles.
 ms.date: 11/30/2022
+ms.topic: concept-article
 ---
 # Authoring script ports
 

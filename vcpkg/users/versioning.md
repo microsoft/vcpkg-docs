@@ -5,6 +5,7 @@ description: Reference documentation for the vcpkg versioning feature.
 author: vicroms
 ms.author: viromer
 ms.date: 9/20/2023
+ms.topic: reference
 ---
 # Versioning reference
 

@@ -4,6 +4,7 @@ description: This article describes the layout conventions used by vcpkg when co
 author: vicroms
 ms.author: viromer
 ms.date: 10/17/2023
+ms.topic: reference
 ---
 # Installation directory layout conventions
 

@@ -2,6 +2,7 @@
 title: Android Support in vcpkg
 description: How to target Android devices using C++ with vcpkg
 ms.date: 11/30/2022
+ms.topic: concept-article
 ---
 # Android
 

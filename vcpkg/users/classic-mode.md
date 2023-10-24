@@ -2,6 +2,7 @@
 title: Classic mode
 description: Use vcpkg in Classic mode to share a central instance of installed libraries.
 ms.date: 11/30/2022
+ms.topic: concept-article
 ---
 # Classic mode
 

@@ -2,6 +2,7 @@
 title: Creating registries
 description: Learn about how to create registries for vcpkg.
 ms.date: 11/30/2022
+ms.topic: tutorial
 ---
 # Creating registries
 

@@ -5,7 +5,7 @@ author: vicroms
 ms.author: viromer
 ms.prod: vcpkg
 ms.date: 9/20/2023
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 # vcpkg in CMake projects
 

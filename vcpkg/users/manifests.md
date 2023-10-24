@@ -2,6 +2,7 @@
 title: Manifest mode
 description: Use a manifest with vcpkg to configure libraries on a per project basis.
 ms.date: 11/30/2022
+ms.topic: concept-article
 ---
 # Manifest mode
 

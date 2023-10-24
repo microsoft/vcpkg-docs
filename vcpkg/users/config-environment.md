@@ -2,6 +2,7 @@
 title: Environment variables
 description: Use environment variables to control how vcpkg works and where it looks for files.
 ms.date: 2/10/2023
+ms.topic: reference
 ---
 # Environment variables
 
@@ -109,9 +110,9 @@ Setting `VCPKG_NO_CI` disables vcpkg's CI environment detection heuristics.
 
 ## VSLANG
 
-This environment variable sets the language vcpkg uses to display messages. It should be set to one of the 14 supported LCIDs (locale identifier, 4-byte value corresponding to a language). 
+This environment variable sets the language vcpkg uses to display messages. It should be set to one of the 14 supported LCIDs (locale identifier, 4-byte value corresponding to a language).
 
-For example: 1033 corresponds to the English (US) language. 
+For example: 1033 corresponds to the English (US) language.
 For a full list of supported LCIDs see [Localization](https://github.com/microsoft/vcpkg-tool/blob/main/docs/localization.md).
 
 ## ACTIONS_CACHE_URL

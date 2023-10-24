@@ -2,6 +2,7 @@
 title: Host dependencies
 description: Describes host dependencies, tools packaged by vcpkg for use by ports or custom build systems.
 ms.date: 11/30/2022
+ms.topic: concept-article
 ---
 # Host dependencies
 

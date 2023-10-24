@@ -6,6 +6,7 @@ author: vicroms
 ms.author: viromer
 ms.date: 08/22/2023
 ms.prod: vcpkg
+ms.topic: concept-article
 ---
 
 # Binary Caching
