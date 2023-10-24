@@ -23,7 +23,7 @@ For a short description of all available commands, run `vcpkg help`. Run `vcpkg 
 * GitHub: ports at [Microsoft/vcpkg](<https://github.com/microsoft/vcpkg>), program at [Microsoft/vcpkg-tool](<https://github.com/microsoft/vcpkg-tool>)
 * Slack: [C++ Alliance's Slack server](<https://cppalliance.org/slack/>), in the #vcpkg channel
 * Discord: [\#include \<C++\>'s Discord server](<https://www.includecpp.org>), in the #🌏vcpkg channel
-* Docs: [Documentation](<https://learn.microsoft.com/vcpkg>)
+* Docs: [Documentation](/vcpkg)
 
 # Getting Started
 
@@ -165,7 +165,7 @@ You must add this line to each profile.
 
 `vcpkg` supports auto-completion of commands, package names, and options in both powershell and bash. To enable tab-completion in the shell of your choice, run:
 
-::: zone pivot="shell-powershell"
+::: zone pivot="shell-powershell, shell-cmd"
 
 ```pwsh
 > .\vcpkg integrate powershell
@@ -178,11 +178,12 @@ You must add this line to each profile.
 ```sh
 $ ./vcpkg integrate bash # or zsh
 ```
+
 ::: zone-end
 
 # Resources
 
-See the [documentation](https://learn.microsoft.com/vcpkg) for specific walkthroughs, including [getting started with CMake](../get_started/get-started.md), [getting started with Visual Studio](../get_started/get-started-vs.md), and [publishing packages to a private vcpkg registry](../produce/publish-to-a-git-registry.md).
+See the [documentation](/vcpkg) for specific walkthroughs, including [getting started with CMake](../get_started/get-started.md), [getting started with Visual Studio](../get_started/get-started-vs.md), and [publishing packages to a private vcpkg registry](../produce/publish-to-a-git-registry.md).
 
 We really appreciate any and all feedback! You can submit an issue in https://github.com/vcpkg/vcpkg.github.io/issues.
 
@@ -218,7 +219,7 @@ The code in this repository is licensed under the [MIT License](../../LICENSE). 
 
 # Security
 
-Most ports in vcpkg build the libraries in question using the original build system preferred by the original developers of those libraries, and download source code and build tools from their official distribution locations. For use behind a firewall, the specific access needed will depend on which ports are being installed. If you must install it in an "air gapped" environment, consider instaling once in a non-"air gapped" environment, populating an [asset cache](https://learn.microsoft.com/vcpkg/users/assetcaching) shared with the otherwise "air gapped" environment.
+Most ports in vcpkg build the libraries in question using the original build system preferred by the original developers of those libraries, and download source code and build tools from their official distribution locations. For use behind a firewall, the specific access needed will depend on which ports are being installed. If you must install it in an "air gapped" environment, consider instaling once in a non-"air gapped" environment, populating an [asset cache](/vcpkg/users/assetcaching) shared with the otherwise "air gapped" environment.
 
 # Telemetry
 
@@ -227,4 +228,4 @@ vcpkg collects usage data in order to help us improve your experience. The data 
 - passing --disable-metrics to vcpkg on the command line
 - setting the VCPKG_DISABLE_METRICS environment variable
 
-Read more about vcpkg telemetry at [https://learn.microsoft.com/vcpkg/about/privacy](https://learn.microsoft.com/vcpkg/about/privacy).
+Read more about vcpkg telemetry at [https://learn.microsoft.com/vcpkg/about/privacy](/vcpkg/about/privacy).
