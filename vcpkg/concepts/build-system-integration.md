@@ -9,10 +9,9 @@ ms.topic: concept-article
 ---
 # Build system integration
 
-vcpkg integrates seamlessly with MSBuild and CMake to provide your project's
-dependencies on build time. vcpkg also makes it easy to integrate with other
-build systems by providing a standardized and well-documented installation
-layout.
+vcpkg integrates seamlessly with MSBuild and CMake to restore your project's
+dependencies at build time. vcpkg also makes it easy to integrate with other
+build systems by providing a standard installation layout.
 
 ## MSBuild integration
 
@@ -44,8 +43,8 @@ documentation](../users/buildsystems/cmake-integration.md).
 
 ## Manual integration
 
-vcpkg makes it easy to integrate with build systems by providing a standardized
-and well-documented [installation
+vcpkg makes it easy to integrate with other build systems by providing a standardized 
+documented [installation
 layout](../reference/installation-tree-layout.md). 
 
 Read more about how to integrate vcpkg with your build system using [manual
