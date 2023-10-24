@@ -85,8 +85,8 @@ First, create the `vcpkg.json` file within the `custom-overlay\vcpkg-sample-libr
 ```json
 {
   "name": "vcpkg-sample-library",
-  "version": "1.0.3",
-  "homepage": "https://github.com/JavierMatosD/vcpkg-sample-library",
+  "version": "1.0.0",
+  "homepage": "https://github.com/microsoft/vcpkg-docs/tree/cmake-sample-lib",
   "description": "A sample C++ library designed to serve as a foundational example for a tutorial on packaging libraries with vcpkg.",
   "license": "MIT",
   "dependencies": [
@@ -102,9 +102,8 @@ First, create the `vcpkg.json` file within the `custom-overlay\vcpkg-sample-libr
   ]
 }
 ```
-The `vcpkg.json` file serves as a manifest that defines metadata and dependencies for a C++ library, providing vcpkg with the necessary information to build, install, and manage the package.
 
-Each line is essentially a configuration parameter for vcpkg, giving it instructions on how to handle the package.
+The `vcpkg.json` file serves as a manifest that defines metadata and dependencies for a C++ library, providing vcpkg with the necessary information to build, install, and manage the package.
 
 - `name`: Specifies the name of the library. This is used as the package identifier.
 - `version`: Indicates the version number of the library.
@@ -139,10 +138,10 @@ vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO JavierMatosD/vcpkg-sample-library
+    REPO Microsoft/vcpkg-docs
     REF "${VERSION}"
     SHA512 0  # This is a temporary value. We will modify this value in the next section.
-    HEAD_REF main
+    HEAD_REF cmake-sample-lib
 )
 
 

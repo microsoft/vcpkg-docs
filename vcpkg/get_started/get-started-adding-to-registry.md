@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Adding ports to the vcpkg registry"
+title: "Tutorial: Add ports to the vcpkg registry"
 description: Tutorial guides the user through the process of adding a port to the vcpkg registry.
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
@@ -11,7 +11,7 @@ ms.prod: vcpkg
 #CustomerIntent: As a beginner C++ developer, I want to learn how to add a port to the vcpkg registry.
 ---
 
-# Tutorial: Adding a port to vcpkg registry
+# Tutorial: Add a port to vcpkg registry
 
 This tutorial guides you on how to package a library for vcpkg using a custom overlay. We recommended that you read the [Packaging a library](get-started-packaging.md) tutorial before proceeding. 
 
@@ -28,7 +28,7 @@ This tutorial guides you on how to package a library for vcpkg using a custom ov
 
 ## 2 - Add your fork as a remote
 
-Navigate to the directory where you've cloned the original vcpkg repository, then add your fork as a remote. Replace <Your-GitHub-Username> with your GitHub username:
+Navigate to the directory where you've cloned the original vcpkg repository, then add your fork as a remote. Replace `<Your-GitHub-Username>` with your GitHub username:
 
 ```console
 git remote add myfork https://github.com/<Your-GitHub-Username>/vcpkg.git
@@ -44,13 +44,13 @@ You should see `myfork` listed among the remotes.
 
 ## 3 - Create a topic branch
 
-Before making changes, it's usually good to create a new branch:
+Before making changes, it's usually good to create a new [branch](https://docs.github.com/get-started/quickstart/github-flow):
 
 ```console
 git checkout -b <topic-branch-name>
 ```
 
-## 4 - Copy overlay port
+## 4 - Copy the overlay port to the `ports` directory
 
 Add the `vcpkg-sample-library` port that was created in the [packaging a library](get-started-packaging.md) tutorial to the `vcpkg\ports` directory:
 
@@ -83,11 +83,13 @@ Copy-Item -Path <path/to/vcpkg-sample-library> -Destination <ports/vcpkg-sample-
    ```
 
 2. Run `vcpkg x-add-version`:
+
    ```console
    vcpkg x-add-version vcpkg-sample-library
    ```
+
 3. Commit version changes
-   
+
    ```
     git commit -m "version database"
    ```
