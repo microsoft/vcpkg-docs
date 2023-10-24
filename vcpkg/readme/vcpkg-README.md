@@ -215,7 +215,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][contributin
 
 # License
 
-The code in this repository is licensed under the [MIT License](../../LICENSE). The libraries provided by ports are licensed under the terms of their original authors. Where available, vcpkg places the associated license(s) in the location `installed/<triplet>/share/<port>/copyright`.
+The code in this repository is licensed under the MIT License. The libraries provided by ports are licensed under the terms of their original authors. Where available, vcpkg places the associated license(s) in the location `installed/<triplet>/share/<port>/copyright`.
 
 # Security
 
