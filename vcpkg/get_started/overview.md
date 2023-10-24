@@ -29,7 +29,7 @@ A [port](../concepts/ports.md) in vcpkg is a versioned build recipe that produce
 
 A [triplet](../users/triplets.md) captures the target build environment (cpu, os, compiler, runtime, etc.) in a single, convenient name. vcpkg provides over 70 triplets by default, but you can also define your own.
 
-To install a package on your system, vcpkg runs the script specified in the port's *portfile.cmake* file. This can include downloading source code and running a build. To run the build, it will use the triplet information to make sure that the final package matches the desired configuration.
+To install a package on your system, vcpkg runs the port's recipe file (a CMake script). The script may contain steps to download source code or run a build in your system. During builds, vcpkg uses the information in your triplet to make sure that the produced package matches your desired configuration.
 
 ### Binary caching
 
