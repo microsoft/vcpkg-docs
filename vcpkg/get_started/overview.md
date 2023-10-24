@@ -92,6 +92,5 @@ Want to try out vcpkg? Check out one of our introductory tutorials:
 - [Install and use packages with CMake](get-started.md)
 - [Install and use packages with CMake in Visual Studio](get-started-vs.md)
 - [Install and use packages with MSBuild in Visual Studio](get-started-msbuild.md)
-- [Install and use packages with CMake in Visual Studio Code](get-started-vscode.md)
 
 If your build system is not CMake or MSBuild, don't worry, vcpkg supports [manual integration](../users/buildsystems/manual-integration.md) as well with your preferred environment.
