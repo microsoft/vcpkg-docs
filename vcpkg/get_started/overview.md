@@ -9,7 +9,7 @@ ms.date: 10/22/2023
 
 # vcpkg overview
 
-vcpkg (always spelled lowercase) is a free and open-source C/C++ package manager maintained by Microsoft and the C++ community. Initially launched in 2016 as a tool for assisting developers in migrating their projects to newer versions of Visual Studio, vcpkg has evolved into a cross-platform tool used by developers on Windows, macOS, and Linux with a large catalog of open-source libraries and enterprise-ready features. vcpkg is designed to not get in the way of your development process with support for a variety of build and project systems. As a C++ tool at heart, vcpkg is written primarily in C++ and CMake. It is designed to address common pain points for C/C++ developers in ways generally ignored by other package managers.
+vcpkg (always spelled lowercase) is a free and open-source C/C++ package manager maintained by Microsoft and the C++ community. Initially launched in 2016 as a tool for assisting developers in migrating their projects to newer versions of Visual Studio, vcpkg has evolved into a cross-platform tool used by developers on Windows, macOS, and Linux. vcpkg has a large catalog of open-source libraries and enterprise-ready features designed to facilitate your development process with support for a variety of build and project systems. As a C++ tool at heart, vcpkg is written primarily in C++ and CMake. It is designed to address common pain points for C/C++ developers in ways generally ignored by other package managers.
 
 ## Why vcpkg?
 
