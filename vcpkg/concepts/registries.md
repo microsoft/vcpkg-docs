@@ -19,6 +19,12 @@ variety of storage providers.
 There are currently two options to implement your own registries: a Git-based
 registriy or a filesystem-based registries.
 
+## Built-in registry
+The built-in registry refers to the main vcpkg registry at
+<https://github.com/Microsoft/vcpkg>. Depending on the vcpkg operation mode this
+can mean your local clone of the vcpkg repository or the remote repository
+hosted in GitHub.
+
 ## Git registries
 Git registries are simple Git repositories. They can be shared publicly or
 privately via normal mechanisms for Git repositories. The [vcpkg
