@@ -158,7 +158,7 @@ Package patterns may contain only lowercase letters, digits, and `-`, with an op
 * `a+` (`+` is not a valid pattern character)
 * `a?` (`?` is not a valid pattern character)
 
-See the [Using Registries documentation](../users/registries.md#package-name-resolution) for more information on how port names are resolved.
+See the [Using Registries documentation](../concepts/package-name-resolution.md) for more information on how port names are resolved.
 
 [Git Registry]: ../maintainers/registries.md#git-registries
 [Filesystem Registry]: ../maintainers/registries.md#filesystem-registries

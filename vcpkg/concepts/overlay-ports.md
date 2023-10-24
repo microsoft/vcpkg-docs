@@ -12,7 +12,7 @@ ms.topic: concept-article
 
 Usually, vcpkg ports are obtained from [registries](../concepts/registries.md). It is very likely that most of the ports you install come from the official vcpkg registry at <https://github.com/Microsoft/vcpkg>. vcpkg lets you install ports available to you via the file system, we call these ports, overlay ports.
 
-An overlay port can act as a drop-in replacement for an existing port or as a new port that is otherwise not available in a [registry](../maintainers/registries.md). While [resolving package names](../users/registries.md#package-name-resolution), overlay ports take priority.
+An overlay port can act as a drop-in replacement for an existing port or as a new port that is otherwise not available in a [registry](../maintainers/registries.md). While [resolving package names](../concepts/package-name-resolution.md), overlay ports take priority.
 
 Overlay ports are evaluated in the following order:
 
