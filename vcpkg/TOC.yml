@@ -97,6 +97,8 @@
       href: users/buildsystems/manual-integration.md
   - name: Classic mode
     href: users/classic-mode.md
+  - name: Manifest mode
+    href: concepts/manifest-mode.md
   - name: Cross-compilation
     items:
     - name: Android
