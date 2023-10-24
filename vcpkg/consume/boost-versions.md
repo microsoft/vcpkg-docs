@@ -10,9 +10,9 @@ ms.topic: tutorial
 ---
 # Tutorial: Install a specific version of the Boost libraries using registry baselines"
 
-vcpkg provides the Boost set of libraries as individual packages as a
+vcpkg provides the `Boost` set of libraries as individual packages as a
 convenience for users that depend only on a limited subset of Boost packages.
-However, this approach has a tradeoff. Users that want to lock a specific
+However, this approach has a tradeoff. Users who want to lock a specific
 version of their Boost dependencies are required to override the versions of
 each Boost package on which they depend.
 
