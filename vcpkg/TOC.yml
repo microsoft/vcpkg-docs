@@ -21,6 +21,8 @@
   - name: Install a specific version of a package
     displayName: version, pin version, lock version
     href: consume/lock-package-versions.md
+  - name: Install a specific version of the Boost libraries
+    href: consume/boost-versions.md
   - name: Enable optional features for a dependency
     # TODO: Modernize article: users/examples/selecting-llvm-features.md
     href: users/examples/selecting-llvm-features.md
