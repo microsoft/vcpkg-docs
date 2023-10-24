@@ -9,7 +9,7 @@ ms.date: 10/22/2023
 
 # vcpkg overview
 
-vcpkg (always spelled lowercase) is a free and open-source C/C++ package manager maintained by Microsoft and the C++ community. Initially launched in 2016 as a tool for assisting developers in migrating their projects to newer versions of Visual Studio, vcpkg has evolved into a cross-platform tool used by developers on Windows, macOS, and Linux with a large catalog of open-source libraries and enterprise-ready features. vcpkg is designed to not get in the way of your development process with support for a variety of build and project systems. As a C++ tool at heart, vcpkg is written primarily in C++ and CMake. It is designed to address common pain points for C/C++ developers in ways generally ignored by other package managers.
+vcpkg (always spelled lowercase) is a free and open-source C/C++ package manager maintained by Microsoft and the C++ community. Initially launched in 2016 as a tool for assisting developers in migrating their projects to newer versions of Visual Studio, vcpkg has evolved into a cross-platform tool used by developers on Windows, macOS, and Linux. vcpkg has a large catalog of open-source libraries and enterprise-ready features designed to facilitate your development process with support for a variety of build and project systems. As a C++ tool at heart, vcpkg is written primarily in C++ and CMake. It is designed to address common pain points for C/C++ developers in ways generally ignored by other package managers.
 
 ## Why vcpkg?
 
@@ -25,11 +25,11 @@ vcpkg (always spelled lowercase) is a free and open-source C/C++ package manager
 
 ### Ports and triplets
 
-A [port](../concepts/ports.md) in vcpkg is a versioned build recipe that produces a package consisting of a set of files. The most common package that can get produced when a port is installed is a C/C++ library consisting of headers, source code, and binaries.
+A [port](../concepts/ports.md) in vcpkg is a versioned build recipe that produces a package. The most common type of package is a C/C++ library consisting of headers, source code, and binaries.
 
 A [triplet](../users/triplets.md) captures the target build environment (cpu, os, compiler, runtime, etc.) in a single, convenient name. vcpkg provides over 70 triplets by default, but you can also define your own.
 
-To install a package on your system, vcpkg runs the script specified in the port's *portfile.cmake* file. This can include downloading source code and running a build. To run the build, it will use the triplet information to make sure that the final package matches the desired configuration.
+To install a package on your system, vcpkg runs the port's recipe file (a CMake script). The script may contain steps to download source code or run a build in your system. During builds, vcpkg uses the information in your triplet to make sure that the produced package matches your desired configuration.
 
 ### Binary caching
 
