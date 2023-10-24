@@ -61,6 +61,8 @@
     # TODO: Modernize: examples/packaging-github-repos.md
   - name: Package a dependency from a public GitHub repository
     href: examples/packaging-github-repos.md
+  - name: Package a dependency from an Azure DevOps repository
+    href: produce/package-ado-repository.md
     # TODO: Modernize: examples/packaging-zipfiles.md
   - name: Package a dependency from a source archive
     href: examples/packaging-zipfiles.md
