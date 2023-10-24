@@ -121,7 +121,7 @@
   - name: Script ports
     href: maintainers/authoring-script-ports.md
   - name: Triplets
-    href: users/triplets.md
+    href: concepts/triplets.md
   - name: Versioning
     href: users/versioning.concepts.md
 - name: Reference
@@ -342,6 +342,8 @@
           href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
     - name: Portfile variables
       href: maintainers/variables.md
+    - name: Triplets
+      href: users/triplets.md
     - name: Versioning
       href: users/versioning.md
     - name: Deprecated features
