@@ -175,11 +175,13 @@ Expression](../reference/vcpkg-json.md#platform-expression) evaluation.
 See the [`"supports"`](../reference/vcpkg-json.md#supports) manifest file field
 documentation for more details.
 
-> [!NOTE] This list is extracted via the `vcpkg_get_dep_info` helper function.
+> [!NOTE]
+> This list is extracted via the `vcpkg_get_dep_info` helper function.
 
 ### VCPKG_DISABLE_COMPILER_TRACKING
 
-> [!WARNING] Enabling this option is not recommended since it can lead to ABI
+> [!WARNING] 
+> Enabling this option is not recommended since it can lead to ABI
 > incompatibility in restored binary packages.  See the [binary caching
 > documentation](../consume/binary-caching-overview.md) to learn more
 
@@ -207,7 +209,8 @@ environment variables without abi tracking, see
 See also the [`vcpkg env`](../commands/env.md) command for how you can inspect
 the precise environment that will be used.
 
-> [!NOTE] This list is extracted via the `vcpkg_get_tags` helper function.
+> [!NOTE] 
+> This list is extracted via the `vcpkg_get_tags` helper function.
 
 ### VCPKG_ENV_PASSTHROUGH_UNTRACKED
 
