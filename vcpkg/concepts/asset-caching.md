@@ -29,13 +29,15 @@ Asset caching is configured via:
 * The `X_VCPKG_ASSET_SOURCES` environment variable, or
 * The `--x-asset-sources` command-line option.
 
-In both cases, the expected value is a semicolon-delimited list of sources. Each source has a
-specific syntax depending on its storage backend.
-
-See the [asset caching reference documentation](../users/assetcaching.md) to
-learn how to configure asset caching sources.
+In both cases, the expected value is a semicolon-delimited list of sources. Each
+source has a specific syntax depending on its storage backend (see the [asset
+caching reference documentation](../users/assetcaching.md) to learn how to
+configure asset caching sources). 
 
 ## Next step
 
-> [!div class="nexstepaction"]
-> [Use a custom script as an asset caching source for NuGet](../examples/asset-caching-source-nuget.md)
+Here are some tasks to try next:
+
+* [Set up an asset cache](../consume/asset-caching.md)
+* [Use a custom script as an asset caching source for
+  NuGet](../examples/asset-caching-source-nuget.md)

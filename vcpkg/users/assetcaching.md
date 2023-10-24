@@ -9,7 +9,6 @@ ms.date: 10/24/2023
 ---
 # Asset caching with vcpkg
 
-
 ## Sources
 
 The `<rw>` parameter is optional and common to most sources described below. It controls
