@@ -3,10 +3,14 @@
 - name: Get started
   expanded: true
   items:
+  - name: vcpkg overview
+    href: get_started/overview.md
   - name: Install and use packages with CMake
     href: get_started/get-started.md
   - name: Install and use packages with CMake in Visual Studio
     href: get_started/get-started-vs.md
+  - name: Install and use packages with MSBuild in Visual Studio
+    href: get_started/get-started-msbuild.md
 - name: Consume packages
   expanded: true
   items:
@@ -108,6 +112,8 @@
       href: contributing/cmake-guidelines.md
     - name: PR review checklist
       href: contributing/pr-review-checklist.md
+  - name: Overlay ports
+    href: concepts/overlay-ports.md
   - name: Ports
     href: concepts/ports.md
   - name: Registries
@@ -180,6 +186,8 @@
       href: users/binarycaching.md
     - name: Environment variables
       href: users/config-environment.md
+    - name: Installation tree layout
+      href: reference/installation-tree-layout.md
     - name: Portfile functions
       items:
       - name: vcpkg_acquire_msys
@@ -340,6 +348,10 @@
       items:
       - name: CONTROL Files
         href: maintainers/control-files.md
+- name: Troubleshooting
+  items:
+    - name: Troubleshoot binary caching issues
+      href: users/binarycaching-troubleshooting.md
 - name: About
   items:
   - name: FAQ

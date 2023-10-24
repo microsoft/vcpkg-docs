@@ -5,6 +5,7 @@ author: vicroms
 ms.author: viromer
 ms.prod: vcpkg
 ms.date: 9/18/2023
+ms.topic: concept-article
 ---
 # vcpkg in MSBuild projects
 

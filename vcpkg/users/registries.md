@@ -6,6 +6,7 @@ ms.author: viromer
 ms.date: 8/21/2023
 # TODO: Split this article apart
 ms.prod: vcpkg
+ms.topic: concept-article
 ---
 # Registries concepts
 

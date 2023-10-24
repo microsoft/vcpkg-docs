@@ -2,6 +2,7 @@
 title: Packaging libogg for vcpkg
 description: Learn how to package the libogg GitHub Repo in vcpkg.
 ms.date: 11/30/2022
+ms.topic: tutorial
 ---
 # Packaging GitHub repos example: libogg
 

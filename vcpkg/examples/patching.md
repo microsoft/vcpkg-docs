@@ -2,6 +2,7 @@
 title: Patching libpng 1.6.37 for UWP compatibility
 description: Learn how to develop and apply patches to a library in a vcpkg portfile.
 ms.date: 11/30/2022
+ms.topic: tutorial
 ---
 # Patching example: Patching libpng to work for x64-uwp
 

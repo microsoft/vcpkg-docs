@@ -2,6 +2,7 @@
 title: vcpkg-configuration.json Reference
 description: Reference documentation for the vcpkg-configuration.json file format
 ms.date: 11/30/2022
+ms.topic: reference
 ---
 # vcpkg-configuration.json Reference
 
