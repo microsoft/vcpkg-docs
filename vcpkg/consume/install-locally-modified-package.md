@@ -17,6 +17,17 @@ This tutorial guides you on how to modified a vcpkg port using custom overlays.
 We recommend that you read the tutorial on [packaging a
 library](../get_started/get-started-packaging.md) before proceeding.
 
+In this tutorial, you will learn to:
+
+> [!div class="checklist"]
+> * [Create an overlay port](#1---create-an-overlay-port)
+> * [Get the port's source code](#2---get-the-ports-source-code)
+> * [Create a temporary Git registry](#3---create-a-temporary-git-registry)
+> * [Modify the necessary files](#4---modify-the-necessary-files)
+> * [Generate a patch file](#5---generate-a-patch-file)
+> * [Modify `portfile.cmake` to apply the patch file](#6---modify-portfilecmake-to-apply-the-patch)
+> * [Install your overlay port](#7---install-your-overlay-port)
+
 ## Prerequisites
 
 * A terminal
@@ -134,7 +145,7 @@ if (BUILD_SHARED_LIBS)
 endif()
 ```
 
-# 5 - Generate a patch file
+## 5 - Generate a patch file
 In the source code directory, run the following command to generate a patch file.
 
 ```Console
@@ -180,7 +191,7 @@ index d6d70b8..0b62141 100644
  std::string greet(const std::string& name);
 ```
 
-# 6 - Modify `portfile.cmake` to apply the patch
+## 6 - Modify `portfile.cmake` to apply the patch
 Change `portfile.cmake` to remove the `ONLY_STATIC_LIBRARY` restriction and
 apply your patch to the source code.
 
@@ -215,7 +226,7 @@ configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/
 
 ```
 
-# 7 - Install your overlay port
+## 7 - Install your overlay port
 Run the following command:
 
 `vcpkg install "--overlay-ports=$OVERLAY_LOCATION" vcpkg-sample-library`
