@@ -1,36 +1,14 @@
 ---
-title: Asset caching with vcpkg
-description: Use asset caching with vcpkg to mirror your asset's downloads to improve build reliability.
+title: Asset caching reference
+description: Reference documentation for the asset caching feature configuration and capabilities.
 author: vicroms
 ms.author: viromer
 ms.prod: vcpkg
-ms.topic: concept-article
-ms.date: 9/18/2023
+ms.topic: reference
+ms.date: 10/24/2023
 ---
 # Asset caching with vcpkg
 
-[!INCLUDE [experimental](../../includes/experimental.md)]
-
-vcpkg can use download-mirrors to upload and restore assets, such as sources and build tools.
-
-Asset caching can help with these common development scenarios:
-
-* Improving reliability of continuous integration runs.
-* Mirroring download assets in trusted locations for air-gapped environments.
-* Maintaining continuity of business if third party sources are changed or become unavailable.
-
-This article describes configuring asset caching and the available storage backend options.
-
-## Configuration
-
-Asset caching is configured via:
-* The `X_VCPKG_ASSET_SOURCES` environment variable, or
-* The `--x-asset-sources` command-line option.
-
-In both cases, the expected value is a semicolon-delimited list of sources. Each source has a
-specific syntax depending on its storage backend.
-
-Use a backtick (\`) to escape characters inside the source strings.
 
 ## Sources
 
@@ -38,7 +16,9 @@ The `<rw>` parameter is optional and common to most sources described below. It 
 access permissions for the specific source and accepts the values `read`, `write`, or `readwrite`
 (defaults to `read`).
 
-### `clear`
+Use a backtick (\`) to escape characters inside the source strings.
+
+### <a name="clear"></a> `clear`
 
 **Syntax**: `clear`
 
@@ -46,7 +26,7 @@ Removes all previous sources in the configuration string. Useful in combination 
 `--x-asset-sources` parameter to disable all asset caching sources coming from the
 `X_VCPKG_ASSET_SOURCES` environment variable.
 
-### `x-azurl`
+### <a name="x-azurl"></a> `x-azurl`
 
 **Syntax**:
 1. `x-azurl,<url>[,<sas>[,<rw>]]`
