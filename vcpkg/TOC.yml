@@ -32,6 +32,8 @@
     href: users/examples/overlay-triplets-linux-dynamic.md
   - name: Install private or custom dependencies
     items:
+    - name: Install a locally modified dependency using overlay ports
+      href: consume/install-locally-modified-package.md
     - name: Install a dependency from a Git-based registry
       href: consume/git-registries.md
     - name: Authenticate to private Git registries
