@@ -65,7 +65,7 @@ This field indicates the commit of <https://github.com/microsoft/vcpkg> which pr
 }
 ```
 
-See [versioning](../users/versioning.md#baselines) and [Using registries](../users/registries.md) for more semantic details.
+See [versioning](../users/versioning.md#baselines) and [Using registries](../consume/git-registries.md) for more semantic details.
 
 ### <a name="default-features"></a> `"default-features"`
 
@@ -259,7 +259,7 @@ For example, if your library doesn't support building for Linux, you would use `
 
 ### `"vcpkg-configuration"`
 
-Allows to embed vcpkg configuration properties inside the `vcpkg.json` file. Everything inside the `vcpkg-configuration` property is treated as if it were defined in a `vcpkg-configuration.json` file. For more details, see the [`vcpkg-configuration.json`](../users/registries.md) documentation.
+Allows to embed vcpkg configuration properties inside the `vcpkg.json` file. Everything inside the `vcpkg-configuration` property is treated as if it were defined in a `vcpkg-configuration.json` file. For more details, see the [`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md#registries) documentation.
 
 Having a `vcpkg-configuration` defined in `vcpkg.json` while also having a `vcpkg-configuration.json` file is not allowed and will result in the vcpkg command terminating with an error message.
 

@@ -11,6 +11,10 @@
     href: get_started/get-started-vs.md
   - name: Install and use packages with MSBuild in Visual Studio
     href: get_started/get-started-msbuild.md
+  - name: Package a library with vcpkg
+    href: get_started/get-started-packaging.md
+  - name: Contribute an open-source library to vcpkg
+    href: get_started/get-started-adding-to-registry.md
 - name: Consume packages
   expanded: true
   items:
@@ -21,6 +25,8 @@
   - name: Install a specific version of a package
     displayName: version, pin version, lock version
     href: consume/lock-package-versions.md
+  - name: Install a specific version of the Boost libraries
+    href: consume/boost-versions.md
   - name: Enable optional features for a dependency
     # TODO: Modernize article: users/examples/selecting-llvm-features.md
     href: users/examples/selecting-llvm-features.md
@@ -30,6 +36,8 @@
     href: users/examples/overlay-triplets-linux-dynamic.md
   - name: Install private or custom dependencies
     items:
+    - name: Install a locally modified dependency using overlay ports
+      href: consume/install-locally-modified-package.md
     - name: Install a dependency from a Git-based registry
       href: consume/git-registries.md
     - name: Authenticate to private Git registries
@@ -52,6 +60,8 @@
       href: consume/binary-caching-github-packages.md
   - name: Improve reliability by caching dependencies assets
     items:
+    - name: Set up a vcpkg asset cache
+      href: consume/asset-caching.md
     - name: Use a custom script as an asset caching storage provider
       # TODO: Modernize article: examples/asset-caching-source-nuget.md
       href: examples/asset-caching-source-nuget.md
@@ -79,8 +89,12 @@
       href: produce/publish-to-a-git-registry.md
 - name: Concepts
   items:
+  - name: Asset caching
+    href: concepts/asset-caching.md
   - name: Build-system integration
     items:
+    - name: Available build system integrations
+      href: concepts/build-system-integration.md
     - name: CMake integration
       href: users/buildsystems/cmake-integration.md
     - name: MSBuild integration
@@ -89,6 +103,8 @@
       href: users/buildsystems/manual-integration.md
   - name: Classic mode
     href: users/classic-mode.md
+  - name: Manifest mode
+    href: concepts/manifest-mode.md
   - name: Cross-compilation
     items:
     - name: Android
@@ -114,14 +130,16 @@
       href: contributing/pr-review-checklist.md
   - name: Overlay ports
     href: concepts/overlay-ports.md
+  - name: Package name resolution
+    href: concepts/package-name-resolution.md
   - name: Ports
     href: concepts/ports.md
   - name: Registries
-    href: users/registries.md
+    href: concepts/registries.md
   - name: Script ports
     href: maintainers/authoring-script-ports.md
   - name: Triplets
-    href: users/triplets.md
+    href: concepts/triplets.md
   - name: Versioning
     href: users/versioning.concepts.md
 - name: Reference
@@ -342,6 +360,8 @@
           href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
     - name: Portfile variables
       href: maintainers/variables.md
+    - name: Triplets
+      href: users/triplets.md
     - name: Versioning
       href: users/versioning.md
     - name: Deprecated features

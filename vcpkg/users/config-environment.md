@@ -56,7 +56,7 @@ This environment variable allows users to add directories to search for triplets
 
 List paths to overlays using the platform dependent PATH separator (Windows `;`, others `:`)
 
-See [Example: overlay triplets](examples/overlay-triplets-linux-dynamic.md) for an example.
+See [Example: overlay triplets](../users/examples/overlay-triplets-linux-dynamic.md) for an example.
 
 ## VCPKG_FORCE_SYSTEM_BINARIES
 

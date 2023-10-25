@@ -121,7 +121,7 @@ The configuration file adds an external registry as the source for the `beicode`
 packages. Additional registries must explicitly declare the packages they provide using the
 `"packages"` list.  When vcpkg resolves packages names to a registry, any package name not found in
 an additional registry will be defaulted to the `"default-registry"`. Learn more about [package name
-resolution](../users/registries.md#package-name-resolution) in the registries documentation.
+resolution](../concepts/package-name-resolution.md) in the registries documentation.
 
 ## 4 - Install packages from a registry
 
