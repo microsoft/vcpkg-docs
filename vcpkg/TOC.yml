@@ -11,6 +11,10 @@
     href: get_started/get-started-vs.md
   - name: Install and use packages with MSBuild in Visual Studio
     href: get_started/get-started-msbuild.md
+  - name: Package a library with vcpkg
+    href: get_started/get-started-packaging.md
+  - name: Contribute an open-source library to vcpkg
+    href: get_started/get-started-adding-to-registry.md
 - name: Consume packages
   expanded: true
   items:
