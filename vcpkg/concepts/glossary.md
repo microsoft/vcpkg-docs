@@ -10,9 +10,9 @@ ms.topic: glossary
 
 # Glossary: vcpkg
 
-Some of the terms used in this documentation have similar meaning when discussed
+Some of the terms used in this documentation have similar meanings when discussed
 by the community. Because of that, and to avoid confusion and ambiguity. This
-article provides specific meaning to these terms. 
+article provides specific meanings for these terms. 
 
 ## L
 
@@ -29,9 +29,7 @@ a port or a project.
 ## O
 
 ### Overlay port/triplet
-A locally available port or triplet. Usually, used to provide a port or triplet
-that is not part of a registry, or to override the name of a port or triplet in
-a registry.
+A locally available port or triplet. Usually used to provide a port or triplet that is not part of a registry, or to override the name of a port or triplet in a registry.
 
 ## P
 
