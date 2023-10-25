@@ -13,7 +13,7 @@ zone_pivot_groups: shell-selections
 ---
 
 # Tutorial: Install a locally modified dependency
-This tutorial guides you on how to modified a vcpkg port using custom overlays.
+This tutorial guides you on modifying a vcpkg port using custom overlays.
 We recommend that you read the tutorial on [packaging a
 library](../get_started/get-started-packaging.md) before proceeding.
 
@@ -41,9 +41,7 @@ the package you want to modify.
 
 1 - Create a directory to hold your overlay ports
 
-The overlay ports directory can be created in any filesystem location of your
-choosing. In any step of this tutorial replace `$OVERLAY_LOCATION` with your
-chosen location.
+The overlay ports directory can be created in any filesystem location of your choosing. In any step of this tutorial, replace `$OVERLAY_LOCATION` with your chosen location.
 
 ::: zone pivot="shell-powershell, shell-cmd"
 
@@ -101,7 +99,7 @@ The output should contain a line similar to:
 This is the location of the port's source code.
 
 ## 3 - Create a temporary Git registry
-Create a temporary Git registry in the source code location, this is in  order
+Initialize a temporary Git repository in the source code location. This is in order
 to use Git to generate patch files that you can apply in the `portfile.cmake`
 script. Replace `$SOURCE_PATH` with the location obtained in the previous step.
 
@@ -246,6 +244,6 @@ file to the source code in the output:
 And that's it! You have installed a locally modified dependency using a patch
 file.
 
-Here are some tasks to try next:;
+Here are some tasks to try next:
 
 * [Create a custom Git registry](../produce/publish-to-a-git-registry.md)
