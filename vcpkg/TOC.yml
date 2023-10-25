@@ -58,7 +58,7 @@
       href: consume/binary-caching-github-actions-cache.md
     - name: Set up a binary cache using GitHub Packages in your GitHub Actions workflow
       href: consume/binary-caching-github-packages.md
-  - name: Improve reliability by caching dependencies assets
+  - name: Improve reliability by caching dependency assets
     items:
     - name: Set up a vcpkg asset cache
       href: consume/asset-caching.md
