@@ -77,6 +77,8 @@
     # TODO: Modernize: examples/patching.md
   - name: Apply patches to a dependency's source code
     href: examples/patching.md
+  - name: Update an existing dependency
+    href: produce/update-package-version.md
   - name: Provide usage documentation for your packages
     href: maintainers/handling-usage-files.md
   - name: Publish dependencies
