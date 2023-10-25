@@ -143,7 +143,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     Configure the build using CMake:
 
     ```console
-    cmake --presets=default
+    cmake --preset=default
     ```
 
 2. Build the project
@@ -167,6 +167,6 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 ## Next steps
 
 To learn more about `vcpkg.json`, see our reference documentation:
-
+- [Packaging a library](get-started-packaging.md)
 - [vcpkg.json](..\reference\vcpkg-json.md)
 - [manifest](..\users\manifests.md)

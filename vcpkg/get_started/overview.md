@@ -9,13 +9,13 @@ ms.date: 10/22/2023
 
 # vcpkg overview
 
-vcpkg (always spelled lowercase) is a free and open-source C/C++ package manager maintained by Microsoft and the C++ community. Initially launched in 2016 as a tool for assisting developers in migrating their projects to newer versions of Visual Studio, vcpkg has evolved into a cross-platform tool used by developers on Windows, macOS, and Linux. vcpkg has a large catalog of open-source libraries and enterprise-ready features designed to facilitate your development process with support for a variety of build and project systems. As a C++ tool at heart, vcpkg is written primarily in C++ and CMake. It is designed to address common pain points for C/C++ developers in ways generally ignored by other package managers.
+vcpkg is a free and open-source C/C++ package manager maintained by Microsoft and the C++ community. Initially launched in 2016 as a tool for assisting developers in migrating their projects to newer versions of Visual Studio, vcpkg has evolved into a cross-platform tool used by developers on Windows, macOS, and Linux. vcpkg has a large catalog of open-source libraries and enterprise-ready features designed to facilitate your development process with support for any build and project systems. vcpkg is a C++ tool at heart and is written in C++ with scripts in CMake. It is designed from the ground up to address the unique pain points C/C++ developers experience.
 
 ## Why vcpkg?
 
 - Over 2200 open-source libraries to choose from, or bring your own
 - Consistent, cross-platform experience for Windows, macOS, and Linux
-- Dependencies can be built from source as needed with over 70 default build configurations (or customize your own builds)
+- Dependencies can be built from source as needed with over 70 configurations in the box and infinite customization for your specific requirements
 - Avoid ABI incompatibilities between packages and your consuming project
 - Prevent version conflicts and diamond problems in your dependency graph
 - Enterprise-ready tool relied by C/C++ developers across many industries, including: finance, gaming, embedded/IoT, semiconductors, defense, and at Microsoft
@@ -41,15 +41,15 @@ You can declare your direct dependencies and add optional features or version co
 
 ### Versioning
 
-vcpkg has a unique way of handling [package versions](../users/versioning.concepts.md). Your manifest file can reference a single, baseline version set by default. The baseline references a combination of ports, each at a specific version, that have been tested for compatibility against each other. Furthermore, you can set a minimum version for a package or override a package version to get an exact match.
+vcpkg has a unique way of handling [package versions](../users/versioning.concepts.md). Your manifest file can reference a single, baseline version set by default. The baseline gives you hassle-free, conflict-free dependency management with full reproducibility. Furthermore, you can still have more advanced control by pinning individual package versions.
 
 ### Registries
 
-A [registry](../users/registries.md) is a catalog of ports and available versions that a vcpkg user can install. vcpkg provides a public registry of open-source libraries by default, but you can also define your own registries for custom libraries.
+A [registry](../concepts/registries.md) is a catalog of ports and available versions that a vcpkg user can install. vcpkg provides a public registry of open-source libraries by default and you can also create your own registries for customizations, patches, or private libraries.
 
 ### Asset caching
 
-[Asset caching](../users/assetcaching.md) allows vcpkg to use download-mirrors to upload and restore assets such as source code and build tools. This is useful for continuity of business, especially for open-source dependencies that have assets on third party servers. This also provides the developer protection in case upstream assets are tampered with unexpectedly.
+[Asset caching](../users/assetcaching.md) allows vcpkg to work in air-gapped and offline environments, ensuring continuity of business even if a remote host goes down or is compromised. It uses download-mirrors to upload and restore assets such as source code and build tools.
 
 ## vcpkg compared to other package managers
 
@@ -59,18 +59,8 @@ NuGet is a .NET package manager that has often been used for C/C++ development, 
 
 - **Compilation flavors**. As NuGet cannot build packages from source on the fly, it is necessary to provide prebuilt binaries to match all possible Application Binary Interface (ABI) restrictions for all users. The user is responsible for building packages themselves and ensuring this is done correctly. It is also difficult to distinguish between binaries due to the lack of relevant metadata, resulting in the user having to do quirky things like putting architecture, operating system, and compiler information in the package name, without being able to enforce such constraints during package acquisition.
 - **Binary vs. source**. Very closely tied to the first point, NuGet is designed from the ground up to provide relatively small, prebuilt binaries. Due to the nature of native code, developers need to have access to the source code to ensure ABI compatibility, performance, integrity, and debuggability.
-- **Versioning limitations**. While NuGet packages are versioned, it is up to the user to decide on appropriate versions of packages to take dependencies on. The pressure is on the user to solve version conflicts between dependencies and the consuming project.
 - **No NuGet PackageReference support**. NuGet PackageReference is not supported for .vcxproj files and there is no plan to add it in the future due to technical and architectural differences between C++ and .NET MSBuild projects. This means NuGet C++ users won't benefit from features like the use of the global cache and referencing dependencies in simple MSBuild terms with access to conditional logic.
-- **Environment changes**. As NuGet C++ packages must be manually compiled and packaged, any time the host or target environment changes this work must be repeated. On the other hand, vcpkg can build packages from source for a variety of operating systems and build systems.
-
-### vcpkg compared to Conan
-
-Conan.io is a publicly-federated, project-centric, cross-platform, C++ package manager written in python. Our primary differences are:
-
-- **Public federation vs. private federation**. Conan relies on individuals publishing independent copies of each package. We believe this approach encourages a large number of packages that are all broken in different ways. We believe it is a waste of the user's time to pick through the list of 20+ public packages for Boost 1.56 to determine the handful that will work for their particular situation. In contrast, we believe there should be a single, collaboratively maintained version which works for the vast majority of cases and allow users to hack freely on their private versions. We believe this will result in a set of high quality packages that are heavily tested with each other and form a fantastic base for any private modifications you need.
-- **Per-dll vs. per-application**. When dependencies are independently versioned on a library level, it encourages every build environment to be a completely unique, unable to take advantage of or contribute to a solid, well tested ecosystem. In contrast, by versioning all libraries together as a platform (similar to a system package manager), we hope to congregate testing and effort on very common sets of library versions to maximize the quality and stability of the ecosystem. This also completely designs out the ability for a library to ask for versions that conflict with the application's choices (I want openssl Z and boost X but X only claims to work with openssl Y).
-- **Cross-platform vs. single-platform**. While being hosted on many platforms is an excellent north star, we believe the level of system integration and stability provided by apt-get, yum, and homebrew is well worth needing to exchange apt-get install libboost-all-dev with brew install boost in automated scripts. We chose to make our system as easy as possible to integrate into a world with these very successful system managers -- one more line for vcpkg install boost -- instead of attempting to replace them where they are already so successful and well-loved.
-- **C++/CMake vs python**. While Python is an excellent language loved by many, we believe that transparency and familiarity are the most important factors when choosing a tool as important to your workflow as a package manager. Consequently, we chose to make the implementation languages be as universally accepted as possible: C++ should be used in a C++ package manager for C++ programmers. You should not be required to learn another programming language just to understand your package manager.
+- **Transitive ABI tracking**. vcpkg rebuilds open-source dependencies impacted by a change in a particular package. For example, if a new update is released for Boost, vcpkg will rebuild all dependencies of Boost and libraries that depend on Boost to ensure they still work. PRs to update libraries in the vcpkg repo are not merged until such build-time conflicts are addressed.
 
 ### vcpkg compared to system package managers
 

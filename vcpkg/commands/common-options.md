@@ -104,13 +104,13 @@ Defaults to searching upwards from the current working directory for the nearest
 
 ### <a name="overlay-ports"></a> `--overlay-ports=<path>`
 
-Specifies a directory containing [overlay ports](../users/registries.md#overlays).
+Specifies a directory containing [overlay ports](../concepts/package-name-resolution.md#overlays).
 
 This option can be specified multiple times; ports will resolve to the first match.
 
 ### <a name="overlay-triplets"></a> `--overlay-triplets=<path>`
 
-Specifies a directory containing [overlay triplets](../users/triplets.md#adding-or-replacing-triplets).
+Specifies a directory containing [overlay triplets](../concepts/triplets.md#add-or-replace-triplets).
 
 This option can be specified multiple times to add multiple directories; triplets will resolve to the first match by name.
 

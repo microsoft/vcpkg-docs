@@ -1,39 +1,52 @@
 ### YamlMime:Landing
 
 title: vcpkg documentation
-summary: vcpkg is a cross-platform package manager for C and C++ developers. Using vcpkg you can quickly get thousands of high quality open source libraries to empower your application and internally share collections of private components.
+summary: vcpkg is a cross-platform C/C++ package manager. Get access to thousands of high quality open-source libraries to empower your application and internally share collections of private components.
+
 
 metadata:
   title: vcpkg documentation
-  description: vcpkg is a cross-platform package manager for C and C++ developers. Using vcpkg you can quickly get thousands of high quality open source libraries to empower your application and internally share collections of private components.
+  description: vcpkg is the leading cross-platform C/C++ package manager. Get access to thousands of high quality open-source libraries to empower your application and internally share collections of private components.
   ms.prod: vcpkg
   ms.topic: landing-page
   author: ras0219-msft
   ms.author: roschuma
-  ms.date: 11/17/2022
+  ms.date: 10/25/2023
 
 landingContent:
   # Card 
   - title: Get started
     linkLists:
-      - linkListType: quickstart
+      - linkListType: tutorial
         links:
-          - text: Use sqlite3 in Visual Studio
-            url: examples/installing-and-using-packages.md
-          - text: Use sqlite3 in CMake
-            url: examples/installing-and-using-packages.md
-          - text: Use sqlite3 in Other Buildsystems
-            url: examples/installing-and-using-packages.md
+          - text: Install and use packages with CMake
+            url: get_started/get-started.md
+          - text: Install and use packages with CMake in Visual Studio
+            url: get_started/get-started-vs.md
+          - text: Install and use packages with MSBuild in Visual Studio
+            url: get_started/get-started-msbuild.md
+          - text: Create and publish packages
+            url: get_started/get-started-packaging.md
+          - text: Contribute an open-source library to vcpkg
+            url: get_started/get-started-adding-to-registry.md
 
   # Card
-  - title: Use Packages
+  - title: Consume packages
     linkLists:
-      - linkListType: overview
+      - linkListType: tutorial
         links:
+          - text: Install dependencies for your project
+            url: consume/manifest-mode.md
+          - text: Install dependencies globally
+            url: consume/classic-mode.md
           - text: Customize compilation flags
             url: users/triplets.md
+          - text: Lock package versions
+            url: consume/lock-package-versions.md
+          - text: Install your private dependencies
+            url: consume/git-registries.md
           - text: Reuse builds between projects and machines
-            url: users/binarycaching.md
+            url: consume/binary-caching-local.md
           - text: Mirror external resources for disconnected builds
             url: users/assetcaching.md
       - linkListType: deploy
@@ -42,15 +55,35 @@ landingContent:
             url: users/buildsystems/cmake-integration.md
           - text: Integrate with your MSBuild (Visual Studio) project
             url: users/buildsystems/msbuild-integration.md
-          - text: Integrate with a custom buildsystem
+          - text: Integrate with a different build system
             url: users/buildsystems/manual-integration.md
 
   # Card (Optional; Remove if not applicable.)
-  - title: Create Packages
+  - title: Produce packages
     linkLists:
-      - linkListType: reference
+      - linkListType: tutorial
         links:
-          - text: Registry structure reference
-            url: maintainers/registries.md
-          - text: Portfile variable reference
-            url: maintainers/variables.md
+          - text: Package a library from GitHub
+            url: examples/packaging-github-repos.md
+          - text: Apply patches to a dependency's source code
+            url: examples/patching.md
+          - text: Provide usage documentation
+            url: maintainers/handling-usage-files.md
+
+  # Features
+  - title: Features
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: Manifest files
+            url: concepts/manifest-mode.md
+          - text: Build system integration
+            url: users/buildsystems/cmake-integration.md
+          - text: Versioning
+            url: users/versioning.concepts.md
+          - text: Registries
+            url: users/registries.md
+          - text: Binary caching
+            url: consume/binary-caching-overview.md
+          - text: Asset caching
+            url: users/assetcaching.md
