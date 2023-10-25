@@ -29,7 +29,7 @@ In this tutorial we show you how to:
 ## Prerequisites
 
 * A terminal
-* A C++ copmpiler
+* A C++ compiler
 * vcpkg
 * Git
 * A library hosted in an Azure DevOps repository
@@ -60,7 +60,7 @@ descriptions of each property in the manifest file.
 
 ## 3 - Create the port's recipe script
 
-Inside the port's directory create a file named `portfile.cmake`, replace the
+Inside the port's directory, create a file named `portfile.cmake` and replace the
 placeholders with the appropiate values for your package.
 
 `portfile.cmake`
@@ -86,9 +86,7 @@ file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/copyright" DESTINATION "${CURRENT_PACKAG
 Creating a port to package an Azure DevOps follows the same process as packaging
 any Git-hosted package.
 
-The `portfile.cmake` provided here is but a template to follow for your own
-packages, you may require additional commands to build your package and copy the
-output into vcpkg's installation folder.
+The `portfile.cmake` provided here is a template to follow for your own packages. You may require additional commands to build your package and copy the output into your vcpkg installation folder.
 
 ## Next steps
 
