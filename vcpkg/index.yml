@@ -1,7 +1,8 @@
 ### YamlMime:Landing
 
 title: vcpkg documentation
-summary: vcpkg is the leading cross-platform C/C++ package manager. Get access to thousands of high quality open-source libraries to empower your application and internally share collections of private components.
+summary: vcpkg is a cross-platform C/C++ package manager. Get access to thousands of high quality open-source libraries to empower your application and internally share collections of private components.
+
 
 metadata:
   title: vcpkg documentation
