@@ -25,7 +25,7 @@ This tutorial guides you on how to package a library for vcpkg using a custom ov
 ::: zone pivot="shell-cmd, shell-powershell"
 
 > [!NOTE]
-> For Windows users, Visual Studio's MSVC (Microsoft Visual C++ Compiler) is the required compiler for C++ development.
+> For Windows users, Visual Studio's MSVC is the required compiler for C++ development.
 
 ::: zone-end
 
