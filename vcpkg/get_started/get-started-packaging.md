@@ -75,7 +75,7 @@ Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
 
 ## 3 - Set up the custom overlay
 
-1. Create a new directory called `custom-overlay` next to the `Hello World` project you created in the [Install and use packages with CMake](get-started.md).
+1. Create a new directory called `custom-overlay` next to the `Hello World` project you created in the [Install and use packages with CMake](get-started.md) tutorial.
 2. Within `custom-overlay` directory, create a folder named `vcpkg-sample-library`.
 
 ## 4 - Set up the port files
