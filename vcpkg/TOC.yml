@@ -89,6 +89,8 @@
       href: produce/publish-to-a-git-registry.md
 - name: Concepts
   items:
+  - name: Glossary
+    href: concepts/glossary.md
   - name: Asset caching
     href: concepts/asset-caching.md
   - name: Build-system integration
