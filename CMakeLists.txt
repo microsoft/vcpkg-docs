@@ -2,26 +2,33 @@ cmake_minimum_required(VERSION 3.10)
 
 project(my_sample_lib)
 
+include(GNUInstallDirs)
+
 # Find the fmt library
 find_package(fmt CONFIG REQUIRED)
 
 # Add your library
-add_library(my_sample_lib STATIC my_sample_lib.cpp)
+add_library(my_sample_lib my_sample_lib.cpp)
+
+if (BUILD_SHARED_LIBS AND MSVC)
+    target_compile_definitions(my_sample_lib PRIVATE MYLIB_EXPORTS)
+endif()
 
 # Link your library to fmt
 target_link_libraries(my_sample_lib PRIVATE fmt::fmt)
 
+
 # Add include directories
 target_include_directories(my_sample_lib PUBLIC 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>   # for headers when building
-    $<INSTALL_INTERFACE:include>  # for client in install mode
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>  # for client in install mode
 )
 # Install the library and its headers
 install(TARGETS my_sample_lib
         EXPORT my_sample_lib_targets
-        ARCHIVE DESTINATION lib
-        LIBRARY DESTINATION lib
-        RUNTIME DESTINATION bin)
+        ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+        LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+        RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 install(FILES my_sample_lib.h DESTINATION include)
 
