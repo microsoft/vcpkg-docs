@@ -34,18 +34,19 @@ In this tutorial, you will learn to:
 * vcpkg
 * [Git](<https://git-scm.com/downloads>)
 * A C++ compiler
+* Completion of the [packaging tutorial](../get_started/get-started-packaging.md)
 
 ## 1 - Create an overlay port
 The first step is to create an [overlay port](../concepts/overlay-ports.md) of
 the package you want to modify.
 
-1 - Create a directory to hold your overlay ports
+#### Create a directory to hold your overlay ports
 
 The overlay ports directory can be created in any filesystem location of your choosing. In any step of this tutorial, replace `$OVERLAY_LOCATION` with your chosen location.
 
 ::: zone pivot="shell-powershell, shell-cmd"
 
-```powershell
+```console
 mkdir "$OVERLAY_LOCATION"
 ```
 
@@ -58,7 +59,7 @@ mkdir "$OVERLAY_LOCATION"
 
 ::: zone-end
 
-2 - Copy the contents of the port into your overlay ports directory
+#### Copy the contents of the port into your overlay ports directory
 
 For this tutorial, you'll modify the `vcpkg-sample-library` port in the
 [packaging tutorial](../get_started/get-started-packaging.md) to add dynamic
@@ -103,7 +104,7 @@ Initialize a temporary Git repository in the source code location. This is in or
 to use Git to generate patch files that you can apply in the `portfile.cmake`
 script. Replace `$SOURCE_PATH` with the location obtained in the previous step.
 
-```bash
+```console
 cd "$SOURCE_PATH"
 git init
 git add .
