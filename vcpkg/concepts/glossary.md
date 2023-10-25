@@ -19,8 +19,8 @@ ambiguity this article provides specific meanings for these terms.
 ### Library
 
 A piece of software (source code, binary files, documentation, license, etc.)
-that is intended to be reused by other software. Most ports in the vcpkg
-registry install libraries.
+that is intended to be reused by other software. Most ports in the [vcpkg
+registry](<https://github.com/Microsoft/vcpkg>) install C/C++ libraries.
 
 ## M
 
