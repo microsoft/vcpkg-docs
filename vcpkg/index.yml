@@ -1,22 +1,23 @@
 ### YamlMime:Landing
 
 title: vcpkg documentation
-summary: vcpkg is a cross-platform package manager for C and C++ developers. Using vcpkg you can quickly get thousands of high quality open source libraries to empower your application and internally share collections of private components.
+summary: vcpkg is a cross-platform C/C++ package manager. Get access to thousands of high quality open-source libraries to empower your application and internally share collections of private components.
+
 
 metadata:
   title: vcpkg documentation
-  description: vcpkg is a cross-platform package manager for C and C++ developers. Using vcpkg you can quickly get thousands of high quality open source libraries to empower your application and internally share collections of private components.
+  description: vcpkg is the leading cross-platform C/C++ package manager. Get access to thousands of high quality open-source libraries to empower your application and internally share collections of private components.
   ms.prod: vcpkg
   ms.topic: landing-page
   author: ras0219-msft
   ms.author: roschuma
-  ms.date: 10/23/2023
+  ms.date: 10/25/2023
 
 landingContent:
   # Card 
   - title: Get started
     linkLists:
-      - linkListType: quickstart
+      - linkListType: tutorial
         links:
           - text: Install and use packages with CMake
             url: get_started/get-started.md
@@ -24,9 +25,13 @@ landingContent:
             url: get_started/get-started-vs.md
           - text: Install and use packages with MSBuild in Visual Studio
             url: get_started/get-started-msbuild.md
+          - text: Create and publish packages
+            url: get_started/get-started-packaging.md
+          - text: Contribute an open-source library to vcpkg
+            url: get_started/get-started-adding-to-registry.md
 
   # Card
-  - title: Use packages
+  - title: Consume packages
     linkLists:
       - linkListType: tutorial
         links:
@@ -50,7 +55,7 @@ landingContent:
             url: users/buildsystems/cmake-integration.md
           - text: Integrate with your MSBuild (Visual Studio) project
             url: users/buildsystems/msbuild-integration.md
-          - text: Integrate with a custom buildsystem
+          - text: Integrate with a different build system
             url: users/buildsystems/manual-integration.md
 
   # Card (Optional; Remove if not applicable.)
@@ -72,7 +77,7 @@ landingContent:
         links:
           - text: Manifest files
             url: concepts/manifest-mode.md
-          - text: Build-system integration
+          - text: Build system integration
             url: users/buildsystems/cmake-integration.md
           - text: Versioning
             url: users/versioning.concepts.md
