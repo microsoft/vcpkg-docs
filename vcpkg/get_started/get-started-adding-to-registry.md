@@ -1,19 +1,19 @@
 ---
-title: "Tutorial: Add ports to the vcpkg registry"
-description: Tutorial guides the user through the process of adding a port to the vcpkg registry.
+title: "Tutorial: Add a port to the vcpkg open-source registry"
+description: Tutorial guides the user through the process of adding a port to the vcpkg open-source registry.
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
-ms.date: 10/17/2023
+ms.date: 10/25/2023
 ms.prod: vcpkg
 #CustomerIntent: As a beginner C++ developer, I want to learn how to add a port to the vcpkg registry.
 ---
 
-# Tutorial: Add a port to vcpkg registry
+# Tutorial: Add a port to the vcpkg open-source registry
 
-This tutorial guides you on how to package a library for vcpkg using a custom overlay. We recommended that you read the [Packaging a library](get-started-packaging.md) tutorial before proceeding. 
+This tutorial guides you on how to package a library for vcpkg using a custom overlay. We recommended that you read the [Packaging a library](get-started-packaging.md) tutorial before proceeding.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ This tutorial guides you on how to package a library for vcpkg using a custom ov
 
 ## 1 - Fork the vcpkg Repository
 
-1. Navigate to the [vcpkg GitHub repository](https://github.com/vcpkg).
+1. Navigate to the [vcpkg GitHub repository](https://github.com/Microsoft/vcpkg).
 2. Click the "Fork" button at the top right corner of the page.
 3. Choose your GitHub account as the destination for the fork.
 
@@ -73,10 +73,11 @@ Copy-Item -Path <path/to/vcpkg-sample-library> -Destination <ports/vcpkg-sample-
 ```
 
 ::: zone-end
+
 ## 5 - Commit and push changes
 
 1. Commit the changes:
-   
+
    ```console
     git add ports/<library-name>
     git commit -m "Add vcpkg-sample-library to vcpkg"
@@ -118,4 +119,3 @@ For more information, see:
 - [Maintainer guide](../contributing/maintainer-guide.md)
 - [Ports](../concepts/ports.md)
 - [Publishing to a private git registry](../produce/publish-to-a-git-registry.md)
-
