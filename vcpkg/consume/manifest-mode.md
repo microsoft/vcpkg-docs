@@ -104,6 +104,11 @@ CMake configure call.
 * Set the `CMAKE_TOOLCHAIN_FILE` CMake variable before the first call to `project()` in your
 `CMakeLists.txt` file.
 
+```
+Note: if you do not set the vcpkg.json file in your project directory but you manually call the manifest mode, then you must pass CMAKE_TOOLCHAIN_FILE to the folder vcpkg_installed.
+Need to pass: -DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/vcpkg_installed/<triplet>
+```
+
 ---
 
 ## 3 - Install dependencies
