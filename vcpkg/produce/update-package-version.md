@@ -13,6 +13,7 @@ zone_pivot_groups: shell-selections
 ---
 
 # Tutorial: Update an existing vcpkg dependency
+
 This tutorial guides you on updating the version of an existing vcpkg
 dependency.  We recommend that you read the tutorial on [publishing a
 library](../get_started/get-started-adding-to-registry.md) before proceeding.
@@ -21,13 +22,12 @@ In this tutorial, you will learn to:
 
 > [!div class="checklist"]
 > * [Create an overlay port](#1---create-an-overlay-port)
-> * [Get the port's source code](#2---get-the-ports-source-code)
-> * [Create a temporary Git registry](#3---create-a-temporary-git-registry)
-> * [Modify the necessary files](#4---modify-the-necessary-files)
-> * [Generate a patch file](#5---generate-a-patch-file)
-> * [Modify `portfile.cmake` to apply the patch
->   file](#6---modify-portfilecmake-to-apply-the-patch)
-> * [Install your overlay port](#7---install-your-overlay-port)
+> * [Modify the port's version](#2---modify-the-ports-version)
+> * [Modify `porfile.cmake`](#3---modify-portfilecmake)
+> * [Install your overlay port](#4---install-your-overlay-port)
+> * [Update the built-in registry port](#5---update-the-built-in-registry-port)
+> * [Open a Pull Request](#6---open-a-pull-request)
+
 ## Prerequisites
 
 * A terminal
@@ -38,10 +38,11 @@ In this tutorial, you will learn to:
   tutorial](../get_started/get-started-packaging.md)
 
 ## 1 - Create an overlay port
+
 The first step is to create an [overlay port](../concepts/overlay-ports.md) of
 the package you want to modify.
 
-#### Create a directory to hold your overlay ports
+### Create a directory to hold your overlay ports
 
 The overlay ports directory can be created in any filesystem location of your
 choosing. In any step of this tutorial, replace `$OVERLAY_LOCATION` with your
@@ -53,7 +54,8 @@ chosen location.
 mkdir "$OVERLAY_LOCATION"
 ```
 
-::: zone-end ::: zone pivot="shell-bash"
+::: zone-end
+::: zone pivot="shell-bash"
 
 ```bash
 mkdir "$OVERLAY_LOCATION"
@@ -61,7 +63,7 @@ mkdir "$OVERLAY_LOCATION"
 
 ::: zone-end
 
-#### Copy the contents of the port into your overlay ports directory
+### Copy the contents of the port into your overlay ports directory
 
 For this tutorial, you'll update the `vcpkg-sample-library` port in the
 [publishing a package
@@ -74,17 +76,20 @@ has dynamic library support.
 Copy-Item -Path <path/to/vcpkg-sample-library> -Destination "$OVERLAY_LOCATION" -Recurse
 ```
 
-::: zone-end ::: zone pivot="shell-cmd"
+::: zone-end 
+::: zone pivot="shell-cmd"
 
 ```console
 xcopy <path/to/vcpkg-sample-library> "$OVERLAY_LOCATION" /E
 ```
 
-::: zone-end ::: zone pivot="shell-bash"
+::: zone-end 
+::: zone pivot="shell-bash"
 
 ```bash
 cp -R <path/to/vcpkg-sample-library> "$OVERLAY_LOCATION"
 ```
+
 ::: zone-end
 
 ## 2 - Modify the ports version
@@ -158,13 +163,13 @@ file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share
 configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" COPYONLY)
 ```
 
-## 5 - Install your overlay port
+## 4 - Install your overlay port
 
 To verify that your port works, run the following command:
 
 `vcpkg install "--overlay-ports=$OVERLAY_LOCATION" vcpkg-sample-library`
 
-## 6 - Update the built-in registry port
+## 5 - Update the built-in registry port
 
 ### Replace the contents of the port
 
@@ -172,7 +177,7 @@ Replace the contents of `vcpkg-sample-library` in the `ports` directory with
 your updated files. Then commit your changes by running the following commands
 in your local clone of the vpckg repository:
 
-```bash
+```Console
 git checkout -b vcpkg-sample-library-1.0.1
 git add ports/vcpkg-sample-library
 git commit -m "Update vcpkg-sample-library to version 1.0.1"
@@ -182,7 +187,7 @@ git commit -m "Update vcpkg-sample-library to version 1.0.1"
 
 Run the [`vcpkg x-add-version`] command to update the versions database files.
 
-```bash
+```Console
 vcpkg x-add-version vcpkg-sample-library
 ```
 
@@ -191,13 +196,13 @@ vcpkg x-add-version vcpkg-sample-library
 Run the following commands to update the versions database and push your changes
 to your fork of <https://github.com/Microsoft/vcpkg>.
 
-```bash
+```Console
 git add versions/.
 git commit -m "Update vcpkg-sample-library to version 1.0.1" --amend
 git push --set-upstream <fork remote> vcpkg-sample-library-1.0.1
 ```
 
-## 7 - Open a Pull Request
+## 6 - Open a Pull Request
 
 1. Navigate to your forked repository on GitHub.
 2. Click the "Compare & pull request" button.
@@ -212,8 +217,7 @@ That's it! You've successfully updated a port in the vcpkg's curated registry.
 
 For more information, see:
 
-- [CMake guidelines](../contributing/cmake-guidelines.md)
-- [Maintainer guide](../contributing/maintainer-guide.md)
-- [Ports](../concepts/ports.md)
-- [Publishing to a private git
-  registry](../produce/publish-to-a-git-registry.md)
+* [CMake guidelines](../contributing/cmake-guidelines.md)
+* [Maintainer guide](../contributing/maintainer-guide.md)
+* [Ports](../concepts/ports.md)
+* [Publishing to a private git registry](../produce/publish-to-a-git-registry.md)
