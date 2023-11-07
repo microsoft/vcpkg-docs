@@ -21,8 +21,8 @@ Exports built packages from the [installed directory](common-options.md#install-
 2. Their transitive dependencies
 3. [Integration files](#standard-integration), such as a [CMake toolchain][cmake] or [MSBuild props/targets][msbuild]
 
-[!NOTE]
-This command's behavior is different in [Classic Mode](../users/classic-mode.md) and [Manifest Mode](../users/manifests.md)
+>[!NOTE]
+>This command's behavior is different in [Classic Mode](../users/classic-mode.md) and [Manifest Mode](../users/manifests.md)
 
 The `export` command does not install any packages or transitive dependencies. It only exports packages that are already installed. 
 
