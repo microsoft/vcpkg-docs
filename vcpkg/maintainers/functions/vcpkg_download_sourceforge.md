@@ -1,37 +1,36 @@
 ---
-title: vcpkg_from_sourceforge
-description: Learn how to use vcpkg_from_sourceforge.
-ms.date: 11/30/2022
+title: vcpkg_download_sourceforge
+description: Learn how to use vcpkg_download_sourceforge.
+ms.date: 11/10/2023
 ---
-# vcpkg_from_sourceforge
+# vcpkg_download_sourceforge
 
-Download and extract an archive from a project from SourceForge.
+Download a file from a project in SourceForge.
 
 This function automatically checks a set of SourceForge mirrors.
 Additional mirrors can be injected through the `VCPKG_SOURCEFORGE_EXTRA_MIRRORS`
 list variable in the triplet.
 
+To use the file as source code, use [`vcpkg_from_sourceforge`](vcpkg_from_sourceforge.md) rather than this function plus
+`vcpkg_extract_source_archive`.
+
 ## Usage
 
 ```cmake
-vcpkg_from_sourceforge(
-    OUT_SOURCE_PATH SOURCE_PATH
+vcpkg_download_sourceforge(
+    <OUT_VARIABLE>
     REPO <cunit/CUnit>
     [REF <2.1-3>]
     SHA512 <547b417109332...>
     FILENAME <CUnit-2.1-3.tar.bz2>
-    [NO_REMOVE_ONE_LEVEL]
-    [PATCHES <patch1.patch> <patch2.patch>...]
 )
 ```
 
 ## Parameters
 
-### OUT_SOURCE_PATH
+### OUT_VARIABLE
 
-Specifies the out-variable that will contain the extracted location.
-
-This should be set to `SOURCE_PATH` by convention.
+This variable will be set to the full path to the downloaded file.
 
 ### REPO
 
@@ -61,28 +60,6 @@ The SHA512 hash that should match the archive.
 This is most easily determined by first setting it to `0`, then trying to build the port. The error message will
 contain the full hash, which can be copied back into the portfile.
 
-### WORKING_DIRECTORY
-
-If specified, the archive will be extracted into the working directory instead of `${CURRENT_BUILDTREES_DIR}/src/`.
-
-The archive will still be extracted into a subfolder underneath that directory (`${WORKING_DIRECTORY}/${REF}-${HASH}/`).
-
-### PATCHES
-
-A list of patches to be applied to the extracted sources.
-
-Relative paths are based on the port directory.
-
-### NO_REMOVE_ONE_LEVEL
-
-Specifies that the default removal of the top level folder should not occur.
-
-## Examples
-
-- [cunit](https://github.com/Microsoft/vcpkg/blob/master/ports/cunit/portfile.cmake)
-- [polyclipping](https://github.com/Microsoft/vcpkg/blob/master/ports/polyclipping/portfile.cmake)
-- [tinyfiledialogs](https://github.com/Microsoft/vcpkg/blob/master/ports/tinyfiledialogs/portfile.cmake)
-
 ## Source
 
-[scripts/cmake/vcpkg\_from\_sourceforge.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_from_sourceforge.cmake)
+[scripts/cmake/vcpkg\_download\_sourceforge.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_download_sourceforge.cmake)
