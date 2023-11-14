@@ -28,7 +28,7 @@ When you set `CMAKE_TOOLCHAIN_FILE` to use the vcpkg toolchain
 mechanism to inject code to integrate with built-in CMake functions transparently to you.
 
 You can still use a toolchain file to configure your own toolsets by using the
-[`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](../../users/triplets.md#VCPKG_CHAINLOAD_TOOLCHAIN_FILE) triplet variable.
+[`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](../../users/triplets.md#vcpkg_chainload_toolchain_file) triplet variable.
 
 Th vcpkg integration works differently depending on the operation mode you're using:
 
