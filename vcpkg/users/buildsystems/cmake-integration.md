@@ -15,7 +15,7 @@ your projects automatically. The mechanism in which vcpkg integrates is by provi
 The first time CMake configures a project, it runs internal search routines to locate a viable
 [toolchain](<https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#id9>) (compiler,
 linker, etc.). This search happens within the
-[project()](https://cmake.org/cmake/help/latest/command/project.html#command:project) function in
+[`project()`](https://cmake.org/cmake/help/latest/command/project.html#command:project) function in
 your `CMakeLists.txt`.
 
 To customize the toolchain selection process, CMake supports using custom CMake-language scripts,
