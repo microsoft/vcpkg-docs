@@ -157,6 +157,19 @@ This property defines the location vcpkg will install and consume libraries from
 In manifest mode, this defaults to `$(VcpkgManifestRoot)\vcpkg_installed\$(VcpkgTriplet)\`. In
 classic mode, this defaults to `$(VcpkgRoot)\installed\`.
 
+### `VcpkgApplocalDeps` (App-locally deploy DLLs)
+
+This property enables or disables detection and copying of dependent DLLs from the vcpkg installed
+tree to the project output directory.
+
+### `VcpkgXUseBuiltInApplocalDeps` (Use built-in app-local deployment)
+
+This property, when enabled, uses vcpkg's experimental built-in app-local DLL deployment
+implementation when app-locally deploying DLLs. This property will be removed and have no effect
+when the built-in implementation is no longer experimental.
+
+This property has no effect when `$(VcpkgApplocalDeps)` is false.
+
 ## Manifest mode configuration
 
 To use [manifests](../manifests.md) ([`vcpkg.json`](../../reference/vcpkg-json.md)) with MSBuild,
