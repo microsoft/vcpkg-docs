@@ -22,23 +22,23 @@ In this tutorial, we'll walk through how to export compiled dependencies using v
 
 ## 1 - Install `fmt` library
 
-Begin by opening your terminal and navigating to the directory where vcpkg is installed. Once there, install the `fmt` library for your target platform:
+Open a terminal and navigate to the directory where vcpkg is installed then install the `fmt` library for your target platform:
 
 ```console
 vcpkg install fmt:x64-windows
 ```
 
-Replace `x64-windows` with your specific target triplet if different.
+Replace `x64-windows` with your target triplet.
 
 ## 2 - Export `fmt` library
 
-After installing `fmt`, you can export it by running:
+After installing `fmt`, export it by running:
 
 ```console
 vcpkg export fmt:x64-windows --zip
 ```
 
-You should see something similar to the following:
+You should see output similar to the following:
 
 ```console
 The following packages are already built and will be exported:
@@ -54,7 +54,7 @@ Zip archive exported at: C:\dev\vcpkg\vcpkg-export-20231106-164550.zip
 To use exported libraries in CMake projects, add -DCMAKE_TOOLCHAIN_FILE=[...]/scripts/buildsystems/vcpkg.cmake to your CMake command line.
 ```
 
-This command will create a zip archive containing all the necessary files to use the `fmt` library, including binaries and headers. For a list of all the supported formats check out the reference [documentation](../commands/export.md#formats).
+The command creates a zip archive containing all the necessary files to use the `fmt` library, including binaries and headers. For a list of all the supported formats check out the [`export` command documentation](../commands/export.md#formats).
 
 ## 3 - Use the `fmt` library in a new CMake project
 
