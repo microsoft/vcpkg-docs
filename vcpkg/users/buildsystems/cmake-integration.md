@@ -15,7 +15,7 @@ your projects automatically. The mechanism in which vcpkg integrates is by provi
 The first time CMake configures a project, it runs internal search routines to locate a viable
 [toolchain](<https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#id9>) (compiler,
 linker, etc.). This search happens within the
-`[project()](https://cmake.org/cmake/help/latest/command/project.html#command:project)` function in
+[`project()`](https://cmake.org/cmake/help/latest/command/project.html#command:project) function in
 your `CMakeLists.txt`.
 
 To customize the toolchain selection process, CMake supports using custom CMake-language scripts,
@@ -28,7 +28,7 @@ When you set `CMAKE_TOOLCHAIN_FILE` to use the vcpkg toolchain
 mechanism to inject code to integrate with built-in CMake functions transparently to you.
 
 You can still use a toolchain file to configure your own toolsets by using the
-[]`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](../users/triplets.md#VCPKG_CHAINLOAD_TOOLCHAIN_FILE) triplet variable.
+[`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](../../users/triplets.md#vcpkg_chainload_toolchain_file) triplet variable.
 
 Th vcpkg integration works differently depending on the operation mode you're using:
 
