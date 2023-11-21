@@ -58,7 +58,7 @@
       href: consume/binary-caching-github-actions-cache.md
     - name: Set up a binary cache using GitHub Packages in your GitHub Actions workflow
       href: consume/binary-caching-github-packages.md
-  - name: Improve reliability by caching dependencies assets
+  - name: Improve reliability by caching dependency assets
     items:
     - name: Set up a vcpkg asset cache
       href: consume/asset-caching.md
@@ -77,6 +77,8 @@
     # TODO: Modernize: examples/patching.md
   - name: Apply patches to a dependency's source code
     href: examples/patching.md
+  - name: Update an existing dependency
+    href: produce/update-package-version.md
   - name: Provide usage documentation for your packages
     href: maintainers/handling-usage-files.md
   - name: Publish dependencies
@@ -89,9 +91,11 @@
       href: produce/publish-to-a-git-registry.md
 - name: Concepts
   items:
+  - name: Glossary
+    href: concepts/glossary.md
   - name: Asset caching
     href: concepts/asset-caching.md
-  - name: Build-system integration
+  - name: Build system integration
     items:
     - name: Available build system integrations
       href: concepts/build-system-integration.md
