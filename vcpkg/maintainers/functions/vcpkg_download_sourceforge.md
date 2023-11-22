@@ -55,7 +55,7 @@ So the REPO is `mad/libmad`, the REF is `0.15.1b`, and the FILENAME is `libmad-0
 
 For some special links:
 https://sourceforge.net/settings/mirror_choices?projectname=soxr&filename=soxr-0.1.3-Source.tar.xz&selected=nchc
-The REPO is `soxr`, REF is not exist, and the FILENAME is `soxr-0.1.3-Source.tar.xz`
+The REPO is `soxr`, REF is empty, and the FILENAME is `soxr-0.1.3-Source.tar.xz`
 
 ### SHA512
 
