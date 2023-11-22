@@ -1,6 +1,10 @@
 ---
 title: vcpkg_from_git
 description: Learn how to use vcpkg_from_git.
+author: vicroms
+ms.author: viromer
+ms.prod: vcpkg
+ms.topic: reference
 ms.date: 11/10/2023
 ---
 # vcpkg_from_git
