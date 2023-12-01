@@ -19,6 +19,17 @@ vcpkg_cmake_config_fixup(
 )
 ```
 
+To use this function, you must depend on the helper port `vcpkg-cmake-config`:
+
+```json
+"dependencies": [
+  {
+    "name": "vcpkg-cmake-config",
+    "host": true
+  }
+]
+```
+
 Additionally corrects common issues with targets, such as absolute paths and incorrectly placed binaries.
 
 For many ports, `vcpkg_cmake_config_fixup()` on its own should work,
