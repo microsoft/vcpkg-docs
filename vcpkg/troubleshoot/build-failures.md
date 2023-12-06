@@ -10,30 +10,18 @@ ms.topic: troubleshooting-general
 
 # Troubleshoot build failures in vcpkg ports
 
-This guide is intended for users experiencing issues while building ports using vcpkg.
+This guide is intended for users experiencing issues while installing ports
+using vcpkg.
 
-<!-- 
-## <a name="debug-output"></a> Enable vcpkg debugging information
+## <a name="failure-logs"></a> Locate failure logs
 
-It is highly recommended that you enable debug output when following this guide.
+Build failures can happen for an almost infinite number of reasons. When vcpkg
+fails to build a port, the first step to diagnose the reason is to read the log files.
 
-* [Classic mode](classic-mode.md): add `--debug` to your command invocation.
-* CMake toolchain: add `-DVCPKG_INSTALL_OPTIONS="--debug"` in your CMake
-  configure call or in your `CMakePresets.json` file.
-* MSBuild/Visual Studio: set the property `VcpkgAdditionalInstallOptions` to
-  `--debug`.
-* Set the `VCPKG_INSTALL_OPTIONS` environment variable to `--debug`. 
--->
-
-## <a name="install-logs"></a> Locate installation logs
-
-Build failures can happen for an almost infinite number of reasons. When a build
-failure occurs in the port's underlying build system the first step to diagnose
-it is to read the log files.
-
-vcpkg prints the location of the log file for the last step it executed before
-the error ocurred. Look for the line "See logs for more infomation:" in the
-vcpkg output.
+vcpkg generates a log file for each external process that gets invoked while
+building a port. When an error occurs, vcpkg prints the location of the log file
+for the last process that ran before the error ocurred. Look for the line "See
+logs for more infomation:" in the vcpkg output.
 
 Example: Log output
 
@@ -46,6 +34,58 @@ Example: Log output
 You can find all the produced log files by inspecting the port's `buildtrees`
 directory located in `$VCPKG_ROOT/buildtrees/<port>/` (replace `<port>` with the
 appropriate port name).
+
+## Failed to download the port's assets
+
+> [!NOTE]
+> Using [asset caching](../concepts/asset-caching.md) can help you mitigate this
+> kind of problems by ensuring continued availability of cached assets.
+
+When installing a port an error occurs while downloading an asset from the
+network.
+
+```Console
+CMake Error at scripts/cmake/vcpkg_download_distfile.cmake:32 (message):
+
+  Failed to download file with error: 1
+```
+
+### Cause 1: The download URL is no longer valid
+<!-- 
+Steps to reproduce:
+1. Modify a port's download URL
+2. Attempt to install
+-->
+
+By reasons outside vcpkg's control URLs can become invalid. Broken links can be
+diagnosed by using a web browser to navigate to the download URL, a broken link
+will produce a 404 status code.
+
+* Change the port to use a mirror for the expired URL
+
+### Cause 2: The downloaded file's hash has changed
+<!-- 
+Steps to reproduce:
+1. Modify a port's download SHA512
+2. Attempt to install
+-->
+
+```Console
+error: Failed to download from mirror set
+error: File does not have the expected hash:
+url: https://github.com/OpenImageIO/oiio/archive/v2.4.13.0.tar.gz
+File: /home/user/vcpkg/downloads/OpenImageIO-oiio-v2-9325beef.4.13.0.tar.gz.1925416.part
+Expected hash: 9325beefce55b66a58fcfc2ce93e1406558ed5f6cc37cb1e8e04aee470c4f30a14483bebfb311c329f7868afb6c508a052661c6b12d819a69f707c1a30cd9549
+Actual hash: 9e887c7039995ce7c41556e09a7eed940863260a522ecf7d9bec300189026ed507da560620dfa4a619deeb679be7adf42fe3a7020ff3094df777c7934c771227
+```
+
+This error occurs when the download file has been changed in any way by the
+server but the download URL is kept the same. As a security measure, vcpkg will
+reject files where their SHA512 does not match the declared SHA512 for the
+asset.
+
+* Verify that the downloaded file is secure
+* Update the file's SHA512 in the port
 
 ## Visual Studio toolchain is not found
 
@@ -85,7 +125,7 @@ algorithm](../users/triplets.md#vcpkg_visual_studio_path) to learn more.
   [`VCPKG_PLATFORM_TOOLSET`](../users/triplets.md#vcpkg_platform_toolset) to the
   appropriate version.
 * Alternatively, set the
-  [`VCPKG_VISUAL_STUDIO_PATH`](../users/triplets.md#vcpkg_visual_studio_path) to
+  [`VCPKG_VISUAL_STUDIO_PATH`](../users/triplets.md#VCPKG_VISUAL_STUDIO_PATH) to
   your desired Visual Studio instance installation path.
 
 ## Issue isn't listed here
