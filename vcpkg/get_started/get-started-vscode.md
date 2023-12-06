@@ -44,69 +44,70 @@ Install the [CMake Tools Extension](https://marketplace.visualstudio.com/items?i
 
 1. Configure the `VCPKG_ROOT` environmental variable.
 
-  Open a new Terminal in VS Code: **Terminal > New Terminal**
+Open a new Terminal in VS Code: **Terminal > New Terminal**
 
-  Run the following commands:
-  ::: zone pivot="shell-powershell"
+Run the following commands:
+::: zone pivot="shell-powershell"
 
-  ```PowerShell
-  $env:VCPKG_ROOT = "C:\path\to\vcpkg"
-  $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
-  ```
+```PowerShell
+$env:VCPKG_ROOT = "C:\path\to\vcpkg"
+$env:PATH = "$env:VCPKG_ROOT;$env:PATH"
+```
 
-  :::image type="complex" source="../resources/get_started/vscode-terminal-vcpkg.png" alt-text="setting up vcpkg environment variables":::
-    Screenshot of setting up VCPKG_ROOT and adding it to PATH in a VS Code terminal.
-  :::image-end:::
+:::image type="complex" source="../resources/get_started/vscode-terminal-vcpkg.png" alt-text="setting up vcpkg environment variables":::
+  Screenshot of setting up VCPKG_ROOT and adding it to PATH in a VS Code terminal.
+:::image-end:::
 
-  ::: zone-end
-  ::: zone pivot="shell-cmd"
+::: zone-end
+::: zone pivot="shell-cmd"
 
-  ```console
-  set VCPKG_ROOT="C:\path\to\vcpkg"
-  set PATH=%VCPKG_ROOT%;%PATH%
-  ```
+```console
+set VCPKG_ROOT="C:\path\to\vcpkg"
+set PATH=%VCPKG_ROOT%;%PATH%
+```
 
-  ::: zone-end
-  ::: zone pivot="shell-cmd"
+::: zone-end
+::: zone pivot="shell-cmd"
 
-  ```console
-  VCPKG_ROOT=/c/path/to/vcpkg
-  PATH=$PATH:$VCPKG_ROOT
-  ```
+```console
+VCPKG_ROOT=/c/path/to/vcpkg
+PATH=$PATH:$VCPKG_ROOT
+```
 
-  ::: zone-end
+::: zone-end
 
-  Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
-  Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
+Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
+Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
+
 2. Generate a manifest file and add dependencies.
 
-    Run the following command to create a vcpkg manifest file (`vcpkg.json`):
+Run the following command to create a vcpkg manifest file (`vcpkg.json`):
 
-    ```console
-    vcpkg new --application
-    ```
+```console
+vcpkg new --application
+```
 
-    The [`vcpkg new`](../commands/new.md) command adds a `vcpkg.json` file and a `vcpkg-configuration.json` file in the project's directory.
+The [`vcpkg new`](../commands/new.md) command adds a `vcpkg.json` file and a `vcpkg-configuration.json` file in the project's directory.
 
-    Add the `fmt` package as a dependency:
+Add the `fmt` package as a dependency:
 
-    ```console
-    vcpkg add port fmt
-    ```
+```console
+vcpkg add port fmt
+```
 
-    Your `vcpkg.json` should now contain:
+Your `vcpkg.json` should now contain:
 
-    ```json
-    {
-        "dependencies": [
-            "fmt"
-        ]
-    }
-    ```
+```json
+{
+  "dependencies": [
+    "fmt"
+  ]
+}
+```
 
-    This is your manifest file. vcpkg reads the manifest file to learn what dependencies to install and integrates with MSBuild to provide the dependencies required by your project.
+This is your manifest file. vcpkg reads the manifest file to learn what dependencies to install and integrates with MSBuild to provide the dependencies required by your project.
 
-    The generated `vcpkg-configuration.json` file introduces a [baseline](../reference/vcpkg-configuration-json.md#registry-baseline) that places [minimum version constraints](../users/versioning.md) on the project's dependencies. Modifying this file is beyond the scope of this tutorial. While not applicable in this tutorial, it's a good practice to keep the `vcpkg-configuration.json` file under source control to ensure version consistency across different development environments.
+The generated `vcpkg-configuration.json` file introduces a [baseline](../reference/vcpkg-configuration-json.md#registry-baseline) that places [minimum version constraints](../users/versioning.md) on the project's dependencies. Modifying this file is beyond the scope of this tutorial. While not applicable in this tutorial, it's a good practice to keep the `vcpkg-configuration.json` file under source control to ensure version consistency across different development environments.
 
 ## 3 - Set up the project files
 
