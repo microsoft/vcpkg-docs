@@ -67,7 +67,7 @@ set PATH=%VCPKG_ROOT%;%PATH%
 ```
 
 ::: zone-end
-::: zone pivot="shell-cmd"
+::: zone pivot="shell-bash"
 
 ```console
 VCPKG_ROOT=/c/path/to/vcpkg
