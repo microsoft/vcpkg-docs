@@ -47,7 +47,7 @@ Install the [CMake Tools Extension](https://marketplace.visualstudio.com/items?i
   Open a new Terminal in VS Code: **Terminal > New Terminal**
 
   Run the following commands:
-
+  ::: zone pivot="shell-powershell"
   ```PowerShell
   $env:VCPKG_ROOT = "C:\path\to\vcpkg"
   $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
@@ -57,9 +57,23 @@ Install the [CMake Tools Extension](https://marketplace.visualstudio.com/items?i
     Screenshot of setting up VCPKG_ROOT and adding it to PATH in a VS Code terminal.
   :::image-end:::
 
+  ::: zone-end
+  ::: zone pivot="shell-cmd"
+
+  ```console
+  set VCPKG_ROOT="C:\path\to\vcpkg"
+  set PATH=%VCPKG_ROOT%;%PATH%
+  ```
+  ::: zone-end
+  ::: zone pivot="shell-cmd"
+  ```console
+  VCPKG_ROOT=/c/path/to/vcpkg
+  PATH=$PATH:$VCPKG_ROOT
+  ```
+  ::: zone-end
+
   Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
   Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
-
 2. Generate a manifest file and add dependencies.
 
     Run the following command to create a vcpkg manifest file (`vcpkg.json`):
