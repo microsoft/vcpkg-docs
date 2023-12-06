@@ -48,6 +48,7 @@ Install the [CMake Tools Extension](https://marketplace.visualstudio.com/items?i
 
   Run the following commands:
   ::: zone pivot="shell-powershell"
+
   ```PowerShell
   $env:VCPKG_ROOT = "C:\path\to\vcpkg"
   $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
@@ -64,12 +65,15 @@ Install the [CMake Tools Extension](https://marketplace.visualstudio.com/items?i
   set VCPKG_ROOT="C:\path\to\vcpkg"
   set PATH=%VCPKG_ROOT%;%PATH%
   ```
+
   ::: zone-end
   ::: zone pivot="shell-cmd"
+
   ```console
   VCPKG_ROOT=/c/path/to/vcpkg
   PATH=$PATH:$VCPKG_ROOT
   ```
+
   ::: zone-end
 
   Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
