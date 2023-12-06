@@ -1,6 +1,8 @@
 ---
 title: Install and use packages with CMake in Visual Studio Code
 description: Tutorial guides the user through the process of installing and using packages with CMake and Visual Studio Code.
+zone_pivot_group_filename: zone-pivot-groups.json
+zone_pivot_groups: shell-selections
 author: data-queue
 ms.author: danshaw2
 ms.date: 12/06/2023
