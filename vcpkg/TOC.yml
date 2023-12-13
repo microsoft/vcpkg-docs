@@ -11,6 +11,8 @@
     href: get_started/get-started-vs.md
   - name: Install and use packages with MSBuild in Visual Studio
     href: get_started/get-started-msbuild.md
+  - name: Install and use packages with CMake in VS Code
+    href: get_started/get-started-vscode.md
   - name: Package a library with vcpkg
     href: get_started/get-started-packaging.md
   - name: Contribute an open-source library to vcpkg
@@ -270,6 +272,8 @@
         href: maintainers/functions/vcpkg_copy_tools.md
       - name: vcpkg_download_distfile
         href: maintainers/functions/vcpkg_download_distfile.md
+      - name: vcpkg_download_sourceforge
+        href: maintainers/functions/vcpkg_download_sourceforge.md
       - name: vcpkg_execute_build_process
         href: maintainers/functions/vcpkg_execute_build_process.md
       - name: vcpkg_execute_in_download_mode
@@ -278,6 +282,8 @@
         href: maintainers/functions/vcpkg_execute_required_process.md
       - name: vcpkg_execute_required_process_repeat
         href: maintainers/functions/vcpkg_execute_required_process_repeat.md
+      - name: vcpkg_extract_archive
+        href: maintainers/functions/vcpkg_extract_archive.md
       - name: vcpkg_extract_source_archive
         href: maintainers/functions/vcpkg_extract_source_archive.md
       - name: vcpkg_extract_source_archive_ex

@@ -30,7 +30,7 @@ mechanism to inject code to integrate with built-in CMake functions transparentl
 You can still use a toolchain file to configure your own toolsets by using the
 [`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](../../users/triplets.md#vcpkg_chainload_toolchain_file) triplet variable.
 
-Th vcpkg integration works differently depending on the operation mode you're using:
+The vcpkg integration works differently depending on the operation mode you're using:
 
 In [classic mode](../classic-mode.md), vcpkg sets CMake search paths appropriately to make 
 installed packages available via the `find_package()`, `find_library()`, and `find_path()` functions.

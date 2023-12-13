@@ -48,4 +48,4 @@ Here are some tasks to try next:
 
 * [Create your own Git-based registry](../produce/publish-to-a-git-registry.md)
 * [Install packages from a custom registry](../consume/git-registries.md)
-* [Read the registries reference documentatin](../maintainers/registries.md)
+* [Read the registries reference documentation](../maintainers/registries.md)

@@ -63,6 +63,7 @@ Most export formats contain a standard set of integration files:
 
 - A [CMake toolchain][cmake] at `/scripts/buildsystems/vcpkg.cmake`
 - [MSBuild props/targets][msbuild] at `/scripts/buildsystems/msbuild/vcpkg.props` and `/scripts/buildsystems/msbuild/vcpkg.targets`
+- The [installation tree][installation] at `/`
 
 Some export formats differ from this standard set; see the individual format help below for more details.
 
@@ -326,3 +327,4 @@ Specify the version suffix to add for the exported Chocolatey package.
 [cmake]: ../users/buildsystems/cmake-integration.md
 [msbuild]: ../users/buildsystems/msbuild-integration.md
 [Standard Integration Files]: #standard-integration
+[installation]: ../reference/installation-tree-layout.md
