@@ -3,15 +3,15 @@ title: Troubleshoot build failures
 description: Troubleshooting guide for common build failures in vcpkg ports
 author: vicroms
 ms.author: viromer
-ms.date: 11/20/2023
+ms.date: 12/12/2023
 ms.prod: vcpkg
 ms.topic: troubleshooting-general
 ---
 
 # Troubleshoot build failures in vcpkg ports
 
-This guide is intended for users experiencing issues while installing ports
-using vcpkg.
+This guide is intended for users experiencing issues while [installing 
+ports](../commands/install.md) using vcpkg.
 
 ## <a name="failure-logs"></a> Locate failure logs
 
@@ -23,7 +23,7 @@ building a port. When an error occurs, vcpkg prints the location of the log file
 for the last process that ran before the error ocurred. Look for the line "See
 logs for more infomation:" in the vcpkg output.
 
-Example: Log output
+Example: Log files location output
 
 ```Console
     See logs for more information:
@@ -61,9 +61,11 @@ By reasons outside vcpkg's control URLs can become invalid. Broken links can be
 diagnosed by using a web browser to navigate to the download URL, a broken link
 will produce a 404 status code.
 
-* Change the port to use a mirror for the expired URL
+Steps to resolve:
 
-### Cause 2: The downloaded file's hash has changed
+1 - Modify the port to use an alternative download URL for the asset.
+
+### Cause 2: The file's hash does not match the expected SHA512
 <!-- 
 Steps to reproduce:
 1. Modify a port's download SHA512
@@ -79,13 +81,14 @@ Expected hash: 9325beefce55b66a58fcfc2ce93e1406558ed5f6cc37cb1e8e04aee470c4f30a1
 Actual hash: 9e887c7039995ce7c41556e09a7eed940863260a522ecf7d9bec300189026ed507da560620dfa4a619deeb679be7adf42fe3a7020ff3094df777c7934c771227
 ```
 
-This error occurs when the download file has been changed in any way by the
+This error occurs when the upstream file has been changed in any way by the
 server but the download URL is kept the same. As a security measure, vcpkg will
-reject files where their SHA512 does not match the declared SHA512 for the
-asset.
+reject files with SHA512 that don't match the expected SHA512 for the asset.
 
-* Verify that the downloaded file is secure
-* Update the file's SHA512 in the port
+Steps to resolve:
+
+1 - Verify that the downloaded file is secure
+2 - Modify the port to use the new file's SHA512
 
 ## Visual Studio toolchain is not found
 
@@ -121,12 +124,42 @@ version of Visual Studio where the toolchain is not installed. See the
 [documentation for the Visual Studio selection
 algorithm](../users/triplets.md#vcpkg_visual_studio_path) to learn more.
 
-* Set the
+Steps to resolve:
+
+1 - Set the
   [`VCPKG_PLATFORM_TOOLSET`](../users/triplets.md#vcpkg_platform_toolset) to the
   appropriate version.
-* Alternatively, set the
+2 - Alternatively, set the
   [`VCPKG_VISUAL_STUDIO_PATH`](../users/triplets.md#VCPKG_VISUAL_STUDIO_PATH) to
   your desired Visual Studio instance installation path.
+
+## Missing system dependencies
+
+A required build tool or system dependency is not installed in the environment.
+
+Example: Port requires system dependencies
+
+```
+alsa currently requires the following programs from the system package manager:
+    autoconf autoheader aclocal automake libtoolize
+On Debian and Ubuntu derivatives:
+    sudo apt install autoconf libtool
+On recent Red Hat and Fedora derivatives:
+    sudo dnf install autoconf libtool
+On Arch Linux and derivatives:
+    sudo pacman -S autoconf automake libtool
+On Alpine:
+    apk add autoconf automake libtool
+```
+
+Most vcpkg ports that require system dependencies print a message during installation.
+In some cases, the list of required system dependencies may be incomplete. Diagnosing
+this type of issues depends on the underlying built system, [check the error 
+logs](#failure-logs) to determine the cause of the failure.
+
+Steps to resolve:
+
+1 - Follow the appropriate steps to install the missing system dependency in your environment.
 
 ## Issue isn't listed here
 

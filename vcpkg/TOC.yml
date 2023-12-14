@@ -376,6 +376,8 @@
   items:
     - name: Troubleshoot binary caching issues
       href: users/binarycaching-troubleshooting.md
+    - name: Troubleshoot package build issues
+      href: troubleshoot/build-failures.md
 - name: About
   items:
   - name: FAQ
