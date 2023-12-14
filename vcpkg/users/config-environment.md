@@ -96,6 +96,16 @@ This environment variable changes the metadata of produced NuGet packages. See [
 
 This environment variable allows using NuGet's cache for every nuget-based binary source. See [Binary Caching](binarycaching.md#nuget) for more details.
 
+## X_VCPKG_NUGET_PREFIX
+
+Adds a prefix to the name of all the binary packages pushed or restored from
+[NuGet binary caches](binarycaching.md#nuget).
+
+For example, when `X_VCPKG_NUGET_PREFIX` is set to `vcpkg_demo-` the
+`zlib_x64-windows.1.2.13-vcpkg8918746ce8b60474e5ebe68e53355fa70eb05119be913a1d1dc0b930b3b7b6e8.nupkg`
+binary package becomes
+`vcpkg_demo-zlib_x64-windows.1.2.13-vcpkg8918746ce8b60474e5ebe68e53355fa70eb05119be913a1d1dc0b930b3b7b6e8.nupkg`.
+
 ## X_VCPKG_ASSET_SOURCES
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
