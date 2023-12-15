@@ -17,8 +17,8 @@ This guide is intended for users experiencing issues with [versioning](./version
 This process involves checking the available versions of a package in the vcpkg repository.
 
 How to inspect:
-1. Navigate to the `vcpkg/versions` directory
-2. Locate the port folder
+1. Navigate to the `vcpkg/versions` directory.
+2. Locate the port folder:
    - Within the `versions` directory, ports are organized alphabetically in folders. Find the folder corresponding to the first letter of your desired port. For example, for `fmt`, look in the `f-` folder.
 3. Open the ports version file:
    - In the appropriate alphabetical folder, locate the JSON file for your port. For `fmt`, this would be `fmt.json.`
@@ -72,7 +72,7 @@ To resolve the issue:
 3. Update manifest file:
    - Edit your `vcpkg.json` file.
    - Change the specified version to one that is available in the vcpkg repository. For example, change from "version>=": "100.0.0" to "version>=": "10.1.1".  
-4. Run vcpkg install
+4. Run vcpkg install:
    - Execute the `vcpkg install` command again in your terminal or command prompt.  
 
 ## <a name="version-scheme-conflict"></a> Cause: Specifying version constraint across different schemes
