@@ -28,9 +28,9 @@ What you will find:
 In the port's version file, you'll see a list of available versions with details like version numbers and corresponding commit hashes. This information is crucial for understanding what versions you can specify in your project's `vcpkg.json` file.
 
 How to use this information:
-- Selecting a version: Choose a version from the list that meets your projects needs.
-- Updating your manifest: Reflect this in your projects `vpckg.json` file under the appropriate dependency.
-- Reinstalling packages: After updating the manifest file, run `vcpkg install` to install newly specified version.
+- Choose a version from the list that meets your projects needs.
+- Reflect this in your projects `vpckg.json` file under the appropriate dependency.
+- After updating the manifest file, run `vcpkg install` to install newly specified version.
 
 For more details on versioning, see our reference documentation:
 - [versioning concepts](./versioning.concepts.md)
@@ -66,14 +66,14 @@ See `vcpkg help versioning` or https://learn.microsoft.com/vcpkg/users/versionin
 To resolve the issue:
 
 1. Update the versions database:  
-  - The version you want may not be in your local copy of the versions database. In that case, run the `git pull` command to update the [vcpkg registry](<https://github.com/Microsoft/vcpkg>) to the latest commit.  
+   - The version you want may not be in your local copy of the versions database. In that case, run the `git pull` command to update the [vcpkg registry](<https://github.com/Microsoft/vcpkg>) to the latest commit.  
 2. Check available versions:  
-  - Choose one of the versions available in the versions database.  
+   - Choose one of the versions available in the versions database.  
 3. Update manifest file:
-  - Edit your vcpkg.json file.  
-  - Change the specified version to one that is available in the vcpkg repository. For example, change from "version>=": "100.0.0" to "version>=": "10.1.1".  
+   - Edit your `vcpkg.json` file.
+   - Change the specified version to one that is available in the vcpkg repository. For example, change from "version>=": "100.0.0" to "version>=": "10.1.1".  
 4. Run vcpkg install
-  - Execute the `vcpkg install` command again in your terminal or command prompt.  
+   - Execute the `vcpkg install` command again in your terminal or command prompt.  
 
 ## <a name="version-scheme-conflict"></a> Cause: Specifying version constraint across different schemes
 <!--
