@@ -14,7 +14,7 @@ This guide is intended for users experiencing issues with [versioning](./version
 
 ## Inspecting the version file for a port
 
-This process involves checking the available versions of a package in the vcpkg repository. Here's how to do it:
+This process involves checking the available versions of a package in the vcpkg repository.
 
 How to inspect:
 1. Navigate to the `vcpkg/versions` directory
