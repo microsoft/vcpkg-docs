@@ -12,7 +12,33 @@ ms.topic: troubleshooting-general
 
 This guide is intended for users experiencing issues with [versioning](./versioning.md).
 
-### Cause: Requesting a Non-Existent Version of a Package
+## Inspecting the version file for a port
+
+This process involves checking the available versions of a package in the vcpkg repository. Here's how to do it:
+
+How to inspect:
+1. Navigate to the `vcpkg/versions` directory
+2. Locate the port folder
+   - Within the `versions` directory, ports are organized alphabetically in folders. Find the folder corresponding to the first letter of your desired port. For example, for `fmt`, look in the `f-` folder.
+3. Open the ports version file:
+   - In the appropriate alphabetical folder, locate the JSON file for your port. For `fmt`, this would be `fmt.json.`
+
+What you will find:
+
+In the port's version file, you'll see a list of available versions with details like version numbers and corresponding commit hashes. This information is crucial for understanding what versions you can specify in your project's `vcpkg.json` file.
+
+How to use this information:
+- Selecting a version: Choose a version from the list that meets your projects needs.
+- Updating your manifest: Reflect this in your projects `vpckg.json` file under the appropriate dependency.
+- Reinstalling packages: After updating the manifest file, run `vcpkg install` to install newly specified version.
+
+For more details on versioning, see our reference documentation:
+- [versioning concepts](./versioning.concepts.md)
+- [versioning](./versioning.md)
+
+For more details on using a manifest, see [manifest](./manifests.md)
+
+## <a name="non-existent-version"></a> Cause: Requesting a non-existent version of a package
 <!-- 
 Steps to reproduce:
 1. Open or create a vcpkg.json file for your project.
@@ -39,27 +65,26 @@ See `vcpkg help versioning` or https://learn.microsoft.com/vcpkg/users/versionin
 
 To resolve the issue:
 
-1. Check available versions:
-   - This can be done by visiting the vcpkg GitHub repository or by noting the versions listed in the error message provided by vcpkg.
-2. Update manifest file:
-   - Edit your vcpkg.json file.
-   - Change the specified version to one that is available in the vcpkg repository. For example, change from "version>=": "100.0.0" to "version>=": "10.1.1".
-3. Run vcpkg install:
-   - Execute the `vcpkg install` command again in your terminal or command prompt.
+1. Update the versions database:  
+  - The version you want may not be in your local copy of the versions database. In that case, run the `git pull` command to update the [vcpkg registry](<https://github.com/Microsoft/vcpkg>) to the latest commit.  
+2. Check available versions:  
+  - Choose one of the versions available in the versions database.  
+3. Update manifest file:
+  - Edit your vcpkg.json file.  
+  - Change the specified version to one that is available in the vcpkg repository. For example, change from "version>=": "100.0.0" to "version>=": "10.1.1".  
+4. Run vcpkg install
+  - Execute the `vcpkg install` command again in your terminal or command prompt.  
 
-## <a name="version-scheme-conflict"></a> Version scheme conflict in dependencies
-
-A version scheme conflict occurs when the version specified in the `vcpkg.json` file for a dependency uses a different versioning scheme than the one used in the vcpkg repository's baseline version. This results in an error as vcpkg cannot compare versions across different schemes.
-
-### Cause: Specifying version constraint across different schemes
+## <a name="version-scheme-conflict"></a> Cause: Specifying version constraint across different schemes
 <!--
 Steps to reproduce:
 1. Open or create a vcpkg.json file for your project.
 2. Specify boost-regex as a dependency with version>= 1.75.0
 3. vcpkg install
 -->
+A version scheme conflict occurs when the version specified in the `vcpkg.json` file for a dependency uses a different versioning scheme than the one used in the vcpkg repository's baseline version. This results in an error as vcpkg cannot compare versions across different schemes.
 
-When a version>= constraint is specified in the `vcpkg.json` for a dependency that is useing a different version scheme than the one used in vcpkg's baseline version.
+If a declared `version>=` constraint uses a different version scheme than the one used in the baseline version, vcpkg is unable to determine which version is greater or equal than the other.
 
 For example, if you specify:
 
@@ -110,9 +135,7 @@ Resolutions:
     }
     ```
 
-## <a name="shallow-clone-version-constraint"></a> Issues with shallow clone of vcpkg
-
-### Cause: Inadequate commit history in shallow clone
+## <a name="shallow-clone-version-constraint"></a> Cause: Inadequate commit history in shallow clone
 <!--
 Steps to reproduce:
 1. Perform a shallow clone of the vcpkg repository using Git with limited depth, for example: `git clone --depth=1 https://github.com/microsoft/vcpkg.git`.
@@ -171,21 +194,6 @@ Resolutions:
     - name: Convert to Full Clone
       run: git fetch --unshallow
     ```
-
-3. Use a git registry
-
-## Problem 4
-
-
-### Cause 1: 
-
-<!--
-Steps to reproduce:
-1. 
-2. 
-3. 
--->
-
 
 ## Issue isn't listed here
 
