@@ -176,7 +176,7 @@ This `portfile` defines how to download, build, install, and package a specific 
 - `file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION ...)`: Installs the LICENSE file to the package's share directory and renames it to copyright.
 - `configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" ...)`: Copies a usage instruction file to the package's share directory.
 
-For mor information, refer to the [maintainer guide](../contributing/maintainer-guide.md).
+For more information, refer to the [maintainer guide](../contributing/maintainer-guide.md).
 
 ## 5 - Update SHA512 for `portfile.cmake`
 
