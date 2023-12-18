@@ -14,7 +14,7 @@ This guide is intended for users experiencing issues with [versioning](./version
 
 ## Inspecting the version file for a port
 
-This process involves checking the available versions of a package in the vcpkg repository.
+The following process works for vcpkg registry ports. For more detailed information, see our [registry](../maintainers/registries.md#git-registries) documentation. This process involves checking the available versions of a package in the vcpkg repository.
 
 How to inspect:
 1. Navigate to the `vcpkg/versions` directory.
@@ -25,7 +25,7 @@ How to inspect:
 
 What you will find:
 
-In the port's version file, you'll see a list of available versions with details like version numbers and corresponding commit hashes. This information is crucial for understanding what versions you can specify in your project's `vcpkg.json` file.
+In the port's version file, you'll see a list of available versions with details like version numbers and corresponding [Git tree-object hashes](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_tree_objects). This information is crucial for understanding what versions you can specify in your project's `vcpkg.json` file.
 
 How to use this information:
 - Choose a version from the list that meets your projects needs.
