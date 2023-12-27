@@ -12,25 +12,20 @@ ms.topic: troubleshooting-general
 
 This guide is intended for users experiencing issues with [versioning](./versioning.md).
 
-## Inspecting the version file for a port
+## <a name="inspect-versions-file"></a> Inspecting the version file for a port
 
-The following process works for vcpkg registry ports. For more detailed information, see our [registry](../maintainers/registries.md#git-registries) documentation. This process involves checking the available versions of a package in the vcpkg repository.
+> [!NOTE]
+> The process described below is meant to work for ports from the [vcpkg registry](<https://github.com/Microsoft/vcpkg>). See our [registry](../maintainers/registries.md#git-registries) documentation to learn how the versioning database is implemented in custom registries.
 
-How to inspect:
+To inspect the versions database of a specific port:  
 1. Navigate to the `vcpkg/versions` directory.
-2. Locate the port folder:
-   - Within the `versions` directory, ports are organized alphabetically in folders. Find the folder corresponding to the first letter of your desired port. For example, for `fmt`, look in the `f-` folder.
+2. Locate the port's folder:
+   - Find the folder corresponding to the first letter of the port. For example, for `fmt` open the folder named `f-`.
 3. Open the ports version file:
-   - In the appropriate alphabetical folder, locate the JSON file for your port. For `fmt`, this would be `fmt.json.`
+   - Locate the JSON file with the same name of the port. For example, the `fmt` versions file is named `fmt.json.`
 
-What you will find:
+The port's version file contains a list of available versions with details like version tags and their corresponding [Git tree-object hash](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_tree_objects). This information is required by vcpkg to retrieve specific port versions. Only versions contained in this list are available to use in your manifest files.
 
-In the port's version file, you'll see a list of available versions with details like version numbers and corresponding [Git tree-object hashes](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_tree_objects). This information is crucial for understanding what versions you can specify in your project's `vcpkg.json` file.
-
-How to use this information:
-- Choose a version from the list that meets your projects needs.
-- Reflect this in your projects `vpckg.json` file under the appropriate dependency.
-- After updating the manifest file, run `vcpkg install` to install newly specified version.
 
 For more details on versioning, see our reference documentation:
 - [versioning concepts](./versioning.concepts.md)
@@ -46,7 +41,7 @@ Steps to reproduce:
 3. vcpkg install
 -->
 
-When a version specified in the manifest file does not exist in the vcpkg version database, vcpkg will fail to resolve the dependency and throw an error resembling the following:
+When a version specified in the manifest file does not exist in the vcpkg version database, vcpkg fails to resolve the dependency and produces an error message resembling the following:
 
 ```console
 error: no version database entry for fmt at 100.0.0
@@ -99,7 +94,7 @@ For example, if you specify:
 }
 ```
 
-vcpkg will emit the following error:
+vcpkg outputs the following error message:
 
 ```console
 error: version conflict on boost-regex:x64-windows:  required 1.75.0, which cannot be compared with the baseline version 1.83.0.
@@ -144,7 +139,7 @@ Steps to reproduce:
 4. Run `vcpkg install`
 -->
 
-When vcpkg is cloned with a limited commit history (shallow clone), it lacks the necessary commit history to resolve specific version constraints or baselines. This results in errors where vcpkg cannot find the required versions of packages or the specified baseline, as the commit history needed for these versions or baselines is not available in the shallow clone.
+When vcpkg is cloned with a limited commit history (shallow clone), it lacks the necessary commit history to resolve specific version constraints or baselines. The Git tree-object hashes used by vcpkg to retrieve specific versions of ports are only available when the full commit history is checked out. vcpkg detects when it has been cloned into a shallow repository and produces an error message when it fails to retrieve a port version.
 
 For example, using a `vcpkg.json` with a specific baseline like the following:
 
