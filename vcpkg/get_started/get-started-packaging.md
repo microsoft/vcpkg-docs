@@ -230,7 +230,19 @@ vcpkg-sample-library provides CMake targets:
 
 ## 6 - Verify the port build
 
-To verify the library builds and links properly, modify the `CMakeLists.txt` and `main.cpp` created in the [Install and use packages with CMake](get-started.md) tutorial.
+To verify the library builds and links properly, add the new dependency to the manifest file `vcpkg.json`:
+
+```json
+{
+    "dependencies": [
+        "fmt",
+        "vcpkg-sample-library"
+    ]
+}
+```
+
+Next, modify the `CMakeLists.txt` and `main.cpp` created in the [Install and use packages with
+CMake](get-started.md) tutorial.
 
 Modify the `CMakeLists.txt` with the following content:
 
