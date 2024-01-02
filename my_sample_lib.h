@@ -5,4 +5,4 @@
 #if MYLIB_EXPORTS
 __declspec(dllexport)
 #endif
-std::string greet(const std::string& name);
+void greet(const std::string& name);
