@@ -144,6 +144,8 @@
     href: concepts/registries.md
   - name: Script ports
     href: maintainers/authoring-script-ports.md
+  - name: System package managers
+    href: concepts/system-package-managers.md
   - name: Triplets
     href: concepts/triplets.md
   - name: Versioning
