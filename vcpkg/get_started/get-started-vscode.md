@@ -165,7 +165,7 @@ Create `CMakeUserPresets.json` file in the "helloworld" directory with the follo
 }
 ```
 
-This `CMakePresets.json` file contains a single "vcpkg" preset for CMake and sets the `CMAKE_TOOLCHAIN_FILE` variable. The `CMAKE_TOOLCHAIN_FILE` allows the CMake project system to recognize C++ libraries provided by vcpkg. Only `CMakePresets.json` is meant to be checked into source while `CMakeUserPresets.json` is to be used locally.
+This `CMakePresets.json` file contains a single "vcpkg" preset for CMake and sets the `CMAKE_TOOLCHAIN_FILE` variable. The `CMAKE_TOOLCHAIN_FILE` allows the CMake project system to recognize C++ libraries provided by vcpkg. Only `CMakePresets.json` is meant to be checked into source control while `CMakeUserPresets.json` is to be used locally.
 
 4 - Build and run the project
 
