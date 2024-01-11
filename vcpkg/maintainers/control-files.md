@@ -47,7 +47,6 @@ Package collections to check for conflicts:
 
 + [Repology](https://repology.org/projects/)
 + [Debian packages](https://www.debian.org/distrib/packages)
-+ [Packages search](https://pkgs.org/)
 
 #### Version
 
