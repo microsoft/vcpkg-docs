@@ -294,7 +294,9 @@ files into manifest files. Do not convert CONTROL files that have not been modif
 
 ### Follow common conventions for the `"version"` field
 
-For a full explanation of our conventions, see our [versioning documentation](../users/versioning.md#version-schemes).
+When creating a new port, follow the versioning convention used by the package author. When updating the port, continue to use the same convention unless upstream says otherwise. For a full explanation of our conventions, see our [versioning documentation](../users/versioning.md#version-schemes). 
+
+If upstream has not published a release in a while, do not change the port's versioning scheme to `version-date` in order to get the latest changes. These commits may include changes that are not production ready. Instead ask the upstream repository to publish a new release.
 
 ### Update the `"port-version"` field in the manifest file of any modified ports
 
