@@ -3,7 +3,7 @@ title:  Triplets
 description: This article explains the concept of triplets in vcpkg and their capabilities.
 author: vicroms
 ms.author: viromer
-ms.date: 01/10/2024
+ms.date: 01/11/2024
 ms.topic: concept-article
 ---
 
@@ -79,7 +79,7 @@ triplet paths when interacting with vcpkg.
 * In [Manifest mode](../users/manifests.md), you can use [`$.vcpkg-configuration.overlay-triplets`](../reference/vcpkg-configuration-json.md#overlay-triplets).
 * When using vcpkg from CMake, you can set [`VCPKG_OVERLAY_TRIPLETS`](../users/buildsystems/cmake-integration.md#vcpkg_overlay_triplets).
 * When using vcpkg from MSBuild, you can add [`--overlay-triplets=...`][overlay-triplets] to [MSBuild Additional Options](../users/buildsystems/msbuild-integration.md#vcpkg-additional-install-options).
-* When using the CLI directly, you can pass [`--overlay-triplets=...`](overlay-triplets).
+* When using the CLI directly, you can pass [`--overlay-triplets=...`][overlay-triplets].
 * You can set the [`$VCPKG_OVERLAY_TRIPLETS`](../users/config-environment.md#vcpkg_overlay_triplets) environment variable to a list of overlay paths.
 
 See our [overlay triplets example](../users/examples/overlay-triplets-linux-dynamic.md)
