@@ -5,12 +5,11 @@ zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
 author: data-queue
 ms.author: danshaw2
-ms.date: 12/06/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: tutorial
 ---
 
-# Tutorial: Install and use packages with CMake in VS Code
+# Tutorial: Install and use packages with CMake in Visual Studio Code
 
 This tutorial shows you how to create a C++ "Hello World" program that uses the `fmt` library with CMake, vcpkg and Visual Studio Code. You'll install dependencies, configure, build, and run a simple application.
 

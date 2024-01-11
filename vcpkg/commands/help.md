@@ -3,8 +3,7 @@ title: vcpkg help
 description: Reference for the vcpkg help command. Provides detailed information and help topics for vcpkg commands.
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 09/14/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ---
 
 # vcpkg help
@@ -164,7 +163,7 @@ Example manifest:
 }
 Extended documentation available at 'https://learn.microsoft.com/vcpkg/users/versioning'.
 ```
+
 ## Options
 
 All vcpkg commands support a set of [common options](common-options.md).
-

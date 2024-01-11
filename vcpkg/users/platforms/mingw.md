@@ -1,7 +1,7 @@
 ---
 title: Mingw-w64
 description: Use x64, x86, arm64 and arm community triplets for Mingw-w64.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ms.topic: concept-article
 ---
 # Mingw-w64

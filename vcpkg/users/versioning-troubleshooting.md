@@ -3,8 +3,7 @@ title: Troubleshoot versioning and feature selection issues
 description: Troubleshooting guide for common versioning issues
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 11/30/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: troubleshooting-general
 ---
 
@@ -25,7 +24,6 @@ To inspect the versions database of a specific port:
    - Locate the JSON file with the same name of the port. For example, the `fmt` versions file is named `fmt.json.`
 
 The port's version file contains a list of available versions with details like version tags and their corresponding [Git tree-object hash](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_tree_objects). This information is required by vcpkg to retrieve specific port versions. Only versions contained in this list are available to use in your manifest files.
-
 
 For more details on versioning, see our reference documentation:
 - [versioning concepts](./versioning.concepts.md)

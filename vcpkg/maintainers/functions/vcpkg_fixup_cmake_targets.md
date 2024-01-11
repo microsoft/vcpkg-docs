@@ -1,7 +1,7 @@
 ---
 title: vcpkg_fixup_cmake_targets
 description: Learn how to use vcpkg_fixup_cmake_targets.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_fixup_cmake_targets
 

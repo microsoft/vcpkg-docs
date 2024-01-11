@@ -6,8 +6,7 @@ zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
-ms.date: 09/27/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 #CustomerIntent: As a beginner C++ developer, I want to learn how to install and manage packages using CMake and Visual Studio, so that I can easily set up and maintain C++ projects with necessary dependencies.
 ---
 
@@ -27,7 +26,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 ## 2 - Set up the Visual Studio project
 
 1. Create the Visual Studio project
-    
+
     * Create a new project in Visual Studio using the "CMake Project" template
     :::image type="complex" source="../resources/get_started/visual-studio-create-project.png" alt-text="create a new CMake project":::
         Screenshot of the Visual Studio UI for showing how to create a new CMake project in Visual Studio
@@ -40,10 +39,10 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     :::image-end:::
 
 2. Configure the `VCPKG_ROOT` environment variable.
-   
+
     ::: zone pivot="shell-powershell"
     Open the built-in Developer PowerShell window in Visual Studio.
-    
+
     :::image type="complex" source="../resources/get_started/visual-studio-developer-powershell.png" alt-text="opening built-in developer powershell":::
         Screenshot of Visual Studio UI for the built-in PowerShell developer window
     :::image-end:::
@@ -61,7 +60,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     ::: zone-end
     ::: zone pivot="shell-cmd"
     Open the Developer command prompt in Visual Studio.
-    
+
     :::image type="complex" source="../resources/get_started/visual-studio-developer-cmd.png" alt-text="opening Visual Studio developer command prompt.":::
         Screenshot of Visual Studio UI for developer command prompt.
     :::image-end:::
@@ -122,7 +121,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     This source file includes the `<fmt/core.h>` header which is part of the `fmt` library. The `main()` function calls `fmt::print()` to output the "Hello World!" message to the console.
 
 2. Configure the `CMakePresets.json` file.
-   
+
    * Rename the `CMakePresets.json` file to `CMakeUserPresets.json`
    * Update its contents as shown below. Replace `<VCPKG_ROOT>` with the path to your vcpkg directory.
   
@@ -145,7 +144,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     The `CMakeUserPresets.json` file contains a single preset named "default", this preset sets the [`CMAKE_TOOLCHAIN_FILE`](<https://cmake.org/cmake/help/latest/variable/CMAKE_TOOLCHAIN_FILE.html>) to use vcpkg's CMake toolchain file. This lets vcpkg provide packages to CMake when you configure and build the project. Read the [vcpkg CMake integration documentation](../users/buildsystems/cmake-integration.md) to learn more.
 
 3. Edit the `CMakeLists.txt` file.
-   
+
     Replace the contents of the `CMakeLists.txt` file with the following code:
 
     :::code language="cmake" source="../examples/snippets/get-started/CMakeLists.txt":::
@@ -161,9 +160,8 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 ## 4 - Build and run the project
 
 1. Build the project.
-   
+
    Press `Ctrl+Shift+B` to build the project in Visual Studio.
-   
 
 2. Run the application.
 

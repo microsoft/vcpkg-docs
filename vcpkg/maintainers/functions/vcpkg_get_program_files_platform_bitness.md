@@ -1,7 +1,7 @@
 ---
 title: vcpkg_get_program_files_platform_bitness
 description: Learn how to use vcpkg_get_program_files_platform_bitness.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_get_program_files_platform_bitness
 
@@ -18,4 +18,3 @@ vcpkg_get_program_files_platform_bitness(<variable>)
 ## Source
 
 [scripts/cmake/vcpkg\_get\_program\_files\_platform\_bitness.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_get_program_files_platform_bitness.cmake)
-

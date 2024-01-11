@@ -1,7 +1,7 @@
 ---
 title: vcpkg_from_bitbucket
 description: Learn how to use vcpkg_from_bitbucket.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_from_bitbucket
 
@@ -23,6 +23,7 @@ vcpkg_from_bitbucket(
 ## Parameters
 
 ### OUT_SOURCE_PATH
+
 Specifies the out-variable that will contain the extracted location.
 
 This should be set to `SOURCE_PATH` by convention.
@@ -70,4 +71,3 @@ This exports the `VCPKG_HEAD_VERSION` variable during head builds.
 ## Source
 
 [scripts/cmake/vcpkg\_from\_bitbucket.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_from_bitbucket.cmake)
-

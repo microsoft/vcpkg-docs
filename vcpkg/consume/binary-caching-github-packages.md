@@ -3,9 +3,8 @@ title: "Tutorial: Set up a vcpkg binary cache using GitHub Packages in a GitHub 
 description: This tutorial shows how to set up a vcpkg binary cache using a NuGet feed hosted in GitHub Packages inside a GitHub Actions workflow
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
 ms.topic: tutorial
-ms.date: 09/27/2023
+ms.date: 01/10/2024
 #CustomerIntent: As a vcpkg user, I want to setup binary caching in my GitHub Actions workflow using GitHub Packages as the binary cache storage
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: os-runner

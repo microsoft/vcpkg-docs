@@ -4,8 +4,7 @@ title: Binary Caching
 description: Reuse binaries built with vcpkg across different projects and machines.
 author: vicroms
 ms.author: viromer
-ms.date: 08/22/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: concept-article
 ---
 
@@ -105,11 +104,13 @@ downloading binaries (`read`)(default), whether on-demand builds will be uploade
 ```
 x-aws,<prefix>[,<rw>]
 ```
+
 Add an AWS S3 source using the AWS CLI. **\<prefix\>** should start with `s3://` and end in a `/`.
 
 ```
 x-aws-config,no-sign-request
 ```
+
 Pass `--no-sign-request` to the AWS CLI.
 
 ### <a name="azblob"></a> Azure Blob provider
@@ -154,6 +155,7 @@ Azure Blob Storage includes a feature to remove cache entries that haven't been 
 ```
 x-cos,<prefix>[,<rw>]
 ```
+
 Adds a COS source. `<prefix>` should start with `cos://` and end with `/`.
 
 ### <a name="files"></a> Files provider
@@ -457,6 +459,7 @@ Enable [debug output](./binarycaching-troubleshooting.md#debug-output) to print 
 The [ABI hash](#abi-hash) `bb1c96759ac96102b4b18215db138daedd3eb16c2cd3302ae7bffab2b643eb87` for package zlib is constructed by hashing all the possible relevant information to distinguish binary packages.
 
 The version of your compiler is part of the ABI hash, and is calculated below:
+
 ```
 [DEBUG] -- The C compiler identification is MSVC 19.36.32538.0
 [DEBUG] -- The CXX compiler identification is MSVC 19.36.32538.0
@@ -464,6 +467,7 @@ The version of your compiler is part of the ABI hash, and is calculated below:
 ```
 
 Relevant files, compiler and tool version information are hashed to compute the final ABI hash:
+
 ```
 [DEBUG] <abientries for zlib:x86-windows>
 [DEBUG]   0001-Prevent-invalid-inclusions-when-HAVE_-is-set-to-0.patch|750b9542cb55e6328cca01d3ca997f1373b9530afa95e04213168676936e7bfa
@@ -492,4 +496,3 @@ Relevant files, compiler and tool version information are hashed to compute the 
 
 > [!NOTE]
 > The `triplet_abi` entry contains three hashes: the hash of the file content of the `x86-windows` triplet, the `windows.cmake` toolchain, and the compiler hash. These hashes would change if you decided to target a different platform.
-

@@ -1,14 +1,22 @@
 ---
 title: Frequently Asked Questions
 description: Common questions and answers about vcpkg
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ms.topic: faq
 ---
 # Frequently Asked Questions
 
+## What are classic mode and manifest mode?
+
+In general, there are two ways to manage your dependencies with vcpkg:
+
+1. **Manifest mode** lets you declare your direct dependencies, version constraints, and registries used in a file called *vcpkg.json*. This file should be included in your code repo and can be checked in to your source control system. Dependencies will be installed in a subfolder of your repo called *vcpkg_installed*. This way, each code project can have its own set of dependencies; nothing is installed system-wide. You can run vcpkg in manifest mode by running `vcpkg install` (with no other arguments), or by taking advantage of the automatic integration vcpkg manifests have for MSBuild and CMake projects. In general, we recommend using manifests for your projects over classic mode in most cases, as you have better control over your dependencies. See our [Manifest mode article](../concepts/manifest-mode.md) for more details.
+2. **Classic mode** is the more traditional way of managing dependencies, which involves running vcpkg commands that specify each direct dependency to install, modify, or remove. Dependencies are stored within the vcpkg installation directory, so multiple consuming projects can reference the same set of dependencies. See our [Classic mode article](../users/classic-mode.md) for more details.
+
 ## Can I contribute a new library?
 
-Yes! Start out by reading our [contribution guidelines](https://github.com/Microsoft/vcpkg/blob/master/CONTRIBUTING.md).
+Yes! Start by reading our [contribution guidelines](https://github.com/Microsoft/vcpkg/blob/master/CONTRIBUTING.md). Also take a look at our [Maintainer Guide](../contributing/maintainer-guide.md) which goes into more details. We also have a [tutorial for adding a port to vcpkg](../get_started/get-started-adding-to-registry.md) to help you get started.
+
 If you want to contribute but don't have a particular library in mind then take a look at the list
 of [new port requests](https://github.com/Microsoft/vcpkg/issues?q=is%3Aissue+is%3Aopen+label%3Acategory%3Anew-port).
 
@@ -16,23 +24,25 @@ of [new port requests](https://github.com/Microsoft/vcpkg/issues?q=is%3Aissue+is
 
 Yes! See the [`export` command](../commands/export.md) if you wish to produce binaries for exporting into other environments.
 
-Alternatively, if your goal is to preserve binaries produced by `vcpkg install` operations for later re-use, see the [Binary Caching feature](../users/binarycaching.md)
+Alternatively, if your goal is to preserve binaries produced by [`vcpkg install`](../commands/install.md) operations for later re-use, see the [binary caching feature](../users/binarycaching.md)
 
 ## How do I update libraries?
 
-The `vcpkg update` command lists all packages which are out-of-sync with your current portfiles. To update a package, follow the instructions in the command.
+If you are using a manifest (vcpkg.json file) to manage your dependencies, you need to update that file. See the [versioning reference documentation](../users/versioning.md) for details.
+
+If you are using vcpkg in classic mode (running commands to manage packages, no manifest file), see the [`vcpkg update` command documentation](../commands/update.md). This command lists all packages which are out-of-sync with your current portfiles. You will then need to run the [`vcpkg upgrade` command](../commands/upgrade.md) to confirm the changes.
 
 ## How do I get more libraries?
 
 The list of libraries is enumerated from the [`ports\`](https://github.com/Microsoft/vcpkg/blob/master/ports) directory. By design, you can add and remove libraries from this directory as you see fit for yourself or your company -- see our examples on packaging [zipfiles](../examples/packaging-zipfiles.md) and [GitHub repos](../examples/packaging-github-repos.md).
 
-We recommend cloning directly from [GitHub](https://github.com/microsoft/vcpkg) and using `git pull` to update the list of portfiles. Once you've updated your portfiles, `vcpkg update` will indicate any installed libraries that are now out of date.
+We recommend cloning directly from [GitHub](https://github.com/microsoft/vcpkg) and using `git pull` to update the list of portfiles.
 
 ## Can I build a private library with this tool?
 
-Yes. Follow [our packaging zlib Example](../examples/packaging-zipfiles.md) for creating a portfile using a fake URL. Then, either pre-seed the `downloads\` folder with a zip containing your private sources or replace the normal calls to `vcpkg_download_distfile` and `vcpkg_extract_source_archive` with functions that unpack your source code.
+Yes. Follow [our packaging zlib example](../examples/packaging-zipfiles.md) for creating a portfile using a fake URL. Then, either pre-seed the `downloads\` folder with a zip containing your private sources or replace the normal calls to `vcpkg_download_distfile` and `vcpkg_extract_source_archive` with functions that unpack your source code.
 
-You can take this further by publishing your private libraries into a registry. See the article on [Creating Registries](../maintainers/registries.md). A registry is a catalog of ports, similar to the one provided with vcpkg that contains open source libraries.
+You can take this further by publishing your private libraries into a registry. See the article on [Creating registries](../maintainers/registries.md). A registry is a catalog of ports, similar to the one provided with vcpkg that contains open source libraries.
 
 ## Can I use a prebuilt private library with this tool?
 
@@ -42,34 +52,33 @@ To see an example of this, look at [`ports\opengl\portfile.cmake`](https://githu
 
 ## Which platforms can I target with vcpkg?
 
-Our built-in, CI-tested triplets are:
+Our built-in, continuous integration tested triplets are:
 
 - Windows Desktop (x86, x64, x64-static, arm64)
-- Universal Windows Platform (x64, and ARM)
+- Universal Windows Platform (x64, and arm64)
 - Mac OS X (x64-static)
 - Linux (x64-static)
+- Android (x64, arm64, arm-neon)
 
-However, there is an even larger number of community triplets available with more platforms and architectures, including for iOS, Android, MinGW, WebAssembly, freeBSD, and openBSD.
+These targets are tested more rigorously for compatibility with each vcpkg release. However, we have a much larger number of community triplets available with more platforms and architectures, including for iOS, MinGW, WebAssembly, freeBSD, and openBSD.
 
-You can also define your own triplets depending on your needs.
+You can also define your own triplets depending on your needs. vcpkg is very customizable.
 
-See `vcpkg help triplet` for the current list.
+See `vcpkg help triplet` for the current list and review our [triplets documentation](../concepts/triplets.md) for more details.
 
 ## Does vcpkg run on Linux/OS X?
 
-Yes! We continuously test on OS X and Ubuntu 16.04, however we know users have been successful with Arch, Fedora, and FreeBSD. If you have trouble with your favorite Linux distribution, let us know in an issue and we'd be happy to help!
+Yes! We continuously test on OS X and Ubuntu 22.04, however we know users have been successful with Arch, Fedora, and FreeBSD. If you have trouble with your favorite Linux distribution, let us know in an issue and we'd be happy to help!
 
 ## How do I update vcpkg?
 
-Execute `git pull` to get the latest sources, then run `bootstrap-vcpkg.bat` (Windows) or `./bootstrap-vcpkg.sh` (Unix) to update vcpkg.
+Execute `git pull` to get the latest sources, then run `bootstrap-vcpkg.bat` (Windows) or `./bootstrap-vcpkg.sh` (Unix) to update vcpkg. Or, if you are using a copy of vcpkg that ships with Visual Studio, simply update your Visual Studio version from the Visual Studio Installer.
 
 ## How do I use different versions of a library on one machine?
 
-Within a single instance of vcpkg (e.g. one set of `installed\`, `packages\`, `ports\` and so forth), you can only have one version of a library installed (otherwise, the headers would conflict with each other!). For those with experience with system-wide package managers, packages in vcpkg correspond to the `X-dev` or `X-devel` packages.
+We suggest using [manifest files](../users/manifests.md) to manage dependencies for individual projects, which works even if multiple projects are on the same machine and allow you to easily manage package versions and which registries libraries are coming from.
 
-To use different versions of a library for different projects, we recommend making separate instances of vcpkg and using the per-project integration mechanisms. The versions of each library are specified by the files in `ports\`, so they are easily manipulated using standard `git` commands. This makes it very easy to roll back the entire set of libraries to a consistent set of older versions which all work with each other. If you need to then pin a specific library forward, that is as easy as checking out the appropriate version of `ports\<package>\`.
-
-If your application is very sensitive to the versions of libraries, we recommend checking in the specific set of portfiles you need into your source control along with your project sources and using the `--vcpkg-root` option to redirect the working directory of `vcpkg.exe`.
+However, if you are using classic mode instead, within a single instance of vcpkg (e.g. one set of `installed\`, `packages\`, `ports\` and so forth), you can only have one version of a library installed (otherwise, the headers would conflict with each other!). For those with experience with system-wide package managers, packages in vcpkg correspond to the `X-dev` or `X-devel` packages. In this case, to use different versions of a library for different projects, we recommend making separate instances of vcpkg and using the per-project integration mechanisms. The versions of each library are specified by the files in `ports\`, so they are easily manipulated using standard `git` commands. This makes it very easy to roll back the entire set of libraries to a consistent set of older versions which all work with each other. If you need to then pin a specific library forward, that is as easy as checking out the appropriate version of `ports\<package>\`. If your application is very sensitive to the versions of libraries, we recommend checking in the specific set of portfiles you need into your source control along with your project sources and using the `--vcpkg-root` option to redirect the working directory of `vcpkg.exe`.
 
 ## How does vcpkg protect my privacy?
 
@@ -79,7 +88,7 @@ See the [Privacy document](privacy.md) for all information regarding privacy.
 
 Yes. If you already have a CMake toolchain file, you will need to include our toolchain file at the end of yours. This should be as simple as an `include(<vcpkg_root>\scripts\buildsystems\vcpkg.cmake)` directive. Alternatively, you could copy the contents of our `scripts\buildsystems\vcpkg.cmake` into the end of your existing toolchain file.
 
-## Can I use my own/specific flags for rebuilding libs?
+## Can I use my own/specific flags for rebuilding libraries?
 
 Yes. In the current version, there is not yet a standardized global way to change them, however you can edit individual portfiles and tweak the exact build process however you'd like.
 
@@ -122,13 +131,11 @@ You can save some disk space by completely removing the `packages\`, `buildtrees
 
 vcpkg uses CMake internally as a build scripting language. This is because CMake is already an extremely common build system for cross-platform open source libraries and is becoming very popular for C++ projects in general. It is easy to acquire on Windows, does not require system-wide installation, and legible for unfamiliar users.
 
-## Will vcpkg support downloading compiled binaries from a public or private server?
+## Does vcpkg support downloading compiled binaries from a public or private server?
 
-We would like to eventually support downloading precompiled binaries, similar to other system package managers.
+We recommend building your libraries once with your preferred build configurations and using the [binary caching](../users/binarycaching.md) feature to re-use binaries without having to re-build every time. This is useful when working on a team project or when you are building both locally and in a continuous integration environment across multiple machines, containers, virtual machines, etc.
 
-In a corporate scenario, we currently recommend building the libraries once and using the [Binary Caching](../users/binarycaching.md) feature to re-use binaries across different machines and for local development vs. CI scenarios.
-
-## What Visual C++ toolsets are supported?
+## What MSVC toolsets are supported?
 
 We support Visual Studio 2015 Update 3 and above.
 

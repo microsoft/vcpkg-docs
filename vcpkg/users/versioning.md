@@ -4,7 +4,7 @@ title: Versioning reference
 description: Reference documentation for the vcpkg versioning feature.
 author: vicroms
 ms.author: viromer
-ms.date: 9/20/2023
+ms.date: 01/10/2024
 ms.topic: reference
 ---
 # Versioning reference
@@ -15,7 +15,7 @@ For more information about the vcpkg versioning algorithm and high level concept
 
 For an example with context, see our guide to [getting started with versioning](./examples/versioning.getting-started.md).
 
-##  <a name="version-schemes"></a>Version Schemes
+## <a name="version-schemes"></a>Version Schemes
 
 Ports in vcpkg should attempt to follow the versioning conventions used by the package's authors. For that reason, when declaring a package's version the appropriate scheme should be used.
 

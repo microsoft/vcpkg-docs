@@ -3,8 +3,7 @@ title: "Tutorial: Update an existing vcpkg dependency"
 description: This tutorial shows you how to update the version of an existing vcpkg dependency
 author: vicroms
 ms.author: viromer
-ms.date: 10/24/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: tutorial
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
@@ -76,14 +75,14 @@ has dynamic library support.
 Copy-Item -Path <path/to/vcpkg-sample-library> -Destination "$OVERLAY_LOCATION" -Recurse
 ```
 
-::: zone-end 
+::: zone-end
 ::: zone pivot="shell-cmd"
 
 ```console
 xcopy <path/to/vcpkg-sample-library> "$OVERLAY_LOCATION" /E
 ```
 
-::: zone-end 
+::: zone-end
 ::: zone pivot="shell-bash"
 
 ```bash

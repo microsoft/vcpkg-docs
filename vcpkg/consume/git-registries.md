@@ -3,8 +3,7 @@ title: "Tutorial: Install a dependency from a Git-based registry"
 description: Learn to install packages from vcpkg Git-based registries.
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
-ms.date: 9/21/2023
+ms.date: 01/10/2024
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to install a dependency from a Git-based registry
 ---

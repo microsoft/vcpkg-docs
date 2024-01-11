@@ -3,9 +3,8 @@ title: Asset caching with vcpkg
 description: Use asset caching with vcpkg to mirror your asset's downloads to improve build reliability.
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
 ms.topic: concept-article
-ms.date: 10/24/2023
+ms.date: 01/10/2024
 ---
 # Asset caching with vcpkg
 
@@ -25,13 +24,14 @@ Asset caching can help with these common development scenarios:
 ## Configuration
 
 Asset caching is configured via:
+
 * The `X_VCPKG_ASSET_SOURCES` environment variable, or
 * The `--x-asset-sources` command-line option.
 
 In both cases, the expected value is a semicolon-delimited list of sources. Each
 source has a specific syntax depending on its storage backend (see the [asset
 caching reference documentation](../users/assetcaching.md) to learn how to
-configure asset caching sources). 
+configure asset caching sources).
 
 ## Next step
 

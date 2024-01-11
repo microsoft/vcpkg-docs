@@ -1,7 +1,7 @@
 ---
 title: Environment variables
 description: Use environment variables to control how vcpkg works and where it looks for files.
-ms.date: 2/10/2023
+ms.date: 01/10/2024
 ms.topic: reference
 ---
 # Environment variables

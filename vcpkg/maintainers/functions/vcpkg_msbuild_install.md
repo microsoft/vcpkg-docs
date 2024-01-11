@@ -3,7 +3,7 @@ title: vcpkg_msbuild_install
 description: Learn how to use vcpkg_msbuild_install.
 author: Neumann-A
 ms.author: viromer
-ms.date: 08/14/2023
+ms.date: 01/10/2024
 ---
 
 # vcpkg_msbuild_install
@@ -52,11 +52,11 @@ To use this function, you must depend on the helper port `vcpkg-msbuild`:
 ## Parameters
 
 ### SOURCE_PATH
+
 The path to the root of the source tree.
 
 Because MSBuild uses in-source builds, the source tree is copied into a temporary location for the build. This
 parameter is the base for that copy and forms the base for all XYZ_SUBPATH options.
-
 
 ### PROJECT_SUBPATH
 

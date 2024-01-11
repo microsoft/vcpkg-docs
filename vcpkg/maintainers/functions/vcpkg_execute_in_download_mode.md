@@ -1,7 +1,7 @@
 ---
 title: vcpkg_execute_in_download_mode
 description: Learn how to use vcpkg_execute_in_download_mode.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_execute_in_download_mode
 

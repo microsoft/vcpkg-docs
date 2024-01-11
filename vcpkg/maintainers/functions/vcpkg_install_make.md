@@ -1,7 +1,7 @@
 ---
 title: vcpkg_install_make
 description: Learn how to use vcpkg_install_make.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_install_make
 
@@ -31,4 +31,3 @@ This command transparently forwards to [`vcpkg_build_make()`](vcpkg_build_make.m
 ## Source
 
 [scripts/cmake/vcpkg\_install\_make.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_make.cmake)
-

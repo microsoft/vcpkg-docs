@@ -1,7 +1,7 @@
 ---
 title: vcpkg_restore_env_variables
 description: Learn how to use vcpkg_restore_env_variables.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_restore_env_variables
 

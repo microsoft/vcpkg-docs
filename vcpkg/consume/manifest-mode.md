@@ -3,8 +3,7 @@ title: "Tutorial: Install a dependency from a manifest file"
 description: Learn to install your projects dependencies with vcpkg by using a manifest file.
 author: vicroms
 ms.author: viromer
-ms.date: 8/10/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to learn how to install my project dependencies using vcpkg in manifest mode
 ---
@@ -31,7 +30,6 @@ In this tutorial, you will learn how to:
 > * [Integrate vcpkg with your build system]
 > * [Install dependencies]
 > * [Build the project]
-
 
 ## Prerequisites
 

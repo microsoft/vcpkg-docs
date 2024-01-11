@@ -1,7 +1,7 @@
 ---
 title: vcpkg_install_qmake
 description: Learn how to use vcpkg_install_qmake.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_install_qmake
 
@@ -31,4 +31,3 @@ staging directories.
 ## Source
 
 [scripts/cmake/vcpkg\_install\_qmake.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_qmake.cmake)
-

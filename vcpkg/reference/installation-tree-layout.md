@@ -3,7 +3,7 @@ title: Installation directory layout
 description: This article describes the layout conventions used by vcpkg when copying build output into the installation directory.
 author: vicroms
 ms.author: viromer
-ms.date: 10/17/2023
+ms.date: 01/10/2024
 ms.topic: reference
 ---
 # Installation directory layout conventions
@@ -45,7 +45,6 @@ The layout for the subdirectories inside each triplet directory is the same:
 > Port authors should determine the final location of the produced files based
 > on the purpose each file serves.
 
-
 | Subdirectory                                                       | File type                                                         |
 | ------------------------------------------------------------------ | ----------------------------------------------------------------- |
 | [`bin`](#layout-bin)                                               | Release `.dll` and `.pdb` files                                   |
@@ -67,7 +66,6 @@ The layout for the subdirectories inside each triplet directory is the same:
 | `share/<cmakepackagename>/vcpkg-cmake-wrapper.cmake`               | CMake `find_package(<cmakepackagename>)` override                 |
 | [`share/pkgconfig`](#layout-pkgconfig)                             | Configuration-independent pkgconfig files (`.pc`)                 |
 | [`tools/<port>`](#layout-tools)                                    | Executable tools                                                  |
-
 
 ### <a name="layout-bin"></a> `bin` and `debug/bin` directories
 

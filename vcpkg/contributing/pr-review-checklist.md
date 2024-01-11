@@ -1,7 +1,7 @@
 ---
 title: vcpkg PR Review Checklist
 description: Use a checklist to prepare a vcpkg pull request for review.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ms.topic: checklist
 ---
 # vcpkg PR Review Checklist

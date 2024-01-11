@@ -1,7 +1,7 @@
 ---
 title: vcpkg_from_gitlab
 description: Learn how to use vcpkg_from_gitlab.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_from_gitlab
 
@@ -76,6 +76,7 @@ At least one of `REF` and `HEAD_REF` must be specified, however it is preferable
 This exports the `VCPKG_HEAD_VERSION` variable during head builds.
 
 ## Examples
+
 - [curl](https://github.com/Microsoft/vcpkg/blob/master/ports/curl/portfile.cmake#L75)
 - [folly](https://github.com/Microsoft/vcpkg/blob/master/ports/folly/portfile.cmake#L15)
 - [z3](https://github.com/Microsoft/vcpkg/blob/master/ports/z3/portfile.cmake#L13)
@@ -83,4 +84,3 @@ This exports the `VCPKG_HEAD_VERSION` variable during head builds.
 ## Source
 
 [scripts/cmake/vcpkg\_from\_gitlab.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_from_gitlab.cmake)
-

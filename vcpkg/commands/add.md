@@ -3,8 +3,7 @@ title: vcpkg add
 description: Reference for the vcpkg add command. Adds packages to the manifest.
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 08/15/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ---
 # vcpkg add
 
@@ -15,6 +14,7 @@ vcpkg add port [options] <port-name>...
 ```
 
 ## Description
+
 The `vcpkg add port` command allows you to update the `vcpkg.json` manifest file by adding new package dependencies to your C++ project. 
 
 You can specify one or multiple port names to add. It's also possible to define specific features of a port that you would like to include as a dependency. The manifest (`vcpkg.json`) will then be updated to reflect these changes.
@@ -22,6 +22,7 @@ You can specify one or multiple port names to add. It's also possible to define 
 ### Examples
 
 Sample manifest:
+
 ```json
 {
   "name": "Example",
@@ -33,7 +34,7 @@ To add ports - `fmt`, `sqlitecpp`, `zlib`:
 
 ```console
 vcpkg add port fmt sqlitecpp zlib
-```
+
 ```json
 {
   "name": "Example",
@@ -47,6 +48,7 @@ vcpkg add port fmt sqlitecpp zlib
 ```
 
 To specify port with feature - `sqlitecpp[sqlcipher]`
+
 ```console
 vcpkg add port sqlitecpp[sqlcipher]
 ```
@@ -67,6 +69,7 @@ vcpkg add port sqlitecpp[sqlcipher]
   ]
 }
 ```
+
 > [!NOTE]
 > The `vcpkg add port` command does not validate the existence of specified features for a port. Ensure that the feature exists before adding it to the manifest.
 
@@ -75,4 +78,5 @@ vcpkg add port sqlitecpp[sqlcipher]
 All vcpkg commands support a set of [common options](common-options.md).
 
 ### port
+
 `vcpkg add port <port-name>...` adds the specified ports to the manifest if it's not already present.

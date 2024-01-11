@@ -3,8 +3,7 @@ title: vcpkg_extract_archive
 description: Learn how to use vcpkg_extract_archive.
 author: vicroms
 ms.author: viromer
-ms.date: 11/10/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: reference
 ---
 # vcpkg_extract_archive

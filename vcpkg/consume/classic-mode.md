@@ -3,8 +3,7 @@ title: "Tutorial: Install a dependency from the command line"
 description: Learn to install your project's dependencies with vcpkg using the command line.
 author: vicroms
 ms.author: viromer
-ms.date: 8/10/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to learn how to install my project dependencies using vcpkg's command-line interface.
 ---

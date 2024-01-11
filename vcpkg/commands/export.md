@@ -1,7 +1,7 @@
 ---
 title: vcpkg export
 description: Command line reference for the vcpkg export command. Create standalone SDK bundles.
-ms.date: 1/31/2023
+ms.date: 01/10/2024
 ---
 # vcpkg export
 
@@ -51,6 +51,7 @@ In this mode you can't specify individual packages to export. The command operat
 Another difference is the requirement of the `--output-dir` option. This option specifies the directory where the exported packages will be stored.
 
 For example, from the manifest directory
+
 ```no-highlight
 vcpkg export --zip --output-dir=.\exports
 ```
@@ -70,12 +71,14 @@ Some export formats differ from this standard set; see the individual format hel
 ### Formats
 
 Officially supported SDK formats:
+
 - [Raw Directory](#raw-directory)
 - [Zip](#zip)
 - [7zip](#7zip)
 - [NuGet](#nuget)
 
 Experimental SDK formats (may change or be removed at any time):
+
 - [IFW](#ifw)
 - [Chocolatey](#chocolatey)
 - [Prefab](#prefab)
@@ -121,11 +124,13 @@ Create an [NuGet](/nuget/what-is-nuget) package at `<output-dir>/<nuget-id>.<nug
 Contains the [Standard Integration Files][] as well as additional MSBuild integration to support inclusion in an MSBuild C++ project (`.vcxproj`) via the NuGet Package Manager. Note that you cannot mix multiple NuGet packages produced with `export` together -- only one of the packages will be used. To add additional libraries, you must create a new export with the full set of dependencies.
 
 Format specific options:
+
 - [`--nuget-id`](#nuget-id)
 - [`--nuget-version`](#nuget-version)
 - [`--nuget-description`](#nuget-description)
   
 #### IFW
+
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
 ```no-highlight
@@ -135,6 +140,7 @@ vcpkg export --ifw [options] <package>...
 Export to an IFW-based installer.
 
 Format specific options:
+
 - [`--ifw-configuration-file-path`](#ifw-configuration-file-path)
 - [`--ifw-installer-file-path`](#ifw-installer-file-path)
 - [`--ifw-packages-directory-path`](#ifw-packages-directory-path)
@@ -152,6 +158,7 @@ vcpkg export --x-chocolatey [options] <package>...
 Export a Chocolatey package.
 
 Format specific options:
+
 - [`--x-maintainer`](#maintainer)
 - [`--x-version-suffix`](#version-suffix)
 
@@ -166,6 +173,7 @@ vcpkg export --prefab [options] <package>...
 Export to Prefab format.
 
 Format specific options:
+
 - [`--prefab-artifact-id`](#prefab-artifact-id)
 - [`--prefab-group-id`](#prefab-group-id)
 - [`--prefab-maven`](#prefab-maven)
@@ -184,9 +192,11 @@ This is the list of top-level built packages which will be included in the SDK. 
 <a id="package-syntax"></a>
 
 **Package Syntax**
+
 ```
 <port name>:<triplet>
 ```
+
 Package references without a triplet are automatically qualified by the [default target triplet](common-options.md#triplet).
 Note: `<port name>:<triplet>` arguments are not allowed when using `vcpkg export` in manifest mode.
 

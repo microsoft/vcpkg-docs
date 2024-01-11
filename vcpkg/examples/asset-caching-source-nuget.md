@@ -1,7 +1,7 @@
 ---
 title: How to create a x-script Asset Caching source for NuGet
 description: Learn about how to create a x-script Asset Caching source for NuGet
-ms.date: 4/18/2023
+ms.date: 01/10/2024
 ms.topic: tutorial
 ---
 

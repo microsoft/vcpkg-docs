@@ -3,8 +3,7 @@ title: "Tutorial: Install a specific version of the Boost libraries using regist
 description: Learn to install specific version of Boost packages using a baseline.
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
-ms.date: 10/24/2023
+ms.date: 01/10/2024
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to install a specific version set of the Boost libraries
 ---
@@ -17,7 +16,7 @@ version of their Boost dependencies are required to override the versions of
 each Boost package on which they depend.
 
 However, there's a simple solution to this problem using registry baselines and
-package patterns. 
+package patterns.
 
 ## Prerequisites
 
@@ -111,7 +110,6 @@ cc471dc0f59b7b2066d6172c2893419412327a7a 2021-09-27 [boost] update to 1.77.0 (#1
 As you can see, the commit for version `1.80.0` is listed. In the next step,
 you'll use that commit as the baseline for all the Boost packages.
 
-
 ### 2 - Use a baseline to override Boost packages
 
 Instead of adding an override for all the related Boost dependencies, you can use
@@ -182,4 +180,3 @@ Here are some additional tasks to try next:
 * Lock down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
 * Reuse binaries across Continuous Integration runs using [binary caching](../users/binarycaching.md)
 * Manage your private libraries using [custom registries](../maintainers/registries.md)
-

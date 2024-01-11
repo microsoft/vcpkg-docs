@@ -1,7 +1,7 @@
 ---
 title: vcpkg search
 description: Command line reference for the vcpkg search command. Search for available packages by name and description.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 
 # vcpkg search

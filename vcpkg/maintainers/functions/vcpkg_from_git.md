@@ -3,9 +3,8 @@ title: vcpkg_from_git
 description: Learn how to use vcpkg_from_git.
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 01/10/2024
 ---
 # vcpkg_from_git
 
@@ -37,6 +36,7 @@ vcpkg_from_git(
 ## Parameters
 
 ### OUT_SOURCE_PATH
+
 Specifies the out-variable that will contain the extracted location.
 
 This should be set to `SOURCE_PATH` by convention.
@@ -68,6 +68,7 @@ A list of patches to be applied to the extracted sources.
 Relative paths are based on the port directory.
 
 ### LFS
+
 _Added in vcpkg version 2022.11.14_
 
 Enable fetching files stored using Git LFS.

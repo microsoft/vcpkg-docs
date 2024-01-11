@@ -1,7 +1,7 @@
 ---
 title: vcpkg depend-info
 description: Command line reference for the depend-info command. Display all dependencies for a package.
-ms.date: 2/9/2023
+ms.date: 01/10/2024
 ---
 # vcpkg depend-info
 
@@ -20,6 +20,7 @@ Display all dependencies for a package.
 ## Examples
 
 #### List
+
 ```console
 $ vcpkg depend-info ableton
 
@@ -31,6 +32,7 @@ ableton: ableton-link
 ```
 
 #### Tree
+
 ```console
 $ vcpkg depend-info ableton --format=tree
 
@@ -44,6 +46,7 @@ ableton
 ```
 
 #### Dot
+
 ```console
 $ vcpkg depend-info ableton --format=dot
 
@@ -65,6 +68,7 @@ digraph G{
 ```
 
 #### DGML
+
 ```console
 $ vcpkg depend-info ableton --format=dgml
 
@@ -89,6 +93,7 @@ $ vcpkg depend-info ableton --format=dgml
 ```
 
 #### Mermaid
+
 ```console
 $ vcpkg depend-info ableton --format=mermaid
 
@@ -102,6 +107,7 @@ flowchart TD;
 ```
 
 #### Rendered diagram
+
 ```mermaid
 flowchart TD;
     ableton-->ableton_link;

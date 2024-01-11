@@ -3,9 +3,8 @@ title: vcpkg new
 description: Command line reference for the vcpkg new command. Creates a new manifest in the current directory.
 ms.author: bion
 author: BillyONeal
-ms.date: 09/11/2023
+ms.date: 01/10/2024
 ms.topic: reference
-ms.prod: vcpkg
 ---
 # vcpkg new
 
@@ -53,12 +52,10 @@ passed, infers the appropriate form to use based on the form of the input.
 Indicates that the version to write into the manifest is a 'relaxed' version. Relaxed versions
 obey semantic versioning's format, but allow any number of numeric values. See [versioning reference](../users/versioning.md#version) for more information.
 
-
 ### `--version-date`
 
 Indicates that the version to write into the manifest is a 'date' version. Date versions are an
 ISO 8601 date (e.g. "YYYY-MM-DD"). See [versioning reference](../users/versioning.md#version-date) for more information. 
-
 
 ### `--version-string`
 
@@ -66,13 +63,13 @@ Indicates that the version to write into the manifest is a 'string' version with
 
 semantics. See [versioning reference](../users/versioning.md#version-string) for more information. 
 
-
 ## Examples
 
 > [!NOTE]
 > `vcpkg new` generates metadata in `vcpkg.json` and `vcpkg-configuration.json` files. This includes
 > integration with the experimental artifacts experience. In particular, the registries with
 > `"kind": "artifact"` are for the experimental vcpkg-artifacts feature.
+
 ### With `--application`
 
 ```console
@@ -95,6 +92,7 @@ $ type .\vcpkg-configuration.json
   ]
 }
 ```
+
 ### With `--name` and `--version`
 
 ```console
@@ -120,6 +118,7 @@ $ type .\vcpkg-configuration.json
   ]
 }
 ```
+
 ### With explicit version format selection
 
 ```console

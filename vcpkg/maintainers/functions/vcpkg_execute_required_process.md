@@ -1,7 +1,7 @@
 ---
 title: vcpkg_execute_required_process
 description: Execute a process with logging and fail the build if the command fails.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_execute_required_process
 
@@ -20,9 +20,11 @@ vcpkg_execute_required_process(
     [SAVE_LOG_FILES [<relative-path> [ALIAS <unique-alias>]]...]
 )
 ```
+
 ## Parameters
 
 ### ALLOW_IN_DOWNLOAD_MODE
+
 Allows the command to execute in Download Mode.
 
 ### COMMAND

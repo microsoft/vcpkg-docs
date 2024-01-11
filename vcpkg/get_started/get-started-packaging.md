@@ -6,8 +6,7 @@ zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
-ms.date: 10/17/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 #CustomerIntent: As a beginner C++ developer, I want to learn how to package libraries for vcpkg using custom overlays.
 ---
 
@@ -264,7 +263,7 @@ int main()
 Configure, build, and run the application.
 
 1. Configure the build using CMake:
-   
+
   ```console
   cmake --preset=default
   ```

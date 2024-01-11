@@ -1,7 +1,7 @@
 ---
 title: Packaging zlib 1.2.13 for vcpkg
 description: Learn how to package zlib from the upstream source release in vcpkg.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ms.topic: tutorial
 ---
 
