@@ -3,7 +3,6 @@ title: "Tutorial: Set up a vcpkg binary cache using a NuGet feed"
 description: This tutorial shows how to set up a vcpkg binary cache using a NuGet feed as the backend
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
 ms.topic: tutorial
 ms.date: 09/11/2023
 zone_pivot_group_filename: zone-pivot-groups.json

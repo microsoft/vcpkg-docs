@@ -4,7 +4,6 @@ description: Reference for the vcpkg help command. Provides detailed information
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 09/14/2023
-ms.prod: vcpkg
 ---
 
 # vcpkg help

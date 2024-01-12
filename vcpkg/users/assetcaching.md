@@ -3,7 +3,6 @@ title: Asset caching reference
 description: Reference documentation for the asset caching feature configuration and capabilities.
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
 ms.topic: reference
 ms.date: 10/24/2023
 ---

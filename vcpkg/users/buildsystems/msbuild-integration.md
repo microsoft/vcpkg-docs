@@ -3,7 +3,6 @@ title: vcpkg in MSBuild projects
 description: Integrate vcpkg into an MSBuild or Visual Studio project.
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
 ms.date: 9/18/2023
 ms.topic: concept-article
 ---

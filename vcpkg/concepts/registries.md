@@ -4,7 +4,6 @@ description: Concepts about vcpkg registries and their capabilities.
 author: vicroms
 ms.author: viromer
 ms.date: 10/24/2023
-ms.prod: vcpkg
 ms.topic: concept-article
 ---
 

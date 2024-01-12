@@ -4,7 +4,6 @@ description: Learn how to use vcpkg_extract_archive.
 author: vicroms
 ms.author: viromer
 ms.date: 11/10/2023
-ms.prod: vcpkg
 ms.topic: reference
 ---
 # vcpkg_extract_archive

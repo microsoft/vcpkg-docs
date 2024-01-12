@@ -3,7 +3,6 @@ title: vcpkg_download_distfile
 description: Learn how to use vcpkg_download_distfile.
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
 ms.topic: reference
 ms.date: 11/10/2023
 ---

@@ -4,7 +4,6 @@ description: Learn how vcpkg resolves a package name to a port to install.
 author: vicroms
 ms.author: viromer
 ms.date: 10/24/2023
-ms.prod: vcpkg
 ms.topic: concept-article
 ---
 # Package name resolution

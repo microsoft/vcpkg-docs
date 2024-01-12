@@ -4,7 +4,6 @@ description: Troubleshooting guide for common versioning issues
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 11/30/2023
-ms.prod: vcpkg
 ms.topic: troubleshooting-general
 ---
 

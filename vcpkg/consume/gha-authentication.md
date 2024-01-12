@@ -4,7 +4,6 @@ description: Learn to configure Git credentials for private repositories when us
 author: vicroms
 ms.author: viromer
 ms.date: 9/21/2023
-ms.prod: vcpkg
 ms.topic: tutorial
 #CustomerIntent: As an enterprise vcpkg user I want to authenticate to private Git registries so that I can use them as Git-based repositories
 ---

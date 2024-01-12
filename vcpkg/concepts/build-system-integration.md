@@ -4,7 +4,6 @@ description: This article explains the different mechanisms vcpkg uses to integr
 author: vicroms
 ms.author: viromer
 ms.date: 10/24/2023
-ms.prod: vcpkg
 ms.topic: concept-article
 ---
 # Build system integration

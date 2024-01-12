@@ -4,7 +4,6 @@ description: Learn to install your projects dependencies with vcpkg by using a m
 author: vicroms
 ms.author: viromer
 ms.date: 8/10/2023
-ms.prod: vcpkg
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to learn how to install my project dependencies using vcpkg in manifest mode
 ---

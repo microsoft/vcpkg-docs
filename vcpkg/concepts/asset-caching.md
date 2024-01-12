@@ -3,7 +3,6 @@ title: Asset caching with vcpkg
 description: Use asset caching with vcpkg to mirror your asset's downloads to improve build reliability.
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
 ms.topic: concept-article
 ms.date: 10/24/2023
 ---

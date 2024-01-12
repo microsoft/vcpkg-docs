@@ -4,7 +4,6 @@ description: List of vcpkg's technical support channels and social media links.
 author: vicroms
 ms.author: viromer
 ms.date: 09/12/2023
-ms.prod: vcpkg
 ---
 # Support channels and social media
 

@@ -4,7 +4,6 @@ description: This article describes vcpkg's manifest mode concepts.
 author: vicroms
 ms.author: viromer
 ms.date: 10/23/2023
-ms.prod: vcpkg
 ms.topic: concept-article
 
 #CustomerIntent: As a vcpkg user, I want to learn more about manifest mode capabilities

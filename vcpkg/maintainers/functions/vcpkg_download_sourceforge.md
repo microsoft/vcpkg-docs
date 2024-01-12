@@ -4,7 +4,6 @@ description: Learn how to use vcpkg_download_sourceforge.
 author: vicroms
 ms.author: viromer
 ms.date: 11/10/2023
-ms.prod: vcpkg
 ms.topic: reference
 ---
 # vcpkg_download_sourceforge

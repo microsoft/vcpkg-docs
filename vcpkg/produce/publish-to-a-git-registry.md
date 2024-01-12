@@ -4,7 +4,6 @@ description: In this tutorial we show you how to create a private Git-based regi
 author: vicroms
 ms.author: viromer
 ms.date: 9/20/2023
-ms.prod: vcpkg
 ms.topic: tutorial
 # CustomerIntent: As an advanced vcpkg user I want to create a private Git registry so that I can publish private packages.
 ---

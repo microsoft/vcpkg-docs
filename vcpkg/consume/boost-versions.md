@@ -3,7 +3,6 @@ title: "Tutorial: Install a specific version of the Boost libraries using regist
 description: Learn to install specific version of Boost packages using a baseline.
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
 ms.date: 10/24/2023
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to install a specific version set of the Boost libraries
