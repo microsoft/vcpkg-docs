@@ -81,7 +81,7 @@ Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
 ## 4 - Set up the port files
 
 First, create the `vcpkg.json` file within the `custom-overlay\vcpkg-sample-library` folder with the following content:
-   
+
 ```json
 {
   "name": "vcpkg-sample-library",
@@ -230,7 +230,43 @@ vcpkg-sample-library provides CMake targets:
 
 ## 6 - Verify the port build
 
-To verify the library builds and links properly, modify the `CMakeLists.txt` and `main.cpp` created in the [Install and use packages with CMake](get-started.md) tutorial.
+To verify the library builds and links properly, add the new dependency to the manifest and configuration files.
+
+Modify `vcpkg.json` to add the `vcpkg-sample-library` dependency:
+
+```json
+{
+    "dependencies": [
+        "fmt",
+        "vcpkg-sample-library"
+    ]
+}
+```
+
+Modify `vcpkg-configuration.json` to include the `overlay-ports` containing the new port:
+
+```json
+{
+  "default-registry": {
+    "kind": "git",
+    "baseline": "45f6e57d3e10ad96b7db206cf7888f736ba5aa61",
+    "repository": "https://github.com/microsoft/vcpkg"
+  },
+  "registries": [
+    {
+      "kind": "artifact",
+      "location": "https://github.com/microsoft/vcpkg-ce-catalog/archive/refs/heads/main.zip",
+      "name": "microsoft"
+    }
+  ],
+  "overlay-ports": [
+    "../custom-overlay/vcpkg-sample-library"
+  ]
+}
+```
+
+Next, modify the `CMakeLists.txt` and `main.cpp` created in the [Install and use packages with
+CMake](get-started.md) tutorial.
 
 Modify the `CMakeLists.txt` with the following content:
 
@@ -264,7 +300,7 @@ int main()
 Configure, build, and run the application.
 
 1. Configure the build using CMake:
-   
+
   ```console
   cmake --preset=default
   ```
