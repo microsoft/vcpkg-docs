@@ -6,7 +6,6 @@ zone_pivot_groups: shell-selections
 author: data-queue
 ms.author: danshaw2
 ms.date: 12/06/2023
-ms.prod: vcpkg
 ms.topic: tutorial
 ---
 

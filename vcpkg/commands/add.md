@@ -4,7 +4,6 @@ description: Reference for the vcpkg add command. Adds packages to the manifest.
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 08/15/2023
-ms.prod: vcpkg
 ---
 # vcpkg add
 

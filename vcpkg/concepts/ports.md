@@ -4,7 +4,6 @@ description: This article explains the concept of ports, their capabilities, and
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 09/21/2023
-ms.prod: vcpkg
 ms.topic: concept-article
 ---
 

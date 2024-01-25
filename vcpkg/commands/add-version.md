@@ -4,7 +4,6 @@ description: Reference for the vcpkg x-add-version command. Update version datab
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 08/14/2023
-ms.prod: vcpkg
 ---
 
 # vcpkg x-add-version

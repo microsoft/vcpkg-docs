@@ -4,7 +4,6 @@ description: Learn to install your project's dependencies with vcpkg using the c
 author: vicroms
 ms.author: viromer
 ms.date: 8/10/2023
-ms.prod: vcpkg
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to learn how to install my project dependencies using vcpkg's command-line interface.
 ---

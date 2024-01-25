@@ -4,7 +4,6 @@ description: This tutorial shows you how to modify a vcpkg port and install it u
 author: vicroms
 ms.author: viromer
 ms.date: 10/24/2023
-ms.prod: vcpkg
 ms.topic: tutorial
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections

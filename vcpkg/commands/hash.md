@@ -4,7 +4,6 @@ description: Reference for the vcpkg hash command. Computes the hash of a specif
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 08/17/2023
-ms.prod: vcpkg
 ---
 
 

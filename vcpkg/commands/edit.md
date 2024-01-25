@@ -4,7 +4,6 @@ description: Command-line reference for the vcpkg edit command. Opens a port's c
 author: vicroms
 ms.author: viromer
 ms.date: 8/2/2023
-ms.prod: vcpkg
 ---
 # vcpkg edit
 

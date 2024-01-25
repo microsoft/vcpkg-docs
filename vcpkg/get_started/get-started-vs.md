@@ -7,7 +7,6 @@ author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
 ms.date: 09/27/2023
-ms.prod: vcpkg
 #CustomerIntent: As a beginner C++ developer, I want to learn how to install and manage packages using CMake and Visual Studio, so that I can easily set up and maintain C++ projects with necessary dependencies.
 ---
 

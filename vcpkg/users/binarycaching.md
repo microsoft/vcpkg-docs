@@ -5,7 +5,6 @@ description: Reuse binaries built with vcpkg across different projects and machi
 author: vicroms
 ms.author: viromer
 ms.date: 08/22/2023
-ms.prod: vcpkg
 ms.topic: concept-article
 ---
 

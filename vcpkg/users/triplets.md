@@ -4,7 +4,6 @@ description: This article describes the configurable variables available to trip
 author: vicroms
 ms.author: viromer
 ms.date: 10/23/2023
-ms.prod: vcpkg
 ms.topic: reference
 ---
 

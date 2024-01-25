@@ -4,7 +4,6 @@ description: Troubleshooting guide for common binary caching issues
 author: data-queue
 ms.author: danshaw2
 ms.date: 10/11/2023
-ms.prod: vcpkg
 ms.topic: troubleshooting-general
 ---
 

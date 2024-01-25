@@ -4,7 +4,6 @@ description: This article provides a glossary of common terms-of-art used in vcp
 author: vicroms
 ms.author: viromer
 ms.date: 10/23/2023
-ms.prod: vcpkg
 ms.topic: glossary
 ---
 

@@ -4,7 +4,6 @@ description: Reference for the vcpkg owns command. Determines which installed pa
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 08/17/2023
-ms.prod: vcpkg
 ---
 # vcpkg owns
 

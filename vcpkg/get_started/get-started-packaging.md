@@ -7,7 +7,6 @@ author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
 ms.date: 10/17/2023
-ms.prod: vcpkg
 #CustomerIntent: As a beginner C++ developer, I want to learn how to package libraries for vcpkg using custom overlays.
 ---
 

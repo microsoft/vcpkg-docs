@@ -4,7 +4,6 @@ description: In this tutorial we show you how to export compiled dependencies to
 author: JavierMatosD
 ms.author: Javiermat
 ms.date: 11/06/2023
-ms.prod: vcpkg
 ms.topic: tutorial
 # CustomerIntent: As an advanced vcpkg user I want to export compiled dependencies to be consumed by another project.
 ---

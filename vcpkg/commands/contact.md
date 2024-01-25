@@ -4,7 +4,6 @@ description: Reference for the vcpkg contact command. Provides an official conta
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 08/15/2023
-ms.prod: vcpkg
 ---
 # vcpkg contact
 

@@ -4,7 +4,6 @@ description: Learn what is a vcpkg binary cache and why you should be using one.
 author: vicroms
 ms.author: viromer
 ms.date: 9/25/2023
-ms.prod: vcpkg
 ms.topic: concept-article
 #CustomerIntent: As a beginner vcpkg user, I want to learn what is binary caching and why should I use it
 ---

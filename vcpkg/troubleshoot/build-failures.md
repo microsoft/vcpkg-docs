@@ -4,7 +4,6 @@ description: Troubleshooting guide for common build failures in vcpkg ports
 author: vicroms
 ms.author: viromer
 ms.date: 12/12/2023
-ms.prod: vcpkg
 ms.topic: troubleshooting-general
 ---
 

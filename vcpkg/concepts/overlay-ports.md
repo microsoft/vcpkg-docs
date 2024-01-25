@@ -4,7 +4,6 @@ description: This article describes overlay ports in vcpkg. Overlay ports are us
 author: data-queue
 ms.author: danshaw2
 ms.date: 9/20/2023
-ms.prod: vcpkg
 ms.topic: concept-article
 ---
 

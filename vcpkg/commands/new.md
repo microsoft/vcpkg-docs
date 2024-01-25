@@ -5,7 +5,6 @@ ms.author: bion
 author: BillyONeal
 ms.date: 09/11/2023
 ms.topic: reference
-ms.prod: vcpkg
 ---
 # vcpkg new
 

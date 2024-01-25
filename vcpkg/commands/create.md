@@ -4,7 +4,6 @@ description: Reference for the vcpkg create command. Generates a port to package
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 08/01/2023
-ms.prod: vcpkg
 ---
 
 # vcpkg create
