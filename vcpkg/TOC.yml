@@ -144,7 +144,7 @@
     href: concepts/registries.md
   - name: Script ports
     href: maintainers/authoring-script-ports.md
-  - name: System package managers
+  - name: Comparing vcpkg with system package managers
     href: concepts/system-package-managers.md
   - name: Triplets
     href: concepts/triplets.md
