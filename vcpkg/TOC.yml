@@ -370,6 +370,8 @@
           href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
     - name: Portfile variables
       href: maintainers/variables.md
+    - name: Software bill of materials generation
+      href: reference/software-bill-of-materials.md
     - name: Triplets
       href: users/triplets.md
     - name: Versioning
