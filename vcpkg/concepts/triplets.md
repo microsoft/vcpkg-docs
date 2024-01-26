@@ -1,6 +1,6 @@
 ---
 title:  Triplets
-description: This article expalins the concept of triplets in vcpkg and their capabilities.
+description: This article explains the concept of triplets in vcpkg and their capabilities.
 author: vicroms
 ms.author: viromer
 ms.date: 10/24/2023

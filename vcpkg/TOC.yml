@@ -111,6 +111,8 @@
     href: users/classic-mode.md
   - name: Manifest mode
     href: concepts/manifest-mode.md
+  - name: Supported Hosts
+    href: concepts/supported-hosts.md
   - name: Cross-compilation
     items:
     - name: Android
