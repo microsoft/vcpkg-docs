@@ -3,7 +3,7 @@ title: vcpkg create
 description: Reference for the vcpkg create command. Generates a port to package a source code project.
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 01/10/2024
+ms.date: 01/26/2024
 ms.service: vcpkg
 ---
 
@@ -28,7 +28,6 @@ It's important to understand that the port created by the `vcpkg create` command
 ## Example
 
 ```no-highlight
-
 vcpkg create zlib2 https://github.com/madler/zlib/archive/v1.2.11.tar.gz zlib-1.2.11.tar.gz
 
 -- Downloading https://github.com/madler/zlib/archive/v1.2.11.tar.gz -> zlib-1.2.11.tar.gz...

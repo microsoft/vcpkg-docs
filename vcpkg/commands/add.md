@@ -3,7 +3,7 @@ title: vcpkg add
 description: Reference for the vcpkg add command. Adds packages to the manifest.
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 01/10/2024
+ms.date: 01/26/2024
 ---
 # vcpkg add
 
@@ -34,6 +34,7 @@ To add ports - `fmt`, `sqlitecpp`, `zlib`:
 
 ```console
 vcpkg add port fmt sqlitecpp zlib
+```
 
 ```json
 {

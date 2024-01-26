@@ -1,16 +1,16 @@
 ---
 title: Frequently Asked Questions
 description: Common questions and answers about vcpkg
-ms.date: 01/10/2024
+ms.date: 01/26/2024
 ms.topic: faq
 ---
 # Frequently Asked Questions
 
 ## What are classic mode and manifest mode?
 
-In general, there are two ways to manage your dependencies with vcpkg:
+There are two ways to manage your dependencies with vcpkg:
 
-1. **Manifest mode** lets you declare your direct dependencies, version constraints, and registries used in a file called *vcpkg.json*. This file should be included in your code repo and can be checked in to your source control system. Dependencies will be installed in a subfolder of your repo called *vcpkg_installed*. This way, each code project can have its own set of dependencies; nothing is installed system-wide. You can run vcpkg in manifest mode by running `vcpkg install` (with no other arguments), or by taking advantage of the automatic integration vcpkg manifests have for MSBuild and CMake projects. In general, we recommend using manifests for your projects over classic mode in most cases, as you have better control over your dependencies. See our [Manifest mode article](../concepts/manifest-mode.md) for more details.
+1. **Manifest mode** lets you declare your direct dependencies, version constraints, and used registries in a file called [`vcpkg.json`](../reference/vcpkg-json.md). This file should be included in your code repository and can be checked in to your source control system. Dependencies are installed in a subfolder named `vcpkg_installed`. This way, each code project can have its own set of dependencies; nothing is installed system-wide. You can run vcpkg in manifest mode by running `vcpkg install` (with no other arguments), or by taking advantage of the automatic [integration with MSBuild](../users/buildsystems/msbuild-integration.md) and [CMake projects](../users/buildsystems/cmake-integration.md). We recommend using manifests for your projects over classic mode in most cases, as you have better control over your dependencies. See our [Manifest mode article](../concepts/manifest-mode.md) for more details.
 2. **Classic mode** is the more traditional way of managing dependencies, which involves running vcpkg commands that specify each direct dependency to install, modify, or remove. Dependencies are stored within the vcpkg installation directory, so multiple consuming projects can reference the same set of dependencies. See our [Classic mode article](../users/classic-mode.md) for more details.
 
 ## Can I contribute a new library?
@@ -40,7 +40,7 @@ We recommend cloning directly from [GitHub](https://github.com/microsoft/vcpkg) 
 
 ## Can I build a private library with this tool?
 
-Yes. Follow [our packaging zlib example](../examples/packaging-zipfiles.md) for creating a portfile using a fake URL. Then, either pre-seed the `downloads\` folder with a zip containing your private sources or replace the normal calls to `vcpkg_download_distfile` and `vcpkg_extract_source_archive` with functions that unpack your source code.
+Yes. Follow [our packaging example](../get_started/get-started-packaging.md) to create your own port and see the [overlay ports](../concepts/overlay-ports.md) and [registries](../concepts/registries.md) documentation to learn how to manage your private ports.
 
 You can take this further by publishing your private libraries into a registry. See the article on [Creating registries](../maintainers/registries.md). A registry is a catalog of ports, similar to the one provided with vcpkg that contains open source libraries.
 

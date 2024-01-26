@@ -6,7 +6,7 @@ zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
-ms.date: 01/10/2024
+ms.date: 01/26/2024
 #CustomerIntent: As a beginner C++ developer, I want to learn how to add a port to the vcpkg registry.
 ---
 
@@ -57,8 +57,8 @@ Add the `vcpkg-sample-library` port that was created in the [packaging a library
 
 ```bash
 cp -R <path/to/vcpkg-sample-library> <ports/vcpkg-sample-library>
-
 ```
+
 ::: zone-end
 ::: zone pivot="shell-cmd"
 
