@@ -29,9 +29,8 @@ In this tutorial you'll learn how to:
 
 ## 1 - Create an asset cache directory
 
-When using the [`x-azurl`](../users/assetcaching.md#x-azurl) backend, you can
-use an Azure DevOps Blob Storage to serve as the storage backend for your
-downloaded assets. Alternatively, you can use a filesystem directories to store
+You can use the Azure Blob Storage backend "[`x-azurl`](../users/assetcaching.md#x-azurl)", to store
+assets. Alternatively, you can use a filesystem directories to store
 your download assets, including network locations. To do so, you need to use the
 `file://` protocol in your asset cache URL.
 
