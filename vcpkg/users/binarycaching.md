@@ -112,7 +112,7 @@ x-aws-config,no-sign-request
 ```
 Pass `--no-sign-request` to the AWS CLI.
 
-### <a name="azblob"></a> Azure Blob provider
+### <a name="azblob"></a> Azure Blob Storage provider
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
@@ -492,4 +492,3 @@ Relevant files, compiler and tool version information are hashed to compute the 
 
 > [!NOTE]
 > The `triplet_abi` entry contains three hashes: the hash of the file content of the `x86-windows` triplet, the `windows.cmake` toolchain, and the compiler hash. These hashes would change if you decided to target a different platform.
-

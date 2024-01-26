@@ -25,13 +25,11 @@ Removes all previous sources in the configuration string. Useful in combination 
 `--x-asset-sources` parameter to disable all asset caching sources coming from the
 `X_VCPKG_ASSET_SOURCES` environment variable.
 
-### <a name="x-azurl"></a> `x-azurl`
+### <a name="x-azurl"></a>Azure Blob Storage (`x-azurl`)
 
 **Syntax**:
 1. `x-azurl,<url>[,<sas>[,<rw>]]`
 2. `x-azurl,file://<network-location>[,,<rw>]`
-
-Adds an Azure Blob Storage source.
 
 `<url>`: Required. The Azure Blob Storage connection URL. It must include the container path and a trailing
 `/`.
