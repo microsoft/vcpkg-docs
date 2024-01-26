@@ -9,8 +9,7 @@ ms.topic: concept-article
 
 # Supported Hosts
 
-This document describes the architectures and operating systems supported by vcpkg. The examples
-used in this document are current as of 2024-01-16.
+This document describes the architectures and operating systems supported by vcpkg.
 
 ## Dependencies
 
@@ -27,25 +26,26 @@ We recommend installing these dependencies with your system package manager.
   * apt-based platforms: `apt install git curl zip unzip pkgconfig`
   * rpm-based platforms: `dnf install git curl zip unzip pkgconfig`
 
+For Linux and macOS users we also recommend to install the following packages: `autoconf`, `autoconf-archive`, `automake`, `make` and `libtool`. While not required, these packages are used often by libraries available in vcpkg.
+
 ## Curated registry support levels
 
 Support is broken into 4 distinct categories. They are:
 
 * Full support, tested  
-  These configurations are those used to test vcpkg's curated registry on a regular basis. Problems in these
-  configurations are rapidly found and fixed by vcpkg's maintainers and community.
+  The configurations used to test vcpkg's curated registry on a regular basis. Problems in these configurations
+  are rapidly found and fixed by vcpkg's maintainers and community..
 * Full support, expected  
-  These configurations fixes are treated with the same level of priority as 'Full support, tested', but aren't used
-  directly to validate all changes to the curated registry. In general, these platforms are expected to be
-  substantially similar to one of the fully tested configurations.
+  Configurations treated with the same priority as 'Full support, tested' but which are not part of the regular tests.
+  In general, these configurations are substantially similar to one of the fully tested configurations.
 * Community support  
-  These configurations are not actively supported by vcpkg's maintainers, but have substantial community investment
-  where people other than the maintainers fix issues. In general, the vcpkg maintainers will merge changes to fix
-  problems for these platforms, but can't make statements that they should always work. The vcpkg maintainers are
-  interested in moving as many platforms out of community support into full support as possible.
+  Configurations that are not actively supported by vcpkg's maintainers but have substantial community investment.
+  vcpkg maintainers accept changes to fix problems for these platforms but don't make guarantees that these 
+  configurations work. The vcpkg team is interested in moving as many platforms out of community support
+  into full support as possible.
 * Unsupported  
-  These are platforms where things are known to not work for some reason. In general, PRs fixing only these platforms
-  aren't merged.
+  Configurations that are known no to work for some reason. In general, PRs fixing only these platforms
+  are not accepted.
 
 ## Full support, tested
 
@@ -68,6 +68,9 @@ As of this writing, we are using:
 ### Linux
 
 * The latest LTS release of Ubuntu, currently 22.04.
+
+### Android
+* Linux 64-bit Android NDK version 25c
 
 ## Full support, expected
 
