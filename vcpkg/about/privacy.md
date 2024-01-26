@@ -1,7 +1,7 @@
 ---
 title: Telemetry and Privacy
 description: vcpkg telemetry and privacy information
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ms.topic: legal
 ---
 # vcpkg Telemetry and Privacy

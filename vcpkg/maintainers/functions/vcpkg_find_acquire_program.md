@@ -1,7 +1,7 @@
 ---
 title: vcpkg_find_acquire_program
 description: Learn how to use vcpkg_find_acquire_program.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_find_acquire_program
 

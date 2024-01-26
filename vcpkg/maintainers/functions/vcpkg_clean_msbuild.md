@@ -1,7 +1,7 @@
 ---
 title: vcpkg_clean_msbuild
 description: Use vcpkg_clean_msbuild to remove MSBuild intermediate files.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_clean_msbuild
 

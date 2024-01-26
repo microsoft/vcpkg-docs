@@ -3,8 +3,7 @@ title: vcpkg owns
 description: Reference for the vcpkg owns command. Determines which installed package owns a particular file or files matching a substring.
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 08/17/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ---
 # vcpkg owns
 
@@ -13,11 +12,13 @@ ms.prod: vcpkg
 ```console
 vcpkg owns <file-substr>
 ```
+
 ## Description
 
 The `owns` command is used to search for installed packages that own a particular file or files that match a substring (`<file-substr>`).
 
 The command outputs a list of packages that have files matching the given substring. Each entry is in the format:
+
 ```console
 <package-name>: <file-path>
 ```

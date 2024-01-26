@@ -1,7 +1,7 @@
 ---
 title: Manual Integration
 description: Integrate vcpkg into any buildsystem, such as meson or autoconf.
-ms.date: 12/01/2022
+ms.date: 01/10/2024
 ms.topic: concept-article
 ---
 # Manual Integration

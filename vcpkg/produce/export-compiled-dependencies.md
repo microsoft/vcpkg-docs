@@ -3,8 +3,7 @@ title: "Tutorial: Export compiled dependencies"
 description: In this tutorial we show you how to export compiled dependencies to be consumed by another project.
 author: JavierMatosD
 ms.author: Javiermat
-ms.date: 11/06/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: tutorial
 # CustomerIntent: As an advanced vcpkg user I want to export compiled dependencies to be consumed by another project.
 ---
@@ -13,7 +12,7 @@ ms.topic: tutorial
 
 In this tutorial, we'll walk through how to export compiled dependencies using vcpkg. This can be particularly useful when you want to share libraries across multiple projects or for ease of distribution.
 
-## Prerequisites:
+## Prerequisites
 
 - [Visual Studio](<https://visualstudio.microsoft.com/downloads/>) with C++ development workload and [CMake component](</cpp/build/cmake-projects-in-visual-studio#installation>)
 - [Git](<https://git-scm.com/downloads>)
@@ -101,4 +100,3 @@ To use the `fmt` library in a new CMake project, follow these steps:
 ## Next Steps
 
 And that's it! You have exported the `fmt` library and used it in a separate project.
-

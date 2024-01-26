@@ -1,7 +1,7 @@
 ---
 title: vcpkg-configuration.json Reference
 description: Reference documentation for the vcpkg-configuration.json file format
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ms.topic: reference
 ---
 # vcpkg-configuration.json Reference
@@ -41,6 +41,7 @@ The latest JSON Schema is available at [https://raw.githubusercontent.com/micros
   "overlay-triplets": [ "./my-triplets" ]
 }
 ```
+
 This example adds a private registry, `https://github.com/northwindtraders/vcpkg-registry`, as the source for the libraries `beicode` and `beison`. All other ports are found from an internal mirror of the Curated Catalog hosted at `https://internal/mirror/of/github.com/Microsoft/vcpkg`.
 
 The example also configures custom overlays for ports and triplets that are present in the source code repository.

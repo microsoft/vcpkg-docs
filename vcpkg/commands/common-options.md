@@ -1,7 +1,7 @@
 ---
 title: Common command options
 description: Common command line options reference for vcpkg.
-ms.date: 9/5/2022
+ms.date: 01/10/2024
 ---
 # Common command options
 

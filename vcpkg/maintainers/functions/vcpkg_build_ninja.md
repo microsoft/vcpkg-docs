@@ -1,7 +1,7 @@
 ---
 title: vcpkg_build_ninja
 description: Use vcpkg_build_ninja to build a ninja project.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_build_ninja
 

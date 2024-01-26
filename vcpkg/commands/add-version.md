@@ -3,8 +3,7 @@ title: vcpkg x-add-version
 description: Reference for the vcpkg x-add-version command. Update version database of vcpkg ports.
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 08/14/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ---
 
 # vcpkg x-add-version
@@ -22,7 +21,8 @@ vcpkg x-add-version [port-name] [options] [--all] [--overwrite-version] [--skip-
 The `x-add-version` command updates the [version database](..\users\versioning.concepts.md#acquiring-port-versions) for vcpkg ports. By default, it operates on a specified port. With the appropriate switches, users can choose to process all ports or change the default behavior regarding formatting checks and version updates.
 
 To use the command:
-1. After making changes to a port, navigate to the vcpkg directory. 
+
+1. After making changes to a port, navigate to the vcpkg directory.
 2. Run `vcpkg x-add-version <port-name>`, replacing `<port-name>` with the name of the port you've edited.
 
 This will add or update the version entry for your port in the version database.
@@ -36,6 +36,7 @@ All vcpkg commands support a set of [common options](common-options.md).
 Specifies the name of the port to be updated. If not provided, the user should use the `--all` option to process all ports.
 
 ### `--all`
+
 Processes all the ports in the [built-in](..\maintainers\registries.md#builtin-registries) `ports` directory.
 
 ### `--overwrite-version`
@@ -58,5 +59,3 @@ Skips the version format check. By default, versions are checked to ensure they 
 ### `--verbose`
 
 Provides verbose output, giving more details about the operations being carried out.
-
-

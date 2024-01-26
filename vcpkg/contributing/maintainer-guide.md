@@ -1,10 +1,10 @@
 ---
 title: vcpkg Maintainer Guide
 description: The Guide for maintainers contributing to vcpkg.
-ms.date: 2/10/2023
+ms.date: 01/10/2024
 ms.topic: concept-article
 ---
-# Maintainer Guide
+# Maintainer guide
 
 This document lists a set of policies that you should apply when adding or updating a port recipe.
 It is intended to serve the role of
@@ -12,7 +12,7 @@ It is intended to serve the role of
 [Homebrew's Maintainer Guidelines](https://docs.brew.sh/Maintainer-Guidelines), and
 [Homebrew's Formula Cookbook](https://docs.brew.sh/Formula-Cookbook).
 
-## PR Structure
+## PR structure
 
 ### Make separate Pull Requests per port
 
@@ -118,20 +118,17 @@ Examples:
 
 Each port has to provide a file named `copyright` in the folder `${CURRENT_PACKAGES_DIR}/share/${PORT}`. If a package's license content is available within its source files, this file should be created by a call to [`vcpkg_install_copyright()`](../maintainers/functions/vcpkg_install_copyright.md). `vcpkg_install_copyright` also bundles multiple copyright files if necessary.
 
-
 ```cmake
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 ```
 
 An older method to manually create this file is with CMake's built in `file` command. This is discouraged in favor of `vcpkg_install_copyright` in new ports but is still allowed.
 
-
 ```cmake
 file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
 ```
 
 If the license content in the upstream source files is not in text form (e.g. a PDF file), `copyright` should contain an explanation as to how a user can find the license requirements. If possible, it should also include a link to the original source files indicating this, so users can check if it is up to date.
-
 
 ```cmake
 file(WRITE "${CURRENT_PACKAGES_DIR}/share/${PORT}/copyright" [[As of 2023-07-25, according to
@@ -444,6 +441,7 @@ We require that the manifest file be formatted. Use the following command to for
 We are not accepting requests to add non-community triplets at this time. Promotion from community to full triplet status is primarily based on budget for the hardware to test such triplets and will be driven by metrics submitted by vcpkg to maximize the likelihood what people actually use is fully tested.
 
 We will add community triplets if:
+
 * It is demonstrated that people will actually use that community triplet; and,
 * we don't know that such a triplet is broken.
 

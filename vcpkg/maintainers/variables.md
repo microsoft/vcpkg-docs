@@ -1,11 +1,11 @@
 ---
-title: Portfile Variable Reference
+title: Portfile variable reference
 description: These are variables set automatically by vcpkg for use in any port.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ms.topic: reference
 ---
 
-# Portfile Variable Reference
+# Portfile variable reference
 
 These are variables set automatically by vcpkg for use in any port. They should not be modified by the port.
 

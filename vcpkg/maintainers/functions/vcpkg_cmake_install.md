@@ -1,7 +1,7 @@
 ---
 title: vcpkg_cmake_install
 description: Use vcpkg_cmake_install to build and install a CMake project.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_cmake_install
 

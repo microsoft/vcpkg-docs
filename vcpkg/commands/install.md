@@ -1,7 +1,7 @@
 ---
 title: vcpkg install
 description: Command line reference for the vcpkg install command. Build and install port packages.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg install
 

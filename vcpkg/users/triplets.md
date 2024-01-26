@@ -3,8 +3,7 @@ title: Triplets reference
 description: This article describes the configurable variables available to triplet files.
 author: vicroms
 ms.author: viromer
-ms.date: 10/23/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: reference
 ---
 
@@ -209,7 +208,7 @@ environment variables without abi tracking, see
 See also the [`vcpkg env`](../commands/env.md) command for how you can inspect
 the precise environment that will be used.
 
-> [!NOTE] 
+> [!NOTE]
 > This list is extracted via the `vcpkg_get_tags` helper function.
 
 ### VCPKG_ENV_PASSTHROUGH_UNTRACKED

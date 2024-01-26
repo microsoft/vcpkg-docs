@@ -3,8 +3,8 @@ title: vcpkg contact
 description: Reference for the vcpkg contact command. Provides an official contact (vcpkg@microsoft.com)
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 08/15/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
+ms.service: vcpkg
 ---
 # vcpkg contact
 
@@ -36,4 +36,3 @@ All vcpkg commands support a set of [common options](common-options.md).
 > This option is defunct and has been removed from vcpkg in current versions.
 
 Opens the vcpkg feedback survey in a web-browser window.
-

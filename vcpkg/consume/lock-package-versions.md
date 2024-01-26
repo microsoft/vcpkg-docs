@@ -3,8 +3,7 @@ title: "Tutorial: Install a specific version of a package"
 description: Learn to install specific versions of your dependencies using vcpkg in your projects.
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
-ms.date: 9/20/2023
+ms.date: 01/10/2024
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to learn how to install specific versions of my project dependencies using vcpkg
 ---

@@ -3,9 +3,8 @@ title: vcpkg_download_distfile
 description: Learn how to use vcpkg_download_distfile.
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
 ms.topic: reference
-ms.date: 11/10/2023
+ms.date: 01/10/2024
 ---
 # vcpkg_download_distfile
 
@@ -34,9 +33,11 @@ vcpkg_download_distfile(
     [ALWAYS_REDOWNLOAD]
 )
 ```
+
 ## Parameters
 
 ### OUT_VARIABLE
+
 This variable will be set to the full path to the downloaded file. This can then immediately be passed to
 [`vcpkg_extract_source_archive`](vcpkg_extract_source_archive.md) for sources.
 

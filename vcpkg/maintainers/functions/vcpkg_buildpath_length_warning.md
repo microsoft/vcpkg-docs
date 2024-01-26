@@ -1,7 +1,7 @@
 ---
 title: vcpkg_buildpath_length_warning
 description: Enable a warning if the vcpkg installation path is too long for a package.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_buildpath_length_warning
 

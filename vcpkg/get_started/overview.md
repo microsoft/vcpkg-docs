@@ -4,7 +4,7 @@ description: Learn about how the vcpkg C/C++ package manager can help you acquir
 ms.topic: overview
 author: AugP
 ms.author: aupopa
-ms.date: 10/25/2023
+ms.date: 01/10/2024
 ---
 
 # vcpkg overview
@@ -74,6 +74,7 @@ There are a wide variety of system package managers for Linux, macOS, and Window
 - **Cross-platform support**: System package managers provide packages locked to a particular system. If you need to target more than one operating system flavor, you'll need to find a different package manager for the second system. In contrast, vcpkg is a cross-platform package manager. So, you simply need to adjust your target builds accordingly.
 
 There are situations where a system package manager absolutely makes sense:
+
 - System package managers tend to do a good job providing and maintaining libraries specific to that system
 - Prebuilt packages should work out of the box on that system if your consuming project has a simple build configuration.
 - If you don't intend to do any cross-platform development, you won't run into operating system compatibility issues with a system package manager.

@@ -1,7 +1,7 @@
 ---
 title: vcpkg version
 description: Command line reference for the vcpkg version command. Displays the version of the vcpkg executable.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg version
 

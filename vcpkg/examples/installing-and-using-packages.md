@@ -1,7 +1,7 @@
 ---
 title: Getting Started with Classic mode
 description: Learn to get started with SQLite with vcpkg in Classic mode.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ROBOTS: NOINDEX
 is_archived: true
 ---

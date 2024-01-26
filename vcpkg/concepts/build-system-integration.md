@@ -3,8 +3,7 @@ title: Build system integration
 description: This article explains the different mechanisms vcpkg uses to integrate with build systems.
 author: vicroms
 ms.author: viromer
-ms.date: 10/24/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: concept-article
 ---
 # Build system integration
@@ -40,9 +39,7 @@ documentation](../users/buildsystems/cmake-integration.md).
 
 ## Manual integration
 
-vcpkg makes it easy to integrate with other build systems by providing a standardized 
-documented [installation
-layout](../reference/installation-tree-layout.md). 
+vcpkg makes it easy to integrate with other build systems by providing a standardized documented [installation layout](../reference/installation-tree-layout.md).
 
 Read more about how to integrate vcpkg with your build system using [manual
 integration](../users/buildsystems/manual-integration.md).

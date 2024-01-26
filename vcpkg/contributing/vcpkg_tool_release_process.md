@@ -1,7 +1,7 @@
 ---
-title: Microsoft/vcpkg-tool Release Process
+title: Microsoft/vcpkg-tool release process
 description: Internal process guide for creating a new tool release of vcpkg.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ROBOTS: NOINDEX
 ---
 # Microsoft/vcpkg-tool release process

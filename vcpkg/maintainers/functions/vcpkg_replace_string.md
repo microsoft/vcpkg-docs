@@ -1,7 +1,7 @@
 ---
 title: vcpkg_replace_string
 description: Learn how to use vcpkg_replace_string.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_replace_string
 
@@ -29,4 +29,3 @@ The string to replace all matched sequences with.
 ## Source
 
 [scripts/cmake/vcpkg\_replace\_string.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_replace_string.cmake)
-

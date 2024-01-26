@@ -1,7 +1,7 @@
 ---
 title: vcpkg_qmake_install
 description: Use vcpkg_qmake_install to build a QMake project.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 
 # vcpkg_qmake_install

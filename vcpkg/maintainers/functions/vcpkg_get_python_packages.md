@@ -1,7 +1,7 @@
 ---
 title: vcpkg_get_python_packages
 description: Learn how to use vcpkg_get_python_packages.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # x_vcpkg_get_python_packages
 

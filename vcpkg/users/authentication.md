@@ -1,7 +1,7 @@
 ---
 title: Remote Authentication
 description: Learn to configure which credentials are used when accessing remote resources with vcpkg.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ms.topic: concept-article
 ---
 # Remote authentication

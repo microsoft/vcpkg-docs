@@ -1,7 +1,7 @@
 ---
 title: vcpkg remove
 description: Command line reference for the vcpkg remove command. Remove port packages from Classic mode.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg remove
 

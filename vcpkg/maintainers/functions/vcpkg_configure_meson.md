@@ -1,7 +1,7 @@
 ---
 title: vcpkg_configure_meson
 description: Learn how to use vcpkg_configure_meson.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_configure_meson
 
@@ -22,6 +22,7 @@ vcpkg_configure_meson(
 ## Parameters
 
 ### SOURCE_PATH
+
 Specifies the directory containing the `meson.build`.
 By convention, this is usually set in the portfile as the variable `SOURCE_PATH`.
 
@@ -39,7 +40,7 @@ Additional options passed to Meson during the Debug configuration. These are in 
 
 ### NO_PKG_CONFIG
 
-Disable pkg-config setup 
+Disable pkg-config setup.
 
 ## Notes
 
@@ -53,4 +54,3 @@ This command supplies many common arguments to Meson. To see the full list, exam
 ## Source
 
 [scripts/cmake/vcpkg\_configure\_meson.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_configure_meson.cmake)
-

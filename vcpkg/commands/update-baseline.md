@@ -1,7 +1,7 @@
 ---
 title: vcpkg x-update-baseline
 description: Command line reference for the vcpkg x-update-baseline command. Update baselines for all configured registries.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg x-update-baseline
 

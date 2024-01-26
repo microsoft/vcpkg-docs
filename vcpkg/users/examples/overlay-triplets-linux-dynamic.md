@@ -1,7 +1,7 @@
 ---
 title: Using Overlay Triplets
 description: Learn to use overlay triplets to build shared libraries on Linux.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ms.topic: tutorial
 ---
 # Using Overlay Triplets
