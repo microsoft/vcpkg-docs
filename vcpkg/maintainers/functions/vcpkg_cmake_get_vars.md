@@ -1,7 +1,7 @@
 ---
 title: vcpkg_cmake_get_vars
 description: Use vcpkg_cmake_get_vars to extract certain CMake variables.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_cmake_get_vars
 

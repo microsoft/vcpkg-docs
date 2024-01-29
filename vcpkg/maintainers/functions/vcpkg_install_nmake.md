@@ -1,7 +1,7 @@
 ---
 title: vcpkg_install_nmake
 description: Learn how to use vcpkg_install_nmake.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_install_nmake
 
@@ -29,6 +29,7 @@ vcpkg_install_nmake(
 ## Parameters
 
 ### SOURCE_PATH
+
 Specifies the directory containing the source files.
 By convention, this is usually set in the portfile as the variable `SOURCE_PATH`.
 
@@ -95,4 +96,3 @@ This command transparently forwards to [`vcpkg_build_nmake()`](vcpkg_build_nmake
 ## Source
 
 [scripts/cmake/vcpkg\_install\_nmake.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_nmake.cmake)
-

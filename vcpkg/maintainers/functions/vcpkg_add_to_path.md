@@ -1,7 +1,7 @@
 ---
 title: vcpkg_add_to_path
 description: Use vcpkg_add_to_path to add directories to the PATH.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_add_to_path
 

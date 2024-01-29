@@ -3,8 +3,7 @@ title: "Tutorial: Set up a vcpkg asset cache"
 description: Learn to set up a local asset cache to mirror download assets.
 author: vicroms
 ms.author: viromer
-ms.date: 10/24/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to set up a local asset cache to mirror downloaded artifacts
 zone_pivot_group_filename: zone-pivot-groups.json
@@ -29,9 +28,8 @@ In this tutorial you'll learn how to:
 
 ## 1 - Create an asset cache directory
 
-When using the [`x-azurl`](../users/assetcaching.md#x-azurl) backend, you can
-use an Azure DevOps Blob Storage to serve as the storage backend for your
-downloaded assets. Alternatively, you can use a filesystem directories to store
+You can use the Azure Blob Storage backend "[`x-azurl`](../users/assetcaching.md#x-azurl)", to store
+assets. Alternatively, you can use a filesystem directories to store
 your download assets, including network locations. To do so, you need to use the
 `file://` protocol in your asset cache URL.
 

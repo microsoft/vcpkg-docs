@@ -3,8 +3,7 @@ title: vcpkg in CMake projects
 description: Integrate vcpkg into a CMake project using a terminal, Visual Studio, Visual Studio Code, or other IDEs.
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
-ms.date: 9/20/2023
+ms.date: 01/10/2024
 ms.topic: concept-article
 ---
 # vcpkg in CMake projects

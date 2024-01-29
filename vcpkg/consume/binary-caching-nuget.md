@@ -3,9 +3,8 @@ title: "Tutorial: Set up a vcpkg binary cache using a NuGet feed"
 description: This tutorial shows how to set up a vcpkg binary cache using a NuGet feed as the backend
 author: vicroms
 ms.author: viromer
-ms.prod: vcpkg
 ms.topic: tutorial
-ms.date: 09/11/2023
+ms.date: 01/10/2024
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
 ---
@@ -50,6 +49,7 @@ In this tutorial, you'll learn how to:
 * The `mono` package installed in your system
 
 ::: zone-end
+
 ## 1 - Set up a NuGet feed
 
 Skip this step if you already have an existing NuGet packages feed.

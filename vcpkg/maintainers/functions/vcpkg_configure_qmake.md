@@ -1,7 +1,7 @@
 ---
 title: vcpkg_configure_qmake
 description: Learn how to use vcpkg_configure_qmake.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_configure_qmake
 
@@ -36,4 +36,3 @@ The options passed to qmake to the build step.
 ## Source
 
 [scripts/cmake/vcpkg\_configure\_qmake.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_configure_qmake.cmake)
-

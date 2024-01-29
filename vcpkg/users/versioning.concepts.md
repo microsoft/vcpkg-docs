@@ -1,7 +1,7 @@
 ---
 title: Versioning concepts
 description: Understand how vcpkg manages versioning.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ms.topic: concept-article
 ---
 # Versioning concepts
@@ -135,5 +135,3 @@ Example: `zlib.json`
 ```
 
 For each port, its corresponding versions file should be located in `versions/{first letter of port name}-/{port name}.json`. For example, zlib's version file will be located in `versions/z-/zlib.json`. Aside from port version files, the current baseline file is located in `versions/baseline.json`.
-
-

@@ -1,7 +1,7 @@
 ---
 title: vcpkg_clean_executables_in_bin
 description: Use vcpkg_clean_executables_in_bin to remove specified executables.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_clean_executables_in_bin
 

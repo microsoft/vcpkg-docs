@@ -1,7 +1,7 @@
 ---
 title: vcpkg_install_msbuild
 description: Learn how to use vcpkg_install_msbuild.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_install_msbuild
 
@@ -35,6 +35,7 @@ vcpkg_install_msbuild(
 ## Parameters
 
 ### SOURCE_PATH
+
 The path to the root of the source tree.
 
 Because MSBuild uses in-source builds, the source tree will be copied into a temporary location for the build. This
@@ -122,4 +123,3 @@ Additional options passed to msbuild for Debug builds. These are in addition to 
 ## Source
 
 [scripts/cmake/vcpkg\_install\_msbuild.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_msbuild.cmake)
-

@@ -6,8 +6,7 @@ zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
-ms.date: 08/23/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 #CustomerIntent: As a beginner C++ developer, I want to learn how to install and manage packages using CMake and vcpkg, so that I can easily set up and maintain C++ projects with necessary dependencies.
 ---
 
@@ -75,7 +74,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
 
 2. Create the project directory.
-    
+
     ```console
     mkdir helloworld && cd helloworld
     ```
@@ -167,6 +166,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 ## Next steps
 
 To learn more about `vcpkg.json`, see our reference documentation:
+
 - [Packaging a library](get-started-packaging.md)
 - [vcpkg.json](..\reference\vcpkg-json.md)
 - [manifest](..\users\manifests.md)

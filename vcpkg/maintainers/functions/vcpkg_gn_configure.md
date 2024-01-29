@@ -1,7 +1,7 @@
 ---
 title: vcpkg_gn_configure
 description: Learn how to use vcpkg_gn_configure.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_gn_configure
 
@@ -39,4 +39,3 @@ Options to be passed to the release target.
 ## Source
 
 [ports/vcpkg-gn/vcpkg\_gn\_configure.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-gn/vcpkg_gn_configure.cmake)
-

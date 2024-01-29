@@ -111,6 +111,8 @@
     href: users/classic-mode.md
   - name: Manifest mode
     href: concepts/manifest-mode.md
+  - name: Supported Hosts
+    href: concepts/supported-hosts.md
   - name: Cross-compilation
     items:
     - name: Android
@@ -144,6 +146,8 @@
     href: concepts/registries.md
   - name: Script ports
     href: maintainers/authoring-script-ports.md
+  - name: Comparing vcpkg with system package managers
+    href: concepts/system-package-managers.md
   - name: Triplets
     href: concepts/triplets.md
   - name: Versioning
@@ -370,6 +374,8 @@
           href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
     - name: Portfile variables
       href: maintainers/variables.md
+    - name: Software Bill of Materials generation
+      href: reference/software-bill-of-materials.md
     - name: Triplets
       href: users/triplets.md
     - name: Versioning
@@ -382,6 +388,8 @@
   items:
     - name: Troubleshoot binary caching issues
       href: users/binarycaching-troubleshooting.md
+    - name: Troubleshoot package build issues
+      href: troubleshoot/build-failures.md
 - name: About
   items:
   - name: FAQ

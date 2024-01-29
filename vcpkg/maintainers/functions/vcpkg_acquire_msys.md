@@ -1,7 +1,7 @@
 ---
 title: vcpkg_acquire_msys
 description: Use vcpkg_acquire_msys to download and prepare an MSYS2 instance.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_acquire_msys
 

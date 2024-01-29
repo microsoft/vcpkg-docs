@@ -1,7 +1,7 @@
 ---
-title: Microsoft/vcpkg Catalog Release Process
+title: Microsoft/vcpkg catalog release process
 description: Internal process guide for creating a new curated catalog release of vcpkg.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ROBOTS: NOINDEX
 ---
 

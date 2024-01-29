@@ -1,7 +1,7 @@
 ---
 title: vcpkg_configure_cmake
 description: Use vcpkg_configure_cmake to configure a CMake project.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_configure_cmake
 

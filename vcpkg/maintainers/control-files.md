@@ -1,7 +1,7 @@
 ---
 title: vcpkg CONTROL files
 description: Understand the use and metadata content of deprecated vcpkg CONTROL files.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ms.topic: reference
 ---
 # CONTROL files
@@ -47,7 +47,6 @@ Package collections to check for conflicts:
 
 + [Repology](https://repology.org/projects/)
 + [Debian packages](https://www.debian.org/distrib/packages)
-+ [Packages search](https://pkgs.org/)
 
 #### Version
 

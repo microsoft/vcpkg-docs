@@ -3,8 +3,7 @@ title: Glossary of vcpkg terms
 description: This article provides a glossary of common terms-of-art used in vcpkg's documentation.
 author: vicroms
 ms.author: viromer
-ms.date: 10/23/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: glossary
 ---
 

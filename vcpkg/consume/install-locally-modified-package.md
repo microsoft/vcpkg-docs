@@ -3,8 +3,7 @@ title: "Tutorial: Install a locally modified dependency"
 description: This tutorial shows you how to modify a vcpkg port and install it using overlays"
 author: vicroms
 ms.author: viromer
-ms.date: 10/24/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: tutorial
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
@@ -13,6 +12,7 @@ zone_pivot_groups: shell-selections
 ---
 
 # Tutorial: Install a locally modified dependency
+
 This tutorial guides you on modifying a vcpkg port using custom overlays.
 We recommend that you read the tutorial on [packaging a
 library](../get_started/get-started-packaging.md) before proceeding.
@@ -37,10 +37,11 @@ In this tutorial, you will learn to:
 * Completion of the [packaging tutorial](../get_started/get-started-packaging.md)
 
 ## 1 - Create an overlay port
+
 The first step is to create an [overlay port](../concepts/overlay-ports.md) of
 the package you want to modify.
 
-#### Create a directory to hold your overlay ports
+### Create a directory to hold your overlay ports
 
 The overlay ports directory can be created in any filesystem location of your choosing. In any step of this tutorial, replace `$OVERLAY_LOCATION` with your chosen location.
 
@@ -59,7 +60,7 @@ mkdir "$OVERLAY_LOCATION"
 
 ::: zone-end
 
-#### Copy the contents of the port into your overlay ports directory
+### Copy the contents of the port into your overlay ports directory
 
 For this tutorial, you'll modify the `vcpkg-sample-library` port in the
 [packaging tutorial](../get_started/get-started-packaging.md) to add dynamic
@@ -84,9 +85,11 @@ xcopy <path/to/vcpkg-sample-library> "$OVERLAY_LOCATION" /E
 ```bash
 cp -R <path/to/vcpkg-sample-library> "$OVERLAY_LOCATION"
 ```
+
 ::: zone-end
 
 ## 2 - Get the port's source code
+
 To obtain the source code for the port you want to modify, run the following command:
 
 `vcpkg install "--overlay-ports=$OVERLAY_LOCATION" vcpkg-sample-library --editable`
@@ -100,6 +103,7 @@ The output should contain a line similar to:
 This is the location of the port's source code.
 
 ## 3 - Create a temporary Git registry
+
 Initialize a temporary Git repository in the source code location. This is in order
 to use Git to generate patch files that you can apply in the `portfile.cmake`
 script. Replace `$SOURCE_PATH` with the location obtained in the previous step.
@@ -112,6 +116,7 @@ git commit -m "Initial commit"
 ```
 
 ## 4 - Modify the necessary files
+
 Modify the following source code files to add dynamic library support to
 `vcpkg-sample-library`.
 
@@ -145,6 +150,7 @@ endif()
 ```
 
 ## 5 - Generate a patch file
+
 In the source code directory, run the following command to generate a patch file.
 
 ```Console
@@ -191,6 +197,7 @@ index d6d70b8..0b62141 100644
 ```
 
 ## 6 - Modify `portfile.cmake` to apply the patch
+
 Change `portfile.cmake` to remove the `ONLY_STATIC_LIBRARY` restriction and
 apply your patch to the source code.
 
@@ -226,6 +233,7 @@ configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/
 ```
 
 ## 7 - Install your overlay port
+
 Run the following command:
 
 `vcpkg install "--overlay-ports=$OVERLAY_LOCATION" vcpkg-sample-library`

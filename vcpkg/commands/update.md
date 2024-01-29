@@ -1,7 +1,7 @@
 ---
 title: vcpkg update
 description: Command line reference for the vcpkg update command.
-ms.date: 4/3/2023
+ms.date: 01/10/2023
 ---
 # vcpkg update
 

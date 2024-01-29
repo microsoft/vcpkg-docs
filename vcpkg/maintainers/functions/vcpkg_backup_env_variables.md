@@ -1,7 +1,7 @@
 ---
 title: vcpkg_backup_env_variables
 description: Use vcpkg_backup_env_variables to backup a set of environment variables.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_backup_env_variables
 

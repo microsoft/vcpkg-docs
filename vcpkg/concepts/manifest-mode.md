@@ -3,8 +3,7 @@ title: Manifest mode
 description: This article describes vcpkg's manifest mode concepts.
 author: vicroms
 ms.author: viromer
-ms.date: 10/23/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: concept-article
 
 #CustomerIntent: As a vcpkg user, I want to learn more about manifest mode capabilities
@@ -25,6 +24,7 @@ Manifest mode is also required to use advanced features like
 [custom registries](../users/registries.md).
 
 ## Manifest files in your packages
+
 All vcpkg ports must include a `vcpkg.json` file that describes metadata about
 the package they install.
 

@@ -1,7 +1,7 @@
 ---
 title: vcpkg_check_linkage
 description: Assert the available library and CRT linkage options for the port.
-ms.date: 11/30/2022
+ms.date: 01/30/2024
 ---
 # vcpkg_check_linkage
 

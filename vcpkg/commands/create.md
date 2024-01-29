@@ -3,8 +3,8 @@ title: vcpkg create
 description: Reference for the vcpkg create command. Generates a port to package a source code project.
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 08/01/2023
-ms.prod: vcpkg
+ms.date: 01/26/2024
+ms.service: vcpkg
 ---
 
 # vcpkg create
@@ -26,6 +26,7 @@ The command can save the downloaded source code using a specific file name, prov
 It's important to understand that the port created by the `vcpkg create` command serves merely as a starting point and, in most cases, further edits are necessary for a successful build. For more guidance on adding ports to the vcpkg curated catalog, we recommend referring to one of our [tutorials](..\examples\packaging-zipfiles.md)
 
 ## Example
+
 ```no-highlight
 vcpkg create zlib2 https://github.com/madler/zlib/archive/v1.2.11.tar.gz zlib-1.2.11.tar.gz
 
@@ -42,6 +43,7 @@ The command performs the following actions:
 2. Downloads `https://github.com/madler/zlib/archive/v1.2.11.tar.gz` as `zlib-1.2.11.tar.gz` in the `downloads` directory.
 
 The new `portfile.cmake` has the content:
+
 ```
 # Common Ambient Variables:
 #   CURRENT_BUILDTREES_DIR    = ${VCPKG_ROOT_DIR}\buildtrees\${PORT}
@@ -71,7 +73,7 @@ The new `portfile.cmake` has the content:
 #   VCPKG_TARGET_STATIC_LIBRARY_SUFFIX
 #   VCPKG_TARGET_SHARED_LIBRARY_SUFFIX
 #
-# 	See additional helpful variables in /docs/maintainers/vcpkg_common_definitions.md
+#   See additional helpful variables in /docs/maintainers/vcpkg_common_definitions.md
 
 # Also consider vcpkg_from_* functions if you can; the generated code here is for any web accessable
 # source archive.
@@ -131,6 +133,7 @@ vcpkg_cmake_install()
 ```
 
 The new `vcpkg.json` has the content:
+
 ```
 {
   "name": "zlib2",
@@ -160,4 +163,3 @@ You can use the [`edit`](edit.md) command to modify the port files:
 ```no-highlight
 vcpkg edit zlib2
 ```
-

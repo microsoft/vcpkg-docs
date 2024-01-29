@@ -1,7 +1,7 @@
 ---
 title: vcpkg_copy_tools
 description: Learn how to use vcpkg_copy_tools.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_copy_tools
 
@@ -17,9 +17,11 @@ vcpkg_copy_tools(
     [AUTO_CLEAN]
 )
 ```
+
 ## Parameters
 
 ### TOOL_NAMES
+
 A list of tool filenames without extension.
 
 ### SEARCH_DIR
@@ -43,4 +45,3 @@ Auto clean the copied executables from `${CURRENT_PACKAGES_DIR}/bin` and `${CURR
 ## Source
 
 [scripts/cmake/vcpkg\_copy\_tools.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_copy_tools.cmake)
-

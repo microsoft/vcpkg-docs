@@ -3,8 +3,7 @@ title: Provide usage documentation for your ports
 description: Guidance for adding usage documentation to vcpkg ports
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 07/17/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: concept-article
 ---
 # Provide usage documentation for your ports

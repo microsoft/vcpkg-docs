@@ -1,7 +1,7 @@
 ---
 title: vcpkg_cmake_build
 description: Use vcpkg_cmake_build to build a CMake project with a custom install target.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_cmake_build
 

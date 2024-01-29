@@ -1,7 +1,7 @@
 ---
 title: vcpkg_list
 description: A replacement for CMake's list function which improves handling of elements with internal semicolons, such as other lists.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_list
 
@@ -94,4 +94,3 @@ endif()
 ## Source
 
 [scripts/cmake/vcpkg\_list.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_list.cmake)
-

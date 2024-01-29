@@ -1,7 +1,7 @@
 ---
 title: Selecting LLVM Features
 description: Learn how to customize the llvm package with features in vcpkg.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ms.topic: concept-article
 ---
 # Selecting LLVM features

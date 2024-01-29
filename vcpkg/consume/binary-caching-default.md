@@ -3,8 +3,7 @@ title: "Default local vcpkg binary cache"
 description: Learn about the default vcpkg binary cache
 author: vicroms
 ms.author: viromer
-ms.date: 9/25/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: concept-article
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections

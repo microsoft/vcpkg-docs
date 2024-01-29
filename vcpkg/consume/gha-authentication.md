@@ -3,8 +3,7 @@ title: "Tutorial: Authenticate vcpkg Git-based registries in GitHub Actions"
 description: Learn to configure Git credentials for private repositories when using vcpkg on GitHub Actions
 author: vicroms
 ms.author: viromer
-ms.date: 9/21/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: tutorial
 #CustomerIntent: As an enterprise vcpkg user I want to authenticate to private Git registries so that I can use them as Git-based repositories
 ---
@@ -33,7 +32,6 @@ Actions workflow.
 Follow the [instructions on GitHub to generate a fine-grained Personal Access Token
 (PAT)](<https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token>)
 and grant it permission to access the private repository where your vcpkg Git registry is hosted.
-
 
 ## 2 - Create a GitHub Actions secret to use in your workflow
 

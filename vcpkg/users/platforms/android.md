@@ -1,7 +1,7 @@
 ---
 title: Android Support in vcpkg
 description: How to target Android devices using C++ with vcpkg
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ms.topic: concept-article
 ---
 # Android
@@ -44,6 +44,7 @@ There are six different Android ABIs, each of which maps to a vcpkg triplet. The
 You can build Android libraries, such as `jsoncpp` in a Ubuntu Docker container.
 
 Create a `Dockerfile` with the following contents:
+
 ```Dockerfile
 FROM ubuntu:22.04
 
@@ -75,12 +76,14 @@ WORKDIR /project
 ```
 
 Build the image and launch a new container:
+
 ```sh
 docker build . -t "vcpkg-android"
 docker run -it "vcpkg-android" bash
 ```
 
 In the container, create `/project/vcpkg.json` with the following contents:
+
 ```json
 {
   "dependencies": [

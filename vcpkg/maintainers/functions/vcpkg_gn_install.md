@@ -1,7 +1,7 @@
 ---
 title: vcpkg_gn_install
 description: Learn how to use vcpkg_gn_install.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_gn_install
 

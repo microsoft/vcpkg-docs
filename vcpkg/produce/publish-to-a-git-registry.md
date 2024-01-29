@@ -3,8 +3,7 @@ title: "Tutorial: Publish packages to a private vcpkg registry using Git"
 description: In this tutorial we show you how to create a private Git-based registry and how to publish packages in said registry.
 author: vicroms
 ms.author: viromer
-ms.date: 9/20/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: tutorial
 # CustomerIntent: As an advanced vcpkg user I want to create a private Git registry so that I can publish private packages.
 ---

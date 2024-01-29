@@ -1,9 +1,9 @@
 ---
 title:  Triplets
-description: This article expalins the concept of triplets in vcpkg and their capabilities.
+description: This article explains the concept of triplets in vcpkg and their capabilities.
 author: vicroms
 ms.author: viromer
-ms.date: 10/24/2023
+ms.date: 01/11/2024
 ms.topic: concept-article
 ---
 
@@ -24,8 +24,7 @@ A single build will consume files from up to two triplets: the target triplet
 and the host triplet. If you need to apply different settings for different
 libraries, you must make a single custom triplet with that combination of
 settings. See [per-port
-customization](../users/triplets.md#per-port-customization) 
-for how to accomplish this.
+customization](../users/triplets.md#per-port-customization) for how to accomplish this.
 
 vcpkg comes with pre-defined triplets for many common platforms and
 configurations. Run `vcpkg help triplet` to get the list of available in your
@@ -45,11 +44,11 @@ To select a target triplet:
 
 To select the host triplet for the current machine:
 
-* In [classic mode](../users/classic-mode.md)
+* In [classic mode](../users/classic-mode.md):
   * Pass [`--host-triplet=<triplet>`](../commands/common-options.md#host-triplet).
-- In CMake:
+* In CMake:
   * Set [`VCPKG_HOST_TRIPLET`](../users/buildsystems/cmake-integration.md#vcpkg_host_triplet).
-- In MSBuild:
+* In MSBuild:
   * Set [`VcpkgHostTriplet`](../users/buildsystems/msbuild-integration.md#vcpkghosttriplet).
 
 ## Community triplets
@@ -77,18 +76,11 @@ First, copy a built-in triplet file from the `triplets\` directory into a
 different filesystem location. Then, add that directory to the list of overlay
 triplet paths when interacting with vcpkg.
 
-- In [Manifest mode](../users/manifests.md), you can use
-  [`$.vcpkg-configuration.overlay-triplets`](../reference/vcpkg-configuration-json.md#overlay-triplets)
-- When using vcpkg from CMake, you can set
-  [`VCPKG_OVERLAY_TRIPLETS`](../users/buildsystems/cmake-integration.md#vcpkg_overlay_triplets)
-- When using vcpkg from MSBuild, you can add
-  [`--overlay-triplets=...`][overlay-triplets] to [MSBuild Additional
-  Options](../users/buildsystems/msbuild-integration.md#vcpkg-additional-install-options).
-- When using the CLI directly, you can pass
-  [`--overlay-triplets=...`][overlay-triplets]
-- You can set the
-  [`$VCPKG_OVERLAY_TRIPLETS`](../users/config-environment.md#vcpkg_overlay_triplets)
-  environment variable to a list of overlay paths.
+* In [Manifest mode](../users/manifests.md), you can use [`$.vcpkg-configuration.overlay-triplets`](../reference/vcpkg-configuration-json.md#overlay-triplets).
+* When using vcpkg from CMake, you can set [`VCPKG_OVERLAY_TRIPLETS`](../users/buildsystems/cmake-integration.md#vcpkg_overlay_triplets).
+* When using vcpkg from MSBuild, you can add [`--overlay-triplets=...`][overlay-triplets] to [MSBuild Additional Options](../users/buildsystems/msbuild-integration.md#vcpkg-additional-install-options).
+* When using the CLI directly, you can pass [`--overlay-triplets=...`][overlay-triplets].
+* You can set the [`$VCPKG_OVERLAY_TRIPLETS`](../users/config-environment.md#vcpkg_overlay_triplets) environment variable to a list of overlay paths.
 
 See our [overlay triplets example](../users/examples/overlay-triplets-linux-dynamic.md)
 for a more detailed walkthrough.
@@ -100,9 +92,9 @@ for a more detailed walkthrough.
 The default triplet when running any vcpkg command is `%VCPKG_DEFAULT_TRIPLET%`
 or a platform-specific choice if that environment variable is undefined.
 
-- Windows: `x64-windows`
-- Linux: `x64-linux`
-- OSX: `x64-osx`
+* Windows: `x64-windows`
+* Linux: `x64-linux`
+* OSX: `x64-osx`
 
 We recommend using a systematic naming scheme when creating new triplets. The
 Android toolchain naming scheme is a good source of inspiration:

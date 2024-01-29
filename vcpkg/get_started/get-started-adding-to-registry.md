@@ -6,8 +6,7 @@ zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
-ms.date: 10/25/2023
-ms.prod: vcpkg
+ms.date: 01/26/2024
 #CustomerIntent: As a beginner C++ developer, I want to learn how to add a port to the vcpkg registry.
 ---
 
@@ -59,12 +58,14 @@ Add the `vcpkg-sample-library` port that was created in the [packaging a library
 ```bash
 cp -R <path/to/vcpkg-sample-library> <ports/vcpkg-sample-library>
 ```
+
 ::: zone-end
 ::: zone pivot="shell-cmd"
 
 ```console
 xcopy <path/to/vcpkg-sample-library> <ports/vcpkg-sample-library> /E
 ```
+
 ::: zone-end
 ::: zone pivot="shell-powershell"
 
@@ -96,7 +97,7 @@ Copy-Item -Path <path/to/vcpkg-sample-library> -Destination <ports/vcpkg-sample-
    ```
 
 4. Push the changes to your fork:
-   
+
    ```console
    git push myfork <topic-branch-name>
    ```
@@ -113,6 +114,7 @@ Copy-Item -Path <path/to/vcpkg-sample-library> -Destination <ports/vcpkg-sample-
 That's it! You've successfully added a `port` to vcpkg's curated registry.
 
 ## Next steps
+
 For more information, see:
 
 - [CMake guidelines](../contributing/cmake-guidelines.md)

@@ -5,18 +5,17 @@ zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
 author: data-queue
 ms.author: danshaw2
-ms.date: 12/06/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: tutorial
 ---
 
-# Tutorial: Install and use packages with CMake in VS Code
+# Tutorial: Install and use packages with CMake in Visual Studio Code
 
 This tutorial shows you how to create a C++ "Hello World" program that uses the `fmt` library with CMake, vcpkg and Visual Studio Code. You'll install dependencies, configure, build, and run a simple application.
 
 ## Prerequisites
 
-- [VS Code](https://code.visualstudio.com)
+- [Visual Studio Code](https://code.visualstudio.com)
 - [C++ compiler](https://code.visualstudio.com/docs/languages/cpp#_install-a-compiler)
 - Windows 7 or newer
 
@@ -26,25 +25,25 @@ This example uses the C++ MSVC compiler in the Visual Studio C++ development wor
 
 [!INCLUDE [setup-vcpkg](includes/setup-vcpkg.md)]
 
-## 2 - Install VS Code Extensions
+## 2 - Install Visual Studio Code Extensions
 
 Navigate to the Extension view, and install the [C++ Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools). This enables C++ IntelliSense and code navigation.
 
-:::image type="complex" source="../resources/get_started/vscode-c-extension.png" alt-text="installing C++ VS Code Extension":::
-  Screenshot of VS Code Extension view with C++ Extension
+:::image type="complex" source="../resources/get_started/vscode-c-extension.png" alt-text="installing C++ Visual Studio Code Extension":::
+  Screenshot of Visual Studio Code Extension view with C++ Extension
 :::image-end:::
 
-Install the [CMake Tools Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools). This enables CMake support in VS Code.
+Install the [CMake Tools Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools). This enables CMake support in Visual Studio Code.
 
-:::image type="complex" source="../resources/get_started/vscode-cmake-extension.png" alt-text="installing CMake Tools VS Code Extension":::
-  Screenshot of VS Code Extension view with CMake Tools Extension
+:::image type="complex" source="../resources/get_started/vscode-cmake-extension.png" alt-text="installing CMake Tools Visual Studio Code Extension":::
+  Screenshot of Visual Studio Code Extension view with CMake Tools Extension
 :::image-end:::
 
 ## 3 - Setup vcpkg
 
 1. Configure the `VCPKG_ROOT` environmental variable.
 
-Open a new Terminal in VS Code: **Terminal > New Terminal**
+Open a new Terminal in Visual Studio Code: **Terminal > New Terminal**
 
 Run the following commands:
 ::: zone pivot="shell-powershell"
@@ -55,7 +54,7 @@ $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
 ```
 
 :::image type="complex" source="../resources/get_started/vscode-terminal-vcpkg.png" alt-text="setting up vcpkg environment variables":::
-  Screenshot of setting up VCPKG_ROOT and adding it to PATH in a VS Code terminal.
+  Screenshot of setting up VCPKG_ROOT and adding it to PATH in a Visual Studio Code terminal.
 :::image-end:::
 
 ::: zone-end
@@ -132,6 +131,38 @@ In this `helloworld.cpp` file, the `<fmt/core.h>` header is included for using t
 To allow the CMake project system to recognize C++ libraries provided by vcpkg, you'll need to provide the `vcpkg.cmake` toolchain file. To automate this, create a `CMakePresets.json` file in the "helloworld" directory with the following content:
 
 :::code language="cmake" source="../examples/snippets/get-started/CMakePresets.json":::
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "vcpkg",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": {
+                   "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                    "type": "FILEPATH"
+                }
+            }
+        }
+    ]
+}
+```
+
+Create `CMakeUserPresets.json` file in the "helloworld" directory with the following content:
+
+```cmake
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "default",
+            "inherits": "vcpkg",
+            "environment": {
+                "VCPKG_ROOT": "<path to vcpkg>"
+            }
+        }
+    ]
+}
+```
 
 This `CMakePresets.json` file contains a single "default" preset for CMake and sets the `CMAKE_TOOLCHAIN_FILE` variable. The `CMAKE_TOOLCHAIN_FILE` allows the CMake project system to recognize C++ libraries provided by vcpkg. Adding the `CMakePresets.json` automates the process of specifying the toolchain when running CMake.
 

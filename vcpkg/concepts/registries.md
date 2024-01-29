@@ -3,8 +3,7 @@ title: Registries concepts
 description: Concepts about vcpkg registries and their capabilities.
 author: vicroms
 ms.author: viromer
-ms.date: 10/24/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ms.topic: concept-article
 ---
 
@@ -20,12 +19,14 @@ There are currently two options to implement your own registries: a Git-based
 registry or a filesystem-based registry.
 
 ## Built-in registry
+
 The built-in registry refers to the main vcpkg registry at
 <https://github.com/Microsoft/vcpkg>. Depending on the vcpkg operation mode, this
 can mean your local clone of the vcpkg repository or the remote repository
 hosted in GitHub.
 
 ## Git registries
+
 Git registries are simple Git repositories. They can be shared publicly or
 privately via normal mechanisms for Git repositories. The [vcpkg
 repository](https://github.com/microsoft/vcpkg) is an example of a Git registry.
@@ -34,6 +35,7 @@ Using Git registries offers the best experience for custom registries since you
 have full control over the versions and contents of your registry.
 
 ## Filesystem registries
+
 Filesystem registries, as the name implies, live on your filesystem. They are a
 collection of ports located in a filesystem location and offer a primitive form
 of version control using a separate path per version.
