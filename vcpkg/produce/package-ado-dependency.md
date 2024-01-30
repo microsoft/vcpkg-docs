@@ -16,6 +16,10 @@ ms.topic: tutorial
 
 TODO: Use the vcpkg-sample-library as a starting point
 
+1. Click on New Repository
+2. Name your repo
+3. Set up authentication
+
 ## 2 - Authentication
 
 TODO: Figure this out. Test by simply git clone
