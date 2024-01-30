@@ -1,5 +1,5 @@
 ---
-title:  Supported Hosts
+title:  Supported hosts
 description: This article describes the platforms on which vcpkg is supported.
 author: bion
 ms.author: bion
