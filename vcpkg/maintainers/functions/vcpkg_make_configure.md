@@ -8,25 +8,28 @@ ms.date: 01/30/2024
 Configure a Make-based project.
 
 ## Usage
-
+        
 ```cmake
 vcpkg_make_configure(
     SOURCE_PATH <source-path>
-    [DISABLE_PARALLEL_CONFIGURE]
-    [NO_CHARSET_FLAG]
-    [WINDOWS_USE_MSBUILD]
-    [GENERATOR <generator>]
-    [LOGFILE_BASE <logname-base>]
-    [OPTIONS
-        <configure-setting>...]
-    [OPTIONS_RELEASE
-        <configure-setting>...]
-    [OPTIONS_DEBUG
-        <configure-setting>...]
-    [MAYBE_UNUSED_VARIABLES
-        <option-name>...]
+    [COPY_SOURCE]
+    [DISABLE_MSVC_WRAPPERS]
+    [NO_CPPFLAGS]
+    [ADD_BIN_TO_PATH]
+    [NO_DEFAULT_OPTIONS]
+    [NO_MSVC_FLAG_ESCAPING]
+    [USE_RESPONSE_FILES]
+    [SHELL <shell>]
+    [OPTIONS <configure-setting>...]
+    [OPTIONS_RELEASE <configure-setting>...]
+    [OPTIONS_DEBUG <configure-setting>...]
+    [PRE_CONFIGURE_CMAKE_COMMANDS <cmake-command>...]
+    [POST_CONFIGURE_CMAKE_COMMANDS <cmake-command>...]
+    [LANGUAGES <language>...]
 )
+
 ```
+
 
 To use this function, you must depend on the helper port `vcpkg-cmake`:
 
@@ -43,109 +46,100 @@ To use this function, you must depend on the helper port `vcpkg-cmake`:
 
 ### SOURCE_PATH
 
-Specifies the directory containing the `CMakeLists.txt`.
+The directory containing the project's source files
 
 This value is usually obtained as a result of calling a source acquisition command like [`vcpkg_from_github()`](vcpkg_from_github.md).
 
-### DISABLE_PARALLEL_CONFIGURE
+### COPY_SOURCE
 
-Disables running the CMake configure step in parallel.
+If specified, the source directory will be copied to the build directory before the configuration process begins. Useful for projects that modify the source tree during configuration or build.
 
-By default vcpkg disables writing back to the source directory (via the undocumented CMake flag `CMAKE_DISABLE_SOURCE_CHANGES`) and (on Windows) configures Release and Debug in parallel. This flag instructs vcpkg to allow source directory writes and to execute the configure steps sequentially.
+### DISABLE_MSVC_WRAPPERS
 
-### NO_CHARSET_FLAG
+Disables the use of MSVC compiler wrappers. Useful for projects that are not compatible with the wrappers.
 
-Disables passing `/utf-8` when using the [built-in Windows toolchain](../../users/triplets.md#vcpkg_chainload_toolchain_file).
+### NO_CPPFLAGS
 
-This is needed for libraries that set their own source code's character set when targeting MSVC. See the [MSVC documentation for `/utf-8`](/cpp/build/reference/utf-8-set-source-and-executable-character-sets-to-utf-8) for more information.
+Prevents the addition of C Preprocessor flags to the compiler command line. Use this if the project does not use or incorrectly handles these flags.
 
-### WINDOWS_USE_MSBUILD
+If set, the `CPPFLAGS` environment variable, typically used for specifying C preprocessor flags, will not be automatically populated based on vcpkg's settings. This can be useful for projects that do not use standard environment variables or have specific preprocessor requirements.
 
-Use MSBuild instead of another generator when targeting a Windows platform.
+### ADD_BIN_TO_PATH
 
-By default vcpkg prefers to use [Ninja](https://ninja-build.org/) as the CMake Generator for all platforms. However, there are edge cases where MSBuild has different behavior than Ninja. This flag should only be passed if the project requires MSBuild to build correctly.
-This flag has no effect for MinGW targets.
+Adds the `bin` directory to the system path. This is useful for builds that require executables to be available on the path.
 
-### GENERATOR
+### NO_DEFAULT_OPTIONS
 
-Specifies the Generator to use.
+Disables the inclusion of default configure options provided by `vcpkg_make_configure`. This gives you full control over the configure command line.
 
-By default vcpkg prefers to use Ninja as the CMake Generator for all platforms,
-or "Unix Makefiles" for non-Windows platforms when Ninja is not available.
-This parameter can be used for edge cases where project-specific buildsystems depend on a particular generator.
+### NO_MSVC_FLAG_ESCAPING
 
-### LOGFILE_BASE
+Turns off the escaping of MSVC flags. This might be necessary for projects that do not expect or handle escaped compiler flags properly.
 
-An alternate root name for the configure logs.
+### USE_RESPONSE_FILES
 
-Defaults to `config-${TARGET_TRIPLET}`. It should not contain any path separators. Logs will be generated matching the pattern `${CURRENT_BUILDTREES_DIR}/${LOGFILE_BASE}-<suffix>.log`
+Enables the use of response files to pass arguments to the configure script. This can help avoid command line length limitations.
+
+### SHELL
+
+Specifies the shell to use for running the configuration scripts. Useful for ensuring compatibility in environments where the default shell might not behave as expected.
 
 ### OPTIONS
 
-Additional options to pass to CMake during the configuration.
-
-See also [Implicit Options](#implicit-options).
+Additional options to pass to the configure script. Use these to specify any custom flags or settings required by the project.
 
 ### OPTIONS_RELEASE
 
-Additional options to pass to CMake during the Release configuration.
+Additional options to pass to the configure script. Use these to specify any custom flags or settings required by the project.
 
 These are in addition to `OPTIONS`.
 
 ### OPTIONS_DEBUG
 
-Additional options to pass to CMake during the Debug configuration.
+Additional options to pass to the configure script. Use these to specify any custom flags or settings required by the project.
 
 These are in addition to `OPTIONS`.
 
-### MAYBE_UNUSED_VARIABLES
+### PRE_CONFIGURE_CMAKE_COMMANDS
 
-List of CMake options that may not be read during the configure step.
+Specifies a list of CMake commands to execute before the configure process. This can be used to set up the environment or prepare the build in a way that the configure script requires.
 
-vcpkg will warn about any options outside this list that were not read during the CMake configure step. This list should contain options that are only read during certain configurations (such as when `VCPKG_LIBRARY_LINKAGE` is `"static"` or when certain features are enabled).
+### POST_CONFIGURE_CMAKE_COMMANDS
+
+Specifies a list of CMake commands to execute after the configure process. This can be used for cleanup or to prepare for the next steps in the build process.
+
+### LANGUAGES
+
+Specifies the programming languages your project uses. This can influence environment variables and other settings that the configuration process uses.
 
 ## Implicit Options
 
-This command automatically provides several options to CMake.
-
-- [`CMAKE_BUILD_TYPE`](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html) is set to `"Release"` or `"Debug"` as appropriate.
-- [`BUILD_SHARED_LIBS`](https://cmake.org/cmake/help/latest/variable/BUILD_SHARED_LIBS.html) is set according to the value of [`VCPKG_LIBRARY_LINKAGE`](../../users/triplets.md#vcpkg_library_linkage).
-- [`CMAKE_INSTALL_PREFIX=${CURRENT_PACKAGES_DIR}</debug>`](https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_PREFIX.html) as appropriate to the configuration
-- [`CMAKE_TOOLCHAIN_FILE`](https://cmake.org/cmake/help/latest/variable/CMAKE_TOOLCHAIN_FILE.html) and `VCPKG_CHAINLOAD_TOOLCHAIN_FILE` are set to include the [vcpkg toolchain file](../../users/buildsystems/cmake-integration.md#cmake_toolchain_file) and the [triplet toolchain](../../users/triplets.md#vcpkg_chainload_toolchain_file).
-- [`CMAKE_SYSTEM_NAME=${VCPKG_CMAKE_SYSTEM_NAME}`](https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html). If `VCPKG_CMAKE_SYSTEM_NAME` is unset, defaults to `"Windows"`.
-- [`CMAKE_SYSTEM_VERSION=${VCPKG_CMAKE_SYSTEM_VERSION}`](https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_VERSION.html) if `VCPKG_CMAKE_SYSTEM_VERSION` is set.
-- [`CMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON`](https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_NO_PACKAGE_REGISTRY.html)
-- [`CMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY=ON`](https://cmake.org/cmake/help/latest/variable/CMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY.html)
-- [`CMAKE_FIND_PACKAGE_NO_SYSTEM_PACKAGE_REGISTRY=ON`](https://cmake.org/cmake/help/latest/variable/CMAKE_FIND_PACKAGE_NO_SYSTEM_PACKAGE_REGISTRY.html)
-- [`CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=TRUE`](https://cmake.org/cmake/help/latest/module/InstallRequiredSystemLibraries.html)
-- [`CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION=ON`](https://cmake.org/cmake/help/latest/variable/CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION.html)
-- [`CMAKE_INSTALL_LIBDIR:STRING=lib`](https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html)
-- [`CMAKE_INSTALL_BINDIR:STRING=bin`](https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html)
-- [`FETCHCONTENT_FULLY_DISCONNECTED=ON`](https://cmake.org/cmake/help/latest/module/FetchContent.html#variable:FETCHCONTENT_FULLY_DISCONNECTED) (_since version 2022-10-30_)
-
-This command also passes all options in [`VCPKG_CMAKE_CONFIGURE_OPTIONS`](../../users/triplets.md#vcpkg_cmake_configure_options) and the configuration-specific options from `VCPKG_CMAKE_CONFIGURE_OPTIONS_RELEASE` or `VCPKG_CMAKE_CONFIGURE_OPTIONS_DEBUG`.
-
-Finally, there are additional internal options passed in (with a `VCPKG_` prefix) that should not be depended upon.
+TODO: Implicit options to configure script
 
 ## Examples
 
 ```cmake
-vcpkg_from_github(OUT_SOURCE_PATH source_path ...)
-vcpkg_cmake_configure(
-    SOURCE_PATH "${source_path}"
-    OPTIONS
-        -DBUILD_EXAMPLES=OFF
-        -DBUILD_TESTS=OFF
+vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH
+    REPO example/examplelib
+    REF v1.2.3
+    SHA512 123456...
 )
-vcpkg_cmake_install()
-```
 
-[Search microsoft/vcpkg for Examples](https://github.com/microsoft/vcpkg/search?q=vcpkg_cmake_configure+path%3A%2Fports)
+vcpkg_make_configure(
+    SOURCE_PATH ${SOURCE_PATH}
+    OPTIONS
+        --disable-silent-rules
+        --enable-foo
+    OPTIONS_DEBUG
+        --enable-debug-logs
+)
+
+vcpkg_make_install()
+```
 
 ## Remarks
 
-This command replaces [`vcpkg_configure_cmake()`](vcpkg_configure_cmake.md).
+This command replaces [`vcpkg_configure_make()`](vcpkg_configure_make.md).
 
 ## Source
-
-[ports/vcpkg-cmake/vcpkg\_cmake\_configure.cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-cmake/vcpkg_cmake_configure.cmake)
