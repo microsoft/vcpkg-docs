@@ -23,7 +23,7 @@ ms.topic: tutorial
 2. Create a new private project. If you don't have an organization, you'll be prompted to create one during the project creation process.
     - Name your project: Choose a meaningful name that reflects your library or its purpose.
     - Visibility: Ensure the project is set to "Private" to control access.
-        ![New Project](../resources/produce/ado-new-private-project.md.png)
+        ![New Project](../resources/pkg_ado_dep/ado-new-private-project.md.png)
 
 
 ## 2 - Set Up Authentication in Azure DevOps
@@ -36,35 +36,35 @@ Secure access to your repository with SSH keys.
 - Run the following command:
 
     ```bash
-    ssh-keygen -t rsa -b 4096 -C "ADO-RSA" -f ~/.ssh/id_rsa_ado
+    ssh-keygen -t rsa -b 4096 -C "ADO-RSA" -f /path/to/.ssh/id_rsa_ado
     ```
 
     - `-t rsa`: Specifies the type of key to create, in this case, RSA.
     - `-b 4096`: Sets the number of bits in the key, in this case, 4096, which is considered strong and secure.
     - `-C "ADO-RSA"`: Adds a label to the key for identification, which can be particularly useful when you have multiple keys.
-    - `-f ~/.ssh/id_rsa_ado`: Specifies the filename for the new key. This command saves the private key to `id_rsa_ado` and the public key to `id_rsa_ado.pub` in your `~/.ssh` directory.
+    - `-f /path/to/.ssh/id_rsa_ado`: Specifies the filename for the new key. This command saves the private key to `id_rsa_ado` and the public key to `id_rsa_ado.pub`.
 
     You'll be prompted to enter a passphrase for additional security. You can either enter a passphrase or press Enter to proceed without one. A passphrase adds an extra layer of security by requiring the passphrase to be entered whenever the key is used.
 
-- After the key generation, confirm the new key is created by listing the contents of your ~/.ssh directory again:
+- After the key generation, confirm the new key is created by listing the contents of your `/.ssh/` directory again:
     ```bash
-    ls ~/.ssh
+    ls /path/to/.ssh
     ```
 
 2. Add your SSH key to Azure DevOps
     - Open the `id_rsa_ado.pub` file with a text editor to view the public key.
     - Copy the entire content of the file.
     - Navigate to your **User Settings > SSH Public Keys**.
-        ![User Settings > SSH Public Keys](../resources/produce/ado-add-public-key-1.png)
+        ![User Settings > SSH Public Keys](../resources/pkg_ado_dep/ado-add-public-key-1.png)
     - Add your new key by pasting the copied content and name your key for future reference.
-        ![Add the Key](../resources/produce/ado-add-public-key-2.png)
+        ![Add the Key](../resources/pkg_ado_dep/ado-add-public-key-2.png)
 
 3. Load your SSH key into the SSH agent.
 
     Ensure your SSH key is available for authentication:
 
     ```bash
-    ssh-add ~/.ssh/id_rsa_ado    
+    ssh-add /path/to/.ssh/id_rsa_ado
     ```
 
 4. Test SSH connection
@@ -105,7 +105,7 @@ Secure access to your repository with SSH keys.
 
     Retrieve your repository's SSH URL from Azure DevOps and add it as a remote:
 
-    ![SSH URL](../resources/produce/ado-get-url.png)
+    ![SSH URL](../resources/pkg_ado_dep/ado-get-url.png)
 
     ```bash
     git remote add origin <Your-Repo-SSH-URL>
@@ -133,24 +133,15 @@ Overlay ports allow you to use local ports with vcpkg.
 2. Set up the port files
 
 - `vcpkg.json`: This manifest file defines your library's metadata and dependencies.
+
+    **Disclaimer**: The following examples use placeholders. Replace them with your actual data.
+
     ```json
     {
-        "name": "vcpkg-sample-library",
+        "name": "your-library-name",
         "version": "1.0.0",
-        "homepage": "",
-        "description": "A sample C++ library designed to serve as a foundational example for a tutorial on packaging libraries with vcpkg.",
-        "license": "MIT",
-        "dependencies": [
-        {
-            "name" : "vcpkg-cmake",
-            "host" : true
-        },
-        {
-            "name" : "vcpkg-cmake-config",
-            "host" : true
-        },
-        "fmt"
-        ]
+        "description": "Description of your library.",
+        "dependencies": []
     }
     ```
 
@@ -158,47 +149,31 @@ Overlay ports allow you to use local ports with vcpkg.
 
     - `name`: Specifies the name of the library. This is used as the package identifier.
     - `version`: Indicates the version number of the library.
-    - `homepage`: URL to the project's homepage, often its repository. Useful for those who want to know more or contribute.
     - `description`: Brief text describing what the library does. This is for documentation and users.
-    - `license`: Specifies the license under which the library is distributed.
     - `dependencies`: An array containing the list of dependencies that the library needs.
-    - `name`: vcpkg-cmake: Specifies a dependency on vcpkg-cmake, which provides CMake functions and macros commonly used in vcpkg ports.
-    - `host`: true: Specifies that vcpkg-cmake is a host dependency, meaning it's required for building the package but not for using it.
-    - `name`: vcpkg-cmake-config: Specifies a dependency on vcpkg-cmake-config, which assists in using CMake config scripts.
-    - `fmt`: Specifies a run-time dependency on the fmt library. This means fmt is required for both building and using the package.
 
-    For more information on `vcpkg.json`, see the following documentation on manifests.
+    For more information on how to set up your `vcpkg.json`, check out our [reference documentation](../reference/vcpkg-json.md).
 
 - `portfile.cmake` : This script tells vcpkg how to build your library.
     ```cmake
-    vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
-
     vcpkg_from_git(
         OUT_SOURCE_PATH SOURCE_PATH
-        URL git@ssh.dev.azure.com:v3/javiermat/cmake-sample-lib/cmake-sample-lib
-        REF d8a36764e26379277a9765827aaefc6cebd8b7d3
+        URL "git@ssh.dev.azure.com:v3/YourOrg/YourProject/YourRepo"
+        REF "<commit-sha>"
     )
 
-    vcpkg_cmake_configure(
-        SOURCE_PATH "${SOURCE_PATH}"
-    )
-
+    vcpkg_cmake_configure(SOURCE_PATH "${SOURCE_PATH}")
     vcpkg_cmake_install()
-
-    vcpkg_cmake_config_fixup(PACKAGE_NAME "my_sample_lib")
-
-    file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
-
-    file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
+    vcpkg_cmake_config_fixup(PACKAGE_NAME your-library-name)
+    file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/your-library-name")
     ```
 
     This portfile defines how to download, build, install, and package a specific C++ library from GitHub using vcpkg.
 
-    - `vcpkg_check_linkage(ONLY_STATIC_LIBRARY)`: Specifies that only static linking is supported for this package.
-    - `vcpkg_from_github`: Starts the function to download the source code from a GitHub repository.
+    - `vcpkg_from_git`: Starts the function to download the source code from a git repository.
     - `OUT_SOURCE_PATH SOURCE_PATH`: Sets the directory where the source code will be extracted.
-    - `URL git@ssh.dev.azure.com:v3/javiermat/cmake-sample-lib/cmake-sample-lib`: The SSH URL for the repository containing the source code.
-    - `REF d8a36764e26379277a9765827aaefc6cebd8b7d3`: The commit sha.
+    - `URL git@ssh.dev.azure.com:v3/YourOrg/YourProject/YourRepo`: The SSH URL for the repository containing the source code.
+    - `REF <commit-sha>`: The commit SHA of your library's code in Azure DevOps.
     - `vcpkg_cmake_configure`: Configures the project using CMake, setting up the build.
     - `SOURCE_PATH "${SOURCE_PATH}"`: The path to the source code downloaded earlier.
     - `vcpkg_cmake_install()`: Builds and installs the package using CMake.
@@ -206,24 +181,30 @@ Overlay ports allow you to use local ports with vcpkg.
     - `file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")`: Deletes the include directory from the debug installation to prevent overlap.
     - `file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION ...)`: Installs the LICENSE file to the package's share directory and renames it to copyright.
 
-    For more information on `portfile.cmake`, refer to the maintainer guide.
+    To obtain the commit SHA:
 
-To get REF
-mkdir temp
-git init
-git fetch git@ssh.dev.azure.com:v3/javiermat/cmake-sample-lib/cmake-sample-lib main --depth 1 -n
-git rev-parse FETCH_HEAD
-`d8a36764e26379277a9765827aaefc6cebd8b7d3`
+    ```bash
+    mkdir temp && cd temp
+    git init
+    git fetch <Your-Repo-SSH-URL> main --depth 1 -n
+    git rev-parse FETCH_HEAD
+    ```
+
+    For more information on how to set up your `portfile.cmake`,  checkout the following articles:
+    - [Ports concepts](../concepts/ports.md)
+    - [Overlay Ports](../concepts/overlay-ports.md)
+    - [vcpkg_from_git](../maintainers/functions/vcpkg_from_git.md)
+    - [Portfile Variables](../maintainers/variables.md)
+    - [Triplets](../users/triplets.md)
 
 3. Install your port
 
     Back in your main vcpkg directory, install your library specifying the overlay ports directory:
 
     ```bash
-    vcpkg install vcpkg-sample-library --overlay-ports=vcpkg-overlay-ports
+    vcpkg install your-library-name --overlay-ports=/path/to/vcpkg-overlay-ports
     ```
-
 
 ## Next Steps
 
-And that's it! You have packaged your private ADO dependency.
+You've successfully packaged a private Azure DevOps repository as a vcpkg port. This tutorial is intended as a guideline; please adapt the instructions to fit your specific library and development environment.
