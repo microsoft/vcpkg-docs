@@ -3,7 +3,7 @@ title: "Tutorial: Package ADO dependency"
 description: In this tutorial we show you how to package and ADO dependency for vcpkg.
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 01/31/24
+ms.date: 01/31/2024
 ms.topic: tutorial
 # CustomerIntent: As an advanced vcpkg user I want package a private ADO dependency.
 ---
