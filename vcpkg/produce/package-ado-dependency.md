@@ -3,7 +3,7 @@ title: "Tutorial: Package ADO dependency"
 description: In this tutorial we show you how to package and ADO dependency for vcpkg.
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 01/30/24
+ms.date: 01/31/24
 ms.topic: tutorial
 # CustomerIntent: As an advanced vcpkg user I want package a private ADO dependency.
 ---
@@ -14,15 +14,16 @@ ms.topic: tutorial
 
 - Basic understanding of Git and vcpkg.
 - Access to Azure DevOps with permissions to create projects and manage SSH keys.
-- `vcpkg` installed on your system. Installation Guide.
+- `vcpkg` installed on your system.
 - Git installed on your system.
 
 ## 1 - Create a private project
 
 1. Log into your Azure DevOps account
 2. Create a new private project. If you don't have an organization, you'll be prompted to create one during the project creation process.
-    - Name your project: Choose a meaningful name that reflects your library or its purpose.
-    - Visibility: Ensure the project is set to "Private" to control access.
+    - **Name your project**: Choose a meaningful name that reflects your library or its purpose.
+    - **Visibility**: Ensure the project is set to "Private" to control access.
+
         ![New Project](../resources/pkg_ado_dep/ado-new-private-project.md.png)
 
 
@@ -32,31 +33,34 @@ Secure access to your repository with SSH keys.
 
 1. Generate an SSH Key Pair
 
-- Open a terminal or command prompt.
-- Run the following command:
+    - Open a terminal or command prompt.
+    - Run the following command:
 
-    ```bash
-    ssh-keygen -t rsa -b 4096 -C "ADO-RSA" -f /path/to/.ssh/id_rsa_ado
-    ```
+        ```bash
+        ssh-keygen -t rsa -b 4096 -C "ADO-RSA" -f /path/to/.ssh/id_rsa_ado
+        ```
 
-    - `-t rsa`: Specifies the type of key to create, in this case, RSA.
-    - `-b 4096`: Sets the number of bits in the key, in this case, 4096, which is considered strong and secure.
-    - `-C "ADO-RSA"`: Adds a label to the key for identification, which can be particularly useful when you have multiple keys.
-    - `-f /path/to/.ssh/id_rsa_ado`: Specifies the filename for the new key. This command saves the private key to `id_rsa_ado` and the public key to `id_rsa_ado.pub`.
+        - `-t rsa`: Specifies the type of key to create, in this case, RSA.
+        - `-b 4096`: Sets the number of bits in the key, in this case, 4096, which is considered strong and secure.
+        - `-C "ADO-RSA"`: Adds a label to the key for identification, which can be particularly useful when you have multiple keys.
+        - `-f /path/to/.ssh/id_rsa_ado`: Specifies the filename for the new key. This command saves the private key to `id_rsa_ado` and the public key to `id_rsa_ado.pub`.
 
-    You'll be prompted to enter a passphrase for additional security. You can either enter a passphrase or press Enter to proceed without one. A passphrase adds an extra layer of security by requiring the passphrase to be entered whenever the key is used.
+        You'll be prompted to enter a passphrase for additional security. You can either enter a passphrase or press Enter to proceed without one. A passphrase adds an extra layer of security by requiring the passphrase to be entered whenever the key is used.
 
-- After the key generation, confirm the new key is created by listing the contents of your `/.ssh/` directory again:
-    ```bash
-    ls /path/to/.ssh
-    ```
+    - After the key generation, confirm the new key is created by listing the contents of your `/.ssh/` directory again:
+        ```bash
+        ls /path/to/.ssh
+        ```
 
 2. Add your SSH key to Azure DevOps
     - Open the `id_rsa_ado.pub` file with a text editor to view the public key.
     - Copy the entire content of the file.
     - Navigate to your **User Settings > SSH Public Keys**.
+
         ![User Settings > SSH Public Keys](../resources/pkg_ado_dep/ado-add-public-key-1.png)
+
     - Add your new key by pasting the copied content and name your key for future reference.
+
         ![Add the Key](../resources/pkg_ado_dep/ado-add-public-key-2.png)
 
 3. Load your SSH key into the SSH agent.
@@ -175,10 +179,9 @@ Overlay ports allow you to use local ports with vcpkg.
     - `URL git@ssh.dev.azure.com:v3/YourOrg/YourProject/YourRepo`: The SSH URL for the repository containing the source code.
     - `REF <commit-sha>`: The commit SHA of your library's code in Azure DevOps.
     - `vcpkg_cmake_configure`: Configures the project using CMake, setting up the build.
-    - `SOURCE_PATH "${SOURCE_PATH}"`: The path to the source code downloaded earlier.
+        -  `SOURCE_PATH "${SOURCE_PATH}"`: The path to the source code downloaded earlier.
     - `vcpkg_cmake_install()`: Builds and installs the package using CMake.
-    - `vcpkg_cmake_config_fixup(PACKAGE_NAME "my_sample_lib")`: Fixes the CMake package configuration files to be compatible with Vcpkg.
-    - `file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")`: Deletes the include directory from the debug installation to prevent overlap.
+    - `vcpkg_cmake_config_fixup(PACKAGE_NAME your-library-name)`: Fixes the CMake package configuration files to be compatible with Vcpkg.
     - `file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION ...)`: Installs the LICENSE file to the package's share directory and renames it to copyright.
 
     To obtain the commit SHA:
