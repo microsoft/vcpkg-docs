@@ -1,14 +1,15 @@
 ---
-title: "Tutorial: Package ADO dependency"
-description: In this tutorial we show you how to package and ADO dependency for vcpkg.
+title: "Tutorial: Package Azure DevOps dependency"
+description: In this tutorial we show you how to package an Azure DevOps dependency for vcpkg.
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 01/31/2024
 ms.topic: tutorial
-# CustomerIntent: As an advanced vcpkg user I want package a private ADO dependency.
+# CustomerIntent: As an advanced vcpkg user I want to package a private Azure DevOps dependency.
 ---
-# Tutorial: Package a private ADO dependency
+# Tutorial: Package a private Azure DevOps dependency
 
+TODO: add 2 to three sentences about what the article will walk you through
 
 ## Prerequisites:
 
@@ -36,7 +37,7 @@ Secure access to your repository with SSH keys.
     - Open a terminal or command prompt.
     - Run the following command:
 
-        ```bash
+        ```console
         ssh-keygen -t rsa -b 4096 -C "ADO-RSA" -f /path/to/.ssh/id_rsa_ado
         ```
 
@@ -48,7 +49,7 @@ Secure access to your repository with SSH keys.
         You'll be prompted to enter a passphrase for additional security. You can either enter a passphrase or press Enter to proceed without one. A passphrase adds an extra layer of security by requiring the passphrase to be entered whenever the key is used.
 
     - After the key generation, confirm the new key is created by listing the contents of your `/.ssh/` directory again:
-        ```bash
+        ```console
         ls /path/to/.ssh
         ```
 
@@ -67,7 +68,7 @@ Secure access to your repository with SSH keys.
 
     Ensure your SSH key is available for authentication:
 
-    ```bash
+    ```console
     ssh-add /path/to/.ssh/id_rsa_ado
     ```
 
@@ -75,7 +76,7 @@ Secure access to your repository with SSH keys.
 
     Verify connectivity to Azure DevOps:
 
-    ```bash
+    ```console
     ssh -T git@ssh.dev.azure.com
     ```
 
@@ -87,20 +88,20 @@ Secure access to your repository with SSH keys.
     shell request failed on channel 0
     ```
     
-## 3 - Upload library to ADO repo
+## 3 - Upload library to Azure DevOps repo
 
 1. Initialize a local git repository
     
     Navigate to your library's source code directory and initialize a Git repository:
 
-    ```bash
+    ```console
     git init
     ```
 
 2. Commit your library
     Add and commit your library's source code:
 
-    ```bash
+    ```console
     git add .
     git commit -m "Initial commit of the sample library"
     ```
@@ -111,7 +112,7 @@ Secure access to your repository with SSH keys.
 
     ![SSH URL](../resources/pkg_ado_dep/ado-get-url.png)
 
-    ```bash
+    ```console
     git remote add origin <Your-Repo-SSH-URL>
     ```
 
@@ -119,17 +120,17 @@ Secure access to your repository with SSH keys.
 
     Upload your library to the Azure DevOps repository:
 
-    ```bash
+    ```console
     git push -u origin master:main
     ```
 
 ## 4 - Package your library into an overlay port
 
-Overlay ports allow you to use local ports with vcpkg.
+[Overlay ports](../concepts/overlay-ports.md) allow you to use local ports with vcpkg.
 
 1. Create an overlay ports directory
 
-    ```bash
+    ```console
     mkdir vcpkg-overlay-ports
     cd vcpkg-overlay-ports
     ```
@@ -186,7 +187,7 @@ Overlay ports allow you to use local ports with vcpkg.
 
     To obtain the commit SHA:
 
-    ```bash
+    ```console
     mkdir temp && cd temp
     git init
     git fetch <Your-Repo-SSH-URL> main --depth 1 -n
@@ -204,7 +205,7 @@ Overlay ports allow you to use local ports with vcpkg.
 
     Back in your main vcpkg directory, install your library specifying the overlay ports directory:
 
-    ```bash
+    ```console
     vcpkg install your-library-name --overlay-ports=/path/to/vcpkg-overlay-ports
     ```
 
