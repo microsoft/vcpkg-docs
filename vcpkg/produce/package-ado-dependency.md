@@ -9,7 +9,7 @@ ms.topic: tutorial
 ---
 # Tutorial: Package a private Azure DevOps dependency
 
-TODO: add 2 to three sentences about what the article will walk you through
+This tutorial guides you through creating an overlay port for a library hosted on a private Azure DevOps repository, covering authentication setup and packaging into an overlay.
 
 ## Prerequisites:
 
