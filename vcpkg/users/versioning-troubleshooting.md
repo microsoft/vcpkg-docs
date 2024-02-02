@@ -188,35 +188,56 @@ Resolutions:
       run: git fetch --unshallow
     ```
 
-## <a name="managing-default-features-in-transitive-dependencies"></a> Understanding and managing default features in transitive dependencies
+## <a name="unexpected-default-features"></a> Cause: Unexpected installation of default features in transitive dependencies
 
-In scenarios where a library `Y` depends on another library `X` with specific features, it's important to understand how `vcpkg` resolves and installs these dependencies, especially in regards to default features.
+When using `vcpkg` to manage your project's dependencies, you might encounter a situation where a transitive dependency installs with its default features, even when you've specified `"depend-defaults": false` in your top-level manifest. This can lead to confusion when features that were intended to be excluded, such as `foo`, are still being installed.
 
-Given the following scenario:
+### Scenario
 
-- Library `X` has two features: `heavyA` (included in default features) and `lightB`.
-- Library `Y` depends on `X`, but only requires the `lightB` feature, explicitly disabling default features of `X` in its manifest or portfile.
+You have a dependency on library `Y`, which in turn depends on library `X`. Library `X` has default features, including `foo`, that you want to exclude from your project. Your top-level manifest for library `Y` might look something like this:
 
-### Expected Behavior
+```json
+{
+  "name": "my-project",
+  "dependencies": [
+    {
+      "name": "Y",
+      "features": ["featureB"],
+      "depend-defaults": false
+    }
+  ]
+}
+```
 
-You might expect that when your project depends on `Y[featureB]`, `vcpkg` would only install `X` with the `lightB` feature, excluding the default `heavyA` feature, as specified in the dependency declaration of `Y`.
+You expect that `X` will be installed without its default features due to the `"depend-defaults": false` setting. However, `X` is still installed with the default feature `foo`.
 
-### Actual Behavior
+### Reason
 
-`vcpkg` installs `X` with both `heavyA` and `lightB` features. This behavior occurs because the `"default-features": false` setting in the dependency declaration of `Y` only indicates that `Y` does not depend on the default features of `X`. It does not prevent `X`'s default features from being installed if `X` is also a dependency of another package in the dependency graph or if `X` is requested directly by the project.
+The `depend-defaults` property is only considered at the top-level manifest. This means that default features of transitive dependencies (like `X` in this scenario) are still included unless explicitly disabled at the top level. When library `Y` is resolved, `vcpkg` does not propagate the `"depend-defaults": false` setting to the transitive dependency `X`, resulting in the installation of `X` with its default features.
 
-Resolutions:
+### Resolution
 
-To ensure that only the desired features of a port are installed, especially when dealing with transitive dependencies, follow these guidelines:
+To ensure that transitive dependencies like `X` are installed without their default features, you need to promote them to direct dependencies in your top-level manifest and explicitly disable their default features. Modify your `vcpkg.json` to include `X` directly with `"default-features": false`:
 
-1. Explicit Feature Selection: When specifying dependencies in your project's manifest (`vcpkg.json`), explicitly list the features you require from each dependency. If you do not want the default features of a package, specify `"default-features": false` and list the required features under the `"features"` array.
+```json
+{
+  "name": "my-project",
+  "dependencies": [
+    {
+      "name": "Y",
+      "features": ["featureB"]
+    },
+    {
+      "name": "X",
+      "default-features": false
+    }
+  ]
+}
+```
 
-2. Command Line Overrides: When installing packages via the command line, you can override the default feature selection by specifying features explicitly. For example, `vcpkg install Y[featureB] X[lightB] --no-default-features` ensures that `X` is installed with only the `lightB` feature.
+This approach ensures that `X` is installed without its default features, as now `X` is a direct dependency with an explicit instruction to exclude default features.
 
-3. Global Overrides: In complex projects where multiple dependencies might influence the feature selection of a port, consider using [versioning and baseline features](./versioning.md) to lock down the versions and feature selections of your dependencies. This approach provides more control and predictability over the dependency resolution process.
-
-4. Inspecting Build Trees: If unexpected features are being installed, inspect the build trees (`vcpkg/buildtrees`) and the install logs to identify which part of your dependency graph is causing the inclusion of unwanted features. This can help in pinpointing the need for adjustments in your manifests or portfiles.
-
+For more detailed information on how default features work and how to manage them, see the [default features concept article](../concepts/default-features.md) article.
 
 ## Issue isn't listed here
 
