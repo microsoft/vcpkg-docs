@@ -9,19 +9,19 @@ ms.topic: tutorial
 
 # Test your custom registry ports using vcpkg with GitHub Actions
 
-Once you have set up a custom registry of vcpkg ports, you may want to also add
+Once you have set up a custom registry of vcpkg ports, you may want to add
 Continous Integration to validate that all your dependencies can be built
 successfully.
 
 The main vcpkg registry at
 [Microsoft/vcpkg](<https://github.com/Microsoft/vcpkg>) is tested by the vcpkg
 team using Continuous Integration (CI) with Azure DevOps. This ensures that
-adding ew packages or updating existing ones does not break consumers.
+adding new packages or updating existing ones does not break consumers.
 
-In this article we'll show you how to set up a CI environment to test the vcpkg
+In this article, we show you how to set up a CI environment to test the vcpkg
 ports in your own registry.
 
-In this article, you'll lear to:
+In this article, you'll learn to:
 
 > [!divclass]
 >
@@ -40,15 +40,15 @@ In this article, you'll lear to:
 ## Set up a binary cache and asset cache for your GitHub Actions workflows
 
 Building a large collection of ports is an expensive task both in terms of
-computing power and time. We strongly recommend that before engagin in CI for
+time and computing power. We strongly recommend that before engaging CI for
 your ports, you invest in setting up a binary cache and an asset cache for your
 GitHub Action workflows.
 
 A binary cache provides the most benefit for CI scenarios by ensuring that
 unmodified packages aren't rebuilt on every CI run. An asset cache mirrors
-artifacts downloaded for your packages during a run and uses the cached artifact
+artifacts downloaded for your packages during a run and uses the cached artifacts
 in subsequent runs; an asset cache can help mitigate issues where upstream is
-unreliable for example a broken download URL.
+unreliable, for example, a broken download URL.
 
 For detailed instructions on how to set up these caches read our [binary
 caching](../consume/binary-caching-github-actions-cache.md) and [asset
@@ -71,7 +71,8 @@ steps:
 ```
 
 This example shows how to set up a binary cache and asset cache in a GitHub
-Actions workflow, you should adapt this snippet to use on your own YAML file.
+Actions workflow, you should adapt this snippet to use on your own workflow's
+YAML file.
 
 Breaking down this snippet:
 
@@ -121,7 +122,7 @@ commits or Pull Requests.
 
 The main vcpkg registry uses the `vcpkg ci` command, which has been tailored to
 the vcpkg project's needs and is not intended to remain stable or be used by
-consumersof vcpkg. As such, it is not suited to use for testing your own vcpkg
+consumers of vcpkg. As such, it is not suited to use for testing your own vcpkg
 registries. We recommend to follow the steps outlined in this article instead.
 
 ### Use a manifest file to include all your ports
@@ -130,8 +131,8 @@ Instead of using the `vcpkg ci` command, we suggest using a manifest file to
 create a build that depends on all the packages in your registry.
 
 The following example, creates a manifest file to test all the ports in a
-ficticious vcpkg registry. Replace the list of dependencies to include all the
-ports in your registry and place it in the root of you registry.
+hypothetical vcpkg registry. Replace the list of dependencies to include all the
+ports in your registry and place it in the root of your repository.
 
 `vcpkg.json`
 
@@ -145,11 +146,11 @@ ports in your registry and place it in the root of you registry.
 ```
 
 Your own ports may have dependencies on the main vcpkg registry or other
-third-party registries, in which case you will want to add those registries in a
+third-party registries, in which case, you need to add those registries in a
 `vcpkg-configuration.json` file. While vcpkg can resolve packages from the main
-registry without having to explicitly add it to the configuration, we strongly
-recommend explicitly adding it to the registries list for version control
-purposes. This ensures that you have control of the set of underlying port
+registry without additional configuration, we strongly recommend that you explicitly
+add it to the registries list for version control purposes.
+This ensures that you have control of the set of underlying port
 versions. Check out the [`vcpkg x-update-baseline`
 command](../commands/update-baseline.md) to help managing the baseline of your
 registries.
@@ -194,7 +195,7 @@ steps:
 Make sure that you set `fetch-depth` to 0 when checking out the vcpkg repository
 since you need the full repository's commit history for port versioning to work.
 
-Once this steps are completed you should have a vcpkg executable to work with.
+Once these steps are completed you should have a vcpkg executable to work with.
 
 ### Run vcpkg install to build your ports
 
@@ -205,8 +206,8 @@ ports currently in the working directory as opossed to the versions published in
 your repository.
 
 To that goal, you need to add your registry's ports as [overlay
-ports](../concepts/overlay-ports.md). This is accomplished by setting the
-`VCPKG_OVERLAY_PORTS` environment variable to your registry's `ports` directory.
+ports](../concepts/overlay-ports.md) by setting the `VCPKG_OVERLAY_PORTS`
+environment variable to your registry's `ports` directory.
 
 The snippet below shows how to set up your registry's ports as overlay ports and
 runs `vcpkg install` in manifest mode to install all of your custom ports.
@@ -270,10 +271,10 @@ jobs:
       shell: bash
 ```
 
-This is the basic structure for a CI workflow for your registry's ports. You may
+This is the basic structure for a CI workflow to test your registry's ports. You may
 require some extra work to [authenticate to private
 repositories](../consume/gha-authentication.md) or to your [NuGet
-feeds](../users/binarycaching.md#nuget-credentials).
+feed](../users/binarycaching.md#nuget-credentials).
 
 You may also want to add steps to automate the generation of the `vcpkg.json`
 file or a step that verifies that ports newly added to your registry are not
