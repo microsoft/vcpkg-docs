@@ -7,7 +7,6 @@ summary: vcpkg is a cross-platform C/C++ package manager. Get access to thousand
 metadata:
   title: vcpkg documentation
   description: vcpkg is the leading cross-platform C/C++ package manager. Get access to thousands of high quality open-source libraries to empower your application and internally share collections of private components.
-  ms.prod: vcpkg
   ms.topic: landing-page
   author: ras0219-msft
   ms.author: roschuma
