@@ -188,7 +188,7 @@ steps:
     fetch-depth: 0
 
 - name: Bootstrap vcpkg
-  run: ${{ github.worksapce }}/vcpkg/bootstrap.sh
+  run: ${{ github.worksapce }}/vcpkg/bootstrap-vcpkg.sh
   shell: bash
 ```
 
