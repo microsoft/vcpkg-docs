@@ -134,7 +134,7 @@ if((CMAKE_CXX_COMPILER_ID MATCHES "MSVC") AND CMAKE_INTERPROCEDURAL_OPTIMIZATION
 endif()
 ```
 
-* If enabling Spectre migations, use the following guards.
+* If enabling Spectre mitigations, use the following guards.
 
 ```
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
