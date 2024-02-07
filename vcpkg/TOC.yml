@@ -76,6 +76,8 @@
     # TODO: Modernize: examples/packaging-zipfiles.md
   - name: Package a dependency from a source archive
     href: examples/packaging-zipfiles.md
+  - name: Package a dependency from Azure DevOps
+    href: produce/package-ado-dependency.md
     # TODO: Modernize: examples/patching.md
   - name: Apply patches to a dependency's source code
     href: examples/patching.md
