@@ -91,6 +91,10 @@
       href: maintainers/registries.md
     - name: Publish to a Git registry
       href: produce/publish-to-a-git-registry.md
+  - name: Test your custom Git registry's ports
+    items:
+    - name: Test your custom Git registry's ports using GitHub Actions
+      href: produce/test-registry-ports-gha.md
 - name: Concepts
   items:
   - name: Glossary
