@@ -97,6 +97,8 @@
     items:
     - name: Test your custom Git registry's ports using GitHub Actions
       href: produce/test-registry-ports-gha.md
+    - name: Test your custom Git registry's ports using Azure DevOps
+      href: produce/test-registry-ports-ado.md
 - name: Concepts
   items:
   - name: Glossary
