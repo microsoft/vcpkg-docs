@@ -4,7 +4,9 @@ description: This tutorial shows users how to set up continuous integration envi
 author: vicroms
 ms.author: viromer
 ms.date: 1/10/2024
-ms.topic: tutorial
+ms.topic: how-to
+
+#customer intent: As an advanced vcpkg user, I want to add continuous integration to test the vcpkg ports in my custom Git registry
 ---
 
 # Test your custom registry ports using vcpkg with GitHub Actions
