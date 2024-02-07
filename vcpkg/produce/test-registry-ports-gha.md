@@ -1,6 +1,6 @@
 ---
 title: Test your custom registry ports using vcpkg with GitHub Actions
-description: This tutorial shows users how to set up Continuous Integration environment for their registry's vcpkg ports using GitHub Actions.
+description: This tutorial shows users how to set up continuous integration environment for their registry's vcpkg ports using GitHub Actions.
 author: vicroms
 ms.author: viromer
 ms.date: 1/10/2024
@@ -44,11 +44,7 @@ time and computing power. We strongly recommend that before engaging CI for
 your ports, you invest in setting up a binary cache and an asset cache for your
 GitHub Action workflows.
 
-A binary cache provides the most benefit for CI scenarios by ensuring that
-unmodified packages aren't rebuilt on every CI run. An asset cache mirrors
-artifacts downloaded for your packages during a run and uses the cached artifacts
-in subsequent runs; an asset cache can help mitigate issues where upstream is
-unreliable, for example, a broken download URL.
+A binary cache provides the most benefit for CI scenarios by ensuring that unmodified packages aren't rebuilt on every CI run. An asset cache mirrors artifacts downloaded for your packages during a run and uses the cached artifacts in subsequent runs. It can also help mitigate issues where the upstream repository is unreliable: for example, a broken download URL.
 
 For detailed instructions on how to set up these caches read our [binary
 caching](../consume/binary-caching-github-actions-cache.md) and [asset
@@ -70,9 +66,7 @@ steps:
             core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
 ```
 
-This example shows how to set up a binary cache and asset cache in a GitHub
-Actions workflow, you should adapt this snippet to use on your own workflow's
-YAML file.
+This example shows how to set up a binary cache and asset cache in a GitHub Actions workflow. You should adapt this snippet to use on your own workflow's YAML file.
 
 Breaking down this snippet:
 
@@ -87,12 +81,12 @@ in vcpkg. In this example, it is set to
   URL.
 * `{{secrets.ADO_SAS}}` is a GitHub Actions secret that contains a SAS token to
   authenticate to your NuGet feed.
-* `readwrite` sets read and write permissions for the asset cache, this means
+* `readwrite` sets read and write permissions for the asset cache. This means
   that this asset cache is used to store artifacts as well as to restore
   artifacts from it.
 
 `VCPKG_BINARY_SOURCES` is the environment variable used to configure binary
-caches in vcpkg. In this example, it is set to `clear;x-gha,readwrite`; this
+caches in vcpkg. In this example, it is set to `clear;x-gha,readwrite`. This
 enables the GitHub Actions Cache backend for the binary cache. An extra step is
 required in your workflow to enable this backend successfully.
 
@@ -118,7 +112,7 @@ cache](../users/binarycaching.md) features.
 After you have set up a binary cache and asset cache for your CI environment,
 the next step is to set up a workflow to test all your registry's ports. You can
 decide whether this workflow runs on a schedule or if it is triggered by new
-commits or Pull Requests.
+commits or pull requests.
 
 The main vcpkg registry uses the `vcpkg ci` command, which has been tailored to
 the vcpkg project's needs and is not intended to remain stable or be used by
@@ -185,15 +179,11 @@ steps:
 - uses: actions/checkout@v4
   with:
     repository: "https://github.com/Microsoft/vcpkg"
-    fetch-depth: 0
 
 - name: Bootstrap vcpkg
   run: ${{ github.worksapce }}/vcpkg/bootstrap-vcpkg.sh
   shell: bash
 ```
-
-Make sure that you set `fetch-depth` to 0 when checking out the vcpkg repository
-since you need the full repository's commit history for port versioning to work.
 
 Once these steps are completed you should have a vcpkg executable to work with.
 
@@ -202,7 +192,7 @@ Once these steps are completed you should have a vcpkg executable to work with.
 The last step is to tell vcpkg to build all your ports. You may have noticed
 that your own registry is absent from the `vcpkg-configuration.json` created a
 couple of steps above. The reason is that you want to test the version of the
-ports currently in the working directory as opossed to the versions published in
+ports currently in the working directory as opposed to the versions published in
 your repository.
 
 To that goal, you need to add your registry's ports as [overlay
@@ -253,7 +243,6 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: "https://github.com/Microsoft/vcpkg"
-        fetch-depth: 0
 
     - name: Bootstrap vcpkg
       run: ${{ github.worksapce }}/vcpkg/bootstrap-vcpkg.sh
