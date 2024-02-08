@@ -77,7 +77,7 @@ Breaking down this snippet:
 
 `VCPKG_ASSET_SOURCES` is the environment variable used to configure asset caches
 in vcpkg. In this example, it is set to
-`x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,{{secrets.ADO_SAS}},readwrite`.
+`x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,,readwrite`.
  The `x-azurl` backend instructs vcpkg to use an Azure Artifacts NuGet feed as the
  storage provider. The `x-azurl` is followed by three parameters separated by
  commas (`,`).
@@ -161,6 +161,7 @@ registries.
 
 ```json
 {
+  "default-registry": null,
   "registries": [
     {
       "kind": "git",
@@ -201,7 +202,6 @@ resources:
 
 steps:
   - checkout: vcpkgRepo
-    path: $(Pipeline.Workspace)/vcpkg
 ```
 
 In order to clone the vcpkg repository you need to define a repository
@@ -215,8 +215,7 @@ from GitHub, you need to run vcpkg's bootstrap script.
 
 ```yml
 steps:
-  - script: bootstrap-vcpkg.sh
-    workingDirectory: $(Pipeline.Workspace)/vcpkg
+  - script: vcpkg/bootstrap-vcpkg.sh
 ```
 
 Once these steps are completed you should have a vcpkg executable to work with.
@@ -243,15 +242,14 @@ variables:
   - name: VCPKG_BINARY_SOURCES
     value: "clear;nuget,https://my.domain.com/vcpkgBinaryCache/nuget/v3/index.json,readwrite"
   - name: VCPKG_OVERLAY_PORTS
-    value: $(Pipeline.Workspace)/ports
+    value: $(Build.Repository.LocalPath)/ports
 
 steps:
-- script: $(Pipeline.Workspace)/vcpkg/vcpkg install
-  workingDirectory: $(Pipeline.Workspace)
+- script: $(Build.Repository.LocalPath)/vcpkg/vcpkg install
 ```
 
 In this example we assume that the `vcpkg.json` file is created in the root of
-your registry's repository.
+your registry's repository and that the vcpkg repository is added as a submodule.
 
 Putting it all together your pipelines's YAML file should look similar to this:
 
@@ -268,22 +266,22 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  - name: VCPKG_ASSET_SOURCES
+    value: "clear;x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,,readwrite"
+  - name: VCPKG_BINARY_SOURCES
+    value: "clear;nuget,https://my.domain.com/vcpkgBinaryCache/nuget/v3/index.json,readwrite"
   - name: VCPKG_OVERLAY_PORTS
-    value: $(Pipeline.Workspace)/ports
+    value: $(Build.Repository.LocalPath)/ports
 
 steps:
   - task: NuGetAuthenticate@1
 
   - checkout: self
-  
-  - checkout: vcpkgRepo
-    path: $(Pipeline.Workspace)/vcpkg
+    submodules: true
 
-  - script: bootstrap-vcpkg.sh
-    workingDirectory: $(Pipeline.Workspace)/vcpkg
+  - script: $(Build.Repository.LocalPath)/vcpkg/bootstrap-vcpkg.sh
 
-  - script: $(Pipeline.Workspace)/vcpkg/vcpkg install
-    workingDirectory: $(Pipeline.Workspace)
+  - script: $(Build.Repository.LocalPath)/vcpkg//vcpkg install
     displayName: Test vcpkg ports
 ```
 

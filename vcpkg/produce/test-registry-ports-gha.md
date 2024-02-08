@@ -155,6 +155,7 @@ registries.
 
 ```json
 {
+  "default-registry": null,
   "registries": [
     {
       "kind": "git",
