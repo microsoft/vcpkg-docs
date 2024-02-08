@@ -1,6 +1,6 @@
 ---
-title: Test your custom registry ports using vcpkg with GitHub Actions
-description: This tutorial shows users how to set up continuous integration environment for their registry's vcpkg ports using GitHub Actions.
+title: Test your custom registry ports using vcpkg with Azure DevOps
+description: This tutorial shows users how to set up continuous integration environment for their registry's vcpkg ports using Azure DevOps
 author: vicroms
 ms.author: viromer
 ms.date: 1/10/2024
@@ -9,16 +9,16 @@ ms.topic: how-to
 #customer intent: As an advanced vcpkg user, I want to add continuous integration to test the vcpkg ports in my custom Git registry
 ---
 
-# Test your custom registry ports using vcpkg with GitHub Actions
+# Test your custom registry ports using vcpkg with Azure DevOps
 
 Once you have set up a custom registry of vcpkg ports, you may want to add
-Continous Integration to validate that all your dependencies can be built
+continous integration to validate that all your dependencies can be built
 successfully.
 
 The main vcpkg registry at
 [Microsoft/vcpkg](<https://github.com/Microsoft/vcpkg>) is tested by the vcpkg
-team using Continuous Integration (CI) with Azure DevOps. This ensures that
-adding new packages or updating existing ones does not break consumers.
+team using a continuous integration (CI) pipeline with Azure DevOps. This
+ensures that adding new packages or updating existing ones does not break consumers.
 
 In this article, we show you how to set up a CI environment to test the vcpkg
 ports in your own registry.
@@ -27,93 +27,99 @@ In this article, you'll learn to:
 
 > [!divclass]
 >
-> * Set up a binary cache and asset cache for your GitHub Actions workflows
-> * Set up a workflow to test your registry's ports
+> * Set up a binary cache and asset cache for your Azure DevOps pipeline
+> * Set up a pipeline to test your registry's ports
 
 ## Prerequisites
 
-* A GitHub account
+* An Azure DevOps account
 * Your own [vcpkg Git registry](../produce/publish-to-a-git-registry.md)
 * Completion of the [binary
-  caching](../consume/binary-caching-github-actions-cache.md)
+  caching](../consume/binary-caching-nuget.md)
   and [asset caching](../consume/asset-caching.md) tutorials.
-* Knowledge about GitHub Actions workflows
+* Knowledge about ADO pipelines
 
-## Set up a binary cache and asset cache for your GitHub Actions workflows
+## Set up a binary cache and asset cache for your Azure DevOps pipelines
 
 Building a large collection of ports is an expensive task both in terms of
 time and computing power. We strongly recommend that before engaging CI for
 your ports, you invest in setting up a binary cache and an asset cache for your
-GitHub Action workflows.
+Azure DevOps pipelines.
 
-A binary cache provides the most benefit for CI scenarios by ensuring that unmodified packages aren't rebuilt on every CI run. An asset cache mirrors artifacts downloaded for your packages during a run and uses the cached artifacts in subsequent runs. It can also help mitigate issues where the upstream repository is unreliable: for example, a broken download URL.
+A binary cache provides the most benefit for CI scenarios by ensuring that
+unmodified packages aren't rebuilt on every CI run. An asset cache mirrors
+artifacts downloaded for your packages during a run and uses the cached
+artifacts in subsequent runs. It can also help mitigate issues where the
+upstream repository is unreliable: for example, a broken download URL.
 
 For detailed instructions on how to set up these caches read our [binary
-caching](../consume/binary-caching-github-actions-cache.md) and [asset
+caching](../consume/binary-caching-nuget.md) and [asset
 caching](../consume/asset-caching.md) articles.
 
-## Example: Enable asset and binary caching in a GitHub Actions workflow
+## Example: Enable asset and binary caching in an Azure DevOps pipeline
 
 ```yml
-env: 
-    VCPKG_ASSET_SOURCES: "clear;x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,{{ secrets.ADO_SAS }},readwrite"
-    VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
+variables:
+  - name: VCPKG_ASSET_SOURCES
+    value: "clear;x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,,readwrite"
+  - name: VCPKG_BINARY_SOURCES
+    value: "clear;nuget,https://my.domain.com/vcpkgBinaryCache/nuget/v3/index.json,readwrite"
 
-steps:
-    - name: Enable GitHub Actions Cache backend
-        uses: actions/github-script@v6
-        with:
-        script: |
-            core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
-            core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+steps: 
+- task: NuGetAuthenticate@1
 ```
 
-This example shows how to set up a binary cache and asset cache in a GitHub Actions workflow. You should adapt this snippet to use on your own workflow's YAML file.
+This example shows how to set up a binary cache and asset cache in an Azure
+DevOps pipeline. You should adapt this snippet to use on your own pipeline's
+YAML file.
 
 Breaking down this snippet:
 
 `VCPKG_ASSET_SOURCES` is the environment variable used to configure asset caches
 in vcpkg. In this example, it is set to
-`x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,{{secrets.ADO_SAS}},readwrite`.
+`x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,,readwrite`.
  The `x-azurl` backend instructs vcpkg to use an Azure Artifacts NuGet feed as the
  storage provider. The `x-azurl` is followed by three parameters separated by
  commas (`,`).
 
 * `https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json` is the Nuget feed
   URL.
-* `{{secrets.ADO_SAS}}` is a GitHub Actions secret that contains a SAS token to
-  authenticate to your NuGet feed.
+* The second argument is intentionally left empty. Instead of providing a SAS
+  token for the NuGet feed, the `NugetAuthenticate@1` task is used to
+  authenticate to your ADO NuGet feeds.
 * `readwrite` sets read and write permissions for the asset cache. This means
   that this asset cache is used to store artifacts as well as to restore
   artifacts from it.
 
 `VCPKG_BINARY_SOURCES` is the environment variable used to configure binary
-caches in vcpkg. In this example, it is set to `clear;x-gha,readwrite`. This
-enables the GitHub Actions Cache backend for the binary cache. An extra step is
-required in your workflow to enable this backend successfully.
+caches in vcpkg. In this example, it is set to
+`clear;nuget,https://my.domain.com/vcpkgBinaryCache/nuget/v3/index.json,readwrite`.
+This enables the NuGet backend for the binary cache using the NuGet feed at
+`https://my.domain.com/vcpkgBinaryCache/nuget/v3/index.json`. Some additional
+steps may be required to authenticate to your NuGet feed, read the
+[tutorial](../consume/binary-caching-nuget.md#provide-authentication-credentials)
+for instructions to set up NuGet authentication with ADO.
 
-The following step should be included as-is in your GitHub Action workflow
-steps. This step exports two environment variables required by the `x-gha`
-backend to work.
+The following task should be added as-is in your pipeline in order to
+authenticate to your Azure Artifacts NuGet feeds.
 
 ```yml
-- name: Enable GitHub Actions Cache backend
-  uses: actions/github-script@v6
-  with:
-  script: |
-    core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
-    core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+- task: NuGetAuthenticate@1
 ```
+
+If you're using a different host for your NuGet feeds read the documentation on
+how to [authenticate
+NuGet](../consume/binary-caching-nuget.md#provide-authentication-credentials).
 
 Learn more about how all of these work by reading the documentation on the
 [asset cache](../users/assetcaching.md) and [binary
 cache](../users/binarycaching.md) features.
 
-## Set up a workflow to test your registry's ports
+## Set up a pipeline to test your registry's ports
 
 After you have set up a binary cache and asset cache for your CI environment,
-the next step is to set up a workflow to test all your registry's ports. You can
-decide whether this workflow runs on a schedule or if it is triggered by new
+the next step is to set up a pipeline to test all your registry's ports. You can
+decide whether this pipeline runs on a schedule or if it is triggered by new
 commits or pull requests.
 
 The main vcpkg registry uses the `vcpkg ci` command, which has been tailored to
@@ -172,20 +178,44 @@ Read the [`vcpkg.json`](../reference/vcpkg-json.md) and
 articles to learn more. And the [manifest mode
 documentation](../consume/manifest-mode.md) to learn how these work together.
 
-### Acquire vcpkg in your GitHub Actions workflow
+### Acquire vcpkg in your Azure DevOps pipeline
 
-Next, you need to acquire vcpkg to use it in your workflow. Add the following
-steps to install vcpkg.
+If you use vcpkg as a submodule in your project, you can obtain the vcpkg
+repository in the step to checkout your own project as shown below.
 
 ```yml
 steps:
-- uses: actions/checkout@v4
-  with:
-    repository: "https://github.com/Microsoft/vcpkg"
+- checkout: self
+  submodules: true
+```
 
-- name: Bootstrap vcpkg
-  run: ${{ github.worksapce }}/vcpkg/bootstrap-vcpkg.sh
-  shell: bash
+Otherwise, you need to acquire vcpkg to use it in your pipeline. Add the following
+steps to clone the vcpkg repository.
+
+```yml
+resources:
+  repositories:
+    - repository: vcpkgRepo
+      type: github
+      name: Microsoft/vcpkg
+      endpoint: MyGitHubServiceConnection
+
+steps:
+  - checkout: vcpkgRepo
+```
+
+In order to clone the vcpkg repository you need to define a repository
+resource for your pipeline. The snippet below shows how to add the vcpkg
+repository as a resource, you will need to set up a [Service
+Connection](/azure/devops/pipelines/library/service-endpoints)
+to connect your pipeline to GitHub.
+
+After checking out the vcpkg repository either as a submodule or by cloning it
+from GitHub, you need to run vcpkg's bootstrap script.
+
+```yml
+steps:
+  - script: vcpkg/bootstrap-vcpkg.sh
 ```
 
 Once these steps are completed you should have a vcpkg executable to work with.
@@ -206,65 +236,57 @@ The snippet below shows how to set up your registry's ports as overlay ports and
 runs `vcpkg install` in manifest mode to install all of your custom ports.
 
 ```yml
-- env:
-  VCPKG_OVERLAY_PORTS: ${{ github.workspace }}/ports
+variables:
+  - name: VCPKG_ASSET_SOURCES
+    value: "clear;x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,,readwrite"
+  - name: VCPKG_BINARY_SOURCES
+    value: "clear;nuget,https://my.domain.com/vcpkgBinaryCache/nuget/v3/index.json,readwrite"
+  - name: VCPKG_OVERLAY_PORTS
+    value: $(Build.Repository.LocalPath)/ports
 
-- name: Build ports
-  run: ${{ github.workspace }}/vcpkg/vcpkg install
-  shell: bash
+steps:
+- script: $(Build.Repository.LocalPath)/vcpkg/vcpkg install
 ```
 
 In this example we assume that the `vcpkg.json` file is created in the root of
-your registry's repository.
+your registry's repository and that the vcpkg repository is added as a submodule.
 
-Putting it all together your workflow's YAML file should look similar to this:
+Putting it all together your pipelines's YAML file should look similar to this:
 
-`.github/workflows/test-ports.yml`
+`.azure-pipelines/test-ports.yml`
 
 ```yml
-name: Test vcpkg ports
+trigger:
+- main
 
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+pr:
+-main
 
-env:
-  VCPKG_ASSET_SOURCES: "clear;x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,{{ secrets.ADO_SAS }},readwrite"
-  VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
-  VCPKG_OVERLAY_PORTS: ${{ github.workspace }}/ports
+pool:
+  vmImage: ubuntu-latest
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+variables:
+  - name: VCPKG_ASSET_SOURCES
+    value: "clear;x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,,readwrite"
+  - name: VCPKG_BINARY_SOURCES
+    value: "clear;nuget,https://my.domain.com/vcpkgBinaryCache/nuget/v3/index.json,readwrite"
+  - name: VCPKG_OVERLAY_PORTS
+    value: $(Build.Repository.LocalPath)/ports
 
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Acquire vcpkg
-      uses: actions/checkout@v4
-      with:
-        repository: "https://github.com/Microsoft/vcpkg"
+steps:
+  - task: NuGetAuthenticate@1
 
-    - name: Bootstrap vcpkg
-      run: ${{ github.worksapce }}/vcpkg/bootstrap-vcpkg.sh
-      shell: bash
+  - checkout: self
+    submodules: true
 
-    - name: Enable GitHub Actions Cache backend
-      uses: actions/github-script@v6
-      with:
-      script: |
-        core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
-        core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+  - script: $(Build.Repository.LocalPath)/vcpkg/bootstrap-vcpkg.sh
 
-    - name: Build ports
-      run: ${{ github.workspace }}/vcpkg/vcpkg install
-      shell: bash
+  - script: $(Build.Repository.LocalPath)/vcpkg//vcpkg install
+    displayName: Test vcpkg ports
 ```
 
-This is the basic structure for a CI workflow to test your registry's ports. You may
-require some extra work to [authenticate to private
+This is the basic structure for a CI pipeline to test your registry's ports. You
+may require some extra work to [authenticate to private
 repositories](../consume/gha-authentication.md) or to your [NuGet
 feed](../users/binarycaching.md#nuget-credentials).
 
@@ -277,8 +299,8 @@ left out of the tests.
 The following articles may be useful to you when setting up a CI environment.
 
 * [Authenticate to private Git registries](../consume/gha-authentication.md)
-* [Set up a binary cache using GHA
-  Cache](../consume/binary-caching-github-actions-cache.md)
+* [Set up a binary cache using NuGet
+  Cache](../consume/binary-caching-nuget.md)
 * [Set up an asset cache](../consume/asset-caching.md)
 * [Binary cache reference](../users/binarycaching.md)
 * [Asset cache reference](../users/assetcaching.md)
