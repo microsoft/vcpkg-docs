@@ -207,7 +207,7 @@ steps:
 In order to clone the vcpkg repository you need to define a repository
 resource for your pipeline. The snippet below shows how to add the vcpkg
 repository as a resource, you will need to set up a [Service
-Connection](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml)
+Connection](/azure/devops/pipelines/library/service-endpoints)
 to connect your pipeline to GitHub.
 
 After checking out the vcpkg repository either as a submodule or by cloning it
