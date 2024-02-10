@@ -17,7 +17,7 @@ successfully.
 
 The main vcpkg registry at
 [Microsoft/vcpkg](<https://github.com/Microsoft/vcpkg>) is tested by the vcpkg
-team using Continuous Integration (CI) with Azure DevOps. This ensures that
+team using continuous integration (CI) with Azure DevOps. This ensures that
 adding new packages or updating existing ones does not break consumers.
 
 In this article, we show you how to set up a CI environment to test the vcpkg
@@ -46,7 +46,11 @@ time and computing power. We strongly recommend that before engaging CI for
 your ports, you invest in setting up a binary cache and an asset cache for your
 GitHub Action workflows.
 
-A binary cache provides the most benefit for CI scenarios by ensuring that unmodified packages aren't rebuilt on every CI run. An asset cache mirrors artifacts downloaded for your packages during a run and uses the cached artifacts in subsequent runs. It can also help mitigate issues where the upstream repository is unreliable: for example, a broken download URL.
+A binary cache provides the most benefit for CI scenarios by ensuring that
+unmodified packages aren't rebuilt on every CI run. An asset cache mirrors
+artifacts downloaded for your packages during a run and uses the cached
+artifacts in subsequent runs. It can also help mitigate issues where the
+upstream repository is unreliable: for example, a broken download URL.
 
 For detailed instructions on how to set up these caches read our [binary
 caching](../consume/binary-caching-github-actions-cache.md) and [asset
@@ -55,34 +59,37 @@ caching](../consume/asset-caching.md) articles.
 ## Example: Enable asset and binary caching in a GitHub Actions workflow
 
 ```yml
-env: 
-    VCPKG_ASSET_SOURCES: "clear;x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,{{ secrets.ADO_SAS }},readwrite"
-    VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
-
 steps:
-    - name: Enable GitHub Actions Cache backend
-        uses: actions/github-script@v6
-        with:
-        script: |
-            core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
-            core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+  - name: Enable GitHub Actions Cache backend
+    uses: actions/github-script@v6
+    with:
+      script: |
+        core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
+        core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+
+  - name: some vcpkg task
+    run: "${{ github.workspace }}/vcpkg/vcpkg install"
+    env: 
+      X_VCPKG_ASSET_SOURCES: "clear;x-azurl,https://my.domain.com/container,{{ secrets.SAS }},readwrite"
+      VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
 ```
 
-This example shows how to set up a binary cache and asset cache in a GitHub Actions workflow. You should adapt this snippet to use on your own workflow's YAML file.
+This example shows how to set up a binary cache and asset cache in a
+GitHub Actions workflow. You should adapt this snippet to use on your
+own workflow's YAML file.
 
 Breaking down this snippet:
 
-`VCPKG_ASSET_SOURCES` is the environment variable used to configure asset caches
+`X_VCPKG_ASSET_SOURCES` is the environment variable used to configure asset caches
 in vcpkg. In this example, it is set to
-`x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,{{secrets.ADO_SAS}},readwrite`.
- The `x-azurl` backend instructs vcpkg to use an Azure Artifacts NuGet feed as the
+`x-azurl,https://my.domain.com/container,{{secrets.SAS}},readwrite`.
+ The `x-azurl` backend instructs vcpkg to use an Azure Storage container as the
  storage provider. The `x-azurl` is followed by three parameters separated by
  commas (`,`).
 
-* `https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json` is the Nuget feed
-  URL.
-* `{{secrets.ADO_SAS}}` is a GitHub Actions secret that contains a SAS token to
-  authenticate to your NuGet feed.
+* `https://my.domain.com/container` is a storage container URL.
+* `{{secrets.SAS}}` is a GitHub Actions secret variable that contains a SAS token to
+  authenticate to the storage container.
 * `readwrite` sets read and write permissions for the asset cache. This means
   that this asset cache is used to store artifacts as well as to restore
   artifacts from it.
@@ -94,7 +101,7 @@ required in your workflow to enable this backend successfully.
 
 The following step should be included as-is in your GitHub Action workflow
 steps. This step exports two environment variables required by the `x-gha`
-backend to work.
+backend to work and should be run before any task that involves vcpkg.
 
 ```yml
 - name: Enable GitHub Actions Cache backend
@@ -182,9 +189,10 @@ steps:
 - uses: actions/checkout@v4
   with:
     repository: "https://github.com/Microsoft/vcpkg"
+    path: "vcpkg"
 
 - name: Bootstrap vcpkg
-  run: ${{ github.worksapce }}/vcpkg/bootstrap-vcpkg.sh
+  run: "${{ github.workspace }}/vcpkg/bootstrap-vcpkg.sh"
   shell: bash
 ```
 
@@ -206,12 +214,12 @@ The snippet below shows how to set up your registry's ports as overlay ports and
 runs `vcpkg install` in manifest mode to install all of your custom ports.
 
 ```yml
-- env:
-  VCPKG_OVERLAY_PORTS: ${{ github.workspace }}/ports
-
-- name: Build ports
-  run: ${{ github.workspace }}/vcpkg/vcpkg install
-  shell: bash
+  - name: some vcpkg task
+    run: "${{ github.workspace }}/vcpkg/vcpkg install"
+    env: 
+      X_VCPKG_ASSET_SOURCES: "clear;x-azurl,https://my.domain.com/container,{{ secrets.SAS }},readwrite"
+      VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
+      VCPKG_OVERLAY_PORTS: "${{ github.workspace }}/ports"
 ```
 
 In this example we assume that the `vcpkg.json` file is created in the root of
@@ -230,11 +238,6 @@ on:
   pull_request:
     branches: ["main"]
 
-env:
-  VCPKG_ASSET_SOURCES: "clear;x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,{{ secrets.ADO_SAS }},readwrite"
-  VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
-  VCPKG_OVERLAY_PORTS: ${{ github.workspace }}/ports
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -245,21 +248,26 @@ jobs:
     - name: Acquire vcpkg
       uses: actions/checkout@v4
       with:
-        repository: "https://github.com/Microsoft/vcpkg"
+        repository: "Microsoft/vcpkg"
+        path: vcpkg
 
     - name: Bootstrap vcpkg
-      run: ${{ github.worksapce }}/vcpkg/bootstrap-vcpkg.sh
+      run: "${{ github.workspace }}/vcpkg/bootstrap-vcpkg.sh"
       shell: bash
 
     - name: Enable GitHub Actions Cache backend
       uses: actions/github-script@v6
       with:
-      script: |
-        core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
-        core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+        script: |
+          core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
+          core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
 
     - name: Build ports
       run: ${{ github.workspace }}/vcpkg/vcpkg install
+      env:
+        X_VCPKG_ASSET_SOURCES: "clear;x-azurl,https://your.domain.com/container,${{ secrets.SAS }},readwrite"
+        VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
+        VCPKG_OVERLAY_PORTS: "${{ github.workspace }}/ports"
       shell: bash
 ```
 

@@ -59,14 +59,14 @@ caching](../consume/asset-caching.md) articles.
 ## Example: Enable asset and binary caching in an Azure DevOps pipeline
 
 ```yml
-variables:
-  - name: VCPKG_ASSET_SOURCES
-    value: "clear;x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,,readwrite"
-  - name: VCPKG_BINARY_SOURCES
-    value: "clear;nuget,https://my.domain.com/vcpkgBinaryCache/nuget/v3/index.json,readwrite"
-
 steps: 
 - task: NuGetAuthenticate@1
+
+- script: $(Build.Repository.LocalPath)/vcpkg/vcpkg install --triplet=x64-windows
+  displayName: some vcpkg task
+  env:
+    X_VCPKG_ASSET_SOURCES: "clear;x-azurl,https://my.domain.com/container,$(VcpkgAssetCache),readwrite"
+    VCPKG_BINARY_SOURCES: "clear;nuget,https://my.domain.com/vcpkgBinaryCache/nuget/v3/index.json,readwrite"
 ```
 
 This example shows how to set up a binary cache and asset cache in an Azure
@@ -75,18 +75,16 @@ YAML file.
 
 Breaking down this snippet:
 
-`VCPKG_ASSET_SOURCES` is the environment variable used to configure asset caches
+`X_VCPKG_ASSET_SOURCES` is the environment variable used to configure asset caches
 in vcpkg. In this example, it is set to
-`x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,,readwrite`.
- The `x-azurl` backend instructs vcpkg to use an Azure Artifacts NuGet feed as the
+`x-azurl,https://my.domain.com/container,$(VcpkgAssetCache),readwrite`.
+ The `x-azurl` backend instructs vcpkg to use an Azure Storage container as the
  storage provider. The `x-azurl` is followed by three parameters separated by
  commas (`,`).
 
-* `https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json` is the Nuget feed
-  URL.
-* The second argument is intentionally left empty. Instead of providing a SAS
-  token for the NuGet feed, the `NugetAuthenticate@1` task is used to
-  authenticate to your ADO NuGet feeds.
+* `https://my.domain.com/container` is a storage container URL.
+* `$(VcpkgAssetCache)` is a pipeline secret variable that contains a SAS token to
+  authenticate to the storage container.
 * `readwrite` sets read and write permissions for the asset cache. This means
   that this asset cache is used to store artifacts as well as to restore
   artifacts from it.
@@ -101,7 +99,8 @@ steps may be required to authenticate to your NuGet feed, read the
 for instructions to set up NuGet authentication with ADO.
 
 The following task should be added as-is in your pipeline in order to
-authenticate to your Azure Artifacts NuGet feeds.
+authenticate to your Azure Artifacts NuGet feeds. This task should also run
+before any task involving vcpkg.
 
 ```yml
 - task: NuGetAuthenticate@1
@@ -236,16 +235,12 @@ The snippet below shows how to set up your registry's ports as overlay ports and
 runs `vcpkg install` in manifest mode to install all of your custom ports.
 
 ```yml
-variables:
-  - name: VCPKG_ASSET_SOURCES
-    value: "clear;x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,,readwrite"
-  - name: VCPKG_BINARY_SOURCES
-    value: "clear;nuget,https://my.domain.com/vcpkgBinaryCache/nuget/v3/index.json,readwrite"
-  - name: VCPKG_OVERLAY_PORTS
-    value: $(Build.Repository.LocalPath)/ports
-
 steps:
 - script: $(Build.Repository.LocalPath)/vcpkg/vcpkg install
+  env:
+    X_VCPKG_ASSET_SOURCES: "clear;x-azurl,https://my.domain.com/container,$(VcpkgAssetCache),readwrite"
+    VCPKG_BINARY_SOURCES: "clear;nuget,https://my.domain.com/demoBinaries/nuget/v3/index.json,readwrite"
+    VCPKG_OVERLAY_PORTS: "$(Build.Repository.LocalPath)/ports"
 ```
 
 In this example we assume that the `vcpkg.json` file is created in the root of
@@ -259,30 +254,23 @@ Putting it all together your pipelines's YAML file should look similar to this:
 trigger:
 - main
 
-pr:
--main
-
 pool:
-  vmImage: ubuntu-latest
-
-variables:
-  - name: VCPKG_ASSET_SOURCES
-    value: "clear;x-azurl,https://my.domain.com/vcpkgAssetCache/nuget/v3/index.json,,readwrite"
-  - name: VCPKG_BINARY_SOURCES
-    value: "clear;nuget,https://my.domain.com/vcpkgBinaryCache/nuget/v3/index.json,readwrite"
-  - name: VCPKG_OVERLAY_PORTS
-    value: $(Build.Repository.LocalPath)/ports
+  vmImage: windows-latest
 
 steps:
-  - task: NuGetAuthenticate@1
+- checkout: self
+  submodules: true
 
-  - checkout: self
-    submodules: true
+- task: NuGetAuthenticate@1
 
-  - script: $(Build.Repository.LocalPath)/vcpkg/bootstrap-vcpkg.sh
+- script: $(Build.Repository.LocalPath)/vcpkg/bootstrap-vcpkg.bat
+  displayName: Bootstrap vcpkg
 
-  - script: $(Build.Repository.LocalPath)/vcpkg//vcpkg install
-    displayName: Test vcpkg ports
+- script: $(Build.Repository.LocalPath)/vcpkg/vcpkg install --triplet=x64-windows
+  env:
+    X_VCPKG_ASSET_SOURCES: "clear;x-azurl,https://my.domain.com/container,$(VcpkgAssetCache),readwrite"
+    VCPKG_BINARY_SOURCES: "clear;nuget,https://my.domain.com/demoBinaries/nuget/v3/index.json,readwrite"
+    VCPKG_OVERLAY_PORTS: "$(Build.Repository.LocalPath)/ports"
 ```
 
 This is the basic structure for a CI pipeline to test your registry's ports. You
