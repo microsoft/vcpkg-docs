@@ -134,12 +134,12 @@ following directories inside the vcpkg root folder:
 
 You can use the [`--clean-after-build`
 flag](../commands/install.md#clean-after-build) in your [`vcpkg install`
-command](../commands/install.md) to make vcpkg delete the temporary files after
-the build is completed.
+command](../commands/install.md) to make vcpkg delete the temporary files
+automatically after the build is completed.
 
 vcpkg also uses other temporary locations external to the vcpkg root folder. The
-Visual Studio integration files, default binary cache, and registries working
-directory located in the following paths depending on your operative system:
+Visual Studio integration files, default binary cache, and registries cache; are
+all located in the following path depending on your operative system:
 
 On Windows:
 
@@ -151,7 +151,7 @@ On Linux/macOS:
 - `~/.cache/vcpkg` (only if `XDG_CACHE_HOME` is not defined)
 
 If you have configured local binary or asset caches then you may want to
-periodically clean those up as needed.
+periodically clean those too as needed.
 
 ## How is CMake used internally by vcpkg?
 
