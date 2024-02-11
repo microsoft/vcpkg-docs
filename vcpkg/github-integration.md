@@ -59,7 +59,7 @@ You must enable the GitHub dependency graph in your repository's settings (enabl
 > [!NOTE]
 > This example assumes that there is a valid `vcpkg.json` manifest that lists
 > some dependent ports. For more information on manifests, see our
-> [documentation on manifest mode](../concepts/manifest-mode.md).
+> [documentation on manifest mode](concepts/manifest-mode.md).
 
 ```yaml
 name: Populate dependencies

@@ -18,6 +18,10 @@ Manifest mode uses declarative JSON files to describe metadata about your
 project or package. In any case, the name of this file is
 [`vcpkg.json`](../reference/vcpkg-json.md).
 
+Manifest mode is engaged by running the `vcpkg install` command while there's a
+manifest file (`vcpkg.json`) in the working directory. Read ahead for details on
+how to [install packages in manifest mode](#install-manifest-mode).
+
 Manifest mode is also required to use advanced features like
 [versioning](../users/versioning.md) and
 [custom registries](../users/registries.md).
@@ -101,7 +105,7 @@ vcpkg can be configured through a `vcpkg-configuration.json` file to add more
 }
 ```
 
-## Installing packages in manifest mode
+## <a name="install-manifest-mode"></a> Installing packages in manifest mode
 
 To install packages using a manifest file you use the
 [`vcpkg install`](../commands/install.md) command without any package arguments.
