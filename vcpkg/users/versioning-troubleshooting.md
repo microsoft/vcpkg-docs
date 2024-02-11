@@ -29,7 +29,7 @@ For more details on versioning, see our reference documentation:
 - [versioning concepts](./versioning.concepts.md)
 - [versioning](./versioning.md)
 
-For more details on using a manifest, see [manifest](./manifests.md)
+For more details on using a manifest, see [manifest](../concepts/manifest-mode.md)
 
 ## <a name="non-existent-version"></a> Cause: Requesting a non-existent version of a package
 <!-- 

@@ -14,8 +14,9 @@ This guide is intended for users experiencing issues with [binary caching](./bin
 ## <a name="debug-output"></a> Enable vcpkg debugging information
 It is highly recommended that you enable debug output when following this guide.
 
-* [Classic mode](classic-mode.md): add `--debug` to your command invocation.
-* CMake toolchain: add `-DVCPKG_INSTALL_OPTIONS="--debug"` in your CMake configure call or in your `CMakePresets.json` file.
+* [Classic mode](../concepts/classic-mode.md): add `--debug` to your command invocation.
+* CMake toolchain: add `-DVCPKG_INSTALL_OPTIONS="--debug"` in your CMake
+  configure call or in your `CMakePresets.json` file.
 * MSBuild/Visual Studio: set the property `VcpkgAdditionalInstallOptions` to `--debug`.
 * Set the `VCPKG_INSTALL_OPTIONS` environment variable to `--debug`.
 

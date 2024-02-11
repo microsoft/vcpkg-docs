@@ -34,7 +34,7 @@ environment.
 
 To select a target triplet:
 
-* In [classic mode](../users/classic-mode.md):
+* In [classic mode](../concepts/classic-mode.md):
   * Qualify package references with the triplet name, such as `zlib:x64-windows-static-md`.
   * Pass [`--triplet=<triplet>`](../commands/common-options.md#triplet).
 * In CMake:
@@ -44,7 +44,7 @@ To select a target triplet:
 
 To select the host triplet for the current machine:
 
-* In [classic mode](../users/classic-mode.md):
+* In [classic mode](../concepts/classic-mode.md):
   * Pass [`--host-triplet=<triplet>`](../commands/common-options.md#host-triplet).
 * In CMake:
   * Set [`VCPKG_HOST_TRIPLET`](../users/buildsystems/cmake-integration.md#vcpkg_host_triplet).
@@ -76,7 +76,8 @@ First, copy a built-in triplet file from the `triplets\` directory into a
 different filesystem location. Then, add that directory to the list of overlay
 triplet paths when interacting with vcpkg.
 
-* In [Manifest mode](../users/manifests.md), you can use [`$.vcpkg-configuration.overlay-triplets`](../reference/vcpkg-configuration-json.md#overlay-triplets).
+* In [Manifest mode](../concepts/manifest-mode.md), you can use
+  [`$.vcpkg-configuration.overlay-triplets`](../reference/vcpkg-configuration-json.md#overlay-triplets).
 * When using vcpkg from CMake, you can set [`VCPKG_OVERLAY_TRIPLETS`](../users/buildsystems/cmake-integration.md#vcpkg_overlay_triplets).
 * When using vcpkg from MSBuild, you can add [`--overlay-triplets=...`][overlay-triplets] to [MSBuild Additional Options](../users/buildsystems/msbuild-integration.md#vcpkg-additional-install-options).
 * When using the CLI directly, you can pass [`--overlay-triplets=...`][overlay-triplets].

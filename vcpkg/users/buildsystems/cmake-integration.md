@@ -31,11 +31,13 @@ You can still use a toolchain file to configure your own toolsets by using the
 
 The vcpkg integration works differently depending on the operation mode you're using:
 
-In [classic mode](../classic-mode.md), vcpkg sets CMake search paths appropriately to make 
-installed packages available via the `find_package()`, `find_library()`, and `find_path()` functions.
+In [classic mode](../../concepts/classic-mode.md), vcpkg sets CMake search paths
+appropriately to make installed packages available via the `find_package()`,
+`find_library()`, and `find_path()` functions.
 
-In [manifest mode](../manifests.md), in addition to the above, the toolchain detects manifest files
-(`vcpkg.json` files) and runs `vcpkg install` to automatically acquire the project's dependencies.
+In [manifest mode](../../concepts/manifest-mode.md), in addition to the above,
+the toolchain detects manifest files (`vcpkg.json` files) and runs `vcpkg
+install` to automatically acquire the project's dependencies.
 
 Because the toolchain file is evaluated during the `project()` call, all CMake-level variables that
 modify a vcpkg setting must be set before the first call to `project()`. It may also be necessary to

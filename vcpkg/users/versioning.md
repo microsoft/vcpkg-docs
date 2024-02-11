@@ -9,7 +9,9 @@ ms.topic: reference
 ---
 # Versioning reference
 
-Versioning allows you to deterministically control the precise revisions of dependencies used by your project from within your manifest file. Versioning is only available to [Manifest mode](manifests.md) users.
+Versioning allows you to deterministically control the precise revisions of
+dependencies used by your project from within your manifest file. Versioning is
+only available to [Manifest mode](../concepts/manifest-mode.md) users.
 
 For more information about the vcpkg versioning algorithm and high level concepts, see [Versioning Concepts](versioning.concepts.md).
 

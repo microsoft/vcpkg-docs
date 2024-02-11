@@ -7,9 +7,12 @@ ms.topic: reference
 # CONTROL files
 
 > [!WARNING]
-> `CONTROL` files are deprecated and only retained for backwards compatibility with earlier versions of vcpkg. Use [vcpkg.json manifest files](../users/manifests.md) for any newly authored port.
+> `CONTROL` files are deprecated and only retained for backwards compatibility
+> with earlier versions of vcpkg. Use [vcpkg.json manifest
+> files](../concepts/manifest-mode.md) for any newly authored port.
 >
-> Use `./vcpkg format-manifest path/to/CONTROL` to convert an existing `CONTROL` file to a `vcpkg.json` file.
+> Use `./vcpkg format-manifest path/to/CONTROL` to convert an existing `CONTROL`
+> file to a `vcpkg.json` file.
 
 The `CONTROL` file contains metadata about the port.  The syntax is based on [the Debian `control` format](https://www.debian.org/doc/debian-policy/ch-controlfields.html) although we only support the subset of fields documented here.
 
