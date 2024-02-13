@@ -288,7 +288,7 @@ Modify `helloworld/vcpkg.json` to add a dependency on `vcpkg-sample-library`:
 ```
 
 Modify `helloworld/vcpkg-configuration.json` to include the `overlay-ports`
-folderthat contains the new port:
+folder that contains the new port:
 
 ```json
 {
