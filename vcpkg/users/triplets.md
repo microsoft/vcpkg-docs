@@ -21,7 +21,7 @@ capabilities.
 
 Specifies the target machine architecture.
 
-Valid options include `x86`, `x64`, `arm`, `arm64`, `arm64ec`, `s390x`, `ppc64le`, `riscv32`, `riscv64`, `loongarch32`, `loongarch64`, `mips64`, `wasm32`.
+Valid options include `x86`, `x64`, `arm`, `arm64`, `arm64ec`, `s390x`, `ppc64le`, `riscv32`, `riscv64`, `loongarch32`, `loongarch64`, `mips64`, and `wasm32`.
 
 ### VCPKG_CRT_LINKAGE
 
