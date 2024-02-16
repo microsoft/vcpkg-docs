@@ -158,7 +158,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     Finally, run the executable to see your application in action:
 
     ```console
-    ./build/HelloWorld
+    ./build/Debug/HelloWorld.exe
     
     Hello World!
     ```
