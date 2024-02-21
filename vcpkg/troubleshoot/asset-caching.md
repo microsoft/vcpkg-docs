@@ -24,47 +24,66 @@ asset cache. Instead, it silently falls back to downloading the asset from the I
 vcpkg prints the URL for each of the asset it downloads. You can notice asset
 caching errors if the download URL does not match your asset cache's URL.
 
-The `x-azurl` asset cache backend provided by vcpkg works with Azure Storage
-Container URL. When working with Azure Containers the following parameters are
-required:
+The `x-azurl` asset cache backend provided is designed to work with Azure Storage
+Containes and other storage servies that accept requests that require an
+authentication token.
+
+The configuration is as follows:
 
 `x-azurl,<url>,<sas>[,<rw>]`
 
-* `<url>`: The container's URL
-* `<sas>`: A SAS key
-* `<rw>`: (Optional) read/write permissions
+* `<url>`: The container's base URL
+* `<sas>`: A Shared Access Signature (SAS) token if working with Azure Storage
+  Contianers; or an authentication request parameter if working with other providers.
+* `<rw>`: (Optional) read/write permission configuration
 
-However, the `x-azurl` backend can be used for storage services that accept
-requests in the form of `<url>?<sas>`.
+> !NOTE
+> While designed to work with Azure Storage Containers. The `x-azurl` backend
+> can be used for storage services that accept requests in the form of
+> `<url>?<sas>`.
 
 For example, `x-azurl,https://contoso.com,token=TOKEN_VALUE,readwrite` will
-result in requests in the form of `https://contoso.com?token=TOKEN_VALUE`.
+result in a request in the form of `https://contoso.com?token=TOKEN_VALUE`.
 
 If your asset cache provider requires no authorization the `<sas>` parameter can
 be left empty. For example, `x-azurl,https://contoso.com,,readwrite`.
 
-### Cause 1: The URL is not correct
+### Cause 1: The URL is not correctly formatted
 
 When setting up your asset cache may sure that you include `https://` as part of
 the URL.
 
-### Cause 2: The SAS token is not correct
+Steps to resolve:
 
-vcpkg uses the SAS token you provide to authenticate to your asset cache
-provider. There are a variety of reasons why the SAS token may not be accepted.
+1 - Verify that the configured URL is correct.
+
+### Cause 2: The authorization token is not correctly formatted
+
+vcpkg uses the `<sas>` parameter to authenticate to your asset cache provider.
+There are a variety of reasons why the authorization may not succeed.
 
 If you're using an Azure Storage Container, the `<sas>` parameter should contain
-the SAS token only without any other request parameter formatting.
+only the SAS token without any other request parameter formatting. For example:
+
+`x-azurl,https://mystorageaccount.blob.core.windows.net/mystoragecontainer,sasvaluehere,readwrite`
+
+Read the documentation on generating [SAS
+tokens](/azure/storage/blobs/blob-containers-portal#generate-a-shared-access-signature)
+for more information. Make sure that the generated token's read and write
+permissions match your required use case.
 
 If you're using a different provider, you may require to format the request
-parameters correctly. For example, prefixing `token=` before the actual SAS
-token value.
+parameters correctly. For example, prefixing a parameter name before the token's
+value.
+
+`x-azurl,https://contoso.com,authorization=tokenvaluehere,readwrite`.
 
 Steps to resolve:
 
-1 - Verify that provided token isn't expired
-2 - Verify that the value of the token is correct
-3 - Verify that your `<sas>` parameter configuration is properly formatted
+1 - Verify that the authorization token is not expired
+2 - Verify that the authorization token has the correct permissions to your container
+3 - Verify that the authorization token's value is correct
+4 - Verify that the `<sas>` token format matches the expected format by your provider
 
 ## Issue isn't listed here
 
