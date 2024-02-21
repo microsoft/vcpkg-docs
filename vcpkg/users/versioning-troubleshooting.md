@@ -188,9 +188,9 @@ Resolutions:
       run: git fetch --unshallow
     ```
 
-## <a name="unexpected-default-features"></a> Cause: Unexpected installation of default features in transitive dependencies
+## <a name="unexpected-default-features"></a> Cause: Unexpected inclusion of default features in transitive dependencies
 
-When using `vcpkg` to manage your project's dependencies, you might encounter a situation where a transitive dependency installs with its default features, even when you've specified `"depend-defaults": false` in your top-level manifest. This can lead to confusion when features that were intended to be excluded, such as `foo`, are still being installed.
+When managing dependencies with vcpkg, you might find that transitive dependencies are installed with their default features, even when you might not want those features for your project. This situation can lead to unexpected bloat or functionality in your final build.
 
 ### Scenario
 
@@ -203,17 +203,17 @@ You have a dependency on library `Y`, which in turn depends on library `X`. Libr
     {
       "name": "Y",
       "features": ["featureB"],
-      "depend-defaults": false
+      "default-features": false
     }
   ]
 }
 ```
 
-You expect that `X` will be installed without its default features due to the `"depend-defaults": false` setting. However, `X` is still installed with the default feature `foo`.
+You expect that `X` will be installed without its default features due to the `"default-features": false` setting. However, `X` is still installed with the default feature `foo`.
 
 ### Reason
 
-The `depend-defaults` property is only considered at the top-level manifest. This means that default features of transitive dependencies (like `X` in this scenario) are still included unless explicitly disabled at the top level. When library `Y` is resolved, `vcpkg` does not propagate the `"depend-defaults": false` setting to the transitive dependency `X`, resulting in the installation of `X` with its default features.
+The `default-features` property is only considered at the top-level manifest. This means that default features of transitive dependencies (like `X` in this scenario) are still included unless explicitly disabled at the top level. When library `Y` is resolved, `vcpkg` does not propagate the `"default-features": false` setting to the transitive dependency `X`, resulting in the installation of `X` with its default features.
 
 ### Resolution
 

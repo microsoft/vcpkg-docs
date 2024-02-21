@@ -24,6 +24,9 @@ Default features are crucial for providing a user-friendly experience with libra
 
 When adding a library as a dependency in your `vcpkg.json` manifest, default features are included by default. To modify this behavior, you can use the `"default-features": false` attribute to disable them, allowing for a more customized setup based on your specific needs.
 
+![NOTE]
+> Adding the `"default-features": false"` attribute to disable default features only works if specified in the top level manifest.
+
 ### Example 1: Including a library with default features
 
 ```json
