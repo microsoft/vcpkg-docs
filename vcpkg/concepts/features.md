@@ -17,7 +17,7 @@ Each feature should be additive with other features: if a project provides featu
 
 The set of features available are defined by the [`"features"` field](../reference/vcpkg-json.md#features).
 
-### Example 1: Multiple file formnats
+### Example 1: Multiple file formats
 
 An image manipulation library, for instance, might support several different image types by depending on different sets of other libraries.
 
@@ -38,7 +38,7 @@ An image manipulation library, for instance, might support several different ima
 
 Default features are a set of features to be automatically activated if the top-level project does not explicitly request a build without them. Default features are intended to ensure a minimum level of functionality regardless of how complex and customizable the dependency graph of a project grows. 
 
-![NOTE]
+>![NOTE]
 > They are not intended to model "curation" or "suggestions".
 
 For example, consider a library `"extract-any"` that supports over 10 different archive formats, including several that are quite obscure. Because they are all optional, if none are selected the library is not functional: it cannot extract any files.
@@ -78,7 +78,7 @@ Alternatively, if using vcpkg in [classic mode](../consume/classic-mode.md), you
 
 For more information, check out the [default features article](default-features.md).
 
-## Dependency Resolution
+## Dependency resolution
 
 When using vcpkg, dependency resolution plays a crucial role, especially when dealing with features that have interdependencies. To illustrate, consider the following scenario involving an image manipulation library:
 
@@ -125,7 +125,7 @@ my-image-lib[core,png,jpeg]
 
 This mechanism ensures that the build of `my-image-lib` is optimized for the required features, providing support for `PNG` and `JPEG` while excluding unnecessary `TIFF` support.
 
-## Advanced Usage
+## Advanced usage
 
 ### Example 3: Multiple Related Projects in a Single Repository
 
@@ -155,5 +155,3 @@ For more information, see the following:
 * [overrides](../reference/vcpkg-json.md#overrides)
 * [baselines](../users/versioning.md#baselines)
 * [versioning](../users/versioning.md)
-
-Adopting a clear strategy for managing default features will help streamline your project's dependency management, ensuring you include only what's necessary for your application's functionality.
