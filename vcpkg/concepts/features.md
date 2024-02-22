@@ -11,9 +11,19 @@ ms.topic: concept-article
 
 ## Features
 
-Manifests can define additive sets of functionality, behavior, and dependencies called _features_.
+Features represent sets of functionality, behavior, and dependencies that can be selectively added to a package or project upon installation. 
 
-Each feature should be additive with other features: if a project provides features `A` and `B`, then it should build successfully with both `A` and `B` enabled together. Features should not be used to define alternatives. For example, features cannot be used to choose between multiple, exclusive graphics APIs since it is not possible to choose both. Features can depend on other features within same project if the project's manifest has a [`"name"`](../reference/vcpkg-json.md#name).
+By design, features should follow these principles:
+
+- Additive: enabling feature A should provide new functionality otherwise missing from the package without disabling any other functionality.
+- Non-exclusive: enabling feature A should not prevent other features from being installed.
+
+As such, features should not be used to define alternative sets of functionalities. For example, a graphics library should not use features to choose between exclusive graphics backends, since it is not possible to install all of them at the same time.
+
+Features can have the following effects on a package's dependencies:
+
+- Add new dependencies, including dependencies on other features from the same package.
+- Enable new features on existing dependencies.
 
 The set of features available are defined by the [`"features"` field](../reference/vcpkg-json.md#features).
 
