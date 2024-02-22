@@ -152,6 +152,8 @@
     href: concepts/triplets.md
   - name: Versioning
     href: users/versioning.concepts.md
+  - name: Features
+    href: concepts/features.md
   - name: Default features
     href: concepts/default-features.md
 - name: Reference

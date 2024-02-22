@@ -9,11 +9,6 @@
             "source_path": "vcpkg/users/registries.md",
             "redirect_url": "/vcpkg/concepts/registries",
             "redirect_document_id": true
-        },
-        {
-            "source_path": "vcpkg/users/manifests.md#features",
-            "redirect_url": "/vcpkg/concepts/features",
-            "redirect_document_id": true
         }
     ]
 }

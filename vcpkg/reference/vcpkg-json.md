@@ -36,11 +36,11 @@ This example demonstrates a manifest for an application using `boost-system`, `c
 | Name | Required | Type   | Description |
 |------|----------|--------|-------------|
 | [builtin-baseline](#builtin-baseline) | No | string | Version pins to use when building as top-level |
-| [default-features](#default-features) | No | [Feature Object][][] | Require the [features](../users/manifests.md#features) listed as on-by-default |
+| [default-features](#default-features) | No | [Feature Object][][] | Require the [features](../concepts/features.md) listed as on-by-default |
 | [dependencies](#dependencies) | No | [Dependency][][] | List of dependencies required to build and use this project |
 | [description](#description) | Libraries | string or string[] | The project description |
 | [documentation](#documentation) | No | string | URI to the upstream project's documentation |
-| [features](#features) | No | {string: [Feature](#feature)} | Optional [features](../users/manifests.md#features) available for users of the project |
+| [features](#features) | No | {string: [Feature](#feature)} | Optional [features](../concepts/features.md) available for users of the project |
 | [homepage](#homepage) | No      | string | URI to the upstream project's homepage |
 | [license](#license) | No      | string or null | SPDX license expression |
 | [maintainers](#maintainers) | No      | string or string[] | Maintainers of the package files |
@@ -138,9 +138,9 @@ The URI to the upstream project's documentation. A string. Optional.
 
 ### <a name="features"></a> `"features"`
 
-The [features](../users/manifests.md#features) available for users of the project. A map of names to [Feature objects](#feature). Optional.
+The [features](../concepts/features.md) available for users of the project. A map of names to [Feature objects](#feature). Optional.
 
-Features are boolean flags that add additional behaviors and dependencies to a build. See the [Manifest Concept Documentation](../users/manifests.md#features) for more information about features.
+Features are boolean flags that add additional behaviors and dependencies to a build. See the [Manifest Concept Documentation](../concepts/features.md) for more information about features.
 
 ### <a id="homepage"></a> `"homepage"`
 
@@ -393,7 +393,7 @@ Each feature is an object with the following fields:
 | [supports](#feature-supports) | No | [Platform Expression][] | Qualifier for which platforms and configurations the feature supports |
 | [license](#feature-license) | No | string or null | SPDX license expression |
 
-Check out the [Manifest mode](../users/manifests.md#features) documentation for a conceptual overview of features.
+Check out the [Manifest mode](../concepts/features.md) documentation for a conceptual overview of features.
 
 [Feature]: #feature
 
@@ -433,19 +433,19 @@ Check out the [Manifest mode](../users/manifests.md#features) documentation for 
 
 ### <a id="feature-dependencies"></a> [Feature][]: `"dependencies"`
 
-The list of dependencies required by the [feature](../users/manifests.md#features). An array of [Dependency objects][Dependency]. Optional.
+The list of dependencies required by the [feature](../concepts/features.md). An array of [Dependency objects][Dependency]. Optional.
 
 This field lists any additional dependencies needed to build and use the feature.
 
 ### <a id="feature-description"></a> [Feature][]: `"description"`
 
-The description of the [feature](../users/manifests.md#features). A string or array of strings. Required.
+The description of the [feature](../concepts/features.md). A string or array of strings. Required.
 
 This is used to help users discover the feature as part of a [`search`](../commands/search.md) or `find` command and learn what the feature does.
 
 ### <a name="feature-supports"></a> [Feature][]: `"supports"`
 
-The supported platform and build configurations for the [feature](../users/manifests.md#features). A [Platform Expression][]. Optional.
+The supported platform and build configurations for the [feature](../concepts/features.md). A [Platform Expression][]. Optional.
 
 This field documents the platform configurations where the feature will build and run successfully.
 
