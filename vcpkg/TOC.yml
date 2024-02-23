@@ -109,6 +109,10 @@
       href: users/buildsystems/manual-integration.md
   - name: Classic mode
     href: users/classic-mode.md
+  - name: Default features
+    href: concepts/default-features.md
+  - name: Features
+    href: concepts/features.md
   - name: Manifest mode
     href: concepts/manifest-mode.md
   - name: Supported Hosts
@@ -152,10 +156,6 @@
     href: concepts/triplets.md
   - name: Versioning
     href: users/versioning.concepts.md
-  - name: Features
-    href: concepts/features.md
-  - name: Default features
-    href: concepts/default-features.md
 - name: Reference
   items:
     - name: vcpkg.json Reference

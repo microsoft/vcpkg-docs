@@ -11,21 +11,33 @@ ms.topic: concept-article
 
 This article describes the concept of default features, their implications, and strategies for effective management.
 
-Default features in vcpkg are a set of features automatically included when a port is installed, unless explicitly disabled. These features ensure that a library maintains a baseline level of functionality, even as the complexity of its dependency graph increases.
+Default features are a set of [features](features.md) automatically included when a port is installed, unless explicitly disabled. These features ensure that a library maintains a baseline level of functionality, even as the complexity of its dependency graph increases.
 
 >![NOTE]
 > Not all ports contain default features.
 
 ## Role of default features
 
-Default features are crucial for providing a user-friendly experience with libraries that offer modular functionalities through features. For instance, a library capable of extracting various archive formats might have each format as an optional feature. Without default features, the library might not perform any extraction out of the box, complicating initial use. Default features guarantee that essential functionalities are available immediately, enhancing usability.
+Default features provide a user-friendly experience by ensuring essential functionalities are available in libraries with modular features.
 
-## Specifying default features
+For instance, a library capable of extracting various archive formats might have each format as an optional feature. Without default features, the library might not include any extraction algorithm out of the box, complicating initial use. 
 
-When adding a library as a dependency in your `vcpkg.json` manifest, default features are included by default. To modify this behavior, you can use the `"default-features": false` attribute to disable them, allowing for a more customized setup based on your specific needs.
+Packages installed by vcpkg will always include their default features, unless explicitly requested otherwise. This behavior applies to packages required directly by the user through a manifest file or vcpkg install invocation, and to packages required as dependencies.
 
->![NOTE]
-> Adding the `"default-features": false"` attribute to disable default features only works if specified in the top level manifest.
+Disabling the automatic installation of default features is only possible for user requested dependencies.
+
+### Disabling default features in manifest mode
+
+Add the `"default-features": false` attribute to a dependency declaration to disable installation of its default features.
+
+If you want to disable default features for a transitive dependency, you need to promote it to a direct dependency on your project's manifest.
+
+### Disabling default features in classic mode
+
+Add the special `core` feature as part of the requested features of the packages you want to install.
+
+> [!NOTE]
+> Similar to how manifest mode works, if you want to disable default features for a transitive dependency; you need to promote it to a direct installation request in your command line.
 
 ### Example 1: Including a library with default features
 
@@ -41,8 +53,7 @@ When adding a library as a dependency in your `vcpkg.json` manifest, default fea
 
 In this scenario, `extract-any` is installed with its default features, ensuring immediate functionality.
 
-
-### Example 2: Disabling default features
+### Example 2: Disabling default features (manifest mode)
 
 ```json
 {
@@ -58,6 +69,14 @@ In this scenario, `extract-any` is installed with its default features, ensuring
 ```
 
 Here, `extract-any` is installed without its default features, allowing for a tailored setup.
+
+### Example 3: Disabling default feautes (classic mode)
+
+```console
+vcpkg install extract-any[core]
+```
+
+Here, `extract-any` is installed without its default features by using the special `core` feature.
 
 ## Default features in action
 
