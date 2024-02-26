@@ -13,22 +13,30 @@ This article is intended for users experiencing issues while [setting
 up](../commands/install.md) an asset cache. For instructions to set up an asset
 cache read the [asset caching documentation](../concepts/asset-caching.md).
 
-## Artifacts aren't being uploaded or restored from my asset cache
+## Diagnosing asset caching errors
 
 When vcpkg downloads assets it looks at available asset caches before
 attempting to download from the Internet.
 
 By default, vcpkg emits no warnings or errors when a package is not found on an
-asset cache. Use the [`x-block-origin`](../users/assetcaching.md#x-block-origin) to
-disable the silent download mechanism, turning a failure to restore from an asset
-cache into a package build failure.
+asset cache. Add [`x-block-origin`](../users/assetcaching.md#x-block-origin) in
+your asset cache configuration to disable the silent download mechanism, turning
+a failure to restore an asset into a package build failure.
 
 vcpkg prints the URL for each of the assets it downloads. You can notice asset
-caching errors if the download URL does not match your asset cache's URL.
+caching errors if the download URL does not match your asset cache's URL. If
+you added `x-block-origin`, failing to restore an asset from one of the caches
+fails with an error message:
 
-The `x-azurl` asset cache backend provided is designed to work with Azure Storage
-Containers and other storage services that accept requests that require an
-authentication token.
+```Console
+error: Failed to download from mirror set
+```
+
+## <a name="cache-failure"></a> Artifacts aren't being uploaded or restored from my asset cache
+
+The `x-azurl` asset cache backend provided by vcpkg, is designed to work with
+Azure Storage Containers; it may work with other storage services that accept
+PUT requests with simple token authentication.
 
 The configuration is as follows:
 
@@ -36,7 +44,7 @@ The configuration is as follows:
 
 * `<url>`: The container's base URL
 * `<sas>`: A Shared Access Signature (SAS) token if working with Azure Storage
-  Containers, or an authentication request parameter if working with other providers.
+  Containers; or an authentication request parameter if working with other providers.
 * `<rw>`: (Optional) read/write permission configuration
 
 > !NOTE
@@ -87,6 +95,26 @@ Steps to resolve:
 3 - Verify that the authorization token's value is correct
 4 - Verify that the authorization token's format matches the expected format by
 your provider.
+
+## I get a "Failed to download from mirror set" error message
+
+This issue occurs when the asset caching configuration contains
+[`x-block-origin`](../users/assetcaching.md#x-block-origin).
+
+Using `x-block-origin` turns failures to restore an asset from any configured cache
+into package build failures. Preventing possibly unwanted access to external sources.
+
+Steps to resolve:
+
+1 - Verify that the requested asset exists in at least one of the configured asset
+caches. If the package does not exist there are two methods to resolve the issue:
+
+  * Disable `x-block-origin` temporarily, to allow vcpkg to download the asset and
+    upload it to a configured asset cache.
+  * Upload the asset manually to one of the configured asset caches.
+
+2 - Verify that the asset caches are properly configured, follow the steps in
+[Artifacts aren't being uploaded or restored from my asset cache](#cache-failure).
 
 ## Issue isn't listed here
 
