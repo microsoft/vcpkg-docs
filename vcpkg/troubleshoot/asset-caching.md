@@ -9,23 +9,23 @@ ms.topic: troubleshooting-general
 
 # Troubleshoot asset caching issues
 
-This articles is intended for users experiencing issues while [setting
+This article is intended for users experiencing issues while [setting
 up](../commands/install.md) an asset cache. For instructions to set up an asset
 cache read the [asset caching documentation](../concepts/asset-caching.md).
 
 ## Artifacts aren't being uploaded or restored from my asset cache
 
 When vcpkg downloads assets it looks at available asset caches before
-attempting to download from the internet.
+attempting to download from the Internet.
 
 By default, vcpkg emits no warnings or errors when a package is not found on an
 asset cache. Instead, it silently falls back to downloading the asset from the Internet.
 
-vcpkg prints the URL for each of the asset it downloads. You can notice asset
+vcpkg prints the URL for each of the assets it downloads. You can notice asset
 caching errors if the download URL does not match your asset cache's URL.
 
 The `x-azurl` asset cache backend provided is designed to work with Azure Storage
-Containes and other storage servies that accept requests that require an
+Containers and other storage services that accept requests that require an
 authentication token.
 
 The configuration is as follows:
@@ -34,7 +34,7 @@ The configuration is as follows:
 
 * `<url>`: The container's base URL
 * `<sas>`: A Shared Access Signature (SAS) token if working with Azure Storage
-  Contianers; or an authentication request parameter if working with other providers.
+  Containers, or an authentication request parameter if working with other providers.
 * `<rw>`: (Optional) read/write permission configuration
 
 > !NOTE
