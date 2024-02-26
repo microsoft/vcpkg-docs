@@ -19,7 +19,9 @@ When vcpkg downloads assets it looks at available asset caches before
 attempting to download from the Internet.
 
 By default, vcpkg emits no warnings or errors when a package is not found on an
-asset cache. Instead, it silently falls back to downloading the asset from the Internet.
+asset cache. Use the [`x-block-origin`](../users/assetcaching.md#x-block-origin) to
+disable the silent download mechanism, turning a failure to restore from an asset
+cache into a package build failure.
 
 vcpkg prints the URL for each of the assets it downloads. You can notice asset
 caching errors if the download URL does not match your asset cache's URL.
