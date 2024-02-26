@@ -1,6 +1,6 @@
 ---
 title: vcpkg_make_install
-description: Use vcpkg_make_install to build and install a CMake project.
+description: Use vcpkg_make_install to build and install a Make-based project.
 ms.date: 01/31/2024
 ---
 # vcpkg_make_install
@@ -42,7 +42,7 @@ To use this function, you must depend on the helper port `vcpkg-make`:
 
 ### ADD_BIN_TO_PATH
 
-DAdds the `bin` directory to the `PATH` during the build. This is useful when executables from the build are required for subsequent build steps.
+Adds the `bin` directory to the `PATH` during the build. This is useful when executables from the build are required for subsequent build steps.
 
 ### DISABLE_PARALLEL
 
@@ -90,7 +90,7 @@ Additional options to pass to `make` during the release build.
 
 ### OPTIONS_DEBUG
 
-Additional options to pass to `make` during the release build.
+Additional options to pass to `make` during the debug build.
 
 ## Examples
 
@@ -103,7 +103,3 @@ vcpkg_make_install()
 ## Remarks
 
 This command replaces [`vcpkg_install_make()`](vcpkg_install_make.md).
-
-## Source
-
-TODO

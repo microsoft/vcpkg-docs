@@ -3,7 +3,7 @@ title: vcpkg_make_configure
 description: Use vcpkg_make_configure to configure a Make-based project.
 ms.date: 01/30/2024
 ---
-# vcpkg_cmake_configure
+# vcpkg_make_configure
 
 Configure a Make-based project.
 
@@ -11,7 +11,7 @@ Configure a Make-based project.
         
 ```cmake
 vcpkg_make_configure(
-    SOURCE_PATH <source-path>
+    [AUTOCONFIG]
     [COPY_SOURCE]
     [DISABLE_MSVC_WRAPPERS]
     [NO_CPPFLAGS]
@@ -19,6 +19,7 @@ vcpkg_make_configure(
     [NO_DEFAULT_OPTIONS]
     [NO_MSVC_FLAG_ESCAPING]
     [USE_RESPONSE_FILES]
+    [SOURCE_PATH <source-path>]
     [SHELL <shell>]
     [OPTIONS <configure-setting>...]
     [OPTIONS_RELEASE <configure-setting>...]
@@ -27,11 +28,9 @@ vcpkg_make_configure(
     [POST_CONFIGURE_CMAKE_COMMANDS <cmake-command>...]
     [LANGUAGES <language>...]
 )
-
 ```
 
-
-To use this function, you must depend on the helper port `vcpkg-cmake`:
+To use this function, you must depend on the helper port `vcpkg-make`:
 
 ```json
 "dependencies": [
@@ -44,11 +43,9 @@ To use this function, you must depend on the helper port `vcpkg-cmake`:
 
 ## Parameters
 
-### SOURCE_PATH
+### AUTOCONFIG
 
-The directory containing the project's source files
-
-This value is usually obtained as a result of calling a source acquisition command like [`vcpkg_from_github()`](vcpkg_from_github.md).
+Boolean value that runs autoreconf when set.
 
 ### COPY_SOURCE
 
@@ -70,7 +67,24 @@ Adds the `bin` directory to the system path. This is useful for builds that requ
 
 ### NO_DEFAULT_OPTIONS
 
-Disables the inclusion of default configure options provided by `vcpkg_make_configure`. This gives you full control over the configure command line.
+When set, this flag disables the automatic inclusion of the following default configure options provided by `vcpkg_make_configure`. Use this flag if you need full control over the configure command line:
+
+General Defaults:
+* --disable-silent-rules - Makes the build process output more verbose, which can be helpful for debugging.
+* --verbose - Enables verbose output from the configure script.
+
+Library Linkage:
+* For dynamic library builds: --enable-shared and --disable-static
+* For static library builds: --disable-shared and --enable-static
+
+Installation Directories:
+* Adjusts standard directories (bin, lib, share, etc.) to conform with vcpkg's layout, ensuring correct installation paths.
+
+Platform-Specific Tweaks:
+* On Windows: Ensures compatibility with Windows-specific filesystem and library behaviors.
+* On Unix-like systems: Assures the script accommodates the typical filesystem layout and toolchain behaviors.
+
+Removing these defaults gives you the responsibility to specify all necessary configuration options manually, ensuring the project is correctly configured for building with vcpkg.
 
 ### NO_MSVC_FLAG_ESCAPING
 
@@ -79,6 +93,12 @@ Turns off the escaping of MSVC flags. This might be necessary for projects that 
 ### USE_RESPONSE_FILES
 
 Enables the use of response files to pass arguments to the configure script. This can help avoid command line length limitations.
+
+### SOURCE_PATH
+
+The directory containing the project's source files
+
+This value is usually obtained as a result of calling a source acquisition command like [`vcpkg_from_github()`](vcpkg_from_github.md).
 
 ### SHELL
 
@@ -110,11 +130,7 @@ Specifies a list of CMake commands to execute after the configure process. This 
 
 ### LANGUAGES
 
-Specifies the programming languages your project uses. This can influence environment variables and other settings that the configuration process uses.
-
-## Implicit Options
-
-TODO: Implicit options to configure script
+Specifies the programming languages your project uses.
 
 ## Examples
 
@@ -141,5 +157,3 @@ vcpkg_make_install()
 ## Remarks
 
 This command replaces [`vcpkg_configure_make()`](vcpkg_configure_make.md).
-
-## Source
