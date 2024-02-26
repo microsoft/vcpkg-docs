@@ -24,11 +24,11 @@ For instance, a library capable of extracting various archive formats might have
 
 Packages installed by vcpkg will always include their default features, unless explicitly requested otherwise. This behavior applies to packages required directly by the user through a manifest file or vcpkg install invocation, and to packages required as dependencies.
 
-Disabling the automatic installation of default features is only possible for user requested dependencies.
-
 ### Disabling default features in manifest mode
 
 Add the `"default-features": false` attribute to a dependency declaration to disable installation of its default features.
+
+Disabling the automatic installation of default features is only possible for user requested dependencies.
 
 If you want to disable default features for a transitive dependency, you need to promote it to a direct dependency on your project's manifest.
 
@@ -70,7 +70,7 @@ In this scenario, `extract-any` is installed with its default features, ensuring
 
 Here, `extract-any` is installed without its default features, allowing for a tailored setup.
 
-### Example 3: Disabling default feautes (classic mode)
+### Example 3: Disabling default features (classic mode)
 
 ```console
 vcpkg install extract-any[core]
@@ -78,9 +78,9 @@ vcpkg install extract-any[core]
 
 Here, `extract-any` is installed without its default features by using the special `core` feature.
 
-## Default features in action
+## Default features interactions
 
-1. **Installing a port without specifying default features**:
+1. **Installing a port with default features (default behavior)**:
     `vcpkg install extract-any` installs `extract-any` with its default features (`extract-any[format-a]`), due to the absence of specific feature requests.
 
 1. **Specifying a feature without disabling defaults**:
@@ -104,7 +104,7 @@ To effectively manage default features within your projects:
 
 - **Be Explicit**: Specify only the features you need. Use `[core]` to disable default features when necessary.
 - **Inspect Dependencies**: Use `vcpkg depend-info <port>` to understand dependency resolutions and adjust your configurations accordingly.
-- **Utilize Overrides and Baselines**: Leverage versioning and baseline features for more control over dependency resolutions.
+- **Utilize Overrides and Baselines**: Leverage [versioning and baseline features](../users/versioning.concepts.md) for more control over dependency resolutions.
 
 For more information, see the following:
 

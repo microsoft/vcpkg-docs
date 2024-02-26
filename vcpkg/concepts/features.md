@@ -15,10 +15,10 @@ Features represent sets of functionality, behavior, and dependencies that can be
 
 By design, features should follow these principles:
 
-- Additive: enabling feature A should provide new functionality otherwise missing from the package without disabling any other functionality.
-- Non-exclusive: enabling feature A should not prevent other features from being installed.
+- Additive: enabling a feature should provide new functionality otherwise missing from the package without disabling any other functionality.
+- Non-exclusive: enabling a feature should not prevent other features from being installed.
 
-As such, features should not be used to define alternative sets of functionalities. For example, a graphics library should not use features to choose between exclusive graphics backends, since it is not possible to install all of them at the same time.
+Features should not be used to define alternative sets of functionalities. For example, a graphics library should not use features to choose between exclusive graphics backends, since it's not possible to install all of them at the same time.
 
 Features can have the following effects on a package's dependencies:
 
@@ -49,11 +49,11 @@ An image manipulation library, for instance, might support several different ima
 Default features are a set of features to be automatically activated if the top-level project does not explicitly request a build without them. Default features are intended to ensure a minimum level of functionality regardless of how complex and customizable the dependency graph of a project grows. 
 
 >![NOTE]
-> They are not intended to model "curation" or "suggestions".
+> Default features are not intended to model "curation" or "suggestions".
 
 For example, consider a library `"extract-any"` that supports over 10 different archive formats, including several that are quite obscure. Because they are all optional, if none are selected the library is not functional: it cannot extract any files.
 
-Default features ensure that a user who simply adds `"extract-any"` to the list of dependencies in their `vcpkg.json` will get a baseline level of functionality, for example automatically selecting `.zip` and `.tar.gz` decompressors.
+Default features ensure that a user who simply adds `"extract-any"` to the list of dependencies in their `vcpkg.json` will get a baseline level of functionality; for example, automatically selecting `.zip` and `.tar.gz` decompressors.
 
 ### Example 2: Default features in action
 
@@ -120,6 +120,17 @@ In scenarios where different libraries depend on various features of a common li
   "name": "library-b",
   "version": "1",
   "dependencies": [{"name": "my-image-lib", "features": ["jpeg"]}]
+}
+```
+
+```json
+{
+  "name": "project-using-a-and-b",
+  "version": "1",
+  "dependencies": [
+    "library-a",
+    "library-b"
+  ]
 }
 ```
 
