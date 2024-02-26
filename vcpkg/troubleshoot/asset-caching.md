@@ -9,21 +9,21 @@ ms.topic: troubleshooting-general
 
 # Troubleshoot asset caching issues
 
-This article is intended for users experiencing issues while [setting
-up](../commands/install.md) an asset cache. For instructions to set up an asset
-cache read the [asset caching documentation](../concepts/asset-caching.md).
+This article is intended for users experiencing issues while setting
+up an asset cache. For instructions to set up an asset cache read the
+[asset caching documentation](../concepts/asset-caching.md).
 
 ## Diagnosing asset caching errors
 
-When vcpkg downloads assets it looks at available asset caches before
-attempting to download from the Internet.
+When vcpkg downloads artifacts from the Internet (assets), it looks at
+available asset caches before attempting to download from the Internet.
 
 By default, vcpkg emits no warnings or errors when a package is not found on an
-asset cache. Add [`x-block-origin`](../users/assetcaching.md#x-block-origin) in
-your asset cache configuration to disable the silent download mechanism, turning
-a failure to restore an asset into a package build failure.
+asset cache. Adding [`x-block-origin`](../users/assetcaching.md#x-block-origin) to
+your asset cache configuration disables the silent download mechanism, turning
+failures to restore assets into package build failures.
 
-vcpkg prints the URL for each of the assets it downloads. You can notice asset
+vcpkg prints the URL for each of the assets it downloads. You can detect asset
 caching errors if the download URL does not match your asset cache's URL. If
 you added `x-block-origin`, failing to restore an asset from one of the caches
 fails with an error message:
@@ -35,10 +35,10 @@ error: Failed to download from mirror set
 ## <a name="cache-failure"></a> Artifacts aren't being uploaded or restored from my asset cache
 
 The `x-azurl` asset cache backend provided by vcpkg, is designed to work with
-Azure Storage Containers; it may work with other storage services that accept
+Azure Storage Containers, it may work with other storage services that accept
 PUT requests with simple token authentication.
 
-The configuration is as follows:
+The configuration has the following format:
 
 `x-azurl,<url>,<sas>[,<rw>]`
 
@@ -52,15 +52,15 @@ The configuration is as follows:
 > can be used for storage services that accept requests in the form of
 > `<url>?<sas>`.
 
-For example, `x-azurl,https://contoso.com,token=TOKEN_VALUE,readwrite` will
-result in a request in the form of `https://contoso.com?token=TOKEN_VALUE`.
+For example, `x-azurl,https://contoso.com,token=TOKEN_VALUE,readwrite` results in
+a request in the form of `https://contoso.com?token=TOKEN_VALUE`.
 
-If your asset cache provider requires no authorization the `<sas>` parameter can
+If your asset cache provider requires no authorization, the `<sas>` parameter can
 be left empty. For example, `x-azurl,https://contoso.com,,readwrite`.
 
 ### Cause 1: The URL is not correctly formatted
 
-When setting up your asset cache may sure that you include `https://` as part of
+When setting up your asset cache, make sure that you include `https://` as part of
 the URL.
 
 Steps to resolve:
@@ -82,7 +82,7 @@ tokens](/azure/storage/blobs/blob-containers-portal#generate-a-shared-access-sig
 for more information. Make sure that the generated token's read and write
 permissions match your required use case.
 
-If you're using a different provider, you may require to format the request
+If you're using a different provider, you may need to format the request
 parameters correctly. For example, prefixing a parameter name before the token's
 value.
 
@@ -109,9 +109,9 @@ Steps to resolve:
 1 - Verify that the requested asset exists in at least one of the configured asset
 caches. If the package does not exist there are two methods to resolve the issue:
 
-  * Disable `x-block-origin` temporarily, to allow vcpkg to download the asset and
-    upload it to a configured asset cache.
-  * Upload the asset manually to one of the configured asset caches.
+  * Disabling `x-block-origin` temporarily, to allow vcpkg to download the asset
+    and upload it to a configured asset cache.
+  * Uploading the asset manually to one of the configured asset caches.
 
 2 - Verify that the asset caches are properly configured, follow the steps in
 [Artifacts aren't being uploaded or restored from my asset cache](#cache-failure).
