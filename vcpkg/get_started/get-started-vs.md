@@ -127,15 +127,17 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
   
     ```json
     {
-    "version": 3,
-    "configurePresets": [
+      "version": 1,
+      "configurePresets": [
         {
-        "name": "default",
-        "cacheVariables": {
+          "name": "default",
+          "generator": "Ninja",
+          "binaryDir": "${sourceDir}/build",
+          "cacheVariables": {
             "CMAKE_TOOLCHAIN_FILE": "<VCPKG_ROOT>/scripts/buildsystems/vcpkg.cmake"
+          }
         }
-        }
-    ]
+      ]
     }
     ```
 
