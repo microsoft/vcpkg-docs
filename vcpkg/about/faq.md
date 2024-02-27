@@ -1,7 +1,7 @@
 ---
 title: Frequently Asked Questions
 description: Common questions and answers about vcpkg
-ms.date: 01/26/2024
+ms.date: 02/09/2024
 ms.topic: faq
 ---
 # Frequently Asked Questions
@@ -125,7 +125,33 @@ A lower level mechanism to achieve the same as the `vcpkg integrate project` NuG
 
 ## How can I remove temporary files?
 
-You can save some disk space by completely removing the `packages\`, `buildtrees\`, and `downloads\` folders.
+If you only care about the installed packages, it is safe to delete the
+following directories inside the vcpkg root folder:
+
+- `packages`,
+- `buildtrees`,
+- and `downloads`
+
+You can use the [`--clean-after-build`
+flag](../commands/install.md#clean-after-build) in your [`vcpkg install`
+command](../commands/install.md) to make vcpkg delete the temporary files
+automatically after the build is completed.
+
+vcpkg also uses other temporary locations external to the vcpkg root folder. The
+Visual Studio integration files, default binary cache, and registries cache; are
+all located in the following path depending on your operative system:
+
+On Windows:
+
+- `%LocalAppData%/vcpkg`
+
+On Linux/macOS:
+
+- `$XDG_CACHE_HOME/vcpkg`
+- `~/.cache/vcpkg` (only if `XDG_CACHE_HOME` is not defined)
+
+If you have configured local binary or asset caches then you may want to
+periodically clean those too as needed.
 
 ## How is CMake used internally by vcpkg?
 

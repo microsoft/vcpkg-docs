@@ -76,6 +76,8 @@
     # TODO: Modernize: examples/packaging-zipfiles.md
   - name: Package a dependency from a source archive
     href: examples/packaging-zipfiles.md
+  - name: Package a dependency from Azure DevOps
+    href: produce/package-ado-dependency.md
     # TODO: Modernize: examples/patching.md
   - name: Apply patches to a dependency's source code
     href: examples/patching.md
@@ -91,6 +93,12 @@
       href: maintainers/registries.md
     - name: Publish to a Git registry
       href: produce/publish-to-a-git-registry.md
+  - name: Test your custom Git registry's ports
+    items:
+    - name: Test your custom Git registry's ports using GitHub Actions
+      href: produce/test-registry-ports-gha.md
+    - name: Test your custom Git registry's ports using Azure DevOps
+      href: produce/test-registry-ports-ado.md
 - name: Concepts
   items:
   - name: Glossary
@@ -386,6 +394,8 @@
         href: maintainers/control-files.md
 - name: Troubleshooting
   items:
+    - name: Troubleshoot asset caching issues
+      href: troubleshoot/asset-caching.md
     - name: Troubleshoot binary caching issues
       href: users/binarycaching-troubleshooting.md
     - name: Troubleshoot package build issues

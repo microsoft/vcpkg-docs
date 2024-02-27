@@ -65,14 +65,14 @@ Next set the value of `VCPKG_BINARY_SOURCES` as follows:
 ::: zone pivot="shell-powershell"
 
 ```PowerShell
-$env:VCPKG_BINARY_SOURCES="clear;files,\\remote\shared\vcpkg\binary-cache,read;files,D:\vcpkg\binary-cache"
+$env:VCPKG_BINARY_SOURCES="clear;files,\\remote\shared\vcpkg\binary-cache,read;files,D:\vcpkg\binary-cache,readwrite"
 ```
 
 ::: zone-end
 ::: zone pivot="shell-cmd"
 
 ```console
-set VCPKG_BINARY_SOURCES="clear;files,\\remote\shared\vcpkg\binary-cache,read;files,D:\vcpkg\binary-cache"
+set VCPKG_BINARY_SOURCES="clear;files,\\remote\shared\vcpkg\binary-cache,read;files,D:\vcpkg\binary-cache,readwrite"
 ```
 
 ::: zone-end
@@ -83,16 +83,15 @@ This `VCPKG_BINARY_SOURCES` configuration adds the following source strings:
   binary cache](binary-caching-local.md).
 * `files,\\remote\shared\vcpkg\binary-cache,read`, sets a binary cache using the filesystem backend,
   `files`, located in `\\remote\shared\vcpkg\binary-cache`, and gives it read-only permissions
-  (`read`).
-* `files,D:\vcpkg\binary-cache`, sets a second filesystem binary cache, located in
-  `D:\vcpkg\binary-cache`, with read-write permissions (`readwrite` is omitted since it is the
-  default permission).
+  (`read` is the default permission).
+* `files,D:\vcpkg\binary-cache,readwrite`, sets a second filesystem binary cache, located in
+  `D:\vcpkg\binary-cache`, and gives it read-write permissions (`readwrite`).
 ::: zone-end
 
 ::: zone pivot="shell-bash"
 
 ```bash
-export VCPKG_BINARY_SOURCES="clear;files,/mnt/remote/shared/vcpkg/binary-cache,read;files,/home/vcpkg/binary-cache"
+export VCPKG_BINARY_SOURCES="clear;files,/mnt/remote/shared/vcpkg/binary-cache,read;files,/home/vcpkg/binary-cache,readwrite"
 ```
 
 This `VCPKG_BINARY_SOURCES` configuration adds the following source strings:
@@ -101,10 +100,9 @@ This `VCPKG_BINARY_SOURCES` configuration adds the following source strings:
   binary cache](binary-caching-local.md).
 * `files,/mnt/remote/shared/vcpkg/binary-cache,read`, sets a binary cache using the filesystem backend,
   `files`, located in `/mnt/remote/shared/vcpkg/binary-cache`, and gives it read-only permissions
-  (`read`).
-* `files,/home/vcpkg/binary-cache`, sets a second filesystem binary cache, located in
-  `/home/vcpkg/binary-cache`, with read-write permissions (`readwrite` is omitted since it is the
-  default permission).
+  (`read` is the default permission).
+* `files,/home/vcpkg/binary-cache,readwrite`, sets a second filesystem binary cache, located in
+  `/home/vcpkg/binary-cache`, and gives it read-write permissions (`readwrite`).
 
 ::: zone-end
 

@@ -49,7 +49,7 @@ Instead of stopping on an unsupported port, continue with a warning.
 
 By default, vcpkg refuses to execute an install plan containing a port installation for a triplet outside its [`"supports"`](../reference/vcpkg-json.md#supports) clause. The `"supports"` clause of a package describes the full set of platforms a package is expected to be buildable on. This flag instructs vcpkg to warn that the build is expected to fail instead of stopping.
 
-### `--clean-after-build`
+### <a name="clean-after-build"></a> `--clean-after-build`
 
 Clean buildtrees, packages, and downloads after building each package.
 

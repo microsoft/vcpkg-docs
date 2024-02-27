@@ -1,4 +1,4 @@
-	---
+---
 title: vcpkg_download_sourceforge
 description: Learn how to use vcpkg_download_sourceforge.
 author: vicroms
