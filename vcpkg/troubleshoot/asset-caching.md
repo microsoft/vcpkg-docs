@@ -9,27 +9,45 @@ ms.topic: troubleshooting-general
 
 # Troubleshoot asset caching issues
 
-This article is intended for users experiencing issues while setting
-up an asset cache. For instructions to set up an asset cache read the
-[asset caching documentation](../concepts/asset-caching.md).
+Asset caching accelerates package retrieval by storing downloaded packages (assets)
+locally or on a network, reducing dependency on external sources. This guide assists
+users facing difficulties with asset cache setup or operation.
+
+For initial setup instructions, refer to the [asset caching documentation](../concepts/asset-caching.md).
 
 ## Diagnosing asset caching errors
 
-When vcpkg downloads artifacts from the Internet (assets), it looks at
-available asset caches before attempting to download from the Internet.
+vcpkg checks available asset caches before downloading artifacts from the Internet.
+By default, it silently falls back to external sources if an asset is not found in
+the cache.
 
-By default, vcpkg emits no warnings or errors when a package is not found on an
-asset cache. Adding [`x-block-origin`](../users/assetcaching.md#x-block-origin) to
-your asset cache configuration disables the silent download mechanism, turning
-failures to restore assets into package build failures.
+The [`x-block-origin``](../users/assetcaching.md#x-block-origin) option transforms
+asset restoration failures into explicit build errors, preventing unintended external
+downloads. Use this option to enhance security and make missing cache hits more visible.
 
-vcpkg prints the URL for each of the assets it downloads. You can detect asset
-caching errors if the download URL does not match your asset cache's URL. If
-you added `x-block-origin`, failing to restore an asset from one of the caches
-fails with an error message:
+### Detect asset restore issues
+
+Asset restoration issues are silent by default. They can be detected by validating
+the download URL of an artifact.
+
+```Console
+Downloading 7zip...
+https://www.7-zip.org/a/7z2301-extra.7z -> C:\vcpkg\downloads\7z2301-extra.7z
+```
+
+Or an explicit error when the `x-block-origin` option is enabled:
 
 ```Console
 error: Failed to download from mirror set
+```
+
+### Detect asset upload issues
+
+If an asset source is correctly configured, vcpkg emits a warning when an asset can't
+be uploaded to the cache.
+
+```Console
+warning: failed to store back to mirror
 ```
 
 ## <a name="cache-failure"></a> Artifacts aren't being uploaded or restored from my asset cache
@@ -47,7 +65,7 @@ The configuration has the following format:
   Containers; or an authentication request parameter if working with other providers.
 * `<rw>`: (Optional) read/write permission configuration
 
-> !NOTE
+> [!NOTE]
 > While designed to work with Azure Storage Containers. The `x-azurl` backend
 > can be used for storage services that accept requests in the form of
 > `<url>?<sas>`.
