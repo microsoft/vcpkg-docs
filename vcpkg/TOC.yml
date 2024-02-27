@@ -394,6 +394,8 @@
         href: maintainers/control-files.md
 - name: Troubleshooting
   items:
+    - name: Troubleshoot asset caching issues
+      href: troubleshoot/asset-caching.md
     - name: Troubleshoot binary caching issues
       href: users/binarycaching-troubleshooting.md
     - name: Troubleshoot package build issues

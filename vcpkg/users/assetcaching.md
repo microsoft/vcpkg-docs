@@ -57,7 +57,7 @@ You can enable/disable steps 1 and 3 via the [`<rw>`](#sources) specifier, and y
 
 See also the [binary caching documentation for Azure Blob Storage](binarycaching.md#azblob) for more information on how to set up an `x-azurl` source.
 
-#### `x-block-origin`
+#### <a name="x-block-origin"></a> `x-block-origin`
 
 Syntax: `x-block-origin`
 
