@@ -61,8 +61,8 @@ resolving features, etc.
 
 The main purpose of using a manifest file in your project is to declare your
 dependencies. When using a project manifest, you're able to specify version
-constraints and overrides to lock specific versions of your dependencies; which
-is a feature not available in classic mode.
+constraints and overrides to lock specific versions of your dependencies. This 
+feature is not available in classic mode.
 
 ### Project manifest example
 
@@ -122,12 +122,12 @@ directory that contains the manifest file.
 Having independent installation trees per manifest allows separation of
 dependencies between different projects. This circumvents a crucial limitation
 of classic mode, which only allows one version of each port to be installed.
-While manifest mode keeps versions of ports separated per project.
+Manifest mode keeps versions of ports separated per project.
 
 ## Using features in project manifests
 
 Manifest files can define additive sets of functionality, behavior, and
-dependencies; through the use of
+dependencies through the use of
 ["features"](../reference/vcpkg-json.md#features).
 
 In your projects, you may define features to enable or disable dependencies that
