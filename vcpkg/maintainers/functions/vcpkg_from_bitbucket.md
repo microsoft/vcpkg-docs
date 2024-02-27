@@ -30,7 +30,7 @@ This should be set to `SOURCE_PATH` by convention.
 
 ### REPO
 
-The organization or user and repository on GitHub.
+The organization or user and repository on Bitbucket.
 
 ### REF
 

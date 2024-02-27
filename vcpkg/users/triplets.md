@@ -3,7 +3,7 @@ title: Triplets reference
 description: This article describes the configurable variables available to triplet files.
 author: vicroms
 ms.author: viromer
-ms.date: 01/10/2024
+ms.date: 02/14/2024
 ms.topic: reference
 ---
 
@@ -21,7 +21,7 @@ capabilities.
 
 Specifies the target machine architecture.
 
-Valid options are `x86`, `x64`, `arm`, `arm64` and `wasm32`.
+Valid options include `x86`, `x64`, `arm`, `arm64`, `arm64ec`, `s390x`, `ppc64le`, `riscv32`, `riscv64`, `loongarch32`, `loongarch64`, `mips64`, and `wasm32`.
 
 ### VCPKG_CRT_LINKAGE
 
@@ -145,7 +145,7 @@ This field is optional.
 Also available as build-type specific `VCPKG_CMAKE_CONFIGURE_OPTIONS_DEBUG` and
 `VCPKG_CMAKE_CONFIGURE_OPTIONS_RELEASE` variables.
 
-### VCPKG_MAKE_CONFIGURE_OPTIONS
+### VCPKG_CONFIGURE_MAKE_OPTIONS
 
 Set additional automake/autoconf configure options that are appended to the
 configure command (in
@@ -156,11 +156,11 @@ This field is optional.
 For example, to skip certain libtool checks that may errantly fail:
 
 ```cmake
-set(VCPKG_MAKE_CONFIGURE_OPTIONS "lt_cv_deplibs_check_method=pass_all")
+set(VCPKG_CONFIGURE_MAKE_OPTIONS "lt_cv_deplibs_check_method=pass_all")
 ```
 
-Also available as build-type specific `VCPKG_MAKE_CONFIGURE_OPTIONS_DEBUG` and
-`VCPKG_MAKE_CONFIGURE_OPTIONS_RELEASE` variables.
+Also available as build-type specific `VCPKG_CONFIGURE_MAKE_OPTIONS_DEBUG` and
+`VCPKG_CONFIGURE_MAKE_OPTIONS_RELEASE` variables.
 
 ### VCPKG_DEP_INFO_OVERRIDE_VARS
 

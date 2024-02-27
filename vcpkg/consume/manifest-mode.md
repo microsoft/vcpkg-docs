@@ -94,7 +94,7 @@ To use [vcpkg in your CMake projects](../users/buildsystems/cmake-integration.md
 `CMAKE_TOOLCHAIN_FILE` variable to use vcpkg's CMake toolchain file. The vcpkg toolchain is in
 `%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake`, where `%VCPKG_ROOT%` is your vcpkg installation path.
 
-To set the toolchain file use any of these methods:
+Use any of these methods to set the toolchain file:
 
 * Set the `CMAKE_TOOLCHAIN_FILE` in your CMakePresets.json file.
 * Pass `-DCMAKE_TOOLCHAIN_FILE=<path/to/vcpkg>/scripts/buildsystems/vcpkg.cmake` as a parameter in your
