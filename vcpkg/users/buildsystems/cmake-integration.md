@@ -31,7 +31,7 @@ You can still use a toolchain file to configure your own toolsets by using the
 
 The vcpkg integration works differently depending on the operation mode you're using:
 
-In [classic mode](../classic-mode.md), vcpkg sets CMake search paths appropriately to make 
+In [classic mode](../classic-mode.md), vcpkg sets CMake search paths appropriately to make
 installed packages available via the `find_package()`, `find_library()`, and `find_path()` functions.
 
 In [manifest mode](../manifests.md), in addition to the above, the toolchain detects manifest files
@@ -177,6 +177,16 @@ Defaults to `ON` if `VCPKG_MANIFEST_MODE` is `ON`.
 This variable can be set to additional command parameters to pass to `./bootstrap-vcpkg`.
 
 In manifest mode, vcpkg will be automatically bootstrapped if the executable does not exist.
+
+### `VCPKG_TOOL_PATH`
+
+This variable can be set to the name of the directory containing the `vcpkg` (Unix) or `vcpkg.exe` (Windows) executable.
+
+If unset, vcpkg will attempt to either download the executable from the Internet, or download sources and build locally.
+
+As long as you have a way to obtain the vcpkg executable and place it in the directory specified by this variable, then offline bootstrapping is possible.
+
+Note that if you are working in an environment without Internet access, then you will probably also need to configure binary caching so that vcpkg does not try to download packages sources from the Internet. It is up to you to populate the binary cache (e.g. by copying it over from an online environment) before attempting to bootstrap offline.
 
 ### `VCPKG_OVERLAY_TRIPLETS`
 
