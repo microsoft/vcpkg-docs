@@ -37,7 +37,8 @@ While vcpkg builds libraries from source whenever it's necessary, you can back u
 
 ### Manifests
 
-You can declare your direct dependencies and add optional features or version constraints in a [manifest file](../users/manifests.md).
+You can declare your direct dependencies and add optional features or version
+constraints in a [manifest file](../concepts/manifest-mode.md).
 
 ### Versioning
 

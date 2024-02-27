@@ -8,7 +8,10 @@ ms.topic: concept-article
 
 When installing libraries, vcpkg creates a single common layout partitioned by triplet.
 
-The root of the tree in [Classic mode](../classic-mode.md) is `<vcpkg root>/installed`. The root of the tree in [Manifest mode](../manifests.md) is `<vcpkg.json directory>/vcpkg_installed`.
+The root of the tree in [Classic mode](../../concepts/classic-mode.md) is
+`<vcpkg root>/installed`. The root of the tree in [Manifest
+mode](../../concepts/manifest-mode.md) is `<vcpkg.json
+directory>/vcpkg_installed`.
 
 Underneath this root, in a subfolder named after the triplet:
 

@@ -372,7 +372,9 @@ steps:
       ./vcpkg/vcpkg install sqlite3 cpprestsdk --triplet ${{ matrix.triplet }}
 ```
 
-If you're using [manifests](manifests.md), you can omit the `vcpkg package restore` step: it will be run automatically as part of your build.
+If you're using [manifests](../concepts/manifest-mode.md), you can omit the
+`vcpkg package restore` step: it will be run automatically as part of your
+build.
 
 See the [GitHub Packages' NuGet documentation](https://docs.github.com/packages/using-github-packages-with-your-projects-ecosystem/configuring-dotnet-cli-for-use-with-github-packages) for more information.
 

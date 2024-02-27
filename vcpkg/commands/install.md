@@ -25,7 +25,10 @@ Build and install port packages.
 
 ### Classic mode
 
-In [Classic mode](../users/classic-mode.md), this verb adds port packages to the existing set in the [installed directory](common-options.md#install-root) (defaults to `installed/` under the vcpkg root). This can require removing and rebuilding existing packages, which can fail.
+In [Classic mode](../concepts/classic-mode.md), this verb adds port packages to
+the existing set in the [installed directory](common-options.md#install-root)
+(defaults to `installed/` under the vcpkg root). This can require removing and
+rebuilding existing packages, which can fail.
 
 #### <a name="package-syntax"></a> Package Syntax
 
@@ -37,7 +40,9 @@ Package references without a triplet are automatically qualified by the [default
 
 ### Manifest mode
 
-In [Manifest mode](../users/manifests.md), this verb sets the [installed directory](common-options.md#install-root) to the state specified by the `vcpkg.json` manifest file, adding, removing, or rebuilding packages as needed.
+In [Manifest mode](../concepts/manifest-mode.md), this command sets the [installed
+directory](common-options.md#install-root) to the state specified by the
+`vcpkg.json` manifest file, adding, removing, or rebuilding packages as needed.
 
 ## Options
 
@@ -105,7 +110,10 @@ By default, vcpkg will run several checks on built packages and emit warnings if
 
 Specify an additional [feature](../concepts/features.md) from the `vcpkg.json` to install dependencies for.
 
-By default, only [`"dependencies"`](../reference/vcpkg-json.md#dependencies) and the dependencies of [`"default-features"`](../reference/vcpkg-json.md#default-features) will be installed.
+By default, only [`"dependencies"`](../reference/vcpkg-json.md#dependencies) and
+the dependencies of
+[`"default-features"`](../reference/vcpkg-json.md#default-features) will be
+installed.
 
 ### `--head`
 

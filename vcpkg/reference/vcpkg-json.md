@@ -6,7 +6,8 @@ ms.topic: reference
 ---
 # vcpkg.json Reference
 
-For an overview of using manifests with vcpkg, see [Manifest mode](../users/manifests.md).
+For an overview of using manifests with vcpkg, see [Manifest
+mode](../concepts/manifest-mode.md).
 
 Manifests are strict [JSON](https://www.json.org) documents. They cannot contain C++-style comments (`//`) nor trailing commas. However you can use field names that start with `$` to write your comments in any object that has a well-defined set of keys. These comment fields are not allowed in any objects which permit user-defined keys (such as `"features"`).
 
