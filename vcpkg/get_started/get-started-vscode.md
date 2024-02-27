@@ -158,7 +158,6 @@ you'll need to provide the `vcpkg.cmake` toolchain file. To automate this,
 create a `CMakePresets.json` file in the "helloworld" directory with the
 following content:
 
-:::code language="cmake" source="../examples/snippets/get-started/CMakePresets.json":::
 
 ```json
 {
