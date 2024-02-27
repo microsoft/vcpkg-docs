@@ -436,7 +436,7 @@ The ABI Hash considers:
 - The triplet file contents and name
 - The C++ compiler executable file
 - The C compiler executable file
-- The set of [features](manifests.md#features) selected
+- The set of [features](../concepts/features.md) selected
 - The ABI Hash of each dependency
 - All helper functions referenced by `portfile.cmake` (heuristic)
 - The version of CMake used
