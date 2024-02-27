@@ -95,7 +95,7 @@ only the SAS token without any other request parameter formatting. For example:
 
 `x-azurl,https://mystorageaccount.blob.core.windows.net/mystoragecontainer,sasvaluehere,readwrite`
 
-Read the documentation on generating [SAS
+Read the documentation on [generating SAS
 tokens](/azure/storage/blobs/blob-containers-portal#generate-a-shared-access-signature)
 for more information. Make sure that the generated token's read and write
 permissions match your required use case.
@@ -111,8 +111,7 @@ Steps to resolve:
 1 - Verify that the authorization token is not expired
 2 - Verify that the authorization token has the correct permissions to your container
 3 - Verify that the authorization token's value is correct
-4 - Verify that the authorization token's format matches the expected format by
-your provider.
+4 - Verify that the authorization token's format matches the expected format by your provider.
 
 ## I get a "Failed to download from mirror set" error message
 
@@ -124,14 +123,16 @@ into package build failures. Preventing possibly unwanted access to external sou
 
 Steps to resolve:
 
-1 - Verify that the requested asset exists in at least one of the configured asset
+1 - Verify that your network has access to the asset source
+
+2 - Verify that the requested asset exists in at least one of the configured asset
 caches. If the package does not exist there are two methods to resolve the issue:
 
   * Disabling `x-block-origin` temporarily, to allow vcpkg to download the asset
     and upload it to a configured asset cache.
   * Uploading the asset manually to one of the configured asset caches.
 
-2 - Verify that the asset caches are properly configured, follow the steps in
+3 - Verify that the asset caches are properly configured, follow the steps in
 [Artifacts aren't being uploaded or restored from my asset cache](#cache-failure).
 
 ## Issue isn't listed here
