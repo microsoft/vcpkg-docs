@@ -109,8 +109,11 @@ value.
 Steps to resolve:
 
 1 - Verify that the authorization token is not expired
+
 2 - Verify that the authorization token has the correct permissions to your container
+
 3 - Verify that the authorization token's value is correct
+
 4 - Verify that the authorization token's format matches the expected format by your provider.
 
 ## I get a "Failed to download from mirror set" error message
