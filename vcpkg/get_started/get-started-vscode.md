@@ -158,20 +158,20 @@ you'll need to provide the `vcpkg.cmake` toolchain file. To automate this,
 create a `CMakePresets.json` file in the "helloworld" directory with the
 following content:
 
+
 ```json
 {
-    "version": 3,
-    "configurePresets": [
-        {
-            "name": "vcpkg",
-            "cacheVariables": {
-                "CMAKE_TOOLCHAIN_FILE": {
-                   "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-                    "type": "FILEPATH"
-                }
-            }
-        }
-    ]
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "vcpkg",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    }
+  ]
 }
 ```
 
@@ -180,16 +180,16 @@ following content:
 
 ```json
 {
-    "version": 3,
-    "configurePresets": [
-        {
-            "name": "default",
-            "inherits": "vcpkg",
-            "environment": {
-                "VCPKG_ROOT": "<path to vcpkg>"
-            }
-        }
-    ]
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "default",
+      "inherits": "vcpkg",
+      "environment": {
+        "VCPKG_ROOT": "<path to vcpkg>"
+      }
+    }
+  ]
 }
 ```
 
