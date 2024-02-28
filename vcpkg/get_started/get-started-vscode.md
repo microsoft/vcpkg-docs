@@ -161,7 +161,7 @@ following content:
 
 ```json
 {
-  "version": 1,
+  "version": 2,
   "configurePresets": [
     {
       "name": "vcpkg",
@@ -180,7 +180,7 @@ following content:
 
 ```json
 {
-  "version": 1,
+  "version": 2,
   "configurePresets": [
     {
       "name": "default",

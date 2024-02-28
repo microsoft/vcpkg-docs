@@ -127,7 +127,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
   
     ```json
     {
-      "version": 1,
+      "version": 2,
       "configurePresets": [
         {
           "name": "default",
