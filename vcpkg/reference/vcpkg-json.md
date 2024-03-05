@@ -1,7 +1,7 @@
 ---
 title: vcpkg.json Reference
 description: Reference documentation for the vcpkg.json file format.
-ms.date: 01/10/2024
+ms.date: 3/1/2024
 ms.topic: reference
 ---
 # vcpkg.json Reference
@@ -222,10 +222,11 @@ Exact version pins to use for specific dependencies. An array of Override object
 | Name | Required | Type   | Description |
 |------|----------|--------|-------------|
 | name | Yes      | string | The port name |
-| [version<br>version-semver<br>version-date<br>version-string](#version) | Yes | string | Upstream version information to pin |
-| [port-version](#port-version) | No | integer | Port files revision to pin |
+| [version](#version) | Yes | string | Upstream version information to pin. |
+| [version-semver<br>version-date<br>version-string](#version) | Yes | string | Deprecated alternatives to `version` naming particular schemes. |
+| [port-version](#port-version) | No | integer | Port files revision to pin. Deprecated in favor of being placed into the version itself. |
 
-`"port-version"` can also be specified as a `#N` suffix in one of the fields. For example, `1.2.3#7`.
+`"port-version"` should be specified as a `#N` suffix in `"version"`. For example, `"version": "1.2.3#7"` names version 1.2.3, port-version 7.
 
 See also [versioning](../users/versioning.md#overrides) for more semantic details.
 
@@ -234,10 +235,10 @@ See also [versioning](../users/versioning.md#overrides) for more semantic detail
 ```json
   "overrides": [
     {
-      "name": "arrow", "version": "1.2.3", "port-version": 7
+      "name": "arrow", "version": "1.2.3#7"
     },
     {
-      "name": "openssl", "version-string": "1.1.1h#3"
+      "name": "openssl", "version": "1.1.1h#3"
     }
   ]
 ```
@@ -312,7 +313,7 @@ Each dependency is a string or an object with the following fields:
 | [host](#dependency-host) | No | bool | Require the dependency for the host machine instead of the target |
 | [name](#dependency-name) | Yes      | string | The name of the dependency |
 | [platform](#dependency-platform) | No | [Platform Expression][] | Qualifier for which platforms to use the dependency |
-| [version>=](#dependency-version-gt) | No | string | Minimum required version |
+| [version>=](#dependency-version-gt) | No | string | Minimum required version. Port-version is identified with a `#N` suffix, for example, `1.2.3#7` names port-version 7. |
 
 Strings are interpreted as an object with _name_ defined to the string value.
 
