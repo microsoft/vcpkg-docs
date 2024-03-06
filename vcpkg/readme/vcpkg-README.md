@@ -1,8 +1,6 @@
 ---
 title: Microsoft/vcpkg README
 description: README for vcpkg registry
-zone_pivot_group_filename: zone-pivot-groups.json
-zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.date: 3/6/2024
@@ -31,7 +29,7 @@ guide](../contributing/maintainer-guide.md).
 # Using vcpkg
 
 Create a [manifest for your project's dependencies](../consume/manifest-mode.md)
-(`vpckg.json`):
+(`vcpkg.json`):
 
 ```json
 {
