@@ -25,8 +25,8 @@ developers experience.
 
 This tool and ecosystem are constantly evolving, and we always appreciate
 contributions! Learn how to start contributing with our [packaging
-tutorial](get_started/get-started-adding-to-registry)
-and [maintainer guide](contributing/maintainer-guide).
+tutorial](../get_started/get-started-adding-to-registry.md) and [maintainer
+guide](../contributing/maintainer-guide.md).
 
 # Using vcpkg
 
@@ -65,7 +65,7 @@ First, follow the [quick start guide](../get_started/get-started.md).
 If a library you need is not present in the vcpkg registry, you can [open an
 issue on the GitHub repository][contributing:submit-issue] where the vcpkg team and
 community can see it, and potentially add the port to vcpkg. Or you can
-[contribute the package yourself](get_started/get-started-adding-to-registry).
+[contribute the package yourself](../get_started/get-started-adding-to-registry.md).
 
 After you've gotten vcpkg installed and working, you may wish to add
 [tab completion](../commands/integrate.md#vcpkg-autocompletion) to your shell.
@@ -82,7 +82,7 @@ Or what editor:
 * [vcpkg with Visual Sudio Code](../get_started/get-started-vscode.md)
 * [vcpkg with
   CLion](<https://www.jetbrains.com/help/clion/package-management.html>)
-
+  
 # Resources
 
 * Ports: [Microsoft/vcpkg](<https://github.com/microsoft/vcpkg>)
@@ -129,7 +129,7 @@ source code and build tools from their official distribution locations. For use
 behind a firewall, the specific access needed will depend on which ports are
 being installed. If you must install it in an "air gapped" environment, consider
 instaling once in a non-"air gapped" environment, populating an [asset
-cache](/vcpkg/users/assetcaching) shared with the otherwise "air gapped"
+cache](../users/assetcaching.md) shared with the otherwise "air gapped"
 environment.
 
 # Telemetry
@@ -141,4 +141,4 @@ collected by Microsoft is anonymous. You can opt-out of telemetry by:
 - passing `--disable-metrics` to vcpkg on the command line
 - setting the `VCPKG_DISABLE_METRICS` environment variable
 
-Read more about vcpkg telemetry at [https://learn.microsoft.com/vcpkg/about/privacy](/vcpkg/about/privacy).
+Read more about vcpkg telemetry at [https://learn.microsoft.com/vcpkg/about/privacy](../about/privacy.md).
