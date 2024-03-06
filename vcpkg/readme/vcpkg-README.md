@@ -7,7 +7,7 @@ ms.date: 3/6/2024
 ROBOTS: NOINDEX
 ---
 
-# vcpkg: Overview
+# vcpkg overview
 
 vcpkg is a free and open-source C/C++ package manager maintained by Microsoft
 and the C++ community. 
@@ -26,7 +26,32 @@ contributions! Learn how to start contributing with our [packaging
 tutorial](../get_started/get-started-adding-to-registry.md) and [maintainer
 guide](../contributing/maintainer-guide.md).
 
-# Using vcpkg
+# Get started
+
+First, follow the [quick start guide](../get_started/get-started.md).
+
+If a library you need is not present in the vcpkg registry, you can [open an
+issue on the GitHub repository][contributing:submit-issue] where the vcpkg team and
+community can see it, and potentially add the port to vcpkg. Or you can
+[contribute the package yourself](../get_started/get-started-adding-to-registry.md).
+
+After you've gotten vcpkg installed and working, you may wish to add
+[tab completion](../commands/integrate.md#vcpkg-autocompletion) to your shell.
+
+vcpkg has you covered, it doesn't matter what build system you use:
+
+* [vcpkg with CMake](../get_started/get-started.md)
+* [vcpkg with MSBuild](../get_started/get-started-msbuild.md)
+* [vcpkg with other build systems](../users/buildsystems/manual-integration.md)
+
+Or what editor:
+
+* [vcpkg with Visual Studio](../get_started/get-started-vs.md)
+* [vcpkg with Visual Sudio Code](../get_started/get-started-vscode.md)
+* [vcpkg with
+  CLion](<https://www.jetbrains.com/help/clion/package-management.html>)
+
+# Use vcpkg
 
 Create a [manifest for your project's dependencies](../consume/manifest-mode.md)
 (`vcpkg.json`):
@@ -56,42 +81,7 @@ systems](../concepts/build-system-integration.md#manual-integration).
 For a short description of all available commands, run `vcpkg help`.
 Run `vcpkg help [topic]` for details on a specific topic.
 
-# Getting Started
-
-First, follow the [quick start guide](../get_started/get-started.md).
-
-If a library you need is not present in the vcpkg registry, you can [open an
-issue on the GitHub repository][contributing:submit-issue] where the vcpkg team and
-community can see it, and potentially add the port to vcpkg. Or you can
-[contribute the package yourself](../get_started/get-started-adding-to-registry.md).
-
-After you've gotten vcpkg installed and working, you may wish to add
-[tab completion](../commands/integrate.md#vcpkg-autocompletion) to your shell.
-
-vcpkg has you covered, it doesn't matter what build system you use:
-
-* [vcpkg with CMake](../get_started/get-started.md)
-* [vcpkg with MSBuild](../get_started/get-started-msbuild.md)
-* [vcpkg with other build systems](../users/buildsystems/manual-integration.md)
-
-Or what editor:
-
-* [vcpkg with Visual Studio](../get_started/get-started-vs.md)
-* [vcpkg with Visual Sudio Code](../get_started/get-started-vscode.md)
-* [vcpkg with
-  CLion](<https://www.jetbrains.com/help/clion/package-management.html>)
-  
-# Resources
-
-* Ports: [Microsoft/vcpkg](<https://github.com/microsoft/vcpkg>)
-* Source code: [Microsoft/vcpkg-tool](<https://github.com/microsoft/vcpkg-tool>)
-* Docs: [Documentation](/vcpkg)
-* Website: [vcpkg.io](<https://vcpkg.io>)
-* Email: [vcpkg@microsoft.com](<mailto:vcpkg@microsoft.com>)
-* Discord: [\#include \<C++\>'s Discord server](<https://www.includecpp.org>), in the #🌏vcpkg channel
-* Slack: [C++ Alliance's Slack server](<https://cppalliance.org/slack/>), in the #vcpkg channel
-
-# Contributing
+# Contribute
 
 vcpkg is an open source project, and is thus built with your contributions. Here are some ways you can contribute:
 ]
@@ -111,6 +101,16 @@ questions or comments.
 [contributing:submit-pr]: https://github.com/microsoft/vcpkg/pulls
 [contributing:coc]: https://opensource.microsoft.com/codeofconduct/
 [contributing:coc-faq]: https://opensource.microsoft.com/codeofconduct/
+  
+# Resources
+
+* Ports: [Microsoft/vcpkg](<https://github.com/microsoft/vcpkg>)
+* Source code: [Microsoft/vcpkg-tool](<https://github.com/microsoft/vcpkg-tool>)
+* Docs: [Documentation](/vcpkg)
+* Website: [vcpkg.io](<https://vcpkg.io>)
+* Email: [vcpkg@microsoft.com](<mailto:vcpkg@microsoft.com>)
+* Discord: [\#include \<C++\>'s Discord server](<https://www.includecpp.org>), in the #🌏vcpkg channel
+* Slack: [C++ Alliance's Slack server](<https://cppalliance.org/slack/>), in the #vcpkg channel
 
 # License
 
