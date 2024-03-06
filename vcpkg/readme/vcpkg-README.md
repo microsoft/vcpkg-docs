@@ -26,13 +26,12 @@ developers experience.
 This tool and ecosystem are constantly evolving, and we always appreciate
 contributions! Learn how to start contributing with our [packaging
 tutorial](get_started/get-started-adding-to-registry)
-and [maintainer guidelines](contributing/maintainer-guide).
+and [maintainer guide](contributing/maintainer-guide).
 
 # Using vcpkg
 
-Create a [manifest for your project's dependencies](../consume/manifest-mode.md):
-
-`vcpkg.json`
+Create a [manifest for your project's dependencies](../consume/manifest-mode.md)
+(`vpckg.json`):
 
 ```json
 {
@@ -56,19 +55,19 @@ Then use one of our available build system integrations for
 [other build
 systems](../concepts/build-system-integration.md#manual-integration).
 
-For a short description of all available commands, run `vcpkg-help`. Run `vcpkg
-help [topic]` for details on a specific topic.
+For a short description of all available commands, run `vcpkg help`.
+Run `vcpkg help [topic]` for details on a specific topic.
 
 # Getting Started
 
 First, follow the [quick start guide](../get_started/get-started.md).
 
 If a library you need is not present in the vcpkg registry, you can [open an
-issue on the GitHub repo][contributing:submit-issue] where the vcpkg team and
+issue on the GitHub repository][contributing:submit-issue] where the vcpkg team and
 community can see it, and potentially add the port to vcpkg. Or you can
 [contribute the package yourself](get_started/get-started-adding-to-registry).
 
-After you've gotten vcpkg installed and working, you may wish to add 
+After you've gotten vcpkg installed and working, you may wish to add
 [tab completion](../commands/integrate.md#vcpkg-autocompletion) to your shell.
 
 vcpkg has you covered, it doesn't matter what build system you use:
@@ -86,19 +85,20 @@ Or what editor:
 
 # Resources
 
-* GitHub: ports at [Microsoft/vcpkg](<https://github.com/microsoft/vcpkg>), program at [Microsoft/vcpkg-tool](<https://github.com/microsoft/vcpkg-tool>)
-* Slack: [C++ Alliance's Slack server](<https://cppalliance.org/slack/>), in the #vcpkg channel
-* Discord: [\#include \<C++\>'s Discord server](<https://www.includecpp.org>), in the #🌏vcpkg channel
+* Ports: [Microsoft/vcpkg](<https://github.com/microsoft/vcpkg>)
+* Source code: [Microsoft/vcpkg-tool](<https://github.com/microsoft/vcpkg-tool>)
 * Docs: [Documentation](/vcpkg)
 * Website: [vcpkg.io](<https://vcpkg.io>)
 * Email: [vcpkg@microsoft.com](<mailto:vcpkg@microsoft.com>)
+* Discord: [\#include \<C++\>'s Discord server](<https://www.includecpp.org>), in the #🌏vcpkg channel
+* Slack: [C++ Alliance's Slack server](<https://cppalliance.org/slack/>), in the #vcpkg channel
 
 # Contributing
 
 vcpkg is an open source project, and is thus built with your contributions. Here are some ways you can contribute:
 ]
-* [Submit Issues][contributing:submit-issue] in vcpkg or existing packages
-* [Submit Fixes and New Packages][contributing:submit-pr]
+* [Submit issues][contributing:submit-issue] in vcpkg or existing packages
+* [Submit fixes and new Packages][contributing:submit-pr]
 
 Please refer to our [mantainer guide](../contributing/maintainer-guide.md) and
 [packaging tutorial](../get_started/get-started-packaging.md) for more details.
