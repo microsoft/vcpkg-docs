@@ -157,7 +157,7 @@ Modify the contents of `vcpkg.json` to:
 
 The manifest file above uses the [dependency object](../reference/vcpkg-json.md#dependency)
 notation to set a minimum version constraint (`version>=`) on `fmt`. In order to satisfy the
-dependencies vcpkg needs to satisfy two constraints, one comfing from the baseline and one coming
+dependencies vcpkg needs to satisfy two constraints, one coming from the baseline and one coming
 from the minimum version constraint in the `dependencies` list.
 
 * Baseline constraint, `"version>=": "7.1.3"`.
