@@ -75,13 +75,23 @@ systems](../concepts/build-system-integration.md#manual-integration).
 For a short description of all available commands, run `vcpkg help`.
 Run `vcpkg help [topic]` for details on a specific topic.
 
+# Key features
+
+vcpkg offers powerful features for your package management needs:
+
+* [easily integrate with your build system](../concepts/build-system-integration.md)
+* [control the versions of your dependencies](../users/versioning.md)
+* [package and publish your own packages](../concepts/registries.md)
+* [reuse your binary artifacts](../users/binarycaching.md)
+* [enable offline scenarios with asset caching](../concepts/asset-caching.md)
+
 # Contribute
 
 vcpkg is an open source project, and is thus built with your contributions. Here
 are some ways you can contribute:
 
 * [Submit issues][contributing:submit-issue] in vcpkg or existing packages
-* [Submit fixes and new Packages][contributing:submit-pr]
+* [Submit fixes and new packages][contributing:submit-pr]
 
 Please refer to our [mantainer guide](../contributing/maintainer-guide.md) and
 [packaging tutorial](../get_started/get-started-packaging.md) for more details.
