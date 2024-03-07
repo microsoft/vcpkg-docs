@@ -53,23 +53,17 @@ You can also use any editor:
 
 # Use vcpkg
 
-Create a [manifest for your project's dependencies](../consume/manifest-mode.md)
-(`vcpkg.json`):
+Create a [manifest for your project's dependencies](../consume/manifest-mode.md):
 
-```json
-{
-  "name": "my-project",
-  "version": "0.1.0",
-  "dependencies": [
-    "fmt"
-  ]
-}
+```Console
+vcpkg new --application
+vcpkg add port fmt
 ```
 
 Or [install packages throught the command line](../consume/classic-mode.md):
 
 ```Console
-./vcpkg install fmt
+vcpkg install fmt
 ```
 
 Then use one of our available build system integrations for
@@ -83,7 +77,9 @@ Run `vcpkg help [topic]` for details on a specific topic.
 
 # Contribute
 
-vcpkg is an open source project, and is thus built with your contributions. Here are some ways you can contribute:
+vcpkg is an open source project, and is thus built with your contributions. Here
+are some ways you can contribute:
+
 * [Submit issues][contributing:submit-issue] in vcpkg or existing packages
 * [Submit fixes and new Packages][contributing:submit-pr]
 
