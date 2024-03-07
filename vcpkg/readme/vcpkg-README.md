@@ -38,13 +38,13 @@ community can see it, and potentially add the port to vcpkg. Or you can
 After you've gotten vcpkg installed and working, you may wish to add
 [tab completion](../commands/integrate.md#vcpkg-autocompletion) to your shell.
 
-vcpkg has you covered, it doesn't matter what build system you use:
+Whether you're using CMake, MSBuild, or any other build system, vcpkg has you covered:
 
 * [vcpkg with CMake](../get_started/get-started.md)
 * [vcpkg with MSBuild](../get_started/get-started-msbuild.md)
 * [vcpkg with other build systems](../users/buildsystems/manual-integration.md)
 
-Or what editor:
+You can also use any editor:
 
 * [vcpkg with Visual Studio](../get_started/get-started-vs.md)
 * [vcpkg with Visual Sudio Code](../get_started/get-started-vscode.md)
@@ -84,7 +84,6 @@ Run `vcpkg help [topic]` for details on a specific topic.
 # Contribute
 
 vcpkg is an open source project, and is thus built with your contributions. Here are some ways you can contribute:
-]
 * [Submit issues][contributing:submit-issue] in vcpkg or existing packages
 * [Submit fixes and new Packages][contributing:submit-pr]
 
