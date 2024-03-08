@@ -28,15 +28,7 @@ guide](../contributing/maintainer-guide.md).
 
 # Get started
 
-First, follow the [quick start guide](../get_started/get-started.md).
-
-If a library you need is not present in the vcpkg registry, you can [open an
-issue on the GitHub repository][contributing:submit-issue] where the vcpkg team and
-community can see it, and potentially add the port to vcpkg. Or you can
-[contribute the package yourself](../get_started/get-started-adding-to-registry.md).
-
-After you've gotten vcpkg installed and working, you may wish to add
-[tab completion](../commands/integrate.md#vcpkg-autocompletion) to your shell.
+First, follow one of our quick start guides.
 
 Whether you're using CMake, MSBuild, or any other build system, vcpkg has you covered:
 
@@ -50,6 +42,13 @@ You can also use any editor:
 * [vcpkg with Visual Sudio Code](../get_started/get-started-vscode.md)
 * [vcpkg with
   CLion](<https://www.jetbrains.com/help/clion/package-management.html>)
+
+If a library you need is not present in the vcpkg registry, [open an issue on
+the GitHub repository][contributing:submit-issue] or [contribute the package
+yourself](../get_started/get-started-adding-to-registry.md).
+
+After you've gotten vcpkg installed and working, you may wish to [add
+tab completion to your terminal](../commands/integrate.md#vcpkg-autocompletion).
 
 # Use vcpkg
 
@@ -66,7 +65,7 @@ Or [install packages throught the command line](../consume/classic-mode.md):
 vcpkg install fmt
 ```
 
-Then use one of our available build system integrations for
+Then use one of our available integrations for
 [CMake](../concepts/build-system-integration.md#cmake-integration),
 [MSBuild](../concepts/build-system-integration.md#msbuild-integration) or 
 [other build
@@ -111,7 +110,7 @@ questions or comments.
 
 * Ports: [Microsoft/vcpkg](<https://github.com/microsoft/vcpkg>)
 * Source code: [Microsoft/vcpkg-tool](<https://github.com/microsoft/vcpkg-tool>)
-* Docs: [Documentation](/vcpkg)
+* Docs: [Microsoft Learn | vcpkg](/vcpkg)
 * Website: [vcpkg.io](<https://vcpkg.io>)
 * Email: [vcpkg@microsoft.com](<mailto:vcpkg@microsoft.com>)
 * Discord: [\#include \<C++\>'s Discord server](<https://www.includecpp.org>), in the #🌏vcpkg channel
@@ -122,7 +121,7 @@ questions or comments.
 The code in this repository is licensed under the MIT License. The libraries
 provided by ports are licensed under the terms of their original authors. Where
 available, vcpkg places the associated license(s) in the location
-`installed/<triplet>/share/<port>/copyright`.
+[`installed/<triplet>/share/<port>/copyright`](../contributing/maintainer-guide.md#install-copyright-file).
 
 # Security
 
