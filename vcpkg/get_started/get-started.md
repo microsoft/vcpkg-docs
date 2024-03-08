@@ -149,10 +149,19 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
     Run:
 
+    ::: zone pivot="shell-bash"
     ```console
     cmake --build build
     ```
-
+    ::: zone-end
+    ::: zone pivot="shell-cmd, shell-powershell"
+    ```console
+    .\build\HelloWorld
+    
+    Hello World!
+    ```
+    ::: zone-end
+    
 3. Run the application
 
     Finally, run the executable to see your application in action:
