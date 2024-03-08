@@ -1,231 +1,146 @@
 ---
 title: Microsoft/vcpkg README
 description: README for vcpkg registry
-zone_pivot_group_filename: zone-pivot-groups.json
-zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 10/17/2023
-ms.prod: vcpkg
+ms.date: 3/6/2024
 ROBOTS: NOINDEX
 ---
 
-# vcpkg: Overview
+# vcpkg overview
 
-vcpkg helps you manage C and C++ libraries on Windows, Linux and MacOS.
-This tool and ecosystem are constantly evolving, and we always appreciate contributions!
+vcpkg is a free and open-source C/C++ package manager maintained by Microsoft
+and the C++ community. 
 
-If you've never used vcpkg before, or if you're trying to figure out how to use vcpkg,
-check out our [guide to start using vcpkg](../get_started/get-started.md).
+Initially launched in 2016 as a tool for assisting developers in migrating their
+projects to newer versions of Visual Studio, vcpkg has evolved into a
+cross-platform tool used by developers on Windows, macOS, and Linux. vcpkg has a
+large catalog of open-source libraries and enterprise-ready features designed to
+facilitate your development process with support for any build and project
+systems. vcpkg is a C++ tool at heart and is written in C++ with scripts in
+CMake. It is designed from the ground up to address the unique pain points C/C++
+developers experience.
 
-For a short description of all available commands, run `vcpkg help`. Run `vcpkg help [command name]` for help on a specific command.
+This tool and ecosystem are constantly evolving, and we always appreciate
+contributions! Learn how to start contributing with our [packaging
+tutorial](../get_started/get-started-adding-to-registry.md) and [maintainer
+guide](../contributing/maintainer-guide.md).
 
-* GitHub: ports at [Microsoft/vcpkg](<https://github.com/microsoft/vcpkg>), program at [Microsoft/vcpkg-tool](<https://github.com/microsoft/vcpkg-tool>)
-* Slack: [C++ Alliance's Slack server](<https://cppalliance.org/slack/>), in the #vcpkg channel
-* Discord: [\#include \<C++\>'s Discord server](<https://www.includecpp.org>), in the #🌏vcpkg channel
-* Docs: [Documentation](/vcpkg)
+# Get started
 
-# Getting Started
+First, follow one of our quick start guides.
 
-First, follow the [quick start guide](../get_started/get-started.md).
+Whether you're using CMake, MSBuild, or any other build system, vcpkg has you covered:
 
-If a library you need is not present in the vcpkg catalog, you can [open an issue on the GitHub repo][contributing:submit-issue] where the vcpkg team and community can see it, and potentially add the port to vcpkg.
+* [vcpkg with CMake](../get_started/get-started.md)
+* [vcpkg with MSBuild](../get_started/get-started-msbuild.md)
+* [vcpkg with other build systems](../users/buildsystems/manual-integration.md)
 
-After you've gotten vcpkg installed and working, you may wish to add [tab completion](#tab-completionauto-completion) to your shell.
+You can also use any editor:
 
-## Quick Start: Windows
+* [vcpkg with Visual Studio](../get_started/get-started-vs.md)
+* [vcpkg with Visual Sudio Code](../get_started/get-started-vscode.md)
+* [vcpkg with
+  CLion](<https://www.jetbrains.com/help/clion/package-management.html>)
 
-Prerequisites:
-- Windows 7 or newer
-- [Git][getting-started:git]
-- [Visual Studio][getting-started:visual-studio] 2015 Update 3 or greater with the English language pack
+If a library you need is not present in the vcpkg registry, [open an issue on
+the GitHub repository][contributing:submit-issue] or [contribute the package
+yourself](../get_started/get-started-adding-to-registry.md).
 
-First, download and bootstrap vcpkg itself; it can be installed anywhere, but generally we recommend using vcpkg as a submodule so the consuming repo can stay self-contained. Alternatively, vcpkg can be installed globally; we recommend somewhere like `C:\src\vcpkg` or `C:\dev\vcpkg`, since otherwise you may run into path issues for some port build systems.
+After you've gotten vcpkg installed and working, you may wish to [add
+tab completion to your terminal](../commands/integrate.md#vcpkg-autocompletion).
 
-```cmd
-> git clone https://github.com/microsoft/vcpkg
-> .\vcpkg\bootstrap-vcpkg.bat
+# Use vcpkg
+
+Create a [manifest for your project's dependencies](../consume/manifest-mode.md):
+
+```Console
+vcpkg new --application
+vcpkg add port fmt
 ```
 
-To install the libraries for your project, run:
+Or [install packages throught the command line](../consume/classic-mode.md):
 
-```cmd
-> .\vcpkg\vcpkg install [packages to install]
+```Console
+vcpkg install fmt
 ```
 
-Note: This will install x86 libraries by default. To install x64, run:
+Then use one of our available integrations for
+[CMake](../concepts/build-system-integration.md#cmake-integration),
+[MSBuild](../concepts/build-system-integration.md#msbuild-integration) or 
+[other build
+systems](../concepts/build-system-integration.md#manual-integration).
 
-```cmd
-> .\vcpkg\vcpkg install [package name]:x64-windows
-```
+For a short description of all available commands, run `vcpkg help`.
+Run `vcpkg help [topic]` for details on a specific topic.
 
-You can also search for the libraries you need with the `search` subcommand:
+# Key features
 
-```cmd
-> .\vcpkg\vcpkg search [search term]
-```
+vcpkg offers powerful features for your package management needs:
 
-In order to use vcpkg with Visual Studio, run the following command (may require administrator elevation):
+* [easily integrate with your build system](../concepts/build-system-integration.md)
+* [control the versions of your dependencies](../users/versioning.md)
+* [package and publish your own packages](../concepts/registries.md)
+* [reuse your binary artifacts](../users/binarycaching.md)
+* [enable offline scenarios with asset caching](../concepts/asset-caching.md)
 
-```cmd
-> .\vcpkg\vcpkg integrate install
-```
+# Contribute
 
-After this, you can now create a New non-CMake Project (or open an existing one). All installed libraries are immediately ready to be `#include`'d and used in your project without additional configuration.
+vcpkg is an open source project, and is thus built with your contributions. Here
+are some ways you can contribute:
 
-If you're using CMake with Visual Studio, continue [here](../get_started/get-started-vs.md).
+* [Submit issues][contributing:submit-issue] in vcpkg or existing packages
+* [Submit fixes and new packages][contributing:submit-pr]
 
-In order to use vcpkg with CMake outside of an IDE, you can use the toolchain file:
+Please refer to our [mantainer guide](../contributing/maintainer-guide.md) and
+[packaging tutorial](../get_started/get-started-packaging.md) for more details.
 
-```cmd
-> cmake -B [build directory] -S . "-DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]/scripts/buildsystems/vcpkg.cmake"
-> cmake --build [build directory]
-```
-
-With CMake, you will still need to `find_package` and the like to use the libraries. Check out the [getting started with CMake tutorial](../get_started/get-started.md) for more information on using CMake.
-
-## Quick Start: Unix
-
-Prerequisites for Linux:
-- [Git][getting-started:git]
-- [g++][getting-started:linux-gcc] >= 6
-
-Prerequisites for macOS:
-- [Apple Developer Tools][getting-started:macos-dev-tools]
-
-First, download and bootstrap vcpkg itself; it can be installed anywhere, but generally we recommend using vcpkg as a submodule.
-
-```sh
-$ git clone https://github.com/microsoft/vcpkg
-$ ./vcpkg/bootstrap-vcpkg.sh
-```
-
-To install the libraries for your project, run:
-
-```sh
-$ ./vcpkg/vcpkg install [packages to install]
-```
-
-You can also search for the libraries you need with the `search` subcommand:
-
-```sh
-$ ./vcpkg/vcpkg search [search term]
-```
-
-## Installing Linux Developer Tools
-
-Across the different distros of Linux, there are different packages you'll need to install:
-
-- Debian, Ubuntu, popOS, and other Debian-based distributions:
-
-```sh
-$ sudo apt-get update
-$ sudo apt-get install build-essential tar curl zip unzip
-```
-
-- CentOS
-
-```sh
-$ sudo yum install centos-release-scl
-$ sudo yum install devtoolset-7
-$ scl enable devtoolset-7 bash
-```
-
-- Arch Linux based distributions:
-
-```sh
-$ sudo pacman -Syu base-devel curl zip unzip tar cmake ninja
-```
-
-For any other distributions, make sure you're installing g++ 6 or above. If you want to add instructions for your specific distro, [please open a PR][contributing:submit-pr]!
-
-## Installing macOS Developer Tools
-
-On macOS, the only thing you should need to do is run the following in your terminal:
-
-```sh
-$ xcode-select --install
-```
-
-Then follow along with the prompts in the windows that comes up.
-
-You'll then be able to bootstrap vcpkg along with the [quick start guide](#quick-start-unix)
-
-### vcpkg with CLion
-
-Open the Toolchains settings (File > Settings on Windows and Linux, CLion > Preferences on macOS), and go to the CMake settings (Build, Execution, Deployment > CMake). Finally, in `CMake options`, add the following line:
-
-```
--DCMAKE_TOOLCHAIN_FILE=[vcpkg root]/scripts/buildsystems/vcpkg.cmake
-```
-
-You must add this line to each profile.
-
-# Tab-Completion/Auto-Completion
-
-`vcpkg` supports auto-completion of commands, package names, and options in both powershell and bash. To enable tab-completion in the shell of your choice, run:
-
-::: zone pivot="shell-powershell, shell-cmd"
-
-```pwsh
-> .\vcpkg integrate powershell
-```
-
-::: zone-end
-
-::: zone pivot="shell-bash"
-
-```sh
-$ ./vcpkg integrate bash # or zsh
-```
-
-::: zone-end
-
-# Resources
-
-See the [documentation](/vcpkg) for specific walkthroughs, including [getting started with CMake](../get_started/get-started.md), [getting started with Visual Studio](../get_started/get-started-vs.md), and [publishing packages to a private vcpkg registry](../produce/publish-to-a-git-registry.md).
-
-We really appreciate any and all feedback! You can submit an issue in https://github.com/vcpkg/vcpkg.github.io/issues.
-
-See a 4 minute [video demo](https://www.youtube.com/watch?v=y41WFKbQFTw).
-
-[getting-started:using-a-package]: https://learn.microsoft.com/vcpkg/examples/installing-and-using-packages
-[getting-started:git]: https://git-scm.com/downloads
-[getting-started:cmake-tools]: https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools
-[getting-started:linux-gcc]: #installing-linux-developer-tools
-[getting-started:macos-dev-tools]: #installing-macos-developer-tools
-[getting-started:macos-brew]: #installing-gcc-on-macos
-[getting-started:macos-gcc]: #installing-gcc-on-macos
-[getting-started:visual-studio]: https://visualstudio.microsoft.com/
-# Contributing
-
-Vcpkg is an open source project, and is thus built with your contributions. Here are some ways you can contribute:
-
-* [Submit Issues][contributing:submit-issue] in vcpkg or existing packages
-* [Submit Fixes and New Packages][contributing:submit-pr]
-
-Please refer to our [Contributing Guide](../contributing/maintainer-guide.md) for more details.
-
-This project has adopted the [Microsoft Open Source Code of Conduct][contributing:coc]. For more information see the [Code of Conduct FAQ][contributing:coc-faq] or email [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
+This project has adopted the [Microsoft Open Source Code of
+Conduct][contributing:coc]. For more information see the [Code of Conduct
+FAQ][contributing:coc-faq] or email
+[opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional
+questions or comments.
+ 
 [contributing:submit-issue]: https://github.com/microsoft/vcpkg/issues/new/choose
 [contributing:submit-pr]: https://github.com/microsoft/vcpkg/pulls
 [contributing:coc]: https://opensource.microsoft.com/codeofconduct/
 [contributing:coc-faq]: https://opensource.microsoft.com/codeofconduct/
+  
+# Resources
+
+* Ports: [Microsoft/vcpkg](<https://github.com/microsoft/vcpkg>)
+* Source code: [Microsoft/vcpkg-tool](<https://github.com/microsoft/vcpkg-tool>)
+* Docs: [Microsoft Learn | vcpkg](/vcpkg)
+* Website: [vcpkg.io](<https://vcpkg.io>)
+* Email: [vcpkg@microsoft.com](<mailto:vcpkg@microsoft.com>)
+* Discord: [\#include \<C++\>'s Discord server](<https://www.includecpp.org>), in the #🌏vcpkg channel
+* Slack: [C++ Alliance's Slack server](<https://cppalliance.org/slack/>), in the #vcpkg channel
 
 # License
 
-The code in this repository is licensed under the MIT License. The libraries provided by ports are licensed under the terms of their original authors. Where available, vcpkg places the associated license(s) in the location `installed/<triplet>/share/<port>/copyright`.
+The code in this repository is licensed under the MIT License. The libraries
+provided by ports are licensed under the terms of their original authors. Where
+available, vcpkg places the associated license(s) in the location
+[`installed/<triplet>/share/<port>/copyright`](../contributing/maintainer-guide.md#install-copyright-file).
 
 # Security
 
-Most ports in vcpkg build the libraries in question using the original build system preferred by the original developers of those libraries, and download source code and build tools from their official distribution locations. For use behind a firewall, the specific access needed will depend on which ports are being installed. If you must install it in an "air gapped" environment, consider instaling once in a non-"air gapped" environment, populating an [asset cache](/vcpkg/users/assetcaching) shared with the otherwise "air gapped" environment.
+Most ports in vcpkg build the libraries in question using the original build
+system preferred by the original developers of those libraries, and download
+source code and build tools from their official distribution locations. For use
+behind a firewall, the specific access needed will depend on which ports are
+being installed. If you must install it in an "air gapped" environment, consider
+instaling once in a non-"air gapped" environment, populating an [asset
+cache](../users/assetcaching.md) shared with the otherwise "air gapped"
+environment.
 
 # Telemetry
 
-vcpkg collects usage data in order to help us improve your experience. The data collected by Microsoft is anonymous. You can opt-out of telemetry by
-- running the bootstrap-vcpkg script with -disableMetrics
-- passing --disable-metrics to vcpkg on the command line
-- setting the VCPKG_DISABLE_METRICS environment variable
+vcpkg collects usage data in order to help us improve your experience. The data
+collected by Microsoft is anonymous. You can opt-out of telemetry by:
 
-Read more about vcpkg telemetry at [https://learn.microsoft.com/vcpkg/about/privacy](/vcpkg/about/privacy).
+- running the bootstrap-vcpkg script with `-disableMetrics`
+- passing `--disable-metrics` to vcpkg on the command line
+- setting the `VCPKG_DISABLE_METRICS` environment variable
+
+Read more about vcpkg telemetry at [https://learn.microsoft.com/vcpkg/about/privacy](../about/privacy.md).
