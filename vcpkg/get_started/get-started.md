@@ -159,7 +159,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
     ::: zone pivot="shell-bash"
     ```console
-    ./build/Debug/HelloWorld
+    ./build/HelloWorld
     
     Hello World!
     ```
@@ -167,7 +167,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
    
     ::: zone pivot="shell-cmd, shell-powershell"
     ```console
-    .\build\Debug\HelloWorld
+    .\build\HelloWorld.exe
     
     Hello World!
     ```
