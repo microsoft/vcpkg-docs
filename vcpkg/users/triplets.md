@@ -12,7 +12,7 @@ ms.topic: reference
 This article describes the vcpkg variables that are available to triplet files.
 A triplet file can also include user defined variables.
 
-See the [triplets concept documentation] for a high-level view of triplet
+See the [triplets concept documentation](../concepts/triplets.md) for a high-level view of triplet
 capabilities.
 
 ## Variables
