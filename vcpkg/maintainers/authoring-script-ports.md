@@ -1,8 +1,8 @@
 ---
 title: Authoring script ports
 description: Learn to create a script port to reuse functions in multiple vcpkg portfiles.
-author: viromer
-ms.author: vicroms
+author: vicroms
+ms.author: viromer
 ms.date: 03/20/2024
 ms.topic: concept-article
 ---
