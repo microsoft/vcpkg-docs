@@ -28,3 +28,11 @@ Defaults to:
 ## Notes
 
 This command should be called by all portfiles after they have finished rearranging the binary output.
+
+## Examples
+
+- [zlib](https://github.com/Microsoft/vcpkg/blob/master/ports/zlib/portfile.cmake)
+
+## Source
+
+[scripts/cmake/vcpkg\_copy\_pdbs.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_copy_pdbs.cmake)
