@@ -167,7 +167,7 @@ A list of files to include in the calculation of [package ABI hashes](binarycach
 
 This field is optional.
 
-This is necessary in scenarios where additional files modify the package contents and should be included in the ABI hash calculation, for example:
+Declare any files that affect the contents of a package and should be factored into the calculation of the ABI hash. For example:
 
 * Files that are included (via `include(filepath)`) in custom triplets and toolchains.
 * Files that are defined in `VCPKG_MESON_(NATIVE|CROSS)_FILE_<CONFIG>`
