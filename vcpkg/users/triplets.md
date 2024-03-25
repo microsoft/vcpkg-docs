@@ -167,10 +167,12 @@ A list of files to include in the calculation of [package ABI hashes](binarycach
 
 This field is optional.
 
-This is for example required if files defined in `VCPKG_MESON_(NATIVE|CROSS)_FILE(_RELEASE|_DEBUG)?`
-should be part of the calculated abi or if files are included in the triplet/toolchain provided to vcpkg and those files should take part in the abi hash.
+This is necessary in scenarios where additional files modify the package contents and should be included in the ABI hash calculation, for example:
 
-Only the contents and order of the files will be considered -- the paths themselves will not be considered.
+* Files that are included (via `include(filepath)`) in custom triplets and toolchains.
+* Files that are defined in `VCPKG_MESON_(NATIVE|CROSS)_FILE_<CONFIG>`
+
+Only the contents and order of the files are considered, the paths of the files do not affect the ABI hash.
 
 ```cmake
 set(VCPKG_HASH_ADDITIONAL_FILES
