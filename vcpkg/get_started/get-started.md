@@ -123,11 +123,11 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     - `add_executable(HelloWorld main.cpp)`: Adds an executable target named "HelloWorld," built from the source file `main.cpp`.
     - `target_link_libraries(HelloWorld PRIVATE fmt::fmt)`: Specifies that the `HelloWorld` executable should link against the `fmt` library. The `PRIVATE` keyword indicates that `fmt` is only needed for building `HelloWorld` and should not propagate to other dependent projects.
 
-    Create the `helloworld.cpp` file with the following content:
+    Create the `main.cpp` file with the following content:
 
     :::code language="cpp" source="../examples/snippets/get-started/main.cpp":::
 
-    In this `helloworld.cpp` file, the `<fmt/core.h>` header is included for using the `fmt` library. The `main()` function then calls `fmt::print()` to output the "Hello World!" message to the console.
+    In this `main.cpp` file, the `<fmt/core.h>` header is included for using the `fmt` library. The `main()` function then calls `fmt::print()` to output the "Hello World!" message to the console.
 
 ## 4 - Build and run the project
 
@@ -152,16 +152,26 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     ```console
     cmake --build build
     ```
-
+    
 3. Run the application
 
     Finally, run the executable to see your application in action:
 
+    ::: zone pivot="shell-bash"
     ```console
     ./build/HelloWorld
     
     Hello World!
     ```
+    ::: zone-end
+   
+    ::: zone pivot="shell-cmd, shell-powershell"
+    ```console
+    .\build\HelloWorld.exe
+    
+    Hello World!
+    ```
+    ::: zone-end   
 
 ## Next steps
 
@@ -169,4 +179,4 @@ To learn more about `vcpkg.json`, see our reference documentation:
 
 - [Packaging a library](get-started-packaging.md)
 - [vcpkg.json](..\reference\vcpkg-json.md)
-- [manifest](..\users\manifests.md)
+- [manifest](..\concepts\manifest-mode.md)

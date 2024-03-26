@@ -171,11 +171,13 @@ This property has no effect when `$(VcpkgApplocalDeps)` is false.
 
 ## Manifest mode configuration
 
-To use [manifests](../manifests.md) ([`vcpkg.json`](../../reference/vcpkg-json.md)) with MSBuild,
-first you need to use one of the integration methods above. Then, add a vcpkg.json above your
+To use [manifests](../../concepts/manifest-mode.md)
+([`vcpkg.json`](../../reference/vcpkg-json.md)) with MSBuild, first you need to
+use one of the integration methods above. Then, add a vcpkg.json above your
 project file (such as in the root of your source repository) and set the property
-`VcpkgEnableManifest` to `true`. You can set this property via the IDE in **Project Properties** >
-**Vcpkg** > **Use Vcpkg Manifest**. You may need to reload the IDE to see the vcpkg Property Page.
+`VcpkgEnableManifest` to `true`. You can set this property via the IDE in
+**Project Properties** > **Vcpkg** > **Use Vcpkg Manifest**. You may need to
+reload the IDE to see the vcpkg Property Page.
 
 vcpkg will run during your project's build and install any listed dependencies to
 `vcpkg_installed/$(VcpkgTriplet)/` adjacent to the `vcpkg.json` file; these libraries will then

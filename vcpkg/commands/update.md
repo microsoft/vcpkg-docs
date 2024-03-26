@@ -38,4 +38,4 @@ To only remove outdated packages, run
 
 All vcpkg commands support a set of [common options](common-options.md).
 
-[Classic mode]: ../users/classic-mode.md
+[Classic mode]: ../concepts/classic-mode.md

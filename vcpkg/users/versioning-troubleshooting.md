@@ -29,7 +29,7 @@ For more details on versioning, see our reference documentation:
 - [versioning concepts](./versioning.concepts.md)
 - [versioning](./versioning.md)
 
-For more details on using a manifest, see [manifest](./manifests.md)
+For more details on using a manifest, see [manifest](../concepts/manifest-mode.md)
 
 ## <a name="non-existent-version"></a> Cause: Requesting a non-existent version of a package
 <!-- 
@@ -187,6 +187,57 @@ Resolutions:
     - name: Convert to Full Clone
       run: git fetch --unshallow
     ```
+
+## <a name="unexpected-default-features"></a> Cause: Unexpected inclusion of default features in transitive dependencies
+
+When managing dependencies with vcpkg, you might find that transitive dependencies are installed with their default features, even when you might not want those features for your project. This situation can lead to unexpected bloat or functionality in your final build.
+
+### Scenario
+
+You have a dependency on library `Y`, which in turn depends on library `X`. Library `X` has default features, including `foo`, that you want to exclude from your project. Your top-level manifest for library `Y` might look something like this:
+
+```json
+{
+  "name": "my-project",
+  "dependencies": [
+    {
+      "name": "Y",
+      "features": ["featureB"],
+      "default-features": false
+    }
+  ]
+}
+```
+
+You expect that `X` will be installed without its default features due to the `"default-features": false` setting. However, `X` is still installed with the default feature `foo`.
+
+### Reason
+
+The `default-features` property is only considered at the top-level manifest. This means that default features of transitive dependencies (like `X` in this scenario) are still included unless explicitly disabled at the top level. When library `Y` is resolved, `vcpkg` does not propagate the `"default-features": false` setting to the transitive dependency `X`, resulting in the installation of `X` with its default features.
+
+### Resolution
+
+To ensure that transitive dependencies like `X` are installed without their default features, you need to promote them to direct dependencies in your top-level manifest and explicitly disable their default features. Modify your `vcpkg.json` to include `X` directly with `"default-features": false`:
+
+```json
+{
+  "name": "my-project",
+  "dependencies": [
+    {
+      "name": "Y",
+      "features": ["featureB"]
+    },
+    {
+      "name": "X",
+      "default-features": false
+    }
+  ]
+}
+```
+
+This approach ensures that `X` is installed without its default features, as now `X` is a direct dependency with an explicit instruction to exclude default features.
+
+For more detailed information on how default features work and how to manage them, see the [default features concept article](../concepts/default-features.md) article.
 
 ## Issue isn't listed here
 
