@@ -284,7 +284,8 @@ Specifies the detailed MSVC C/C++ compiler toolchain to use.
 
 By default, [`VCPKG_PLATFORM_TOOLSET`] always chooses the latest installed minor
 version of the selected toolset.  If you need more granularity, you can use this
-variable.  Valid values are, for example, `14.25` or `14.27.29110`.
+variable. Specification can be a partial or full version number. Valid values are,
+for example, `14.25` or `14.27.29110`.
 
 ### VCPKG_LOAD_VCVARS_ENV
 
