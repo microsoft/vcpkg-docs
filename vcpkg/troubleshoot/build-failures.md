@@ -3,7 +3,7 @@ title: Troubleshoot build failures
 description: Troubleshooting guide for common build failures in vcpkg ports
 author: vicroms
 ms.author: viromer
-ms.date: 01/10/2024
+ms.date: 03/20/2024
 ms.topic: troubleshooting-general
 ---
 
@@ -159,6 +159,54 @@ logs](#failure-logs) to determine the cause of the failure.
 Steps to resolve:
 
 1 - Follow the appropriate steps to install the missing system dependency in your environment.
+
+## FetchContent dependency is not found during build process
+
+A build fails because a dependency fulfilled via
+[`FetchContent`](https://cmake.org/cmake/help/latest/module/FetchContent.html)
+is not available during the build process.
+
+```cmake
+include(FetchContent)
+
+FetchContent_Declare(fmt
+  GIT_REPOSITORY https://github.com/fmtlib/fmt.git
+  GIT_TAG master
+)
+FetchContent_MakeAvailable(fmt)
+```
+
+```Console
+CMake Error at CMakeLists.txt:23 (target_link_libraries):
+  Target "my_sample_lib" links to:
+
+    fmt::fmt
+
+  but the target was not found.  Possible reasons include:
+
+    * There is a typo in the target name.
+    * A find_package call is missing for an IMPORTED target.
+    * An ALIAS target is missing.
+```
+
+vcpkg disables `FetchContent` via the CMake variable
+[`FETCHCONTENT_FULLY_DISCONNECTED`](https://cmake.org/cmake/help/latest/module/FetchContent.html#variable:FETCHCONTENT_FULLY_DISCONNECTED).
+There are multiple motivations for disabling this feature, to name a few:
+
+* `FetchContent` can hide vendored dependencies on ports.
+* `FetchContent` does not interact well with fully disconnected scenarios.
+* Dependencies acquired via `FetchContent` can change the build without
+  participating in ABI hash calculation.
+
+For port maintainers, we recommend that any package acquired via `FetchContent`
+is turned into a vcpkg dependency. But for general use there are workarounds to
+enable `FetchContent`.
+
+Steps to resolve:
+
+1 - Use
+[`VCPKG_CMAKE_CONFIGURE_OPTIONS`](../users/triplets.md#vcpkg_cmake_configure_options)
+to set `FETCHCONTENT_FULLY_DISCONNECTED=FALSE`
 
 ## Issue isn't listed here
 
