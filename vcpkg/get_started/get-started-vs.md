@@ -181,5 +181,5 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 To learn more about `vcpkg.json`, see our reference documentation:
 
-- [vcpkg.json](..\reference\vcpkg-json.md)
-- [manifest](..\concepts\manifest-mode.md)
+- [vcpkg.json](../reference/vcpkg-json.md)
+- [manifest](../concepts/manifest-mode.md)
