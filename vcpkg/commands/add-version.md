@@ -18,7 +18,7 @@ vcpkg x-add-version [port-name] [options] [--all] [--overwrite-version] [--skip-
 
 ## Description
 
-The `x-add-version` command updates the [version database](..\users\versioning.concepts.md#acquiring-port-versions) for vcpkg ports. By default, it operates on a specified port. With the appropriate switches, users can choose to process all ports or change the default behavior regarding formatting checks and version updates.
+The `x-add-version` command updates the [version database](../users/versioning.concepts.md#acquiring-port-versions) for vcpkg ports. By default, it operates on a specified port. With the appropriate switches, users can choose to process all ports or change the default behavior regarding formatting checks and version updates.
 
 To use the command:
 
@@ -37,7 +37,7 @@ Specifies the name of the port to be updated. If not provided, the user should u
 
 ### `--all`
 
-Processes all the ports in the [built-in](..\maintainers\registries.md#builtin-registries) `ports` directory.
+Processes all the ports in the [built-in](../maintainers/registries.md#builtin-registries) `ports` directory.
 
 ### `--overwrite-version`
 
@@ -54,7 +54,7 @@ Skips the check for proper formatting in the manifest file (`vcpkg.json`) of the
 
 ### `--skip-version-format-check`
 
-Skips the version format check. By default, versions are checked to ensure they adhere to a specific [format](..\users\versioning.md#version-schemes).
+Skips the version format check. By default, versions are checked to ensure they adhere to a specific [format](../users/versioning.md#version-schemes).
 
 ### `--verbose`
 

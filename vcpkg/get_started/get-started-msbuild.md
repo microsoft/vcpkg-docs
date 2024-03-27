@@ -146,7 +146,7 @@ Navigate to the Project Properties pages of your project. Under **Configuration 
     Screenshot of enabling vcpkg manifest mode in Visual Studio Project Properties
 :::image-end:::
 
-Other settings, such as [triplets](..\users\triplets.md), are filled in with default values vcpkg detects from your project and will be useful when configuring your project. 
+Other settings, such as [triplets](../users/triplets.md), are filled in with default values vcpkg detects from your project and will be useful when configuring your project. 
 
 ## 5 - Build and run the project
 
