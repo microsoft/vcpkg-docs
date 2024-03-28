@@ -18,7 +18,7 @@ Display dependencies for a set of port packages.
 `depend-info` displays all transitive dependencies for a set of packages in several formats, including  plain text, tree, DGML, DOT or Mermaid.
 The set of packages is considered as a single combined request similar to `vcpkg install <package>...` but regardless of installed packages.
 
-When used with multiple triplets (default, host, per-package), packages which are installed other triplets than the default are marked.
+When used with multiple triplets (default, host, per-package), packages which are installed for other triplets than the default are marked.
 Packages for the host triplet are marked with the suffix `:host`.
 
 ## Examples
