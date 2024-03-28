@@ -9,7 +9,7 @@ ms.topic: concept-article
 
 # System package managers
 
-C++ libraries are available in system package managers such as apt and vcpkg. How you choose to acquire your libraries depends on your specific use case. You can also have vcpkg dependencies [depend on system package manager dependencies](https://devblogs.microsoft.com/cppblog/using-system-package-manager-dependencies-with-vcpkg/).
+C++ libraries are available in C++ package managers such as vcpkg or in system package managers such as apt. How you choose to acquire your libraries depends on your specific use case. You can also have vcpkg dependencies [depend on system package manager dependencies](https://devblogs.microsoft.com/cppblog/using-system-package-manager-dependencies-with-vcpkg/).
 
 ## Reasons to use dependencies from a system package manager
 - Overall deployment size will be reduced, as different programs can share the same shared libraries.

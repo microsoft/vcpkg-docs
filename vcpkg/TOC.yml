@@ -101,8 +101,6 @@
       href: produce/test-registry-ports-ado.md
 - name: Concepts
   items:
-  - name: Glossary
-    href: concepts/glossary.md
   - name: Asset caching
     href: concepts/asset-caching.md
   - name: Build system integration
@@ -404,6 +402,8 @@
       href: troubleshoot/build-failures.md
     - name: Troubleshoot versioning issues
       href: users/versioning-troubleshooting.md
+- name: Glossary
+  href: concepts/glossary.md
 - name: About
   items:
   - name: FAQ
