@@ -110,15 +110,15 @@ See the [ports documentation](../concepts/ports.md) to learn more.
 
 A package manager such as apt-get designed to be used with a particular
 platform such as Linux, or brew for MacOS. System package managers install
-packages and libraries system wide, instead of for a particular project.
+packages and libraries system wide, rather than for a particular project.
 
 ## T
 
 ### Triplet
 
-A set of properties or script applied to all libraries before vcpkg builds,
-essentially a profile. A triplet specifies the linkage type, build flags,
-and other options that affect how a package is built and installed.
+A set of properties or script used to describe a target or host environment,
+which affects how vcpkg builds a library. The triplet specifies linkage
+type, build flags, and other options that affect how a package is built and installed.
 
 See [triplet documentation](../concepts/triplets.md) to learn more.
 
