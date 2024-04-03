@@ -42,7 +42,7 @@ their local machines. For other methods to reuse and integrate vcpkg-produced bi
 > integration pipeline or workflow. Individual developers should have read-only access to the
 > CI-produced binary cache.
 
-Binary caches can be hosted in a variety of environments. The most basic from of a binary cache is a
+Binary caches can be hosted in a variety of environments. The most basic form of a binary cache is a
 folder on the local machine or a network file share. Caches can also be stored in any NuGet feed
 (such as GitHub Packages or Azure DevOps Artifacts), Azure Blob Storage, Google Cloud Storage, and
 many other services.
