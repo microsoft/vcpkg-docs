@@ -45,11 +45,7 @@ export VCPKG_ROOT=/path/to/vcpkg
 export PATH=$VCPKG_ROOT:$PATH
 ```
 
-> [!NOTE]
-> Setting the `VCPKG_ROOT` environment variable using the `export` command only
-> affects the current shell session. To make this change permanent across
-> sessions, you'll need to add the `export` command to your shell's profile
-> script (e.g., `~/.bashrc` or `~/.zshrc`).
+[!INCLUDE [experimental](../../includes/env-vars-bash.md)]
 
 ::: zone-end
 ::: zone pivot="shell-cmd"
@@ -59,10 +55,7 @@ set "VCPKG_ROOT=C:\path\to\vcpkg"
 set PATH=%VCPKG_ROOT%;%PATH%
 ```
 
-> [!NOTE]
-> Setting the `VCPKG_ROOT` environment variable using the `set` command only
-> affects the current shell session. To make this change permanent across
-> sessions, you can use the `setx` command and restart the shell session.
+[!INCLUDE [experimental](../../includes/env-vars.md)]
 
 ::: zone-end
 ::: zone pivot="shell-powershell"
@@ -72,11 +65,8 @@ $env:VCPKG_ROOT="C:\path\to\vcpkg"
 $env:PATH="$env:VCPKG_ROOT;$env:PATH"
 ```
 
-> [!NOTE]
-> Setting the `VCPKG_ROOT` and updating the `PATH` environment variables in this
-> manner only affects the current PowerShell session. To make these changes
-> permanent across all sessions, you should add them to your PowerShell profile
-> or set them through the Windows System Environment Variables panel.
+[!INCLUDE [experimental](../../includes/env-vars.md)]
+
 ::: zone-end
 
 Setting `VCPKG_ROOT` tells vcpkg where your vcpkg instance is located.
