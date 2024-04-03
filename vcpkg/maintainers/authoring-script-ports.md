@@ -73,8 +73,9 @@ file(INSTALL
 file(INSTALL "${VCPKG_ROOT_DIR}/LICENSE.txt" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
 ```
 
-By enabling the `VCPKG_POLICY_HELPER_PORT` policy, vcpkg disables post-build checks
-that warn when a port does not produce any binary output.
+By enabling the `VCPKG_POLICY_HELPER_PORT` policy, vcpkg enables post-build checks
+that apply specifically to helper ports. Specifically, checks that `vcpkg-port-config.cmake` is
+installed in the correct path and that no files are installed in the `include` directory.
 
 The next lines install the required `vcpkg-port-config.cmake` and `copyright`
 files in their correct location (`share/${PORT}`).
