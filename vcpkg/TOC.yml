@@ -152,7 +152,8 @@
     href: concepts/ports.md
   - name: Registries
     href: concepts/registries.md
-  - name: Script ports
+  - name: Helper ports
+    displayName: script port
     href: maintainers/authoring-script-ports.md
   - name: Comparing vcpkg with system package managers
     href: concepts/system-package-managers.md
