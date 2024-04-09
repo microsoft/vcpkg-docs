@@ -300,6 +300,38 @@ Run `vcpkg integrate install` to enable global integration with MSBuild. You
 only need to do this once for the vcpkg instance to become enabled for all your
 projects.
 
+
+##  Cannot install packages using classic mode
+
+Using the [`vcpkg install`](../commands/install.md) command fails with the
+following message:
+
+```Console
+error: Could not locate a manifest (vcpkg.json) above the current working directory.
+This vcpkg distribution does not have a classic mode instance.
+```
+
+### Cause 1: Using the Visual Studio embedded copy of vcpkg
+
+Visual Studio 2022 includes a copy of vcpkg installable with the C++ workflow.
+This bundled vcpkg, is installed in a read-only location, and as such, cannot be
+used in [classic mode](../concepts/classic-mode.md).
+
+You are either using a Visual Studio embedded terminal or a VS Developer
+PowerShell that has a copy of the bundled vcpkg in its PATH. 
+
+Steps to resolve:
+
+  1 - [Create a manifest file (`vcpkg.json`) to install your project's
+  dependencies](../get_started/get-started-vs.md).
+  2 - If you have a standalone instance of vcpkg, you can use it instead by setting
+  the `VCPKG_ROOT` variable and adding the installation path to the `PATH` variable.
+
+  ```PowerShell
+  $env:VCPKG_ROOT="path/to/standalone/vcpkg"
+  $env:PATH="$env:PATH;$env:VCPKG_ROOT"
+  ```
+
 ## Issue isn't listed here
 
 If your issue isn't listed here, visit [our
