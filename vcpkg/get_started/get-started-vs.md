@@ -58,7 +58,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
         Screenshot of Visual Studio UI for the built-in PowerShell developer window showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
 
-    [!INCLUDE [experimental](../../includes/env-vars.md)]
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
 
     ::: zone-end
     ::: zone pivot="shell-cmd"
@@ -79,7 +79,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
         Screenshot of Visual Studio developer command prompt showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
 
-    [!INCLUDE [experimental](../../includes/env-vars.md)]
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
 
     ::: zone-end
 

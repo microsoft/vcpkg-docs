@@ -63,7 +63,7 @@ $env:PATH="$env:VCPKG_ROOT;$env:PATH"
   Screenshot of setting up VCPKG_ROOT and adding it to PATH in a Visual Studio Code terminal.
 :::image-end:::
 
-[!INCLUDE [experimental](../../includes/env-vars.md)]
+[!INCLUDE [env-vars](../../includes/env-vars.md)]
 
 ::: zone-end
 ::: zone pivot="shell-cmd"
@@ -73,7 +73,7 @@ set "VCPKG_ROOT=C:\path\to\vcpkg"
 set PATH=%VCPKG_ROOT%;%PATH%
 ```
 
-[!INCLUDE [experimental](../../includes/env-vars.md)]
+[!INCLUDE [env-vars](../../includes/env-vars.md)]
 
 ::: zone-end
 ::: zone pivot="shell-bash"
@@ -83,7 +83,7 @@ export VCPKG_ROOT=/c/path/to/vcpkg
 export PATH=$PATH:$VCPKG_ROOT
 ```
 
-[!INCLUDE [experimental](../../includes/env-vars-bash.md)]
+[!INCLUDE [env-vars](../../includes/env-vars-bash.md)]
 
 ::: zone-end
 

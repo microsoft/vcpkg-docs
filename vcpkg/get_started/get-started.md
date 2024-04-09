@@ -44,7 +44,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     ```
 
 
-    [!INCLUDE [experimental](../../includes/env-vars-bash.md)]
+    [!INCLUDE [env-vars](../../includes/env-vars-bash.md)]
 
     ::: zone-end
 
@@ -56,7 +56,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     ```
 
 
-    [!INCLUDE [experimental](../../includes/env-vars.md)]
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
 
     ::: zone-end
     ::: zone pivot="shell-powershell"
@@ -67,7 +67,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     ```
 
 
-    [!INCLUDE [experimental](../../includes/env-vars.md)]
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
     
     ::: zone-end
 

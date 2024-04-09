@@ -45,7 +45,7 @@ export VCPKG_ROOT=/path/to/vcpkg
 export PATH=$VCPKG_ROOT:$PATH
 ```
 
-[!INCLUDE [experimental](../../includes/env-vars-bash.md)]
+[!INCLUDE [env-vars](../../includes/env-vars-bash.md)]
 
 ::: zone-end
 ::: zone pivot="shell-cmd"
@@ -55,7 +55,7 @@ set "VCPKG_ROOT=C:\path\to\vcpkg"
 set PATH=%VCPKG_ROOT%;%PATH%
 ```
 
-[!INCLUDE [experimental](../../includes/env-vars.md)]
+[!INCLUDE [env-vars](../../includes/env-vars.md)]
 
 ::: zone-end
 ::: zone pivot="shell-powershell"
@@ -65,7 +65,7 @@ $env:VCPKG_ROOT="C:\path\to\vcpkg"
 $env:PATH="$env:VCPKG_ROOT;$env:PATH"
 ```
 
-[!INCLUDE [experimental](../../includes/env-vars.md)]
+[!INCLUDE [env-vars](../../includes/env-vars.md)]
 
 ::: zone-end
 
