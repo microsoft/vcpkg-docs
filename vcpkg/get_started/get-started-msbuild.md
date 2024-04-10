@@ -71,6 +71,9 @@ All MSBuild C++ projects can now #include any installed libraries. Linking will 
     :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-powershell.png" alt-text="setting up your environment variables":::
         Screenshot of Visual Studio UI for the built-in PowerShell developer window showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
+
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
+
     ::: zone-end
     ::: zone pivot="shell-cmd"
     Open the Developer command prompt in Visual Studio.
@@ -89,6 +92,9 @@ All MSBuild C++ projects can now #include any installed libraries. Linking will 
     :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-cmd.png" alt-text="setting up your environment variables":::
         Screenshot of Visual Studio developer command prompt showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
+
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
+    
     ::: zone-end
 
     Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
