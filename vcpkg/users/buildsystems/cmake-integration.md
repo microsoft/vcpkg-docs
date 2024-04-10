@@ -44,6 +44,19 @@ modify a vcpkg setting must be set before the first call to `project()`. It may 
 reconfigure your CMake project if you modify any vcpkg setting that results in [ABI
 hash](../binarycaching.md#abi-hash) changes.
 
+Note that the CMake integration will attempt to download the `vcpkg` executable from the internet as part
+of the bootstrapping process (i.e. the first time that you run the CMake configure step on your project),
+so if you are working in an offline or air-gapped environment then you will need a way to copy over the
+`vcpkg` executable to where CMake expects it to be. One way to do this is to add the following snippet
+to your `CMakeLists.txt` file before the first call to `project()`, and replace `/path/to/my/local/vcpkg`
+with the actual path where it is stored.
+
+```cmake
+if (NOT EXISTS "$ENV{VCPKG_ROOT}/vcpkg${CMAKE_EXECUTABLE_SUFFIX}")
+  file(COPY "/path/to/my/local/vcpkg" DESTINATION "$ENV{VCPKG_ROOT}")
+endif()
+```
+
 See [Installing and Using Packages Example: sqlite](../../examples/installing-and-using-packages.md) for a fully worked example using CMake.
 
 ## `CMAKE_TOOLCHAIN_FILE`
