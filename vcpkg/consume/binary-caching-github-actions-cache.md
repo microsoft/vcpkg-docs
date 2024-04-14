@@ -21,7 +21,7 @@ In this tutorial, you'll learn how to:
 
 > [!div class="checklist"]
 >
-> * [Export required GitHub Actions environment variables](#1---export-required-github-actions-envrionment-variables)
+> * [Export required GitHub Actions environment variables](#1---export-required-github-actions-environment-variables)
 > * [Configure vcpkg to use the GitHub Actions
 >   cache](#2---configure-vcpkg-to-use-the-github-actions-cache)
 
