@@ -21,7 +21,7 @@ In this tutorial, you'll learn how to:
 
 > [!div class="checklist"]
 >
-> * [Export required GitHub Actions environment variables](#1---export-required-github-actions-envrionment-variables)
+> * [Export required GitHub Actions environment variables](#1---export-required-github-actions-environment-variables)
 > * [Configure vcpkg to use the GitHub Actions
 >   cache](#2---configure-vcpkg-to-use-the-github-actions-cache)
 
@@ -31,7 +31,7 @@ In this tutorial, you'll learn how to:
 * A GitHub repository using GitHub Actions
 * A project using vcpkg
 
-## 1 - Export required GitHub Actions envrionment variables
+## 1 - Export required GitHub Actions environment variables
 
 vcpkg needs the Actions Cache URL and Runtime Token to be exported as environment variables
 available in your workflow. Copy the following step in your workflow file:
