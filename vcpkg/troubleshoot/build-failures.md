@@ -208,6 +208,130 @@ Steps to resolve:
 [`VCPKG_CMAKE_CONFIGURE_OPTIONS`](../users/triplets.md#vcpkg_cmake_configure_options)
 to set `FETCHCONTENT_FULLY_DISCONNECTED=FALSE`
 
+
+## vcpkg-installed dependencies are not linked during my project build
+
+When building your project via manifest mode or using classic mode, your vcpkg
+dependencies are not loaded and linked to your project, resulting in build
+failures.
+
+vcpkg offers automatic linkage of libraries and include directories for
+[CMake](../users/buildsystems/cmake-integration.md) and
+[MSBuild](../users/buildsystems/msbuild-integration.md) projects. Dependencies
+installed through vcpkg should be available for consumption automatically in
+your project.
+
+### Cause 1: The required dependencies are not installed
+
+Steps to resolve:
+
+1 - Make sure that your project's dependencies are ready:
+
+  If you are using a [manifest file
+  (`vcpkg.json`)](../concepts/manifest-mode.md), make sure that the file is
+  located in the same directory containing your `CMakeList.txt` file. Also, make
+  sure that all your dependencies are listed in the
+  [`"dependencies"`](../reference/vcpkg-json.md#dependencies) field in your
+  manifest. vcpkg will automatically install dependencies in your manifest when
+  you build your project.
+
+  If you are using the vcpkg CLI to [install packages](../commands/install.md)
+  in [classic mode](../concepts/classic-mode.md), make sure that all your
+  required dependencies are pre-installed before running your project's build.
+  vcpkg does not automatically install packages required by your project when
+  used in classic mode.
+
+### Cause 2: Integration for your build system is not enabled
+
+#### CMake
+
+Steps to resolve: 
+
+1 - Set the [`CMAKE_TOOLCHAIN_FILE`
+variable](<https://cmake.org/cmake/help/latest/variable/CMAKE_TOOLCHAIN_FILE.html>)
+to the vcpkg toolchain.
+
+The `CMAKE_TOOLCHAIN_FILE` must be set to point to the vcpkg CMake toolchain
+file located in `{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake`, make sure to
+replace `{VCPKG_ROOT}` with the correct path to your vcpkg installation directory. 
+
+You can use any of the following methods to set the toolchain file:
+  
+  * Using a `CMakePresets.json` file:
+    * Set `toolchainFile` if you use version 3 or later.
+    * Set `CMAKE_TOOLCHAIN_FILE` as a `cacheVariable` if you use version 2
+      or older.
+  * Pass the
+    `-DCMAKE_TOOLCHAIN_FILE={VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake`
+    command-line argument during your CMake call.
+  * Set `CMAKE_TOOLCHAIN_FILE` in your `CMakeList.txt` file. Make sure that this
+    variable is set before any call to `project()`.
+
+If you are already using a custom toolchain file via `CMAKE_TOOLCHAIN_FILE`,
+then set
+[`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](../users/triplets.md#vcpkg_chainload_toolchain_file)
+via a [custom triplet](../concepts/triplets.md#custom-triplets) to point to your
+custom toolchain.
+
+#### MSBuild
+
+vcpkg provides a global integration mechanism via the [`vcpkg integrate
+install`](../commands/integrate.md#vcpkg-integrate-install) command.
+
+When the command is executed once, the vcpkg integration becomes enabled for all
+projects using MSBuild, either with [manifest
+mode](../concepts/manifest-mode.md) or [classic
+mode](../concepts/classic-mode.md).
+
+This integration is specific to the vcpkg instance from which the command was
+run, so if you have multiple vcpkg instances, only the tool version and the
+packages installed in that specific instance are available in your projects.
+
+Read the [MSBuild
+integration](../users/buildsystems/msbuild-integration.md#import-props-and-targets)
+documentation to learn how to enable vcpkg integration for a single project or
+solution.
+
+Steps to resolve:
+
+1 - Run `vcpkg integrate install` for the vcpkg instance you want to use
+
+Run `vcpkg integrate install` to enable global integration with MSBuild. You
+only need to do this once for the vcpkg instance to become enabled for all your
+projects.
+
+
+##  Cannot install packages using classic mode
+
+Using the [`vcpkg install`](../commands/install.md) command fails with the
+following message:
+
+```Console
+error: Could not locate a manifest (vcpkg.json) above the current working directory.
+This vcpkg distribution does not have a classic mode instance.
+```
+
+### Cause 1: Using the Visual Studio embedded copy of vcpkg
+
+Visual Studio 2022 includes a copy of vcpkg installable with the C++ workflow.
+This bundled vcpkg, is installed in a read-only location, and as such, cannot be
+used in [classic mode](../concepts/classic-mode.md).
+
+You are either using a Visual Studio embedded terminal or a VS Developer
+PowerShell that has a copy of the bundled vcpkg in its PATH. 
+
+Steps to resolve:
+
+  1 - [Create a manifest file (`vcpkg.json`) to install your project's
+  dependencies](../get_started/get-started-vs.md).
+  2 - If you have a standalone instance of vcpkg, you can use it instead by setting
+  the `VCPKG_ROOT` variable and adding the installation path to the `PATH` variable.
+
+  ```PowerShell
+  $env:VCPKG_ROOT="path/to/standalone/vcpkg"
+  $env:PATH="$env:PATH;$env:VCPKG_ROOT"
+  ```
+
 ## Issue isn't listed here
 
 If your issue isn't listed here, visit [our

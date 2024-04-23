@@ -67,7 +67,7 @@ during a package installation:
 -- [COMMUNITY] Loading triplet configuration from: D:\src\vcpkg\triplets\community\x86-uwp.cmake
 ```
 
-## Add or replace triplets
+## <a name="custom-triplets"></a> Add or replace triplets
 
 You can extend vcpkg by replacing in-the-box triplets or creating new triplets
 for your particular project.

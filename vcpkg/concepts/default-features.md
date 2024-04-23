@@ -13,7 +13,7 @@ This article describes the concept of default features, their implications, and 
 
 Default features are a set of [features](features.md) automatically included when a port is installed, unless explicitly disabled. These features ensure that a library maintains a baseline level of functionality, even as the complexity of its dependency graph increases.
 
->![NOTE]
+> [!NOTE]
 > Not all ports contain default features.
 
 ## Role of default features
