@@ -50,20 +50,19 @@ ableton
 ```console
 $ vcpkg depend-info ableton --format=dot
 
-digraph G{
-    rankdir=LR;
-    edge [minlen=3];
-    overlap=false;
-    ableton;
-    ableton -> ableton_link;
-    ableton_link;
-    ableton_link -> asio;
-    ableton_link -> vcpkg_cmake;
-    ableton_link -> vcpkg_cmake_config;
-    asio;
-    asio -> vcpkg_cmake;
-    asio -> vcpkg_cmake_config;
-    empty [label="2 singletons..."];
+digraph G{ rankdir=LR; node [fontname=Sans]; edge [minlen=3]; overlap=false;
+"vcpkg-cmake";
+"vcpkg-cmake-config";
+"asio";
+"asio" -> "vcpkg-cmake";
+"asio" -> "vcpkg-cmake-config";
+"ableton-link";
+"ableton-link" -> "asio";
+"ableton-link" -> "vcpkg-cmake";
+"ableton-link" -> "vcpkg-cmake-config";
+"ableton";
+"ableton" -> "ableton-link";
+"2 singletons...";
 }
 ```
 
