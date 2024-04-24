@@ -38,7 +38,7 @@ available in your workflow. Copy the following step in your workflow file:
 
 ```YAML
 - name: Export GitHub Actions cache environment variables
-  uses: actions/github-script@v6
+  uses: actions/github-script@v7
   with:
     script: |
       core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');

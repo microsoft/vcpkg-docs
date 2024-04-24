@@ -61,7 +61,7 @@ caching](../consume/asset-caching.md) articles.
 ```yml
 steps:
   - name: Enable GitHub Actions Cache backend
-    uses: actions/github-script@v6
+    uses: actions/github-script@v7
     with:
       script: |
         core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
@@ -105,7 +105,7 @@ backend to work and should be run before any task that involves vcpkg.
 
 ```yml
 - name: Enable GitHub Actions Cache backend
-  uses: actions/github-script@v6
+  uses: actions/github-script@v7
   with:
   script: |
     core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
@@ -256,7 +256,7 @@ jobs:
       shell: bash
 
     - name: Enable GitHub Actions Cache backend
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         script: |
           core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
