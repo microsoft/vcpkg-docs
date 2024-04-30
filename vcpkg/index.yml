@@ -16,7 +16,7 @@ landingContent:
   # Card 
   - title: Get started
     linkLists:
-      - linkListType: tutorial
+      - linkListType: quickstart
         links:
           - text: Install and use packages with CMake
             url: get_started/get-started.md
@@ -24,65 +24,75 @@ landingContent:
             url: get_started/get-started-vs.md
           - text: Install and use packages with MSBuild in Visual Studio
             url: get_started/get-started-msbuild.md
-          - text: Create and publish packages
-            url: get_started/get-started-packaging.md
-          - text: Contribute an open-source library to vcpkg
-            url: get_started/get-started-adding-to-registry.md
-
-  # Card
-  - title: Consume packages
-    linkLists:
-      - linkListType: tutorial
-        links:
-          - text: Install dependencies for your project
-            url: consume/manifest-mode.md
-          - text: Install dependencies globally
-            url: consume/classic-mode.md
-          - text: Customize compilation flags
-            url: users/triplets.md
-          - text: Lock package versions
-            url: consume/lock-package-versions.md
-          - text: Install your private dependencies
-            url: consume/git-registries.md
-          - text: Reuse builds between projects and machines
-            url: consume/binary-caching-local.md
-          - text: Mirror external resources for disconnected builds
-            url: users/assetcaching.md
-      - linkListType: deploy
-        links:
           - text: Integrate with your CMake project
             url: users/buildsystems/cmake-integration.md
           - text: Integrate with your MSBuild (Visual Studio) project
             url: users/buildsystems/msbuild-integration.md
           - text: Integrate with a different build system
             url: users/buildsystems/manual-integration.md
-
-  # Card (Optional; Remove if not applicable.)
-  - title: Produce packages
+  # Card
+  - title: Use External Registries
     linkLists:
       - linkListType: tutorial
         links:
-          - text: Package a library from GitHub
-            url: examples/packaging-github-repos.md
+          - text: Registry types
+            url: maintainers/registries.md
+          - text: Install your private dependencies
+            url: consume/git-registries.md
+  # Card
+  - title: Package your own library
+    linkLists:
+      - linkListType: tutorial
+        links:
+          - text: Create and publish packages
+            url: get_started/get-started-packaging.md
           - text: Apply patches to a dependency's source code
             url: examples/patching.md
+          - text: Contribute an open-source library to vcpkg
+            url: get_started/get-started-adding-to-registry.md
           - text: Provide usage documentation
             url: maintainers/handling-usage-files.md
-
-  # Features
-  - title: Features
+  # Card
+  - title: Use vcpkg in CI
     linkLists:
-      - linkListType: overview
+      - linkListType: tutorial
         links:
-          - text: Manifest files
-            url: concepts/manifest-mode.md
-          - text: Build system integration
-            url: users/buildsystems/cmake-integration.md
+          - text: Mirror external resources for disconnected builds
+            url: users/assetcaching.md
+          - text: Troubleshoot asset caching issues
+            url: troubleshoot/asset-caching.md
+          - text: Reuse builds between projects and machines
+            url: consume/binary-caching-local.md
+          - text: Troubleshoot binary caching issues
+            url: users/binarycaching-troubleshooting.md
+  # Card
+  - title: Version your dependencies
+    linkLists:
+      - linkListType: concept
+        links:
           - text: Versioning
             url: users/versioning.concepts.md
-          - text: Registries
-            url: users/registries.md
-          - text: Binary caching
-            url: consume/binary-caching-overview.md
-          - text: Asset caching
-            url: users/assetcaching.md
+      - linkListType: tutorial
+        links:
+          - text: Install a specific version of a package
+            url: consume/lock-package-versions.md
+          - text: Troubleshoot versioning issues
+            url: users/versioning-troubleshooting.md
+  # Card
+  - title: Customize ports and triplets
+    linkLists:
+      - linkListType: reference
+        links:
+          - text: Environmental variables
+            url: users/config-environment.md
+          - text: Triplet settings
+            url: users/triplets.md
+  # Card
+  - title: Maintain your own registry
+    linkLists:
+      - linkListType: tutorial
+        links:
+          - text: Test your custom registry ports with GitHub Actions
+            url: produce/test-registry-ports-gha.md
+          - text: Test your custom registry ports with Azure DevOps
+            url: produce/test-registry-ports-ado.md

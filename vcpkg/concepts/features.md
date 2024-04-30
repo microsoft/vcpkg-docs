@@ -48,7 +48,7 @@ An image manipulation library, for instance, might support several different ima
 
 Default features are a set of features to be automatically activated if the top-level project does not explicitly request a build without them. Default features are intended to ensure a minimum level of functionality regardless of how complex and customizable the dependency graph of a project grows. 
 
->![NOTE]
+> [!NOTE]
 > Default features are not intended to model "curation" or "suggestions".
 
 For example, consider a library `"extract-any"` that supports over 10 different archive formats, including several that are quite obscure. Because they are all optional, if none are selected the library is not functional: it cannot extract any files.

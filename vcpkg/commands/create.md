@@ -23,7 +23,7 @@ This command downloads the source code from the provided URL and then creates a 
 
 The command can save the downloaded source code using a specific file name, provided as an optional argument. If the archive file name isn't specified, the command derives a file name from its URL.
 
-It's important to understand that the port created by the `vcpkg create` command serves merely as a starting point and, in most cases, further edits are necessary for a successful build. For more guidance on adding ports to the vcpkg curated catalog, we recommend referring to one of our [tutorials](..\examples\packaging-zipfiles.md)
+It's important to understand that the port created by the `vcpkg create` command serves merely as a starting point and, in most cases, further edits are necessary for a successful build. For more guidance on adding ports to the vcpkg curated catalog, we recommend referring to one of our [tutorials](../examples/packaging-zipfiles.md)
 
 ## Example
 

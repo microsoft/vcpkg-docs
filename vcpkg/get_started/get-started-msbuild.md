@@ -71,6 +71,9 @@ All MSBuild C++ projects can now #include any installed libraries. Linking will 
     :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-powershell.png" alt-text="setting up your environment variables":::
         Screenshot of Visual Studio UI for the built-in PowerShell developer window showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
+
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
+
     ::: zone-end
     ::: zone pivot="shell-cmd"
     Open the Developer command prompt in Visual Studio.
@@ -89,6 +92,9 @@ All MSBuild C++ projects can now #include any installed libraries. Linking will 
     :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-cmd.png" alt-text="setting up your environment variables":::
         Screenshot of Visual Studio developer command prompt showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
+
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
+    
     ::: zone-end
 
     Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
@@ -146,7 +152,7 @@ Navigate to the Project Properties pages of your project. Under **Configuration 
     Screenshot of enabling vcpkg manifest mode in Visual Studio Project Properties
 :::image-end:::
 
-Other settings, such as [triplets](..\users\triplets.md), are filled in with default values vcpkg detects from your project and will be useful when configuring your project. 
+Other settings, such as [triplets](../users/triplets.md), are filled in with default values vcpkg detects from your project and will be useful when configuring your project. 
 
 ## 5 - Build and run the project
 
@@ -175,6 +181,6 @@ If MSBuild detects a `vcpkg.json` file and manifests are enabled in your project
 
 To learn more about `vcpkg.json` and vcpkg MSBuild integration, see our reference documentation:
 
-- [vcpkg.json](..\reference\vcpkg-json.md)
-- [manifest](..\concepts\manifest-mode.md)
-- [vcpkg in MSBuild projects](..\users\buildsystems\msbuild-integration.md)
+- [vcpkg.json](../reference/vcpkg-json.md)
+- [manifest](../concepts/manifest-mode.md)
+- [vcpkg in MSBuild projects](../users/buildsystems/msbuild-integration.md)

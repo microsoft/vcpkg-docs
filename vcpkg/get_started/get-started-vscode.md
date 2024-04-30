@@ -63,6 +63,8 @@ $env:PATH="$env:VCPKG_ROOT;$env:PATH"
   Screenshot of setting up VCPKG_ROOT and adding it to PATH in a Visual Studio Code terminal.
 :::image-end:::
 
+[!INCLUDE [env-vars](../../includes/env-vars.md)]
+
 ::: zone-end
 ::: zone pivot="shell-cmd"
 
@@ -71,13 +73,17 @@ set "VCPKG_ROOT=C:\path\to\vcpkg"
 set PATH=%VCPKG_ROOT%;%PATH%
 ```
 
+[!INCLUDE [env-vars](../../includes/env-vars.md)]
+
 ::: zone-end
 ::: zone pivot="shell-bash"
 
-```console
-VCPKG_ROOT=/c/path/to/vcpkg
-PATH=$PATH:$VCPKG_ROOT
+```bash
+export VCPKG_ROOT=/c/path/to/vcpkg
+export PATH=$PATH:$VCPKG_ROOT
 ```
+
+[!INCLUDE [env-vars](../../includes/env-vars-bash.md)]
 
 ::: zone-end
 
@@ -226,5 +232,5 @@ Hello World!
 To learn more about `vcpkg.json`, see our reference documentation:
 
 - [Packaging a library](get-started-packaging.md)
-- [vcpkg.json](..\reference\vcpkg-json.md)
-- [manifest](..\concepts\manifest-mode.md)
+- [vcpkg.json](../reference/vcpkg-json.md)
+- [manifest](../concepts/manifest-mode.md)

@@ -113,7 +113,7 @@ This option can be specified multiple times; ports will resolve to the first mat
 
 ### <a name="overlay-triplets"></a> `--overlay-triplets=<path>`
 
-Specifies a directory containing [overlay triplets](../concepts/triplets.md#add-or-replace-triplets).
+Specifies a directory containing [overlay triplets](../concepts/triplets.md#custom-triplets).
 
 This option can be specified multiple times to add multiple directories; triplets will resolve to the first match by name.
 
