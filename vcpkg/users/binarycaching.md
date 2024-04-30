@@ -212,7 +212,7 @@ Adds the GitHub Actions cache as a provider. This binary caching provider is onl
 In order for vcpkg to make use of the GitHub Actions Cache, it needs the Actions Cache URL and Runtime Token. To do this, both values should be exported as environment variables in a workflow step similar to the following:
 
 ```yaml
-- uses: actions/github-script@v6
+- uses: actions/github-script@v7
   with:
     script: |
       core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
