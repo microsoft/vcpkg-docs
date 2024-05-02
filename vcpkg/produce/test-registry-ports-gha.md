@@ -274,7 +274,7 @@ jobs:
 This is the basic structure for a CI workflow to test your registry's ports. You may
 require some extra work to [authenticate to private
 repositories](../consume/gha-authentication.md) or to your [NuGet
-feed](../users/binarycaching.md#nuget-credentials).
+feed](../reference/binarycaching.md#nuget-credentials).
 
 You may also want to add steps to automate the generation of the `vcpkg.json`
 file or a step that verifies that ports newly added to your registry are not

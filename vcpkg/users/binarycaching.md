@@ -82,7 +82,7 @@ Reduced in-tool help is available via `vcpkg help binarycaching`.
 Binary Caching only covers binaries you build. To cache source files and
 prebuilt tools, see [Asset Caching](assetcaching.md).
 
-# Next steps
+## Next steps
 
 Read the tutorials to learn how to set up a binary cache and the [configuration
 syntax reference](../reference/binarycaching.md):
