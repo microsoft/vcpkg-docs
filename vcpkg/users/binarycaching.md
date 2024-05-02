@@ -58,12 +58,12 @@ from your CI pipeline and reuse those in a development environment.
 
 You will need to configure your Azure Artifacts feed to [grant read and write
 permissions to your Azure DevOps
-pipeline](azure/devops/artifacts/feeds/feed-permissions) as well as granting
+pipeline](/azure/devops/artifacts/feeds/feed-permissions) as well as granting
 read-only permissions for hosts in your development team.
 
 ## Default binary cache
 
-Binary caching is enabled by default with a [`files` provider](#files) at the first valid location of:
+Binary caching is enabled by default with a [`files` provider](../reference/binarycaching.md#files) at the first valid location of:
 
 - **Windows**
 
@@ -79,4 +79,17 @@ Binary caching is enabled by default with a [`files` provider](#files) at the fi
 
 Reduced in-tool help is available via `vcpkg help binarycaching`.
 
-Binary Caching only covers binaries you build. To cache source files and prebuilt tools, see [Asset Caching](assetcaching.md).
+Binary Caching only covers binaries you build. To cache source files and
+prebuilt tools, see [Asset Caching](assetcaching.md).
+
+# Next steps
+
+Read the tutorials to learn how to set up a binary cache and the [configuration
+syntax reference](../reference/binarycaching.md):
+
+* [Set up a local binary cache](../consume/binary-caching-local.md)
+* [Set up a binary cache using a NuGet feed](../consume/binary-caching-nuget.md)
+* [Set up a binary cache with GitHub Actions
+  cache](../consume/binary-caching-github-actions-cache.md)
+* [Set up a binary cache with GitHub
+  Packages](../consume/binary-caching-github-packages.md)

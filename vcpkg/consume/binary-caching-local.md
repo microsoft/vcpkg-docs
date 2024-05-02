@@ -18,7 +18,7 @@ and write permissions.
 
 All binary caches are configured through the `VCPKG_BINARY_SOURCES` environment variable. The value
 of `VCPKG_BINARY_SOURCES` follows a  specific [configuration
-syntax](../users/binarycaching.md#configuration-syntax).
+syntax](../reference/binarycaching.md#configuration-syntax).
 
 In this tutorial you'll learn how to:
 
@@ -33,7 +33,7 @@ In this tutorial you'll learn how to:
 
 ## 1 - Create a binary cache directory
 
-When using the [`files`](../users/binarycaching.md#files) backend, you can use filesystem
+When using the [`files`](../reference/binarycaching.md#files) backend, you can use filesystem
 directories to store your binary packages, including network locations.
 
 In this tutorial, you'll create two binary cache locations, one with read-write

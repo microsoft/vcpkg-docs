@@ -114,7 +114,7 @@ backend to work and should be run before any task that involves vcpkg.
 
 Learn more about how all of these work by reading the documentation on the
 [asset cache](../users/assetcaching.md) and [binary
-cache](../users/binarycaching.md) features.
+cache](../reference/binarycaching.md) features.
 
 ## Set up a workflow to test your registry's ports
 

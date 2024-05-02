@@ -10,22 +10,22 @@ ms.topic: reference
 
 Binary caching is configured with the environment variable `VCPKG_BINARY_SOURCES` (set to `<source>;<source>;...`) and the command line option [`--binarysource=<source>`](../commands/common-options.md#binarysource). Options are evaluated first from the environment, then from the command line. Binary caching can be completely disabled by passing `--binarysource=clear` as the last command line option.
 
-| Form | Description |
-|---|---|
-| `clear` | Disable all previous sources (including the default) |
-| `default[,<rw>]` | Adds the default [files](#files) provider |
-| [`files,<absolute path>[,<rw>]`](#files) | Adds a file-based location |
-| [`nuget,<uri>[,<rw>]`](#nuget) | Adds a NuGet-based source; equivalent to the `-Source` parameter of the NuGet CLI |
-| [`nugetconfig,<path>[,<rw>]`](#nuget) | Adds a NuGet-config-file-based source; equivalent to the `-Config` parameter of the NuGet CLI. |
-| [`nugettimeout,<seconds>`](#nuget) | Specifies a timeout for NuGet network operations; equivalent to the `-Timeout` parameter of the NuGet CLI. |
-| [`http,<url_template>[,<rw>[,<header>]]`](#http) | Adds a custom http-based location. |
-| [`x-azblob,<baseuri>,<sas>[,<rw>]`](#azblob)    | **Experimental: will change or be removed without warning**<br>Adds an Azure Blob Storage source using a Shared Access Signature |
-| [`x-gcs,<prefix>[,<rw>]`](#gcs)     | **Experimental: will change or be removed without warning**<br>Adds a Google Cloud Storage (GCS) source. |
-| [`x-aws,<prefix>[,<rw>]`](#aws)     | **Experimental: will change or be removed without warning**<br>Adds an AWS S3 source. |
-| [`x-aws-config,<parameter>`](#aws)  | **Experimental: will change or be removed without warning**<br>Configure all AWS S3 providers. |
-| [`x-cos,<prefix>[,<rw>]`](#cos)     | **Experimental: will change or be removed without warning**<br>Adds a Tencent Cloud Object Storage source. |
-| [`x-gha,<rw>]`](#gha)               | **Experimental: will change or be removed without warning**<br>Use the GitHub Actions cache as source. |
-| `interactive` | Enables interactive credential management for [NuGet](#nuget) (for debugging; requires `--debug` on the command line) |
+| Form                                             | Description                                                                                                                      |
+|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| `clear`                                          | Disable all previous sources (including the default)                                                                             |
+| `default[,<rw>]`                                 | Adds the default [files](#files) provider                                                                                        |
+| [`files,<absolute path>[,<rw>]`](#files)         | Adds a file-based location                                                                                                       |
+| [`nuget,<uri>[,<rw>]`](#nuget)                   | Adds a NuGet-based source; equivalent to the `-Source` parameter of the NuGet CLI                                                |
+| [`nugetconfig,<path>[,<rw>]`](#nuget)            | Adds a NuGet-config-file-based source; equivalent to the `-Config` parameter of the NuGet CLI.                                   |
+| [`nugettimeout,<seconds>`](#nuget)               | Specifies a timeout for NuGet network operations; equivalent to the `-Timeout` parameter of the NuGet CLI.                       |
+| [`http,<url_template>[,<rw>[,<header>]]`](#http) | Adds a custom http-based location.                                                                                               |
+| [`x-azblob,<baseuri>,<sas>[,<rw>]`](#azblob)     | **Experimental: will change or be removed without warning**<br>Adds an Azure Blob Storage source using a Shared Access Signature |
+| [`x-gcs,<prefix>[,<rw>]`](#gcs)                  | **Experimental: will change or be removed without warning**<br>Adds a Google Cloud Storage (GCS) source.                         |
+| [`x-aws,<prefix>[,<rw>]`](#aws)                  | **Experimental: will change or be removed without warning**<br>Adds an AWS S3 source.                                            |
+| [`x-aws-config,<parameter>`](#aws)               | **Experimental: will change or be removed without warning**<br>Configure all AWS S3 providers.                                   |
+| [`x-cos,<prefix>[,<rw>]`](#cos)                  | **Experimental: will change or be removed without warning**<br>Adds a Tencent Cloud Object Storage source.                       |
+| [`x-gha,<rw>]`](#gha)                            | **Experimental: will change or be removed without warning**<br>Use the GitHub Actions cache as source.                           |
+| `interactive`                                    | Enables interactive credential management for [NuGet](#nuget) (for debugging; requires `--debug` on the command line)            |
 
 The `<rw>` optional parameter for certain sources controls whether they will be consulted for
 downloading binaries (`read`)(default), whether on-demand builds will be uploaded to that remote
@@ -250,7 +250,10 @@ if the appropriate environment variables are defined and non-empty. This is spec
 
 #### NuGet Cache
 
-NuGet's user-wide cache is not used by default. To use it for every nuget-based source, set the [environment variable](config-environment.md#vcpkg_use_nuget_cache) `VCPKG_USE_NUGET_CACHE` to `true` (case-insensitive) or `1`.
+NuGet's user-wide cache is not used by default. To use it for every nuget-based
+source, set the [environment
+variable](../users/config-environment.md#vcpkg_use_nuget_cache)
+`VCPKG_USE_NUGET_CACHE` to `true` (case-insensitive) or `1`.
 
 ## Provider Examples
 
@@ -378,8 +381,10 @@ The ABI Hash considers:
 - The ABI Hash of each dependency
 - All helper functions referenced by `portfile.cmake` (heuristic)
 - The version of CMake used
-- The contents of any environment variables listed in [`VCPKG_ENV_PASSTHROUGH`](triplets.md#vcpkg_env_passthrough)
-- The toolchain file's textual contents ([`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](triplets.md#vcpkg_chainload_toolchain_file))
+- The contents of any environment variables listed in
+  [`VCPKG_ENV_PASSTHROUGH`](../users/triplets.md#vcpkg_env_passthrough)
+- The toolchain file's textual contents
+  ([`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](../users/triplets.md#vcpkg_chainload_toolchain_file))
 
 Despite this extensive list, it is possible to defeat the cache and introduce nondeterminism. If you have additional details that you need to track for your environment, you can generate a triplet file with your additional information in a comment. That additional information will be included in the ABI Hash and ensure a unique universe of binaries.
 
@@ -387,7 +392,8 @@ The calculated ABI Hashes are stored in each package and in the current installe
 
 ### Example ABI Hash of zlib
 
-Enable [debug output](./binarycaching-troubleshooting.md#debug-output) to print the full Application Binary Interface (ABI) hash of a pacakge. For zlib:
+Enable [debug output](../users/binarycaching-troubleshooting.md#debug-output) to
+print the full Application Binary Interface (ABI) hash of a pacakge. For zlib: 
 
 ```
 [DEBUG] Trying to hash <path>\buildtrees\zlib\x86-windows.vcpkg_abi_info.txt

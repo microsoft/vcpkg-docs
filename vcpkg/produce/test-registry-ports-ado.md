@@ -112,7 +112,7 @@ NuGet](../consume/binary-caching-nuget.md#provide-authentication-credentials).
 
 Learn more about how all of these work by reading the documentation on the
 [asset cache](../users/assetcaching.md) and [binary
-cache](../users/binarycaching.md) features.
+cache](../reference/binarycaching.md) features.
 
 ## Set up a pipeline to test your registry's ports
 
