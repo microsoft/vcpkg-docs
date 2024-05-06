@@ -9,7 +9,7 @@ ms.topic: troubleshooting-general
 
 # Binary caching troubleshooting guide
 
-This guide is intended for users experiencing issues with [binary caching](./binarycaching.md).
+This guide is intended for users experiencing issues with [binary caching](binarycaching.md).
 
 ## <a name="debug-output"></a> Enable vcpkg debugging information
 It is highly recommended that you enable debug output when following this guide.
@@ -111,7 +111,7 @@ Stored binaries in 1 destinations in 1.5 s.
 
 vcpkg skipped uploading the binary package to your binary cache.
 
-* Ensure your [binary cache configuration](binarycaching.md#configuration-syntax) is set to `write` or `readwrite`
+* Ensure your [binary cache configuration](../reference/binarycaching.md#configuration-syntax) is set to `write` or `readwrite`
 
 ## Libraries rebuild instead of using remote binary cache
 
@@ -129,7 +129,7 @@ Restored 1 package(s) from <remote binary cache> in 1.1 s. Use --debug to see mo
 
 vcpkg choose to read your default binary cache over the remote one.
 
-* Ensure your [binary cache configuration](binarycaching.md#configuration-syntax) is set to `read` or `readwrite`
+* Ensure your [binary cache configuration](../reference/binarycaching.md#configuration-syntax) is set to `read` or `readwrite`
 
 ### Cause 2: The remote binary cache is empty
 
@@ -139,7 +139,7 @@ The remote cache should contain a list of binary packages you've pushed.
 
 ### Cause 3: Differences between local and remote build environments
 
-Each package in binary cache is labeled with an [ABI hash](./binarycaching.md#abi-hash) which contains compiler versions, sources, and other information to distinguish between binary packages. If the locally computed ABI hash doesn't match the one stored remotely, the package isn't retrieved.
+Each package in binary cache is labeled with an [ABI hash](../reference/binarycaching.md#abi-hash) which contains compiler versions, sources, and other information to distinguish between binary packages. If the locally computed ABI hash doesn't match the one stored remotely, the package isn't retrieved.
 
 * Consult the [ABI Hash mismatch troubleshooting guide](#abi-mismatch) to determine the root cause.
 
@@ -151,7 +151,7 @@ In an unchanged environment and without updating vcpkg, you still find yourself 
 
 ### Cause 1: Undetected changes in the build environment
 
-Each package in binary cache is labeled with an [ABI hash](./binarycaching.md#abi-hash) which contains compiler versions, sources, and other information to distinguish between binary packages. If the locally computed ABI hash doesn't match the one stored remotely, the package isn't retrieved.
+Each package in binary cache is labeled with an [ABI hash](../reference/binarycaching.md#abi-hash) which contains compiler versions, sources, and other information to distinguish between binary packages. If the locally computed ABI hash doesn't match the one stored remotely, the package isn't retrieved.
 
 * Consult the [ABI Hash mismatch troubleshooting guide](#abi-mismatch) to determine the root cause.
 
@@ -163,11 +163,11 @@ This guide is intended for users to diagnose why they have different ABI hashes 
 
 ### Comparing two binary packages
 
-Determining the difference between two identically named packages requires comparing various data: sources, tool versions, compilers, and target platforms. The [ABI hash](./binarycaching.md#abi-hash) provides a concise representation of this data. When calculating an ABI hash, vcpkg considers all relevant data, including file content, tool versions, and system details. It creates a hash for each data point and then combines these hashes into a single value for the binary package.
+Determining the difference between two identically named packages requires comparing various data: sources, tool versions, compilers, and target platforms. The [ABI hash](../reference/binarycaching.md#abi-hash) provides a concise representation of this data. When calculating an ABI hash, vcpkg considers all relevant data, including file content, tool versions, and system details. It creates a hash for each data point and then combines these hashes into a single value for the binary package.
 
 #### Binary package ABI hash comparison
 
-The [ABI hash](./binarycaching.md#abi-hash) of the library zlib is `bb1c96759ac96102b4b18215db138daedd3eb16c2cd3302ae7bffab2b643eb87`:
+The [ABI hash](../reference/binarycaching.md#abi-hash) of the library zlib is `bb1c96759ac96102b4b18215db138daedd3eb16c2cd3302ae7bffab2b643eb87`:
 
 ```
 [DEBUG] Trying to hash <path>\buildtrees\zlib\x86-windows.vcpkg_abi_info.txt

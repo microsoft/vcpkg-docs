@@ -59,7 +59,7 @@ And that's it! vcpkg will now upload or restore packages from your GitHub Action
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Authenticate to private NuGet feeds](../users/binarycaching.md#nuget-credentials)
+> [Authenticate to private NuGet feeds](../reference/binarycaching.md#nuget-credentials)
 
 Here are other tasks to try next:
 

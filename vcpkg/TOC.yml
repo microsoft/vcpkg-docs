@@ -103,6 +103,8 @@
   items:
   - name: Asset caching
     href: concepts/asset-caching.md
+  - name: Binary caching
+    href: users/binarycaching.md
   - name: Build system integration
     items:
     - name: Available build system integrations
@@ -220,7 +222,7 @@
     href: users/assetcaching.md
   - name: Binary caching
     displayName: binaries, build
-    href: users/binarycaching.md
+    href: reference/binarycaching.md
   - name: Environment variables
     href: users/config-environment.md
   - name: Installation tree layout

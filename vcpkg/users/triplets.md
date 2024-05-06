@@ -164,7 +164,7 @@ Also available as build-type specific `VCPKG_CONFIGURE_MAKE_OPTIONS_DEBUG` and
 
 ### VCPKG_HASH_ADDITIONAL_FILES
 
-A list of files to include in the calculation of [package ABI hashes](binarycaching.md#abi-hash).
+A list of files to include in the calculation of [package ABI hashes](../reference/binarycaching.md#abi-hash).
 
 This field is optional.
 
