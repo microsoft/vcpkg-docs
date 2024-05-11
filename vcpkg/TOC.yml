@@ -227,6 +227,8 @@
     href: users/config-environment.md
   - name: Installation tree layout
     href: reference/installation-tree-layout.md
+  - name: Port policies
+    href: reference/policies.md
   - name: Portfile functions
     items:
     - name: vcpkg_acquire_msys
