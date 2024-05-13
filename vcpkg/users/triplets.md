@@ -210,20 +210,6 @@ tracked as part of the package abis.
 This will cause [Binary Caching](binarycaching.md) to reuse builds from older or
 newer compilers.
 
-### VCPKG_USE_HOST_TOOLS
-
-When this option is set to `TRUE`, `ON`, or `1`; during the package build
-process, vcpkg uses the build tools installed for the host platform, rather than
-the tools for the target platform.
-
-This is required in cross-compilation scenarios, where tools build for the
-target platform cannot be executed in the platform doing the build.
-
-The effective outcome of enabling this option is that vcpkg adds
-[`${VCPKG_INSTALLED_DIR}/${VCPKG_HOST_TRIPLET}/tools`](../reference/installation-tree-layout.md#layout-tools)
-to the
-[`CMAKE_PROGRAM_PATH`](https://cmake.org/cmake/help/latest/variable/CMAKE_PROGRAM_PATH.html).
-
 ## Windows-specific Variables
 
 ### VCPKG_ENV_PASSTHROUGH
