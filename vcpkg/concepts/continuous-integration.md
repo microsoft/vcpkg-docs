@@ -6,10 +6,10 @@ ms.author: viromer
 ms.date: 5/10/2024
 ms.topic: concept-article
 ---
-# vcpkg in continous integration environments
+# vcpkg in Continuous Integration environments
 
 This article describes how to effectively use vcpkg in a continuous integration
-(CI) environment. Either because you are using vpckg to manage your project's
+(CI) environment. Either because you are using vcpkg to manage your project's
 dependencies or you have a custom vcpkg registry and want to add CI tests for
 your ports.
 
@@ -48,12 +48,12 @@ git clone http://github.com/Microsoft/vcpkg
 
 Depending on the vendor you use to run your CI environment, there may be readily
 available third-party scripts that can acquire vcpkg in a single step. The vcpkg
-team does not maintain any of these third-party scripts and you should excersice
+team does not maintain any of these third-party scripts and you should exercise
 proper caution if you intend to use any of them.
 
 ### Other acquisition methods
 
-Not recommended for CI, there are a few additional methods;
+The following methods are not recommended for CI environments.
 
 * The one-line installation script: `iex (iwr -useb
   https://aka.ms/vcpkg-init.ps1)` or `. <(curl https://aka.ms/vcpkg-init.sh
@@ -88,7 +88,7 @@ To learn more about asset caching read these articles:
 
 ## Examples
 
-These articles show you examples of how to set up everything together:
+These articles show you examples of how everything works together:
 
 * [Test your custom registry ports using vcpkg with Azure
   DevOps](../produce/test-registry-ports-ado.md)
