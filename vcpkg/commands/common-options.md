@@ -90,17 +90,20 @@ Defaults to the [`VCPKG_DEFAULT_HOST_TRIPLET`](../users/config-environment.md#vc
 
 Specifies the path to lay out installed packages.
 
-In [Classic mode](../users/classic-mode.md), defaults to `installed/` under the vcpkg root folder.
+In [Classic mode](../concepts/classic-mode.md), defaults to `installed/` under
+the vcpkg root folder.
 
-In [Manifest mode](../users/manifests.md), defaults to `vcpkg_installed/` under the manifest folder.
+In [Manifest mode](../concepts/manifest-mode.md), defaults to `vcpkg_installed/`
+under the manifest folder.
 
 ### <a name="manifest-root"></a> `--x-manifest-root=<path>`
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
-Specifies the directory containing [`vcpkg.json`](../users/manifests.md).
+Specifies the directory containing [`vcpkg.json`](../concepts/manifest-mode.md).
 
-Defaults to searching upwards from the current working directory for the nearest `vcpkg.json`.
+Defaults to searching upwards from the current working directory for the nearest
+`vcpkg.json`.
 
 ### <a name="overlay-ports"></a> `--overlay-ports=<path>`
 
@@ -110,7 +113,7 @@ This option can be specified multiple times; ports will resolve to the first mat
 
 ### <a name="overlay-triplets"></a> `--overlay-triplets=<path>`
 
-Specifies a directory containing [overlay triplets](../concepts/triplets.md#add-or-replace-triplets).
+Specifies a directory containing [overlay triplets](../concepts/triplets.md#custom-triplets).
 
 This option can be specified multiple times to add multiple directories; triplets will resolve to the first match by name.
 

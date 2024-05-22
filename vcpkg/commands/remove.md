@@ -21,7 +21,7 @@ Remove port packages from Classic mode.
 
 `remove` removes listed packages and any packages that require them from the Classic mode [installed directory](common-options.md#install-root). See the [install command documentation](install.md#package-syntax) for detailed syntax of the `<package>` parameter.
 
-This command is not currently supported in [Manifest mode](../users/manifests.md).
+This command is not currently supported in [Manifest mode](../concepts/manifest-mode.md).
 
 ## Options
 

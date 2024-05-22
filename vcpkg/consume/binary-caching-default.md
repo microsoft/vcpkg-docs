@@ -3,7 +3,7 @@ title: "Default local vcpkg binary cache"
 description: Learn about the default vcpkg binary cache
 author: vicroms
 ms.author: viromer
-ms.date: 01/10/2024
+ms.date: 5/1/2024
 ms.topic: concept-article
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
@@ -37,13 +37,14 @@ By default, binary caching is enabled at the first valid location among the foll
 Use the `VCPKG_DEFAULT_BINARY_CACHE` environment variable to change the default binary cache
 location.
 
-The default binary cache uses a [`files` provider](../users/binarycaching.md#files). This
+The default binary cache uses a [`files` provider](../reference/binarycaching.md#files). This
 type of binary cache provider stores binary packages as compressed archives in a filesystem
 directory.
 
 ## Disabling the default binary cache
 
-To disable the default binary cache, set the [`VCPKG_BINARY_SOURCES` environment variable](../users/binarycaching.md#configuration-syntax) to `clear`.
+To disable the default binary cache, set the [`VCPKG_BINARY_SOURCES` environment
+variable](../reference/binarycaching.md#configuration-syntax) to `clear`.
 
 ::: zone pivot="shell-powershell"
 

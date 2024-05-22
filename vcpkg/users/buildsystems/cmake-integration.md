@@ -31,20 +31,26 @@ You can still use a toolchain file to configure your own toolsets by using the
 
 The vcpkg integration works differently depending on the operation mode you're using:
 
-In [classic mode](../classic-mode.md), vcpkg sets CMake search paths appropriately to make 
-installed packages available via the `find_package()`, `find_library()`, and `find_path()` functions.
+In [classic mode](../../concepts/classic-mode.md), vcpkg sets CMake search paths
+appropriately to make installed packages available via the `find_package()`,
+`find_library()`, and `find_path()` functions.
 
-In [manifest mode](../manifests.md), in addition to the above, the toolchain detects manifest files
-(`vcpkg.json` files) and runs `vcpkg install` to automatically acquire the project's dependencies.
+In [manifest mode](../../concepts/manifest-mode.md), in addition to the above,
+the toolchain detects manifest files (`vcpkg.json` files) and runs `vcpkg
+install` to automatically acquire the project's dependencies.
 
 Because the toolchain file is evaluated during the `project()` call, all CMake-level variables that
 modify a vcpkg setting must be set before the first call to `project()`. It may also be necessary to
 reconfigure your CMake project if you modify any vcpkg setting that results in [ABI
-hash](../binarycaching.md#abi-hash) changes.
+hash](../../reference/binarycaching.md#abi-hash) changes.
 
 See [Installing and Using Packages Example: sqlite](../../examples/installing-and-using-packages.md) for a fully worked example using CMake.
 
 ## `CMAKE_TOOLCHAIN_FILE`
+
+> [!NOTE]
+> If you set `CMAKE_TOOLCHAIN_FILE` in your `CMakeList.txt` file, make sure that
+> the variable is set before any calls to `project()`.
 
 Projects configured to use the vcpkg toolchain file (via the CMake setting `CMAKE_TOOLCHAIN_FILE`) can find libraries from vcpkg using the standard CMake functions: `find_package()`, `find_path()`, and `find_library()`.
 

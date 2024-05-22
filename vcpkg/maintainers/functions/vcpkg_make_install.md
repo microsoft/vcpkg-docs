@@ -11,7 +11,6 @@ Build and install a Make-based project.
 
 ```cmake
 vcpkg_make_install(
-    [ADD_BIN_TO_PATH]
     [DISABLE_PARALLEL]
     [NO_DESTDIR]
     [NO_MSVC_FLAG_ESCAPING]
@@ -20,7 +19,6 @@ vcpkg_make_install(
     [SUBPATH <sub-directory>]
     [MAKEFILE <makefile-name>]
     [TARGETS <target-name>...]
-    [SHELL <shell>]
     [OPTIONS <make-option>...]
     [OPTIONS_RELEASE <make-option>...]
     [OPTIONS_DEBUG <make-option>...]
@@ -42,7 +40,7 @@ To use this function, you must depend on the helper port `vcpkg-make`:
 
 ### ADD_BIN_TO_PATH
 
-Adds the `bin` directory to the `PATH` during the build. This is useful when executables from the build are required for subsequent build steps.
+Adds the configure dependent `(debug/)bin` directory to the system path. This is useful if configure builds and runs executables with vcpkg integrated dependencies.
 
 ### DISABLE_PARALLEL
 

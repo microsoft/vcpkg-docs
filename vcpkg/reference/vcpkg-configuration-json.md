@@ -6,11 +6,19 @@ ms.topic: reference
 ---
 # vcpkg-configuration.json Reference
 
-The `vcpkg-configuration.json` file forms part of a project's [manifest](../users/manifests.md), along with [`vcpkg.json`](vcpkg-json.md). All fields in the `vcpkg-configuration.json` file are only used from the top-level project -- the `vcpkg-configuration.json` files in any dependencies are ignored.
+The `vcpkg-configuration.json` file forms part of a project's
+[manifest](../concepts/manifest-mode.md), along with
+[`vcpkg.json`](vcpkg-json.md). All fields in the `vcpkg-configuration.json` file
+are only used from the top-level project -- the `vcpkg-configuration.json` files
+in any dependencies are ignored.
 
-In [Manifest Mode](../users/manifests.md), `vcpkg-configuration.json` can be in a separate file beside [`vcpkg.json`](vcpkg-json.md) or it can be embedded in the [`"vcpkg-configuration" field`](vcpkg-json.md#vcpkg-configuration).
+In [Manifest Mode](../concepts/manifest-mode.md), `vcpkg-configuration.json` can
+be in a separate file beside [`vcpkg.json`](vcpkg-json.md) or it can be embedded
+in the [`"vcpkg-configuration" field`](vcpkg-json.md#vcpkg-configuration).
 
-In [Classic Mode](../users/classic-mode.md), vcpkg will use the `vcpkg-configuration.json` file in the [root](../commands/common-options.md#vcpkg-root) of the vcpkg instance.
+In [Classic Mode](../concepts/classic-mode.md), vcpkg will use the
+`vcpkg-configuration.json` file in the
+[root](../commands/common-options.md#vcpkg-root) of the vcpkg instance.
 
 For an overview of using registries with vcpkg, see [Using Registries](../consume/git-registries.md).
 

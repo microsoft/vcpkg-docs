@@ -11,7 +11,9 @@ ms.topic: tutorial
 
 # Tutorial: Install and use packages with CMake in Visual Studio Code
 
-This tutorial shows you how to create a C++ "Hello World" program that uses the `fmt` library with CMake, vcpkg and Visual Studio Code. You'll install dependencies, configure, build, and run a simple application.
+This tutorial shows you how to create a C++ "Hello World" program that uses the
+`fmt` library with CMake, vcpkg and Visual Studio Code. You'll install
+dependencies, configure, build, and run a simple application.
 
 ## Prerequisites
 
@@ -27,13 +29,17 @@ This example uses the C++ MSVC compiler in the Visual Studio C++ development wor
 
 ## 2 - Install Visual Studio Code Extensions
 
-Navigate to the Extension view, and install the [C++ Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools). This enables C++ IntelliSense and code navigation.
+Navigate to the Extension view, and install the [C++
+Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools).
+This enables C++ IntelliSense and code navigation.
 
 :::image type="complex" source="../resources/get_started/vscode-c-extension.png" alt-text="installing C++ Visual Studio Code Extension":::
   Screenshot of Visual Studio Code Extension view with C++ Extension
 :::image-end:::
 
-Install the [CMake Tools Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools). This enables CMake support in Visual Studio Code.
+Install the [CMake Tools
+Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools).
+This enables CMake support in Visual Studio Code.
 
 :::image type="complex" source="../resources/get_started/vscode-cmake-extension.png" alt-text="installing CMake Tools Visual Studio Code Extension":::
   Screenshot of Visual Studio Code Extension view with CMake Tools Extension
@@ -49,29 +55,35 @@ Run the following commands:
 ::: zone pivot="shell-powershell"
 
 ```PowerShell
-$env:VCPKG_ROOT = "C:\path\to\vcpkg"
-$env:PATH = "$env:VCPKG_ROOT;$env:PATH"
+$env:VCPKG_ROOT="C:\path\to\vcpkg"
+$env:PATH="$env:VCPKG_ROOT;$env:PATH"
 ```
 
 :::image type="complex" source="../resources/get_started/vscode-terminal-vcpkg.png" alt-text="setting up vcpkg environment variables":::
   Screenshot of setting up VCPKG_ROOT and adding it to PATH in a Visual Studio Code terminal.
 :::image-end:::
 
+[!INCLUDE [env-vars](../../includes/env-vars.md)]
+
 ::: zone-end
 ::: zone pivot="shell-cmd"
 
 ```console
-set VCPKG_ROOT="C:\path\to\vcpkg"
+set "VCPKG_ROOT=C:\path\to\vcpkg"
 set PATH=%VCPKG_ROOT%;%PATH%
 ```
+
+[!INCLUDE [env-vars](../../includes/env-vars.md)]
 
 ::: zone-end
 ::: zone pivot="shell-bash"
 
-```console
-VCPKG_ROOT=/c/path/to/vcpkg
-PATH=$PATH:$VCPKG_ROOT
+```bash
+export VCPKG_ROOT=/c/path/to/vcpkg
+export PATH=$PATH:$VCPKG_ROOT
 ```
+
+[!INCLUDE [env-vars](../../includes/env-vars-bash.md)]
 
 ::: zone-end
 
@@ -86,7 +98,8 @@ Run the following command to create a vcpkg manifest file (`vcpkg.json`):
 vcpkg new --application
 ```
 
-The [`vcpkg new`](../commands/new.md) command adds a `vcpkg.json` file and a `vcpkg-configuration.json` file in the project's directory.
+The [`vcpkg new`](../commands/new.md) command adds a `vcpkg.json` file and a
+`vcpkg-configuration.json` file in the project's directory.
 
 Add the `fmt` package as a dependency:
 
@@ -104,9 +117,17 @@ Your `vcpkg.json` should now contain:
 }
 ```
 
-This is your manifest file. vcpkg reads the manifest file to learn what dependencies to install and integrates with MSBuild to provide the dependencies required by your project.
+This is your manifest file. vcpkg reads the manifest file to learn what
+dependencies to install and integrates with MSBuild to provide the dependencies
+required by your project.
 
-The generated `vcpkg-configuration.json` file introduces a [baseline](../reference/vcpkg-configuration-json.md#registry-baseline) that places [minimum version constraints](../users/versioning.md) on the project's dependencies. Modifying this file is beyond the scope of this tutorial. While not applicable in this tutorial, it's a good practice to keep the `vcpkg-configuration.json` file under source control to ensure version consistency across different development environments.
+The generated `vcpkg-configuration.json` file introduces a
+[baseline](../reference/vcpkg-configuration-json.md#registry-baseline) that
+places [minimum version constraints](../users/versioning.md) on the project's
+dependencies. Modifying this file is beyond the scope of this tutorial. While
+not applicable in this tutorial, it's a good practice to keep the
+`vcpkg-configuration.json` file under source control to ensure version
+consistency across different development environments.
 
 ## 3 - Set up the project files
 
@@ -116,55 +137,73 @@ Create the `CMakeLists.txt` file with the following content:
 
 Now, let's break down what each line in the `CMakeLists.txt` file does:
 
-- `cmake_minimum_required(VERSION 3.10)`: Specifies that the minimum version of CMake required to build the project is 3.10. If the version of CMake installed on your system is lower than this, an error will be generated.
+- `cmake_minimum_required(VERSION 3.10)`: Specifies that the minimum version of
+  CMake required to build the project is 3.10. If the version of CMake installed
+  on your system is lower than this, an error will be generated.
 - `project(HelloWorld)`: Sets the name of the project to "HelloWorld."
-- `find_package(fmt CONFIG REQUIRED)`: Looks for the `fmt` library using its CMake configuration file. The `REQUIRED` keyword ensures that an error is generated if the package is not found.
-- `add_executable(HelloWorld main.cpp)`: Adds an executable target named "HelloWorld," built from the source file `main.cpp`.
-- `target_link_libraries(HelloWorld PRIVATE fmt::fmt)`: Specifies that the `HelloWorld` executable should link against the `fmt` library. The `PRIVATE` keyword indicates that `fmt` is only needed for building `HelloWorld` and should not propagate to other dependent projects.
+- `find_package(fmt CONFIG REQUIRED)`: Looks for the `fmt` library using its
+  CMake configuration file. The `REQUIRED` keyword ensures that an error is
+  generated if the package is not found.
+- `add_executable(HelloWorld main.cpp)`: Adds an executable target named
+  "HelloWorld," built from the source file `main.cpp`.
+- `target_link_libraries(HelloWorld PRIVATE fmt::fmt)`: Specifies that the
+  `HelloWorld` executable should link against the `fmt` library. The `PRIVATE`
+  keyword indicates that `fmt` is only needed for building `HelloWorld` and
+  should not propagate to other dependent projects.
 
 Create the `helloworld.cpp` file with the following content:
 
 :::code language="cpp" source="../examples/snippets/get-started/main.cpp":::
 
-In this `helloworld.cpp` file, the `<fmt/core.h>` header is included for using the `fmt` library. The `main()` function then calls `fmt::print()` to output the "Hello World!" message to the console.
+In this `helloworld.cpp` file, the `<fmt/core.h>` header is included for using
+the `fmt` library. The `main()` function then calls `fmt::print()` to output the
+"Hello World!" message to the console.
 
-To allow the CMake project system to recognize C++ libraries provided by vcpkg, you'll need to provide the `vcpkg.cmake` toolchain file. To automate this, create a `CMakePresets.json` file in the "helloworld" directory with the following content:
+To allow the CMake project system to recognize C++ libraries provided by vcpkg,
+you'll need to provide the `vcpkg.cmake` toolchain file. To automate this,
+create a `CMakePresets.json` file in the "helloworld" directory with the
+following content:
 
-```cmake
+
+```json
 {
-    "version": 3,
-    "configurePresets": [
-        {
-            "name": "vcpkg",
-            "cacheVariables": {
-                "CMAKE_TOOLCHAIN_FILE": {
-                   "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-                    "type": "FILEPATH"
-                }
-            }
-        }
-    ]
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "vcpkg",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    }
+  ]
 }
 ```
 
-Create `CMakeUserPresets.json` file in the "helloworld" directory with the following content:
+Create `CMakeUserPresets.json` file in the "helloworld" directory with the
+following content:
 
-```cmake
+```json
 {
-    "version": 3,
-    "configurePresets": [
-        {
-            "name": "default",
-            "inherits": "vcpkg",
-            "environment": {
-                "VCPKG_ROOT": "<path to vcpkg>"
-            }
-        }
-    ]
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "default",
+      "inherits": "vcpkg",
+      "environment": {
+        "VCPKG_ROOT": "<path to vcpkg>"
+      }
+    }
+  ]
 }
 ```
 
-This `CMakePresets.json` file contains a single "vcpkg" preset for CMake and sets the `CMAKE_TOOLCHAIN_FILE` variable. The `CMAKE_TOOLCHAIN_FILE` allows the CMake project system to recognize C++ libraries provided by vcpkg. Only `CMakePresets.json` is meant to be checked into source control while `CMakeUserPresets.json` is to be used locally.
+This `CMakePresets.json` file contains a single "vcpkg" preset for CMake and
+sets the `CMAKE_TOOLCHAIN_FILE` variable. The `CMAKE_TOOLCHAIN_FILE` allows the
+CMake project system to recognize C++ libraries provided by vcpkg. Only
+`CMakePresets.json` is meant to be checked into source control while
+`CMakeUserPresets.json` is to be used locally.
 
 4 - Build and run the project
 
@@ -184,7 +223,7 @@ Select the `default` CMake preset. This enables the vcpkg toolchain.
 
 You should see the output:
 
-```
+```Console
 Hello World!
 ```
 
@@ -193,5 +232,5 @@ Hello World!
 To learn more about `vcpkg.json`, see our reference documentation:
 
 - [Packaging a library](get-started-packaging.md)
-- [vcpkg.json](..\reference\vcpkg-json.md)
-- [manifest](..\users\manifests.md)
+- [vcpkg.json](../reference/vcpkg-json.md)
+- [manifest](../concepts/manifest-mode.md)

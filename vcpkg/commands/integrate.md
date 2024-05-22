@@ -53,7 +53,7 @@ Creates a linked NuGet package for MSBuild integration.
 
 See [MSBuild Per-Project Integration](../users/buildsystems/msbuild-integration.md#linked-nuget-package) for more information.
 
-### `vcpkg integrate powershell`
+### <a name="vcpkg-autocompletion"></a> `vcpkg integrate powershell`
 
 - **Windows only**
 

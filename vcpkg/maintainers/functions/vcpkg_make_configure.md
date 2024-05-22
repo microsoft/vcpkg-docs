@@ -20,12 +20,10 @@ vcpkg_make_configure(
     [NO_MSVC_FLAG_ESCAPING]
     [USE_RESPONSE_FILES]
     [SOURCE_PATH <source-path>]
-    [SHELL <shell>]
     [OPTIONS <configure-setting>...]
     [OPTIONS_RELEASE <configure-setting>...]
     [OPTIONS_DEBUG <configure-setting>...]
     [PRE_CONFIGURE_CMAKE_COMMANDS <cmake-command>...]
-    [POST_CONFIGURE_CMAKE_COMMANDS <cmake-command>...]
     [LANGUAGES <language>...]
 )
 ```
@@ -53,17 +51,17 @@ If specified, the source directory will be copied to the build directory before 
 
 ### DISABLE_MSVC_WRAPPERS
 
-Disables the use of MSVC compiler wrappers. Useful for projects that are not compatible with the wrappers.
+The `DISABLE_MSVC_WRAPPERS` option controls the use of wrapper scripts specifically for tools such as Microsoft's `cl.exe` and the `windres` resource compiler. These wrappers translate and reorder command-line flags to accommodate the expected syntax and operational requirements of these tools. When this option is enabled, the cl.exe and windres tools will directly interpret command-line flags without any modifications
 
 ### NO_CPPFLAGS
 
-Prevents the addition of C Preprocessor flags to the compiler command line. Use this if the project does not use or incorrectly handles these flags.
+Disable the extraction of C preprocessor/target/arch flags from `CCFLAGS` into `CPPFLAGS`. Use this if the project does not use `CPPFLAGS`.
 
 If set, the `CPPFLAGS` environment variable, typically used for specifying C preprocessor flags, will not be automatically populated based on vcpkg's settings. This can be useful for projects that do not use standard environment variables or have specific preprocessor requirements.
 
 ### ADD_BIN_TO_PATH
 
-Adds the `bin` directory to the system path. This is useful for builds that require executables to be available on the path.
+Adds the configure dependent `(debug/)bin` directory to the system path. This is useful if configure builds and runs executables with vcpkg integrated dependencies.
 
 ### NO_DEFAULT_OPTIONS
 
@@ -100,10 +98,6 @@ The directory containing the project's source files
 
 This value is usually obtained as a result of calling a source acquisition command like [`vcpkg_from_github()`](vcpkg_from_github.md).
 
-### SHELL
-
-Specifies the shell to use for running the configuration scripts. Useful for ensuring compatibility in environments where the default shell might not behave as expected.
-
 ### OPTIONS
 
 Additional options to pass to the configure script. Use these to specify any custom flags or settings required by the project.
@@ -123,10 +117,6 @@ These are in addition to `OPTIONS`.
 ### PRE_CONFIGURE_CMAKE_COMMANDS
 
 Specifies a list of CMake commands to execute before the configure process. This can be used to set up the environment or prepare the build in a way that the configure script requires.
-
-### POST_CONFIGURE_CMAKE_COMMANDS
-
-Specifies a list of CMake commands to execute after the configure process. This can be used for cleanup or to prepare for the next steps in the build process.
 
 ### LANGUAGES
 

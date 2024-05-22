@@ -13,11 +13,11 @@ directory. The installation directory holds the files installed by each package.
 Port authors should ensure that their packages follow the conventions described
 in this article.
 
-In [classic mode](../users/classic-mode.md), the installation directory is
+In [classic mode](../concepts/classic-mode.md), the installation directory is
 located in `$VCPKG_ROOT/installed` (where `$VCPKG_ROOT` is your vcpkg
-installation path). In [manifest mode](../users/manifests.md), each manifest
-file has a corresponding `vcpkg_installed` directory. The location of the
-installation directory can be changed with the
+installation path). In [manifest mode](../concepts/manifest-mode.md), each
+manifest file has a corresponding `vcpkg_installed` directory. The location of
+the installation directory can be changed with the
 [`--x-install-root`](../commands/common-options.md#install-root) option.
 Regardless of the operation mode, the layout of the installation directory
 remains the same.

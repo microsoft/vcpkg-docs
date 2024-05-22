@@ -43,8 +43,8 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     export PATH=$VCPKG_ROOT:$PATH
     ```
 
-    > [!NOTE]
-    > Setting the `VCPKG_ROOT` environment variable using the `export` command only affects the current shell session. To make this change permanent across sessions, you'll need to add the `export` command to your shell's profile script (e.g., `~/.bashrc` or `~/.zshrc`).
+
+    [!INCLUDE [env-vars](../../includes/env-vars-bash.md)]
 
     ::: zone-end
 
@@ -55,8 +55,8 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     set PATH=%VCPKG_ROOT%;%PATH%
     ```
 
-    > [!NOTE]
-    > Setting the `VCPKG_ROOT` environment variable using the `set` command only affects the current shell session. To make this change permanent across sessions, you can use the `setx` command and restart the shell session.
+
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
 
     ::: zone-end
     ::: zone pivot="shell-powershell"
@@ -66,8 +66,9 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
     ```
 
-    > [!NOTE]
-    > Setting the `VCPKG_ROOT` and updating the `PATH` environment variables in this manner only affects the current PowerShell session. To make these changes permanent across all sessions, you should add them to your PowerShell profile or set them through the Windows System Environment Variables panel.
+
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
+    
     ::: zone-end
 
     Setting `VCPKG_ROOT` tells vcpkg where your vcpkg instance is located.
@@ -123,11 +124,11 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     - `add_executable(HelloWorld main.cpp)`: Adds an executable target named "HelloWorld," built from the source file `main.cpp`.
     - `target_link_libraries(HelloWorld PRIVATE fmt::fmt)`: Specifies that the `HelloWorld` executable should link against the `fmt` library. The `PRIVATE` keyword indicates that `fmt` is only needed for building `HelloWorld` and should not propagate to other dependent projects.
 
-    Create the `helloworld.cpp` file with the following content:
+    Create the `main.cpp` file with the following content:
 
     :::code language="cpp" source="../examples/snippets/get-started/main.cpp":::
 
-    In this `helloworld.cpp` file, the `<fmt/core.h>` header is included for using the `fmt` library. The `main()` function then calls `fmt::print()` to output the "Hello World!" message to the console.
+    In this `main.cpp` file, the `<fmt/core.h>` header is included for using the `fmt` library. The `main()` function then calls `fmt::print()` to output the "Hello World!" message to the console.
 
 ## 4 - Build and run the project
 
@@ -152,21 +153,31 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     ```console
     cmake --build build
     ```
-
+    
 3. Run the application
 
     Finally, run the executable to see your application in action:
 
+    ::: zone pivot="shell-bash"
     ```console
     ./build/HelloWorld
     
     Hello World!
     ```
+    ::: zone-end
+   
+    ::: zone pivot="shell-cmd, shell-powershell"
+    ```console
+    .\build\HelloWorld.exe
+    
+    Hello World!
+    ```
+    ::: zone-end   
 
 ## Next steps
 
 To learn more about `vcpkg.json`, see our reference documentation:
 
 - [Packaging a library](get-started-packaging.md)
-- [vcpkg.json](..\reference\vcpkg-json.md)
-- [manifest](..\users\manifests.md)
+- [vcpkg.json](../reference/vcpkg-json.md)
+- [manifest](../concepts/manifest-mode.md)

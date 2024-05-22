@@ -1,7 +1,7 @@
 ---
 title: Frequently Asked Questions
 description: Common questions and answers about vcpkg
-ms.date: 01/26/2024
+ms.date: 02/09/2024
 ms.topic: faq
 ---
 # Frequently Asked Questions
@@ -10,8 +10,25 @@ ms.topic: faq
 
 There are two ways to manage your dependencies with vcpkg:
 
-1. **Manifest mode** lets you declare your direct dependencies, version constraints, and used registries in a file called [`vcpkg.json`](../reference/vcpkg-json.md). This file should be included in your code repository and can be checked in to your source control system. Dependencies are installed in a subfolder named `vcpkg_installed`. This way, each code project can have its own set of dependencies; nothing is installed system-wide. You can run vcpkg in manifest mode by running `vcpkg install` (with no other arguments), or by taking advantage of the automatic [integration with MSBuild](../users/buildsystems/msbuild-integration.md) and [CMake projects](../users/buildsystems/cmake-integration.md). We recommend using manifests for your projects over classic mode in most cases, as you have better control over your dependencies. See our [Manifest mode article](../concepts/manifest-mode.md) for more details.
-2. **Classic mode** is the more traditional way of managing dependencies, which involves running vcpkg commands that specify each direct dependency to install, modify, or remove. Dependencies are stored within the vcpkg installation directory, so multiple consuming projects can reference the same set of dependencies. See our [Classic mode article](../users/classic-mode.md) for more details.
+1. **Manifest mode** lets you declare your direct dependencies, version
+   constraints, and used registries in a file called
+   [`vcpkg.json`](../reference/vcpkg-json.md). This file should be included in
+   your code repository and can be checked in to your source control system.
+   Dependencies are installed in a subfolder named `vcpkg_installed`. This way,
+   each code project can have its own set of dependencies; nothing is installed
+   system-wide. You can run vcpkg in manifest mode by running `vcpkg install`
+   (with no other arguments), or by taking advantage of the automatic
+   [integration with MSBuild](../users/buildsystems/msbuild-integration.md) and
+   [CMake projects](../users/buildsystems/cmake-integration.md). We recommend
+   using manifests for your projects over classic mode in most cases, as you
+   have better control over your dependencies. See our [Manifest mode
+   article](../concepts/manifest-mode.md) for more details.
+2. **Classic mode** is the more traditional way of managing dependencies, which
+   involves running vcpkg commands that specify each direct dependency to
+   install, modify, or remove. Dependencies are stored within the vcpkg
+   installation directory, so multiple consuming projects can reference the same
+   set of dependencies. See our [Classic mode
+   article](../concepts/classic-mode.md) for more details.
 
 ## Can I contribute a new library?
 
@@ -76,7 +93,10 @@ Execute `git pull` to get the latest sources, then run `bootstrap-vcpkg.bat` (Wi
 
 ## How do I use different versions of a library on one machine?
 
-We suggest using [manifest files](../users/manifests.md) to manage dependencies for individual projects, which works even if multiple projects are on the same machine and allow you to easily manage package versions and which registries libraries are coming from.
+We suggest using [manifest files](../concepts/manifest-mode.md) to manage
+dependencies for individual projects, which works even if multiple projects are
+on the same machine and allow you to easily manage package versions and which
+registries libraries are coming from.
 
 However, if you are using classic mode instead, within a single instance of vcpkg (e.g. one set of `installed\`, `packages\`, `ports\` and so forth), you can only have one version of a library installed (otherwise, the headers would conflict with each other!). For those with experience with system-wide package managers, packages in vcpkg correspond to the `X-dev` or `X-devel` packages. In this case, to use different versions of a library for different projects, we recommend making separate instances of vcpkg and using the per-project integration mechanisms. The versions of each library are specified by the files in `ports\`, so they are easily manipulated using standard `git` commands. This makes it very easy to roll back the entire set of libraries to a consistent set of older versions which all work with each other. If you need to then pin a specific library forward, that is as easy as checking out the appropriate version of `ports\<package>\`. If your application is very sensitive to the versions of libraries, we recommend checking in the specific set of portfiles you need into your source control along with your project sources and using the `--vcpkg-root` option to redirect the working directory of `vcpkg.exe`.
 
@@ -125,7 +145,33 @@ A lower level mechanism to achieve the same as the `vcpkg integrate project` NuG
 
 ## How can I remove temporary files?
 
-You can save some disk space by completely removing the `packages\`, `buildtrees\`, and `downloads\` folders.
+If you only care about the installed packages, it is safe to delete the
+following directories inside the vcpkg root folder:
+
+- `packages`,
+- `buildtrees`,
+- and `downloads`
+
+You can use the [`--clean-after-build`
+flag](../commands/install.md#clean-after-build) in your [`vcpkg install`
+command](../commands/install.md) to make vcpkg delete the temporary files
+automatically after the build is completed.
+
+vcpkg also uses other temporary locations external to the vcpkg root folder. The
+Visual Studio integration files, default binary cache, and registries cache; are
+all located in the following path depending on your operative system:
+
+On Windows:
+
+- `%LocalAppData%/vcpkg`
+
+On Linux/macOS:
+
+- `$XDG_CACHE_HOME/vcpkg`
+- `~/.cache/vcpkg` (only if `XDG_CACHE_HOME` is not defined)
+
+If you have configured local binary or asset caches then you may want to
+periodically clean those too as needed.
 
 ## How is CMake used internally by vcpkg?
 

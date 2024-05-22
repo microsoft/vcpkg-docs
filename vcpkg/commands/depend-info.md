@@ -8,14 +8,18 @@ ms.date: 01/10/2024
 ## Synopsis
 
 ```no-highlight
-vcpkg depend-info [options] <package>
+vcpkg depend-info [options] <package>...
 ```
 
 ## Description
 
-Display all dependencies for a package.
+Display dependencies for a set of port packages.
 
-`depend-info` displays all transitive dependencies for a package in several formats, including  plain text, tree, DGML, DOT or Mermaid.
+`depend-info` displays all transitive dependencies for a set of packages in several formats, including  plain text, tree, DGML, DOT or Mermaid.
+The set of packages is considered as a single combined request similar to `vcpkg install <package>...` but regardless of installed packages.
+
+When used with multiple triplets (default, host, per-package), packages which are installed for other triplets than the default are marked.
+Packages for the host triplet are marked with the suffix `:host`.
 
 ## Examples
 
@@ -50,20 +54,19 @@ ableton
 ```console
 $ vcpkg depend-info ableton --format=dot
 
-digraph G{
-    rankdir=LR;
-    edge [minlen=3];
-    overlap=false;
-    ableton;
-    ableton -> ableton_link;
-    ableton_link;
-    ableton_link -> asio;
-    ableton_link -> vcpkg_cmake;
-    ableton_link -> vcpkg_cmake_config;
-    asio;
-    asio -> vcpkg_cmake;
-    asio -> vcpkg_cmake_config;
-    empty [label="2 singletons..."];
+digraph G{ rankdir=LR; node [fontname=Sans]; edge [minlen=3]; overlap=false;
+"vcpkg-cmake";
+"vcpkg-cmake-config";
+"asio";
+"asio" -> "vcpkg-cmake";
+"asio" -> "vcpkg-cmake-config";
+"ableton-link";
+"ableton-link" -> "asio";
+"ableton-link" -> "vcpkg-cmake";
+"ableton-link" -> "vcpkg-cmake-config";
+"ableton";
+"ableton" -> "ableton-link";
+"2 singletons...";
 }
 ```
 
@@ -116,6 +119,23 @@ flowchart TD;
     ableton_link-->vcpkg_cmake_config;
     asio-->vcpkg_cmake;
     asio-->vcpkg_cmake_config;
+```
+
+#### Multiple triplets and packages
+
+```console
+$ ./vcpkg depend-info proj tiff[core] --triplet x64-windows-static-md
+
+vcpkg-cmake:host: 
+vcpkg-cmake-config:host: 
+zlib: vcpkg-cmake:host
+liblzma: vcpkg-cmake:host, vcpkg-cmake-config:host
+curl[sspi, ssl, schannel, non-http]: vcpkg-cmake:host, vcpkg-cmake-config:host, zlib
+nlohmann-json: vcpkg-cmake:host, vcpkg-cmake-config:host
+sqlite3[json1, tool]:host: vcpkg-cmake:host, vcpkg-cmake-config:host
+sqlite3[json1]: vcpkg-cmake:host, vcpkg-cmake-config:host
+tiff[zip, lzma]: liblzma, vcpkg-cmake:host, vcpkg-cmake-config:host, zlib
+proj[tiff, net]: curl, nlohmann-json, sqlite3:host, sqlite3, tiff, vcpkg-cmake:host, vcpkg-cmake-config:host
 ```
 
 ## Options

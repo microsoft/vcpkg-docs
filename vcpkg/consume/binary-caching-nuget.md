@@ -157,7 +157,7 @@ nuget sources add -Name my-packages -Source https://my.nuget.feed/vcpkg-cache/in
 ```
 
 Some providers like Azure Artifacts may require different authentication methods, read the 
-[Authenticate to private NuGet feeds](../users/binarycaching.md#nuget-credentials) article to learn
+[Authenticate to private NuGet feeds](../reference/binarycaching.md#nuget-credentials) article to learn
 more.
 
 ### Use a `nuget.config` file
@@ -309,7 +309,7 @@ And that's it! vcpkg will now upload or restore packages from your NuGet feed.
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Authenticate to private NuGet feeds](../users/binarycaching.md#nuget-credentials)
+> [Authenticate to private NuGet feeds](../reference/binarycaching.md#nuget-credentials)
 
 Here are other tasks to try next:
 

@@ -57,6 +57,9 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-powershell.png" alt-text="setting up your environment variables":::
         Screenshot of Visual Studio UI for the built-in PowerShell developer window showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
+
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
+
     ::: zone-end
     ::: zone pivot="shell-cmd"
     Open the Developer command prompt in Visual Studio.
@@ -75,6 +78,9 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-cmd.png" alt-text="setting up your environment variables":::
         Screenshot of Visual Studio developer command prompt showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
+
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
+
     ::: zone-end
 
     Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
@@ -127,15 +133,17 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
   
     ```json
     {
-    "version": 3,
-    "configurePresets": [
+      "version": 2,
+      "configurePresets": [
         {
-        "name": "default",
-        "cacheVariables": {
+          "name": "default",
+          "generator": "Ninja",
+          "binaryDir": "${sourceDir}/build",
+          "cacheVariables": {
             "CMAKE_TOOLCHAIN_FILE": "<VCPKG_ROOT>/scripts/buildsystems/vcpkg.cmake"
+          }
         }
-        }
-    ]
+      ]
     }
     ```
 
@@ -179,5 +187,5 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 To learn more about `vcpkg.json`, see our reference documentation:
 
-- [vcpkg.json](..\reference\vcpkg-json.md)
-- [manifest](..\users\manifests.md)
+- [vcpkg.json](../reference/vcpkg-json.md)
+- [manifest](../concepts/manifest-mode.md)

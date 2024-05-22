@@ -156,7 +156,7 @@ Packages inside your GitHub Acions workflow.
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Authenticate to private NuGet feeds](../users/binarycaching.md#nuget-credentials)
+> [Authenticate to private NuGet feeds](../reference/binarycaching.md#nuget-credentials)
 
 Here are other tasks to try next:
 

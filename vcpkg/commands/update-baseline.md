@@ -17,7 +17,11 @@ vcpkg x-update-baseline [options] [--add-initial-baseline] [--dry-run]
 
 Update baselines for all configured [registries](../reference/vcpkg-configuration-json.md#registries).
 
-In [Manifest mode](../users/manifests.md), this command operates on all registries in the [`vcpkg.json`](../reference/vcpkg-json.md) and the [`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md). In Classic mode, this command operates on the `vcpkg-configuration.json` in the vcpkg instance (`$VCPKG_ROOT`).
+In [Manifest mode](../concepts/manifest-mode.md), this command operates on all
+registries in the [`vcpkg.json`](../reference/vcpkg-json.md) and the
+[`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md). In
+Classic mode, this command operates on the `vcpkg-configuration.json` in the
+vcpkg instance (`$VCPKG_ROOT`).
 
 See the [versioning documentation](../users/versioning.md#baselines) for more information about baselines.
 

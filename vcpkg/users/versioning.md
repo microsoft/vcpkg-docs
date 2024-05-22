@@ -4,12 +4,14 @@ title: Versioning reference
 description: Reference documentation for the vcpkg versioning feature.
 author: vicroms
 ms.author: viromer
-ms.date: 01/10/2024
+ms.date: 3/1/2024
 ms.topic: reference
 ---
 # Versioning reference
 
-Versioning allows you to deterministically control the precise revisions of dependencies used by your project from within your manifest file. Versioning is only available to [Manifest mode](manifests.md) users.
+Versioning allows you to deterministically control the precise revisions of
+dependencies used by your project from within your manifest file. Versioning is
+only available to [Manifest mode](../concepts/manifest-mode.md) users.
 
 For more information about the vcpkg versioning algorithm and high level concepts, see [Versioning Concepts](versioning.concepts.md).
 
@@ -172,7 +174,7 @@ For an override to take effect, the overridden package must form part of the dep
   "builtin-baseline":"3426db05b996481ca31e95fff3734cf23e0f51bc",
   "overrides": [
     { "name": "fmt", "version": "6.0.0" },
-    { "name": "openssl", "version-string": "1.1.1h#3" }
+    { "name": "openssl", "version": "1.1.1h#3" }
   ]
 }
 ```
