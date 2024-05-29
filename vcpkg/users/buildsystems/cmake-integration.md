@@ -42,7 +42,7 @@ install` to automatically acquire the project's dependencies.
 Because the toolchain file is evaluated during the `project()` call, all CMake-level variables that
 modify a vcpkg setting must be set before the first call to `project()`. It may also be necessary to
 reconfigure your CMake project if you modify any vcpkg setting that results in [ABI
-hash](../binarycaching.md#abi-hash) changes.
+hash](../../reference/binarycaching.md#abi-hash) changes.
 
 See [Installing and Using Packages Example: sqlite](../../examples/installing-and-using-packages.md) for a fully worked example using CMake.
 

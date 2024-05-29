@@ -35,8 +35,8 @@ tools, or vcpkg-specific script changes) which makes sharing them between develo
 difficult. See the [`vcpkg export`](../commands/export.md) for a different option to share built
 packages.
 
-See the [binary caching documentation](../users/binarycaching.md) to learn about
-the different [storage backends](../users/binarycaching.md#providers).
+See the [binary caching documentation](../reference/binarycaching.md) to learn about
+the different [storage backends](../reference/binarycaching.md#providers).
 
 ## Next steps
 
@@ -50,4 +50,4 @@ Here are other tasks to try next:
 * [Set up a binary cache using a NuGet feed](binary-caching-nuget.md)
 * [Set up a binary cache in your GitHub Actions workflow using GitHub Packages](binary-caching-github-packages.md)
 * [Set up a binary cache in your GitHub Actions workflow using GitHub Actions Cache](binary-caching-github-actions-cache.md)
-* [Authenticate to private NuGet feeds](../users/binarycaching.md#nuget-credentials)
+* [Authenticate to private NuGet feeds](../reference/binarycaching.md#nuget-credentials)

@@ -103,6 +103,8 @@
   items:
   - name: Asset caching
     href: concepts/asset-caching.md
+  - name: Binary caching
+    href: users/binarycaching.md
   - name: Build system integration
     items:
     - name: Available build system integrations
@@ -115,6 +117,8 @@
       href: users/buildsystems/manual-integration.md
   - name: Classic mode
     href: concepts/classic-mode.md
+  - name: Continuous Integration
+    href: concepts/continuous-integration.md
   - name: Default features
     href: concepts/default-features.md
   - name: Features
@@ -220,11 +224,13 @@
     href: users/assetcaching.md
   - name: Binary caching
     displayName: binaries, build
-    href: users/binarycaching.md
+    href: reference/binarycaching.md
   - name: Environment variables
     href: users/config-environment.md
   - name: Installation tree layout
     href: reference/installation-tree-layout.md
+  - name: Port policies
+    href: reference/policies.md
   - name: Portfile functions
     items:
     - name: vcpkg_acquire_msys
