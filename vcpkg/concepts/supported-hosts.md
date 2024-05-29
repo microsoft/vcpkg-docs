@@ -25,6 +25,7 @@ We recommend installing these dependencies via Homebrew, such as via a terminal 
 We recommend installing these dependencies with your system package manager.
   * apt-based platforms: `apt install git curl zip unzip pkgconfig`
   * rpm-based platforms: `dnf install git curl zip unzip pkgconfig`
+  * pacman-based platforms: `base-devel git curl zip unzip tar cmake ninja`
 
 For Linux and macOS users we also recommend to install the following packages: `autoconf`, `autoconf-archive`, `automake`, `make` and `libtool`. While not required, these packages are used often by libraries available in vcpkg.
 
