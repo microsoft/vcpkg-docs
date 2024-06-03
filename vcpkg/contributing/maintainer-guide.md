@@ -1,7 +1,7 @@
 ---
 title: vcpkg Maintainer Guide
 description: The Guide for maintainers contributing to vcpkg.
-ms.date: 01/10/2024
+ms.date: 06/03/2024
 ms.topic: concept-article
 ---
 # Maintainer guide
@@ -11,6 +11,29 @@ It is intended to serve the role of
 [Debian's Policy Manual](https://www.debian.org/doc/debian-policy/),
 [Homebrew's Maintainer Guidelines](https://docs.brew.sh/Maintainer-Guidelines), and
 [Homebrew's Formula Cookbook](https://docs.brew.sh/Formula-Cookbook).
+
+## Overall Registry Design Goals
+
+### Ports in the current baseline must be simultaneiously installable
+
+We wish to be able to show downstream customers of libraries in the default registry that the
+combination of libraries in any given baseline we publish have been tested to work together in at
+least some configurations. Allowing ports to exclude each other breaks the ability to test such
+configurations, as the number of builds necessary for such tests would grow as
+`2^number_of_such_cases`. Moreover, installing additional dependencies is always considered "safe":
+there is no way for a port or end user to assert that a dependency is *not* installed in their
+requirements.
+
+If you wish to represent such an alternative situation for customers, consider describing how
+someone can create an [overlay port](../concepts/overlay-ports.md) implementing the alternative
+form with a comment in `portfile.cmake` rather than trying to add additional ports never built in
+the curated registry's continuous integration. For example, see
+[glad@0.1.36](https://github.com/microsoft/vcpkg/blob/67cc1677c3bf5c23ea14b9d2416c7422fdeac492/ports/glad/portfile.cmake#L17).
+
+Before the introduction of [registries](../maintainers/registries.md), we accepted several
+not tested ports-as-alternatives, such as `boringssl`, that could make authoring overlay ports
+easier. This is no longer accepted because registries allow publishing of these untested ports
+without modifying the curated registry.
 
 ## PR structure
 
@@ -33,6 +56,10 @@ consider renaming to make it clear. We prefer when names are longer and/or
 unlikely to conflict with any future use of the same name. If the port refers
 to a library on GitHub, a good practice is to prefix the name with the organization
 if there is any chance of confusion.
+
+Put another way, the reason for this is to ensure that `vcpkg install Xxx`
+gives the user looking for `Xxx` what they were expecting and not be
+surprised by getting something different.
 
 ### Use GitHub Draft PRs
 
@@ -98,6 +125,8 @@ the files installed by `b` must be the same, regardless of influence by the prev
 ### Unique port attribution rule
 
 In the entire vcpkg system, no two ports a user is expected to use concurrently may provide the same file. If a port tries to install a file already provided by another file, installation will fail. If a port wants to use an extremely common name for a header, for example, it should place those headers in a subdirectory rather than in `include`.
+
+This property is checked regularly by continuous integration runs which try to install all ports in the registry, which will fail with `FILE_CONFLICTS` if two ports provide the same file.
 
 ### Add CMake exports in an unofficial- namespace
 
