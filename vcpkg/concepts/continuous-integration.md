@@ -17,7 +17,7 @@ your ports.
 
 The steps to acquire vcpkg in a CI environment are the same as those to acquire
 vcpkg in your development environment. You need to acquire a clone of the vcpkg
-repository at <https://github.com/Microsoft.com> and you need to run the
+repository at <https://github.com/microsoft/vcpkg> and you need to run the
 bootstrap script to get a vcpkg executable.
 
 Regardless of the acquisition method you follow, it is highly recommended that
