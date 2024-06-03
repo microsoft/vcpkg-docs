@@ -37,6 +37,13 @@ declared in a manifest file automatically.
 Read more about how this integration works in the [CMake integration
 documentation](../users/buildsystems/cmake-integration.md).
 
+## Clion integration
+
+starting from Clion 2023.2 Clion provides integration with Vcpkg, for details see the [official documentation](https://www.jetbrains.com/help/clion/package-management.html).
+
+if using a previous version of Clion you will need to follow the [manual
+integration](../users/buildsystems/manual-integration.md).
+
 ## Manual integration
 
 vcpkg makes it easy to integrate with other build systems by providing a standardized documented [installation layout](../reference/installation-tree-layout.md).
