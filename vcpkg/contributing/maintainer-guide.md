@@ -16,7 +16,7 @@ It is intended to serve the role of
 
 ### Ports in the current baseline must be simultaneiously installable
 
-We wish to be able to show downstream customers of libraries in the default registry that the
+We wish to be able to show downstream users of libraries in the default registry that the
 combination of libraries in any given baseline we publish have been tested to work together in at
 least some configurations. Allowing ports to exclude each other breaks the ability to test such
 configurations, as the number of builds necessary for such tests would grow as
@@ -24,7 +24,7 @@ configurations, as the number of builds necessary for such tests would grow as
 there is no way for a port or end user to assert that a dependency is *not* installed in their
 requirements.
 
-If you wish to represent such an alternative situation for customers, consider describing how
+If you wish to represent such an alternative situation for users, consider describing how
 someone can create an [overlay port](../concepts/overlay-ports.md) implementing the alternative
 form with a comment in `portfile.cmake` rather than trying to add additional ports never built in
 the curated registry's continuous integration. For example, see
@@ -130,7 +130,7 @@ This property is checked regularly by continuous integration runs which try to i
 
 ### Add CMake exports in an unofficial- namespace
 
-A core design ideal of vcpkg is to not create "lock-in" for customers. In the build system, there should be no difference between depending on a library from the system, and depending on a library from vcpkg. To that end, we avoid adding CMake exports or targets to existing libraries with "the obvious name", to allow upstreams to add their own official CMake exports without conflicting with vcpkg.
+A core design ideal of vcpkg is to not create "lock-in" for users. In the build system, there should be no difference between depending on a library from the system, and depending on a library from vcpkg. To that end, we avoid adding CMake exports or targets to existing libraries with "the obvious name", to allow upstreams to add their own official CMake exports without conflicting with vcpkg.
 
 To that end, any CMake configs that the port exports, which are not in the upstream library, should have `unofficial-` as a prefix. Any additional targets should be in the `unofficial::<port>::` namespace.
 
