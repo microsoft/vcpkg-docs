@@ -56,7 +56,7 @@ Each port in a registry should exist in the versions directory as `<first letter
 - The version of the port in question; should be exactly the same as the `vcpkg.json` file, including the version fields and `"port-version"`.
 - The `"git-tree"` field, which is a git tree; in other words, what you get when you write `git rev-parse COMMIT-ID:path/to/port`.
 
-The version field for ports with old-style `CONTROL` files is `"version-string"`.
+The version field for ports with deprecated `CONTROL` files is `"version-string"`.
 
 > [!WARNING]
 > One very important part of registries is that versions should _never_ be changed. Updating to a later ref should never remove or change an existing version. It must always be safe to update a registry.
@@ -195,7 +195,7 @@ Each port in a registry should exist in the versions directory as `<first letter
 - The version of the port in question; should be exactly the same as the `vcpkg.json` file, including the version fields and `"port-version"`.
 - The `"path"` field: a relative directory, rooted at the base of the registry (in other words, the directory where `versions` is located), to the port directory. It should look something like `"$/path/to/port/dir`"
 
-The version field for ports with old-style `CONTROL` files is `"version-string"`.
+The version field for ports with deprecated `CONTROL` files is `"version-string"`.
 
 In general, it's not important where you place port directories. However, the idiom in vcpkg is to follow somewhat closely to what the built in vcpkg registry does: your `kitten` port at version `x.y.z` should be placed in `ports/kitten/x.y.z`, with port versions appended as you see fit (although since `#` is not a good character to use for file names, perhaps use `_`).
 
