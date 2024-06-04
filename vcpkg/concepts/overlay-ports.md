@@ -40,7 +40,7 @@ You can add an overlay port in several ways:
 Given this directory structure:
 
 :::image type="complex" source="../resources/ports-overlay-example.png" alt-text="Example with multiple overlay port directories":::
-Overlay directory named team-ports contains ports sqlite3, rapidjson and curl. Overlay directory named my-ports contains ports sqlite3 and rapidjson. The vcpkg directory contains the default catalog.
+Overlay directory named team-ports contains ports sqlite3, rapidjson and curl. Overlay directory named my-ports contains ports sqlite3 and rapidjson. The vcpkg directory contains the default registry.
 :::image-end:::
 
 Run:

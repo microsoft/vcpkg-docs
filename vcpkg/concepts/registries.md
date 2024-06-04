@@ -9,21 +9,24 @@ ms.topic: concept-article
 
 # Registries concepts
 
-Registries are collections of ports and their versions. The current catalog of
-ports in vcpkg are distributed via the registry at
-<https://github.com/Microsoft/vcpkg>. vcpkg lets you create your custom
-registries, which you can make either public or private, and host them in a
-variety of storage providers.
+Registries are collections of ports and their versions. The curated registry is
+the one hosted at <https://github.com/Microsoft/vcpkg>. vcpkg lets you create
+custom registries, which may be hosted by a variety of public or private providers.
 
 There are currently two options to implement your own registries: a Git-based
 registry or a filesystem-based registry.
 
 ## Built-in registry
 
-The built-in registry refers to the main vcpkg registry at
-<https://github.com/Microsoft/vcpkg>. Depending on the vcpkg operation mode, this
-can mean your local clone of the vcpkg repository or the remote repository
-hosted in GitHub.
+The built-in registry refers to the implicit registry typically used in classic
+mode scenarios, and edited directly in the directory `VCPKG_ROOT`.
+
+If vcpkg was acquired using `git clone`, this will refer to the registry in `VCPKG_ROOT` itself,
+and is expected to be a clone of <https://github.com/Microsoft/vcpkg> created before running vcpkg.
+
+Otherwise (vcpkg was acquired using the 'one liner' installer or the 'Visual Studio bundle'),
+this will be equivalent to a git registry with a `"repository"` of
+`"https://github.com/Microsoft/vcpkg"`.
 
 ## Git registries
 
