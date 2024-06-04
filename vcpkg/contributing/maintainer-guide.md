@@ -16,7 +16,7 @@ It is intended to serve the role of
 
 ### Ports in the current baseline must be installable simultaneously
 
-We wish to be able to show downstream users of libraries in the default registry that the
+We wish to be able to show downstream users of libraries in the curated registry that the
 combination of libraries in any given baseline we publish have been tested to work together in at
 least some configurations. Allowing ports to exclude each other breaks the ability to test such
 configurations, as the number of builds necessary for such tests would grow as
