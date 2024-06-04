@@ -385,8 +385,11 @@ The ABI Hash considers:
   [`VCPKG_ENV_PASSTHROUGH`](../users/triplets.md#vcpkg_env_passthrough)
 - The toolchain file's textual contents
   ([`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](../users/triplets.md#vcpkg_chainload_toolchain_file))
+- The GRDK toolkit (only when targeting the Xbox platform)
 
 Despite this extensive list, it is possible to defeat the cache and introduce nondeterminism. If you have additional details that you need to track for your environment, you can generate a triplet file with your additional information in a comment. That additional information will be included in the ABI Hash and ensure a unique universe of binaries.
+
+Files named `.DS_Store` are not considered for the ABI hash.
 
 The calculated ABI Hashes are stored in each package and in the current installed directory at `/share/<port>/vcpkg_abi_info.txt` for inspection.
 

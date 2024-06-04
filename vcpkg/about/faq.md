@@ -59,7 +59,7 @@ We recommend cloning directly from [GitHub](https://github.com/microsoft/vcpkg) 
 
 Yes. Follow [our packaging example](../get_started/get-started-packaging.md) to create your own port and see the [overlay ports](../concepts/overlay-ports.md) and [registries](../concepts/registries.md) documentation to learn how to manage your private ports.
 
-You can take this further by publishing your private libraries into a registry. See the article on [Creating registries](../maintainers/registries.md). A registry is a catalog of ports, similar to the one provided with vcpkg that contains open source libraries.
+You can take this further by publishing your private libraries into a registry. See the article on [Creating registries](../maintainers/registries.md). A registry is a collection of ports, similar to the one provided with vcpkg that contains open source libraries.
 
 ## Can I use a prebuilt private library with this tool?
 

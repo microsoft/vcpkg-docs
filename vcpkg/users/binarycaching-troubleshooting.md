@@ -225,7 +225,7 @@ Compare ABI entries for each package. A entry represents a piece of information 
 
 Port files include port scripts (`portfile.cmake`, `vcpkg.json`), patch files (`*.patch`), or any other file in the ports directory: `ports/<library>/*`.
 
-#### Cause 1: CI or pipeline updated the port catalog
+#### Cause 1: CI or pipeline updated the port registry
 
 Before vcpkg ran in your CI, it cloned the latest vcpkg repository.
 

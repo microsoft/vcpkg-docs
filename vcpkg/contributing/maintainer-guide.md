@@ -309,13 +309,6 @@ A lib is considered conflicting if it does any of the following:
 
 Conflicting libs are typically by design and not considered a defect.  Because some build systems link against everything in the lib directory, these should be moved into a subdirectory named `manual-link`.
 
-## Manifests and CONTROL files
-
-When adding a new port, use the new manifest syntax for defining a port;
-you may also change over to manifests when modifying an existing port.
-You may do so easily by running the `vcpkg format-manifest` command, which will convert existing CONTROL
-files into manifest files. Do not convert CONTROL files that have not been modified.
-
 ## Versioning
 
 ### Follow common conventions for the `"version"` field

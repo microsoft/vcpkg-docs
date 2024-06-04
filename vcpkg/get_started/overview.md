@@ -9,7 +9,7 @@ ms.date: 01/10/2024
 
 # vcpkg overview
 
-vcpkg is a free and open-source C/C++ package manager maintained by Microsoft and the C++ community. Launched in 2016, it helps developers migrate their projects to newer versions of Visual Studio. vcpkg has evolved into a cross-platform tool used by developers on Windows, macOS, and Linux. vcpkg has a large catalog of open-source libraries and enterprise-ready features designed to facilitate your development process with support for any build and project systems. vcpkg is a C++ tool at heart and is written in C++ with scripts in CMake. It is designed from the ground up to address the unique pain points of the C/C++ developer experience.
+vcpkg is a free and open-source C/C++ package manager maintained by Microsoft and the C++ community. Launched in 2016, it helps developers migrate their projects to newer versions of Visual Studio. vcpkg has evolved into a cross-platform tool used by developers on Windows, macOS, and Linux. vcpkg has a large registry of open-source libraries and enterprise-ready features designed to facilitate your development process with support for any build and project systems. vcpkg is a C++ tool at heart and is written in C++ with scripts in CMake. It is designed from the ground up to address the unique pain points of the C/C++ developer experience.
 
 ## Why vcpkg?
 
@@ -46,7 +46,7 @@ vcpkg has a unique way of handling [package versions](../users/versioning.concep
 
 ### Registries
 
-A [registry](../concepts/registries.md) is a catalog of ports and available versions that a vcpkg user can install. vcpkg provides a public registry of open-source libraries by default. You can also create your own registries for customizations, patches, or private libraries.
+A [registry](../concepts/registries.md) is a collection of ports and available versions that a vcpkg user can install. vcpkg provides a public registry of open-source libraries by default. You can also create your own registries for customizations, patches, or private libraries.
 
 ### Asset caching
 
@@ -71,7 +71,7 @@ There are a wide variety of system package managers for Linux, macOS, and Window
 - **Prebuilt packages vs. build from source**: vcpkg can build packages from source based on your custom requirements. There is no need to deal with with prebuilt, pre-compiled packages to get them to work.
 - **Catalog-wide versioning**: vcpkg allows you to depend on a version set of compatible packages, rather than having to micromanage individual package versions. You can still do so as needed, but the default experience is designed to be easy to get started with.
 - **Multiple copies of the same library on one system**: You can have multiple copies of the same dependency installed on the same system with vcpkg, whereas system package managers may install one version to a single, system-wide location. This complicates things when you have multiple projects depending on different versions of a library.
-- **Catalog size**: Because vcpkg is specialized for C/C++, it has a very large C/C++ library catalog in comparison to system package managers, and it is actively maintained. In general, you are more likely to find useful and up to date libraries for C++ development.
+- **Catalog size**: Because vcpkg is specialized for C/C++, it has a very large C/C++ library collection in comparison to system package managers, and it is actively maintained. In general, you are more likely to find useful and up to date libraries for C++ development.
 - **Cross-platform support**: System package managers provide packages locked to a particular system. If you need to target more than one operating system flavor, you'll need to find a different package manager for the second system. In contrast, vcpkg is a cross-platform package manager. So, you simply need to adjust your target builds accordingly.
 
 There are situations where a system package manager absolutely makes sense:
