@@ -12,7 +12,7 @@ It is intended to serve the role of
 [Homebrew's Maintainer Guidelines](https://docs.brew.sh/Maintainer-Guidelines), and
 [Homebrew's Formula Cookbook](https://docs.brew.sh/Formula-Cookbook).
 
-## Overall Registry Design Goals
+## Overall registry design goals
 
 ### Ports in the current baseline must be simultaneiously installable
 
@@ -37,7 +37,7 @@ without modifying the curated registry.
 
 ## PR structure
 
-### Make separate Pull Requests per port
+### Make separate pull requests per port
 
 Whenever possible, separate changes into multiple PRs.
 This makes them significantly easier to review and prevents issues with one set of changes from holding up every other change.
@@ -61,7 +61,7 @@ Put another way, the reason for this is to ensure that `vcpkg install Xxx`
 gives the user looking for `Xxx` what they were expecting and not be
 surprised by getting something different.
 
-### Use GitHub Draft PRs
+### Use GitHub draft PRs
 
 GitHub Draft PRs are a great way to get CI or human feedback on work that isn't yet ready to merge.
 Most new PRs should be opened as drafts and converted to normal PRs once the CI passes.
@@ -229,7 +229,7 @@ message(STATUS "This recipe is at ${CMAKE_CURRENT_LIST_DIR}")
 message(STATUS "See the overlay ports documentation at https://github.com/microsoft/vcpkg/blob/master/docs/specifications/ports-overlay.md")
 ```
 
-## Build Techniques
+## Build techniques
 
 ### Do not use vendored dependencies
 
@@ -433,7 +433,7 @@ This helps to keep the size of the vcpkg repository down as well as improves the
 
 The purpose of patching in vcpkg is to enable compatibility with compilers, libraries, and platforms. It is not to implement new features in lieu of following proper Open Source procedure (submitting an Issue/PR/etc).
 
-## Do not build tests/docs/examples by default
+### Do not build tests/docs/examples by default
 
 When submitting a new port, check for any options like `BUILD_TESTS` or `WITH_TESTS` or `POCO_ENABLE_SAMPLES` and ensure the additional binaries are disabled. This minimizes build times and dependencies for the average user.
 
