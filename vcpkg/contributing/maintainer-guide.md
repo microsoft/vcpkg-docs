@@ -14,7 +14,7 @@ It is intended to serve the role of
 
 ## Overall registry design goals
 
-### Ports in the current baseline must be simultaneiously installable
+### Ports in the current baseline must be installable simultaneously
 
 We wish to be able to show downstream users of libraries in the default registry that the
 combination of libraries in any given baseline we publish have been tested to work together in at
