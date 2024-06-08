@@ -182,6 +182,21 @@ set(VCPKG_HASH_ADDITIONAL_FILES
 )
 ```
 
+### VCPKG_POST_PORTFILE_INCLUDES
+
+A list of cmake files to include after the execution of portfile.cmake.
+
+This field is optional.
+
+The contents and order of the files are used for the ABI hash, the paths of the files do not affect the ABI hash.
+
+```cmake
+set(VCPKG_POST_PORTFILE_INCLUDES
+  "${CMAKE_CURRENT_LIST_DIR}/file1.cmake"
+  "${CMAKE_CURRENT_LIST_DIR}/file2.cmake"
+)
+```
+
 ### VCPKG_DEP_INFO_OVERRIDE_VARS
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
