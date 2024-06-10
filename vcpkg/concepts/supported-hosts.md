@@ -3,7 +3,7 @@ title:  Supported hosts
 description: This article describes the platforms on which vcpkg is supported.
 author: bion
 ms.author: bion
-ms.date: 01/16/2024
+ms.date: 06/10/2024
 ms.topic: concept-article
 ---
 
@@ -18,10 +18,10 @@ vcpkg also depends on a few system components to be installed before it can run.
 To use vcpkg, a few components need to be installed on the system first.
 
 * Windows: Visual Studio 2015 or later.
-* macOS: XCode Console Tools, tar, git, zip, unzip, and curl. Most ports also need pkg-config.
+* macOS: XCode Console Tools, tar, git, zip, unzip, and curl. Most ports also need `pkg-config`.
 We recommend installing these dependencies via Homebrew, such as via a terminal command
 `brew install zip unzip curl pkgconfig`.
-* Linux: A C++ compiler to use, tar, git, zip, unzip, and curl. Most ports also need pkg-config.
+* Linux: A C++ compiler to use, tar, git, zip, unzip, and curl. Most ports also need `pkg-config`.
 We recommend installing these dependencies with your system package manager.
   * apt-based platforms: `apt install git curl zip unzip pkgconfig`
   * rpm-based platforms: `dnf install git curl zip unzip pkgconfig`
@@ -63,8 +63,8 @@ macOS is intended to track the latest version of macOS and contemporary version 
 updating macOS machines is a manual process, and macOS frequently changes things in ways that break vcpkg's testing. 
 As of this writing, we are using:
 
-* macOS 13.5.2
-* XCode Command Line Tools 14.3.1
+* macOS 14.5
+* XCode Command Line Tools 14.4
 
 ### Linux
 
@@ -77,7 +77,7 @@ As of this writing, we are using:
 
 ### Windows
 
-* Windows 7 / Server 2008 R2 and later
+* Windows 8.1 / Server 2016 and later
 * Visual Studio 2015 and later
 
 ### macOS
@@ -96,11 +96,15 @@ the last 5 years. Examples:
 are expected to work. Ubuntu 18.04 is still in support from Canonical but was released more than 5 years ago, so
 we no longer consider it fully supported. 20.10 is newer than 20.04 but we do not consider it fully supported because
 it is no longer in support from Canonical.
-* CentOS and Red Hat Enterprise Linux 8 is fully supported. CentOS and RHEL 7 are in support from Red Hat, but are
-not expected to work as they were released more than 5 years ago.
-* Fedora 39 and 38 are fully supported, but 37 is no longer supported by Fedora.
+* Red Hat Enterprise Linux 9 is fully supported.
+* CentOS and Red Hat Enterprise Linux 8 left support from Red Hat on May 31, 2024, and was released more than 5 years
+ago, and is thus no longer supported.
+* CentOS and RHEL 7 are out of support from Red Hat, and are not expected to work as they were released more than 5
+years ago. The Oracle Linux fork now supported by Oracle is still in support from Oracle, but still not expected to
+work as it was released more than 5 years ago.
+* Fedora 40 and 39 are fully supported, but 38 is no longer supported by Fedora.
 * Debian 12 "Bookworm", 11 "Bullseye", and 10 "Buster" are all supported by Debian and released in the last 5 years.
-Debian 9 "Stretch" left support from the Debian project in July 2020 and is thus not supported by vcpkg.
+Debian 9 "Stretch" left support from the Debian project in July 2022 and is thus not supported by vcpkg.
 
 We also assume that customers' build systems will match the version of Linux they are using, and take care to ensure
 components like our Manifest Mode CMake integration will work with the versions of these dependencies that come with
@@ -116,6 +120,12 @@ one of the above distros. As of this writing, those dependency versions and the 
 ## Community support
 
 ### Windows
+
+* Windows 7 / Server 2008 R2 and later
+
+`vcpkg.exe` should work on Windows 7 flavors, but the vast majority of the curated registry requires MSYS components
+like `pkg-config` which
+[no longer support versions of Windows older than 8.1](https://www.msys2.org/docs/windows_support/#current-policy).
 
 * MinGW or Clang as the build compiler.
 
