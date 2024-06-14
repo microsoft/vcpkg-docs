@@ -133,8 +133,8 @@ furnish muslc based copies of a number of dependencies like CMake.
 
 ### BSDs or other POSIX systems
 
-On BSD targets, no vcpkg binary is provided for download. Instead, the bootstrap logic will download
-vcpkg-tool and compile it locally.
+On BSD targets, no vcpkg binary is provided for download. Instead, the bootstrap logic will download the
+vcpkg source code and compile it locally.
 
 #### Dependencies
 vcpkg requires a number of software packages that are not part of the Operating System and have to be installed using the package manager:
