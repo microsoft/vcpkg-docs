@@ -133,6 +133,27 @@ furnish muslc based copies of a number of dependencies like CMake.
 
 ### BSDs or other POSIX systems
 
+On BSD targets, no vcpkg binary is provided for download. Instead, the bootstrap logic will download
+vcpkg-tool and compile it locally.
+
+#### Dependencies
+vcpkg requires a number of software packages that are not part of the Operating System and have to be installed using the package manager:
+
+* FreeBSD: `pkg install -y bash cmake curl git ninja zip unzip`
+* OpenBSD: `pkg_add bash cmake coreutils curl git ninja zip unzip`
+
+As on Linux, it is recommended to also install some additional packages: 
+
+* FreeBSD: `pkg install -y autoconf autoconf-archive gmake pkgconf python`
+* OpenBSD: `pkg_add autoconf-2.71 autoconf-archive gmake pkgconf python3`
+
+#### Caveats
+
+* vcpkg executes `unzip` from `PATH`. Eventually, this might cause vcpkg to execute the
+Operating System provided `unzip` despite an additional one having been installed using the package manager.
+The `PATH` environment variable has to be configured to prefer the third party `unzip` over the Operating System's one,
+or vcpkg will fail to extract its' binary cache. 
+
 ## Unsupported
 
 * 32-bit Windows. Targeting x86-windows or arm-windows works just fine, but vcpkg itself expects to run AMD64 copies
