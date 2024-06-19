@@ -140,12 +140,12 @@ vcpkg source code and compile it locally.
 vcpkg requires a number of software packages that are not part of the Operating System and have to be installed using the package manager:
 
 * FreeBSD: `pkg install -y bash cmake curl git ninja zip unzip`
-* OpenBSD: `pkg_add bash cmake coreutils curl git ninja zip unzip`
+* OpenBSD: `pkg_add -Iz bash cmake coreutils curl git ninja zip unzip-6.10-iconv`
 
 As on Linux, it is recommended to also install some additional packages: 
 
 * FreeBSD: `pkg install -y autoconf autoconf-archive gmake pkgconf python`
-* OpenBSD: `pkg_add autoconf-2.71 autoconf-archive gmake pkgconf python3`
+* OpenBSD: `pkg_add -Iz autoconf-2.71 autoconf-archive gmake pkgconf python3`
 
 #### Caveats
 
