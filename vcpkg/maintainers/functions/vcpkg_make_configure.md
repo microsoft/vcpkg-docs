@@ -91,12 +91,15 @@ Removing these defaults gives you the responsibility to specify all necessary co
 
 ### NO_MSVC_FLAG_ESCAPING
 
-By default, escape characters (e.g., -Xcompiler, -Xlinker) are added before flags to ensure that MSVC interprets them correctly. These escape characters help prevent issues caused by spaces, quotes, or other special characters that might be misinterpreted by the MSVC command-line tools.
+By default, escape characters (e.g., -Xcompiler, -Xlinker) are added before compiler and linker flags when using MSVC. This is done to ensure that these flags, which might contain spaces or other special characters, are correctly interpreted by the underlying MSVC tools (cl.exe, link.exe)
 
 When you set `NO_MSVC_FLAG_ESCAPING`, you tell vcpkg not to perform this automatic escaping. This can be useful in situations where:
 
 - You know your flags are formatted correctly: If you're confident that your compiler and linker flags don't contain problematic characters, you can avoid unnecessary escaping.
 - You're using custom build scripts: If you have custom build scripts or tools that require specific flag formatting, disabling automatic escaping might be necessary for compatibility.
+
+>[!NOTE]
+>If you disable the MSVC wrappers using `DISABLE_MSVC_WRAPPERS`, this option (`NO_MSVC_FLAG_ESCAPING`) has no effect because the escape characters are not added in the first place.
 
 ### USE_RESPONSE_FILES
 
