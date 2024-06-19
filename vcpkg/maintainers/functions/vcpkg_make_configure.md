@@ -43,7 +43,7 @@ To use this function, you must depend on the helper port `vcpkg-make`:
 
 ### AUTOCONFIG
 
-Boolean value that runs autoreconf when set.
+Runs autoreconf when set.
 
 ### COPY_SOURCE
 
@@ -51,11 +51,16 @@ If specified, the source directory will be copied to the build directory before 
 
 ### DISABLE_MSVC_WRAPPERS
 
-The `DISABLE_MSVC_WRAPPERS` option controls the use of wrapper scripts specifically for tools such as Microsoft's `cl.exe` and the `windres` resource compiler. These wrappers translate and reorder command-line flags to accommodate the expected syntax and operational requirements of these tools. When this option is enabled, the cl.exe and windres tools will directly interpret command-line flags without any modifications
+Disables the use of wrapper scripts for MSVC tools (cl.exe, windres).
+These wrappers translate and reorder command-line flags to accommodate the expected syntax and operational requirements of these tools. When this option is enabled, the `cl.exe` and `windres` tools will directly interpret command-line flags without any modifications.
 
 ### NO_CPPFLAGS
 
-Disable the extraction of C preprocessor/target/arch flags from `CCFLAGS` into `CPPFLAGS`. Use this if the project does not use `CPPFLAGS`.
+Disables the extraction of C preprocessor flags (`-D` and `-isystem`) from `CFLAGS` into `CPPFLAGS`.
+
+By default (when `NO_CPPFLAGS` is not set or is false), vcpkg automatically identifies and extracts these flags from the `CFLAGS` and `CXXFLAGS` variables, which typically contain general compiler options. It then consolidates these specific flags into a separate `CPPFLAGS` variable, dedicated to preprocessor and include path settings.
+
+However, if you explicitly set `NO_CPPFLAGS` to true, you override this default behavior. Vcpkg will then leave the `-D` and `-isystem` flags untouched in their original variables (`CFLAGS` and `CXXFLAGS`). 
 
 If set, the `CPPFLAGS` environment variable, typically used for specifying C preprocessor flags, will not be automatically populated based on vcpkg's settings. This can be useful for projects that do not use standard environment variables or have specific preprocessor requirements.
 
@@ -68,7 +73,7 @@ Adds the configure dependent `(debug/)bin` directory to the system path. This is
 When set, this flag disables the automatic inclusion of the following default configure options provided by `vcpkg_make_configure`. Use this flag if you need full control over the configure command line:
 
 General Defaults:
-* --disable-silent-rules - Makes the build process output more verbose, which can be helpful for debugging.
+* --disable-silent-rules - Makes the build process output more verbose.
 * --verbose - Enables verbose output from the configure script.
 
 Library Linkage:
@@ -86,11 +91,20 @@ Removing these defaults gives you the responsibility to specify all necessary co
 
 ### NO_MSVC_FLAG_ESCAPING
 
-Turns off the escaping of MSVC flags. This might be necessary for projects that do not expect or handle escaped compiler flags properly.
+By default, escape characters (e.g., -Xcompiler, -Xlinker) are added before flags to ensure that MSVC interprets them correctly. These escape characters help prevent issues caused by spaces, quotes, or other special characters that might be misinterpreted by the MSVC command-line tools.
+
+When you set `NO_MSVC_FLAG_ESCAPING`, you tell vcpkg not to perform this automatic escaping. This can be useful in situations where:
+
+- You know your flags are formatted correctly: If you're confident that your compiler and linker flags don't contain problematic characters, you can avoid unnecessary escaping.
+- You're using custom build scripts: If you have custom build scripts or tools that require specific flag formatting, disabling automatic escaping might be necessary for compatibility.
 
 ### USE_RESPONSE_FILES
 
-Enables the use of response files to pass arguments to the configure script. This can help avoid command line length limitations.
+Enables the use of response files to pass arguments to the linker.
+
+If set, the code generates response files for the linker flags (`CPPFLAGS`, `CFLAGS`, `CXXFLAGS`, `LDFLAGS`) and passes the response file path to the linker instead of the individual flags. If it's false, the flags are passed directly.
+
+This can be helpful when dealing with long command lines that exceed the maximum allowed length.
 
 ### SOURCE_PATH
 

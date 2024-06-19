@@ -44,7 +44,7 @@ Adds the configure dependent `(debug/)bin` directory to the system path. This is
 
 ### DISABLE_PARALLEL
 
-Disables parallel building. By default, `make` is called with `-j` to parallelize the build. Use this if the project does not support parallel building.
+By default, `vcpkg_make_install` will run make with the `-j` option to enable parallel building. If your project does not support parallel builds or you encounter issues with it, set this flag to disable parallel building. This will cause make to be executed without the -j option, running build steps sequentially.
 
 ### NO_DESTDIR
 
