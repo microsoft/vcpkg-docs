@@ -264,4 +264,14 @@ See the [`--feature-flags=`](../../commands/common-options.md#) command line opt
 
 When set to `ON`, Print every call to `find_package`. Nested calls (e.g. via `find_dependency`) are indented according to nesting depth.
 
+
+### `VCPKG_FIND_PACKAGE_<Pkg>`
+
+When this option is turned set, non-nested calls to `find_package` are either
+required (`VCPKG_FIND_PACKAGE_<Pkg>=ON`) or disabled (`VCPKG_FIND_PACKAGE_<Pkg>=OFF`).
+
+This variable is a tool to control direct dependencies and related features in vcpkg ports
+which use the CMake build system. It can be used with `vcpkg_check_features` and avoids
+unintended effects on transitive dependencies.
+
 [CMake Presets]: https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
