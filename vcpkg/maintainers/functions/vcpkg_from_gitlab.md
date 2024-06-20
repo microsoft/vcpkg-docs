@@ -18,6 +18,7 @@ vcpkg_from_gitlab(
     [SHA512 <45d0d7f8cc350...>]
     [HEAD_REF <master>]
     [PATCHES <patch1.patch> <patch2.patch>...]
+    [AUTHORIZATION_TOKEN <${SECRET_FROM_FILE}>]
     [FILE_DISAMBIGUATOR <N>]
 )
 ```
@@ -64,6 +65,10 @@ For most projects, this should be `master`. The chosen branch should be one that
 A list of patches to be applied to the extracted sources.
 
 Relative paths are based on the port directory.
+
+### AUTHORIZATION_TOKEN
+
+A token to be passed via the Authorization HTTP header "PRIVATE-TOKEN".
 
 ### FILE_DISAMBIGUATOR
 
