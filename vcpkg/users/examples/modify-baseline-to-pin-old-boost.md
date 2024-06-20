@@ -11,7 +11,7 @@ This document will teach you how to set versions of meta-packages like `boost` o
 
 ## What is a meta-package?
 
-In vcpkg we call meta-packages to ports that by themselves don't install anything but that instead forward installation to another port or ports. The reasons for these meta-packages to exist are plenty: to install different versions of a library depending on platform or to conveniently install/uninstall a catalog of related packages (Boost and Qt).
+In vcpkg we call meta-packages to ports that by themselves don't install anything but that instead forward installation to another port or ports. The reasons for these meta-packages to exist are plenty: to install different versions of a library depending on platform or to conveniently install/uninstall a collection of related packages (Boost and Qt).
 
 In the case of Boost, it is unlikely that a user requires all of the 140+ Boost libraries in their project. For the sake of convenience, vcpkg splits Boost into multiple sub-packages broken down to individual libraries. By doing so, users can limit the subset of Boost libraries that they depend on.
 

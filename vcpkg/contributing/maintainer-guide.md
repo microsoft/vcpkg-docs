@@ -1,7 +1,7 @@
 ---
 title: vcpkg Maintainer Guide
 description: The Guide for maintainers contributing to vcpkg.
-ms.date: 01/10/2024
+ms.date: 06/03/2024
 ms.topic: concept-article
 ---
 # Maintainer guide
@@ -12,9 +12,32 @@ It is intended to serve the role of
 [Homebrew's Maintainer Guidelines](https://docs.brew.sh/Maintainer-Guidelines), and
 [Homebrew's Formula Cookbook](https://docs.brew.sh/Formula-Cookbook).
 
+## Overall registry design goals
+
+### Ports in the current baseline must be installable simultaneously
+
+We wish to be able to show downstream users of libraries in the curated registry that the
+combination of libraries in any given baseline we publish have been tested to work together in at
+least some configurations. Allowing ports to exclude each other breaks the ability to test such
+configurations, as the number of builds necessary for such tests would grow as
+`2^number_of_such_cases`. Moreover, installing additional dependencies is always considered "safe":
+there is no way for a port or end user to assert that a dependency is *not* installed in their
+requirements.
+
+If you wish to represent such an alternative situation for users, consider describing how
+someone can create an [overlay port](../concepts/overlay-ports.md) implementing the alternative
+form with a comment in `portfile.cmake` rather than trying to add additional ports never built in
+the curated registry's continuous integration. For example, see
+[glad@0.1.36](https://github.com/microsoft/vcpkg/blob/67cc1677c3bf5c23ea14b9d2416c7422fdeac492/ports/glad/portfile.cmake#L17).
+
+Before the introduction of [registries](../maintainers/registries.md), we accepted several
+not tested ports-as-alternatives, such as `boringssl`, that could make authoring overlay ports
+easier. This is no longer accepted because registries allow publishing of these untested ports
+without modifying the curated registry.
+
 ## PR structure
 
-### Make separate Pull Requests per port
+### Make separate pull requests per port
 
 Whenever possible, separate changes into multiple PRs.
 This makes them significantly easier to review and prevents issues with one set of changes from holding up every other change.
@@ -34,7 +57,11 @@ unlikely to conflict with any future use of the same name. If the port refers
 to a library on GitHub, a good practice is to prefix the name with the organization
 if there is any chance of confusion.
 
-### Use GitHub Draft PRs
+Put another way, the reason for this is to ensure that `vcpkg install Xxx`
+gives the user looking for `Xxx` what they were expecting and not be
+surprised by getting something different.
+
+### Use GitHub draft PRs
 
 GitHub Draft PRs are a great way to get CI or human feedback on work that isn't yet ready to merge.
 Most new PRs should be opened as drafts and converted to normal PRs once the CI passes.
@@ -99,9 +126,11 @@ the files installed by `b` must be the same, regardless of influence by the prev
 
 In the entire vcpkg system, no two ports a user is expected to use concurrently may provide the same file. If a port tries to install a file already provided by another file, installation will fail. If a port wants to use an extremely common name for a header, for example, it should place those headers in a subdirectory rather than in `include`.
 
+This property is checked regularly by continuous integration runs which try to install all ports in the registry, which will fail with `FILE_CONFLICTS` if two ports provide the same file.
+
 ### Add CMake exports in an unofficial- namespace
 
-A core design ideal of vcpkg is to not create "lock-in" for customers. In the build system, there should be no difference between depending on a library from the system, and depending on a library from vcpkg. To that end, we avoid adding CMake exports or targets to existing libraries with "the obvious name", to allow upstreams to add their own official CMake exports without conflicting with vcpkg.
+A core design ideal of vcpkg is to not create "lock-in" for users. In the build system, there should be no difference between depending on a library from the system, and depending on a library from vcpkg. To that end, we avoid adding CMake exports or targets to existing libraries with "the obvious name", to allow upstreams to add their own official CMake exports without conflicting with vcpkg.
 
 To that end, any CMake configs that the port exports, which are not in the upstream library, should have `unofficial-` as a prefix. Any additional targets should be in the `unofficial::<port>::` namespace.
 
@@ -200,7 +229,7 @@ message(STATUS "This recipe is at ${CMAKE_CURRENT_LIST_DIR}")
 message(STATUS "See the overlay ports documentation at https://github.com/microsoft/vcpkg/blob/master/docs/specifications/ports-overlay.md")
 ```
 
-## Build Techniques
+## Build techniques
 
 ### Do not use vendored dependencies
 
@@ -279,13 +308,6 @@ A lib is considered conflicting if it does any of the following:
 - Define symbols that are also declared in other libraries
 
 Conflicting libs are typically by design and not considered a defect.  Because some build systems link against everything in the lib directory, these should be moved into a subdirectory named `manual-link`.
-
-## Manifests and CONTROL files
-
-When adding a new port, use the new manifest syntax for defining a port;
-you may also change over to manifests when modifying an existing port.
-You may do so easily by running the `vcpkg format-manifest` command, which will convert existing CONTROL
-files into manifest files. Do not convert CONTROL files that have not been modified.
 
 ## Versioning
 
@@ -404,7 +426,7 @@ This helps to keep the size of the vcpkg repository down as well as improves the
 
 The purpose of patching in vcpkg is to enable compatibility with compilers, libraries, and platforms. It is not to implement new features in lieu of following proper Open Source procedure (submitting an Issue/PR/etc).
 
-## Do not build tests/docs/examples by default
+### Do not build tests/docs/examples by default
 
 When submitting a new port, check for any options like `BUILD_TESTS` or `WITH_TESTS` or `POCO_ENABLE_SAMPLES` and ensure the additional binaries are disabled. This minimizes build times and dependencies for the average user.
 

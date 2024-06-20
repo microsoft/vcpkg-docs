@@ -6,7 +6,7 @@ ms.topic: concept-article
 ---
 # Android
 
-The triplets x64-android, arm-neon-android, and arm64-android are tested by vcpkg's public catalog CI.
+The triplets x64-android, arm-neon-android, and arm64-android are tested by vcpkg's curated registry continuous integration.
 
 ## Android Build Requirements
 

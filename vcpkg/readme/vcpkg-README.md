@@ -15,7 +15,7 @@ and the C++ community.
 Initially launched in 2016 as a tool for assisting developers in migrating their
 projects to newer versions of Visual Studio, vcpkg has evolved into a
 cross-platform tool used by developers on Windows, macOS, and Linux. vcpkg has a
-large catalog of open-source libraries and enterprise-ready features designed to
+large collection of open-source libraries and enterprise-ready features designed to
 facilitate your development process with support for any build and project
 systems. vcpkg is a C++ tool at heart and is written in C++ with scripts in
 CMake. It is designed from the ground up to address the unique pain points C/C++

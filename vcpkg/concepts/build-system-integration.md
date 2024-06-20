@@ -3,7 +3,7 @@ title: Build system integration
 description: This article explains the different mechanisms vcpkg uses to integrate with build systems.
 author: vicroms
 ms.author: viromer
-ms.date: 01/10/2024
+ms.date: 06/03/2024
 ms.topic: concept-article
 ---
 # Build system integration
@@ -24,6 +24,8 @@ When you enable this integration, all MSBuild and Visual Studio projects will au
 Read more about how this integration works in the [MSBuild integration
 documentation](../users/buildsystems/msbuild-integration.md).
 
+Visual Studio MSBuild projects also support vcpkg. See [Tutorial: Install and use packages with MSBuild in Visual Studio](../get_started/get-started-msbuild.md) to get started.
+
 ## CMake integration
 
 vcpkg provides seamless `find_package()` integration for your projects via a
@@ -37,9 +39,15 @@ declared in a manifest file automatically.
 Read more about how this integration works in the [CMake integration
 documentation](../users/buildsystems/cmake-integration.md).
 
+Several IDEs/editors with CMake support also explicitly support vcpkg. See the corresponding documentation articles for more information:
+
+- [Tutorial: Install and use packages with CMake in Visual Studio](../get_started/get-started-vs.md)
+- [Tutorial: Install and use packages with CMake in Visual Studio Code](../get_started/get-started-vscode.md)
+- [CLion vcpkg integration](https://www.jetbrains.com/help/clion/package-management.html)
+
 ## Manual integration
 
-vcpkg makes it easy to integrate with other build systems by providing a standardized documented [installation layout](../reference/installation-tree-layout.md).
+You can also use vcpkg with other build systems generically using the standard [installation layout](../reference/installation-tree-layout.md) vcpkg provides.
 
 Read more about how to integrate vcpkg with your build system using [manual
 integration](../users/buildsystems/manual-integration.md).
