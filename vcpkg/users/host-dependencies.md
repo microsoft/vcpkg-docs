@@ -73,3 +73,18 @@ tool ports are common examples. In this case, you can use the `"native"`
 supports expression to describe this. This supports expression is true when
 `VCPKG_CROSSCOMPILING` is false (implying that `TARGET_TRIPLET ==
 HOST_TRIPLET`).
+
+## VCPKG_USE_HOST_TOOLS
+
+This CMake option must be set before any call to `project()` occurs, either via
+a `set(VCPKG_USE_HOST_TOOLS ON)` on your `CMakeLists.txt` or a custom
+toolchain file, or as part of the CMake command-line invocation via
+`-DVCPKG_USE_HOST_TOOLS=ON`. 
+
+Use this if you want to make tools built by vcpkg for your host system available
+in your build system.
+
+The effective outcome of enabling this option is that vcpkg adds
+[`${VCPKG_INSTALLED_DIR}/${VCPKG_HOST_TRIPLET}/tools`](../reference/installation-tree-layout.md#layout-tools)
+to the
+[`CMAKE_PROGRAM_PATH`](https://cmake.org/cmake/help/latest/variable/CMAKE_PROGRAM_PATH.html).
