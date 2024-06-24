@@ -150,6 +150,9 @@ build configurations.
 > vcpkg is first and foremost a C++ library dependency manager. Port authors should
 > be deliberate when deciding to include tools in the installation output. For example:
 > consider installing only a release executable when the debug tool is not needed.
+>
+> Both release and debug executables should be provided when the executables are intended
+> for runtime use.
 
 Contains executable tools produced by a port. It is highly recommended,
 but not required, that each installed executable goes into a subdirectory
