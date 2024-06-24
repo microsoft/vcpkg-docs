@@ -14,7 +14,7 @@ vcpkg_make_configure(
     [AUTOCONFIG]
     [COPY_SOURCE]
     [DISABLE_MSVC_WRAPPERS]
-    [NO_CPPFLAGS]
+    [DISABLE_CPPFLAGS]
     [NO_DEFAULT_OPTIONS]
     [NO_MSVC_FLAG_ESCAPING]
     [USE_RESPONSE_FILES]
@@ -65,13 +65,13 @@ When you set `NO_MSVC_FeLAG_ESCAPING`, you tell vcpkg not to perform this automa
 >[!NOTE]
 >If you disable the MSVC wrappers using `DISABLE_MSVC_WRAPPERS`, this option (`NO_MSVC_FLAG_ESCAPING`) has no effect because the escape characters are not added in the first place.
 
-### NO_CPPFLAGS
+### DSIABLE_CPPFLAGS
 
 Disables the extraction of C preprocessor flags (`-D` and `-isystem`) from `CFLAGS` and `CXXFLAGS` into `CPPFLAGS`.
 
 By default, `vcpkg_make_configure` extracts preprocessor relevant flags from the `CFLAGS` and `CXXFLAGS` environment variables into `CPPFLAGS`, because preprocessor flags in vcpkg are normally supplied through compiler settings variables like `VCPKG_C_FLAGS` or `VCPKG_CXX_FLAGS`.
 
-Setting `NO_CPPFLAGS` disables that behavior, leaving preprocessor relevant flags in `CFLAGS` and `CXXFLAGS`.
+Setting `DISABLE_CPPFLAGS` disables that behavior, leaving preprocessor relevant flags in `CFLAGS` and `CXXFLAGS`.
 
 This can be useful for projects that do not use standard environment variables or have specific preprocessor requirements.
 
