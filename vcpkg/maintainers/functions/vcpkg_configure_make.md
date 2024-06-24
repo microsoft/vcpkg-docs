@@ -40,7 +40,7 @@ By convention, this is usually set in the portfile as the variable `SOURCE_PATH`
 
 ### PROJECT_SUBPATH
 
-Specifies the directory containing the ``configure`/`configure.ac`.
+Specifies the directory containing the `configure`/`configure.ac`.
 By convention, this is usually set in the portfile as the variable `SOURCE_PATH`.
 
 ### SKIP_CONFIGURE

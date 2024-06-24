@@ -198,8 +198,7 @@ registry.
 Overlays are a way to extend vcpkg with additional ports and additional
 triplets, without creating a full registry. Overlays are considered before
 performing any registry lookups or versioning and will replace any builtin
-triplets or ports. See the [overlays
-documentation](../concepts/overlay-ports.md) to learn more.
+triplets or ports. See [overlay ports](../concepts/overlay-ports.md) to learn more.
 
 Overlay settings are evaluated in this order:
 

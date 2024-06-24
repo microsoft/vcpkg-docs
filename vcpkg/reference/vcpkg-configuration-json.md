@@ -59,8 +59,8 @@ The example also configures custom overlays for ports and triplets that are pres
 | Name | Type   | Description |
 |------|--------|-------------|
 | [default-registry](#default-registry) | [Registry][] or null | Registry used for all ports without a specific registry |
-| [overlay-ports](#overlay-ports) | string[] | List of paths to use as port overlays |
-| [overlay-triplets](#overlay-triplets) | string[] | List of paths to use as triplet overlays |
+| [overlay-ports](#overlay-ports) | string[] | List of paths to use as overlay ports |
+| [overlay-triplets](#overlay-triplets) | string[] | List of paths to use as overlay triplets |
 | [registries](#registries) | [Registry][][] | Additional registries to use for subsets of ports |
 
 ### <a name="default-registry"></a> `"default-registry"`
