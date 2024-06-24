@@ -3,7 +3,7 @@ title:  Supported hosts
 description: This article describes the platforms on which vcpkg is supported.
 author: bion
 ms.author: bion
-ms.date: 01/16/2024
+ms.date: 06/24/2024
 ms.topic: concept-article
 ---
 
@@ -18,7 +18,7 @@ vcpkg also depends on a few system components to be installed before it can run.
 To use vcpkg, a few components need to be installed on the system first.
 
 * Windows: Visual Studio 2015 or later.
-* macOS: XCode Console Tools, tar, git, zip, unzip, and curl. Most ports also need pkg-config.
+* macOS: Xcode Command Line Tools, tar, git, zip, unzip, and curl. Most ports also need pkg-config.
 We recommend installing these dependencies via Homebrew, such as via a terminal command
 `brew install zip unzip curl pkgconfig`.
 * Linux: A C++ compiler to use, tar, git, zip, unzip, and curl. Most ports also need pkg-config.
@@ -33,18 +33,18 @@ For Linux and macOS users we also recommend to install the following packages: `
 
 Support is broken into 4 distinct categories. They are:
 
-* Full support, tested  
+* **Full support, tested**  
   The configurations used to test vcpkg's curated registry on a regular basis. Problems in these configurations
   are rapidly found and fixed by vcpkg's maintainers and community..
-* Full support, expected  
+* **Full support, expected**  
   Configurations treated with the same priority as 'Full support, tested' but which are not part of the regular tests.
   In general, these configurations are substantially similar to one of the fully tested configurations.
-* Community support  
+* **Community support**  
   Configurations that are not actively supported by vcpkg's maintainers but have substantial community investment.
   vcpkg maintainers accept changes to fix problems for these platforms but don't make guarantees that these 
   configurations work. The vcpkg team is interested in moving as many platforms out of community support
   into full support as possible.
-* Unsupported  
+* **Unsupported**  
   Configurations that are known no to work for some reason. In general, PRs fixing only these platforms
   are not accepted.
 
@@ -54,23 +54,23 @@ The fully supported, tested platforms are:
 
 ### Windows
 
-* The latest Windows / Windows Server release. These are 11 and Server 2022 as of this writing.
-* The latest Visual Studio update, Visual Studio 2022 17.8 as of this writing.
+* The latest Windows / Windows Server release. These are Windows 11 and Windows Server 2022 as of this writing.
+* The latest Visual Studio update, Visual Studio 2022 version 17.8 as of this writing.
 
 ### macOS
 
-macOS is intended to track the latest version of macOS and contemporary version of XCode Command Line tools. However,
-updating macOS machines is a manual process, and macOS frequently changes things in ways that break vcpkg's testing. 
-As of this writing, we are using:
+macOS is intended to track the latest version of macOS and contemporary version of Xcode Command Line tools. However,
+updating macOS machines is a manual process, and macOS frequently changes things in ways that break vcpkg's testing. As of this writing, we are using:
 
 * macOS 13.5.2
-* XCode Command Line Tools 14.3.1
+* Xcode Command Line Tools 14.3.1
 
 ### Linux
 
 * The latest LTS release of Ubuntu, currently 22.04.
 
 ### Android
+
 * Linux 64-bit Android NDK version 25c
 
 ## Full support, expected
@@ -85,7 +85,7 @@ As of this writing, we are using:
 * The latest version of macOS, minus 2 major versions. For example, the current version of macOS is macOS 14 Sonoma,
 so we expect vcpkg to work as far back as macOS 12 Monterey. This is intended to track with Apple's own support for
 macOS.
-* Contemporary versions of the XCode Console Tools for a given release of macOS
+* Contemporary versions of the Xcode Command Line Tools for a given release of macOS
 
 ### Linux
 
@@ -102,8 +102,8 @@ not expected to work as they were released more than 5 years ago.
 * Debian 12 "Bookworm", 11 "Bullseye", and 10 "Buster" are all supported by Debian and released in the last 5 years.
 Debian 9 "Stretch" left support from the Debian project in July 2020 and is thus not supported by vcpkg.
 
-We also assume that customers' build systems will match the version of Linux they are using, and take care to ensure
-components like our Manifest Mode CMake integration will work with the versions of these dependencies that come with
+We also assume that users' build systems will match the version of Linux they are using, and take care to ensure
+components like our manifest mode CMake integration will work with the versions of these dependencies that come with
 one of the above distros. As of this writing, those dependency versions and the associated distro(s) are:
 
 * GCC 8.3.0 (Debian 10)
@@ -137,12 +137,13 @@ On BSD targets, no vcpkg binary is provided for download. Instead, the bootstrap
 vcpkg source code and compile it locally.
 
 #### Dependencies
-vcpkg requires a number of software packages that are not part of the Operating System and have to be installed using the package manager:
+
+vcpkg requires a number of software packages that are not part of the operating system and have to be installed using the package manager:
 
 * FreeBSD: `pkg install -y bash cmake curl git ninja zip unzip`
 * OpenBSD: `pkg_add -Iz bash cmake coreutils curl git ninja zip unzip-6.10-iconv`
 
-As on Linux, it is recommended to also install some additional packages: 
+As on Linux, it is recommended to also install some additional packages:
 
 * FreeBSD: `pkg install -y autoconf autoconf-archive gmake pkgconf python`
 * OpenBSD: `pkg_add -Iz autoconf-2.71 autoconf-archive gmake pkgconf python3`
@@ -150,9 +151,9 @@ As on Linux, it is recommended to also install some additional packages:
 #### Caveats
 
 * vcpkg executes `unzip` from `PATH`. Eventually, this might cause vcpkg to execute the
-Operating System provided `unzip` despite an additional one having been installed using the package manager.
-The `PATH` environment variable has to be configured to prefer the third party `unzip` over the Operating System's one,
-or vcpkg will fail to extract its' binary cache. 
+operating system provided `unzip` despite an additional one having been installed using the package manager.
+The `PATH` environment variable has to be configured to prefer the third party `unzip` over the operating system's one,
+or vcpkg will fail to extract its binary cache.
 
 ## Unsupported
 
