@@ -77,7 +77,7 @@ updating macOS machines is a manual process, and macOS frequently changes things
 
 ### Windows
 
-* Windows 8.1 / Server 2016 and later
+* Windows 8.1 / Windows Server 2016 and later
 * Visual Studio 2015 and later
 
 ### macOS
