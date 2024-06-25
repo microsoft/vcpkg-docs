@@ -314,6 +314,17 @@ is `@rpath`. See the CMake documentation for
 [CMAKE_INSTALL_NAME_DIR](https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_NAME_DIR.html)
 for more information.
 
+### VCPKG_FIXUP_MACHO_RPATH
+
+Ensures Mach-O binaries built by vcpkg are relocatable, i.e. with relative install names and run-paths.
+
+When set to `ON`:
+- Modifies absolute `LC_LC_ID_DYLIB` field to `@rpath/<library>` for shared library binaries;
+- Modifies absolute `LC_RPATH` fields to relative `@loader_path/<relative/path/to/library>` for executable and shared library binaries.
+
+> [!NOTE]  
+> This functionality is implicitly enabled by default when `VCPKG_TARGET_IS_OSX` evaluates to `TRUE`. May be disabled by explicitly setting to `OFF`.
+
 ### VCPKG_OSX_DEPLOYMENT_TARGET
 
 Sets the minimum macOS version for compiled binaries. This also changes what
