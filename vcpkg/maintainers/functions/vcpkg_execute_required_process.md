@@ -1,7 +1,7 @@
 ---
 title: vcpkg_execute_required_process
 description: Execute a process with logging and fail the build if the command fails.
-ms.date: 01/10/2024
+ms.date: 06/27/2024
 ---
 # vcpkg_execute_required_process
 
@@ -37,7 +37,7 @@ The directory to execute the command in.
 
 ### LOGNAME
 
-The prefix to use for the log files.
+The prefix to use for the log files. This should be a unique name for different triplets so that the logs don't conflict when building multiple at once.
 
 ### TIMEOUT
 
@@ -47,11 +47,17 @@ Optional timeout after which to terminate the command.
 
 Optional variable to receive stdout of the command.
 
+### OUTPUT_STRIP_TRAILING_WHITESPACE
+
+Removes trailing whitespace before setting `OUTPUT_VARIABLE`.
+
 ### ERROR_VARIABLE
 
 Optional variable to receive stderr of the command.
 
-This should be a unique name for different triplets so that the logs don't conflict when building multiple at once.
+### ERROR_STRIP_TRAILING_WHITESPACE
+
+Removes trailing whitespace before setting `ERROR_VARIABLE`.
 
 ### SAVE_LOG_FILES
 
