@@ -15,8 +15,8 @@ vcpkg_make_configure(
     [COPY_SOURCE]
     [DISABLE_MSVC_WRAPPERS]
     [DISABLE_CPPFLAGS]
-    [NO_DEFAULT_OPTIONS]
-    [NO_MSVC_FLAG_ESCAPING]
+    [DISABLE_DEFAULT_OPTIONS]
+    [DISABLE_MSVC_FLAG_ESCAPING]
     [USE_RESPONSE_FILES]
     [SOURCE_PATH <source-path>]
     [OPTIONS <configure-setting>...]
@@ -54,7 +54,7 @@ By default, `vcpkg_make_configure` supplies wrappers that translate and reorder 
 
 Setting `DISABLE_MSVC_WRAPPERS` removes these wrappers and allows the underlying make build system to supply 'msvc-style' flags directly without translation. When this option is enabled, the `cl` and `windres` tools will directly interpret command-line flags without any modifications.
 
-### NO_MSVC_FLAG_ESCAPING
+### DISABLE_MSVC_FLAG_ESCAPING
 
 By default, escape characters (e.g., -Xcompiler, -Xlinker) are added before compiler and linker flags when using MSVC. These escape characters are intended for use by the wrappers and libtool to protect flags that might contain spaces, quotes, or other special characters from being misinterpreted.
 When you set `NO_MSVC_FeLAG_ESCAPING`, you tell vcpkg not to perform this automatic escaping. This can be useful in situations where:
@@ -75,7 +75,7 @@ Setting `DISABLE_CPPFLAGS` disables that behavior, leaving preprocessor relevant
 
 This can be useful for projects that do not use standard environment variables or have specific preprocessor requirements.
 
-### NO_DEFAULT_OPTIONS
+### DISABLE_DEFAULT_OPTIONS
 
 Setting this flag disables the following default configure options provided by `vcpkg_make_configure`. Use this flag if you need full control over the configure command line.
 
