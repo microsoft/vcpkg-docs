@@ -12,8 +12,8 @@ Build and install a Make-based project.
 ```cmake
 vcpkg_make_install(
     [DISABLE_PARALLEL]
-    [NO_DESTDIR]
-    [NO_MSVC_FLAG_ESCAPING]
+    [DISABLE_DESTDIR]
+    [DISABLE_MSVC_FLAG_ESCAPING]
     [USE_RESPONSE_FILES]
     [LOGFILE_ROOT <root-name>]
     [SUBPATH <sub-directory>]
@@ -46,11 +46,11 @@ Adds the configure dependent `(debug/)bin` directory to the system path. This is
 
 By default, `vcpkg_make_install` will run make with the `-j` option to enable parallel building. If your project does not support parallel builds or you encounter issues with it, set this flag to disable parallel building. This will cause make to be executed without the -j option, running build steps sequentially.
 
-### NO_DESTDIR
+### DISABLE_DESTDIR
 
 By default, `make install` will use the `DESTDIR` variable to redirect installation to the package directory. Use this flag if `DESTDIR` should not be set.
 
-### NO_MSVC_FLAG_ESCAPING
+### DISABLE_MSVC_FLAG_ESCAPING
 
 Prevents escaping of MSVC flags. Use this if the project's makefiles do not expect escaped flags.
 
