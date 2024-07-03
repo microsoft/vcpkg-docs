@@ -456,6 +456,9 @@ This field documents the platform configurations where the feature will build an
 The SPDX short license expression of the feature. A string or null. Optional. 
 If not provided, the license is the same as specified in the top level [license](#license) field.
 
+>[!NOTE]
+> The licensing information provided for each package in the vcpkg registry represents Microsoft's best understanding of the licensing requirements. However, this information may not be definitive. Users are advised to verify the exact licensing requirements for each package they intend to use, as it is ultimately their responsibility to ensure compliance with the applicable licenses.
+
 ## <a name="platform-expression"></a> Platform Expression
 
 A Platform Expression is a JSON string which describes when a dependency is required or when a library or feature is expected to build.
