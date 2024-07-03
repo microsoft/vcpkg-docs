@@ -50,20 +50,18 @@ If specified, the source directory will be copied to the build directory before 
 
 ### DISABLE_MSVC_WRAPPERS
 
-By default, `vcpkg_make_configure` supplies wrappers that translate and reorder 'unix / gcc-style' flags into 'msvc-style' flags. This accommodates build systems that assume unix or gcc conventions.
+By default, `vcpkg_make_configure` supplies wrappers that translate and reorder 'Unix / GCC-style' flags into 'MSVC-style' flags. This accommodates build systems that assume Unix or GCC conventions.
 
-Setting `DISABLE_MSVC_WRAPPERS` removes these wrappers and allows the underlying make build system to supply 'msvc-style' flags directly without translation. When this option is enabled, the `cl` and `windres` tools will directly interpret command-line flags without any modifications.
+Setting `DISABLE_MSVC_WRAPPERS` disables translation of flags, allowing tools like `cl` and `windres` to receive command-line flags without modifications.
 
 ### DISABLE_MSVC_FLAG_ESCAPING
 
-By default, escape characters (e.g., -Xcompiler, -Xlinker) are added before compiler and linker flags when using MSVC. These escape characters are intended for use by the wrappers and libtool to protect flags that might contain spaces, quotes, or other special characters from being misinterpreted.
-When you set `NO_MSVC_FeLAG_ESCAPING`, you tell vcpkg not to perform this automatic escaping. This can be useful in situations where:
+By default, escape characters (e.g., -Xcompiler, -Xlinker) are added before compiler and linker flags when using MSVC. These escape characters are intended for use by the wrappers and libtool to protect flags that might contain spaces, quotes, or other special characters from being misinterpreted. Setting `DISABLE_MSVC_FLAG_ESCAPING` disables this behavior. 
 
-- You know your flags are formatted correctly: If you're confident that your compiler and linker flags don't contain problematic characters, you can avoid unnecessary escaping.
-- You're using custom build scripts: If you have custom build scripts or tools that require specific flag formatting, disabling automatic escaping might be necessary for compatibility.
+This can be useful in situations where you're using custom build scripts or tools that require specific flag formatting.
 
 >[!NOTE]
->If you disable the MSVC wrappers using `DISABLE_MSVC_WRAPPERS`, this option (`NO_MSVC_FLAG_ESCAPING`) has no effect because the escape characters are not added in the first place.
+>If you disable the MSVC wrappers using `DISABLE_MSVC_WRAPPERS`, this option (`DISABLE_MSVC_FLAG_ESCAPING`) has no effect because the escape characters are not added in the first place.
 
 ### DSIABLE_CPPFLAGS
 
