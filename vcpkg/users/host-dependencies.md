@@ -76,15 +76,16 @@ HOST_TRIPLET`).
 
 ## VCPKG_USE_HOST_TOOLS
 
-This CMake option must be set before any call to `project()` occurs, either via
-a `set(VCPKG_USE_HOST_TOOLS ON)` on your `CMakeLists.txt` or a custom
-toolchain file, or as part of the CMake command-line invocation via
-`-DVCPKG_USE_HOST_TOOLS=ON`. 
-
-Use this if you want to make tools built by vcpkg for your host system available
-in your build system.
-
-The effective outcome of enabling this option is that vcpkg adds
-[`${VCPKG_INSTALLED_DIR}/${VCPKG_HOST_TRIPLET}/tools`](../reference/installation-tree-layout.md#layout-tools)
-to the
+Set this CMake option to add executables built by vcpkg to
 [`CMAKE_PROGRAM_PATH`](https://cmake.org/cmake/help/latest/variable/CMAKE_PROGRAM_PATH.html).
+and make them available during your build process.
+
+For this option to take effect it must be set before any call to `project()` in
+your `CMakeLists.txt` file and the `VCPKG_HOST_TRIPLET` variable must also be set.
+
+Only tools installed in the [`tools` folder](../reference/installation-tree-layout.md#layout-tools)
+for the host triplet are added to `CMAKE_PROGRAM_PATH`.
+Effectively, the following locations are added:
+
+* `${VCPKG_INSTALLED/DIR}/${VCPKG_HOST_TRIPLET}/tools`
+* `${VCPKG_INSTALLED/DIR}/${VCPKG_HOST_TRIPLET}/tools/*/bin`
