@@ -476,7 +476,9 @@ The following identifiers are defined based on the [triplet settings](../users/t
 | `arm` | `VCPKG_TARGET_ARCHITECTURE` == `"arm"` or</br> `VCPKG_TARGET_ARCHITECTURE` == `"arm64"` |
 | `arm32` | `VCPKG_TARGET_ARCHITECTURE` == `"arm"` |
 | `arm64` | `VCPKG_TARGET_ARCHITECTURE` == `"arm64"` |
+| `arm64ec` | `VCPKG_TARGET_ARCHITECTURE` == `"arm64ec"` |
 | `wasm32` | `VCPKG_TARGET_ARCHITECTURE` == `"wasm32"` |
+| `mips64` | `VCPKG_TARGET_ARCHITECTURE` == `"mips64"` |
 | `windows` | `VCPKG_CMAKE_SYSTEM_NAME` == `""` or</br> `VCPKG_CMAKE_SYSTEM_NAME` == `"WindowsStore"` or</br> `VCPKG_CMAKE_SYSTEM_NAME` == `"MinGW"` |
 | `mingw` | `VCPKG_CMAKE_SYSTEM_NAME` == `"MinGW"` |
 | `uwp` | `VCPKG_CMAKE_SYSTEM_NAME` == `"WindowsStore"` |
@@ -488,6 +490,8 @@ The following identifiers are defined based on the [triplet settings](../users/t
 | `openbsd` | `VCPKG_CMAKE_SYSTEM_NAME` == `"OpenBSD"` |
 | `android` | `VCPKG_CMAKE_SYSTEM_NAME` == `"Android"` |
 | `emscripten` | `VCPKG_CMAKE_SYSTEM_NAME` == `"Emscripten"` |
+| `qnx` | `VCPKG_CMAKE_SYSTEM_NAME` == `"QNX"` |
+| `vxworks` | `VCPKG_CMAKE_SYSTEM_NAME` == `"VxWorks"` |
 | `static` | `VCPKG_LIBRARY_LINKAGE` == `"static"` |
 | `staticcrt` | `VCPKG_CRT_LINKAGE` == `"static"` |
 | `native` | `TARGET_TRIPLET` == `HOST_TRIPLET` |
