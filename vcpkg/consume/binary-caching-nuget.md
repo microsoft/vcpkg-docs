@@ -37,7 +37,7 @@ In this tutorial, you'll learn how to:
 
 * A terminal
 * [vcpkg](../get_started/get-started.md#1---set-up-vcpkg)
-* A NuGet packages feed, or if you don't, an Azure DevOps account to follow along
+* A NuGet package feed, or if you don't, an Azure DevOps account to follow along
 
 ::: zone-end
 
@@ -45,7 +45,7 @@ In this tutorial, you'll learn how to:
 
 * A terminal
 * [vcpkg](../get_started/get-started.md#1---set-up-vcpkg)
-* A NuGet packages feed, or if you don't, an Azure DevOps account to follow along
+* A NuGet package feed, or if you don't, an Azure DevOps account to follow along
 * The `mono` package installed in your system
 
 ::: zone-end
@@ -100,7 +100,7 @@ C:\path\to\nuget.exe sources add -Name <feed name> -Source <feed url>
 ::: zone pivot="shell-bash"
 
 ```bash
-mono `vcpkg fetch nuget | tail -n 1` sources add -Name <feed name> - Source <feed url>
+mono `vcpkg fetch nuget | tail -n 1` sources add -Name <feed name> -Source <feed url>
 ```
 
 ::: zone-end
@@ -140,7 +140,7 @@ C:\path\to\nuget.exe setapikey <apikey> -Source <feed url>
 ::: zone pivot="shell-bash"
 
 ```bash
-mono `vcpkg fetch nuget | tail -n 1` sources setapikey <apiKey> - Source <feed url>
+mono `vcpkg fetch nuget | tail -n 1` sources setapikey <apiKey> -Source <feed url>
 ```
 
 ::: zone-end
