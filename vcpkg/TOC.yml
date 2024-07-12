@@ -125,10 +125,12 @@
     href: concepts/features.md
   - name: Manifest mode
     href: concepts/manifest-mode.md
-  - name: Supported Hosts
+  - name: Supported hosts
     href: concepts/supported-hosts.md
-  - name: Cross-compilation
+  - name: Target platforms
     items:
+    - name: Supported target platforms
+      href: users/platforms/all.md
     - name: Android
       href: users/platforms/android.md
     - name: MinGW
@@ -137,7 +139,7 @@
       href: users/platforms/xbox.md
   - name: GitHub integration
     href: github-integration.md
-  - name: Host Dependencies
+  - name: Host dependencies
     displayName: host, dependencies
     href: users/host-dependencies.md
   - name: Open-source registry
@@ -425,7 +427,7 @@
     href: https://github.com/Microsoft/vcpkg
   - name: vcpkg source code on GitHub
     href: https://github.com/Microsoft/vcpkg-tool
-  - name: Microsoft C++ Team blog
+  - name: Microsoft C++ Team Blog
     href: https://devblogs.microsoft.com/search?query=vcpkg
   - name: Support channels and social media
     href: resources/support-channels.md
