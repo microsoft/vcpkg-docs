@@ -316,7 +316,7 @@ for more information.
 
 ### VCPKG_FIXUP_MACHO_RPATH
 
-Ensures Mach-O binaries built by vcpkg are relocatable, i.e. with relative install names and run-paths.
+Ensures Mach-O binaries built by vcpkg are relocatable by using relative install names and run-paths.
 
 When set to `ON`:
 - Modifies absolute `LC_LC_ID_DYLIB` field to `@rpath/<library>` for shared library binaries;
