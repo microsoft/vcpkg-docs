@@ -5,15 +5,15 @@ zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
 author: data-queue
 ms.author: danshaw2
-ms.date: 01/10/2024
+ms.date: 07/11/2024
 ms.topic: tutorial
 ---
 
 # Tutorial: Install and use packages with MSBuild in Visual Studio
 
-This tutorial shows you how to create a C++ "Hello World" program that uses the `fmt` library with MSBuild, vcpkg and Visual Studio. You'll install dependencies, configure, build, and run a simple application.
+This tutorial shows you how to create a C++ "Hello World" program that uses the `fmt` library with MSBuild, vcpkg, and Visual Studio. You'll install dependencies, configure the project, build, and run a simple application.
 
-## Prerequisites:
+## Prerequisites
 
 - [Visual Studio](<https://visualstudio.microsoft.com/downloads/>) with C++ development workload
 - [Git](<https://git-scm.com/downloads>)
@@ -27,13 +27,13 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 The next step is to set the user-wide instance of vcpkg so that MSBuild will be able to find it:
 
-```
+```console
 .\vcpkg.exe integrate install
 ```
 
 This outputs:
 
-```
+```console
 All MSBuild C++ projects can now #include any installed libraries. Linking will be handled automatically. Installing new libraries will make them instantly available.
 ```
 
@@ -94,7 +94,7 @@ All MSBuild C++ projects can now #include any installed libraries. Linking will 
     :::image-end:::
 
     [!INCLUDE [env-vars](../../includes/env-vars.md)]
-    
+
     ::: zone-end
 
     Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
@@ -146,7 +146,7 @@ This source file includes the `<fmt/core.h>` header which is part of the `fmt` l
 
 ## 4 - Enable manifest mode
 
-Navigate to the Project Properties pages of your project. Under **Configuration Properties > vcpkg**, set `Use vcpkg manifest` to `Yes`. MSBuild checks whether this property is set before installing any dependencies from the vcpkg manifest.
+Navigate to your Project Property Pages. Using the menu navigation at the top, choose **Project > Properties**. A new window will open. Navigate to **Configuration Properties > vcpkg**, and set `Use vcpkg Manifest` to `Yes`. The project system will check whether this property is set before installing any dependencies from the manifest file.
 
 :::image type="complex" source="../resources/get_started/visual-studio-manifest-msbuild.png" alt-text="Enable manifest mode in project properties":::
     Screenshot of enabling vcpkg manifest mode in Visual Studio Project Properties
