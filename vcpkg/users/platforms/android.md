@@ -1,14 +1,14 @@
 ---
-title: Android Support in vcpkg
+title: Android support in vcpkg
 description: How to target Android devices using C++ with vcpkg
-ms.date: 01/10/2024
+ms.date: 07/11/2024
 ms.topic: concept-article
 ---
 # Android
 
 The triplets x64-android, arm-neon-android, and arm64-android are tested by vcpkg's curated registry continuous integration.
 
-## Android Build Requirements
+## Android build requirements
 
 1. Download the [Android NDK](https://developer.android.com/ndk/downloads/)
 
@@ -21,12 +21,12 @@ The triplets x64-android, arm-neon-android, and arm64-android are tested by vcpk
    Or:
 
    ```bash
-   export ANDROID_NDK_HOME=/home/your-account/Android/android-ndk-r25c
+   export ANDROID_NDK_HOME=/home/your-account/Android/android-ndk-r26d
    ```
 
 Note: you will still need to install g++ or a C++ compiler that targets your host for any host dependencies.
 
-## vcpkg triplets and their corresponding android ABI
+## vcpkg triplets and their corresponding Android ABI
 
 There are six different Android ABIs, each of which maps to a vcpkg triplet. The following table outlines the mapping from vcpkg architectures to android architectures:
 
@@ -59,11 +59,11 @@ RUN \
 
 # Download Android NDK
 RUN \
-  wget https://dl.google.com/android/repository/android-ndk-r25c-linux.zip && \
-  unzip android-ndk-r25c-linux.zip && \
-  rm -rf android-ndk-r25c-linux.zip
+  wget https://dl.google.com/android/repository/android-ndk-r26d-linux.zip && \
+  unzip android-ndk-r26d-linux.zip && \
+  rm -rf android-ndk-r26d-linux.zip
 
-ENV ANDROID_NDK_HOME /android-ndk-r25c
+ENV ANDROID_NDK_HOME /android-ndk-r26d
 
 RUN git clone https://github.com/microsoft/vcpkg
 WORKDIR vcpkg
@@ -122,7 +122,7 @@ Notice that **the location of the sysroot has changed since NDK 22**. (For more 
 
 If you prefer using [the latest version](https://developer.android.com/studio/projects/install-ndk#default-ndk-per-agp), check the [BuildSystemMaintainers.md of the NDK document](https://android.googlesource.com/platform/ndk/+/master/docs/BuildSystemMaintainers.md#sysroot) and then put appropriate path for your system.
 
-For example, Mac OS users will use the path like this example:
+For example, macOS users will use the path like this example:
 
 ```cmake
 # In android triplets... (e.g. arm64-android.cmake)
@@ -132,7 +132,7 @@ set(VCPKG_CMAKE_SYSTEM_NAME Android)
 set(ENV{VULKAN_SDK} $ENV{ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr)
 ```
 
-By doing this for all android triplets, you can install `vulkan` and the packages that require it. (e.g. `vulkan-hpp`)
+By doing this for all Android triplets, you can install `vulkan` and the packages that require it. (e.g. `vulkan-hpp`)
 
 <details>
   <summary>`vcpkg install vulkan-hpp:arm64-android`</summary>
@@ -189,7 +189,7 @@ The package vulkan-hpp:arm64-android is header only and can be used from CMake v
 
 ## Example Android Project
 
-The folder [docs/examples/vcpkg_android_example_cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake) provides a working example, with an android library that consumes the jsoncpp library:
+The folder [docs/examples/vcpkg_android_example_cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake) provides a working example, with an Android library that consumes the jsoncpp library:
 
 ### Details
 
@@ -230,7 +230,7 @@ The folder [vcpkg_android_example_cmake_script](https://github.com/Microsoft/vcp
 
 [!INCLUDE [experimental](../../../includes/experimental.md)]
 
-vcpkg can export android archives ([AAR files](https://developer.android.com/studio/projects/android-library)). Once an archive is created, it can imported in Android Studio as a native dependent.  The archive is automatically consumed using [android studio's prefab tool](https://github.com/google/prefab).
+vcpkg can export Android archives ([AAR files](https://developer.android.com/studio/projects/android-library)). Once an archive is created, it can imported in Android Studio as a native dependent.  The archive is automatically consumed using [Android Studio's prefab tool](https://github.com/google/prefab).
 
 For more information on Prefab, refer to:
 
@@ -261,7 +261,7 @@ export ANDROID_NDK_HOME=/home/your-account/Android/Sdk/ndk-bundle
 
 ### Example exporting \[jsoncpp]
 
-First, "vcpkg install" the 4 android architectures (it is mandatory to export all 4 of them):
+First, "vcpkg install" the 4 Android architectures (it is mandatory to export all 4 of them):
 
 ```console
 ./vcpkg install jsoncpp:arm-android  jsoncpp:arm64-android  jsoncpp:x64-android  jsoncpp:x86-android
