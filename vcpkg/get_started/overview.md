@@ -4,16 +4,16 @@ description: Learn about how the vcpkg C/C++ package manager can help you acquir
 ms.topic: overview
 author: AugP
 ms.author: aupopa
-ms.date: 01/10/2024
+ms.date: 07/11/2024
 ---
 
 # vcpkg overview
 
-vcpkg is a free and open-source C/C++ package manager maintained by Microsoft and the C++ community. Launched in 2016, it helps developers migrate their projects to newer versions of Visual Studio. vcpkg has evolved into a cross-platform tool used by developers on Windows, macOS, and Linux. vcpkg has a large registry of open-source libraries and enterprise-ready features designed to facilitate your development process with support for any build and project systems. vcpkg is a C++ tool at heart and is written in C++ with scripts in CMake. It is designed from the ground up to address the unique pain points of the C/C++ developer experience.
+vcpkg is a free and open-source C/C++ package manager maintained by Microsoft and the C++ community. vcpkg runs on Windows, macOS, and Linux (see [Supported hosts](../concepts/supported-hosts.md)) and includes a large, curated registry of open-source libraries and enterprise-ready features designed to facilitate your development process with support for [any build and project system](../concepts/build-system-integration.md). With vcpkg, you can build libraries from source to target virtually any platform or architecture using the customizable [triplets experience](../concepts/triplets.md). vcpkg is a C++ tool at heart and is written in C++ and CMake scripts. It is designed from the ground up to address the unique pain points of the C/C++ developer experience.
 
 ## Why vcpkg?
 
-- Over 2200 open-source libraries to choose from, or bring your own
+- Over 2300 open-source libraries to choose from, or bring your own
 - Consistent, cross-platform experience for Windows, macOS, and Linux
 - Build dependencies from source as needed, with over 70 configurations in the box, and infinite customization for your specific requirements
 - Avoid ABI incompatibilities between packages and your project
@@ -33,12 +33,11 @@ To install a package on your system, vcpkg runs the port's recipe file, which is
 
 ### Binary caching
 
-While vcpkg builds libraries from source whenever it's necessary, you can back up your built packages in a [binary cache](../consume/binary-caching-overview.md). This allows other developer machines or continuous integration runs to reference these prebuilt packages without running a new build every time. vcpkg determines if a rebuild is necessary by checking if the cache already contains a valid existing package when it attempts to install a package.
+While vcpkg builds libraries from source whenever it's necessary, you can back up your built packages in a [binary cache](../consume/binary-caching-overview.md). This allows other developer machines or continuous integration runs to reference these prebuilt packages without running a new build every time. vcpkg determines if a rebuild is necessary by checking if the cache already contains a valid existing package with appropriate binaries.
 
 ### Manifests
 
-You can declare your direct dependencies and add optional features or version
-constraints in a [manifest file](../concepts/manifest-mode.md).
+You can declare your direct dependencies and add optional features or version constraints in a [manifest file](../concepts/manifest-mode.md). Manifest files can be checked into your source control system and shared with your team.
 
 ### Versioning
 
@@ -46,7 +45,7 @@ vcpkg has a unique way of handling [package versions](../users/versioning.concep
 
 ### Registries
 
-A [registry](../concepts/registries.md) is a collection of ports and available versions that a vcpkg user can install. vcpkg provides a public registry of open-source libraries by default. You can also create your own registries for customizations, patches, or private libraries.
+A [registry](../concepts/registries.md) is a collection of ports and available versions that a vcpkg user can install. vcpkg provides a curated registry of open-source libraries by default. You can also create your own registries for customizations, patches, or private libraries.
 
 ### Asset caching
 
@@ -84,10 +83,13 @@ vcpkg is designed to work side-by-side with system package managers, so feel fre
 
 ## Get started with vcpkg
 
-To try out vcpkg, use one of our introductory tutorials:
+To try out vcpkg, check out our introductory tutorials:
 
 - [Install and use packages with CMake](get-started.md)
 - [Install and use packages with CMake in Visual Studio](get-started-vs.md)
 - [Install and use packages with MSBuild in Visual Studio](get-started-msbuild.md)
+- [Install and use packages with CMake in Visual Studio Code](get-started-vscode.md)
+- [Package a library with vcpkg](get-started-packaging.md)
+- [Add a port to the vcpkg curated registry](get-started-adding-to-registry.md)
 
-If your build system is not CMake or MSBuild, don't worry because vcpkg also supports [manual integration](../users/buildsystems/manual-integration.md) with your preferred environment.
+If your build system is not CMake or MSBuild, vcpkg also supports [manual integration](../users/buildsystems/manual-integration.md) with your preferred environment.
