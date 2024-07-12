@@ -181,6 +181,6 @@ If MSBuild detects a `vcpkg.json` file and manifests are enabled in your project
 
 To learn more about `vcpkg.json` and vcpkg MSBuild integration, see our reference documentation:
 
-- [vcpkg.json](../reference/vcpkg-json.md)
-- [manifest](../concepts/manifest-mode.md)
+- [vcpkg.json Reference](../reference/vcpkg-json.md)
+- [What is manifest mode?](../concepts/manifest-mode.md)
 - [vcpkg in MSBuild projects](../users/buildsystems/msbuild-integration.md)
