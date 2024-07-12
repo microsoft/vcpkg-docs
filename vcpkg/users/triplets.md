@@ -323,7 +323,7 @@ When set to `ON`:
 - Modifies absolute `LC_RPATH` fields to relative `@loader_path/<relative/path/to/library>` for executable and shared library binaries.
 
 > [!NOTE]  
-> This functionality is implicitly enabled by default when `VCPKG_TARGET_IS_OSX` evaluates to `TRUE`. May be disabled by explicitly setting to `OFF`.
+> This functionality is enabled by default when `VCPKG_TARGET_IS_OSX` is `TRUE`. To disable, explicitly set `VCPKG_FIXUP_MACHO_RPATH` to `OFF` in a [triplet file](../concepts/triplets.md).
 
 ### VCPKG_OSX_DEPLOYMENT_TARGET
 
