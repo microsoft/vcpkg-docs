@@ -199,7 +199,7 @@ documentation for more details.
 
 ### VCPKG_DISABLE_COMPILER_TRACKING
 
-> [!WARNING] 
+> [!WARNING]
 > Enabling this option is not recommended since it can lead to ABI
 > incompatibility in restored binary packages.  See the [binary caching
 > documentation](../consume/binary-caching-overview.md) to learn more
@@ -313,6 +313,25 @@ Sets the install name used when building macOS dynamic libraries. Default value
 is `@rpath`. See the CMake documentation for
 [CMAKE_INSTALL_NAME_DIR](https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_NAME_DIR.html)
 for more information.
+
+### VCPKG_FIXUP_MACHO_RPATH
+
+Ensures Mach-O binaries built by vcpkg are relocatable by using relative install names and run-paths.
+
+When set to `ON`:
+
+- Modifies absolute `LC_LC_ID_DYLIB` field to `@rpath/<library>` for shared library binaries;
+- Modifies absolute `LC_RPATH` fields to relative `@loader_path/<relative/path/to/library>` for executable and shared library binaries.
+
+> [!IMPORTANT]
+> This functionality is enabled by default when `VCPKG_TARGET_IS_OSX` is `TRUE`. To disable, explicitly set `VCPKG_FIXUP_MACHO_RPATH` to `OFF` in a [triplet file](../concepts/triplets.md).
+
+For more information about dynamic libraries on macOS, refer to the following links:
+
+- [Dynamic Library Identification](https://forums.developer.apple.com/forums/thread/736719)
+- [Dynamic Library Standard Setup for Apps](https://developer.apple.com/forums/thread/736728)
+- [Dynamic Library Full Path Alternative](https://developer.apple.com/forums/thread/736737)
+- [Embedding nonstandard code structures in a bundle](https://developer.apple.com/documentation/xcode/embedding-nonstandard-code-structures-in-a-bundle)
 
 ### VCPKG_OSX_DEPLOYMENT_TARGET
 
