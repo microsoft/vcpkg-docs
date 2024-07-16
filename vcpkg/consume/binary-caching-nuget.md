@@ -275,13 +275,13 @@ $env:VCPKG_BINARY_SOURCES="clear;nugetconfig,<path to nuget.config>"
 ::: zone pivot="shell-cmd"
 
 ```console
-set VCPKG_BINARY_SOURCES="clear;nuget,<feed url>,readwrite"
+set "VCPKG_BINARY_SOURCES=clear;nuget,<feed url>,readwrite"
 ```
 
 If you're using a `nuget.config` file, instead do:
 
 ```console
-set VCPKG_BINARY_SOURCES="clear;nugetconfig,<path to nuget.config>"
+set "VCPKG_BINARY_SOURCES=clear;nugetconfig,<path to nuget.config>"
 ```
 
 ::: zone-end

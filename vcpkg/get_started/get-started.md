@@ -50,7 +50,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     ::: zone pivot="shell-cmd"
 
     ```console
-    set VCPKG_ROOT="C:\path\to\vcpkg"
+    set "VCPKG_ROOT=C:\path\to\vcpkg"
     set PATH=%VCPKG_ROOT%;%PATH%
     ```
 

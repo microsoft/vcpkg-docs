@@ -71,7 +71,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     Run the following commands:
 
     ```console
-    set VCPKG_ROOT="C:\path\to\vcpkg"
+    set "VCPKG_ROOT=C:\path\to\vcpkg"
     set PATH=%VCPKG_ROOT%;%PATH%
     ```
 

@@ -69,7 +69,7 @@ $env:X_VCPKG_ASSET_SOURCES="clear;x-azurl,file://D:/vcpkg/asset-cache,,readwrite
 ::: zone pivot="shell-cmd"
 
 ```console
-set X_VCPKG_ASSET_SOURCES="clear;x-azurl,file://D:/vcpkg/asset-cache,,readwrite"
+set "X_VCPKG_ASSET_SOURCES=clear;x-azurl,file://D:/vcpkg/asset-cache,,readwrite"
 ```
 
 ::: zone-end

@@ -72,7 +72,7 @@ $env:VCPKG_BINARY_SOURCES="clear;files,\\remote\shared\vcpkg\binary-cache,read;f
 ::: zone pivot="shell-cmd"
 
 ```console
-set VCPKG_BINARY_SOURCES="clear;files,\\remote\shared\vcpkg\binary-cache,read;files,D:\vcpkg\binary-cache,readwrite"
+set "VCPKG_BINARY_SOURCES=clear;files,\\remote\shared\vcpkg\binary-cache,read;files,D:\vcpkg\binary-cache,readwrite"
 ```
 
 ::: zone-end
