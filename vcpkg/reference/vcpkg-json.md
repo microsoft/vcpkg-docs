@@ -1,7 +1,7 @@
 ---
 title: vcpkg.json Reference
 description: Reference documentation for the vcpkg.json file format.
-ms.date: 3/1/2024
+ms.date: 7/16/2024
 ms.topic: reference
 ---
 # vcpkg.json Reference

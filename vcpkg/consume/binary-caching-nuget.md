@@ -4,7 +4,7 @@ description: This tutorial shows how to set up a vcpkg binary cache using a NuGe
 author: vicroms
 ms.author: viromer
 ms.topic: tutorial
-ms.date: 01/10/2024
+ms.date: 7/16/2024
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
 ---

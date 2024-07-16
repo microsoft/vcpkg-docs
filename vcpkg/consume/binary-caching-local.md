@@ -3,7 +3,7 @@ title: "Tutorial: Set up a vcpkg binary cache using filesystem directories"
 description: Learn to set up a local binary cache to reduce rebuild times.
 author: vicroms
 ms.author: viromer
-ms.date: 01/10/2024
+ms.date: 7/16/2024
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to set up a local binary cache so that I save time on package rebuilds
 zone_pivot_group_filename: zone-pivot-groups.json

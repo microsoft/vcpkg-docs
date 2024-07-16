@@ -6,7 +6,7 @@ zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
-ms.date: 01/10/2024
+ms.date: 7/16/2024
 #CustomerIntent: As a beginner C++ developer, I want to learn how to package libraries for vcpkg using custom overlays.
 ---
 

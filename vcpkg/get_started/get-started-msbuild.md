@@ -5,7 +5,7 @@ zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
 author: data-queue
 ms.author: danshaw2
-ms.date: 01/10/2024
+ms.date: 7/16/2024
 ms.topic: tutorial
 ---
 

@@ -3,7 +3,7 @@ title: "Tutorial: Set up a vcpkg asset cache"
 description: Learn to set up a local asset cache to mirror download assets.
 author: vicroms
 ms.author: viromer
-ms.date: 01/10/2024
+ms.date: 07/16/2024
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to set up a local asset cache to mirror downloaded artifacts
 zone_pivot_group_filename: zone-pivot-groups.json
