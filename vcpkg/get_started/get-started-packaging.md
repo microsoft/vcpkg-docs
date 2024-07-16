@@ -187,7 +187,7 @@ C++ library from GitHub using vcpkg.
   GitHub repository.
   - `OUT_SOURCE_PATH SOURCE_PATH`: Sets the directory where the source code will
     be extracted.
-  - `REPO JavierMatosD/vcpkg-sample-library`: The GitHub repository containing
+  - `REPO Microsoft/vcpkg-docs`: The GitHub repository containing
     the source code.
   - `REF "${VERSION}"`: The version of the source code to download.
   - `SHA512 0`: Placeholder for the SHA-512 hash of the source code for
