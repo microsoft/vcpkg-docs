@@ -1,0 +1,5 @@
+{
+    "overlay-ports": [
+        "/home/victor/vcpkg-registry/ports/beicode"
+    ]
+}
