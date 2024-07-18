@@ -197,9 +197,9 @@ Example `nuget.config` file :
   <config>
     <add key="defaultPushSource" value="https://contoso.org/packages/" />
   </config>
-  <apiKeys>
+  <apikeys>
     <add key="https://contoso.org/packages/" value="encrypted_api_key" />
-  </apiKeys>
+  </apikeys>
   <packageSources>
     <clear />
     <add key="Contoso" value="https://contoso.org/packages/" />
@@ -217,7 +217,8 @@ vcpkg requires that you set a `defaultPushSource` in your `nuget.config` file, u
 URL as the default source to push binary packages. 
 
 If you're uploading your packages to an Azure Artifacts NuGet feed, use `AzureDevOps` as your
-source's API Key. Otherwise, replace the value with your feed's proper API Key if you have one.
+source's API Key by running `nuget setApiKey AzureDevOps -Source <feed url> -ConfigFile <path to nuget.config>`.
+Otherwise, replace the value with your feed's proper API Key if you have one.
 
 Add the `<clear />` source to ignore other previously configured values. If you want, you can define multiple
 sources in this file, use a `<add key="<feed name>" value="<feed url>" />` entry for each source.
