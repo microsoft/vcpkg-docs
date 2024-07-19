@@ -216,12 +216,15 @@ Additionally, when appropriate, it can be easier and more maintainable to rewrit
 
 Examples: [abseil](https://github.com/Microsoft/vcpkg/tree/master/ports/abseil/portfile.cmake)
 
-### Choose either static or shared binaries
+### <a name="only-static-or-shared"></a>Choose either static or shared binaries
 
-By default, `vcpkg_cmake_configure()` will pass in the appropriate setting for `BUILD_SHARED_LIBS`,
-however for libraries that don't respect that variable, you can switch on `VCPKG_LIBRARY_LINKAGE`:
+When building CMake libraries, [`vcpkg_cmake_configure()`](../maintainers/functions/vcpkg_cmake_configure.md) will pass in the correct value for `BUILD_SHARED_LIBS` based on the user's requested variant.
+
+You can calculate alternative configure parameters by using `string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" ...)`.
 
 ```cmake
+# portfile.cmake
+
 string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "static" KEYSTONE_BUILD_STATIC)
 string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "dynamic" KEYSTONE_BUILD_SHARED)
 
@@ -231,6 +234,44 @@ vcpkg_cmake_configure(
         -DKEYSTONE_BUILD_STATIC=${KEYSTONE_BUILD_STATIC}
         -DKEYSTONE_BUILD_SHARED=${KEYSTONE_BUILD_SHARED}
 )
+```
+
+If a library does not offer configure options to select the build variant, the build must be patched. When patching a build, you should always attempt to maximize the future maintainability of the port. Typically this means minimizing the number of lines that need to be touched to fix the issue at hand.
+
+#### Example: Patching a CMake library to avoid building unwanted variants
+
+For example, when patching a CMake-based library, it may be sufficient to add [`EXCLUDE_FROM_ALL`](https://cmake.org/cmake/help/latest/prop_tgt/EXCLUDE_FROM_ALL.html) to unwanted targets and wrap the `install(TARGETS ...)` call in an `if(BUILD_SHARED_LIBS)`. This will be shorter than wrapping or deleting every line that mentions the unwanted variant.
+
+For a project `CMakeLists.txt` with the following contents:
+```cmake
+add_library(contoso SHARED contoso.c)
+add_library(contoso_static STATIC contoso.c)
+
+install(TARGETS contoso contoso_static EXPORT ContosoTargets)
+
+install(EXPORT ContosoTargets
+  FILE ContosoTargets
+  NAMESPACE contoso::
+  DESTINATION share/contoso)
+```
+
+Only the `install(TARGETS)` line needs to be patched.
+```cmake
+add_library(contoso SHARED contoso.c)
+add_library(contoso_static STATIC contoso.c)
+
+if(BUILD_SHARED_LIBS)
+  set_target_properties(contoso_static PROPERTIES EXCLUDE_FROM_ALL 1)
+  install(TARGETS contoso EXPORT ContosoTargets)
+else()
+  set_target_properties(contoso PROPERTIES EXCLUDE_FROM_ALL 1)
+  install(TARGETS contoso_static EXPORT ContosoTargets)
+endif()
+
+install(EXPORT ContosoTargets
+  FILE ContosoTargets
+  NAMESPACE contoso::
+  DESTINATION share/contoso)
 ```
 
 ### When defining features, explicitly control dependencies
@@ -392,11 +433,11 @@ Using `vcpkg`'s built-in toolchains this works, because the value of `VCPKG_<LAN
 
 Because of this, it is preferable to patch the buildsystem directly when setting `CMAKE_<LANG>_FLAGS`.
 
-### Minimize patches
+### <a name="minimize-patches"></a>Minimize patches
 
-When making changes to a library, strive to minimize the final diff. This means you should _not_ reformat the upstream source code when making changes that affect a region. Also, when disabling a conditional, it is better to add a `AND FALSE` or `&& 0` to the condition than to delete every line of the conditional.
+When making changes to a library, strive to minimize the final diff. This means you should not reformat the upstream source code when making changes that affect a region. When disabling a conditional, it is better to add an `AND FALSE` or `&& 0` to the condition than to delete every line of the conditional. If a large region needs to be disabled, it is shorter to add an `if(0)` or `#if 0` around the region instead of deleting every line in the patch.
 
-Don't add patches if the port is outdated and updating the port to a newer released version would solve the same issue. vcpkg prefers updating ports over patching outdated versions unless the version bump breaks a considerable amount of dependent ports.
+Don't add patches if the port is outdated and updating the port to a newer released version would solve the same issue. vcpkg prefers updating ports over patching outdated versions.
 
 This helps to keep the size of the vcpkg repository down as well as improves the likelihood that the patch will apply to future code versions.
 
