@@ -40,7 +40,7 @@ To use this function, you must depend on the helper port `vcpkg-make`:
 
 ### ADD_BIN_TO_PATH
 
-Adds the configure dependent `(debug/)bin` directory to the system path. This is useful if configure builds and runs executables with vcpkg integrated dependencies.
+Adds the configure dependent `(debug/)bin` directory to the system path. This is useful if configure builds and runs executables with shared dependencies.
 
 ### DISABLE_PARALLEL
 
