@@ -86,9 +86,40 @@ Library Linkage:
 * For static library builds: --disable-shared and --enable-static
 
 Installation Directories:
-* Adjusts standard directories (bin, lib, share, etc.) to conform with vcpkg's layout, ensuring correct installation paths.
-  - `--prefix`: The base installation directory, adjusted per build type (release or debug).
-  - `--bindir`, `--sbindir`, `--libdir`, `--includedir` (if debug), `--mandir`, `--docdir`, `--datarootdir`: Subdirectories under the prefix, for different types of files.
+* Adjusts standard directories (bin, lib, share, etc.) to conform with vcpkg's layout.
+
+Always Set:
+  - `--prefix` : The base installation directory, adjusted per build type (release or debug).
+  - `--bindir` : Subdirectory under the prefix for executable programs
+  - `--sbindir`: Subdirectory under the prefix for system administration programs
+  - `--libdir` : Subdirectory under the prefix for libraries (shared or static)
+  - `--mandir` : Subdirectory under the prefix for manual pages (man files)
+  - `--docdir` : Subdirectory under the prefix for documentation
+  - `--datarootdir` : Subdirectory under the prefix for architecture-independent data
+  
+Debug builds only:
+  - `--includedir` : Subdirectory under the prefix for header files
+
+Example Paths:
+* Release Configuration:
+  - `--prefix=${current_installed_dir_msys}`
+  - `--bindir=${prefix}/tools/${PORT}/bin`
+  - `--sbindir=${prefix}/tools/${PORT}/sbin`
+  - `--libdir=${prefix}/lib`
+  - `--mandir=${prefix}/share/${PORT}`
+  - `--docdir=${prefix}/share/${PORT}`
+  - `--datarootdir=${prefix}/share/${PORT}`
+
+* Debug Configuration:
+  - `--prefix=${current_installed_dir_msys}${path_suffix_DEBUG}`
+  - `--bindir=${prefix}/../tools/${PORT}${path_suffix_DEBUG}/bin`
+  - `--sbindir=${prefix}/../tools/${PORT}${path_suffix_DEBUG}/sbin`
+  - `--libdir=${prefix}/lib`
+  - `--includedir=${prefix}/../include`
+  - `--mandir=${prefix}/share/${PORT}`
+  - `--docdir=${prefix}/share/${PORT}`
+  - `--datarootdir=${prefix}/share/${PORT}`
+
 
 Platform-Specific Tweaks:
 * On Windows
