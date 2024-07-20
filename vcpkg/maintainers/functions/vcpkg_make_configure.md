@@ -167,6 +167,31 @@ Specifies a list of CMake commands to execute before the configure process for e
 >[!NOTE]
 > When the `COPY_SOURCE` option is not set, the CMake commands in `PRE_CONFIGURE_CMAKE_COMMANDS` will operate directly on the files in the original source directory.
 
+Example
+
+```cmake
+function(my_preconfigure_command SRC BUILD_TYPE)
+    # Each source directory gets different version.txt files
+    if(BUILD_TYPE STREQUAL "release")
+        file(WRITE "${SRC}/version.txt" "This is a release version!")
+    else()
+        file(WRITE "${SRC}/version.txt" "This is a debug version!")
+    endif()
+    # The environment variable has different values for each configuration
+    set(ENV{SPECIAL} "${BUILD_TYPE} is magic")
+endfunction()
+
+vcpkg_make_configure(
+    # ...
+    PRE_CONFIGURE_CMAKE_COMMANDS my_preconfigure_command
+)
+```
+
+In this example, `my_preconfigure_command` will be executed twice (for "Debug" and "Release" if `VCPKG_BUILD_TYPE` is not set):
+
+Debug build: It will create `version.txt` with the content "This is a debug version!" and set the environment variable `SPECIAL` to "Debug is magic."
+Release build: It will create `version.txt` with the content "This is a release version!" and set the environment variable `SPECIAL` to "Release is magic."
+
 ### LANGUAGES
 
 Specifies the programming languages your project uses.
