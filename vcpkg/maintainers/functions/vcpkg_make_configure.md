@@ -75,7 +75,7 @@ This can be useful for projects that do not use standard environment variables o
 
 ### DISABLE_DEFAULT_OPTIONS
 
-Setting this flag disables the following default configure options provided by `vcpkg_make_configure`. Use this flag if you need full control over the configure command line.
+Setting this flag disables the following default configure options provided by `vcpkg_make_configure`. Use this flag only if you need complete control over the configure command line and want to specify all options manually.
 
 General Defaults:
 * --disable-silent-rules - Makes the build process output more verbose.
@@ -87,12 +87,19 @@ Library Linkage:
 
 Installation Directories:
 * Adjusts standard directories (bin, lib, share, etc.) to conform with vcpkg's layout, ensuring correct installation paths.
+  - `--prefix`: The base installation directory, adjusted per build type (release or debug).
+  - `--bindir`, `--sbindir`, `--libdir`, `--includedir` (if debug), `--mandir`, `--docdir`, `--datarootdir`: Subdirectories under the prefix, for different types of files.
 
 Platform-Specific Tweaks:
-* On Windows: Ensures compatibility with Windows-specific filesystem and library behaviors.
-* On Unix-like systems: Ensures the script accommodates the typical filesystem layout and toolchain behaviors.
+* On Windows
+  - Sets `gl_cv_double_slash_root=yes` to signal to the configure script that it is running on Windows, where paths can begin with double slashes (//).
+  - Sets `ac_cv_func_memmove=yes` and `ac_cv_func_memset=yes` to indicate that the `memmove` and `memset` functions are available.
+  - sets `gl_cv_host_cpu_c_abi=no` on ARM64 builds to indicate that the compiler does not use the standard C ABI for floating-point numbers.
 
-Removing these defaults gives you the responsibility to specify all necessary configuration options manually, ensuring the project is correctly configured for building with vcpkg.
+* On Unix-like systems:
+  - Adjusts paths to match the typical Unix filesystem hierarchy (e.g., using /usr/local).
+
+>[!NOTE]These default options streamline the configuration process for most projects. If you need a highly customized build, you can set `DISABLE_DEFAULT_OPTIONS` and manually provide all the necessary configuration options.
 
 ### USE_RESPONSE_FILES
 
