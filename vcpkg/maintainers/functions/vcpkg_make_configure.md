@@ -63,7 +63,7 @@ This can be useful in situations where you're using custom build scripts or tool
 >[!NOTE]
 >If you disable the MSVC wrappers using `DISABLE_MSVC_WRAPPERS`, this option (`DISABLE_MSVC_FLAG_ESCAPING`) has no effect because the escape characters are not added in the first place.
 
-### DSIABLE_CPPFLAGS
+### DISABLE_CPPFLAGS
 
 Disables the extraction of C preprocessor flags (`-D` and `-isystem`) from `CFLAGS` and `CXXFLAGS` into `CPPFLAGS`.
 
