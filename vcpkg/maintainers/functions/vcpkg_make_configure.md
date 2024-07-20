@@ -87,8 +87,7 @@ Library Linkage:
 
 Installation Directories:
 * Adjusts standard directories (bin, lib, share, etc.) to conform with vcpkg's layout.
-
-Always Set:
+* Always Set:
   - `--prefix` : The base installation directory, adjusted per build type (release or debug).
   - `--bindir` : Subdirectory under the prefix for executable programs
   - `--sbindir`: Subdirectory under the prefix for system administration programs
@@ -96,8 +95,7 @@ Always Set:
   - `--mandir` : Subdirectory under the prefix for manual pages (man files)
   - `--docdir` : Subdirectory under the prefix for documentation
   - `--datarootdir` : Subdirectory under the prefix for architecture-independent data
-  
-Debug builds only:
+* Debug builds only:
   - `--includedir` : Subdirectory under the prefix for header files
 
 Example Paths:
