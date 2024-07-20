@@ -90,7 +90,7 @@ Installation Directories:
 
 Platform-Specific Tweaks:
 * On Windows: Ensures compatibility with Windows-specific filesystem and library behaviors.
-* On Unix-like systems: Assures the script accommodates the typical filesystem layout and toolchain behaviors.
+* On Unix-like systems: Ensures the script accommodates the typical filesystem layout and toolchain behaviors.
 
 Removing these defaults gives you the responsibility to specify all necessary configuration options manually, ensuring the project is correctly configured for building with vcpkg.
 
