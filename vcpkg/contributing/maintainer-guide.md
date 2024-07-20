@@ -167,6 +167,10 @@ https://github.com/GPUOpen-LibrariesAndSDKs/display-library/blob/master/Public-D
 ]])
 ```
 
+### Version constraints in ports
+
+Version constraints within ports should generally be avoided, as they can hinder the independent evolution of projects. Adding such constraints is only permissible when there is a well-documented justification, such as proven incompatibility with specific earlier versions. These constraints should not be used merely to maintain parity with independent projects.
+
 ## Features
 
 ### Do not use features to implement alternatives
