@@ -467,6 +467,16 @@ The following reasons apply:
   reviewing the changes resides upstream
 - Reduces the vcpkg repository size for users that aren't using that patch
 
+Contributors should make sure that the download comes from a stable download endpoint
+ to avoid SHA conflicts. When downloading patch files from a pull request or commit
+from GitHub and GitLab the `?full_index=1` parameter should be appended to the
+download URL.
+
+Examples:
+* `https://github.com/google/farmhash/pull/40.diff?full_index=1`
+* `https://github.com/linux-audit/audit-userspace/commit/f8e9bc5914d715cdacb2edc938ab339d5094d017.patch?full_index=1`
+* `https://gitlab.kitware.com/paraview/paraview/-/merge_requests/6375.diff?full_index=1`
+
 ### Prefer patching over overriding `VCPKG_<VARIABLE>` values
 
 Some variables prefixed with `VCPKG_<VARIABLE>` have an equivalent `CMAKE_<VARIABLE>`.
