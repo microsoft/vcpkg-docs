@@ -38,7 +38,7 @@ prioritizes as follows:
   "registries": [
     {
       "kind": "git",
-      "repository": "https://github.com/Microsoft/vcpkg-docs",
+      "repository": "https://github.com/microsoft/vcpkg-docs",
       "reference": "vcpkg-registry",
       "baseline": "768f6a3ad9f9b6c4c2ff390137690cf26e3c3453",
       "packages": ["bei*"]
@@ -81,7 +81,7 @@ Found the following problems in configuration (path/to/vcpkg-configuration.json)
 $ (a configuration object): warning: Package "bei*" is duplicated.
     First declared in:
         location: $.registries[0].packages[0]
-        registry: https://github.com/Microsoft/vcpkg-docs
+        registry: https://github.com/microsoft/vcpkg-docs
     The following redeclarations will be ignored:
         location: $.registries[1].packages[1]
         registry: https://github.com/vicroms/vcpkg-registry

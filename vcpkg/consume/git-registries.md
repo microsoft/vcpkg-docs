@@ -94,7 +94,7 @@ purpose of this tutorial is unnecessary and can be deleted.
 
 The source code references two libraries that are not available in the vcpkg curated registry. In
 order to satisfy these dependencies we need to add
-<https://github.com/Microsoft/vcpkg-docs> as an additional registry.
+<https://github.com/microsoft/vcpkg-docs> as an additional registry.
 
 Modify the contents of `vcpkg-configuration.json` to:
 
@@ -108,7 +108,7 @@ Modify the contents of `vcpkg-configuration.json` to:
   "registries": [
     {
       "kind": "git",
-      "repository": "https://github.com/Microsoft/vcpkg-docs",
+      "repository": "https://github.com/microsoft/vcpkg-docs",
       "reference": "vcpkg-registry",
       "baseline": "768f6a3ad9f9b6c4c2ff390137690cf26e3c3453",
       "packages": [ "beicode", "beison" ]

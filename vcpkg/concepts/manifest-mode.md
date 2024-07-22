@@ -94,7 +94,7 @@ vcpkg can be configured through a `vcpkg-configuration.json` file to add more
   "registries": [
     {
       "kind": "git",
-      "repository": "https://github.com/Microsoft/vcpkg-docs",
+      "repository": "https://github.com/microsoft/vcpkg-docs",
       "reference": "vcpkg-registry",
       "baseline": "768f6a3ad9f9b6c4c2ff390137690cf26e3c3453",
       "packages": [ "beicode", "beison" ]
