@@ -5,7 +5,7 @@ set(beicode_VERSION 1.0.0)
 project(beicode
 	VERSION ${beicode_VERSION}
 	DESCRIPTION "A simple utf-8 based unicode decoding and encoding library"
-	HOMEPAGE_URL "https://github.com/northwindtraders/beicode"
+	HOMEPAGE_URL "https://github.com/Microsoft/vcpkg-docs"
 	LANGUAGES CXX)
 
 include(CMakePackageConfigHelpers)
