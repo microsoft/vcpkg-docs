@@ -1,7 +1,7 @@
 ---
 title: vcpkg.json Reference
 description: Reference documentation for the vcpkg.json file format.
-ms.date: 3/1/2024
+ms.date: 7/16/2024
 ms.topic: reference
 ---
 # vcpkg.json Reference
@@ -152,6 +152,9 @@ The URI to the project's homepage. A string. Optional.
 The SPDX short license expression of the project. A string or null. Optional.
 
 The `"license"` should either be an [SPDX 3.19 license expression](https://spdx.org/licenses/) or should be `null` to indicate that users must read the deployed `/share/<port>/copyright` file. DocumentRefs are not supported.
+
+>[!NOTE]
+> The licensing information provided for each package in the vcpkg registry represents Microsoft's best understanding of the licensing requirements. However, this information may not be definitive. Users are advised to verify the exact licensing requirements for each package they intend to use, as it is ultimately their responsibility to ensure compliance with the applicable licenses.
 
 #### Example license strings
 
@@ -456,6 +459,9 @@ This field documents the platform configurations where the feature will build an
 The SPDX short license expression of the feature. A string or null. Optional. 
 If not provided, the license is the same as specified in the top level [license](#license) field.
 
+>[!NOTE]
+> The licensing information provided for each package in the vcpkg registry represents Microsoft's best understanding of the licensing requirements. However, this information may not be definitive. Users are advised to verify the exact licensing requirements for each package they intend to use, as it is ultimately their responsibility to ensure compliance with the applicable licenses.
+
 ## <a name="platform-expression"></a> Platform Expression
 
 A Platform Expression is a JSON string which describes when a dependency is required or when a library or feature is expected to build.
@@ -463,8 +469,8 @@ A Platform Expression is a JSON string which describes when a dependency is requ
 Expressions are built from primitive identifiers, logical operators, and grouping:
 
 - `!<expr>`, `not <expr>` - negation
-- `<expr>|<expr>`, `<expr>||<expr>`, `<expr>,<expr>` - logical OR (the keyword `or` is reserved but not valid in platform expressions)
-- `<expr>&<expr>`, `<expr>&&<expr>`, `<expr> and <expr>` - logical AND
+- `<expr>|<expr>`, `<expr>,<expr>` - logical OR (the keyword `or` is reserved but not valid in platform expressions)
+- `<expr>&<expr>`, `<expr> and <expr>` - logical AND
 - `(<expr>)` - grouping/precedence
 
 The following identifiers are defined based on the [triplet settings](../users/triplets.md) and build configuration:
@@ -476,7 +482,9 @@ The following identifiers are defined based on the [triplet settings](../users/t
 | `arm` | `VCPKG_TARGET_ARCHITECTURE` == `"arm"` or</br> `VCPKG_TARGET_ARCHITECTURE` == `"arm64"` |
 | `arm32` | `VCPKG_TARGET_ARCHITECTURE` == `"arm"` |
 | `arm64` | `VCPKG_TARGET_ARCHITECTURE` == `"arm64"` |
+| `arm64ec` | `VCPKG_TARGET_ARCHITECTURE` == `"arm64ec"` |
 | `wasm32` | `VCPKG_TARGET_ARCHITECTURE` == `"wasm32"` |
+| `mips64` | `VCPKG_TARGET_ARCHITECTURE` == `"mips64"` |
 | `windows` | `VCPKG_CMAKE_SYSTEM_NAME` == `""` or</br> `VCPKG_CMAKE_SYSTEM_NAME` == `"WindowsStore"` or</br> `VCPKG_CMAKE_SYSTEM_NAME` == `"MinGW"` |
 | `mingw` | `VCPKG_CMAKE_SYSTEM_NAME` == `"MinGW"` |
 | `uwp` | `VCPKG_CMAKE_SYSTEM_NAME` == `"WindowsStore"` |
@@ -488,6 +496,8 @@ The following identifiers are defined based on the [triplet settings](../users/t
 | `openbsd` | `VCPKG_CMAKE_SYSTEM_NAME` == `"OpenBSD"` |
 | `android` | `VCPKG_CMAKE_SYSTEM_NAME` == `"Android"` |
 | `emscripten` | `VCPKG_CMAKE_SYSTEM_NAME` == `"Emscripten"` |
+| `qnx` | `VCPKG_CMAKE_SYSTEM_NAME` == `"QNX"` |
+| `vxworks` | `VCPKG_CMAKE_SYSTEM_NAME` == `"VxWorks"` |
 | `static` | `VCPKG_LIBRARY_LINKAGE` == `"static"` |
 | `staticcrt` | `VCPKG_CRT_LINKAGE` == `"static"` |
 | `native` | `TARGET_TRIPLET` == `HOST_TRIPLET` |

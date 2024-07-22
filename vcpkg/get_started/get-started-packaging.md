@@ -6,7 +6,7 @@ zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
-ms.date: 01/10/2024
+ms.date: 7/16/2024
 #CustomerIntent: As a beginner C++ developer, I want to learn how to package libraries for vcpkg using custom overlays.
 ---
 
@@ -187,7 +187,7 @@ C++ library from GitHub using vcpkg.
   GitHub repository.
   - `OUT_SOURCE_PATH SOURCE_PATH`: Sets the directory where the source code will
     be extracted.
-  - `REPO JavierMatosD/vcpkg-sample-library`: The GitHub repository containing
+  - `REPO Microsoft/vcpkg-docs`: The GitHub repository containing
     the source code.
   - `REF "${VERSION}"`: The version of the source code to download.
   - `SHA512 0`: Placeholder for the SHA-512 hash of the source code for

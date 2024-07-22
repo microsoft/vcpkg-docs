@@ -3,7 +3,7 @@ title:  Supported hosts
 description: This article describes the platforms on which vcpkg is supported.
 author: bion
 ms.author: bion
-ms.date: 01/16/2024
+ms.date: 06/24/2024
 ms.topic: concept-article
 ---
 
@@ -18,10 +18,10 @@ vcpkg also depends on a few system components to be installed before it can run.
 To use vcpkg, a few components need to be installed on the system first.
 
 * Windows: Visual Studio 2015 or later.
-* macOS: XCode Console Tools, tar, git, zip, unzip, and curl. Most ports also need pkg-config.
+* macOS: Xcode Command Line Tools, tar, git, zip, unzip, and curl. Most ports also need `pkg-config`.
 We recommend installing these dependencies via Homebrew, such as via a terminal command
 `brew install zip unzip curl pkgconfig`.
-* Linux: A C++ compiler to use, tar, git, zip, unzip, and curl. Most ports also need pkg-config.
+* Linux: A C++ compiler to use, tar, git, zip, unzip, and curl. Most ports also need `pkg-config`.
 We recommend installing these dependencies with your system package manager.
   * apt-based platforms: `apt install git curl zip unzip pkgconfig`
   * rpm-based platforms: `dnf install git curl zip unzip pkgconfig`
@@ -33,18 +33,18 @@ For Linux and macOS users we also recommend to install the following packages: `
 
 Support is broken into 4 distinct categories. They are:
 
-* Full support, tested  
+* **Full support, tested**  
   The configurations used to test vcpkg's curated registry on a regular basis. Problems in these configurations
   are rapidly found and fixed by vcpkg's maintainers and community..
-* Full support, expected  
+* **Full support, expected**  
   Configurations treated with the same priority as 'Full support, tested' but which are not part of the regular tests.
   In general, these configurations are substantially similar to one of the fully tested configurations.
-* Community support  
+* **Community support**  
   Configurations that are not actively supported by vcpkg's maintainers but have substantial community investment.
   vcpkg maintainers accept changes to fix problems for these platforms but don't make guarantees that these 
   configurations work. The vcpkg team is interested in moving as many platforms out of community support
   into full support as possible.
-* Unsupported  
+* **Unsupported**  
   Configurations that are known no to work for some reason. In general, PRs fixing only these platforms
   are not accepted.
 
@@ -54,30 +54,30 @@ The fully supported, tested platforms are:
 
 ### Windows
 
-* The latest Windows / Windows Server release. These are 11 and Server 2022 as of this writing.
-* The latest Visual Studio update, Visual Studio 2022 17.8 as of this writing.
+* The latest Windows / Windows Server release. These are Windows 11 and Windows Server 2022 as of this writing.
+* The latest Visual Studio update, Visual Studio 2022 version 17.8 as of this writing.
 
 ### macOS
 
-macOS is intended to track the latest version of macOS and contemporary version of XCode Command Line tools. However,
-updating macOS machines is a manual process, and macOS frequently changes things in ways that break vcpkg's testing. 
-As of this writing, we are using:
+macOS is intended to track the latest version of macOS and contemporary version of Xcode Command Line tools. However,
+updating macOS machines is a manual process, and macOS frequently changes things in ways that break vcpkg's testing. As of this writing, we are using:
 
-* macOS 13.5.2
-* XCode Command Line Tools 14.3.1
+* macOS 14.5
+* XCode Command Line Tools 14.4
 
 ### Linux
 
 * The latest LTS release of Ubuntu, currently 22.04.
 
 ### Android
-* Linux 64-bit Android NDK version 25c
+
+* Linux 64-bit Android NDK version r26d
 
 ## Full support, expected
 
 ### Windows
 
-* Windows 7 / Server 2008 R2 and later
+* Windows 8.1 / Windows Server 2016 and later
 * Visual Studio 2015 and later
 
 ### macOS
@@ -85,7 +85,7 @@ As of this writing, we are using:
 * The latest version of macOS, minus 2 major versions. For example, the current version of macOS is macOS 14 Sonoma,
 so we expect vcpkg to work as far back as macOS 12 Monterey. This is intended to track with Apple's own support for
 macOS.
-* Contemporary versions of the XCode Console Tools for a given release of macOS
+* Contemporary versions of the Xcode Command Line Tools for a given release of macOS
 
 ### Linux
 
@@ -96,14 +96,18 @@ the last 5 years. Examples:
 are expected to work. Ubuntu 18.04 is still in support from Canonical but was released more than 5 years ago, so
 we no longer consider it fully supported. 20.10 is newer than 20.04 but we do not consider it fully supported because
 it is no longer in support from Canonical.
-* CentOS and Red Hat Enterprise Linux 8 is fully supported. CentOS and RHEL 7 are in support from Red Hat, but are
-not expected to work as they were released more than 5 years ago.
-* Fedora 39 and 38 are fully supported, but 37 is no longer supported by Fedora.
+* Red Hat Enterprise Linux 9 is fully supported.
+* CentOS and Red Hat Enterprise Linux 8 left support from Red Hat on May 31, 2024, and was released more than 5 years
+ago, and is thus no longer supported.
+* CentOS and RHEL 7 are out of support from Red Hat, and are not expected to work as they were released more than 5
+years ago. The Oracle Linux fork now supported by Oracle is still in support from Oracle, but still not expected to
+work as it was released more than 5 years ago.
+* Fedora 40 and 39 are fully supported, but 38 is no longer supported by Fedora.
 * Debian 12 "Bookworm", 11 "Bullseye", and 10 "Buster" are all supported by Debian and released in the last 5 years.
-Debian 9 "Stretch" left support from the Debian project in July 2020 and is thus not supported by vcpkg.
+Debian 9 "Stretch" left support from the Debian project in July 2022 and is thus not supported by vcpkg.
 
-We also assume that customers' build systems will match the version of Linux they are using, and take care to ensure
-components like our Manifest Mode CMake integration will work with the versions of these dependencies that come with
+We also assume that users' build systems will match the version of Linux they are using, and take care to ensure
+components like our manifest mode CMake integration will work with the versions of these dependencies that come with
 one of the above distros. As of this writing, those dependency versions and the associated distro(s) are:
 
 * GCC 8.3.0 (Debian 10)
@@ -116,6 +120,12 @@ one of the above distros. As of this writing, those dependency versions and the 
 ## Community support
 
 ### Windows
+
+* Windows 7 / Windows Server 2008 R2 and later
+
+`vcpkg.exe` should work on Windows 7 flavors, but the vast majority of the curated registry requires MSYS2 components
+like `pkg-config` which
+[no longer support versions of Windows older than 8.1](https://www.msys2.org/docs/windows_support/#current-policy).
 
 * MinGW or Clang as the build compiler.
 
@@ -132,6 +142,28 @@ libc to be glibc. We do provide a muslc-based binary of vcpkg we have tested to 
 furnish muslc based copies of a number of dependencies like CMake.
 
 ### BSDs or other POSIX systems
+
+On BSD targets, no vcpkg binary is provided for download. Instead, the bootstrap logic will download the
+vcpkg source code and compile it locally.
+
+#### Dependencies
+
+vcpkg requires a number of software packages that are not part of the operating system and have to be installed using the package manager:
+
+* FreeBSD: `pkg install -y bash cmake curl git ninja zip unzip`
+* OpenBSD: `pkg_add -Iz bash cmake coreutils curl git ninja zip unzip-6.10-iconv`
+
+As on Linux, it is recommended to also install some additional packages:
+
+* FreeBSD: `pkg install -y autoconf autoconf-archive gmake pkgconf python`
+* OpenBSD: `pkg_add -Iz autoconf-2.71 autoconf-archive gmake pkgconf python3`
+
+#### Caveats
+
+* vcpkg executes `unzip` from `PATH`. Eventually, this might cause vcpkg to execute the
+operating system provided `unzip` despite an additional one having been installed using the package manager.
+The `PATH` environment variable has to be configured to prefer the third party `unzip` over the operating system's one,
+or vcpkg will fail to extract its binary cache.
 
 ## Unsupported
 
