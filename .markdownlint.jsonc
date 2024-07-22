@@ -1,9 +1,0 @@
-{
-    "MD013": {
-        // Increase code block lenght since some command-line examples are extremely long
-        "code_block_line_length": 180
-    },
-    // Disable "Multiple top level headings in the same document" triggered by metadata and top-level
-    // heading on articles
-    "MD025": false
-}
