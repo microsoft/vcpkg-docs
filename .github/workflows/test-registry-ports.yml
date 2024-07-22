@@ -1,0 +1,39 @@
+name: Test vcpkg ports
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
+  VCPKG_OVERLAY_PORTS: "${{ github.workspace }}/ports"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Acquire vcpkg
+      uses: actions/checkout@v4
+      with:
+        repository: "Microsoft/vcpkg"
+        path: vcpkg
+
+    - name: Bootstrap vcpkg
+      run: "${{ github.workspace }}/vcpkg/bootstrap-vcpkg.sh"
+      shell: bash
+
+    - name: Enable GitHub Actions Cache backend
+      uses: actions/github-script@v7
+      with:
+        script: |
+          core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
+          core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+
+    - name: Build ports
+      run: ${{ github.workspace }}/vcpkg/vcpkg install
+      shell: bash
