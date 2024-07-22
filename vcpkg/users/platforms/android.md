@@ -1,5 +1,5 @@
 ---
-title: Android support in vcpkg
+title: Android support
 description: How to target Android devices using C++ with vcpkg
 ms.date: 07/11/2024
 ms.topic: concept-article
@@ -122,7 +122,7 @@ Notice that **the location of the sysroot has changed since NDK 22**. (For more 
 
 If you prefer using [the latest version](https://developer.android.com/studio/projects/install-ndk#default-ndk-per-agp), check the [BuildSystemMaintainers.md of the NDK document](https://android.googlesource.com/platform/ndk/+/master/docs/BuildSystemMaintainers.md#sysroot) and then put appropriate path for your system.
 
-For example, macOS users will use the path like this example:
+For example, MacOS users will use the path like this example:
 
 ```cmake
 # In android triplets... (e.g. arm64-android.cmake)
@@ -230,7 +230,7 @@ The folder [vcpkg_android_example_cmake_script](https://github.com/Microsoft/vcp
 
 [!INCLUDE [experimental](../../../includes/experimental.md)]
 
-vcpkg can export Android archives ([AAR files](https://developer.android.com/studio/projects/android-library)). Once an archive is created, it can imported in Android Studio as a native dependent.  The archive is automatically consumed using [Android Studio's prefab tool](https://github.com/google/prefab).
+vcpkg can export Android archives ([AAR files](https://developer.android.com/studio/projects/android-library)). Once an archive is created, it can be imported in Android Studio as a native dependent.  The archive is automatically consumed using [Android Studio's prefab tool](https://github.com/google/prefab).
 
 For more information on Prefab, refer to:
 
@@ -261,7 +261,7 @@ export ANDROID_NDK_HOME=/home/your-account/Android/Sdk/ndk-bundle
 
 ### Example exporting \[jsoncpp]
 
-First, "vcpkg install" the 4 Android architectures (it is mandatory to export all 4 of them):
+First, run "vcpkg install" for all supported Android architectures (it is mandatory to export all of them):
 
 ```console
 ./vcpkg install jsoncpp:arm-android  jsoncpp:arm64-android  jsoncpp:x64-android  jsoncpp:x86-android
