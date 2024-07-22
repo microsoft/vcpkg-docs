@@ -455,6 +455,18 @@ Common options that allow you to avoid patching:
 - [CMAKE] Calls to `find_package(XYz)` in CMake scripts can be disabled via [`-DCMAKE_DISABLE_FIND_PACKAGE_XYz=ON`](https://cmake.org/cmake/help/v3.15/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.html)
 - [CMAKE] Cache variables (declared as `set(VAR "value" CACHE STRING "Documentation")` or `option(VAR "Documentation" "Default Value")`) can be overridden by just passing them in on the command line as `-DVAR:STRING=Foo`. One notable exception is if the `FORCE` parameter is passed to `set()`. For more information, see the [CMake `set` documentation](https://cmake.org/cmake/help/v3.15/command/set.html)
 
+### <a name="prefer-download-patches"></a> Prefer downloading approved patches over checking them into the port
+
+If an approved or merged patch file can be obtained from upstream, ports should
+try to download them and apply them instead of having them as part of the port files.
+The following reasons apply:
+
+- Avoids license conflicts with the vcpkg repository
+- Confirms that upstream has accepted the patch changes
+- Patches can be much larger than we would normally accept since the *onus* of
+  reviewing the changes resides upstream
+- Reduces the vcpkg repository size for users that aren't using that patch
+
 ### Prefer patching over overriding `VCPKG_<VARIABLE>` values
 
 Some variables prefixed with `VCPKG_<VARIABLE>` have an equivalent `CMAKE_<VARIABLE>`.
