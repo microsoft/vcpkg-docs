@@ -5,7 +5,7 @@ set(beison_VERSION 1.0.1)
 project(beison
 	VERSION ${beison_VERSION}
 	DESCRIPTION "A simple json parsing and stringifying library"
-	HOMEPAGE_URL "https://github.com/northwindtraders/beison"
+	HOMEPAGE_URL "https://github.com/Microsoft/vcpkg-docs"
 	LANGUAGES CXX)
 
 include(CMakePackageConfigHelpers)
