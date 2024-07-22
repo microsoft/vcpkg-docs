@@ -37,8 +37,9 @@ The latest JSON Schema is available at [https://raw.githubusercontent.com/micros
   "registries": [
     {
       "kind": "git",
-      "repository": "https://github.com/northwindtraders/vcpkg-registry",
-      "baseline": "dacf4de488094a384ca2c202b923ccc097956e0c",
+      "repository": "https://github.com/microsoft/vcpkg-docs",
+      "reference": "vcpkg-registry",
+      "baseline": "768f6a3ad9f9b6c4c2ff390137690cf26e3c3453",
       "packages": [ "beicode", "beison" ]
     }
   ],
@@ -50,7 +51,7 @@ The latest JSON Schema is available at [https://raw.githubusercontent.com/micros
 }
 ```
 
-This example adds a private registry, `https://github.com/northwindtraders/vcpkg-registry`, as the source for the libraries `beicode` and `beison`. All other ports are found from an internal mirror of the Curated Catalog hosted at `https://internal/mirror/of/github.com/Microsoft/vcpkg`.
+This example adds a private registry, `https://github.com/microsoft/vcpkg-docs/tree/vcpkg-registry`, as the source for the libraries `beicode` and `beison`. All other ports are found from an internal mirror of the Curated Catalog hosted at `https://internal/mirror/of/github.com/Microsoft/vcpkg`.
 
 The example also configures custom overlays for ports and triplets that are present in the source code repository.
 
