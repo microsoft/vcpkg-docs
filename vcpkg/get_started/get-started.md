@@ -6,7 +6,7 @@ zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
-ms.date: 07/11/2024
+ms.date: 7/16/2024
 #CustomerIntent: As a beginner C++ developer, I want to learn how to install and manage packages using CMake and vcpkg, so that I can easily set up and maintain C++ projects with necessary dependencies.
 ---
 
@@ -50,7 +50,7 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     ::: zone pivot="shell-cmd"
 
     ```console
-    set VCPKG_ROOT="C:\path\to\vcpkg"
+    set "VCPKG_ROOT=C:\path\to\vcpkg"
     set PATH=%VCPKG_ROOT%;%PATH%
     ```
 

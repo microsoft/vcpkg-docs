@@ -1,7 +1,7 @@
 ---
 title: vcpkg.json Reference
 description: Reference documentation for the vcpkg.json file format.
-ms.date: 3/1/2024
+ms.date: 7/16/2024
 ms.topic: reference
 ---
 # vcpkg.json Reference
@@ -469,8 +469,8 @@ A Platform Expression is a JSON string which describes when a dependency is requ
 Expressions are built from primitive identifiers, logical operators, and grouping:
 
 - `!<expr>`, `not <expr>` - negation
-- `<expr>|<expr>`, `<expr>||<expr>`, `<expr>,<expr>` - logical OR (the keyword `or` is reserved but not valid in platform expressions)
-- `<expr>&<expr>`, `<expr>&&<expr>`, `<expr> and <expr>` - logical AND
+- `<expr>|<expr>`, `<expr>,<expr>` - logical OR (the keyword `or` is reserved but not valid in platform expressions)
+- `<expr>&<expr>`, `<expr> and <expr>` - logical AND
 - `(<expr>)` - grouping/precedence
 
 The following identifiers are defined based on the [triplet settings](../users/triplets.md) and build configuration:

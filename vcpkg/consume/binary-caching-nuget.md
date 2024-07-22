@@ -4,7 +4,7 @@ description: This tutorial shows how to set up a vcpkg binary cache using a NuGe
 author: vicroms
 ms.author: viromer
 ms.topic: tutorial
-ms.date: 01/10/2024
+ms.date: 7/16/2024
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
 ---
@@ -276,13 +276,13 @@ $env:VCPKG_BINARY_SOURCES="clear;nugetconfig,<path to nuget.config>"
 ::: zone pivot="shell-cmd"
 
 ```console
-set VCPKG_BINARY_SOURCES="clear;nuget,<feed url>,readwrite"
+set "VCPKG_BINARY_SOURCES=clear;nuget,<feed url>,readwrite"
 ```
 
 If you're using a `nuget.config` file, instead do:
 
 ```console
-set VCPKG_BINARY_SOURCES="clear;nugetconfig,<path to nuget.config>"
+set "VCPKG_BINARY_SOURCES=clear;nugetconfig,<path to nuget.config>"
 ```
 
 ::: zone-end
