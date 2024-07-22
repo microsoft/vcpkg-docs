@@ -1,7 +1,9 @@
 ---
 title: vcpkg Maintainer Guide
 description: The Guide for maintainers contributing to vcpkg.
-ms.date: 06/03/2024
+author: vicroms
+ms.author: viromer
+ms.date: 7/22/2024
 ms.topic: concept-article
 ---
 # Maintainer guide
@@ -50,16 +52,26 @@ then obviously beneficial changes like fixing typos are appreciated!
 
 ### Check names against other repositories
 
-A good service to check many at once is [Repology](https://repology.org/).
-If the library you are adding could be confused with another one,
-consider renaming to make it clear. We prefer when names are longer and/or
-unlikely to conflict with any future use of the same name. If the port refers
-to a library on GitHub, a good practice is to prefix the name with the organization
-if there is any chance of confusion.
+Port names should, as much as possible, be unambiguous about the package the port
+installs. When a specific name is strongly associated with a single project the
+port can simply take the name of the package. For example, `openssl`, `tensorflow`,
+and `zlib`.
 
-Put another way, the reason for this is to ensure that `vcpkg install Xxx`
-gives the user looking for `Xxx` what they were expecting and not be
-surprised by getting something different.
+Some times a package may use a common word as the package's name, especially if
+there are no projects with a strong association to the given word. For example,
+a package may want to call itself `print`. They may add a suffix or prefix like
+`libprint`, `openprint`, `print2` or `print-cpp` to the name. In such cases, contributors
+should prepend the organization name or author name to the port name to make the
+resolution unambiguous: `username-print`.
+
+When deciding the port name of a given package, prefixes and suffixes should not
+be considered as differentiators. Instead, the "stem" of the package should be
+compared with existing ports, for example, port names `libpng` and `png` are too
+similar and should be differentiated by a distinct prefix: `<org one>-libpng`
+and `<org two>-libpng`.
+
+A good service to check many package names across multiple repositories at once is
+[Repology](https://repology.org/).
 
 ### Use GitHub draft PRs
 
