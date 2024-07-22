@@ -1,0 +1,17 @@
+{
+  "name": "beison",
+  "version": "1.0.1",
+  "description": "A simple json parsing and stringifying library",
+  "homepage": "https://github.com/Microsoft/vcpkg-docs",
+  "dependencies": [
+    "beicode",
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ]
+}

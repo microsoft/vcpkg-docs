@@ -1,0 +1,16 @@
+{
+  "name": "beicode",
+  "version": "1.0.0",
+  "description": "A simple utf-8 based unicode decoding and encoding library",
+  "homepage": "https://github.com/Microsoft/vcpkg-docs",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ]
+}
