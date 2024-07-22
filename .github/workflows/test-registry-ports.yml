@@ -2,9 +2,9 @@ name: Test vcpkg ports
 
 on:
   push:
-    branches: ["main"]
+    branches: ["vcpkg-registry"]
   pull_request:
-    branches: ["main"]
+    branches: ["vcpkg-registry"]
 
 env:
   VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
