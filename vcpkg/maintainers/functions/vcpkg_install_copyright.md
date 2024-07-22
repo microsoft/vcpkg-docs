@@ -8,6 +8,9 @@ ms.date: 01/10/2024
 Merges multiple copyright files into a single file and install it.
 Installs a single copyright file.
 
+>[!NOTE]
+> The licensing information provided for each package in the vcpkg registry represents Microsoft's best understanding of the licensing requirements. However, this information may not be definitive. Users are advised to verify the exact licensing requirements for each package they intend to use, as it is ultimately their responsibility to ensure compliance with the applicable licenses.
+
 ## Usage
 
 ```cmake
