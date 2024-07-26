@@ -4,22 +4,23 @@ description: Learn about how the vcpkg C/C++ package manager can help you acquir
 ms.topic: overview
 author: AugP
 ms.author: aupopa
-ms.date: 07/11/2024
+ms.date: 07/26/2024
 ---
 
 # vcpkg overview
 
-vcpkg is a free and open-source C/C++ package manager maintained by Microsoft and the C++ community. vcpkg runs on Windows, macOS, and Linux (see [Supported hosts](../concepts/supported-hosts.md)) and includes a large, curated registry of open-source libraries and enterprise-ready features designed to facilitate your development process with support for [any build and project system](../concepts/build-system-integration.md). With vcpkg, you can build libraries from source to target virtually any platform or architecture using the customizable [triplets experience](../concepts/triplets.md). vcpkg is a C++ tool at heart and is written in C++ and CMake scripts. It is designed from the ground up to address the unique pain points of the C/C++ developer experience.
+vcpkg is a free and open-source C/C++ package manager maintained by Microsoft and the C++ community that [runs on Windows, macOS, and Linux](../concepts/supported-hosts.md). It is a C++ tool at heart and is written using C++ and CMake scripts. It is designed to address the unique pain points with managing C/C++ libraries.
 
 ## Why vcpkg?
 
-- Over 2300 open-source libraries to choose from, or bring your own
+- Over [2300 open-source libraries](https://github.com/microsoft/vcpkg/tree/master/ports) to choose from in a curated registry, routinely built to verify ABI compatibility
+- Create your own [custom library registry](../maintainers/registries.md) with your own custom library packages
 - Consistent, cross-platform experience for Windows, macOS, and Linux
-- Build dependencies from source as needed, with over 70 configurations in the box, and infinite customization for your specific requirements
-- Avoid ABI incompatibilities between packages and your project
-- Prevent version conflicts and diamond problems in your dependency graph
-- It's enterprise-ready. C/C++ developers across many industries rely on it, including: finance, gaming, embedded/IoT, semiconductors, defense, and at Microsoft
-- For MSBuild and CMake users: automatic integration with your build environment for a seamless dependency acquisition experience
+- Easily add libraries to your project with [any build and project system](../concepts/build-system-integration.md)
+- Build dependencies from source or download prebuilt ABI-verified binaries, with over 70 configurations available by default, and [infinite customization for your specific requirements](../concepts/triplets.md)
+- Prevent version conflicts and diamond problems between your dependencies with a [unique versioning design](../users/versioning.concepts.md)
+- For MSBuild and CMake users: [automatic integration with your build environment](../concepts/build-system-integration.md) for a seamless dependency acquisition experience
+- Trusted by students, open-source developers, hobbyists, and pros alike, including some of the largest enterprises
 
 ## vcpkg features
 
