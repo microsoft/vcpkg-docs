@@ -3,7 +3,7 @@ title: Classic mode
 description: Use vcpkg in Classic mode to share a central instance of installed libraries.
 author: vicroms
 ms.author: viromer
-ms.date: 02/10/2024
+ms.date: 07/29/2024
 ms.topic: concept-article
 ---
 
@@ -22,3 +22,5 @@ project, classic mode operates similarly to tools like `brew` or `apt`. However,
 the set is still associated with a vcpkg instance, and each instance of vcpkg
 (such as separate `git clone` copies) will have its own set of classic mode
 packages installed.
+
+To learn how to install dependencies in classic mode, see [Tutorial: Install a dependency from the command line](../consume/classic-mode.md).
