@@ -37,8 +37,9 @@ The latest JSON Schema is available at [https://raw.githubusercontent.com/micros
   "registries": [
     {
       "kind": "git",
-      "repository": "https://github.com/northwindtraders/vcpkg-registry",
-      "baseline": "dacf4de488094a384ca2c202b923ccc097956e0c",
+      "repository": "https://github.com/microsoft/vcpkg-docs",
+      "reference": "vcpkg-registry",
+      "baseline": "768f6a3ad9f9b6c4c2ff390137690cf26e3c3453",
       "packages": [ "beicode", "beison" ]
     }
   ],
@@ -50,7 +51,7 @@ The latest JSON Schema is available at [https://raw.githubusercontent.com/micros
 }
 ```
 
-This example adds a private registry, `https://github.com/northwindtraders/vcpkg-registry`, as the source for the libraries `beicode` and `beison`. All other ports are found from an internal mirror of the Curated Catalog hosted at `https://internal/mirror/of/github.com/Microsoft/vcpkg`.
+This example adds a private registry, `https://github.com/microsoft/vcpkg-docs/tree/vcpkg-registry`, as the source for the libraries `beicode` and `beison`. All other ports are found from an internal mirror of the Curated Catalog hosted at `https://internal/mirror/of/github.com/Microsoft/vcpkg`.
 
 The example also configures custom overlays for ports and triplets that are present in the source code repository.
 
@@ -94,7 +95,7 @@ Each path in the array must point to a directory of triplet files ([see triplets
 
 | Name | Required | Type   | Description |
 |------|----------|--------|-------------|
-| [baseline](#registry-baseline) | Yes | string | Minimum version constraint on all ports from this registry |
+| [baseline](#registry-baseline) | Git and Builtin Registries | string | Minimum version constraint on all ports from this registry |
 | [kind](#registry-kind) | Yes | string | Type of registry being used |
 | [packages](#registry-packages) | Yes, if not default | string | List of ports to come from this registry |
 | [path](#registry-path) | Filesystem Registry | string | Path to the Filesystem registry |
@@ -117,9 +118,9 @@ The type of registry being used. A string. Required.
 
 The registry-specific identifier for the minimum versions to use from this registry. A string. Required.
 
-For [Git Registries][Git Registry] and for the [Builtin Registry][], it should be a 40-character git commit sha in the registry's repository that contains a `versions/baseline.json`.
+For [Git Registries][Git Registry] and for the [Builtin Registry][], this is a 40-character git commit sha in the registry's repository that contains a `versions/baseline.json`.
 
-For [Filesystem Registries][Filesystem Registry], it can be any valid baseline string that the registry defines.
+For [Filesystem Registries][Filesystem Registry], it can be any valid json property name that the registry defines on its `baseline.json`. If a filesystem registry does not declare a baseline, the value used is `"default"`.
 
 ### <a name="registry-reference"></a> [Registry][]: `"reference"`
 

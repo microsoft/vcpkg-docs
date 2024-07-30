@@ -1,7 +1,7 @@
 ---
 title: vcpkg.json Reference
 description: Reference documentation for the vcpkg.json file format.
-ms.date: 3/1/2024
+ms.date: 7/16/2024
 ms.topic: reference
 ---
 # vcpkg.json Reference
@@ -153,6 +153,9 @@ The SPDX short license expression of the project. A string or null. Optional.
 
 The `"license"` should either be an [SPDX 3.19 license expression](https://spdx.org/licenses/) or should be `null` to indicate that users must read the deployed `/share/<port>/copyright` file. DocumentRefs are not supported.
 
+>[!NOTE]
+> The licensing information provided for each package in the vcpkg registry represents Microsoft's best understanding of the licensing requirements. However, this information may not be definitive. Users are advised to verify the exact licensing requirements for each package they intend to use, as it is ultimately their responsibility to ensure compliance with the applicable licenses.
+
 #### Example license strings
 
 - `MIT`
@@ -276,8 +279,9 @@ Having a `vcpkg-configuration` defined in `vcpkg.json` while also having a `vcpk
     "registries": [
       {
         "kind": "git",
-        "baseline": "dacf4de488094a384ca2c202b923ccc097956e0c",
-        "repository": "https://github.com/northwindtraders/vcpkg-registry",
+        "baseline": "768f6a3ad9f9b6c4c2ff390137690cf26e3c3453",
+        "repository": "https://github.com/microsoft/vcpkg-docs",
+        "reference": "vcpkg-registry",
         "packages": [ "beicode", "beison" ]
       }
     ],
@@ -456,6 +460,9 @@ This field documents the platform configurations where the feature will build an
 The SPDX short license expression of the feature. A string or null. Optional. 
 If not provided, the license is the same as specified in the top level [license](#license) field.
 
+>[!NOTE]
+> The licensing information provided for each package in the vcpkg registry represents Microsoft's best understanding of the licensing requirements. However, this information may not be definitive. Users are advised to verify the exact licensing requirements for each package they intend to use, as it is ultimately their responsibility to ensure compliance with the applicable licenses.
+
 ## <a name="platform-expression"></a> Platform Expression
 
 A Platform Expression is a JSON string which describes when a dependency is required or when a library or feature is expected to build.
@@ -463,8 +470,8 @@ A Platform Expression is a JSON string which describes when a dependency is requ
 Expressions are built from primitive identifiers, logical operators, and grouping:
 
 - `!<expr>`, `not <expr>` - negation
-- `<expr>|<expr>`, `<expr>||<expr>`, `<expr>,<expr>` - logical OR (the keyword `or` is reserved but not valid in platform expressions)
-- `<expr>&<expr>`, `<expr>&&<expr>`, `<expr> and <expr>` - logical AND
+- `<expr>|<expr>`, `<expr>,<expr>` - logical OR (the keyword `or` is reserved but not valid in platform expressions)
+- `<expr>&<expr>`, `<expr> and <expr>` - logical AND
 - `(<expr>)` - grouping/precedence
 
 The following identifiers are defined based on the [triplet settings](../users/triplets.md) and build configuration:

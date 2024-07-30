@@ -6,11 +6,11 @@ zone_pivot_groups: shell-selections
 author: JavierMatosD
 ms.author: javiermat
 ms.topic: tutorial
-ms.date: 01/10/2024
+ms.date: 7/16/2024
 #CustomerIntent: As a beginner C++ developer, I want to learn how to install and manage packages using CMake and vcpkg, so that I can easily set up and maintain C++ projects with necessary dependencies.
 ---
 
-# Tutorial: Install and use packages with vcpkg
+# Tutorial: Install and use packages with CMake
 
 This tutorial shows you how to create a C++ "Hello World" program that uses the `fmt` library with CMake and vcpkg. You'll install dependencies, configure, build, and run a simple application.
 
@@ -43,7 +43,6 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     export PATH=$VCPKG_ROOT:$PATH
     ```
 
-
     [!INCLUDE [env-vars](../../includes/env-vars-bash.md)]
 
     ::: zone-end
@@ -51,10 +50,9 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     ::: zone pivot="shell-cmd"
 
     ```console
-    set VCPKG_ROOT="C:\path\to\vcpkg"
+    set "VCPKG_ROOT=C:\path\to\vcpkg"
     set PATH=%VCPKG_ROOT%;%PATH%
     ```
-
 
     [!INCLUDE [env-vars](../../includes/env-vars.md)]
 
@@ -66,9 +64,8 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
     ```
 
-
     [!INCLUDE [env-vars](../../includes/env-vars.md)]
-    
+
     ::: zone-end
 
     Setting `VCPKG_ROOT` tells vcpkg where your vcpkg instance is located.
@@ -153,31 +150,33 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     ```console
     cmake --build build
     ```
-    
+  
 3. Run the application
 
     Finally, run the executable to see your application in action:
 
     ::: zone pivot="shell-bash"
+
     ```console
     ./build/HelloWorld
     
     Hello World!
     ```
+
     ::: zone-end
-   
+
     ::: zone pivot="shell-cmd, shell-powershell"
+
     ```console
     .\build\HelloWorld.exe
     
     Hello World!
     ```
-    ::: zone-end   
+
+    ::: zone-end
 
 ## Next steps
 
-To learn more about `vcpkg.json`, see our reference documentation:
-
-- [Packaging a library](get-started-packaging.md)
-- [vcpkg.json](../reference/vcpkg-json.md)
-- [manifest](../concepts/manifest-mode.md)
+- [Tutorial: Package a library with vcpkg](get-started-packaging.md)
+- [vcpkg.json Reference](../reference/vcpkg-json.md)
+- [What is manifest mode?](../concepts/manifest-mode.md)

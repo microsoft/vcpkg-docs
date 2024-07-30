@@ -85,7 +85,7 @@ All MSBuild C++ projects can now #include any installed libraries. Linking will 
     Run the following commands:
 
     ```console
-    set VCPKG_ROOT="C:\path\to\vcpkg"
+    set "VCPKG_ROOT=C:\path\to\vcpkg"
     set PATH=%VCPKG_ROOT%;%PATH%
     ```
 
