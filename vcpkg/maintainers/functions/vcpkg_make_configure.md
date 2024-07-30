@@ -18,7 +18,7 @@ vcpkg_make_configure(
     [DISABLE_DEFAULT_OPTIONS]
     [DISABLE_MSVC_FLAG_ESCAPING]
     [USE_RESPONSE_FILES]
-    [SOURCE_PATH <source-path>]
+    SOURCE_PATH <source-path>
     [OPTIONS <configure-setting>...]
     [OPTIONS_RELEASE <configure-setting>...]
     [OPTIONS_DEBUG <configure-setting>...]
@@ -194,7 +194,20 @@ Release build: It will create `version.txt` with the content "This is a release 
 
 ### LANGUAGES
 
-Specifies the programming languages your project uses.
+The `LANGUAGES` argument specifies the programming languages to be considered during the configuration and build process.
+
+Valid values are `C`, `CXX`, `ASM`, `CUDA`, `Fortran`, `HIP`, `ISPC`, `Swift`, `OBJC`, `OBJCXX`.
+
+Appends the specified languages to `VCPKG_CMAKE_CONFIGURE_OPTIONS` as `-DVCPKG_LANGUAGES=<languages>`. `vcpkg_cmake_get_vars` uses the options stored in `VCPKG_CMAKE_CONFIGURE_OPTIONS`, including the `LANGUAGES` argument, to configure a dummy CMake project and extract the necessary CMake variables. The `LANGUAGES` argument affects the configuration of the dummy CMake project used in `vcpkg_cmake_get_vars`.
+The configuration extracts relevant CMake variables for the specified languages and re-exports them as `VCPKG_DETECTED_CMAKE_*`.
+
+See, 
+```cmake
+vcpkg_make_configure(
+    SOURCE_PATH "/path/to/source"
+    LANGUAGES "C;CXX;Fortran"
+)
+```
 
 ## Examples
 
