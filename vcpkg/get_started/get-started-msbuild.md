@@ -5,7 +5,7 @@ zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
 author: data-queue
 ms.author: danshaw2
-ms.date: 07/11/2024
+ms.date: 07/29/2024
 ms.topic: tutorial
 ---
 
@@ -143,16 +143,17 @@ This source file includes the `<fmt/core.h>` header which is part of the `fmt` l
 > [!NOTE]
 > There will be error squiggles in your project when MSBuilds it for the first time. Build the project to acquire vcpkg dependencies to remove them.
 
-
 ## 4 - Enable manifest mode
 
-Navigate to your Project Property Pages. Using the menu navigation at the top, choose **Project > Properties**. A new window will open. Navigate to **Configuration Properties > vcpkg**, and set `Use vcpkg Manifest` to `Yes`. The project system will check whether this property is set before installing any dependencies from the manifest file.
+1. Navigate to your Project Property Pages.
+2. Using the menu navigation at the top, choose **Project > Properties**. A new window will open.
+3. Navigate to **Configuration Properties > vcpkg**, and set `Use vcpkg Manifest` to `Yes`. The project system will check whether this property is set before installing any dependencies from the manifest file.
 
 :::image type="complex" source="../resources/get_started/visual-studio-manifest-msbuild.png" alt-text="Enable manifest mode in project properties":::
     Screenshot of enabling vcpkg manifest mode in Visual Studio Project Properties
 :::image-end:::
 
-Other settings, such as [triplets](../users/triplets.md), are filled in with default values vcpkg detects from your project and will be useful when configuring your project. 
+Other settings, such as [triplets](../users/triplets.md), are filled in with default values vcpkg detects from your project and will be useful when configuring your project.
 
 ## 5 - Build and run the project
 
