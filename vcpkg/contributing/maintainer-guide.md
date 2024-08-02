@@ -1,7 +1,7 @@
 ---
 title: vcpkg Maintainer Guide
 description: The Guide for maintainers contributing to vcpkg.
-ms.date: 06/03/2024
+ms.date: 08/02/2024
 ms.topic: concept-article
 ---
 # Maintainer guide
@@ -128,20 +128,25 @@ In the entire vcpkg system, no two ports a user is expected to use concurrently 
 
 This property is checked regularly by continuous integration runs which try to install all ports in the registry, which will fail with `FILE_CONFLICTS` if two ports provide the same file.
 
-### Add CMake exports in an unofficial- namespace
+### Avoid creating vcpkg 'lock-in' in build system bindings like pkgconfig or CMake Configs
+<a id="add-cmake-exports-in-an-unofficial--namespace"></a>
 
-A core design ideal of vcpkg is to not create "lock-in" for users. In the build system, there should be no difference between depending on a library from the system, and depending on a library from vcpkg. To that end, we avoid adding CMake exports or targets to existing libraries with "the obvious name", to allow upstreams to add their own official CMake exports without conflicting with vcpkg.
+A core design ideal of vcpkg is to not create "lock-in" for users. In the build system, there should be no difference between depending on a library from the system, and depending on a library from vcpkg.
 
-To that end, any CMake configs that the port exports, which are not in the upstream library, should have `unofficial-` as a prefix. Any additional targets should be in the `unofficial::<port>::` namespace.
+If a library does not have existing build system bindings, it is acceptable to add them, and recommended if it helps different ports compose with each other. The resulting bindings should be usable outside of a vcpkg context in case an upstream wishes to adopt those bindings themselves. That is, given a component named `libexample`, make `example.pc` and/or `example-config.cmake`, don't make `vcpkg-example.pc` or `vcpkg-example-config.cmake`.
 
 This means that the user should see:
 
-- `find_package(unofficial-<port> CONFIG)` as the way to get at the unique-to-vcpkg package
-- `unofficial::<port>::<target>` as an exported target from that port.
+- `find_package(<port> CONFIG)` as the way to get at a unique-to-vcpkg package
+- `<port>::<target>` as an exported target from that config
+
+We used to add additional CMake exports in an 'unofficial' namespace, to avoid taking names from upstream maintainers and allow them the obvious name, but no longer recommend that practice as it created its own form of lock-in. For more information, see https://github.com/microsoft/vcpkg/issues/40240 . It is acceptable to keep any existing unofficial prefixes.
 
 Examples:
 
-- [`brotli`](https://github.com/microsoft/vcpkg/blob/4f0a640e4c5b74166b759a862d7527c930eff32e/ports/brotli/install.patch) creates the `unofficial-brotli` package, producing target `unofficial::brotli::brotli`.
+- [`7zip`](https://github.com/microsoft/vcpkg/blob/513aa7ceb3b5e9bf90882cb7edc06c9d5efcf0ee/ports/7zip/CMakeLists.txt#L412-L418) creates `7zip-config.cmake`, producing target `7zip::7zip`.
+- [`audiofile`](https://github.com/microsoft/vcpkg/blob/513aa7ceb3b5e9bf90882cb7edc06c9d5efcf0ee/ports/audiofile/fix-cmakeLists.patch) creates `AudioFileConfig.cmake`, producing target `AudioFile`.
+- [`brotli`](https://github.com/microsoft/vcpkg/blob/513aa7ceb3b5e9bf90882cb7edc06c9d5efcf0ee/ports/brotli/install.patch) follows previous still acceptable rules, and creates `unofficial-brotli-config.cmake`, producing target `unofficial::brotli::brotli`.
 
 ### Install copyright file
 
