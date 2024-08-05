@@ -14,7 +14,6 @@ vcpkg_make_install(
     [DISABLE_PARALLEL]
     [DISABLE_DESTDIR]
     [DISABLE_MSVC_FLAG_ESCAPING]
-    [USE_RESPONSE_FILES]
     [LOGFILE_ROOT <root-name>]
     [SUBPATH <sub-directory>]
     [MAKEFILE <makefile-name>]
@@ -52,11 +51,7 @@ By default, `make install` will use the `DESTDIR` variable to redirect installat
 
 ### DISABLE_MSVC_FLAG_ESCAPING
 
-Prevents escaping of MSVC flags. Use this if the project's makefiles do not expect escaped flags.
-
-### USE_RESPONSE_FILES
-
-Enables the use of response files for passing arguments to `make`, circumventing command line length limits on some platforms.
+By default, escape characters (e.g., -Xcompiler, -Xlinker) are added before compiler and linker flags when using MSVC. These escape characters are intended for use by the wrappers and libtool to protect flags that might contain spaces, quotes, or other special characters from being misinterpreted.
 
 ### LOGFILE_ROOT
 

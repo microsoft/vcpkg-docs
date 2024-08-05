@@ -17,7 +17,6 @@ vcpkg_make_configure(
     [DISABLE_CPPFLAGS]
     [DISABLE_DEFAULT_OPTIONS]
     [DISABLE_MSVC_FLAG_ESCAPING]
-    [USE_RESPONSE_FILES]
     SOURCE_PATH <source-path>
     [OPTIONS <configure-setting>...]
     [OPTIONS_RELEASE <configure-setting>...]
@@ -129,14 +128,6 @@ Platform-Specific Tweaks:
   - Adjusts paths to match the typical Unix filesystem hierarchy (e.g., using /usr/local).
 
 >[!NOTE]These default options streamline the configuration process for most projects. If you need a highly customized build, you can set `DISABLE_DEFAULT_OPTIONS` and manually provide all the necessary configuration options.
-
-### USE_RESPONSE_FILES
-
-Enables the use of response files to pass arguments to the linker.
-
-If set, the code generates response files for the linker flags (`CPPFLAGS`, `CFLAGS`, `CXXFLAGS`, `LDFLAGS`) and passes the response file path to the linker instead of the individual flags. If it's false, the flags are passed directly.
-
-This can be helpful when dealing with long command lines that exceed the maximum allowed length.
 
 ### SOURCE_PATH
 
