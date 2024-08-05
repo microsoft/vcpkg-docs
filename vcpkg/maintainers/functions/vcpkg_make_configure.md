@@ -133,7 +133,8 @@ Platform-Specific Tweaks:
 * On Unix-like systems:
   - Adjusts paths to match the typical Unix filesystem hierarchy (e.g., using /usr/local).
 
->[!NOTE]These default options streamline the configuration process for most projects. If you need a highly customized build, you can set `DISABLE_DEFAULT_OPTIONS` and manually provide all the necessary configuration options.
+>[!NOTE]
+> These default options streamline the configuration process for most projects. If you need a highly customized build, you can set `DISABLE_DEFAULT_OPTIONS` and manually provide all the necessary configuration options.
 
 ### OPTIONS
 
