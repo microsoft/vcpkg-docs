@@ -11,13 +11,13 @@ Configure a Make-based project.
         
 ```cmake
 vcpkg_make_configure(
+    SOURCE_PATH <source-path>
     [AUTOCONFIG]
     [COPY_SOURCE]
     [DISABLE_MSVC_WRAPPERS]
     [DISABLE_CPPFLAGS]
     [DISABLE_DEFAULT_OPTIONS]
     [DISABLE_MSVC_FLAG_ESCAPING]
-    SOURCE_PATH <source-path>
     [OPTIONS <configure-setting>...]
     [OPTIONS_RELEASE <configure-setting>...]
     [OPTIONS_DEBUG <configure-setting>...]
@@ -38,6 +38,12 @@ To use this function, you must depend on the helper port `vcpkg-make`:
 ```
 
 ## Parameters
+
+### SOURCE_PATH
+
+The directory containing the project's source files
+
+This value is usually obtained as a result of calling a source acquisition command like [`vcpkg_from_github()`](vcpkg_from_github.md).
 
 ### AUTOCONFIG
 
@@ -128,12 +134,6 @@ Platform-Specific Tweaks:
   - Adjusts paths to match the typical Unix filesystem hierarchy (e.g., using /usr/local).
 
 >[!NOTE]These default options streamline the configuration process for most projects. If you need a highly customized build, you can set `DISABLE_DEFAULT_OPTIONS` and manually provide all the necessary configuration options.
-
-### SOURCE_PATH
-
-The directory containing the project's source files
-
-This value is usually obtained as a result of calling a source acquisition command like [`vcpkg_from_github()`](vcpkg_from_github.md).
 
 ### OPTIONS
 
