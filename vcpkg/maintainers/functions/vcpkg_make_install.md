@@ -69,10 +69,6 @@ Specifies the name of the makefile to use. Defaults to "Makefile".
 
 Specifies the targets to pass to make. Defaults to "all;install".
 
-### SHELL
-
-Specifies the shell to use for running `make`. Useful for environments where the default shell might not be compatible with the makefiles.
-
 ### OPTIONS
 
 Additional options to pass to `make` during the build.
