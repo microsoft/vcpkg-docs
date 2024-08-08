@@ -124,7 +124,6 @@ Example Paths:
   - `--docdir=${prefix}/share/${PORT}`
   - `--datarootdir=${prefix}/share/${PORT}`
 
-
 Platform-Specific Tweaks:
 * On Windows
   - Sets `gl_cv_double_slash_root=yes` to signal to the configure script that it is running on Windows, where paths can begin with double slashes (//).
