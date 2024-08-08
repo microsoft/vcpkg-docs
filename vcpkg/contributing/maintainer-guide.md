@@ -469,18 +469,16 @@ Common options that allow you to avoid patching:
 
 If an approved or merged patch file can be obtained from upstream, ports should
 try to download them and apply them instead of having them as part of the port files.
-The following reasons apply:
+This process is prefered because it:
 
-- Avoids license conflicts with the vcpkg repository
 - Confirms that upstream has accepted the patch changes
-- Patches can be much larger than we would normally accept since the *onus* of
-  reviewing the changes resides upstream
-- Reduces the vcpkg repository size for users that aren't using that patch
+- Simplifies the reviewing process by shifting the onus upstream
+- Reduces the vcpkg repository size for users that aren't using the patch
+- Avoids license conflicts with the vcpkg repository
 
-Contributors should make sure that the download comes from a stable download endpoint
- to avoid SHA conflicts. When downloading patch files from a pull request or commit
-from GitHub and GitLab the `?full_index=1` parameter should be appended to the
-download URL.
+Patches should be downloaded from a stable endpoint to avoid SHA conflicts. 
+When downloading patch files from a pull request or commit from GitHub and
+GitLab the `?full_index=1` parameter should be appended to the download URL.
 
 Examples:
 * `https://github.com/google/farmhash/pull/40.diff?full_index=1`
