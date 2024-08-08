@@ -100,6 +100,7 @@ Installation Directories:
   - `--mandir` : Subdirectory under the prefix for manual pages (man files)
   - `--docdir` : Subdirectory under the prefix for documentation
   - `--datarootdir` : Subdirectory under the prefix for architecture-independent data
+
 * Debug builds only:
   - `--includedir` : Subdirectory under the prefix for header files
 
