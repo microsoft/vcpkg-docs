@@ -52,26 +52,36 @@ then obviously beneficial changes like fixing typos are appreciated!
 
 ### Check names against other repositories
 
-Port names should, as much as possible, be unambiguous about the package the port
-installs. When a specific name is strongly associated with a single project the
-port can simply take the name of the package. For example, `openssl`, `tensorflow`,
-and `zlib`.
+Port names should attempt to be unambiguous about which package the port
+installs. Ideally, searching the port's name in a search engine should quickly
+lead you to the corresponding project. A good service to check many package
+names across multiple repositories at once is [Repology](https://repology.org/).
 
-Some times a package may use a common word as the package's name, especially if
-there are no projects with a strong association to the given word. For example,
-a package may want to call itself `print`. They may add a suffix or prefix like
-`libprint`, `openprint`, `print2` or `print-cpp` to the name. In such cases, contributors
-should prepend the organization name or author name to the port name to make the
-resolution unambiguous: `username-print`.
+Projects with short names or named after common words may require
+disambiguation, specially when there are no projects with a strong association
+to the given word. For example, a port with the name `ip` is not acceptable
+since it is likely that multiple projects would be named similarly.
 
-When deciding the port name of a given package, prefixes and suffixes should not
-be considered as differentiators. Instead, the "stem" of the package should be
-compared with existing ports, for example, port names `libpng` and `png` are too
-similar and should be differentiated by a distinct prefix: `<org one>-libpng`
-and `<org two>-libpng`.
+Examples of good disambiguators are:
 
-A good service to check many package names across multiple repositories at once is
-[Repology](https://repology.org/).
+* The repository's owner username or organization: `google-cloud-cpp`.
+* The name of a suite of libraries the project is part of: `boost-dll`.
+
+Common prefixes and suffixes used by C++ and open source projects are not valid
+disambiguators, some examples include but are not limited to: 
+
+* `cpp`, 
+* `free`,
+* `lib`, 
+* `open`, 
+* numbers
+
+For example, when comparing the following port names: `ip-cpp`, `libip` and
+`ip5` and removing the invalid disambiguators they all are reduced to the same
+stem (`ip`) and thus are considered to have the same name.
+
+An exception to this guideline is made for names that are strongly associated
+with a single project. For example: `libpng`, `openssl` and `zlib`.
 
 ### Use GitHub draft PRs
 
