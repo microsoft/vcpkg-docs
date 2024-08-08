@@ -279,8 +279,9 @@ Having a `vcpkg-configuration` defined in `vcpkg.json` while also having a `vcpk
     "registries": [
       {
         "kind": "git",
-        "baseline": "dacf4de488094a384ca2c202b923ccc097956e0c",
-        "repository": "https://github.com/northwindtraders/vcpkg-registry",
+        "baseline": "768f6a3ad9f9b6c4c2ff390137690cf26e3c3453",
+        "repository": "https://github.com/microsoft/vcpkg-docs",
+        "reference": "vcpkg-registry",
         "packages": [ "beicode", "beison" ]
       }
     ],
