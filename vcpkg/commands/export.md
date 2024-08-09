@@ -26,7 +26,7 @@ Exports built packages from the [installed directory](common-options.md#install-
 > Mode](../concepts/classic-mode.md) and [Manifest
 > Mode](../concepts/manifest-mode.md)
 
-The `export` command does not install any packages or transitive dependencies. It only exports packages that are already installed. 
+The `export` command does not install any packages or transitive dependencies. It only exports packages that are already installed.
 
 Refer to [Manifest Mode](export.md#Manifest-Mode) or [Classic Mode](export.md#Classic-Mode) for more details.
 
@@ -46,7 +46,7 @@ This command exports the specified packages in zip format. Both `sqlite:x64-wind
 
 ## <a name="Manifest-Mode"></a>Manifest Mode
 
-In manifest mode, the command exports all currently installed packages. The installation directory includes all the packages declared in the manifest (`vcpkg.json`) as well as their transitive dependencies. Run `vcpkg install` before using this command to ensure that all required packages are installed. 
+In manifest mode, the command exports all currently installed packages. The installation directory includes all the packages declared in the manifest (`vcpkg.json`) as well as their transitive dependencies. Run `vcpkg install` before using this command to ensure that all required packages are installed.
 
 In this mode you can't specify individual packages to export. The command operates on the entire installed state as a single entity, respecting the dependencies and versions specified in the manifest file.
 
@@ -130,7 +130,7 @@ Format specific options:
 - [`--nuget-id`](#nuget-id)
 - [`--nuget-version`](#nuget-version)
 - [`--nuget-description`](#nuget-description)
-  
+
 #### IFW
 
 [!INCLUDE [experimental](../../includes/experimental.md)]

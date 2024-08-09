@@ -56,8 +56,8 @@ prioritizes as follows:
 
 ```json
 {
-  "dependencies": [ 
-    "beicode", 
+  "dependencies": [
+    "beicode",
     "beison",
     "fmt"
   ],
@@ -150,10 +150,10 @@ And the following project dependencies:
 `vcpkg.json`
 ```json
 {
-  "dependencies": [ 
-    "qt5", 
-    "qt-advanced-docking-system", 
-    "qtkeychain" 
+  "dependencies": [
+    "qt5",
+    "qt-advanced-docking-system",
+    "qtkeychain"
   ]
 }
 ```

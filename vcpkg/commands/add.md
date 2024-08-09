@@ -15,7 +15,7 @@ vcpkg add port [options] <port-name>...
 
 ## Description
 
-The `vcpkg add port` command allows you to update the `vcpkg.json` manifest file by adding new package dependencies to your C++ project. 
+The `vcpkg add port` command allows you to update the `vcpkg.json` manifest file by adding new package dependencies to your C++ project.
 
 You can specify one or multiple port names to add. It's also possible to define specific features of a port that you would like to include as a dependency. The manifest (`vcpkg.json`) will then be updated to reflect these changes.
 

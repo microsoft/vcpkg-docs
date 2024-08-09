@@ -18,7 +18,7 @@ vcpkg edit <ports> [--all] [--buildtrees] [options]
 ### Open multiple ports
 
 ```Console
-vcpkg edit fmt zlib 
+vcpkg edit fmt zlib
 ```
 
 ### Open related folders
