@@ -51,7 +51,7 @@ This value is usually obtained as a result of calling a source acquisition comma
 
 Disables running the CMake configure step in parallel.
 
-By default vcpkg disables writing back to the source directory (via the undocumented CMake flag `CMAKE_DISABLE_SOURCE_CHANGES`) and (on Windows) configures Release and Debug in parallel. This flag instructs vcpkg to allow source directory writes and to execute the configure steps sequentially.
+By default vcpkg disables writing back to the source directory (via the undocumented CMake flag `CMAKE_DISABLE_SOURCE_CHANGES`) and configures Release and Debug in parallel. This flag instructs vcpkg to allow source directory writes and to execute the configure steps sequentially.
 
 ### NO_CHARSET_FLAG
 
@@ -68,7 +68,7 @@ This flag has no effect for MinGW targets.
 
 ### GENERATOR
 
-Specifies the Generator to use.
+Specifies the CMake generator to use.
 
 By default vcpkg prefers to use Ninja as the CMake Generator for all platforms,
 or "Unix Makefiles" for non-Windows platforms when Ninja is not available.
@@ -140,7 +140,7 @@ vcpkg_cmake_configure(
 vcpkg_cmake_install()
 ```
 
-[Search microsoft/vcpkg for Examples](https://github.com/microsoft/vcpkg/search?q=vcpkg_cmake_configure+path%3A%2Fports)
+[Search microsoft/vcpkg for examples](https://github.com/microsoft/vcpkg/search?q=vcpkg_cmake_configure+path%3A%2Fports)
 
 ## Remarks
 

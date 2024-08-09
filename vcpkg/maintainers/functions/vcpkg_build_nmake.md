@@ -42,7 +42,7 @@ Specifies the sub directory containing the makefile.
 ### PROJECT_NAME
 
 Specifies the name of the makefile.
-Default is `makefile.vc`
+Default is `makefile.vc`.
 
 ### LOGFILE_ROOT
 
@@ -103,7 +103,6 @@ You can use the alias [`vcpkg_install_nmake()`](vcpkg_install_nmake.md) function
 ## Examples
 
 - [librttopo](https://github.com/microsoft/vcpkg/blob/master/ports/librttopo/portfile.cmake)
-- [openssl](https://github.com/microsoft/vcpkg/blob/master/ports/openssl/portfile.cmake)
 
 ## Source
 

@@ -94,13 +94,6 @@ Name of the log to write the output of the configure call to.
 
 This command supplies many common arguments to CMake. To see the full list, examine the source.
 
-## Examples
-
-- [zlib](https://github.com/Microsoft/vcpkg/blob/master/ports/zlib/portfile.cmake)
-- [cpprestsdk](https://github.com/Microsoft/vcpkg/blob/master/ports/cpprestsdk/portfile.cmake)
-- [poco](https://github.com/Microsoft/vcpkg/blob/master/ports/poco/portfile.cmake)
-- [opencv](https://github.com/Microsoft/vcpkg/blob/master/ports/opencv/portfile.cmake)
-
 ## Source
 
 [scripts/cmake/vcpkg\_configure\_cmake.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_configure_cmake.cmake)
