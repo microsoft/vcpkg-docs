@@ -37,6 +37,13 @@ This command should be preceded by a call to [`vcpkg_configure_cmake()`](vcpkg_c
 You can use the alias [`vcpkg_install_cmake()`](vcpkg_configure_cmake.md) function if your CMake script supports the
 "install" target
 
+## Examples
+
+- [zlib](https://github.com/Microsoft/vcpkg/blob/master/ports/zlib/portfile.cmake)
+- [cpprestsdk](https://github.com/Microsoft/vcpkg/blob/master/ports/cpprestsdk/portfile.cmake)
+- [poco](https://github.com/Microsoft/vcpkg/blob/master/ports/poco/portfile.cmake)
+- [opencv](https://github.com/Microsoft/vcpkg/blob/master/ports/opencv/portfile.cmake)
+
 ## Source
 
 [scripts/cmake/vcpkg\_build\_cmake.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_build_cmake.cmake)

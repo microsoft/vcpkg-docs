@@ -6,7 +6,7 @@ ms.date: 01/10/2024
 # vcpkg_fixup_cmake_targets
 
 > [!WARNING]
->This function has been deprecated in favor of [`vcpkg_cmake_config_fixup`](vcpkg_cmake_config_fixup.md).
+> This function has been deprecated in favor of [`vcpkg_cmake_config_fixup`](vcpkg_cmake_config_fixup.md).
 
 Merge release and debug CMake targets and configs to support multiconfig generators.
 
