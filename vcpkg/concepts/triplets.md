@@ -1,5 +1,5 @@
 ---
-title:  Triplets
+title: Triplets
 description: This article explains the concept of triplets in vcpkg and their capabilities.
 author: vicroms
 ms.author: viromer
@@ -27,7 +27,7 @@ settings. See [per-port
 customization](../users/triplets.md#per-port-customization) for how to accomplish this.
 
 vcpkg comes with pre-defined triplets for many common platforms and
-configurations. Run `vcpkg help triplet` to get the list of available in your
+configurations. Run `vcpkg help triplet` to get a list of available triplets in your
 environment.
 
 ## Triplet selection
@@ -59,7 +59,7 @@ community. Because we do not have continuous coverage, port updates may break
 compatibility with community triplets. We gladly accept and review contributions
 that aim to solve issues with these triplets.
 
-When using a community triplet, a message like the following one will be printed
+When using a community triplet, a message like the following will be printed
 during a package installation:
 
 ```console
