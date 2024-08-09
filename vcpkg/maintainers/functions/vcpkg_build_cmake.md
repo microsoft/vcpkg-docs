@@ -5,7 +5,8 @@ ms.date: 01/10/2024
 ---
 # vcpkg_build_cmake
 
-**This function has been deprecated in favor of [`vcpkg_cmake_build`](vcpkg_cmake_build.md).**
+> [!WARNING]
+> This function has been deprecated in favor of [`vcpkg_cmake_build`](vcpkg_cmake_build.md).
 
 Build a cmake project.
 

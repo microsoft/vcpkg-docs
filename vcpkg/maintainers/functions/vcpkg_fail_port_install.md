@@ -5,7 +5,8 @@ ms.date: 01/10/2024
 ---
 # vcpkg_fail_port_install
 
-**This function has been deprecated in favor of the [`supports` field](../../reference/vcpkg-json.md#supports).**
+> [!WARNING]
+> This function has been deprecated in favor of the [`supports` field](../../reference/vcpkg-json.md#supports).
 
 Checks common requirements and fails the current portfile with a (default) error message
 

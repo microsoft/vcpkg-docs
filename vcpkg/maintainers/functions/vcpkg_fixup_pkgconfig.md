@@ -37,15 +37,18 @@ Skips the library checks in `vcpkg_fixup_pkgconfig`. Only use if the script itse
 
 ### SYSTEM_PACKAGES (deprecated)
 
-This argument has been deprecated and has no effect.
+> [!WARNING]
+> This argument has been deprecated and has no effect.
 
 ### SYSTEM_LIBRARIES (deprecated)
 
-This argument has been deprecated and has no effect.
+> [!WARNING]
+> This argument has been deprecated and has no effect.
 
 ### IGNORE_FLAGS (deprecated)
 
-This argument has been deprecated and has no effect.
+> [!WARNING]
+> This argument has been deprecated and has no effect.
 
 ## Notes
 

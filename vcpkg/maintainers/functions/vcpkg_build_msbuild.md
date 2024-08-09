@@ -5,7 +5,7 @@ ms.date: 01/10/2024
 ---
 # vcpkg_build_msbuild
 
-> ![WARNING]
+> [!WARNING]
 > This function has been deprecated in favor of [`vcpkg_msbuild_install`](vcpkg_msbuild_install.md).
 
 Builds a MSBuild project.
