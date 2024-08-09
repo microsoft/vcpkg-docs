@@ -39,7 +39,7 @@ IF the port supports the install target use vcpkg_install_make() instead of vcpk
 
 ### MAKEFILE
 
-Specifies the Makefile as a relative path from the root of the sources passed to `vcpkg_configure_make()`
+Specifies the Makefile as a relative path from the root of the sources passed to [`vcpkg_configure_make()`](vcpkg_configure_make.md).
 
 ### LOGFILE_ROOT
 

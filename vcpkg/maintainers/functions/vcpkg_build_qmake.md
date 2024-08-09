@@ -5,7 +5,7 @@ ms.date: 01/10/2024
 ---
 # vcpkg_build_qmake
 
-Build a qmake-based project, previously configured using vcpkg_configure_qmake.
+Build a qmake-based project, previously configured using [`vcpkg_configure_qmake()`](vcpkg_configure_qmake.md).
 
 ## Usage
 
