@@ -61,7 +61,7 @@ resolving features, etc.
 
 The main purpose of using a manifest file in your project is to declare your
 dependencies. When using a project manifest, you're able to specify version
-constraints and overrides to lock specific versions of your dependencies. This
+constraints and overrides to lock specific versions of your dependencies. This 
 feature is not available in classic mode.
 
 ### Project manifest example
