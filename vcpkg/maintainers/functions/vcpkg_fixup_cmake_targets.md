@@ -62,12 +62,6 @@ Transform all references matching `/bin/*` to `/${TOOLS_PATH}/*`  on other platf
 Fix `${_IMPORT_PREFIX}` in auto generated targets to be one folder deeper.
 Replace `${CURRENT_INSTALLED_DIR}` with `${_IMPORT_PREFIX}` in configs and targets.
 
-## Examples
-
-- [concurrentqueue](https://github.com/Microsoft/vcpkg/blob/master/ports/concurrentqueue/portfile.cmake)
-- [curl](https://github.com/Microsoft/vcpkg/blob/master/ports/curl/portfile.cmake)
-- [nlohmann-json](https://github.com/Microsoft/vcpkg/blob/master/ports/nlohmann-json/portfile.cmake)
-
 ## Source
 
 [scripts/cmake/vcpkg\_fixup\_cmake\_targets.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_fixup_cmake_targets.cmake)

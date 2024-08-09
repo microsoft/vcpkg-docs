@@ -59,13 +59,6 @@ This command should be preceded by a call to [`vcpkg_configure_make()`](vcpkg_co
 
 You can use the alias [`vcpkg_install_make()`](vcpkg_install_make.md) function if your makefile supports the "install" target.
 
-## Examples
-
-- [x264](https://github.com/Microsoft/vcpkg/blob/master/ports/x264/portfile.cmake)
-- [tcl](https://github.com/Microsoft/vcpkg/blob/master/ports/tcl/portfile.cmake)
-- [freexl](https://github.com/Microsoft/vcpkg/blob/master/ports/freexl/portfile.cmake)
-- [libosip2](https://github.com/Microsoft/vcpkg/blob/master/ports/libosip2/portfile.cmake)
-
 ## Source
 
 [scripts/cmake/vcpkg\_build\_make.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_build_make.cmake)

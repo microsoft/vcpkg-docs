@@ -86,8 +86,6 @@ The helper [`vcpkg_from_github`](vcpkg_from_github.md) should be used for downlo
 ## Examples
 
 - [apr](https://github.com/Microsoft/vcpkg/blob/master/ports/apr/portfile.cmake)
-- [fontconfig](https://github.com/Microsoft/vcpkg/blob/master/ports/fontconfig/portfile.cmake)
-- [freetype](https://github.com/Microsoft/vcpkg/blob/master/ports/freetype/portfile.cmake)
 
 ## Source
 

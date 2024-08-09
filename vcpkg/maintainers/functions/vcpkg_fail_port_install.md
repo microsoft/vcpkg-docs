@@ -48,10 +48,6 @@ CRT linkage for which the build should fail early.
 
 Library linkage for which the build should fail early.
 
-## Examples
-
-- [aws-lambda-cpp](https://github.com/Microsoft/vcpkg/blob/master/ports/aws-lambda-cpp/portfile.cmake)
-
 ## Source
 
 [scripts/cmake/vcpkg\_fail\_port\_install.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_fail_port_install.cmake)

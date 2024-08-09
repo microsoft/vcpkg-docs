@@ -24,13 +24,6 @@ See [`vcpkg_build_cmake()`](vcpkg_build_cmake.md).
 This command transparently forwards to [`vcpkg_build_cmake()`](vcpkg_build_cmake.md), adding a `TARGET install`
 parameter.
 
-## Examples
-
-- [zlib](https://github.com/Microsoft/vcpkg/blob/master/ports/zlib/portfile.cmake)
-- [cpprestsdk](https://github.com/Microsoft/vcpkg/blob/master/ports/cpprestsdk/portfile.cmake)
-- [poco](https://github.com/Microsoft/vcpkg/blob/master/ports/poco/portfile.cmake)
-- [opencv](https://github.com/Microsoft/vcpkg/blob/master/ports/opencv/portfile.cmake)
-
 ## Source
 
 [scripts/cmake/vcpkg\_install\_cmake.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_cmake.cmake)
