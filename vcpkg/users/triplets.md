@@ -33,7 +33,7 @@ Valid options are `dynamic` and `static`.
 
 Specifies the preferred library linkage.
 
-Valid options are `dynamic` and `static`.  Libraries can ignore this setting if
+Valid options are `dynamic` and `static`. Libraries can ignore this setting if
 they do not support the preferred linkage type.
 
 ### VCPKG_BUILD_TYPE
@@ -70,7 +70,7 @@ See also the CMake documentation for
 
 Specifies an alternate CMake toolchain file to use.
 
-This (if set) will override all other compiler detection logic.  By default, a
+This (if set) will override all other compiler detection logic. By default, a
 toolchain file is selected from `scripts/toolchains/` appropriate to the
 platform.
 
@@ -184,7 +184,7 @@ set(VCPKG_HASH_ADDITIONAL_FILES
 
 ### VCPKG_POST_PORTFILE_INCLUDES
 
-A list of cmake files to include after the execution of portfile.cmake.
+A list of CMake files to include after the execution of portfile.cmake.
 
 This field is optional.
 
@@ -216,13 +216,13 @@ documentation for more details.
 
 > [!WARNING]
 > Enabling this option is not recommended since it can lead to ABI
-> incompatibility in restored binary packages.  See the [binary caching
+> incompatibility in restored binary packages. See the [binary caching
 > documentation](../consume/binary-caching-overview.md) to learn more
 
 When this option is set to `TRUE`, `ON`, or `1`, the compiler will not be
 tracked as part of the package abis.
 
-This will cause [Binary Caching](binarycaching.md) to reuse builds from older or
+This will cause [binary caching](binarycaching.md) to reuse builds from older or
 newer compilers.
 
 ## Windows-specific Variables
@@ -234,7 +234,7 @@ process.
 
 On Windows, vcpkg builds packages in a special clean environment that is
 isolated from the current command prompt to ensure build reliability and
-consistency.  This triplet option can be set to a list of additional environment
+consistency. This triplet option can be set to a list of additional environment
 variables that will be added to the clean environment. The values of these
 environment variables will be hashed into the package abi -- to pass through
 environment variables without abi tracking, see
@@ -264,7 +264,7 @@ we walk through the following algorithm:
    environment variable `VCPKG_VISUAL_STUDIO_PATH`, or consider it unset
 1. Determine the setting for `VCPKG_PLATFORM_TOOLSET` from the triplet or
    consider it unset
-1. Gather a list of all pairs of Visual Studio Instances with all toolsets
+1. Gather a list of all pairs of Visual Studio instances with all toolsets
    available in those instances
    - This is ordered first by instance type (Stable, Prerelease, Legacy) and
      then by toolset version (v143, v142, v141, v140)
@@ -281,7 +281,7 @@ set(VCPKG_VISUAL_STUDIO_PATH "C:\\Program Files (x86)\\Microsoft Visual Studio\\
 
 ### VCPKG_PLATFORM_TOOLSET
 
-Specifies the VS-based C/C++ compiler toolchain to use.
+Specifies the Visual Studio-based C/C++ compiler toolchain to use.
 
 See [`VCPKG_VISUAL_STUDIO_PATH`](#VCPKG_VISUAL_STUDIO_PATH) for the full
 selection algorithm.
@@ -297,9 +297,9 @@ Valid settings:
 
 Specifies the detailed MSVC C/C++ compiler toolchain to use.
 
-By default, [`VCPKG_PLATFORM_TOOLSET`] always chooses the latest installed minor
-version of the selected toolset.  If you need more granularity, you can use this
-variable. Specification can be a partial or full version number. Valid values are,
+By default, [`VCPKG_PLATFORM_TOOLSET`](#VCPKG_PLATFORM_TOOLSET) always chooses the latest installed minor
+version of the selected toolset. If you need more granularity, you can use this
+variable. You can specify either a partial or a full version number. Valid values are,
 for example, `14.25` or `14.27.29110`.
 
 ### VCPKG_LOAD_VCVARS_ENV
@@ -351,7 +351,7 @@ For more information about dynamic libraries on macOS, refer to the following li
 ### VCPKG_OSX_DEPLOYMENT_TARGET
 
 Sets the minimum macOS version for compiled binaries. This also changes what
-versions of the macOS platform SDK that CMake will search for. See the CMake
+versions of the macOS platform SDK CMake will search for. See the CMake
 documentation for
 [CMAKE_OSX_DEPLOYMENT_TARGET](https://cmake.org/cmake/help/latest/variable/CMAKE_OSX_DEPLOYMENT_TARGET.html)
 for more information.
@@ -372,7 +372,7 @@ for more information.
 
 ## Per-port customization
 
-The CMake Macro `PORT` will be set when interpreting the triplet file and can be
+The CMake macro `PORT` will be set when interpreting the triplet file and can be
 used to change settings (such as `VCPKG_LIBRARY_LINKAGE`) on a per-port basis.
 
 Example:
@@ -384,7 +384,7 @@ if(${PORT} MATCHES "qt5-")
 endif()
 ```
 
-This will build all the `qt5-*` libraries as DLLs, but every other library as a
+This will build all the `qt5-*` ports as dynamic libraries, but every other port as a
 static library.
 
 For an example in a real project, see
