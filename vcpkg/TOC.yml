@@ -361,6 +361,8 @@
       href: maintainers/functions/vcpkg_list.md
     - name: vcpkg_minimum_required
       href: maintainers/functions/vcpkg_minimum_required.md
+    - name: vcpkg_msbuild_install
+      href: maintainers/functions/vcpkg_msbuild_install.md
     - name: x_vcpkg_pkgconfig_get_modules
       href: maintainers/functions/vcpkg_pkgconfig_get_modules.md
     - name: vcpkg_qmake_build
