@@ -8,7 +8,7 @@ is_archived: true
 # Installing and Using Packages Example: SQLite
 
 > [!NOTE]
-> This old example uses Classic mode, but most developers will be happier with Manifest mode. See [Manifest mode: CMake Example](manifest-mode-cmake.md) for an example of converting to Manifest mode.
+> This old example uses Classic mode, but most developers will be happier with Manifest mode. See [Manifest mode: CMake Example](../consume/manifest-mode.md) for an example of converting to Manifest mode.
 
 - [Step 1: Install](#install)
 - [Step 2: Use](#use)

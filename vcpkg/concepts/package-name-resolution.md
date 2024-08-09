@@ -38,8 +38,9 @@ prioritizes as follows:
   "registries": [
     {
       "kind": "git",
-      "repository": "https://github.com/northwindtraders/vcpkg-registry",
-      "baseline": "dacf4de488094a384ca2c202b923ccc097956e0c",
+      "repository": "https://github.com/microsoft/vcpkg-docs",
+      "reference": "vcpkg-registry",
+      "baseline": "768f6a3ad9f9b6c4c2ff390137690cf26e3c3453",
       "packages": ["bei*"]
     },
     {
@@ -69,7 +70,7 @@ Given this configuration, each package name resolves to:
 
 * `beicode`: from registry `https://github.com/vicroms/vcpkg-registry` (exact
   match on `beicode`)
-* `beison`: from registry `https://github.com/northwindtraders/vcpkg-registry`
+* `beison`: from registry `https://github.com/Microsoft/vcpkg-docs`
   (pattern match on `beison` and declared first in `"registries"` array)
 * `fmt`: from default registry (no matches)
 
@@ -80,7 +81,7 @@ Found the following problems in configuration (path/to/vcpkg-configuration.json)
 $ (a configuration object): warning: Package "bei*" is duplicated.
     First declared in:
         location: $.registries[0].packages[0]
-        registry: https://github.com/northwindtraders/vcpkg-registry
+        registry: https://github.com/microsoft/vcpkg-docs
     The following redeclarations will be ignored:
         location: $.registries[1].packages[1]
         registry: https://github.com/vicroms/vcpkg-registry

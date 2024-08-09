@@ -4,7 +4,7 @@ description: This tutorial shows how to set up a vcpkg binary cache using a NuGe
 author: vicroms
 ms.author: viromer
 ms.topic: tutorial
-ms.date: 01/10/2024
+ms.date: 7/16/2024
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
 ---
@@ -37,7 +37,7 @@ In this tutorial, you'll learn how to:
 
 * A terminal
 * [vcpkg](../get_started/get-started.md#1---set-up-vcpkg)
-* A NuGet packages feed, or if you don't, an Azure DevOps account to follow along
+* A NuGet package feed, or if you don't, an Azure DevOps account to follow along
 
 ::: zone-end
 
@@ -45,7 +45,7 @@ In this tutorial, you'll learn how to:
 
 * A terminal
 * [vcpkg](../get_started/get-started.md#1---set-up-vcpkg)
-* A NuGet packages feed, or if you don't, an Azure DevOps account to follow along
+* A NuGet package feed, or if you don't, an Azure DevOps account to follow along
 * The `mono` package installed in your system
 
 ::: zone-end
@@ -100,7 +100,7 @@ C:\path\to\nuget.exe sources add -Name <feed name> -Source <feed url>
 ::: zone pivot="shell-bash"
 
 ```bash
-mono `vcpkg fetch nuget | tail -n 1` sources add -Name <feed name> - Source <feed url>
+mono `vcpkg fetch nuget | tail -n 1` sources add -Name <feed name> -Source <feed url>
 ```
 
 ::: zone-end
@@ -140,7 +140,7 @@ C:\path\to\nuget.exe setapikey <apikey> -Source <feed url>
 ::: zone pivot="shell-bash"
 
 ```bash
-mono `vcpkg fetch nuget | tail -n 1` sources setapikey <apiKey> - Source <feed url>
+mono `vcpkg fetch nuget | tail -n 1` sources setapikey <apiKey> -Source <feed url>
 ```
 
 ::: zone-end
@@ -197,9 +197,9 @@ Example `nuget.config` file :
   <config>
     <add key="defaultPushSource" value="https://contoso.org/packages/" />
   </config>
-  <apiKeys>
+  <apikeys>
     <add key="https://contoso.org/packages/" value="encrypted_api_key" />
-  </apiKeys>
+  </apikeys>
   <packageSources>
     <clear />
     <add key="Contoso" value="https://contoso.org/packages/" />
@@ -217,7 +217,8 @@ vcpkg requires that you set a `defaultPushSource` in your `nuget.config` file, u
 URL as the default source to push binary packages. 
 
 If you're uploading your packages to an Azure Artifacts NuGet feed, use `AzureDevOps` as your
-source's API Key. Otherwise, replace the value with your feed's proper API Key if you have one.
+source's API Key by running `nuget setApiKey AzureDevOps -Source <feed url> -ConfigFile <path to nuget.config>`.
+Otherwise, replace the value with your feed's proper API Key if you have one.
 
 Add the `<clear />` source to ignore other previously configured values. If you want, you can define multiple
 sources in this file, use a `<add key="<feed name>" value="<feed url>" />` entry for each source.
@@ -275,13 +276,13 @@ $env:VCPKG_BINARY_SOURCES="clear;nugetconfig,<path to nuget.config>"
 ::: zone pivot="shell-cmd"
 
 ```console
-set VCPKG_BINARY_SOURCES="clear;nuget,<feed url>,readwrite"
+set "VCPKG_BINARY_SOURCES=clear;nuget,<feed url>,readwrite"
 ```
 
 If you're using a `nuget.config` file, instead do:
 
 ```console
-set VCPKG_BINARY_SOURCES="clear;nugetconfig,<path to nuget.config>"
+set "VCPKG_BINARY_SOURCES=clear;nugetconfig,<path to nuget.config>"
 ```
 
 ::: zone-end

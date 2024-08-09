@@ -1,7 +1,9 @@
 ---
 title: vcpkg Maintainer Guide
 description: The Guide for maintainers contributing to vcpkg.
-ms.date: 06/03/2024
+author: vicroms
+ms.author: viromer
+ms.date: 7/22/2024
 ms.topic: concept-article
 ---
 # Maintainer guide
@@ -50,16 +52,36 @@ then obviously beneficial changes like fixing typos are appreciated!
 
 ### Check names against other repositories
 
-A good service to check many at once is [Repology](https://repology.org/).
-If the library you are adding could be confused with another one,
-consider renaming to make it clear. We prefer when names are longer and/or
-unlikely to conflict with any future use of the same name. If the port refers
-to a library on GitHub, a good practice is to prefix the name with the organization
-if there is any chance of confusion.
+Port names should attempt to be unambiguous about which package the port
+installs. Ideally, searching the port's name in a search engine should quickly
+lead you to the corresponding project. A good service to check many package
+names across multiple repositories at once is [Repology](https://repology.org/).
 
-Put another way, the reason for this is to ensure that `vcpkg install Xxx`
-gives the user looking for `Xxx` what they were expecting and not be
-surprised by getting something different.
+Projects with short names or named after common words may require
+disambiguation, specially when there are no projects with a strong association
+to the given word. For example, a port with the name `ip` is not acceptable
+since it is likely that multiple projects would be named similarly.
+
+Examples of good disambiguators are:
+
+* The repository's owner username or organization: `google-cloud-cpp`.
+* The name of a suite of libraries the project is part of: `boost-dll`.
+
+Common prefixes and suffixes used by C++ and open source projects are not valid
+disambiguators, some examples include but are not limited to: 
+
+* `cpp`, 
+* `free`,
+* `lib`, 
+* `open`, 
+* numbers
+
+For example, when comparing the following port names: `ip-cpp`, `libip` and
+`ip5` and removing the invalid disambiguators they all are reduced to the same
+stem (`ip`) and thus are considered to have the same name.
+
+An exception to this guideline is made for names that are strongly associated
+with a single project. For example: `libpng`, `openssl` and `zlib`.
 
 ### Use GitHub draft PRs
 
@@ -167,6 +189,10 @@ https://github.com/GPUOpen-LibrariesAndSDKs/display-library/blob/master/Public-D
 ]])
 ```
 
+### Version constraints in ports
+
+Version constraints within ports should generally be avoided, as they can hinder the independent evolution of projects. Adding such constraints is only permissible when there is a well-documented justification, such as proven incompatibility with specific earlier versions. These constraints should not be used merely to maintain parity with independent projects.
+
 ## Features
 
 ### Do not use features to implement alternatives
@@ -243,12 +269,15 @@ Additionally, when appropriate, it can be easier and more maintainable to rewrit
 
 Examples: [abseil](https://github.com/Microsoft/vcpkg/tree/master/ports/abseil/portfile.cmake)
 
-### Choose either static or shared binaries
+### <a name="only-static-or-shared"></a>Choose either static or shared binaries
 
-By default, `vcpkg_cmake_configure()` will pass in the appropriate setting for `BUILD_SHARED_LIBS`,
-however for libraries that don't respect that variable, you can switch on `VCPKG_LIBRARY_LINKAGE`:
+When building CMake libraries, [`vcpkg_cmake_configure()`](../maintainers/functions/vcpkg_cmake_configure.md) will pass in the correct value for `BUILD_SHARED_LIBS` based on the user's requested variant.
+
+You can calculate alternative configure parameters by using `string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" ...)`.
 
 ```cmake
+# portfile.cmake
+
 string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "static" KEYSTONE_BUILD_STATIC)
 string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "dynamic" KEYSTONE_BUILD_SHARED)
 
@@ -258,6 +287,44 @@ vcpkg_cmake_configure(
         -DKEYSTONE_BUILD_STATIC=${KEYSTONE_BUILD_STATIC}
         -DKEYSTONE_BUILD_SHARED=${KEYSTONE_BUILD_SHARED}
 )
+```
+
+If a library does not offer configure options to select the build variant, the build must be patched. When patching a build, you should always attempt to maximize the future maintainability of the port. Typically this means minimizing the number of lines that need to be touched to fix the issue at hand.
+
+#### Example: Patching a CMake library to avoid building unwanted variants
+
+For example, when patching a CMake-based library, it may be sufficient to add [`EXCLUDE_FROM_ALL`](https://cmake.org/cmake/help/latest/prop_tgt/EXCLUDE_FROM_ALL.html) to unwanted targets and wrap the `install(TARGETS ...)` call in an `if(BUILD_SHARED_LIBS)`. This will be shorter than wrapping or deleting every line that mentions the unwanted variant.
+
+For a project `CMakeLists.txt` with the following contents:
+```cmake
+add_library(contoso SHARED contoso.c)
+add_library(contoso_static STATIC contoso.c)
+
+install(TARGETS contoso contoso_static EXPORT ContosoTargets)
+
+install(EXPORT ContosoTargets
+  FILE ContosoTargets
+  NAMESPACE contoso::
+  DESTINATION share/contoso)
+```
+
+Only the `install(TARGETS)` line needs to be patched.
+```cmake
+add_library(contoso SHARED contoso.c)
+add_library(contoso_static STATIC contoso.c)
+
+if(BUILD_SHARED_LIBS)
+  set_target_properties(contoso_static PROPERTIES EXCLUDE_FROM_ALL 1)
+  install(TARGETS contoso EXPORT ContosoTargets)
+else()
+  set_target_properties(contoso PROPERTIES EXCLUDE_FROM_ALL 1)
+  install(TARGETS contoso_static EXPORT ContosoTargets)
+endif()
+
+install(EXPORT ContosoTargets
+  FILE ContosoTargets
+  NAMESPACE contoso::
+  DESTINATION share/contoso)
 ```
 
 ### When defining features, explicitly control dependencies
@@ -398,6 +465,26 @@ Common options that allow you to avoid patching:
 - [CMAKE] Calls to `find_package(XYz)` in CMake scripts can be disabled via [`-DCMAKE_DISABLE_FIND_PACKAGE_XYz=ON`](https://cmake.org/cmake/help/v3.15/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.html)
 - [CMAKE] Cache variables (declared as `set(VAR "value" CACHE STRING "Documentation")` or `option(VAR "Documentation" "Default Value")`) can be overridden by just passing them in on the command line as `-DVAR:STRING=Foo`. One notable exception is if the `FORCE` parameter is passed to `set()`. For more information, see the [CMake `set` documentation](https://cmake.org/cmake/help/v3.15/command/set.html)
 
+### <a name="prefer-download-patches"></a> Prefer downloading approved patches over checking them into the port
+
+If an approved or merged patch file can be obtained from upstream, ports should
+try to download them and apply them instead of having them as part of the port files.
+This process is prefered because it:
+
+- Confirms that upstream has accepted the patch changes
+- Simplifies the reviewing process by shifting the onus upstream
+- Reduces the vcpkg repository size for users that aren't using the patch
+- Avoids license conflicts with the vcpkg repository
+
+Patches should be downloaded from a stable endpoint to avoid SHA conflicts. 
+When downloading patch files from a pull request or commit from GitHub and
+GitLab the `?full_index=1` parameter should be appended to the download URL.
+
+Examples:
+* `https://github.com/google/farmhash/pull/40.diff?full_index=1`
+* `https://github.com/linux-audit/audit-userspace/commit/f8e9bc5914d715cdacb2edc938ab339d5094d017.patch?full_index=1`
+* `https://gitlab.kitware.com/paraview/paraview/-/merge_requests/6375.diff?full_index=1`
+
 ### Prefer patching over overriding `VCPKG_<VARIABLE>` values
 
 Some variables prefixed with `VCPKG_<VARIABLE>` have an equivalent `CMAKE_<VARIABLE>`.
@@ -414,11 +501,11 @@ Using `vcpkg`'s built-in toolchains this works, because the value of `VCPKG_<LAN
 
 Because of this, it is preferable to patch the buildsystem directly when setting `CMAKE_<LANG>_FLAGS`.
 
-### Minimize patches
+### <a name="minimize-patches"></a>Minimize patches
 
-When making changes to a library, strive to minimize the final diff. This means you should _not_ reformat the upstream source code when making changes that affect a region. Also, when disabling a conditional, it is better to add a `AND FALSE` or `&& 0` to the condition than to delete every line of the conditional.
+When making changes to a library, strive to minimize the final diff. This means you should not reformat the upstream source code when making changes that affect a region. When disabling a conditional, it is better to add an `AND FALSE` or `&& 0` to the condition than to delete every line of the conditional. If a large region needs to be disabled, it is shorter to add an `if(0)` or `#if 0` around the region instead of deleting every line in the patch.
 
-Don't add patches if the port is outdated and updating the port to a newer released version would solve the same issue. vcpkg prefers updating ports over patching outdated versions unless the version bump breaks a considerable amount of dependent ports.
+Don't add patches if the port is outdated and updating the port to a newer released version would solve the same issue. vcpkg prefers updating ports over patching outdated versions.
 
 This helps to keep the size of the vcpkg repository down as well as improves the likelihood that the patch will apply to future code versions.
 
