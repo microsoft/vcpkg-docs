@@ -27,8 +27,8 @@ When there are multiple `"packages"` patterns that match the name, vcpkg
 prioritizes as follows:
 
 1. **Exact match** -- `boost` is chosen over `boost*`
-2. **Longest pattern** -- `boost*` is chosen over `b*`
-3. **First match** -- The first registry declaring the best pattern is chosen
+1. **Longest pattern** -- `boost*` is chosen over `b*`
+1. **First match** -- The first registry declaring the best pattern is chosen
 
 ## Example #1: Package name resolution
 

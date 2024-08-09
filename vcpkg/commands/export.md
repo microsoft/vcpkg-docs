@@ -18,8 +18,8 @@ Exports built packages from the [installed directory](common-options.md#install-
 `export` produces a standalone, distributable SDK (Software Development Kit) that can be used on another machine without separately acquiring vcpkg. It contains:
 
 1. The prebuilt binaries for the selected packages
-2. Their transitive dependencies
-3. [Integration files](#standard-integration), such as a [CMake toolchain][cmake] or [MSBuild props/targets][msbuild]
+1. Their transitive dependencies
+1. [Integration files](#standard-integration), such as a [CMake toolchain][cmake] or [MSBuild props/targets][msbuild]
 
 >[!NOTE]
 > This command's behavior is different in [Classic
