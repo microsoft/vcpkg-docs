@@ -17,7 +17,7 @@ vcpkg_add_to_path([PREPEND] [<path>...])
 
 ### PREPEND
 
-Prepend items to path instead of appending.
+Prepend items to the PATH environment variable instead of appending.
 
 ### `<path>...`
 

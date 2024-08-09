@@ -50,7 +50,7 @@ A call to `vcpkg_acquire_msys` will usually be followed by a call to `bash.exe`:
 
 ```cmake
 vcpkg_acquire_msys(MSYS_ROOT)
-set(BASH ${MSYS_ROOT}/usr/bin/bash.exe)
+set(BASH "${MSYS_ROOT}/usr/bin/bash.exe")
 
 vcpkg_execute_required_process(
     COMMAND "${BASH}" --noprofile --norc "${CMAKE_CURRENT_LIST_DIR}\\build.sh"

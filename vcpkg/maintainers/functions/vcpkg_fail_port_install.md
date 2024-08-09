@@ -17,7 +17,7 @@ vcpkg_fail_port_install(
     [MESSAGE <"Reason for failure">]
     [ON_TARGET <Windows> [<OSX> ...]]
     [ON_ARCH <x64> [<arm> ...]]
-    [ON_CRT_LINKAGE <static> [<dynamic> ...]])
+    [ON_CRT_LINKAGE <static> [<dynamic> ...]]
     [ON_LIBRARY_LINKAGE <static> [<dynamic> ...]]
 )
 ```

@@ -42,7 +42,7 @@ Specifies the sub directory containing the makefile.
 ### PROJECT_NAME
 
 Specifies the name of the makefile.
-Default is `makefile.vc`
+Default is `makefile.vc`.
 
 ### LOGFILE_ROOT
 

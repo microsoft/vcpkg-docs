@@ -68,7 +68,7 @@ This flag has no effect for MinGW targets.
 
 ### GENERATOR
 
-Specifies the Generator to use.
+Specifies the CMake Generator to use.
 
 By default vcpkg prefers to use Ninja as the CMake Generator for all platforms,
 or "Unix Makefiles" for non-Windows platforms when Ninja is not available.
@@ -140,7 +140,7 @@ vcpkg_cmake_configure(
 vcpkg_cmake_install()
 ```
 
-[Search microsoft/vcpkg for Examples](https://github.com/microsoft/vcpkg/search?q=vcpkg_cmake_configure+path%3A%2Fports)
+[Search microsoft/vcpkg for examples](https://github.com/microsoft/vcpkg/search?q=vcpkg_cmake_configure+path%3A%2Fports)
 
 ## Remarks
 

@@ -35,7 +35,7 @@ Adds the appropriate Release and Debug `bin\` directories to the path during the
 
 ### ENABLE_INSTALL
 
-IF the port supports the install target use vcpkg_install_make() instead of vcpkg_build_make()
+If the port supports the `install` target, use [`vcpkg_install_make()`](vcpkg_install_make.md) instead.
 
 ### MAKEFILE
 
@@ -47,11 +47,11 @@ Specifies a log file prefix.
 
 ### DISABLE_PARALLEL
 
-The underlying buildsystem will be instructed to not parallelize
+The underlying buildsystem will be instructed to not parallelize.
 
 ### SUBPATH
 
-Additional subdir to invoke make in. Useful if only parts of a port should be built.
+Additional subdirectory to invoke `make` in. Useful if only parts of a port should be built.
 
 ## Notes
 
