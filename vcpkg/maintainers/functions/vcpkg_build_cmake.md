@@ -5,7 +5,8 @@ ms.date: 01/10/2024
 ---
 # vcpkg_build_cmake
 
-**This function has been deprecated in favor of [`vcpkg_cmake_build`](vcpkg_cmake_build.md).**
+> [!WARNING]
+> This function has been deprecated in favor of [`vcpkg_cmake_build`](vcpkg_cmake_build.md).
 
 Build a cmake project.
 
@@ -35,13 +36,6 @@ Adds the appropriate Release and Debug `bin` directories to the path during the 
 This command should be preceded by a call to [`vcpkg_configure_cmake()`](vcpkg_configure_cmake.md).
 You can use the alias [`vcpkg_install_cmake()`](vcpkg_configure_cmake.md) function if your CMake script supports the
 "install" target
-
-## Examples
-
-- [zlib](https://github.com/Microsoft/vcpkg/blob/master/ports/zlib/portfile.cmake)
-- [cpprestsdk](https://github.com/Microsoft/vcpkg/blob/master/ports/cpprestsdk/portfile.cmake)
-- [poco](https://github.com/Microsoft/vcpkg/blob/master/ports/poco/portfile.cmake)
-- [opencv](https://github.com/Microsoft/vcpkg/blob/master/ports/opencv/portfile.cmake)
 
 ## Source
 

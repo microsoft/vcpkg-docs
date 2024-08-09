@@ -5,7 +5,8 @@ ms.date: 01/10/2024
 ---
 # vcpkg_extract_source_archive_ex
 
-**This function has been deprecated in favor of [`vcpkg_extract_source_archive()`].**
+> [!WARNING]
+> This function has been deprecated in favor of [`vcpkg_extract_source_archive()`](vcpkg_extract_source_archive.md).
 
 Extract an archive.
 
