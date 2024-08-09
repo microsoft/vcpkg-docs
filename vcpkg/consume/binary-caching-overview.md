@@ -3,7 +3,7 @@ title: "What is binary caching?"
 description: Learn what is a vcpkg binary cache and why you should be using one.
 author: vicroms
 ms.author: viromer
-ms.date: 01/10/2024
+ms.date: 07/30/2024
 ms.topic: concept-article
 #CustomerIntent: As a beginner vcpkg user, I want to learn what is binary caching and why should I use it
 ---
@@ -15,8 +15,8 @@ the output produced by each package build a "binary package".
 
 ## Why use binary caching?
 
-Most ports in the [vcpkg public registry](<https://github.com/Microsoft/vcpkg>) are built from
-source. Building from source ensures maximum compatibility by using the same environment, build-tools,
+Most ports in the [vcpkg curated registry](<https://github.com/Microsoft/vcpkg>) are built from
+source. Building from source ensures maximum compatibility by using the same environment, build tools,
 and configurations you use for your project in your dependencies. However, this  can also
 result in duplicated builds when multiple projects, developers, or machines require the same
 dependencies.
@@ -32,10 +32,10 @@ Binary caching is especially effective in scenarios where dependencies and confi
 don't change often, such as in CI (Continuous Integration) or build servers. Binary packages are
 particularly susceptible to configuration changes (compiler version, compilation flags, installed
 tools, or vcpkg-specific script changes) which makes sharing them between developer machines
-difficult. See the [`vcpkg export`](../commands/export.md) for a different option to share built
+difficult. See [`vcpkg export`](../commands/export.md) for a different option to share built
 packages.
 
-See the [binary caching documentation](../reference/binarycaching.md) to learn about
+See the [binary caching reference documentation](../reference/binarycaching.md) to learn about
 the different [storage backends](../reference/binarycaching.md#providers).
 
 ## Next steps

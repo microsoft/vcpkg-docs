@@ -3,7 +3,7 @@ title: Manifest mode
 description: This article describes vcpkg's manifest mode concepts.
 author: vicroms
 ms.author: viromer
-ms.date: 01/10/2024
+ms.date: 7/22/2024
 ms.topic: concept-article
 
 #CustomerIntent: As a vcpkg user, I want to learn more about manifest mode capabilities
@@ -12,11 +12,11 @@ ms.topic: concept-article
 # What is manifest mode?
 
 vcpkg has two operation modes: [classic mode](classic-mode.md) and manifest
-mode. For most users, we recommned manifest mode.
+mode. For most users, we recommend manifest mode.
 
 Manifest mode uses declarative JSON files to describe metadata about your
-project or package. In any case, the name of this file is
-[`vcpkg.json`](../reference/vcpkg-json.md).
+project or package. Manifest files are required to have the
+[`vcpkg.json`](../reference/vcpkg-json.md) name.
 
 Manifest mode is engaged by running the `vcpkg install` command while there's a
 manifest file (`vcpkg.json`) in the working directory. Read ahead for details on
@@ -94,8 +94,9 @@ vcpkg can be configured through a `vcpkg-configuration.json` file to add more
   "registries": [
     {
       "kind": "git",
-      "repository": "https://github.com/northwindtraders/vcpkg-registry",
-      "baseline": "dacf4de488094a384ca2c202b923ccc097956e0c",
+      "repository": "https://github.com/microsoft/vcpkg-docs",
+      "reference": "vcpkg-registry",
+      "baseline": "768f6a3ad9f9b6c4c2ff390137690cf26e3c3453",
       "packages": [ "beicode", "beison" ]
     }
   ],

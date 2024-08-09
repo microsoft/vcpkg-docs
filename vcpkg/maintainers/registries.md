@@ -28,7 +28,7 @@ The basic structure of a registry is:
 As you're following along with this documentation, it may be helpful to have
 a working example to refer to. We've written one and put it here:
 
-[Northwind Traders: vcpkg registry](https://github.com/northwindtraders/vcpkg-registry).
+[Microsoft/vcpkg-docs: vcpkg registry](https://github.com/microsoft/vcpkg-docs/tree/vcpkg-registry).
 
 All git registries must have a `versions/baseline.json` file. This file contains the set of "latest versions" at a certain commit. It is laid out as a top-level object containing only the `"default"` field. This field should contain an object mapping port names to the version which is currently the latest.
 

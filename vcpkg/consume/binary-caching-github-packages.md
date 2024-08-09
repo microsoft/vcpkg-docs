@@ -87,7 +87,7 @@ env:
   VCPKG_BINARY_SOURCES: "clear;nuget,https://nuget.pkg.github.com/<OWNER>/index.json,readwrite"
 ```
 
-Youo may need to replace the value of `VCPKG_EXE` with the location of the vcpkg executable
+You may need to replace the value of `VCPKG_EXE` with the location of the vcpkg executable
 generated in the [bootstrap vcpkg](#2---bootstrap-vcpkg) step.
 
 In this step you are configuring `VCPKG_BINARY_SOURCES` to use your GitHub Packages feed as a binary
@@ -151,7 +151,7 @@ You may need to replace `GH_PACKAGES_TOKEN` with the correct secret name you gav
 generated in the [provide a GitHub Personal Access Token step](#1---provide-a-github-personal-access-token).
 
 And that's it! vcpkg will now upload or restore packages from your NuGet feed hosted on GitHub
-Packages inside your GitHub Acions workflow.
+Packages inside your GitHub Actions workflow.
 
 ## Next steps
 
