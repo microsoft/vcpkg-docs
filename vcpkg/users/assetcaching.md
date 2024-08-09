@@ -28,7 +28,7 @@ Removes all previous sources in the configuration string. Useful in combination 
 
 **Syntax**:
 1. `x-azurl,<url>[,<sas>[,<rw>]]`
-2. `x-azurl,file://<network-location>[,,<rw>]`
+1. `x-azurl,file://<network-location>[,,<rw>]`
 
 `<url>`: Required. The Azure Blob Storage connection URL. It must include the container path and a trailing
 `/`.

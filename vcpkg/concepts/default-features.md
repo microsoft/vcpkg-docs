@@ -20,7 +20,7 @@ Default features are a set of [features](features.md) automatically included whe
 
 Default features provide a user-friendly experience by ensuring essential functionalities are available in libraries with modular features.
 
-For instance, a library capable of extracting various archive formats might have each format as an optional feature. Without default features, the library might not include any extraction algorithm out of the box, complicating initial use. 
+For instance, a library capable of extracting various archive formats might have each format as an optional feature. Without default features, the library might not include any extraction algorithm out of the box, complicating initial use.
 
 Packages installed by vcpkg will always include their default features, unless explicitly requested otherwise. This behavior applies to packages required directly by the user through a manifest file or vcpkg install invocation, and to packages required as dependencies.
 

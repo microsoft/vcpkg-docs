@@ -11,7 +11,7 @@ ms.topic: concept-article
 
 ## Features
 
-Features represent sets of functionality, behavior, and dependencies that can be selectively added to a package or project upon installation. 
+Features represent sets of functionality, behavior, and dependencies that can be selectively added to a package or project upon installation.
 
 By design, features should follow these principles:
 
@@ -46,7 +46,7 @@ An image manipulation library, for instance, might support several different ima
 
 ## Default features
 
-Default features are a set of features to be automatically activated if the top-level project does not explicitly request a build without them. Default features are intended to ensure a minimum level of functionality regardless of how complex and customizable the dependency graph of a project grows. 
+Default features are a set of features to be automatically activated if the top-level project does not explicitly request a build without them. Default features are intended to ensure a minimum level of functionality regardless of how complex and customizable the dependency graph of a project grows.
 
 > [!NOTE]
 > Default features are not intended to model "curation" or "suggestions".

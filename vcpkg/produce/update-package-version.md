@@ -204,11 +204,11 @@ git push --set-upstream <fork remote> vcpkg-sample-library-1.0.1
 ## 6 - Open a Pull Request
 
 1. Navigate to your forked repository on GitHub.
-2. Click the "Compare & pull request" button.
+1. Click the "Compare & pull request" button.
    1. Verify your changes
-   2. Add a descriptive title and comments
-   3. Fill out the [PR review checklist](../contributing/pr-review-checklist.md)
-3. Click "Create pull request."
+   1. Add a descriptive title and comments
+   1. Fill out the [PR review checklist](../contributing/pr-review-checklist.md)
+1. Click "Create pull request."
 
 That's it! You've successfully updated a port in the vcpkg's curated registry.
 

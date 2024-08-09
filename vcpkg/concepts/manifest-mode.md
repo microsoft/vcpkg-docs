@@ -156,17 +156,17 @@ To enable features of your project you can use one of the following methods:
     "client": {
       "description": "client game executable",
       "dependencies": [ "sdl2", "bullet3" ]
-    }, 
+    },
     "server": {
       "description": "multiplayer server executable",
       "dependencies": [ "proxygen" ]
-    }, 
+    },
     "tests": {
       "description": "development tests",
       "dependencies": [ "gtest" ]
     }
   }
-} 
+}
 ```
 
 To build only the "client" component's dependencies run:

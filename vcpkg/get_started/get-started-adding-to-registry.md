@@ -22,8 +22,8 @@ This tutorial guides you on how to package a library for vcpkg using a custom ov
 ## 1 - Fork the vcpkg Repository
 
 1. Navigate to the [vcpkg GitHub repository](https://github.com/Microsoft/vcpkg).
-2. Click the "Fork" button at the top right corner of the page.
-3. Choose your GitHub account as the destination for the fork.
+1. Click the "Fork" button at the top right corner of the page.
+1. Choose your GitHub account as the destination for the fork.
 
 ## 2 - Add your fork as a remote
 
@@ -105,11 +105,11 @@ Copy-Item -Path <path/to/vcpkg-sample-library> -Destination <ports/vcpkg-sample-
 ## 6 - Create a pull request
 
 1. Navigate to your forked repository on GitHub.
-2. Click on "Compare & pull request" button.
+1. Click on "Compare & pull request" button.
    1. Verify the changes
-   2. Add a descriptive title and comments
-   3. Fill out the [pr review checklist](../contributing/pr-review-checklist.md)
-3. Click "Create pull request."
+   1. Add a descriptive title and comments
+   1. Fill out the [pr review checklist](../contributing/pr-review-checklist.md)
+1. Click "Create pull request."
 
 That's it! You've successfully added a `port` to vcpkg's curated registry.
 

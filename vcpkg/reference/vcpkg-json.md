@@ -75,7 +75,7 @@ The set of features needed for reasonable behavior without additional customizat
 The default features are automatically selected if either:
 
 1. A port-to-port dependency for the port has [`"default-features": true`](#dependency-default-features) -- the default value.
-2. The top-level manifest does not have a dependency for the port with [`"default-features": false`](#dependency-default-features).
+1. The top-level manifest does not have a dependency for the port with [`"default-features": false`](#dependency-default-features).
 
 Default features handle the specific case of providing a "default" configuration for transitive dependencies that the top-level project may not know about. Ports used by others should almost always use `"default-features": false` for their dependencies.
 

@@ -40,7 +40,7 @@ vcpkg create zlib2 https://github.com/madler/zlib/archive/v1.2.11.tar.gz zlib-1.
 The command performs the following actions:
 
 1. Creates a port folder named `zlib2` containing a `portfile.cmake` file and a `vcpkg.json` file.
-2. Downloads `https://github.com/madler/zlib/archive/v1.2.11.tar.gz` as `zlib-1.2.11.tar.gz` in the `downloads` directory.
+1. Downloads `https://github.com/madler/zlib/archive/v1.2.11.tar.gz` as `zlib-1.2.11.tar.gz` in the `downloads` directory.
 
 The new `portfile.cmake` has the content:
 

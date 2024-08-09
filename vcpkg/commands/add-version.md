@@ -23,7 +23,7 @@ The `x-add-version` command updates the [version database](../users/versioning.c
 To use the command:
 
 1. After making changes to a port, navigate to the vcpkg directory.
-2. Run `vcpkg x-add-version <port-name>`, replacing `<port-name>` with the name of the port you've edited.
+1. Run `vcpkg x-add-version <port-name>`, replacing `<port-name>` with the name of the port you've edited.
 
 This will add or update the version entry for your port in the version database.
 

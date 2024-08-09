@@ -22,7 +22,7 @@ bootstrap script to get a vcpkg executable.
 
 Regardless of the acquisition method you follow, it is highly recommended that
 your vcpkg instance has a complete Git history. The versioning feature of vcpkg
-relies on having a complete commit history to retrieve specific port versions. 
+relies on having a complete commit history to retrieve specific port versions.
 
 ### Use vcpkg as a submodule
 
@@ -79,7 +79,7 @@ To learn more about binary caching read these articles:
 ## Set up an asset cache
 
 Setting up an asset cache will make your CI environment more resilient to errors
-caused by external services. 
+caused by external services.
 
 To learn more about asset caching read these articles:
 
