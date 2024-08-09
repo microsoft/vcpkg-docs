@@ -33,18 +33,18 @@ For Linux and macOS users we also recommend to install the following packages: `
 
 Support is broken into 4 distinct categories. They are:
 
-* **Full support, tested**  
+* **Full support, tested**
   The configurations used to test vcpkg's curated registry on a regular basis. Problems in these configurations
   are rapidly found and fixed by vcpkg's maintainers and community..
-* **Full support, expected**  
+* **Full support, expected**
   Configurations treated with the same priority as 'Full support, tested' but which are not part of the regular tests.
   In general, these configurations are substantially similar to one of the fully tested configurations.
-* **Community support**  
+* **Community support**
   Configurations that are not actively supported by vcpkg's maintainers but have substantial community investment.
   vcpkg maintainers accept changes to fix problems for these platforms but don't make guarantees that these 
   configurations work. The vcpkg team is interested in moving as many platforms out of community support
   into full support as possible.
-* **Unsupported**  
+* **Unsupported**
   Configurations that are known no to work for some reason. In general, PRs fixing only these platforms
   are not accepted.
 

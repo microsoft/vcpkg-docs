@@ -61,7 +61,7 @@ resolving features, etc.
 
 The main purpose of using a manifest file in your project is to declare your
 dependencies. When using a project manifest, you're able to specify version
-constraints and overrides to lock specific versions of your dependencies. This 
+constraints and overrides to lock specific versions of your dependencies. This
 feature is not available in classic mode.
 
 ### Project manifest example
@@ -155,17 +155,17 @@ To enable features of your project you can use one of the following methods:
     "client": {
       "description": "client game executable",
       "dependencies": [ "sdl2", "bullet3" ]
-    }, 
+    },
     "server": {
       "description": "multiplayer server executable",
       "dependencies": [ "proxygen" ]
-    }, 
+    },
     "tests": {
       "description": "development tests",
       "dependencies": [ "gtest" ]
     }
   }
-} 
+}
 ```
 
 To build only the "client" component's dependencies run:
