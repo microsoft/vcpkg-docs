@@ -121,7 +121,7 @@ Steps to reproduce:
 If the required toolchain is installed, vcpkg may have selected an incorrect
 version of Visual Studio where the toolchain is not installed. See the
 [documentation for the Visual Studio selection
-algorithm](../users/triplets.md#VCPKG_VISUAL_STUDIO_PATH) to learn more.
+algorithm](../users/triplets.md#vcpkg_visual_studio_path) to learn more.
 
 Steps to resolve:
 
@@ -129,7 +129,7 @@ Steps to resolve:
   [`VCPKG_PLATFORM_TOOLSET`](../users/triplets.md#vcpkg_platform_toolset) to the
   appropriate version.
 2 - Alternatively, set the
-  [`VCPKG_VISUAL_STUDIO_PATH`](../users/triplets.md#VCPKG_VISUAL_STUDIO_PATH) to
+  [`VCPKG_VISUAL_STUDIO_PATH`](../users/triplets.md#vcpkg_visual_studio_path) to
   your desired Visual Studio instance installation path.
 
 ## Missing system dependencies
