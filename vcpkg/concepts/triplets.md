@@ -88,6 +88,9 @@ for a more detailed walkthrough.
 
 [overlay-triplets]: ../commands/common-options.md#overlay-triplets
 
+> [!NOTE]
+> Triplet names may only contain lowercase alphanumberical characters and hyphens.
+
 ## Remarks
 
 The default triplet when running any vcpkg command is `%VCPKG_DEFAULT_TRIPLET%`
