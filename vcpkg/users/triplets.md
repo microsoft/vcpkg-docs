@@ -253,7 +253,7 @@ without abi tracking.
 
 See [`VCPKG_ENV_PASSTHROUGH`](#vcpkg_env_passthrough).
 
-### <a name="VCPKG_VISUAL_STUDIO_PATH"></a> VCPKG_VISUAL_STUDIO_PATH
+### VCPKG_VISUAL_STUDIO_PATH
 
 Specifies the Visual Studio installation to use.
 
@@ -279,11 +279,11 @@ slash:
 set(VCPKG_VISUAL_STUDIO_PATH "C:\\Program Files (x86)\\Microsoft Visual Studio\\Preview\\Community")
 ```
 
-### <a name="VCPKG_PLATFORM_TOOLSET"></a> VCPKG_PLATFORM_TOOLSET
+### VCPKG_PLATFORM_TOOLSET
 
 Specifies the Visual Studio-based C/C++ compiler toolchain to use.
 
-See [`VCPKG_VISUAL_STUDIO_PATH`](#VCPKG_VISUAL_STUDIO_PATH) for the full
+See [`VCPKG_VISUAL_STUDIO_PATH`](#vcpkg_visual_studio_path) for the full
 selection algorithm.
 
 Valid settings:
@@ -297,7 +297,7 @@ Valid settings:
 
 Specifies the detailed MSVC C/C++ compiler toolchain to use.
 
-By default, [`VCPKG_PLATFORM_TOOLSET`](#VCPKG_PLATFORM_TOOLSET) always chooses the latest installed minor
+By default, [`VCPKG_PLATFORM_TOOLSET`](#vcpkg_platform_toolset) always chooses the latest installed minor
 version of the selected toolset. If you need more granularity, you can use this
 variable. You can specify either a partial or a full version number. Valid values are,
 for example, `14.25` or `14.27.29110`.
