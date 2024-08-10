@@ -92,6 +92,15 @@ flags:
 - `VCPKG_C_FLAGS_DEBUG`
 - `VCPKG_C_FLAGS_RELEASE`
 
+If you set `VCPKG_CXX_FLAGS`, you also have to set `VCPKG_C_FLAGS`, and vice-versa. 
+The same is true for the configuration-specific flags. These variables accept a 
+space-delimited string of compiler flags:
+
+```cmake
+set(VCPKG_CXX_FLAGS "/wd4996 -D_CRT_SECURE_NO_WARNINGS")
+set(VCPKG_C_FLAGS "/wd4996 -D_CRT_SECURE_NO_WARNINGS")
+```
+
 ### VCPKG_LINKER_FLAGS
 
 Sets additional linker flags to be used while building dynamic libraries and
