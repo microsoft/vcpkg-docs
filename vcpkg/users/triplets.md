@@ -279,7 +279,7 @@ slash:
 set(VCPKG_VISUAL_STUDIO_PATH "C:\\Program Files (x86)\\Microsoft Visual Studio\\Preview\\Community")
 ```
 
-### VCPKG_PLATFORM_TOOLSET
+### <a name="VCPKG_PLATFORM_TOOLSET"></a> VCPKG_PLATFORM_TOOLSET
 
 Specifies the Visual Studio-based C/C++ compiler toolchain to use.
 
