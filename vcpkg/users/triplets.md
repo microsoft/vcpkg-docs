@@ -381,7 +381,7 @@ for more information.
 
 ## Per-port customization
 
-The CMake variable `PORT` will be set when interpreting the triplet file and can be
+The CMake variable `PORT` will be set when interpreting the triplet file. It can be
 used to change settings (such as `VCPKG_LIBRARY_LINKAGE`) on a per-port basis.
 
 Example:
