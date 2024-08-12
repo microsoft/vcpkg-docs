@@ -5,7 +5,8 @@ ms.date: 01/10/2024
 ---
 # vcpkg_install_cmake
 
-**This function has been deprecated in favor of [`vcpkg_cmake_install`](vcpkg_cmake_install.md) from the vcpkg-cmake port.**
+> [!WARNING]
+> This function has been deprecated in favor of [`vcpkg_cmake_install`](vcpkg_cmake_install.md) from the vcpkg-cmake port.
 
 Build and install a cmake project.
 
