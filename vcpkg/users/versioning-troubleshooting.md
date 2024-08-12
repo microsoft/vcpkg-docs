@@ -18,9 +18,9 @@ This guide is intended for users experiencing issues with [versioning](./version
 
 To inspect the versions database of a specific port:  
 1. Navigate to the `vcpkg/versions` directory.
-2. Locate the port's folder:
+1. Locate the port's folder:
    - Find the folder corresponding to the first letter of the port. For example, for `fmt` open the folder named `f-`.
-3. Open the ports version file:
+1. Open the ports version file:
    - Locate the JSON file with the same name of the port. For example, the `fmt` versions file is named `fmt.json.`
 
 The port's version file contains a list of available versions with details like version tags and their corresponding [Git tree-object hash](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_tree_objects). This information is required by vcpkg to retrieve specific port versions. Only versions contained in this list are available to use in your manifest files.
