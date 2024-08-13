@@ -1,13 +1,13 @@
 ---
-title: Microsoft Visual C++ for Windows
-description: Building for Windows with the Microsoft Visual C++ Compiler
-ms.date: 04/28/2023
+title: Windows with MSVC
+description: Building for Windows with the MSVC Compiler
+ms.date: 08/12/2024
 ---
-# Microsoft Visual C++
+# Windows with MSVC
 
 ## Triplets
 
-vcpkg includes [triplets](https://github.com/microsoft/vcpkg/tree/master/triplets) for building Windows desktop applications using the MSVC ``cl.exe`` compiler.
+vcpkg includes [triplets](../../concepts/triplets.md) for building Windows desktop applications using the MSVC ``cl.exe`` compiler.
 
 | Architecture | vcpkg triplets               | Community |
 |--------------|------------------------------|-----------|
@@ -31,19 +31,19 @@ The ``static`` linking triplets are set to use the MSVC Runtime as a static libr
 
 The ``static-md`` linking triplets are set to use the MSVC Runtime as a DLL (i.e. ``VCPKG_CRT_LINKAGE dynamic``). This is the recommended solution for redistributing the MSVC Runtime per [Microsoft Learn](/cpp/windows/deployment-in-visual-cpp).
 
-## Selecting a Visual C++ Toolset
+## Selecting a MSVC toolset
 
 By default, vcpkg will use the latest version of Visual Studio installed on the system for building code. To select a specific version, create a custom triplet or triplet overlay to set [`VCPKG_PLATFORM_TOOLSET`](../triplets.md#vcpkg_platform_toolset).
 
-For examples, this would force the use of the VS 2017 toolset.
+For examples, this would force the use of the Visual Studio 2017 toolset.
 
-```
+```cmake
 set(VCPKG_PLATFORM_TOOLSET v141)
 ```
 
-## C/C++ Runtime Compatibility
+## C/C++ Runtime compatibility
 
-The Microsoft Visual C/C++ Runtime is 'forward binary compatible'. This means you can build code with VS 2015 Update 3, VS 2017, VS 2019, and/or VS 2022 and link it all together. The key requirement is that the LINK must be done against the *newest* toolset in the mix. See [Microsoft Learn](/cpp/porting/binary-compat-2015-2017).
+The Microsoft Visual C/C++ Runtime is 'forward binary compatible'. This means you can build code with Visual Studio 2015 Update 3, Visual Studio 2017, Visual Studio 2019, and/or Visual Studio 2022 and link it all together. The key requirement is that the LINK must be done against the *newest* toolset in the mix. See [Microsoft Learn](/cpp/porting/binary-compat-2015-2017).
 
 ## Maintainer notes
 
@@ -53,7 +53,7 @@ CMake projects for these triplets are built using `CMAKE_SYSTEM_NAME` set to "Wi
 
 * "Just My Code" debugging can usually be disabled in a library to save code space.
 
-```
+```cmake
 if(MSVC)
     target_compile_options(mytarget PRIVATE /JMC-)
 endif()
@@ -61,15 +61,15 @@ endif()
 
 * MSBuild will automatically add some build flags that are not on-by-default in the MSVC compiler itself. To ensure the same behavior with Ninja or other generators, add these build settings.
 
-```
+```cmake
 if(MSVC)
     target_compile_options(mytarget PRIVATE /Zc:inline)
 endif()
 ```
 
-* Recommended build settings for newer versions of Visual C++ are encouraged for improved code security.
+* Recommended build settings for newer versions of MSVC are encouraged for improved code security.
 
-```
+```cmake
 if(MSVC)
     target_compile_options(mytarget PRIVATE "$<$<NOT:$<CONFIG:DEBUG>>:/guard:cf>")
     target_link_options(mytarget PRIVATE /DYNAMICBASE /NXCOMPAT)
@@ -104,7 +104,7 @@ endif()
 
 * For improved Standard C/C++ Conformance, use the latest switch settings.
 
-```
+```cmake
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     target_compile_options(mytarget PRIVATE /permissive- /Zc:__cplusplus /Zc:inline)
 
@@ -124,7 +124,7 @@ endif()
 
 * To support the use of Whole Program Optimization / Link-Time Code Generation, recommended build settings are as follows:
 
-```
+```cmake
 if((CMAKE_CXX_COMPILER_ID MATCHES "MSVC") AND CMAKE_INTERPROCEDURAL_OPTIMIZATION)
     target_compile_options(${PROJECT_NAME} PRIVATE /Gy /Gw)
 
@@ -136,7 +136,7 @@ endif()
 
 * If enabling Spectre mitigations, use the following guards.
 
-```
+```cmake
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     if((MSVC_VERSION GREATER_EQUAL 1913) AND (NOT WINDOWS_STORE))
       target_compile_options(mytarget PRIVATE "/Qspectre")
