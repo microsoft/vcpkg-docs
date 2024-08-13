@@ -359,6 +359,10 @@
       href: maintainers/functions/vcpkg_install_qmake.md
     - name: vcpkg_list
       href: maintainers/functions/vcpkg_list.md
+    - name: vcpkg_make_configure
+      href: maintainers/functions/vcpkg_make_configure.md
+    - name: vcpkg_make_install
+      href: maintainers/functions/vcpkg_make_install.md
     - name: vcpkg_minimum_required
       href: maintainers/functions/vcpkg_minimum_required.md
     - name: vcpkg_msbuild_install
