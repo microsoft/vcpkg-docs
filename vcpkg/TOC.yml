@@ -135,6 +135,10 @@
       href: users/platforms/android.md
     - name: MinGW
       href: users/platforms/mingw.md
+    - name: Universal Windows platform
+      href: users/platforms/uwp.md
+    - name: Windows with MSVC
+      href: users/platforms/windows.md
     - name: Xbox
       href: users/platforms/xbox.md
   - name: GitHub integration
