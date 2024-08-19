@@ -31,7 +31,7 @@ the vcpkg executable is not located within a valid root and the command line swi
 ## VCPKG_VISUAL_STUDIO_PATH
 
 This environment variable can be set to the full path to a Visual Studio instance on the machine. This Visual Studio instance
-will be used if the triplet does not override it via the [`VCPKG_VISUAL_STUDIO_PATH`](triplets.md#VCPKG_VISUAL_STUDIO_PATH) triplet setting.
+will be used if the triplet does not override it via the [`VCPKG_VISUAL_STUDIO_PATH`](triplets.md#vcpkg_visual_studio_path) triplet setting.
 
 Example: `D:\2017`
 
