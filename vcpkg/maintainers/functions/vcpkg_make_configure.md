@@ -106,7 +106,7 @@ Installation Directories:
 
 Example Paths:
 * Release Configuration:
-  - `--prefix=${current_installed_dir_msys}`
+  - `--prefix=${current_installed_dir}`
   - `--bindir=${prefix}/tools/${PORT}/bin`
   - `--sbindir=${prefix}/tools/${PORT}/sbin`
   - `--libdir=${prefix}/lib`
@@ -115,7 +115,7 @@ Example Paths:
   - `--datarootdir=${prefix}/share/${PORT}`
 
 * Debug Configuration:
-  - `--prefix=${current_installed_dir_msys}${path_suffix_DEBUG}`
+  - `--prefix=${current_installed_dir}${path_suffix_DEBUG}`
   - `--bindir=${prefix}/../tools/${PORT}${path_suffix_DEBUG}/bin`
   - `--sbindir=${prefix}/../tools/${PORT}${path_suffix_DEBUG}/sbin`
   - `--libdir=${prefix}/lib`
