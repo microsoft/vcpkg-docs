@@ -74,6 +74,12 @@ This (if set) will override all other compiler detection logic. By default, a
 toolchain file is selected from `scripts/toolchains/` appropriate to the
 platform.
 
+> [!NOTE]
+> To create a custom toolchain file, the best way is to include an existing
+> toolchain > from `scripts/toolchains` and extend it. Otherwise many vcpkg
+> build flags specified by the triplet such as `VCPKG_TARGET_ARCHITECTURE`,
+> `VCPKG_CXX_FLAGS` or `VCPKG_LINKER_FLAGS` will not be forwarded to CMake.
+
 See also the CMake documentation for [toolchain
 files](<https://cmake.org/cmake/help/v3.11/manual/cmake-toolchains.7.html>).
 
