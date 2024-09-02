@@ -54,3 +54,16 @@ SPDX Reference: [Package information](https://spdx.github.io/spdx-spec/v2.3/pack
 Refers to each of the files in the port. It contains a relative path to the file and a checksum.
 
 SPDX Reference: [File information](https://spdx.github.io/spdx-spec/v2.3/file-information/)
+
+## CycloneDX support
+vcpkg does not support the CycloneDX SBOM format out of the box. We recommend
+using available conversion tools to convert the generated vcpkg SPDX json to your
+desired format.
+
+One tool is `cyclonedx-cli`, which can be acquired [here](https://github.com/CycloneDX/cyclonedx-cli). Run
+```console
+cyclonedx convert --input-file vcpkg.spdx.json --input-format spdxjson --output-format json --output-file <file>
+```
+
+Some vcpkg dependency information may be lost during conversion. For more detail,
+see [here](https://github.com/CycloneDX/cyclonedx-cli?tab=readme-ov-file#spdx-format).
