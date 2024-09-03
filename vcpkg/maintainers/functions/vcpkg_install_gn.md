@@ -5,7 +5,8 @@ ms.date: 01/10/2024
 ---
 # vcpkg_install_gn
 
-**This function has been deprecated in favor of [`vcpkg_gn_install`](vcpkg_gn_install.md).**
+> [!WARNING]
+> This function has been deprecated in favor of [`vcpkg_gn_install`](vcpkg_gn_install.md).
 
 Installs a GN project.
 

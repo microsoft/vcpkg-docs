@@ -43,8 +43,8 @@ To use this function, you must depend on the helper port `vcpkg-msbuild`:
 ```json
 "dependencies": [
   { 
-    "name", "vcpkg-msbuild",
-    "host": "true"
+    "name": "vcpkg-msbuild",
+    "host": true
   }
 ]
 ```
