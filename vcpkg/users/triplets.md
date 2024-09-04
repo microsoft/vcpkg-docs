@@ -74,6 +74,12 @@ This (if set) will override all other compiler detection logic. By default, a
 toolchain file is selected from `scripts/toolchains/` appropriate to the
 platform.
 
+> [!NOTE]
+> To create a custom toolchain file, it's best to start by including an existing
+> toolchain from `${VCPKG_ROOT}/scripts/toolchains` and extend it. This ensures that
+> essential variables set by the vcpkg executable, such as `VCPKG_TARGET_ARCHITECTURE`,
+> `VCPKG_CXX_FLAGS`, `VCPKG_LINKER_FLAGS`, and other variables are forwarded to CMake.
+
 See also the CMake documentation for [toolchain
 files](<https://cmake.org/cmake/help/v3.11/manual/cmake-toolchains.7.html>).
 
