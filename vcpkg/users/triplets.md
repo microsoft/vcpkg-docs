@@ -75,10 +75,10 @@ toolchain file is selected from `scripts/toolchains/` appropriate to the
 platform.
 
 > [!NOTE]
-> To create a custom toolchain file, the best way is to include an existing
-> toolchain > from `scripts/toolchains` and extend it. Otherwise many vcpkg
-> build flags specified by the triplet such as `VCPKG_TARGET_ARCHITECTURE`,
-> `VCPKG_CXX_FLAGS` or `VCPKG_LINKER_FLAGS` will not be forwarded to CMake.
+> To create a custom toolchain file, it's best to start by including an existing
+> toolchain from `${VCPKG_ROOT}/scripts/toolchains` and extend it. This ensures that
+> essential variables set by the vcpkg executable, such as `VCPKG_TARGET_ARCHITECTURE`,
+> `VCPKG_CXX_FLAGS`, `VCPKG_LINKER_FLAGS`, and other variables are forwarded to CMake.
 
 See also the CMake documentation for [toolchain
 files](<https://cmake.org/cmake/help/v3.11/manual/cmake-toolchains.7.html>).
