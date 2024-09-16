@@ -36,6 +36,9 @@
     # TODO: Modernize article: users/examples/overlay-triplets-linux-dynamic.md
     displayName: dynamic, so, shared object, overlay
     href: users/examples/overlay-triplets-linux-dynamic.md
+  - name: Install native dependencies in a CLR application
+    displayName: .NET, C#, managed, CLI
+    href: consume/cpp-cli.md
   - name: Install private or custom dependencies
     items:
     - name: Install a locally modified dependency using overlay ports
