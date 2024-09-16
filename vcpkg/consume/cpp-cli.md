@@ -115,7 +115,7 @@ Once the solution has been opened in Visual Studio you may get a prompt to
 retarget the project to the latest versions. You can click OK to upgrade the
 Windows SDK Version and Platform Toolset to latest.
 
-:::image type="complex" source="../resources/consume/retarget-project.png"
+:::image type="complex" source="../resources/clr-retarget-project.png"
 alt-text="Retarget existing project":::
     Screenshot of a Visual Studio window prompting the user to upgrade a
     project's target Windows SDK Version and Platform Toolset version to the latest version.
@@ -166,6 +166,12 @@ Change the following properties in the vcpkg section:
 - **Instal Vcpkg Dependencies** set to **Yes**
 - **Use AutoLink** set to **Yes**
 - **App-locally deploy DLLs** set to **Yes**
+
+:::image type="complex" source="../resources/mixedlibrary-properties.png"
+alt-text="MixedLibrary project properties":::
+    Screenshot of the MixedLibrary project's Properties page showing the options
+    required to enable vcpkg
+:::image-end:::
 
 With these changes Visual Studio will now read the `vcpkg.json` file and
 automatcally install the dependencies contained in the manifest before building
