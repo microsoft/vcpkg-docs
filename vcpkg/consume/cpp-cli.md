@@ -2,7 +2,8 @@
 title: "Tutorial: Install native dependencies in a CLR application"
 description: Learn to use vcpkg in your C++/CLI libraries and applications.
 author: vicroms
-ms.author: 9/2/2024
+ms.author: viromer
+ms.date: 9/2/2024
 ms.topic: tutorial
 #CustomerIntent: As a C++/CLI developer, I want to use vcpkg to install dependencies for my native libraries and code
 ---
@@ -115,8 +116,7 @@ Once the solution has been opened in Visual Studio you may get a prompt to
 retarget the project to the latest versions. You can click OK to upgrade the
 Windows SDK Version and Platform Toolset to latest.
 
-:::image type="complex" source="../resources/clr-retarget-project.png"
-alt-text="Retarget existing project":::
+:::image type="complex" source="../resources/clr-retarget-project.png" alt-text="Retarget existing project":::
     Screenshot of a Visual Studio window prompting the user to upgrade a
     project's target Windows SDK Version and Platform Toolset version to the latest version.
 :::image-end:::
@@ -167,8 +167,7 @@ Change the following properties in the vcpkg section:
 - **Use AutoLink** set to **Yes**
 - **App-locally deploy DLLs** set to **Yes**
 
-:::image type="complex" source="../resources/mixedlibrary-properties.png"
-alt-text="MixedLibrary project properties":::
+:::image type="complex" source="../resources/mixedlibrary-properties.png" alt-text="MixedLibrary project properties":::
     Screenshot of the MixedLibrary project's Properties page showing the options
     required to enable vcpkg
 :::image-end:::
