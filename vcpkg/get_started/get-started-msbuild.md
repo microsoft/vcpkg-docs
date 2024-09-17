@@ -136,7 +136,7 @@ Modify the `helloworld.cpp` file.
 
 Replace the content of `helloworld.cpp` with the following code:
 
-:::code language="cpp" source="../examples/snippets/get-started/main.cpp":::
+:::code language="cpp" source="../examples/snippets/get-started/helloworld.cpp":::
 
 This source file includes the `<fmt/core.h>` header which is part of the `fmt` library. The `main()` function calls `fmt::print()` to output the "Hello World!" message to the console.
 

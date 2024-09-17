@@ -144,8 +144,8 @@ Now, let's break down what each line in the `CMakeLists.txt` file does:
 - `find_package(fmt CONFIG REQUIRED)`: Looks for the `fmt` library using its
   CMake configuration file. The `REQUIRED` keyword ensures that an error is
   generated if the package is not found.
-- `add_executable(HelloWorld main.cpp)`: Adds an executable target named
-  "HelloWorld," built from the source file `main.cpp`.
+- `add_executable(HelloWorld helloworld.cpp)`: Adds an executable target named
+  "HelloWorld," built from the source file `helloworld.cpp`.
 - `target_link_libraries(HelloWorld PRIVATE fmt::fmt)`: Specifies that the
   `HelloWorld` executable should link against the `fmt` library. The `PRIVATE`
   keyword indicates that `fmt` is only needed for building `HelloWorld` and
@@ -153,7 +153,7 @@ Now, let's break down what each line in the `CMakeLists.txt` file does:
 
 Create the `helloworld.cpp` file with the following content:
 
-:::code language="cpp" source="../examples/snippets/get-started/main.cpp":::
+:::code language="cpp" source="../examples/snippets/get-started/helloworld.cpp":::
 
 In this `helloworld.cpp` file, the `<fmt/core.h>` header is included for using
 the `fmt` library. The `main()` function then calls `fmt::print()` to output the
@@ -164,40 +164,12 @@ you'll need to provide the `vcpkg.cmake` toolchain file. To automate this,
 create a `CMakePresets.json` file in the "helloworld" directory with the
 following content:
 
-
-```json
-{
-  "version": 2,
-  "configurePresets": [
-    {
-      "name": "vcpkg",
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build",
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
-      }
-    }
-  ]
-}
-```
+:::code language="json" source="../examples/snippets/get-started/CMakePresets.json":::
 
 Create `CMakeUserPresets.json` file in the "helloworld" directory with the
 following content:
 
-```json
-{
-  "version": 2,
-  "configurePresets": [
-    {
-      "name": "default",
-      "inherits": "vcpkg",
-      "environment": {
-        "VCPKG_ROOT": "<path to vcpkg>"
-      }
-    }
-  ]
-}
-```
+:::code language="json" source="../examples/snippets/get-started/CMakeUserPresets.json":::
 
 This `CMakePresets.json` file contains a single "vcpkg" preset for CMake and
 sets the `CMAKE_TOOLCHAIN_FILE` variable. The `CMAKE_TOOLCHAIN_FILE` allows the
