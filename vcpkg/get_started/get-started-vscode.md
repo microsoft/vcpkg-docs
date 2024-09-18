@@ -215,16 +215,16 @@ following content:
 
   Run the program:
 
-  :::zone pivot="shell-powershell,shell-cmd":::
+  :::zone pivot="shell-powershell,shell-cmd"
   ```bash
   ./build/HelloWorld.exe
   ```
-  :::zone-end:::
-  :::zone pivot="shell-bash":::
+  :::zone-end
+  :::zone pivot="shell-bash"
   ```bash
   ./build/HelloWorld
   ```
-  :::zone-end::: 
+  :::zone-end
 
   You should see the output:
 
