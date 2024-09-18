@@ -40,7 +40,9 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 2. Configure the `VCPKG_ROOT` environment variable.
 
-    ::: zone pivot="shell-powershell"
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
+
+    ::: zone pivot="shell-powershell"    
     Open the built-in Developer PowerShell window in Visual Studio.
 
     :::image type="complex" source="../resources/get_started/visual-studio-developer-powershell.png" alt-text="opening built-in developer powershell":::
@@ -50,16 +52,13 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     Run the following commands:
 
     ```PowerShell
-    $env:VCPKG_ROOT = "C:\path\to\vcpkg"
-    $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
+    $env:VCPKG_ROOT="C:\path\to\vcpkg"
+    $env:PATH="$env:VCPKG_ROOT;$env:PATH"
     ```
 
     :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-powershell.png" alt-text="setting up your environment variables":::
         Screenshot of Visual Studio UI for the built-in PowerShell developer window showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
-
-    [!INCLUDE [env-vars](../../includes/env-vars.md)]
-
     ::: zone-end
     ::: zone pivot="shell-cmd"
     Open the Developer command prompt in Visual Studio.
@@ -78,9 +77,6 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-cmd.png" alt-text="setting up your environment variables":::
         Screenshot of Visual Studio developer command prompt showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
-
-    [!INCLUDE [env-vars](../../includes/env-vars.md)]
-
     ::: zone-end
 
     Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
