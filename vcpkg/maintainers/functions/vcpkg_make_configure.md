@@ -45,7 +45,7 @@ The directory containing the project's source files.
 
 This value is usually obtained as a result of calling a source acquisition command like [`vcpkg_from_github()`](vcpkg_from_github.md).
 
-### AUTOCONFIG
+### AUTORECONF
 
 Runs autoreconf when set.
 
