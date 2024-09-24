@@ -11,7 +11,9 @@ ms.topic: tutorial
 
 # Tutorial: Install and use packages with MSBuild in Visual Studio
 
-This tutorial shows you how to create a C++ "Hello World" program that uses the `fmt` library with MSBuild, vcpkg, and Visual Studio. You'll install dependencies, configure the project, build, and run a simple application.
+This tutorial shows you how to create a C++ "Hello World" program that uses the
+`fmt` library with MSBuild, vcpkg, and Visual Studio. You'll install
+dependencies, configure the project, build, and run a simple application.
 
 ## Prerequisites
 
@@ -25,34 +27,45 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 3. Integrate with Visual Studio MSBuild
 
-The next step is to set the user-wide instance of vcpkg so that MSBuild will be able to find it:
+    The next step is to enable user-wide vcpkg integration, this makes MSBuild
+    aware of vcpkg's installation path.
 
-```console
-.\vcpkg.exe integrate install
-```
+    Run
 
-This outputs:
+    ```console
+    .\vcpkg.exe integrate install
+    ```
 
-```console
-All MSBuild C++ projects can now #include any installed libraries. Linking will be handled automatically. Installing new libraries will make them instantly available.
-```
+    This outputs:
+
+    ```console
+    All MSBuild C++ projects can now #include any installed libraries. Linking will be handled automatically. Installing new libraries will make them instantly available.
+    ```
 
 ## 2 - Set up the Visual Studio project
 
 1. Create the Visual Studio project
 
-    * Create a new project in Visual Studio using the "Console Application" template
-    :::image type="complex" source="../resources/get_started/visual-studio-create-project-msbuild.png" alt-text="create a new C++ Windows console application":::
+    * Create a new project in Visual Studio using the "Console Application"
+      template
+    
+      :::image type="complex" source="../resources/get_started/visual-studio-create-project-msbuild.png" alt-text="create a new C++ Windows console application":::
         Screenshot of the Visual Studio UI for showing how to create a new C++ Windows console application in Visual Studio
-    :::image-end:::
+      :::image-end:::
+    
     * Name your project "helloworld"
+    
     * Check the box for "Place solution and project in the same directory."
+    
     * Click the "Create" button
-    :::image type="complex" source="../resources/get_started/visual-studio-name-project-msbuild.png" alt-text="naming your MSBuild C++ project":::
+    
+      :::image type="complex" source="../resources/get_started/visual-studio-name-project-msbuild.png" alt-text="naming your MSBuild C++ project":::
         Screenshot of Visual Studio UI for naming your MSBuild C++ project and clicking the "create" button.
-    :::image-end:::
+      :::image-end:::
 
 2. Configure the `VCPKG_ROOT` environment variable.
+
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
 
     ::: zone pivot="shell-powershell"
     Open the built-in Developer PowerShell window in Visual Studio.
@@ -71,8 +84,6 @@ All MSBuild C++ projects can now #include any installed libraries. Linking will 
     :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-powershell.png" alt-text="setting up your environment variables":::
         Screenshot of Visual Studio UI for the built-in PowerShell developer window showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
-
-    [!INCLUDE [env-vars](../../includes/env-vars.md)]
 
     ::: zone-end
     ::: zone pivot="shell-cmd"
@@ -93,7 +104,6 @@ All MSBuild C++ projects can now #include any installed libraries. Linking will 
         Screenshot of Visual Studio developer command prompt showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
 
-    [!INCLUDE [env-vars](../../includes/env-vars.md)]
 
     ::: zone-end
 
@@ -132,39 +142,51 @@ All MSBuild C++ projects can now #include any installed libraries. Linking will 
 
 ## 3 - Set up the project files
 
-Modify the `helloworld.cpp` file.
+1. Modify the `helloworld.cpp` file.
 
-Replace the content of `helloworld.cpp` with the following code:
+    Replace the content of `helloworld.cpp` with the following code:
 
-:::code language="cpp" source="../examples/snippets/get-started/main.cpp":::
+    :::code language="cpp" source="../examples/snippets/get-started/helloworld.cpp":::
 
-This source file includes the `<fmt/core.h>` header which is part of the `fmt` library. The `main()` function calls `fmt::print()` to output the "Hello World!" message to the console.
+    This source file includes the `<fmt/core.h>` header which is part of the
+    `fmt` library. The `main()` function calls `fmt::print()` to output the
+    "Hello World!" message to the console.
 
-> [!NOTE]
-> There will be error squiggles in your project when MSBuilds it for the first time. Build the project to acquire vcpkg dependencies to remove them.
+    > [!NOTE]
+    > The code editor may underline the lines referencing `fmt` files and
+    > symbols as errors. You need to build your project once for vcpkg to
+    > install the dependencies and make auto-completion tools evaluate the code
+    > correctly.
 
 ## 4 - Enable manifest mode
 
-1. Navigate to your Project Property Pages.
-2. Using the menu navigation at the top, choose **Project > Properties**. A new window will open.
-3. Navigate to **Configuration Properties > vcpkg**, and set `Use vcpkg Manifest` to `Yes`. The project system will check whether this property is set before installing any dependencies from the manifest file.
+1. Navigate to your Project Properties page.
 
-:::image type="complex" source="../resources/get_started/visual-studio-manifest-msbuild.png" alt-text="Enable manifest mode in project properties":::
+    Using the menu navigation at the top, choose **Project > Properties**. A new window will open.
+
+2. Navigate to **Configuration Properties > vcpkg**, and set `Use vcpkg
+   Manifest` to `Yes`.
+
+    :::image type="complex" source="../resources/get_started/visual-studio-manifest-msbuild.png" alt-text="Enable manifest mode in project properties":::
     Screenshot of enabling vcpkg manifest mode in Visual Studio Project Properties
-:::image-end:::
+    :::image-end:::
 
-Other settings, such as [triplets](../users/triplets.md), are filled in with default values vcpkg detects from your project and will be useful when configuring your project.
+    Other settings, such as [triplets](../users/triplets.md), are filled in with
+    default values vcpkg detects from your project and will be useful when
+    configuring your project.
 
 ## 5 - Build and run the project
 
 1. Build the project.
 
-   Press `Ctrl+Shift+B` to build the project in Visual Studio and acquire the vcpkg dependencies.
+    Press `Ctrl+Shift+B` to build the project in Visual Studio and acquire the
+    vcpkg dependencies. 
 
-If MSBuild detects a `vcpkg.json` file and manifests are enabled in your project, MSBuild installs the manifest's dependencies as a pre-build step. Dependencies are installed in a `vcpkg_installed` directory in the project's build output directory. Any headers installed by the library can be directly used, and any libraries installed will be automatically linked.
-
-> [!NOTE]
-> `vcpkg install` builds both Debug and Release configurations for a library. To only build release libraries, add `VCPKG_RELEASE_ONLY` to your triplet.
+    If MSBuild detects a `vcpkg.json` file and manifests are enabled in your
+    project, MSBuild installs the manifest's dependencies as a pre-build step.
+    Dependencies are installed in a `vcpkg_installed` directory in the project's
+    build output directory. Any headers installed by the library can be directly
+    used, and any libraries installed will be automatically linked.
 
 2. Run the application.
 

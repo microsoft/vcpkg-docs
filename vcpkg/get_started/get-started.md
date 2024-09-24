@@ -118,26 +118,41 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     - `cmake_minimum_required(VERSION 3.10)`: Specifies that the minimum version of CMake required to build the project is 3.10. If the version of CMake installed on your system is lower than this, an error will be generated.
     - `project(HelloWorld)`: Sets the name of the project to "HelloWorld."
     - `find_package(fmt CONFIG REQUIRED)`: Looks for the `fmt` library using its CMake configuration file. The `REQUIRED` keyword ensures that an error is generated if the package is not found.
-    - `add_executable(HelloWorld main.cpp)`: Adds an executable target named "HelloWorld," built from the source file `main.cpp`.
+    - `add_executable(HelloWorld helloworld.cpp)`: Adds an executable target named "HelloWorld," built from the source file `helloworld.cpp`.
     - `target_link_libraries(HelloWorld PRIVATE fmt::fmt)`: Specifies that the `HelloWorld` executable should link against the `fmt` library. The `PRIVATE` keyword indicates that `fmt` is only needed for building `HelloWorld` and should not propagate to other dependent projects.
 
-    Create the `main.cpp` file with the following content:
+    Create the `helloworld.cpp` file with the following content:
 
-    :::code language="cpp" source="../examples/snippets/get-started/main.cpp":::
+    :::code language="cpp" source="../examples/snippets/get-started/helloworld.cpp":::
 
-    In this `main.cpp` file, the `<fmt/core.h>` header is included for using the `fmt` library. The `main()` function then calls `fmt::print()` to output the "Hello World!" message to the console.
+    In this `helloworld.cpp` file, the `<fmt/core.h>` header is included for using the `fmt` library. The `main()` function then calls `fmt::print()` to output the "Hello World!" message to the console.
 
 ## 4 - Build and run the project
 
 1. Run CMake configuration
 
-    To allow the CMake project system to recognize C++ libraries provided by vcpkg, you'll need to provide the `vcpkg.cmake` toolchain file. To automate this, create a `CMakePresets.json` file in the "helloworld" directory with the following content:
+    CMake can automatically link libraries installed by vcpkg when
+    `CMAKE_TOOLCHAIN_FILE` is set to use [vcpkg's custom
+    toolchain](../users/buildsystems/cmake-integration.md). This can be
+    acomplished using CMake presets files.
+    
+    Create the following files inside the `helloworld` directory:
 
-    :::code language="cmake" source="../examples/snippets/get-started/CMakePresets.json":::
+    `CMakePresets.json`
 
-    This `CMakePresets.json` file contains a single "default" preset for CMake and sets the `CMAKE_TOOLCHAIN_FILE` variable. The `CMAKE_TOOLCHAIN_FILE` allows the CMake project system to recognize C++ libraries provided by vcpkg. Adding the `CMakePresets.json` automates the process of specifying the toolchain when running CMake.
+    :::code language="json" source="../examples/snippets/get-started/CMakePresets.json":::
+    
+    `CMakeUserPresets.json`
+    
+    :::code language="json" source="../examples/snippets/get-started/CMakeUserPresets.json":::
+    
+    The `CMakePresets.json` file contains a single preset named "vcpkg", which
+    sets the `CMAKE_TOOLCHAIN_FILE` variable. The `CMakeUserPresets.json` file
+    sets the `VCPKG_ROOT` environment variable to point to the absolute path
+    containing your local installation of vcpkg. It is recommended to not check
+    `CMakeUserPresets.json` into version control systems.
 
-    Configure the build using CMake:
+    Finally, configure the build using CMake:
 
     ```console
     cmake --preset=default
