@@ -12,7 +12,7 @@ Configure a Make-based project.
 ```cmake
 vcpkg_make_configure(
     SOURCE_PATH <source-path>
-    [AUTOCONFIG]
+    [AUTORECONF]
     [COPY_SOURCE]
     [DISABLE_MSVC_WRAPPERS]
     [DISABLE_CPPFLAGS]
@@ -197,7 +197,7 @@ See,
 ```cmake
 vcpkg_make_configure(
     SOURCE_PATH "/path/to/source"
-    LANGUAGES "C;CXX;Fortran"
+    LANGUAGES "C" "CXX" "Fortran"
 )
 ```
 
