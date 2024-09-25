@@ -60,7 +60,7 @@ dependencies, configure, build, and run a simple application.
   Screenshot of Visual Studio Code Extension view with CMake Tools Extension
   :::image-end:::
 
-## 4 - Setup vcpkg
+## 4 - Set up environment variables
 
 1. Configure the `VCPKG_ROOT` environmental variable.
 

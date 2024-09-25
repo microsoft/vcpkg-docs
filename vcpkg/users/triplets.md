@@ -1,5 +1,5 @@
 ---
-title: Triplets reference
+title: Triplet variables
 description: This article describes the configurable variables available to triplet files.
 author: vicroms
 ms.author: viromer
@@ -7,7 +7,7 @@ ms.date: 02/14/2024
 ms.topic: reference
 ---
 
-# Triplets reference
+# Triplet variables
 
 This article describes the vcpkg variables that are available to triplet files.
 A triplet file can also include user defined variables.

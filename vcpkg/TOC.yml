@@ -228,10 +228,10 @@
       href: commands/upgrade.md
     - name: vcpkg version
       href: commands/version.md
-  - name: Asset caching
+  - name: Asset caching configuration
     displayName: airgap, offline, source, mirror
     href: users/assetcaching.md
-  - name: Binary caching
+  - name: Binary caching configuration
     displayName: binaries, build
     href: reference/binarycaching.md
   - name: Environment variables
@@ -402,9 +402,9 @@
     href: maintainers/variables.md
   - name: Software Bill of Materials generation
     href: reference/software-bill-of-materials.md
-  - name: Triplets
+  - name: Triplet variables
     href: users/triplets.md
-  - name: Versioning
+  - name: Versioning reference
     href: users/versioning.md
   - name: Deprecated features
     items:
