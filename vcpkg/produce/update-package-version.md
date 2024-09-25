@@ -120,6 +120,13 @@ Change the version in `vcpkg.json` to `1.0.1`.
 
 ## 3 - Modify `portfile.cmake`
 
+### Update the source reference
+
+Sources are typically fetched with `vcpkg_from_...` maintainer functions.
+The desired source version is identified by options like `REF` or `URLS`.
+If the option value isn't derived using `${VERSION}` (i.e. the value from the manifest),
+update the option value with actual git tag, git commit, or download URL.
+
 ### Obtain the package SHA512
 
 Run `vcpkg install --overlay-ports=$OVERLAY_LOCATION vcpkg-sample-library`, you

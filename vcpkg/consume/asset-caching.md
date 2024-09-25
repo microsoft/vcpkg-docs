@@ -3,7 +3,7 @@ title: "Tutorial: Set up a vcpkg asset cache"
 description: Learn to set up a local asset cache to mirror download assets.
 author: vicroms
 ms.author: viromer
-ms.date: 07/16/2024
+ms.date: 09/02/2024
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to set up a local asset cache to mirror downloaded artifacts
 zone_pivot_group_filename: zone-pivot-groups.json
@@ -29,7 +29,7 @@ In this tutorial you'll learn how to:
 ## 1 - Create an asset cache directory
 
 You can use the Azure Blob Storage backend "[`x-azurl`](../users/assetcaching.md#x-azurl)", to store
-assets. Alternatively, you can use a filesystem directories to store
+assets. Alternatively, you can use filesystem directories to store
 your download assets, including network locations. To do so, you need to use the
 `file://` protocol in your asset cache URL.
 
@@ -65,12 +65,16 @@ Next set the value of `X_VCPKG_ASSET_SOURCES` as follows:
 $env:X_VCPKG_ASSET_SOURCES="clear;x-azurl,file://D:/vcpkg/asset-cache,,readwrite"
 ```
 
+[!INCLUDE [env-vars](../../includes/env-vars.md)]
+
 ::: zone-end
 ::: zone pivot="shell-cmd"
 
 ```console
 set "X_VCPKG_ASSET_SOURCES=clear;x-azurl,file://D:/vcpkg/asset-cache,,readwrite"
 ```
+
+[!INCLUDE [env-vars](../../includes/env-vars.md)]
 
 ::: zone-end
 
@@ -87,6 +91,8 @@ This `X_VCPKG_ASSET_SOURCES` configuration adds the following source strings:
 ```bash
 export X_VCPKG_ASSET_SOURCES="clear;x-azurl,file:///home/vcpkg/asset-cache,,readwrite"
 ```
+
+[!INCLUDE [env-vars](../../includes/env-vars-bash.md)]
 
 This `X_VCPKG_ASSET_SOURCES` configuration adds the following source strings:
 

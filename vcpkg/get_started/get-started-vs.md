@@ -40,7 +40,9 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
 2. Configure the `VCPKG_ROOT` environment variable.
 
-    ::: zone pivot="shell-powershell"
+    [!INCLUDE [env-vars](../../includes/env-vars.md)]
+
+    ::: zone pivot="shell-powershell"    
     Open the built-in Developer PowerShell window in Visual Studio.
 
     :::image type="complex" source="../resources/get_started/visual-studio-developer-powershell.png" alt-text="opening built-in developer powershell":::
@@ -50,16 +52,13 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     Run the following commands:
 
     ```PowerShell
-    $env:VCPKG_ROOT = "C:\path\to\vcpkg"
-    $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
+    $env:VCPKG_ROOT="C:\path\to\vcpkg"
+    $env:PATH="$env:VCPKG_ROOT;$env:PATH"
     ```
 
     :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-powershell.png" alt-text="setting up your environment variables":::
         Screenshot of Visual Studio UI for the built-in PowerShell developer window showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
-
-    [!INCLUDE [env-vars](../../includes/env-vars.md)]
-
     ::: zone-end
     ::: zone pivot="shell-cmd"
     Open the Developer command prompt in Visual Studio.
@@ -78,9 +77,6 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
     :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-cmd.png" alt-text="setting up your environment variables":::
         Screenshot of Visual Studio developer command prompt showing how to set up VCPKG_ROOT and and add it to PATH.
     :::image-end:::
-
-    [!INCLUDE [env-vars](../../includes/env-vars.md)]
-
     ::: zone-end
 
     Setting `VCPKG_ROOT` helps Visual Studio locate your vcpkg instance.
@@ -122,34 +118,30 @@ This tutorial shows you how to create a C++ "Hello World" program that uses the 
 
     Replace the content of `helloworld.cpp` with the following code:
 
-    :::code language="cpp" source="../examples/snippets/get-started/main.cpp":::
+    :::code language="cpp" source="../examples/snippets/get-started/helloworld.cpp":::
 
     This source file includes the `<fmt/core.h>` header which is part of the `fmt` library. The `main()` function calls `fmt::print()` to output the "Hello World!" message to the console.
 
 2. Configure the `CMakePresets.json` file.
 
-   * Rename the `CMakePresets.json` file to `CMakeUserPresets.json`
-   * Update its contents as shown below. Replace `<VCPKG_ROOT>` with the path to your vcpkg directory.
-  
-    ```json
-    {
-      "version": 2,
-      "configurePresets": [
-        {
-          "name": "default",
-          "generator": "Ninja",
-          "binaryDir": "${sourceDir}/build",
-          "cacheVariables": {
-            "CMAKE_TOOLCHAIN_FILE": "<VCPKG_ROOT>/scripts/buildsystems/vcpkg.cmake"
-          }
-        }
-      ]
-    }
-    ```
+    CMake can automatically link libraries installed by vcpkg when
+    `CMAKE_TOOLCHAIN_FILE` is set to use [vcpkg's custom
+    toolchain](../users/buildsystems/cmake-integration.md). This can be
+    acomplished using CMake presets files.
+    
+    Modify `CMakePresets.json` to match the content below:
 
-    * Since this file includes a hardcoded absolute path, it is recommended that you don't keep this file under source control. If you're using Git, add `CMakeUserPresets.json` to your `.gitignore` file.
-
-    The `CMakeUserPresets.json` file contains a single preset named "default", this preset sets the [`CMAKE_TOOLCHAIN_FILE`](<https://cmake.org/cmake/help/latest/variable/CMAKE_TOOLCHAIN_FILE.html>) to use vcpkg's CMake toolchain file. This lets vcpkg provide packages to CMake when you configure and build the project. Read the [vcpkg CMake integration documentation](../users/buildsystems/cmake-integration.md) to learn more.
+    :::code language="json" source="../examples/snippets/get-started/CMakePresets.json":::
+    
+    Create `CMakeUserPresets.json` with the following content:
+    
+    :::code language="json" source="../examples/snippets/get-started/CMakeUserPresets.json":::
+    
+    The `CMakePresets.json` file contains a single preset named "vcpkg", which
+    sets the `CMAKE_TOOLCHAIN_FILE` variable. The `CMakeUserPresets.json` file
+    sets the `VCPKG_ROOT` environment variable to point to the absolute path
+    containing your local installation of vcpkg. It is recommended to not check
+    `CMakeUserPresets.json` into version control systems.
 
 3. Edit the `CMakeLists.txt` file.
 

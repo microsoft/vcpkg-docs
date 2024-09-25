@@ -6,12 +6,12 @@
         "prompt": "Terminal options",
         "pivots": [
           {
-            "id": "shell-cmd",
-            "title": "CMD"
-          },
-          {
             "id": "shell-powershell",
             "title": "PowerShell"
+          },
+          {
+            "id": "shell-cmd",
+            "title": "CMD"
           },
           {
             "id": "shell-bash",
