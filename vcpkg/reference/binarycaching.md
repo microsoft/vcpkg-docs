@@ -1,10 +1,10 @@
 ---
-title: Binary caching reference
+title: Binary caching configuration
 description: Reference documentation for the binary caching configuration syntax.
 ms.date: 5/2/2024
 ms.topic: reference
 ---
-# Binary caching reference
+# Binary caching configuration
 
 ## Configuration Syntax
 
