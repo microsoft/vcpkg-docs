@@ -217,7 +217,7 @@ Examples:
 
 ### <a name="default-features-should-enable-behaviors-not-apis"></a> Default features must not add APIs
 
-If depending directly upon a library, one can list out any desired features easily (`library[feature1,feature2]`). However, if a consumer _does not know_ they are using a library, they cannot know to list features. default features are intended to ensure that a reasonably functional transitive library is built even if the final consumer doesn't name it directly. For example, `libarchive`'s features add additional compression algorithms (and thus behaviors) to an existing generic interface, and customers would likely find `libarchive` with no selected compression algorithms unusable.
+If depending directly upon a library, one can list out any desired features easily (`library[feature1,feature2]`). However, if a consumer _does not know_ they are using a library, they cannot know to list features. Default features are intended to ensure that a reasonably functional transitive library is built even if the final consumer doesn't name it directly. For example, `libarchive`'s features add additional compression algorithms (and thus behaviors) to an existing generic interface, and customers would likely find `libarchive` with no selected compression algorithms unusable.
 
 If the feature adds additional APIs, executables, or other binaries, it must be off by default. Anyone who wants those APIs can easily require it via their direct reference.
 
