@@ -47,11 +47,11 @@ This value is usually obtained as a result of calling a source acquisition comma
 
 ### AUTORECONF
 
-Runs autoreconf when set.
+Runs `autoreconf` when set.
 
 ### COPY_SOURCE
 
-If specified, the source directory will be copied to the build directory before the configuration process begins. Useful for projects that modify the source tree during configuration or build.
+If specified, the source directory is copied to the build directory before the configuration process begins. Useful for projects that modify the source tree during configuration or build.
 
 ### DISABLE_MSVC_WRAPPERS
 
@@ -61,7 +61,7 @@ Setting `DISABLE_MSVC_WRAPPERS` disables translation of flags, allowing tools li
 
 ### DISABLE_MSVC_FLAG_ESCAPING
 
-By default, escape characters (e.g., -Xcompiler, -Xlinker) are added before compiler and linker flags when using MSVC. These escape characters are intended for use by the wrappers and libtool to protect flags that might contain spaces, quotes, or other special characters from being misinterpreted. Setting `DISABLE_MSVC_FLAG_ESCAPING` disables this behavior. 
+By default, escape characters (e.g., -Xcompiler, -Xlinker) are added before compiler and linker flags when using MSVC. These escape characters are used by wrappers and `libtool` to protect flags that might contain spaces, quotes, or other special characters from being misinterpreted. Setting `DISABLE_MSVC_FLAG_ESCAPING` disables this behavior. 
 
 This can be useful in situations where you're using custom build scripts or tools that require specific flag formatting.
 
@@ -138,26 +138,24 @@ Platform-Specific Tweaks:
 
 ### OPTIONS
 
-Additional options to pass to the configure script. Use these to specify any custom flags or settings required by the project.
+Additional options to pass to the configure script regardless of the configuration type (debug or release). Use these to specify any custom flags or settings required by the project.
 
 ### OPTIONS_RELEASE
 
-Additional options to pass to the configure script. Use these to specify any custom flags or settings required by the project.
-
+Additional options to pass to the configure script only during a release build. Use these to specify any custom flags or settings required by the project.
 These are in addition to `OPTIONS`.
 
 ### OPTIONS_DEBUG
 
-Additional options to pass to the configure script. Use these to specify any custom flags or settings required by the project.
-
+Additional options to pass to the configure script only during a debug build. Use these to specify any custom flags or settings required by the project.
 These are in addition to `OPTIONS`.
 
 ### PRE_CONFIGURE_CMAKE_COMMANDS
 
-Specifies a list of CMake commands to execute before the configure process for each build type. That is, if `VCPKG_BUILD_TYPE` is empty (the default), these commands will run once for debug and once for release. If `VCPKG_BUILD_TYPE` is `release`, these commands will only be once for release. This can be used to set up the environment or prepare the build in a way that the configure script requires.
+Specifies a list of CMake commands to execute before the configure process for each build type. That is, if `VCPKG_BUILD_TYPE` is empty (the default), these commands are run once for debug and once for release. If `VCPKG_BUILD_TYPE` is `release`, these commands are only run once for release. This can be used to set up the environment or prepare the build in a way that the configure script requires.
 
 >[!NOTE]
-> When the `COPY_SOURCE` option is not set, the CMake commands in `PRE_CONFIGURE_CMAKE_COMMANDS` will operate directly on the files in the original source directory.
+> When the `COPY_SOURCE` option is not set, the CMake commands in `PRE_CONFIGURE_CMAKE_COMMANDS` operate directly on the files in the original source directory.
 
 Example
 
@@ -179,10 +177,11 @@ vcpkg_make_configure(
 )
 ```
 
-In this example, `my_preconfigure_command` will be executed twice (for "Debug" and "Release" if `VCPKG_BUILD_TYPE` is not set):
+In this example, `my_preconfigure_command` are executed twice (for "Debug" and "Release" if `VCPKG_BUILD_TYPE` is not set):
 
-Debug build: It will create `version.txt` with the content "This is a debug version!" and set the environment variable `SPECIAL` to "Debug is magic."
-Release build: It will create `version.txt` with the content "This is a release version!" and set the environment variable `SPECIAL` to "Release is magic."
+Debug build: Creates `version.txt` with the content "This is a debug version!" and sets the environment variable `SPECIAL` to "Debug is magic."
+
+Release build: Creates `version.txt` with the content "This is a release version!" and sets the environment variable `SPECIAL` to "Release is magic."
 
 ### LANGUAGES
 
