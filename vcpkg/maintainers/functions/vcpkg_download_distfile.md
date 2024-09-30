@@ -79,15 +79,9 @@ A list of headers to append to the download request. This can be used for authen
 
 Headers should be specified as `"<header-name>: <header-value>"`.
 
-## Notes
-
-The helper [`vcpkg_from_github`](vcpkg_from_github.md) should be used for downloading from GitHub projects.
-
 ## Examples
 
 - [apr](https://github.com/Microsoft/vcpkg/blob/master/ports/apr/portfile.cmake)
-- [fontconfig](https://github.com/Microsoft/vcpkg/blob/master/ports/fontconfig/portfile.cmake)
-- [freetype](https://github.com/Microsoft/vcpkg/blob/master/ports/freetype/portfile.cmake)
 
 ## Source
 

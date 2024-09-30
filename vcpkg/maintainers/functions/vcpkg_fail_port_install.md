@@ -18,7 +18,7 @@ vcpkg_fail_port_install(
     [MESSAGE <"Reason for failure">]
     [ON_TARGET <Windows> [<OSX> ...]]
     [ON_ARCH <x64> [<arm> ...]]
-    [ON_CRT_LINKAGE <static> [<dynamic> ...]])
+    [ON_CRT_LINKAGE <static> [<dynamic> ...]]
     [ON_LIBRARY_LINKAGE <static> [<dynamic> ...]]
 )
 ```
@@ -48,10 +48,6 @@ CRT linkage for which the build should fail early.
 ### ON_LIBRARY_LINKAGE
 
 Library linkage for which the build should fail early.
-
-## Examples
-
-- [aws-lambda-cpp](https://github.com/Microsoft/vcpkg/blob/master/ports/aws-lambda-cpp/portfile.cmake)
 
 ## Source
 

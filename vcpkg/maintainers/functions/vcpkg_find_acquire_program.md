@@ -52,8 +52,6 @@ msys2 has a dedicated helper function: [`vcpkg_acquire_msys`](vcpkg_acquire_msys
 ## Examples
 
 - [ffmpeg](https://github.com/Microsoft/vcpkg/blob/master/ports/ffmpeg/portfile.cmake)
-- [openssl](https://github.com/Microsoft/vcpkg/blob/master/ports/openssl/portfile.cmake)
-- [qt5](https://github.com/Microsoft/vcpkg/blob/master/ports/qt5/portfile.cmake)
 
 ## Source
 

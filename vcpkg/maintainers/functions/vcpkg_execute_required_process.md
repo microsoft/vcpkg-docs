@@ -75,7 +75,6 @@ The `ALIAS` parameter after a relative path name replaces the target file name g
 
 - [boost-build](https://github.com/Microsoft/vcpkg/blob/master/ports/boost-build/portfile.cmake)
 - [ffmpeg](https://github.com/Microsoft/vcpkg/blob/master/ports/ffmpeg/portfile.cmake)
-- [qt5-base](https://github.com/Microsoft/vcpkg/blob/master/ports/qt5-base/portfile.cmake)
 - [vcpkg-cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-cmake/vcpkg_cmake_configure.cmake)
 
 ## Source
