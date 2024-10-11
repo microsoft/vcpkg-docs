@@ -222,7 +222,7 @@ Default features are intended to ensure that a reasonably functional build of a 
 One must carefully consider whether a feature should be on by default, because disabling default features is complex.
 
 Disabling a default feature as a 'transitive' consumer requires:
-* All customers explicitly disabling default features via [`"default-features": false`](../reference/vcpkg-configuration-json.md#dependency-default-features) or including `[core]` in the feature list on the command line.
+* All customers explicitly disabling default features via [`"default-features": false`](../reference/vcpkg-json.md#dependency-default-features) or including `[core]` in the feature list on the command line.
 * Naming the transitive dependency on the `vcpkg install` command line, or as a direct dependency in the top level manifest
 
 In vcpkg's curated registry, if the feature adds additional APIs, executables, or other binaries, it must be off by default. If in doubt, do not mark a feature as default.
