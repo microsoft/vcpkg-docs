@@ -140,7 +140,7 @@ C:\path\to\nuget.exe setapikey <apikey> -Source <feed url>
 ::: zone pivot="shell-bash"
 
 ```bash
-mono `vcpkg fetch nuget | tail -n 1` sources setapikey <apiKey> -Source <feed url>
+mono `vcpkg fetch nuget | tail -n 1` setapikey <apiKey> -Source <feed url>
 ```
 
 ::: zone-end
