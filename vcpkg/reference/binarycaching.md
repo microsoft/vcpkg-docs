@@ -25,7 +25,7 @@ Binary caching is configured with the environment variable `VCPKG_BINARY_SOURCES
 | [`x-aws-config,<parameter>`](#aws)               | **Experimental: will change or be removed without warning**<br>Configure all AWS S3 providers.                                   |
 | [`x-cos,<prefix>[,<rw>]`](#cos)                  | **Experimental: will change or be removed without warning**<br>Adds a Tencent Cloud Object Storage source.                       |
 | [`x-gha,<rw>]`](#gha)                            | **Experimental: will change or be removed without warning**<br>Use the GitHub Actions cache as source.                           |
-| [`x-az-universal,<organization>,<project>,<feed>[,<rw>]`](#gha)                   | **Experimental: will change or be removed without warning**<br>Use Universal Packages in Azure Artifacts as source.             |
+| [`x-az-universal,<organization>,<project>,<feed>[,<rw>]`](#azuniversal)                   | **Experimental: will change or be removed without warning**<br>Use Universal Packages in Azure Artifacts as source.             |
 | `interactive`                                    | Enables interactive credential management for [NuGet](#nuget) (for debugging; requires `--debug` on the command line)            |
 
 The `<rw>` optional parameter for certain sources controls whether they will be consulted for
