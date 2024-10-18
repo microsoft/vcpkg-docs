@@ -173,13 +173,13 @@ Once the environment variables have been exported, vcpkg can be run with the Git
 x-az-universal,<organization>,<project>,<feed>[,<rw>]
 ```
 
-Adds [Universal Packages](https://learn.microsoft.com/en-us/azure/devops/artifacts/quickstarts/universal-packages?view=azure-devops&tabs=Windows) in Azure Artifacts as a provider.
+Adds [Universal Packages](/azure/devops/artifacts/quickstarts/universal-packages) in Azure Artifacts as a provider.
 
 #### <a name="azuniversal-quickstart"></a> Quickstart
 
-First, you need to create Universal Packages feed. See the [Universal Packages quickstart](https://learn.microsoft.com/en-us/azure/devops/artifacts/quickstarts/universal-packages?view=azure-devops&tabs=Windows) for instructions.
+First, you need to create Universal Packages feed. See the [Universal Packages quickstart](/azure/devops/artifacts/quickstarts/universal-packages) for instructions.
 
-Next, you will need to install and authenticate to Azure CLI. See the [authenticate to Azure CLI guide](https://learn.microsoft.com/cli/azure/authenticate-azure-cli) for instructions. vcpkg will use this command-line tool, so make sure it is in your search path for executables.
+Next, you will need to install and authenticate to Azure CLI. See the [authenticate to Azure CLI guide](/azure/authenticate-azure-cli) for instructions. vcpkg will use this command-line tool, so make sure it is in your search path for executables.
 
 **Example:**
 
