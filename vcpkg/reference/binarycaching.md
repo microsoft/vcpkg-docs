@@ -179,7 +179,7 @@ Adds [Universal Packages](/azure/devops/artifacts/quickstarts/universal-packages
 
 First, you need to create Universal Packages feed. See the [Universal Packages quickstart](/azure/devops/artifacts/quickstarts/universal-packages) for instructions.
 
-Next, you will need to install and authenticate to Azure CLI. See the [authenticate to Azure CLI guide](/azure/authenticate-azure-cli) for instructions. vcpkg will use this command-line tool, so make sure it is in your search path for executables.
+Next, you will need to install and authenticate to Azure CLI. See the [authenticate to Azure CLI guide](/cli/azure/authenticate-azure-cli) for instructions. vcpkg will use this command-line tool, so make sure it is in your search path for executables.
 
 **Example:**
 
