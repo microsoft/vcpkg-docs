@@ -17,7 +17,7 @@ vcpkg_make_configure(
     [DISABLE_MSVC_WRAPPERS]
     [DISABLE_CPPFLAGS]
     [DISABLE_DEFAULT_OPTIONS]
-    [DISABLE_MSVC_FLAG_ESCAPING]
+    [DISABLE_MSVC_TRANSFORMATIONS]
     [OPTIONS <configure-setting>...]
     [OPTIONS_RELEASE <configure-setting>...]
     [OPTIONS_DEBUG <configure-setting>...]
