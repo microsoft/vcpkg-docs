@@ -59,14 +59,34 @@ By default, `vcpkg_make_configure` supplies wrappers that translate and reorder 
 
 Setting `DISABLE_MSVC_WRAPPERS` disables translation of flags, allowing tools like `cl` and `windres` to receive command-line flags without modifications.
 
-### DISABLE_MSVC_FLAG_ESCAPING
+### DISABLE_MSVC_TRANSFORMATIONS
 
-By default, escape characters (e.g., -Xcompiler, -Xlinker) are added before compiler and linker flags when using MSVC. These escape characters are used by wrappers and `libtool` to protect flags that might contain spaces, quotes, or other special characters from being misinterpreted. Setting `DISABLE_MSVC_FLAG_ESCAPING` disables this behavior. 
+By default, when using `MSVC`, libraries and flags are transformed to fit Unix-style conventions. This is necessary for compatibility with Unix-based build tools, such as `libtool`, and because `MSVC` is invoked via wrappers in cross-platform environments. These wrappers (like the `ar-lib` and `compile` scripts) ensure that `MSVC` behaves more like a Unix compiler, simplifying the build process and making it compatible with Unix-centric tools.
 
-This can be useful in situations where you're using custom build scripts or tools that require specific flag formatting.
+Library Transformation:
+- Libraries like `libexample.lib` are transformed into linker-friendly flags by adding a `-l` prefix and stripping the extension (e.g., `libexample.lib` becomes `-llibexample`).
+
+Flag Handling:
+- Escape characters (such as `-Xcompiler` and `-Xlinker`) are added before compiler and linker flags (e.g., `-O2` becomes `-Xcompiler -O2`). These escape characters ensure proper handling by tools like `libtool`, which may otherwise misinterpret flags that include special characters or spaces.
+
+When `DISABLE_MSVC_TRANSFORMATIONS` is set, the default transformations are disabled, and libraries and flags are passed in their original form to MSVC.
+
+Example (Default Behavior):
+
+```
+libexample.lib  →  -llibexample
+-O2             →  -Xcompiler -O2
+```
+
+Example (`DISABLE_MSVC_TRANSFORMATIONS`):
+
+```
+libexample.lib  →  libexample.lib
+-O2             →  -O2
+```
 
 >[!NOTE]
->If you disable the MSVC wrappers using `DISABLE_MSVC_WRAPPERS`, this option (`DISABLE_MSVC_FLAG_ESCAPING`) has no effect because the escape characters are not added in the first place.
+>If you disable the MSVC wrappers using `DISABLE_MSVC_WRAPPERS`, this option (`DISABLE_MSVC_TRANSFORMATIONS`) has no effect.
 
 ### DISABLE_CPPFLAGS
 
