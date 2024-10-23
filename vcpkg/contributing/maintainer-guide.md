@@ -215,13 +215,17 @@ Examples:
 - The Azure SDKs (of the form `azure-Xxx`) have a `public-preview` feature.
 - `imgui` has an `experimental-docking` feature which engages their preview docking branch which uses a merge commit attached to each of their public numbered releases.
 
-### Default features should enable behaviors, not APIs
+### <a name="default-features-should-enable-behaviors-not-apis"></a> Default features must not add APIs
 
-If a consumer is depending directly upon a library, they can list out any desired features easily (`library[feature1,feature2]`). However, if a consumer _does not know_ they are using a library, they cannot list out those features. If that hidden library is like `libarchive` where features are adding additional compression algorithms (and thus behaviors) to an existing generic interface, default features offer a way to ensure a reasonably functional transitive library is built even if the final consumer doesn't name it directly.
+Default features are intended to ensure that a reasonably functional build of a library gets installed for customers who don't know they are using it. If they don't know they are using a library, they can't know to list features. For example, `libarchive` exposes features that enable compression algorithms to an existing generic interface; if built without any of such features, the library may have no utility.
 
-If the feature adds additional APIs (or executables, or library binaries) and doesn't modify the behavior of existing APIs, it should be left off by default. This is because any consumer which might want to use those APIs can easily require it via their direct reference.
+One must carefully consider whether a feature should be on by default, because disabling default features is complex.
 
-If in doubt, do not mark a feature as default.
+Disabling a default feature as a 'transitive' consumer requires:
+* All customers explicitly disabling default features via [`"default-features": false`](../reference/vcpkg-json.md#dependency-default-features) or including `[core]` in the feature list on the command line.
+* Naming the transitive dependency on the `vcpkg install` command line, or as a direct dependency in the top level manifest
+
+In vcpkg's curated registry, if the feature adds additional APIs, executables, or other binaries, it must be off by default. If in doubt, do not mark a feature as default.
 
 ### Do not use features to control alternatives in published interfaces
 
