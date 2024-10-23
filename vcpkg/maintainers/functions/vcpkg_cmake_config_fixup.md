@@ -39,8 +39,8 @@ For ports where the package name passed to `find_package` is distinct from the p
 For ports where the directory of the `*config.cmake` files cannot be set,
 use the `CONFIG_PATH` to change the directory where the files come from.
 
-By default the parent directory of CONFIG_PATH is removed if it is named "cmake".
-Passing the `DO_NOT_DELETE_PARENT_CONFIG_PATH` option disable such behavior,
+By default the parent directory of `CONFIG_PATH` is removed if it is named "cmake".
+Passing the `DO_NOT_DELETE_PARENT_CONFIG_PATH` option disables such behavior,
 as it is convenient for ports that install
 more than one CMake package configuration file.
 
@@ -56,7 +56,7 @@ and applies a rather simply correction which in some cases will yield the wrong 
 1. Transforms all references matching `/bin/*` to `/${TOOLS_PATH}/*` on other platforms.
 1. Fixes `${_IMPORT_PREFIX}` in auto generated targets.
 1. Replaces `${CURRENT_INSTALLED_DIR}` with `${_IMPORT_PREFIX}` in configs.
-1. Merges INTERFACE_LINK_LIBRARIES of release and debug configurations.
+1. Merges `INTERFACE_LINK_LIBRARIES` of release and debug configurations.
 1. Replaces `${CURRENT_INSTALLED_DIR}` with `${VCPKG_IMPORT_PREFIX}` in targets.
 1. Removes `/debug/<CONFIG_PATH>/*config.cmake`.
 

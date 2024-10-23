@@ -40,10 +40,6 @@ The prefix to use for the log files.
 This should be a unique name for different triplets so that the logs don't
 conflict when building multiple at once.
 
-## Examples
-
-- [icu](https://github.com/Microsoft/vcpkg/blob/master/ports/icu/portfile.cmake)
-
 ## Source
 
 [scripts/cmake/vcpkg\_execute\_build\_process.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_execute_build_process.cmake)
