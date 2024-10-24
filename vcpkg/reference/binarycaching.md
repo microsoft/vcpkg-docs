@@ -187,13 +187,13 @@ Next, you will need to install and authenticate to Azure CLI. See the [authentic
 x-az-universal,organization_url,project_name,feed_name,readwrite
 ```
 
-vcpkg will download and publish Universal Packages to your feed at a project scope.
+Provide the `project_name` parameter to make vcpkg download and publish Universal Packages to your feed at a project scope.
 
 ```
 x-az-universal,organization_url,,feed_name,readwrite
 ```
 
-vcpkg will download and publish Universal Packages to your feed at an organization scope.
+Leave the `project_name` parameter empty to make vcpkg download and publish Universal Packages to your feed at an organization scope.
 
 
 ### <a name="http"></a> HTTP provider
