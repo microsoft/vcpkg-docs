@@ -25,6 +25,7 @@ Binary caching is configured with the environment variable `VCPKG_BINARY_SOURCES
 | [`x-aws-config,<parameter>`](#aws)               | **Experimental: will change or be removed without warning**<br>Configure all AWS S3 providers.                                   |
 | [`x-cos,<prefix>[,<rw>]`](#cos)                  | **Experimental: will change or be removed without warning**<br>Adds a Tencent Cloud Object Storage source.                       |
 | [`x-gha,<rw>]`](#gha)                            | **Experimental: will change or be removed without warning**<br>Use the GitHub Actions cache as source.                           |
+| [`x-az-universal,<organization>,<project>,<feed>[,<rw>]`](#azuniversal)                   | **Experimental: will change or be removed without warning**<br>Use Universal Packages in Azure Artifacts as source.             |
 | `interactive`                                    | Enables interactive credential management for [NuGet](#nuget) (for debugging; requires `--debug` on the command line)            |
 
 The `<rw>` optional parameter for certain sources controls whether they will be consulted for
@@ -163,6 +164,37 @@ Once the environment variables have been exported, vcpkg can be run with the Git
 - name: Install dependencies via vcpkg
   run: vcpkg install zlib --binarysource="clear;x-gha,readwrite"
 ```
+
+### <a name="azuniversal"></a> Universal Packages in Azure Artifacts
+
+[!INCLUDE [experimental](../../includes/experimental.md)]
+
+```
+x-az-universal,<organization>,<project>,<feed>[,<rw>]
+```
+
+Adds [Universal Packages](/azure/devops/artifacts/quickstarts/universal-packages) in Azure Artifacts as a provider.
+
+#### <a name="azuniversal-quickstart"></a> Quickstart
+
+First, you need to create Universal Packages feed. See the [Universal Packages quickstart](/azure/devops/artifacts/quickstarts/universal-packages) for instructions.
+
+Next, you will need to install and authenticate to Azure CLI. See the [authenticate to Azure CLI guide](/cli/azure/authenticate-azure-cli) for instructions. vcpkg will use this command-line tool, so make sure it is in your search path for executables.
+
+**Example:**
+
+```
+x-az-universal,organization_url,project_name,feed_name,readwrite
+```
+
+Provide the `project_name` parameter to make vcpkg download and publish Universal Packages to your feed at a project scope.
+
+```
+x-az-universal,organization_url,,feed_name,readwrite
+```
+
+Leave the `project_name` parameter empty to make vcpkg download and publish Universal Packages to your feed at an organization scope.
+
 
 ### <a name="http"></a> HTTP provider
 
