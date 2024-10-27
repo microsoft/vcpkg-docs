@@ -7,7 +7,7 @@ ms.date: 01/10/2024
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to install a specific version set of the Boost libraries
 ---
-# Tutorial: Install a specific version of the Boost libraries using registry baselines"
+# Tutorial: Install a specific version of the Boost libraries using registry baselines
 
 vcpkg provides the `Boost` set of libraries as individual packages as a
 convenience for users that depend only on a limited subset of Boost packages.
