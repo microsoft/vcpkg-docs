@@ -21,6 +21,8 @@ vcpkg_configure_qmake(
 )
 ```
 
+## Parameters
+
 ### SOURCE_PATH
 
 The path to the *.pro qmake project file.

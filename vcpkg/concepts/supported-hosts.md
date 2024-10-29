@@ -3,7 +3,7 @@ title:  Supported hosts
 description: This article describes the platforms on which vcpkg is supported.
 author: bion
 ms.author: bion
-ms.date: 06/24/2024
+ms.date: 10/17/2024
 ms.topic: concept-article
 ---
 
@@ -55,7 +55,7 @@ The fully supported, tested platforms are:
 ### Windows
 
 * The latest Windows / Windows Server release. These are Windows 11 and Windows Server 2022 as of this writing.
-* The latest Visual Studio update, Visual Studio 2022 version 17.8 as of this writing.
+* The latest Visual Studio update, Visual Studio 2022 version 17.11 as of this writing.
 
 ### macOS
 
@@ -63,7 +63,7 @@ macOS is intended to track the latest version of macOS and contemporary version 
 updating macOS machines is a manual process, and macOS frequently changes things in ways that break vcpkg's testing. As of this writing, we are using:
 
 * macOS 14.5
-* XCode Command Line Tools 14.4
+* XCode Command Line Tools 15.3
 
 ### Linux
 
@@ -82,19 +82,19 @@ updating macOS machines is a manual process, and macOS frequently changes things
 
 ### macOS
 
-* The latest version of macOS, minus 2 major versions. For example, the current version of macOS is macOS 14 Sonoma,
-so we expect vcpkg to work as far back as macOS 12 Monterey. This is intended to track with Apple's own support for
+* The latest version of macOS, minus 2 major versions. For example, the current version of macOS is macOS 15 Sequoia,
+so we expect vcpkg to work as far back as macOS 13 Ventura. This is intended to track with Apple's own support for
 macOS.
-* Contemporary versions of the Xcode Command Line Tools for a given release of macOS
+* Contemporary versions of the Xcode Command Line Tools for a given release of macOS.
 
 ### Linux
 
 We intend to support AMD64 builds of glibc-based Linuxes still in support from their distribution vendor released within
 the last 5 years. Examples:
 
-* Ubuntu 22.04 and 20.04 are both in support from Canonical and released within the last 5 years, so they
+* Ubuntu 24.04, 22.04, and 20.04 are in support from Canonical and released within the last 5 years, so they
 are expected to work. Ubuntu 18.04 is still in support from Canonical but was released more than 5 years ago, so
-we no longer consider it fully supported. 20.10 is newer than 20.04 but we do not consider it fully supported because
+we no longer consider it fully supported. 20.10 is newer than 20.04, but we do not consider it fully supported because
 it is no longer in support from Canonical.
 * Red Hat Enterprise Linux 9 is fully supported.
 * CentOS and Red Hat Enterprise Linux 8 left support from Red Hat on May 31, 2024, and was released more than 5 years
@@ -103,17 +103,17 @@ ago, and is thus no longer supported.
 years ago. The Oracle Linux fork now supported by Oracle is still in support from Oracle, but still not expected to
 work as it was released more than 5 years ago.
 * Fedora 40 and 39 are fully supported, but 38 is no longer supported by Fedora.
-* Debian 12 "Bookworm", 11 "Bullseye", and 10 "Buster" are all supported by Debian and released in the last 5 years.
-Debian 9 "Stretch" left support from the Debian project in July 2022 and is thus not supported by vcpkg.
+* Debian 12 "Bookworm", and 11 "Bullseye" are all supported by Debian and released in the last 5 years.
+Debian 10 "Buster" left support from the Debian project in July 2024 and is thus not supported by vcpkg.
 
 We also assume that users' build systems will match the version of Linux they are using, and take care to ensure
 components like our manifest mode CMake integration will work with the versions of these dependencies that come with
 one of the above distros. As of this writing, those dependency versions and the associated distro(s) are:
 
-* GCC 8.3.0 (Debian 10)
-* CMake 3.13.4 (Debian 10)
-* Ninja 1.8.2 (Debian 10)
-* Curl 7.64 (Debian 10)
+* GCC 9.4.0 (Ubuntu 20.04)
+* CMake 3.16.3 (Ubuntu 20.04)
+* Ninja 1.10.0 (All)
+* Curl 7.68 (Ubuntu 20.04)
 * zip 3.0 (All)
 * unzip 6.0 (All)
 

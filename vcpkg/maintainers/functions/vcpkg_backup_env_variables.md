@@ -19,7 +19,7 @@ The variables to backup.
 
 ## Notes
 
-Variables are backed up into the current scope. You must call [`vcpkg_restore_env_variables()`](vcpkg_restore_env_variables.md from the same scope as `vcpkg_backup_env_variables()`.
+Variables are backed up into the current scope. You must call [`vcpkg_restore_env_variables()`](vcpkg_restore_env_variables.md) from the same scope as `vcpkg_backup_env_variables()`.
 
 `vcpkg_restore_env_variables()` does not destroy the variables backed up with `vcpkg_backup_env_variables()` and so can be called multiple times within the same scope to reset back to the original values.
 

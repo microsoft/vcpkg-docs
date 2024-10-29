@@ -16,7 +16,8 @@ For libogg, we'll create the file `ports/libogg/vcpkg.json` with the following c
 {
   "name": "libogg",
   "version-string": "1.3.3",
-  "description": "Ogg is a multimedia container format, and the native file and stream format for the Xiph.org multimedia codecs."
+  "description": "Ogg is a multimedia container format, and the native file and stream format for the Xiph.org multimedia codecs.",
+  "homepage": "https://www.xiph.org/ogg/"
 }
 ```
 
@@ -43,7 +44,7 @@ Finally, we configure the project with CMake, install the package, and copy over
 ```cmake
 vcpkg_cmake_configure(SOURCE_PATH ${SOURCE_PATH})
 vcpkg_cmake_install()
-file(INSTALL "${SOURCE_PATH}/COPYING" DESTINATION "${CURRENT_PACKAGES_DIR}/share/libogg" RENAME copyright)
+vcpkg_install_copyright("${SOURCE_PATH}/COPYING")
 ```
 
 Check the documentation for [`vcpkg_cmake_configure`](../maintainers/functions/vcpkg_cmake_configure.md) and [`vcpkg_cmake_install`](../maintainers/functions/vcpkg_cmake_install.md) if your package needs additional options.
