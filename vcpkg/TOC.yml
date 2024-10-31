@@ -45,7 +45,7 @@
       href: consume/install-locally-modified-package.md
     - name: Install a dependency from a Git-based registry
       href: consume/git-registries.md
-    - name: Authenticate to private Git registries
+    - name: Authenticate to private Git repositories
       href: users/authentication.md
     - name: Authenticate to private Git registries in your GitHub Actions workflows
       href: consume/gha-authentication.md
@@ -70,6 +70,9 @@
     - name: Use a custom script as an asset caching storage provider
       # TODO: Modernize article: examples/asset-caching-source-nuget.md
       href: examples/asset-caching-source-nuget.md
+  - name: Authenticate to third-party services
+    displayName: third-party, authentication, GitHub, Azure DevOps, NuGet, GitHub Packages, GitHub Actions Cache, Azure Blob Storage
+    href: consume/third-party-authentication.md
 - name: Produce packages
   expanded: true
   items:
