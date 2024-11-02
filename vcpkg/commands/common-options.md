@@ -29,6 +29,10 @@ Specifies the temporary path to store intermediate build files, such as objects 
 
 Defaults to `buildtrees/` under the vcpkg root folder.
 
+### <a name="classic"></a> `--classic`
+
+Forces classic mode even if a manifest is available.
+
 ### <a name="cmake-configure-debug"></a> `--x-cmake-configure-debug=<debugger-pipe>[;semicolon;port;list]`
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
