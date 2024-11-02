@@ -111,7 +111,7 @@ Specifies a directory either an [overlay port](../concepts/package-name-resoluti
 
 This option can be specified multiple times; ports will resolve to the first match. `--overlay-port-dirs` will be considered first.
 
-### <a name="overlay-ports-dirs"></a> `--overlay-port-dirs=<path>`
+### <a name="overlay-port-dirs"></a> `--overlay-port-dirs=<path>`
 
 Specifies a directory to be subdirectories that are [overlay port](../concepts/package-name-resolution.md#overlays).
 
