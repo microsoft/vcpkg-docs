@@ -285,9 +285,8 @@ Having a `vcpkg-configuration` defined in `vcpkg.json` while also having a `vcpk
         "packages": [ "beicode", "beison" ]
       }
     ],
-    "overlay-ports": [ "./my-ports/fmt", 
-                       "./team-ports"
-    ]
+    "overlay-port-dirs": [ "./team-ports" ],
+    "overlay-ports": [ "./my-ports/fmt" ]
   }
 ```
 

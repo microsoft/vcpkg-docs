@@ -212,7 +212,7 @@ For more information, refer to the [maintainer guide](../contributing/maintainer
 Run:
 
 ```console
-vcpkg install vcpkg-sample-library --overlay-ports=C:\path\to\custom-overlay
+vcpkg install vcpkg-sample-library --overlay-port-dirs=C:\path\to\custom-overlay
 ```
 
 You will get a long error message. Scan the output until you find:
@@ -229,7 +229,7 @@ and replace the `SHA512` value in the `portfile.cmake` with its value.
 Re-run the install command:
 
 ```console
-vcpkg install vcpkg-sample-library --overlay-ports=C:\path\to\custom-overlay
+vcpkg install vcpkg-sample-library --overlay-port-dirs=C:\path\to\custom-overlay
 ```
 
 ```console

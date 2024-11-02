@@ -107,9 +107,15 @@ Defaults to searching upwards from the current working directory for the nearest
 
 ### <a name="overlay-ports"></a> `--overlay-ports=<path>`
 
-Specifies a directory containing [overlay ports](../concepts/package-name-resolution.md#overlays).
+Specifies a directory either an [overlay port](../concepts/package-name-resolution.md#overlays), or subdirectories that are themselves overlay-ports. If `<path>` does not contain a `CONTROL` or `vcpkg.json`, `--overlay-ports` is equivalent to `--overlay-port-dirs`.
 
-This option can be specified multiple times; ports will resolve to the first match.
+This option can be specified multiple times; ports will resolve to the first match. `--overlay-port-dirs` will be considered first.
+
+### <a name="overlay-ports-dirs"></a> `--overlay-port-dirs=<path>`
+
+Specifies a directory to be subdirectories that are [overlay port](../concepts/package-name-resolution.md#overlays).
+
+This option can be specified multiple times; ports will resolve to the first match. `--overlay-port-dirs` will be considered before `--overlay-ports`.
 
 ### <a name="overlay-triplets"></a> `--overlay-triplets=<path>`
 

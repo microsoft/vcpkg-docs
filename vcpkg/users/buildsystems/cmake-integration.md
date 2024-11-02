@@ -188,6 +188,10 @@ In manifest mode, vcpkg will be automatically bootstrapped if the executable doe
 
 This variable can be set to a list of paths to be passed on the command line as `--overlay-triplets=...`
 
+### `VCPKG_OVERLAY_PORT_DIRS`
+
+This variable can be set to a list of paths to be passed on the command line as `--overlay-port-dirs=...`
+
 ### `VCPKG_OVERLAY_PORTS`
 
 This variable can be set to a list of paths to be passed on the command line as `--overlay-ports=...`
