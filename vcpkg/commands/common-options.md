@@ -31,7 +31,7 @@ Defaults to `buildtrees/` under the vcpkg root folder.
 
 ### <a name="classic"></a> `--classic`
 
-Forces classic mode even if a manifest is available.
+Forces [classic mode](../concepts/classic-mode.md) even if a [manifest file](../concepts/manifest-mode.md) is detected.
 
 ### <a name="cmake-configure-debug"></a> `--x-cmake-configure-debug=<debugger-pipe>[;semicolon;port;list]`
 
