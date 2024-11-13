@@ -15,9 +15,6 @@ An overlay port can act as a drop-in replacement for an existing port or as a ne
 
 Overlay ports are evaluated in the following order:
 
-* Named subdirectories of directories specified in the command-line via [`--overlay-port-dirs`](../commands/common-options.md#overlay-port-dirs).
-* Named subdirectories of directories specified in a `vcpkg-configuration.json` file via [`overlay-port-dirs`](../reference/vcpkg-configuration-json.md).
-* Named subdirectories of directories specified by the [`VCPKG_OVERLAY_PORT_DIRS`](../users/config-environment.md#vcpkg_overlay_port_dirs) environment variable.
 * The directory specified in the command-line via [`--overlay-ports`](../commands/common-options.md#overlay-ports), or named subdirectories if that directory has no `CONTROL` or `vcpkg.json` file.
 * The directory specified in a `vcpkg-configuration.json` file via [`overlay-ports`](../reference/vcpkg-configuration-json.md), or named subdirectories if that directory has no `CONTROL` or `vcpkg.json` file.
 * The directory specified by [`VCPKG_OVERLAY_PORTS`](../users/config-environment.md#vcpkg_overlay_ports) environment variable entries, or named subdirectories if that directory has no `CONTROL` or `vcpkg.json` file.
@@ -28,8 +25,6 @@ When resolving port names, the first location that contains a matching overlay p
 
 If an overlay port is specified, first, vcpkg attempts to load that directory as a port. If that succeeds, the directory itself is itself treated as a port, and the name of the overlay is derived from the `CONTROL` or `vcpkg.json` file. Otherwise, subdirectories with the overlay port name are considered.
 
-If an overlay port dir is specified, never attempts to load that as a port, and proceeds to the subdirectories with overlay port names.
-
 Valid ports contain `portfile.cmake`, and either `vcpkg.json` or `CONTROL`.
 
 For example, consider the following directory structure:
@@ -38,27 +33,22 @@ For example, consider the following directory structure:
 * `x/portfile.cmake`, the associated build instructions for `a`.
 * `x/b/vcpkg.json`, the `"name"` field is set to `"b"`.
 * `x/b/portfile.cmake`, the associated build instructions for `b`.
-* `x/c/vcpkg.json`, the `"name"` field is set to `"c"`.
-* `x/c/portfile.cmake`, the associated build instructions for `c`.
+* `y/c/vcpkg.json`, the `"name"` field is set to `"c"`.
+* `y/c/portfile.cmake`, the associated build instructions for `c`.
 * `y/d/vcpkg.json`, the `"name"` field is set to `"d"`.
 * `y/d/portfile.cmake`, the associated build instructions for `d`.
-* `y/e/vcpkg.json`, the `"name"` field is set to `"e"`.
-* `y/e/portfile.cmake`, the associated build instructions for `e`.
 
 vcpkg will consider the following ports given the following settings:
 
-* `--overlay-ports=x`: There is one port in this overlay, `a`. The name is derived from `vcpkg.json`.
+* `--overlay-ports=x`: There is one port in this overlay, `a`. The name is derived from `vcpkg.json`. The subdirectory `b` is not considered.
 * `--overlay-ports=x/b`: There is one port in this overlay, `b`. The name is derived from `vcpkg.json`.
-* `--overlay-ports=y`: There are two ports in this overlay, `d` and `e`. Their names are derived from the subdirectories of `y`, and the names declared in their `vcpkg.json` must match, or an error will be generated if vcpkg is asked to install `d` or `e`.
-* `--overlay-port-dirs=x`: There are two ports from this overlay, `b` and `c`. Their names are derived from the subdirectories of `x`, and the names declared in their `vcpkg.json` must match, or an error will be generated if vcpkg is asked to install `b` or `c`.
-* `--overlay-port-dirs=x/b`: There are no ports from this overlay as there are no subdirectories.
-* `--overlay-port-dirs=y`: This is the same case as `--overlay-ports=y`, because there is no `y/CONTROL` or `y/vcpkg.json`. There are two ports in this overlay, `d` and `e`. Their names are derived from the subdirectories of `y`, and the names declared in their `vcpkg.json` must match, or an error will be generated if vcpkg is asked to install `d` or `e`.
+* `--overlay-ports=y`: There are two ports in this overlay, `c` and `d`. Their names are derived from the subdirectories of `y`, and the names declared in their `vcpkg.json` must match, or an error will be generated if vcpkg is asked to consider `c` or `d`.
 
-You can add to overlay port configuration in several ways:
+You can add to the overlay port configuration in several ways:
 
-* Command-line: Add one or more `--overlay-port-dirs=<directory>` or `--overlay-ports=<directory>` options to the command-line.
-* [Manifest](../reference/vcpkg-configuration-json.md#overlay-ports): Populate the `"overlay-port-dirs"` or `"overlay-ports"` arrays in `vcpkg-configuration.json`.
-* [Environmental variable](../users/config-environment.md#vcpkg_overlay_ports): Set `VCPKG_OVERLAY_PORT_DIRS` or `VCPKG_OVERLAY_PORTS` to a path character delimited list.
+* Command-line: Add one or more `--overlay-ports=<directory>` options to the command-line.
+* [Manifest](../reference/vcpkg-configuration-json.md#overlay-ports): Populate the `"overlay-ports"` array in `vcpkg-configuration.json`.
+* [Environmental variable](../users/config-environment.md#vcpkg_overlay_ports): Set `VCPKG_OVERLAY_PORTS` to a path character delimited list.
 
 ### Example: Overlay Ports Example
 

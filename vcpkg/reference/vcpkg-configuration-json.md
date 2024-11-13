@@ -43,11 +43,9 @@ The latest JSON Schema is available at [https://raw.githubusercontent.com/micros
       "packages": [ "beicode", "beison" ]
     }
   ],
-  "overlay-ports-dirs": [
-    "./team-ports"
-   ],
   "overlay-ports": [
-    "./custom-ports/zlib"
+    "./team-ports",
+    "./custom-ports"
    ],
   "overlay-triplets": [ "./my-triplets" ]
 }
@@ -62,7 +60,6 @@ The example also configures custom overlays for ports and triplets that are pres
 | Name | Type   | Description |
 |------|--------|-------------|
 | [default-registry](#default-registry) | [Registry][] or null | Registry used for all ports without a specific registry |
-| [overlay-port-dirs](#overlay-port-dirs) | string[] | List of paths to use as overlay port directories |
 | [overlay-ports](#overlay-ports) | string[] | List of paths to use as overlay port locations |
 | [overlay-triplets](#overlay-triplets) | string[] | List of paths to use as overlay triplets |
 | [registries](#registries) | [Registry][][] | Additional registries to use for subsets of ports |
@@ -76,14 +73,6 @@ Ports that do not match any [`"packages"`](#registry-packages) pattern are resol
 ### <a name="registries"></a> `"registries"`
 
 Additional registries to use for specific ports. An array of [Registries](#registry). Optional.
-
-### <a name="overlay-port-dirs"></a> `"overlay-port-dirs"`
-
-A list of port overlay directories. An array of strings. Optional.
-
-Each path in the array must name a directory containing port directories named after the ports (`zlib`'s `vcpkg.json` must be at `zlib/vcpkg.json`).
-
-Relative paths are resolved relative to the `vcpkg-configuration.json` file. Absolute paths can be used but are discouraged.
 
 ### <a name="overlay-ports"></a> `"overlay-ports"`
 

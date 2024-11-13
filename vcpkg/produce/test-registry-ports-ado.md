@@ -228,7 +228,7 @@ ports currently in the working directory as opposed to the versions published in
 your repository.
 
 To that goal, you need to add your registry's ports as [overlay
-ports](../concepts/overlay-ports.md) by setting the `VCPKG_OVERLAY_PORT_DIRS`
+ports](../concepts/overlay-ports.md) by setting the `VCPKG_OVERLAY_PORTS`
 environment variable to your registry's `ports` directory.
 
 The snippet below shows how to set up your registry's ports as overlay ports and

@@ -198,21 +198,14 @@ registry.
 
 Overlay ports are a way to extend vcpkg with additional ports without creating a full registry. Overlays are considered before any registry lookups, or versioning considerations. Overlays replace any builtin triplets or ports. See [overlay ports](../concepts/overlay-ports.md) to learn more.
 
-Overlay triplets are evaluated in this order:
+Overlay ports are evaluated in this order:
 
-1. Overlays from the [command line](../commands/common-options.md#overlay-port-dirs) `--overlay-port-dirs`
+1. Overlays from the [command line](../commands/common-options.md#overlay-ports) `--overlay-ports`
    in the order passed; then
 2. Overlays from
-   [`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md#overlay-port-dirs) `"overlay-port-dirs"`
-   in order; then
-3. Overlays from the `VCPKG_OVERLAY_PORT-DIRS` [environment
-   variable](../users/config-environment.md#vcpkg_overlay_port_dirs) in order.
-4. Overlays from the [command line](../commands/common-options.md#overlay-ports) `--overlay-ports`
-   in the order passed; then
-5. Overlays from
    [`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md#overlay-ports) `"overlay-ports"`
    in order; then
-6. Overlays from the `VCPKG_OVERLAY_PORTS` [environment
+3. Overlays from the `VCPKG_OVERLAY_PORTS` [environment
    variable](../users/config-environment.md#vcpkg_overlay_ports) in order.
 
 ## <a name="overlay-triplets"></a> Overlay triplets

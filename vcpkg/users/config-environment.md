@@ -43,17 +43,12 @@ This environment variable can be set to a triplet name which will be used for un
 
 This environment variable can be set to a triplet name which will be used for unqualified host port references in command lines and all host port references in dependency lists. See [the host-dependencies documentation](host-dependencies.md) for more information.
 
-## VCPKG_OVERLAY_PORT_DIRS
-
-This environment variable adds additional [overlay port directories](registries.md#overlays) considered after those listed on the command line. Multiple directories are separated with the platform dependent PATH separator (Windows `;` | others `:`)
-
-Example (Windows): `C:\custom-ports;C:\other-ports`
-
 ## VCPKG_OVERLAY_PORTS
 
 This environment variable adds additional [overlay ports or overlay port directories](registries.md#overlays) considered after those listed on the command line. Multiple values are separated with the platform dependent PATH separator (Windows `;` | others `:`)
 
-Example (Windows): `C:\custom-ports\boost;C:\custom-ports\sqlite3`
+
+Example (Windows): `C:\custom-ports\boost;C:\custom-ports\sqlite3;C:\other-ports`
 
 ## VCPKG_OVERLAY_TRIPLETS
 

@@ -95,9 +95,6 @@ Options:
   --host-triplet=...     Host triplet. See 'vcpkg help triplet' (default:
                          %VCPKG_DEFAULT_HOST_TRIPLET%)
   --x-install-root=...   Installed directory (experimental)
-  --overlay-port-dirs=...
-                         Directories containing overlay-port directories (also:
-                         %VCPKG_OVERLAY_PORT_DIRS%)
   --overlay-ports=...    Overlay-port directories, or directories containing overlay-port
                          directories (also: %VCPKG_OVERLAY_PORTS%)
   --overlay-triplets=... Directories of overlay triplets (also: %VCPKG_OVERLAY_TRIPLETS%)

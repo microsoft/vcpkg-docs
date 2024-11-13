@@ -100,9 +100,6 @@ vcpkg can be configured through a `vcpkg-configuration.json` file to add more
       "packages": [ "beicode", "beison" ]
     }
   ],
-  "overlay-port-dirs": [
-    "C:\\dev\\my_vcpkg_port\\directories"
-  ],
   "overlay-ports": [
     "C:\\dev\\my_vcpkg_ports"
   ]
