@@ -9,12 +9,12 @@ zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
 ---
 
+# Tutorial: Set up caching using Azure Storage and Azure DevOps
+
 ::: zone pivot="shell-cmd"
 >[!NOTE]
 > These instructions are impractical with 'CMD', please choose 'PowerShell' or 'Bash' above this message.
 ::: zone-end
-
-# Tutorial: Set up caching using Azure Storage and Azure DevOps
 
 vcpkg supports using Azure Storage containers to upload and restore assets and binary packages. However,
 configuring pre-shared long-lived SAS tokens for authentication purposes requires error-prone
