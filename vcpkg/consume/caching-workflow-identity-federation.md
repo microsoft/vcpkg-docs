@@ -9,6 +9,11 @@ zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: shell-selections
 ---
 
+::: zone pivot="shell-cmd"
+>[!NOTE]
+> These instructions are impractical with 'CMD', please choose 'PowerShell' or 'Bash' above this message.
+::: zone-end
+
 # Tutorial: Set up caching using Azure Storage and Azure DevOps
 
 vcpkg supports using Azure Storage containers to upload and restore assets and binary packages. However,
@@ -38,7 +43,9 @@ In this tutorial, you'll learn how to:
 
 ::: zone pivot="shell-cmd"
 
-Generating the end date with cmd is impractical; please choose powershell or bash.
+>[!NOTE]
+> These instructions are impractical with 'CMD', please choose 'PowerShell' or 'Bash' at the top
+> of the page.
 
 ::: zone-end
 
@@ -105,17 +112,16 @@ managed identity you create in step 1. Then select 'Review and Assign' twice.
 
 ## 4 - Generate a SAS token, and use it with Caching
 
+::: zone pivot="shell-cmd"
+>[!NOTE]
+> These instructions are impractical with 'CMD', please choose 'PowerShell' or 'Bash' at the top
+> of the page.
+::: zone-end
+::: zone pivot="shell-powershell, shell-bash"
 In the yml where you wish to invoke vcpkg in Azure DevOps, use the AzureCLI@2 task to mint a SAS
 token and invoke vcpkg, for example:
-
-::: zone pivot="shell-cmd"
-
-Generating the end date with cmd is impractical; please choose powershell or bash.
-
 ::: zone-end
-
 ::: zone pivot="shell-powershell"
-
 ```yaml
 steps:
 - task: AzureCLI@2
@@ -144,11 +150,9 @@ steps:
       # ... or for binary caching:
       vcpkg install --binarysource "clear;x-azblob,https://storage-account-name.blob.core.windows.net/container-name,$sas,readwrite"
 ```
-
 ::: zone-end
 
 ::: zone pivot="shell-bash"
-
 ```yaml
 steps:
 - task: AzureCLI@2
@@ -172,7 +176,6 @@ steps:
       # ... or for binary caching:
       vcpkg install --binarysource "clear;x-azblob,https://storage-account-name.blob.core.windows.net/container-name,$sas,readwrite"
 ```
-
 ::: zone-end
 
 ## Next steps
