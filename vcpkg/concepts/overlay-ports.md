@@ -81,7 +81,7 @@ To install:
 
 * `sqlite3` from `team-ports`
 * `rapidjson` from `my-ports`
-* `curl` from `vcpkg/ports
+* `curl` from `vcpkg/ports`
 
 ### Example: Using overlay ports to use a system package manager dependency
 
