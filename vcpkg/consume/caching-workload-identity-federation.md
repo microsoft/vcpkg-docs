@@ -79,8 +79,7 @@ purposes of this documentation, the identity was named `vcpkg-docs-identity`.
 ## 2 - Set Up Workload Identity Federation with Azure DevOps
 
 >[!NOTE]
-> This step is intended to be identical to the instructions in Azure DevOps' documentation:
-> https://learn.microsoft.com/azure/devops/pipelines/release/configure-workload-identity?view=azure-devops&tabs=managed-identity#create-a-service-connection-for-managed-identity-authentication-in-azure-devops
+> This step is intended to be identical to the instructions in [Azure DevOps' documentation](/azure/devops/pipelines/release/configure-workload-identity?view=azure-devopstabs=managed-identity&preserve-view=true#create-a-service-connection-for-managed-identity-authentication-in-azure-devops)
 
 In the Azure DevOps portal for the project in which you wish to run Pipelines, select
 "Project Settings" in the lower left corner. Then select "Service Connections" on the left.
