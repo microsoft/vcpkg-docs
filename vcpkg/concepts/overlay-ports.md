@@ -15,25 +15,40 @@ An overlay port can act as a drop-in replacement for an existing port or as a ne
 
 Overlay ports are evaluated in the following order:
 
-* Overlay locations specified in the command-line via [`--overlay-ports`](../commands/common-options.md#overlay-ports).
-* Overlay locations specified in a `vcpkg-configuration.json` file via [`overlay-ports`](../reference/vcpkg-configuration-json.md).
-* Overlay locations specified by the [`VCPKG_OVERLAY_PORTS`](../users/config-environment.md#vcpkg_overlay_ports) environment variable.
+* The directory specified in the command-line via [`--overlay-ports`](../commands/common-options.md#overlay-ports), or named subdirectories if that directory has no `CONTROL` or `vcpkg.json` file.
+* The directory specified in a `vcpkg-configuration.json` file via [`overlay-ports`](../reference/vcpkg-configuration-json.md), or named subdirectories if that directory has no `CONTROL` or `vcpkg.json` file.
+* The directory specified by [`VCPKG_OVERLAY_PORTS`](../users/config-environment.md#vcpkg_overlay_ports) environment variable entries, or named subdirectories if that directory has no `CONTROL` or `vcpkg.json` file.
 
 When resolving port names, the first location that contains a matching overlay port is selected.
 
 ## Using an overlay port
 
-A directory can represent a set of overlay ports and can be specified in one of two ways:
+If an overlay port is specified, first, vcpkg attempts to load that directory as a port. If that succeeds, the directory itself is itself treated as a port, and the name of the overlay is derived from the `CONTROL` or `vcpkg.json` file. Otherwise, subdirectories with the overlay port name are considered.
 
-* Single overlay port: `<directory>/sqlite3` refers to a single port
-* Directory of overlay ports: `<directory>` refers to a directory of ports
-A valid port must contain both `vcpkg.json` and `portfile.cmake`.
+Valid ports contain `portfile.cmake`, and either `vcpkg.json` or `CONTROL`.
 
-You can add an overlay port in several ways:
+For example, consider the following directory structure:
 
-* Command-line: Add one or multiple `--overlay-ports=<directory>` options to your vcpkg command
-* [Manifest](../reference/vcpkg-configuration-json.md#overlay-ports): Populate the `"overlay-ports"` array in `vcpkg-configuration.json`
-* [Environmental variable](../users/config-environment.md#vcpkg_overlay_ports): Set `VCPKG_OVERLAY_PORTS` to a list of directory paths
+* `x/vcpkg.json`, the `"name"` field is set to `"a"`.
+* `x/portfile.cmake`, the associated build instructions for `a`.
+* `x/b/vcpkg.json`, the `"name"` field is set to `"b"`.
+* `x/b/portfile.cmake`, the associated build instructions for `b`.
+* `y/c/vcpkg.json`, the `"name"` field is set to `"c"`.
+* `y/c/portfile.cmake`, the associated build instructions for `c`.
+* `y/d/vcpkg.json`, the `"name"` field is set to `"d"`.
+* `y/d/portfile.cmake`, the associated build instructions for `d`.
+
+vcpkg will consider the following ports given the following settings:
+
+* `--overlay-ports=x`: There is one port in this overlay, `a`. The name is derived from `vcpkg.json`. The subdirectory `b` is not considered.
+* `--overlay-ports=x/b`: There is one port in this overlay, `b`. The name is derived from `vcpkg.json`.
+* `--overlay-ports=y`: There are two ports in this overlay, `c` and `d`. Their names are derived from the subdirectories of `y`, and the names declared in their `vcpkg.json` must match, or an error will be generated if vcpkg is asked to consider `c` or `d`.
+
+You can add to the overlay port configuration in several ways:
+
+* Command-line: Add one or more `--overlay-ports=<directory>` options to the command-line.
+* [Manifest](../reference/vcpkg-configuration-json.md#overlay-ports): Populate the `"overlay-ports"` array in `vcpkg-configuration.json`.
+* [Environmental variable](../users/config-environment.md#vcpkg_overlay_ports): Set `VCPKG_OVERLAY_PORTS` to a path character delimited list.
 
 ### Example: Overlay Ports Example
 
@@ -66,7 +81,7 @@ To install:
 
 * `sqlite3` from `team-ports`
 * `rapidjson` from `my-ports`
-* `curl` from `vcpkg/ports
+* `curl` from `vcpkg/ports`
 
 ### Example: Using overlay ports to use a system package manager dependency
 
