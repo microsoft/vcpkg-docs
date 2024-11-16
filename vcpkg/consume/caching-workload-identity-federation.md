@@ -33,7 +33,7 @@ In this tutorial, you'll learn how to:
 
 > [!WARNING]
 > These instructions grant permission to act as the managed identity to the pipelines where it is
-> used. Moreover, vcpkg caches provide a mechanism where a compromised build may be able cause
+> used. Moreover, vcpkg caches provide a mechanism where a compromised build may be able to cause
 > other builds to use compromised assets from caches.
 >
 > You should not allow machines which run untrusted 3rd party build requests to write to caches
@@ -78,6 +78,10 @@ purposes of this documentation, the identity was named `vcpkg-docs-identity`.
 
 ## 2 - Set Up Workload Identity Federation with Azure DevOps
 
+>[!NOTE]
+> This step is intended to be identical to the instructions in Azure DevOps' documentation:
+> https://learn.microsoft.com/azure/devops/pipelines/release/configure-workload-identity?view=azure-devops&tabs=managed-identity#create-a-service-connection-for-managed-identity-authentication-in-azure-devops
+
 In the Azure DevOps portal for the project in which you wish to run Pipelines, select
 "Project Settings" in the lower left corner. Then select "Service Connections" on the left.
 Then choose "New Service Connection" on the right. Choose the "Azure Resource Manager" radio button,
@@ -86,8 +90,8 @@ service connection and press next. For purposes of this documentation, the servi
 named `vcpkg-docs-identity-connection`. At this point, Azure DevOps should be showing an issuer
 and subject identifier.
 
-In another tab, to the Azure Portal navigate to the managed identity created in step 1. On the left
-select Settings/Federated Credentials, and select 'Add Credential'. In the drop down, select
+In another tab, go to the Azure Portal navigate to the managed identity created in step 1. On the
+left select Settings/Federated Credentials, and select 'Add Credential'. In the drop down, select
 'Other'. Copy the 'Issuer URL' and 'Subject Identifier' from Azure DevOps into the form. Give the
 federated credential a name, and press 'Add'. For purposes of this documentation, the name used was
 `azure-devops-credential`.
