@@ -3,11 +3,12 @@ title: Registries concepts
 description: Concepts about vcpkg registries and their capabilities.
 author: vicroms
 ms.author: viromer
-ms.date: 01/10/2024
+ms.date: 11/10/2024
 ms.topic: concept-article
 ---
-
 # Registries concepts
+
+## Overview
 
 vcpkg hosts a selection of libraries packaged into [ports](ports.md) at
 <https://github.com/Microsoft/vcpkg>, this collection of ports is called the
@@ -43,8 +44,21 @@ below:
   example, the files for port `foo` must be located in `ports/foo`.
 * A directory named `versions` must contain the files that comprise the [versions
   database](#versions-database).
+  
+### Example: registry structure
 
-### Versions database
+```
+ports/
+  foo/
+    portfile.cmake
+    vcpkg.json
+versions/
+  f-/
+    foo.json
+  baseline.json
+```
+
+## Versions database
 
 All registries, regardless of their kind, must contain a `versions` folder at the
 root of the registry which contains the _versions database_.
@@ -77,18 +91,110 @@ The purpose of the version file is two-fold:
 Same as the baseline file, the layout of the version file depends on the kind of
 registry.
 
-### Example: registry structure
+## Baseline file
 
+All registries, regardless of their kind, must contain a file named
+`baseline.json` located at `versions/baseline.json`.
+
+The purpose of the baseline file is to describe the set of versions that are
+considered to be the latest for all ports in the registry. It is expected that
+this file is updated each time a new version of a port is added to the registry.
+
+The layout of the file is a map of named baselines. With each named baseline
+being itself a map of port names to version entries.
+
+Each baseline version entry is an object with the following properties:
+
+* `baseline`: the value is the port's version matching its corresponding
+  `vcpkg.json` file.
+* `port-version`: the value is the port's `port-version` matching its
+  corresponding `vcpkg.json` file.
+
+### Example baseline file
+
+```json
+{
+  "default": {
+    "foo": { "baseline": "1.0.0", "port-version": 0 },
+    "bar": { "baseline": "2024-08-01", "port-version": 1 },
+    "baz": { "baseline": "vista-xp", "port-version": 0 },
+  }
+}
 ```
-ports/
-  foo/
-    portfile.cmake
-    vcpkg.json
-versions/
-  f-/
-    foo.json
-  baseline.json
-```
+
+See the reference documentation for:
+
+* baseline file layout for [Git
+  registries](../maintainers/registries.md#git-baseline)
+* baseline file layout for [filesystem
+  registries](../maintainers/registries.md#filesystem-baseline)
+
+## Version files
+
+Each port in the registry must have a corresponding versions file. The versions
+file is a JSON file named the same as its corresponding port, for example, a
+port named `foo` must have a corresponding `foo.json` file. 
+
+vcpkg expects the versions files to be stored in the following location
+`versions/<prefix>/<port name>.json` , where `<prefix>` is the first letter of
+the port name followed by a hyphen. For example, the versions file for port
+`foo` must be stored in `versions/f-/foo.json`.
+
+The purpose of the versions file is two-fold:
+
+* List all available versions of each port
+* Point to the retrieval locations of each of these versions.
+
+The layout of the version file is an object containing a `"versions"` array, with
+each entry in that array being a version object.  A version object must contain
+the following properties: 
+
+* A version property: The property's key and value must match the ones used by
+  the port in its `vcpkg.json` file. The key must be one of `version`,
+  `version-semver`, `version-date`, or `version-string`; the value must be the
+  version as it appears in the port's manifest file (`vcpkg.json`). 
+* `port-version`: the value is the port's `port-version` as it appears in the
+  port's `vcpkg.json` file. 
+* `git-tree`: (only on Git registries) the value is the git-tree SHA
+  corresponding to the port's directory. This is a SHA calculated by hashing the
+  contents of the port's directory; this git-tree SHA can be used by Git to
+  retrieve the contents of the port matching the provided git-tree. This makes
+  it possible for vcpkg to retrieve old versions of ports from the registries
+  Git history. Read the [git registries](#git-registries) section to learn how
+  to obtain this value for any given port version.
+* `path`: (only on filesystem registries) the value is the full path to a
+  directory containing the port files for the specific version.
+
+## Example of a filesystem registry version file
+
+```json
+{
+  "versions": [
+    {
+      "path": "$/ports/foo/1.2.0",
+      "version": "1.2.0",
+      "port-version": 0
+    },
+    {
+      "path": "$/ports/foo/1.1.0",
+      "version": "1.1.0",
+      "port-version": 0
+    },
+    {
+      "path": "$/ports/foo/1.0.0",
+      "version": "1.0.0",
+      "port-version": 0
+    }
+  ]
+}
+``` 
+
+See the reference documentation for:
+
+* version file layout for [Git
+  registries](../maintainers/registries.md#git-version-file)
+* version file layout for [filesystem
+  registries](../maintainers/registries.md#filesystem-version-file)
 
 ## Built-in registry
 
@@ -125,7 +231,52 @@ registries can make use of the [`x-add-version`](../commands/add-version.md) to
 manage your version database files.
 
 See the [registries reference](../maintainers/registries.md#git-registries) for
-details on how to implement a Git registry.
+implementation details of Git registries.
+
+### <a name="git-add-version"> Adding a new version to a Git registry
+
+The [`x-add-version`](../commands/add-version.md) command can be used to to add
+a new port or a new version to the registry. When adding versions using this
+command there are a couple of things to keep in mind:
+
+**Remember to update the port's version**
+
+> [!IMPORTANT]
+> Always remember to update the port's version to avoid rewriting the version
+> history.
+
+When you are making changes to a port, the first step should be to increase its
+version in the `vcpkg.json` file. If your changes include an update to the
+package's [upstream](../concepts/glossary.md#upstream) version, remember to set
+the `port-version` to `0`; otherwise, remember to increase the `port-version` by
+one.
+
+**Port changes must be commited**
+
+The [`x-add-version` command](../commands/add-version.md) requires that all your
+port changes are commited to the repository before updating the version
+database.
+
+**Example: adding a new port version to a Git registry**
+
+```Console
+git add ports/foo/.
+git commit -m "Temporary commit"
+vcpkg x-add-version --x-builtin-ports-root=./ports --x-builtin-registry-versions-dir=./versions foo
+added version 1.0.0#1 to path/to/registry/versions/f-/foo.json
+added version 1.0.0#1 to path/to/registry/versions/baseline.json
+```
+
+The redirection options `--x-builtin-ports-root` and
+`--x-builtin-registry-versions-dir` should point to your registry's `ports` and
+`versions` directories respectively.
+
+Once, the `x-add-version` command runs succesfully, amend the last commit to
+include theversion database changes.
+
+```bash
+git commit --amend -m "Update foo to new version"
+```
 
 ## Filesystem registries
 
@@ -142,6 +293,114 @@ this method is not recommended for large collections of ports.
 See the [registries
 reference](../maintainers/registries.md#filesystem-registries) for details on
 how to implement a filesystem registry.
+
+## Consume registries
+
+To consume a custom registry in your project, you need to create a
+[configuration file (`vcpkg-configuration.json`)](../reference/vcpkg-configuration-json.md) next
+to your project's [manifest file (`vcpkg.json`)](../reference/vcpkg-json.md).
+
+### Default registry
+
+When [resolving port names](package-name-resolution.md), the default registry
+works as the fallback when a port's name is not found in any other registry
+specified in the [`registries` array](#registries-array).
+
+As a convenience for users that are not engaging with custom registries, vcpkg
+implicitly adds the [built-in registry](#built-in-registry) as the default
+registry. To change this behavior, the default registry can be set to any
+registry or disabled completely using the
+[`default-registry`](../reference/vcpkg-configuration-json.md#default-registry)
+property.
+
+**Example: Set a custom registry as default**
+
+`vcpkg-configuration.json`
+
+```json
+{
+  "default-registry": {
+    "kind": "git",
+    "repository": "https://github.com/Microsoft/vcpkg",
+    "baseline": "84a143e4caf6b70db57f28d04c41df4a85c480fa"
+  }
+}
+```
+
+**Example: Disable the default registry**
+
+`vcpkg-configuration.json`
+
+```json
+{
+  "default-registry": null
+}
+```
+
+### Registries array
+
+To extend the selection of ports available to install with vcpkg, you can
+specify additional registries using the [`registries`
+array](../reference/vcpkg-configuration-json.md#registries).
+
+**Example: Add custom registries to the configuration**
+
+> [!NOTE]
+> Depending on the registry kind you may need to provide different information
+> in the `registries` array. See the [`vcpkg-configurtion.json`
+> reference](../reference/vcpkg-configuration-json.md#registries) to learn which
+> properties are required for each registry kind.
+
+`vcpkg-configuration.json`
+
+```json
+{
+  "default-registry": {
+    "kind": "git",
+    "repository": "https://github.com/Microsoft/vcpkg",
+    "baseline": "84a143e4caf6b70db57f28d04c41df4a85c480fa"
+  },
+  "registries": [
+    {
+      "kind": "git",
+      "repository": "https://my.privateregistry.git",
+      "baseline": "caf6b70db5784a143e4f28d05c480fa4c41df4a8",
+      "packages": [ "foo" ]
+    },
+    {
+      "kind": "filesystem",
+      "path": "C:/path/to/registry",
+      "baseline": "baseline1",
+      "packages": [ "bar" ]
+    }
+  ]
+}
+```
+
+## Recommended practices for registries
+
+**Don't rewrite version history**
+
+Once a version has been pubished to the version database, do not change its
+associated `git-tree`.
+
+One of vcpkg's design principles is that the versions of installed dependencies
+do not change without user intervention. Rewriting the version file history by
+changing a `git-tree` entry violates this principle.
+
+If the existing version has issues, prefer to create a new
+[`port-version`](../reference/vcpkg-json.md#port-version).
+
+
+**Don't delete version files**
+
+When removing a port from your registry, remove its contents from the ports
+directory and its entry in the baseline file. But _do not_ remove its associated
+version file.
+
+Even if a port no longer exists in the registry, as long as the version file
+remains, users of the port can install old versions by using [version
+`overrides`](../users/versioning.md#overrides).s
 
 ## Next steps
 
