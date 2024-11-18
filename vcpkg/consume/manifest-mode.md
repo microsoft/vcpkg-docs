@@ -318,7 +318,7 @@ Here are some additional tasks to try next:
 * Install packages for custom platforms, compilers, or build architectures using [triplets](../users/triplets.md)
 * Lock down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
 * Reuse binaries across local or continuous integration runs using [binary caching](../users/binarycaching.md)
-* Manage your private libraries using custom [registries](../maintainers/registries.md)
+* Manage your private libraries using custom [registries](../concepts/registries.md)
 
 [Create a project with a manifest]: #1---create-a-project-with-a-manifest
 [Integrate vcpkg with your build system]: #2---integrate-vcpkg-with-your-build-system

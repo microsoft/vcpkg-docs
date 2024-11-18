@@ -84,6 +84,7 @@ versions from the repository's history.
 *VersionObject*
 
 | Name       | Type   | Description |
+| ---------- | ------ | ----------- |
 | `git-tree` | string | A Git calculated SHA used to retrieve the port version |
 | [`version`<br>`version-semver`<br>`version-date`<br>`version-string`](#version) | string | Upstream version information |
 | [port-version](#port-version) | integer | Port files revision |
@@ -246,6 +247,7 @@ versions from a filesystem location.
 *VersionObject*
 
 | Name       | Type   | Description |
+| ---------- | ------ | ----------- |
 | `path`     | string | The filesystem location where the port files for the corresponding version are located |
 | [`version`<br>`version-semver`<br>`version-date`<br>`version-string`](#version) | string | Upstream version information |
 | [port-version](#port-version) | integer | Port files revision |
