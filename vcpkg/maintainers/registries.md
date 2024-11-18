@@ -86,8 +86,8 @@ versions from the repository's history.
 | Name       | Type   | Description |
 | ---------- | ------ | ----------- |
 | `git-tree` | string | A Git calculated SHA used to retrieve the port version |
-| [`version`<br>`version-semver`<br>`version-date`<br>`version-string`](#version) | string | Upstream version information |
-| [port-version](#port-version) | integer | Port files revision |
+| [`version`<br>`version-semver`<br>`version-date`<br>`version-string`](../reference/vcpkg-json.md#version) | string | Upstream version information |
+| [port-version](../reference/vcpkg-json.md#port-version) | integer | Port files revision |
 
 
 #### Example of a Git registry version file
@@ -217,7 +217,7 @@ in the registry and its value being the latest version of the port.
 | `port-version` | integer | An integer corresponding to the latest port version of the port in the registry |
 
 The layout of the baseline file in a filesystem registry is the same as for [Git
-registries](#git-baseline-layout). The only difference being that filesystems
+registries](#git-baseline). The only difference being that filesystems
 don't require a `default` baseline.
 
 #### Example of a `baseline.json` file in a Git registry
@@ -249,8 +249,8 @@ versions from a filesystem location.
 | Name       | Type   | Description |
 | ---------- | ------ | ----------- |
 | `path`     | string | The filesystem location where the port files for the corresponding version are located |
-| [`version`<br>`version-semver`<br>`version-date`<br>`version-string`](#version) | string | Upstream version information |
-| [port-version](#port-version) | integer | Port files revision |
+| [`version`<br>`version-semver`<br>`version-date`<br>`version-string`](../reference/vcpkg-json.md#version) | string | Upstream version information |
+| [port-version](../reference/vcpkg-json.md#port-version) | integer | Port files revision |
 
 When specifying the `path` of a registry, the `$` character can be used to
 reference the root of the registry. Otherwise, absolute paths can be used
