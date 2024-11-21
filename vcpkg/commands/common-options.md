@@ -29,6 +29,10 @@ Specifies the temporary path to store intermediate build files, such as objects 
 
 Defaults to `buildtrees/` under the vcpkg root folder.
 
+### <a name="classic"></a> `--classic`
+
+Forces [classic mode](../concepts/classic-mode.md) even if a [manifest file](../concepts/manifest-mode.md) is detected.
+
 ### <a name="cmake-configure-debug"></a> `--x-cmake-configure-debug=<debugger-pipe>[;semicolon;port;list]`
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
@@ -107,7 +111,7 @@ Defaults to searching upwards from the current working directory for the nearest
 
 ### <a name="overlay-ports"></a> `--overlay-ports=<path>`
 
-Specifies a directory containing [overlay ports](../concepts/package-name-resolution.md#overlays).
+Specifies a directory either an [overlay port](../concepts/package-name-resolution.md#overlays), or subdirectories that are themselves overlay-ports. If `<path>` is a directory containing a `CONTROL` or `vcpkg.json`, it is treated as an overlay port directory, and subdirectories will **not** be considered as additional overlay ports.
 
 This option can be specified multiple times; ports will resolve to the first match.
 
