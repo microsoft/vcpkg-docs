@@ -22,7 +22,7 @@ database](../concepts/registries.md#versions-database).
 
 ## Git registries
 
-### <a name="git-baseline"> Baseline file layout in Git registries
+### <a name="git-baseline"></a> Baseline file layout in Git registries
 
 *Top-level fields*
 
