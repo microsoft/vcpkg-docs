@@ -36,7 +36,8 @@ In this tutorial, you'll learn how to:
 > used. Moreover, vcpkg caches provide a mechanism where a compromised build may be able to cause
 > other builds to use compromised assets from caches.
 >
-> You should not allow machines which run untrusted 3rd party build requests to write to caches
+> You should not allow machines which run untrusted third-party build requests to write to caches
+
 > that are used for official builds.
 
 ## Prerequisites
@@ -70,16 +71,23 @@ In this tutorial, you'll learn how to:
 Skip this step if you already have configured a
 [Managed Identity](/entra/identity/managed-identities-azure-resources/overview) you wish to use.
 
-In the Azure Portal, go to the page for a Resource Group in which you wish for the managed identity
-to be created, and press "+ Create". In the search box, enter "User Assigned Managed Identity".
-Choose "User Assigned Managed Identity" from "Microsoft" and choose "Create ->
-User Assigned Managed Identity". Name the identity, press "Review and Create", and "Create". For
-purposes of this documentation, the identity was named `vcpkg-docs-identity`.
+In the Azure Portal: 
+
+1. Open the page for the Resource Group where you wish to create the Managed Identity
+2. Click on "+ Create" 
+3. Type "User Assigned Managed Identity" in the "Search the Markeplace" box
+4. Choose "User Assigned Managed Identity" by "Microsoft"
+5. Click on "Create " next to the "User Assigned Managed Identity" plan
+6. Name the identity, this tutorial uses the `vcpkg-docs-identity` name (optionally, you can select a Region for the resource)
+7. Clic on "Review and Create"
+8. Review your settings and click "Create".
+
+Deploying the resource may take a few minutes.
 
 ## 2 - Set Up Workload Identity Federation with Azure DevOps
 
 >[!NOTE]
-> This step is intended to be identical to the instructions in [Azure DevOps' documentation](/azure/devops/pipelines/release/configure-workload-identity?view=azure-devopstabs=managed-identity&preserve-view=true#create-a-service-connection-for-managed-identity-authentication-in-azure-devops)
+> These instructions should be identical to the instructions in [Azure DevOps' documentation](/azure/devops/pipelines/release/configure-workload-identity?view=azure-devopstabs=managed-identity&preserve-view=true#create-a-service-connection-for-managed-identity-authentication-in-azure-devops). If these instructions become outdated, please follow those provided by the Azure DevOps team.
 
 In the Azure DevOps portal for the project in which you wish to run Pipelines, select
 "Project Settings" in the lower left corner. Then select "Service Connections" on the left.
@@ -105,13 +113,13 @@ Data Storage/Containers, and choose the container you wish to use. This should o
 to the properties for that specific container. On the left select "Access Control (IAM)", and choose
 "Add -> Add Role Assignment". Select "Azure Blob Data Reader" for read only access, or
 "Azure Blob Data Contributor" for read/write access, and press Next. Then, select the
-"Managed Identity" radio button, and click + Select Members. Select the managed identity you created
-in step 1. Then select 'Review and Assign' twice.
+"Managed Identity" radio button and click "+ Select Members". Select the managed identity you created
+in step 1. Then select "Review and Assign" twice.
 
 Then, return to the page for the storage account container, and again on the left select
 "Access Control (IAM)", and choose "Add -> Add Role Assignment". Select "Storage Blob Delegator" and
-press Next. Then, select the "Managed Identity" radio button, and click + Select Members. Select the
-managed identity you create in step 1. Then select 'Review and Assign' twice.
+press Next. Then, select the "Managed Identity" radio button and click "+ Select Members". Select the
+managed identity you create in step 1. Then select "Review and Assign" twice.
 
 ## 4 - Generate a SAS token, and use it with Caching
 
@@ -186,3 +194,4 @@ steps:
 Here are other tasks to try next:
 
 * [Set up a local binary cache](binary-caching-local.md)
+* [See an end-to-end CI scenario using vcpkg in an Azure DevOps pipeline](../produce/test-registry-ports-ado.md)
