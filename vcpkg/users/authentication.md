@@ -1,30 +1,43 @@
 ---
-title: Remote Authentication
+title: Authenticate to private Git repositories
 description: Learn to configure which credentials are used when accessing remote resources with vcpkg.
-ms.date: 01/10/2024
+ms.date: 10/31/2024
 ms.topic: concept-article
+zone_pivot_group_filename: zone-pivot-groups.json
+zone_pivot_groups: shell-selections
 ---
-# Remote authentication
+# Authenticate to private Git repositories
 
-[Registries](registries.md) and [`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md) directly use the Git command line tools to fetch remote resources. Some of these resources may be protected from anonymous access and need authentication or credentials.
+A common operation of vcpkg is to access Git repositories to fetch remote
+resources. In some cases, these repositories are protected from anonymous access
+and require authentication credentials. This article describes authentication
+strategies for Git repositories that work with vcpkg.
 
-The strategies below all seek to achieve the same fundamental goal: `git clone https://....` should succeed without interaction. This enables vcpkg to be separated from the specifics of your authentication scheme, ensuring forward compatibility with any additional security improvements in the future.
+## Pre-seed Git credentials
 
-## Pre-seed git credentials
+You can pre-seed Git credentials using the [`git credential approve` command](https://git-scm.com/docs/git-credential):
 
-You can pre-seed git credentials via `git credential approve`:
+::: zone pivot="shell-powershell"
 
-Powershell:
-
-```powershell
+```PowerShell
 "url=https://github.com`npath=Microsoft/vcpkg`nusername=unused`npassword=$MY_PAT`n" | git credential approve
 ```
 
-Bash:
+::: zone-end
+::: zone pivot="shell-cmd"
+
+```cmd
+(echo "url=https://github.com"& echo "path=Microsoft/vcpkg"& echo "username=unused"& echo "password=%MY_PAT%") | git credential approve
+```
+
+::: zone-end
+::: zone pivot="shell-bash"
 
 ```sh
 echo "url=https://github.com"$'\n'"path=Microsoft/vcpkg"$'\n'"username=unused"$'\n'"password=$MY_PAT"$'\n' | git credential approve
 ```
+
+::: zone-end
 
 ## Bearer auth
 
@@ -69,7 +82,7 @@ export VCPKG_KEEP_ENV_VARS=MY_TOKEN_VAR
 export MY_TOKEN_VAR=abc123
 ```
 
-This can then be used in your private ports with the p[`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md) or [`vcpkg_from_github()`](../maintainers/functions/vcpkg_from_github.md) helpers.
+This can then be used in your private ports with the [`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md) or [`vcpkg_from_github()`](../maintainers/functions/vcpkg_from_github.md) helpers.
 
 ```cmake
 # vcpkg-from-git-example/portfile.cmake
