@@ -70,6 +70,8 @@
     - name: Use a custom script as an asset caching storage provider
       # TODO: Modernize article: examples/asset-caching-source-nuget.md
       href: examples/asset-caching-source-nuget.md
+  - name: Set up caching using Azure Storage and Azure DevOps
+    href: consume/caching-workload-identity-federation.md
 - name: Produce packages
   expanded: true
   items:
