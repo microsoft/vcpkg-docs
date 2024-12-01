@@ -63,7 +63,7 @@ In a registry containing a single port named `foo` at version `1.0.0#1`, the
   "default": {
     "foo": { 
       "baseline": "1.0.0", 
-      "port-version": "1"
+      "port-version": 1
     }
   }
 }
@@ -85,7 +85,7 @@ versions from the repository's history.
 
 | Name       | Type   | Description |
 | ---------- | ------ | ----------- |
-| `git-tree` | string | A Git calculated SHA used to retrieve the port version |
+| `git-tree` | string | A git tree SHA used to retrieve the port contents |
 | [`version`<br>`version-semver`<br>`version-date`<br>`version-string`](../reference/vcpkg-json.md#version) | string | Upstream version information |
 | [port-version](../reference/vcpkg-json.md#port-version) | integer | Port files revision |
 

@@ -12,8 +12,7 @@ ms.topic: concept-article
 
 vcpkg hosts a selection of libraries packaged into [ports](ports.md) at
 <https://github.com/Microsoft/vcpkg>, this collection of ports is called the
-*curated registry*. However, vcpkg is not limited to just installing ports from
-the curated registry. Users are capable of extending the selection of ports by
+*curated registry*. However, vcpkg is not limited to the curated registry. Users can extend the selection of ports by
 creating custom registries.
 
 A registry is a collection of ports and helper files arranged in a specific
@@ -69,8 +68,8 @@ There are two components to the versions database:
 * the version files.
 
 The baseline file is a JSON file named `baseline.json` located at the root of
-the `versions` directory. The purpose of the baseline file is to describe the
-set of versions that are considered to be the latest for each port in the
+the `versions` directory. The baseline file describes the
+set of versions that are current for each port in the
 registry. The layout of the baseline file depends on the kind of registry.
 
 For each port in the registry, a corresponding _version file_ must exist.
@@ -100,8 +99,7 @@ The purpose of the baseline file is to describe the set of versions that are
 considered to be the latest for all ports in the registry. It is expected that
 this file is updated each time a new version of a port is added to the registry.
 
-The layout of the file is a map of named baselines. With each named baseline
-being itself a map of port names to version entries.
+The file is a JSON file composed of a single object whose properties are named baseline objects. Each baseline object's properties are port names, whose values are version entries.
 
 Each baseline version entry is an object with the following properties:
 
@@ -131,14 +129,13 @@ See the reference documentation for:
 
 ## Version files
 
-Each port in the registry must have a corresponding versions file. The versions
+Each port in the registry has a corresponding versions file. The versions
 file is a JSON file named the same as its corresponding port, for example, a
 port named `foo` must have a corresponding `foo.json` file. 
 
-vcpkg expects the versions files to be stored in the following location
-`versions/<prefix>/<port name>.json` , where `<prefix>` is the first letter of
+Versions files are stored at `versions/<prefix>/<port name>.json` , where `<prefix>` is the first letter of
 the port name followed by a hyphen. For example, the versions file for port
-`foo` must be stored in `versions/f-/foo.json`.
+`foo` is at `versions/f-/foo.json`.
 
 The purpose of the versions file is two-fold:
 
@@ -382,7 +379,7 @@ array](../reference/vcpkg-configuration-json.md#registries).
 **Don't rewrite version history**
 
 Once a version has been pubished to the version database, do not change its
-associated `git-tree`.
+associated `git-tree` in a git registry or directory in a filesystem registry.
 
 One of vcpkg's design principles is that the versions of installed dependencies
 do not change without user intervention. Rewriting the version file history by
