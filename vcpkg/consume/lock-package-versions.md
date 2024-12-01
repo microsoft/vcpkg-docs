@@ -243,7 +243,7 @@ package versions. Read the versioning [concepts](../users/versioning.concepts.md
 Here are some additional tasks to try next:
 
 * Reuse binaries across Continuous Integration runs using [binary caching](../users/binarycaching.md)
-* Manage your private libraries using [custom registries](../maintainers/registries.md)
+* Manage your private libraries using [custom registries](../concepts/registries.md)
 
 [Create a project with a manifest]: #1---create-a-project-with-a-manifest
 [Add version constraints using a baseline]: #2---add-version-constraints-using-a-baseline

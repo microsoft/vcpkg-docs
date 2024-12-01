@@ -24,7 +24,7 @@ how to [install packages in manifest mode](#install-manifest-mode).
 
 Manifest mode is also required to use advanced features like
 [versioning](../users/versioning.md) and
-[custom registries](../users/registries.md).
+[custom registries](../concepts/registries.md).
 
 ## Manifest files in ports
 
@@ -79,7 +79,7 @@ feature is not available in classic mode.
 ## Configuration file
 
 vcpkg can be configured through a `vcpkg-configuration.json` file to add more
-[package registries](../users/registries.md) or
+[package registries](../concepts/registries.md) or
 [overlay ports and triplets](../concepts/overlay-ports.md) locations.
 
 ### Configuration file example
