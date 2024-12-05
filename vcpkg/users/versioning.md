@@ -112,7 +112,7 @@ Examples:
 
 ### Baselines
 
-Baselines define a global version floor for what versions will be considered. This enables top-level manifests to keep the entire graph of dependencies up-to-date without needing to individually specify direct [`"version>="`](#version-gte) constraints.
+Baselines define a global version floor for what versions will be considered (unless specified elsewhere, the version associated with that baseline will be used). This enables top-level manifests to keep the entire graph of dependencies up-to-date without needing to individually specify direct [`"version>="`](#version-gte) constraints.
 
 Every configured registry has an associated baseline. For manifests that don't configure any registries, the [`"builtin-baseline"`](../reference/vcpkg-json.md#builtin-baseline) field defines the baseline for the built-in registry. If a manifest does not configure any registries and does not have a `"builtin-baseline"`, the install operates according to the Classic mode algorithm and ignores all versioning information.
 
