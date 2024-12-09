@@ -55,7 +55,7 @@ override for your dependency as show below:
 
 When you run `vcpkg install`, you'll notice that only the version of
 `boost-optional` has been locked to `1.80.0` while the other Boost dependencies
-are using the baseline version (`1.83.0`). 
+are using the baseline version (`1.83.0`).
 
 ```console
 Fetching registry information from https://github.com/Microsoft/vcpkg (HEAD)...

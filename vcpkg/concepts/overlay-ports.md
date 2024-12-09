@@ -70,10 +70,10 @@ To install:
 
 Run:
 
-```
-vcpkg install sqlite3 rapidjson curl
-    --overlay-ports=my-ports/rapidjson
-    --overlay-ports=vcpkg/ports/curl
+```bash
+vcpkg install sqlite3 rapidjson curl \
+    --overlay-ports=my-ports/rapidjson \
+    --overlay-ports=vcpkg/ports/curl \
     --overlay-ports=team-ports
 ```
 

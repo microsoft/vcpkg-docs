@@ -21,10 +21,10 @@ can be installed with the same features
 ([versioning](../users/versioning.md), [binary
 caching](../users/binarycaching.md)) offered to ports in the curated registry.
 
-There are currently three kinds of registries: 
+There are currently three kinds of registries:
 
 * The [built-in registry](#built-in-registry),
-* [Git registries](#git-registries), and 
+* [Git registries](#git-registries), and
 * [filesystem registries](#filesystem-registries).
 
 vcpkg can be instructed to consider ports available in custom registries by
@@ -39,13 +39,13 @@ For vcpkg to interface with a registry, it must conform to the following structu
 
 * A directory named `ports` contains the collection of ports, with each
   subdirectory containing a specific port matching the subdirectory name. For
-  example, the files for port `foo` must be located in `ports/foo`.
-* A directory named `versions` must contain the files that comprise the [versions
+  example, the files for port `foo` is located in `ports/foo`.
+* A directory named `versions` contains the files that comprise the [versions
   database](#versions-database).
   
 ### Example: registry structure
 
-```
+```text
 ports/
   foo/
     portfile.cmake
@@ -59,17 +59,15 @@ versions/
 ## Versions database
 
 All registries contain a `versions` directory at the
-root of the registry which contains the _versions database_.
+root of the registry which contains the *versions database*.
 
 There are two components to the versions database:
 
-* The baseline file 
+* The baseline file
 * The version files
 
 The baseline file is a JSON file named `baseline.json` located at the root of
-the `versions` directory. It describes the
-set of versions that are current for each port in the
-registry. The layout of the baseline file depends on the kind of registry.
+the `versions` directory.
 
 The versions files are JSON files with the same names as the available ports.
 They must exist at `versions/<prefix>/<port name>.json`, where `<prefix>` is
@@ -92,7 +90,9 @@ The purpose of the baseline file is to describe the set of versions that are
 considered to be the latest for all ports in the registry. It is expected that
 this file is updated each time a new version of a port is added to the registry.
 
-The file is a JSON file composed of a single object whose properties are named baseline objects. Each baseline object's properties are port names, whose values are version entries.
+The file is a JSON file composed of a single object whose properties are named baseline objects. Each baseline object's
+properties are port names, whose values are version entries. The [registries reference](../maintainers/registries.md)
+article describes the layout of baseline files in more detail.
 
 Each baseline version entry is an object with the following properties:
 
@@ -134,14 +134,14 @@ The purpose of the versions file is two-fold:
 
 The layout of the versions file is an object containing a `"versions"` array, with
 each entry in that array being a version object.  A version object must contain
-the following properties: 
+the following properties:
 
 * A version property: The property's key and value must match the ones used by
   the port in its `vcpkg.json` file. The key must be one of `version`,
   `version-semver`, `version-date`, or `version-string`; the value must be the
-  version as it appears in the port's manifest file (`vcpkg.json`). 
+  version as it appears in the port's manifest file (`vcpkg.json`).
 * `port-version`: the value is the port's `port-version` as it appears in the
-  port's `vcpkg.json` file. 
+  port's `vcpkg.json` file.
 * `git-tree`: (only on Git registries) the value is the git-tree SHA
   corresponding to the port's directory. This is a SHA calculated by hashing the
   contents of the port's directory; this git-tree SHA can be used by Git to
@@ -174,7 +174,7 @@ the following properties:
     }
   ]
 }
-``` 
+```
 
 See the reference documentation for:
 
@@ -185,11 +185,9 @@ See the reference documentation for:
 
 ## Built-in registry
 
-The built-in registry is a special kind of registry. The built-in registry
-is the default registry used in some operation modes, like [classic
-mode](classic-mode.md). When a [default
-registry](../reference/vcpkg-configuration-json.md#default-registry) is not
-specified, vcpkg implicitly uses the built-in registry.
+The built-in registry is a special kind of registry. It is the default registry used in [classic mode](classic-mode.md).
+In [manifest mode](manifest-mode.md), when a [default registry](../reference/vcpkg-configuration-json.md#default-registry)
+is not specified, vcpkg implicitly uses the built-in registry.
 
 The built-in registry refers to the local copy of the curated
 registry created when you `git clone` the vcpkg repository from
@@ -227,7 +225,8 @@ a new port or a new version to the registry. When adding versions using this
 command there are a couple of things to keep in mind:
 
 > [!IMPORTANT]
-> When adding a new version, always remember to update the port's declared version to one not already published, to avoid rewriting the version history.
+> When adding a new version, always remember to update the port's declared version to one not already published, to avoid
+> rewriting the version history.
 
 When you are making changes to a port, the first step should be to increase its
 version in the `vcpkg.json` file. If your changes include an update to the
@@ -235,13 +234,11 @@ package's [upstream](../concepts/glossary.md#upstream) version, remember to set
 the `port-version` to `0`; otherwise, remember to increase the `port-version` by
 one.
 
-**Port changes must be commited**
-
 The [`x-add-version` command](../commands/add-version.md) requires that all your
 port changes are commited to the repository before updating the version
 database.
 
-**Example: adding a new port version to a Git registry**
+#### Example: adding a new port version to a Git registry
 
 ```Console
 git add ports/foo/.
@@ -269,9 +266,9 @@ filesystem. They follow the common registry structure but don't make use of Git
 to offer versioning capabilities. Instead, they use a primitive form of version
 control using a distinct path for each version of its ports.
 
-These types of registries are more suited to be a testing ground for your ports or to provide an alternative for registries in version control systems that are
-not Git. Since no tooling is offered to manipulate the version database files,
-this method is not recommended for large collections of ports.
+These types of registries are more suited to be a testing ground for your ports or to provide an alternative for
+registries in version control systems that are not Git. Since no tooling is offered to manipulate the version database
+files, this method is not recommended for large collections of ports.
 
 See the [registries
 reference](../maintainers/registries.md#filesystem-registries) for details on
@@ -296,7 +293,7 @@ registry or disabled completely using the
 [`default-registry`](../reference/vcpkg-configuration-json.md#default-registry)
 property.
 
-**Example: Set a custom registry as default**
+#### Example: Set a custom registry as default
 
 `vcpkg-configuration.json`
 
@@ -310,7 +307,7 @@ property.
 }
 ```
 
-**Example: Disable the default registry**
+#### Example: Disable the default registry
 
 `vcpkg-configuration.json`
 
@@ -326,7 +323,7 @@ To extend the selection of ports available to install with vcpkg, you can
 specify additional registries using the [`registries`
 array](../reference/vcpkg-configuration-json.md#registries).
 
-**Example: Add custom registries to the configuration**
+#### Example: Add custom registries to the configuration
 
 > [!NOTE]
 > Depending on the registry kind, you may need to provide different information
@@ -362,7 +359,7 @@ array](../reference/vcpkg-configuration-json.md#registries).
 
 ## Recommended practices for registries
 
-**Don't rewrite version history**
+### Don't rewrite version history
 
 Once a version has been published to the versions files, do not change its
 associated `git-tree` in a git registry or directory in a filesystem registry.
@@ -374,11 +371,10 @@ changing a `git-tree` entry violates this principle.
 If the existing version has issues, prefer to create a new
 [`port-version`](../reference/vcpkg-json.md#port-version).
 
-
-**Don't delete versions files**
+### Don't delete versions files
 
 When removing a port from your registry, remove its contents from the ports
-directory and its entry in the baseline file. But _do not_ remove its associated
+directory and its entry in the baseline file. But *do not* remove its associated
 versions file.
 
 Even if a port no longer exists in the registry, as long as the versions file

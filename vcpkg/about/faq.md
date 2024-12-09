@@ -32,7 +32,9 @@ There are two ways to manage your dependencies with vcpkg:
 
 ## Can I contribute a new library?
 
-Yes! Start by reading our [contribution guidelines](https://github.com/Microsoft/vcpkg/blob/master/CONTRIBUTING.md). Also take a look at our [Maintainer Guide](../contributing/maintainer-guide.md) which goes into more details. We also have a [tutorial for adding a port to vcpkg](../get_started/get-started-adding-to-registry.md) to help you get started.
+Yes! Start by reading our [contribution guidelines](https://github.com/Microsoft/vcpkg/blob/master/CONTRIBUTING.md). Also
+take a look at our [Maintainer Guide](../contributing/maintainer-guide.md) which goes into more details. We also have a
+[tutorial for adding a port to vcpkg](../get_started/get-started-adding-to-registry.md) to help you get started.
 
 If you want to contribute but don't have a particular library in mind then take a look at the list
 of [new port requests](https://github.com/Microsoft/vcpkg/issues?q=is%3Aissue+is%3Aopen+label%3Acategory%3Anew-port).
@@ -98,7 +100,17 @@ dependencies for individual projects, which works even if multiple projects are
 on the same machine and allow you to easily manage package versions and which
 registries libraries are coming from.
 
-However, if you are using classic mode instead, within a single instance of vcpkg (e.g. one set of `installed\`, `packages\`, `ports\` and so forth), you can only have one version of a library installed (otherwise, the headers would conflict with each other!). For those with experience with system-wide package managers, packages in vcpkg correspond to the `X-dev` or `X-devel` packages. In this case, to use different versions of a library for different projects, we recommend making separate instances of vcpkg and using the per-project integration mechanisms. The versions of each library are specified by the files in `ports\`, so they are easily manipulated using standard `git` commands. This makes it very easy to roll back the entire set of libraries to a consistent set of older versions which all work with each other. If you need to then pin a specific library forward, that is as easy as checking out the appropriate version of `ports\<package>\`. If your application is very sensitive to the versions of libraries, we recommend checking in the specific set of portfiles you need into your source control along with your project sources and using the `--vcpkg-root` option to redirect the working directory of `vcpkg.exe`.
+However, if you are using classic mode instead, within a single instance of vcpkg (e.g. one set of `installed\`,
+`packages\`, `ports\` and so forth), you can only have one version of a library installed (otherwise, the headers would
+conflict with each other!). For those with experience with system-wide package managers, packages in vcpkg correspond
+to the `X-dev` or `X-devel` packages. In this case, to use different versions of a library for different projects, we
+recommend making separate instances of vcpkg and using the per-project integration mechanisms. The versions of each
+library are specified by the files in `ports\`, so they are easily manipulated using standard `git` commands. This
+makes it very easy to roll back the entire set of libraries to a consistent set of older versions which all work with
+each other. If you need to then pin a specific library forward, that is as easy as checking out the appropriate version
+of `ports\<package>\`. If your application is very sensitive to the versions of libraries, we recommend checking in the
+specific set of portfiles you need into your source control along with your project sources and using the `--vcpkg-root`
+option to redirect the working directory of `vcpkg.exe`.
 
 ## How does vcpkg protect my privacy?
 
@@ -120,7 +132,11 @@ Yes. While vcpkg will only produce the standard "Release" and "Debug" configurat
 
 First of all, vcpkg will automatically assume any custom configuration starting with "Release" (resp. "Debug") as a configuration that is compatible with the standard "Release" (resp. "Debug") configuration and will act accordingly.
 
-For other configurations, you only need to override the MSBuild `$(VcpkgConfiguration)` macro in your project file (.vcxproj) to declare the compatibility between your configuration, and the target standard configuration. Unfortunately, due to the sequential nature of MSBuild, you'll need to add those settings much higher in your vcxproj so that it is declared before the vcpkg integration is loaded. It is recommend that the `$(VcpkgConfiguration)` macro is added to the "Globals" PropertyGroup.
+For other configurations, you only need to override the MSBuild `$(VcpkgConfiguration)` macro in your project file
+(.vcxproj) to declare the compatibility between your configuration, and the target standard configuration.
+Unfortunately, due to the sequential nature of MSBuild, you'll need to add those settings much higher in your vcxproj
+so that it is declared before the vcpkg integration is loaded. It is recommend that the `$(VcpkgConfiguration)` macro
+is added to the "Globals" PropertyGroup.
 
 For example, you can add support for your "MyRelease" configuration by adding in your project file:
 

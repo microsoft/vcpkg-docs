@@ -24,7 +24,7 @@ database](../concepts/registries.md#versions-database).
 
 ### <a name="git-baseline"></a> Baseline file layout in Git registries
 
-*Top-level fields*
+#### Top-level fields
 
 The top-level object in a `baseine.json` file is a dictionary, each key in this
 dictionary is a _named baseline_. Due to implementation details of Git
@@ -37,7 +37,7 @@ baseline version.
 | `default`      | BaselineObject | The default baseline, required for Git registries. |
 | Named baseline | BaselineObject | Additional baselines. The field name corresponds to the baseline name. |
 
-*BaselineObject*
+#### BaselineObject
 
 The baseline object is a dictionary, with each key corresponding to a port name
 in the registry and its value being the latest version of the port.
@@ -46,7 +46,7 @@ in the registry and its value being the latest version of the port.
 | --------- | --------------------- | ----------- |
 | Port name | BaselineVersionObject | A mapping of a port name to its latest version |
 
-*BaselineVersionObject*
+#### BaselineVersionObject
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
@@ -75,20 +75,19 @@ The `versions` directory contains all the information about which versions of
 packages are contained in the registry, along with the method to retrieve those
 versions from the repository's history.
 
-*Top-level fields*
+#### Top-level fields
 
 | Name       | Type            | Description |
 | ---------- | --------------- | --------------------------- |
 | `versions` | VersionObject[] | An array of version objects. Contains an entry for each version of the port in the history of the registry. |
 
-*VersionObject*
+#### VersionObject
 
 | Name       | Type   | Description |
 | ---------- | ------ | ----------- |
 | `git-tree` | string | A git tree SHA used to retrieve the port contents |
 | [`version`<br>`version-semver`<br>`version-date`<br>`version-string`](../reference/vcpkg-json.md#version) | string | Upstream version information |
 | [port-version](../reference/vcpkg-json.md#port-version) | integer | Port files revision |
-
 
 #### Example of a Git registry versions file
 
@@ -135,7 +134,7 @@ command can be used:
 
 ```Console
 git -C <path/to/ports> ls-tree --format='%(objectname)' <commit sha> -- <portname>
-``` 
+```
 
 Example:
 
@@ -190,7 +189,7 @@ publish a port in a Git registry.
 
 ### <a name="filesystem-baseline"></a> Baseline file layout in filesystem registries
 
-*Top-level fields*
+#### Top-level fields
 
 The top-level object in a `baseine.json` file is a dictionary, each key in this
 dictionary is a _named baseline_. Baselines should contain mappings of all the
@@ -200,7 +199,7 @@ ports in the registry to their baseline version.
 | -------------- | -------------- | ----------- |
 | Named baseline | BaselineObject | Additional baselines. The field name corresponds to the baseline name. |
 
-*BaselineObject*
+#### BaselineObject
 
 The baseline object is a dictionary, with each key corresponding to a port name
 in the registry and its value being the latest version of the port.
@@ -209,7 +208,7 @@ in the registry and its value being the latest version of the port.
 | --------- | --------------------- | ----------- |
 | Port name | BaselineVersionObject | A mapping of a port name to its latest version |
 
-*BaselineVersionObject*
+#### BaselineVersionObject
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
@@ -224,7 +223,7 @@ don't require a `default` baseline.
 
 ```json
 {
-  "my-baseline": {
+  "2024-12-01": {
     "foo": {
       "baseline": "1.0.0",
       "port-version": 1
@@ -232,6 +231,7 @@ don't require a `default` baseline.
   }
 }
 ```
+
 ### <a name="filesystem-version-file"></a> Version file layout in Git registries
 
 The `versions` directory contains all the information about which versions of
@@ -262,17 +262,17 @@ instead.
 {
   "versions": [
     {
-      "git-tree": "$/ports/foo/1.2.0",
+      "path": "$/ports/foo/1.2.0",
       "version": "1.2.0",
       "port-version": 0
     },
     {
-      "git-tree": "$/ports/foo/1.1.0",
+      "path": "$/ports/foo/1.1.0",
       "version": "1.1.0",
       "port-version": 0
     },
     {
-      "git-tree": "$/ports/foo/1.0.0",
+      "path": "$/ports/foo/1.0.0",
       "version": "1.0.0",
       "port-version": 0
     }
