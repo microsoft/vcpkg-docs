@@ -90,7 +90,7 @@ versions from the repository's history.
 | [port-version](../reference/vcpkg-json.md#port-version) | integer | Port files revision |
 
 
-#### Example of a Git registry version file
+#### Example of a Git registry versions file
 
 ```json
 {
@@ -118,10 +118,10 @@ versions from the repository's history.
 
 vcpkg uses Git's capabilities to retrieve specific versions of a port contained
 in its commit history. The method used is to retrieve the `git-tree` object from
-the repository as specified in the version file of a port.
+the repository as specified in the versions file of a port.
 
 Each port directory in a Git registry has a unique SHA associated with it
-(referred as `git-tree` in the version files). The SHA is calculated using the
+(referred as `git-tree` in the versions files). The SHA is calculated using the
 contents of the directory; each time a change is commited to the repository that
 modifies a directory, its SHA is recalculated. 
 
