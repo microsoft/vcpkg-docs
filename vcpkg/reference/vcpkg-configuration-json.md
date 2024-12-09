@@ -170,6 +170,6 @@ Package patterns may contain only lowercase letters, digits, and `-`, with an op
 
 See the [Using Registries documentation](../concepts/package-name-resolution.md) for more information on how port names are resolved.
 
-[Git Registry]: ../maintainers/registries.md#git-registries
-[Filesystem Registry]: ../maintainers/registries.md#filesystem-registries
-[Builtin Registry]: ../maintainers/registries.md#builtin-registries
+[Git Registry]: ../concepts/registries.md#git-registries
+[Filesystem Registry]: ../concepts/registries.md#filesystem-registries
+[Builtin Registry]: ../concepts/registries.md#built-in-registry

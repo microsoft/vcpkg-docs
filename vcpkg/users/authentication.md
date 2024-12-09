@@ -6,7 +6,7 @@ ms.topic: concept-article
 ---
 # Remote authentication
 
-[Registries](registries.md) and [`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md) directly use the Git command line tools to fetch remote resources. Some of these resources may be protected from anonymous access and need authentication or credentials.
+[Registries](../concepts/registries.md) and [`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md) directly use the Git command line tools to fetch remote resources. Some of these resources may be protected from anonymous access and need authentication or credentials.
 
 The strategies below all seek to achieve the same fundamental goal: `git clone https://....` should succeed without interaction. This enables vcpkg to be separated from the specifics of your authentication scheme, ensuring forward compatibility with any additional security improvements in the future.
 

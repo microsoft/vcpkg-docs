@@ -32,7 +32,7 @@ form with a comment in `portfile.cmake` rather than trying to add additional por
 the curated registry's continuous integration. For example, see
 [glad@0.1.36](https://github.com/microsoft/vcpkg/blob/67cc1677c3bf5c23ea14b9d2416c7422fdeac492/ports/glad/portfile.cmake#L17).
 
-Before the introduction of [registries](../maintainers/registries.md), we accepted several
+Before the introduction of [registries](../concepts/registries.md), we accepted several
 not tested ports-as-alternatives, such as `boringssl`, that could make authoring overlay ports
 easier. This is no longer accepted because registries allow publishing of these untested ports
 without modifying the curated registry.
@@ -434,7 +434,7 @@ to update the files for all modified ports at once.
 > [!NOTE]
 > These commands require you to have committed your changes to the ports before running them. The reason is that the Git SHA of the port directory is required in these version files. But don't worry, the `x-add-version` command will warn you if you have local changes that haven't been committed.
 
-For more information, see the [Versioning reference](../users/versioning.md) and [Creating registries](../maintainers/registries.md).
+For more information, see the [Versioning reference](../users/versioning.md) and [Registries](../concepts/registries.md) articles.
 
 ## Patching
 

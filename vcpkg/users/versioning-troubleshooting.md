@@ -14,7 +14,7 @@ This guide is intended for users experiencing issues with [versioning](./version
 ## <a name="inspect-versions-file"></a> Inspecting the version file for a port
 
 > [!NOTE]
-> The process described below is meant to work for ports from the [vcpkg registry](<https://github.com/Microsoft/vcpkg>). See our [registry](../maintainers/registries.md#git-registries) documentation to learn how the versioning database is implemented in custom registries.
+> The process described below is meant to work for ports from the [vcpkg registry](<https://github.com/Microsoft/vcpkg>). See our [registry](../concepts/registries.md) documentation to learn how the versioning database is implemented in custom registries.
 
 To inspect the versions database of a specific port:  
 1. Navigate to the `vcpkg/versions` directory.
