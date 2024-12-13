@@ -266,6 +266,21 @@ message(STATUS "See the overlay ports documentation at https://github.com/micros
 Do not use embedded copies of libraries.
 All dependencies should be split out and packaged separately so they can be updated and maintained.
 
+Vendored dependencies introduce several challenges that conflict with vcpkg’s goals of providing a reliable, consistent, and maintainable package management system:
+
+Difficulty in Updates: Embedded copies of libraries make it harder to track and apply updates, including security patches, from the upstream projects. This leads to potential security risks and outdated dependencies in the ecosystem.
+
+Symbol Conflicts: Vendored dependencies can cause symbol conflicts when multiple packages include different versions of the same library. 
+  
+  For example:
+  If Package A vendors Library X (version 1) and Package B vendors Library X (version 2), an application linking both packages may experience runtime errors or undefined behavior due to conflicting symbols.
+
+By packaging dependencies separately, vcpkg ensures a single version of a library is used across all packages, eliminating such conflicts.
+
+Licensing Compliance: Vendored dependencies can obscure the licensing of the embedded libraries, potentially violating their terms or creating compatibility issues.
+
+Increased Maintenance Burden: Keeping vendored dependencies in sync with their upstream versions requires significant manual effort and often leads to duplicated work across packages.
+
 ### Prefer using CMake
 
 When multiple buildsystems are available, prefer using CMake.
