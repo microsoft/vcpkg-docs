@@ -4,7 +4,7 @@ title: Versioning reference
 description: Reference documentation for the vcpkg versioning feature.
 author: vicroms
 ms.author: viromer
-ms.date: 3/1/2024
+ms.date: 1/16/2025
 ms.topic: reference
 ---
 # Versioning reference
@@ -161,6 +161,8 @@ Declaring an override forces vcpkg to ignore all other version constraints and u
 Overrides are declared as an array of package version declarations.
 
 For an override to take effect, the overridden package must form part of the dependency graph. That means that a dependency must be declared either by the top-level manifest or be part of a transitive dependency.
+
+Only one override may be declared for a given name.
 
 ```json
 {
