@@ -42,7 +42,7 @@ Indicates that this port can only be built with dynamic/shared CRT linkage.
 ## Notes
 
 If the triplet requests a setting of `VCPKG_LIBRARY_LINAKGE` different than the port supports,
-and changing `VCPKG_LIBRARY_LINKAGE` to that the port supports is cosidered safe,
+and changing `VCPKG_LIBRARY_LINKAGE` to that the port supports is considered safe,
 `vcpkg_check_linkage` changes `VCPKG_LIBRARY_LINKAGE` to that the port supports and emits a warning.
 This means that the port may produce something that the user does not expect, but the alternative
 would be to just fail.
