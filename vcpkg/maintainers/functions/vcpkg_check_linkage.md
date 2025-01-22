@@ -2,6 +2,7 @@
 title: vcpkg_check_linkage
 description: Assert the available library and CRT linkage options for the port.
 ms.date: 12/05/2024
+ms.topic: reference
 ---
 # vcpkg_check_linkage
 
@@ -28,7 +29,7 @@ not a fatal error.
 ### ONLY_DYNAMIC_LIBRARY
 
 Indicates that this port can only be built with dynamic/shared library linkage. When using this
-option, port authors should add `!(static & static-crt)` to the `"supports"` expression in the
+option, port authors should add `!(static & static-crt)` to the [`"supports"`](../../reference/vcpkg-json.md#supports) expression in the
 port's `vcpkg.json` to warn consumers it will fail early.
 
 ### ONLY_STATIC_CRT
@@ -41,7 +42,7 @@ Indicates that this port can only be built with dynamic/shared CRT linkage.
 
 ## Notes
 
-If the triplet requests a setting of `VCPKG_LIBRARY_LINAKGE` different than the port supports,
+If the triplet requests a setting of `VCPKG_LIBRARY_LINKAGE` different than the port supports,
 and changing `VCPKG_LIBRARY_LINKAGE` to that the port supports is considered safe,
 `vcpkg_check_linkage` changes `VCPKG_LIBRARY_LINKAGE` to that the port supports and emits a warning.
 This means that the port may produce something that the user does not expect, but the alternative
