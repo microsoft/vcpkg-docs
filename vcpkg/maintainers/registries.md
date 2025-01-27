@@ -10,7 +10,7 @@ ms.topic: reference
 
 ## Overview
 
-This article describes the implementation details for each kind of custom
+This article describes the implementation details for each kind of
 registry. Specifically, this file concerns with the recommended layout for each
 kind of registry and the expected contents of their respective [versions
 database](../concepts/registries.md#versions-database).

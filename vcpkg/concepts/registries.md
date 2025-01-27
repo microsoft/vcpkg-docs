@@ -266,9 +266,9 @@ filesystem. They follow the common registry structure but don't make use of Git
 to offer versioning capabilities. Instead, they use a primitive form of version
 control using a distinct path for each version of its ports.
 
-These types of registries are more suited to be a testing ground for your ports or to provide an alternative for
-registries in version control systems that are not Git. Since no tooling is offered to manipulate the version database
-files, this method is not recommended for large collections of ports.
+This kind of registry is suited to be a testing ground for your ports or to provide an alternative for
+a registry in a non-Git version control system. Filesystem registries are not recommended for large collection of ports
+and no tooling is provided to manipulate the version database files for this kind of registry.
 
 See the [registries
 reference](../maintainers/registries.md#filesystem-registries) for details on
@@ -283,8 +283,9 @@ to your project's [manifest file (`vcpkg.json`)](../reference/vcpkg-json.md).
 ### Default registry
 
 When [resolving port names](package-name-resolution.md), the default registry
-works as the fallback when a port's name is not found in any other registry
-specified in the [`registries` array](#registries-array).
+works as the fallback when a port's name does not match any of the [package
+patterns](../reference/vcpkg-configuration-json.md#registry-packages) declared
+by other registries in the [`registries` array](#registries-array).
 
 As a convenience for users that are not engaging with custom registries, vcpkg
 implicitly adds the [built-in registry](#built-in-registry) as the default
@@ -372,6 +373,9 @@ If the existing version has issues, prefer to create a new
 [`port-version`](../reference/vcpkg-json.md#port-version).
 
 ### Don't delete versions files
+
+> [!NOTE]
+> This section applies only to [Git registries](#git-registries)
 
 When removing a port from your registry, remove its contents from the ports
 directory and its entry in the baseline file. But *do not* remove its associated
