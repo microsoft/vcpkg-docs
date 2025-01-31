@@ -98,11 +98,21 @@ Patches are used to fix bugs, add features, or customize the behavior of a packa
 
 A vcpkg-specific term, a port contains:
 
-* Metadata about a package: name, version, dependencies, supported features,
+* Metadata about a [package](#package): name, version, dependencies, supported features,
   etc.
 * Instructions to acquire, build if necessary, and install the package.
 
 See the [ports documentation](../concepts/ports.md) to learn more.
+
+## R
+
+### Registry
+
+A vcpkg-specific term, a registry is a collection of [ports](#port) available to install in vcpkg.  Registries follow a specific
+structure described in the [registries documentation](../concepts/registries.md).
+
+vcpkg offers a curated registry available at <https://github.com/Microsoft/vcpkg>, and users can create their own [custom
+registries](../produce/publish-to-a-git-registry.md) to host their own collection of ports.
 
 ## S
 
