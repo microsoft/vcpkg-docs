@@ -96,7 +96,7 @@ Each path in the array must point to a directory of triplet files ([see triplets
 | Name | Required | Type   | Description |
 |------|----------|--------|-------------|
 | [baseline](#registry-baseline) | Git and Builtin Registries | string | Minimum version constraint on all ports from this registry |
-| [kind](#registry-kind) | Yes | string | Type of registry being used |
+| [kind](#registry-kind) | Yes | string | Kind of registry being used |
 | [packages](#registry-packages) | Yes, if not default | string | List of ports to come from this registry |
 | [path](#registry-path) | Filesystem Registry | string | Path to the Filesystem registry |
 | [reference](#registry-reference) | No | string | Git reference to use for available versions |
@@ -106,9 +106,9 @@ Each path in the array must point to a directory of triplet files ([see triplets
 
 ### <a name="registry-kind"></a> [Registry][]: `"kind"`
 
-The type of registry being used. A string. Required.
+The kind of registry being used. A string. Required.
 
-| `"kind"` Value | Registry Type |
+| `"kind"` Value | Registry Kind |
 | ------|---|
 | `"filesystem"` | [Filesystem Registry][] |
 | `"git"` | [Git Registry][] |
