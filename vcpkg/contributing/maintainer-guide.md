@@ -193,6 +193,14 @@ https://github.com/GPUOpen-LibrariesAndSDKs/display-library/blob/master/Public-D
 
 Version constraints within ports should generally be avoided, as they can hinder the independent evolution of projects. Adding such constraints is only permissible when there is a well-documented justification, such as proven incompatibility with specific earlier versions. These constraints should not be used merely to maintain parity with independent projects.
 
+### Special Ports
+
+Apart from normal ports for libraries there are different types of special ports which have fullfill different purposes. One the one hand there are [script ports](../maintainers/authoring-script-ports.md) like `vcpkg-cmake` which are designed to enable additional portfile functions with the added benefit of being versioned.
+
+Then there are ports like  e.g. `blas`/`lapack` which are metaports and give users an easy way to switch out the default `blas`/`lapack` implementation by providing an appropiate overlay for these ports.
+
+Ports commonly named like `vcpkg-tool-x` are ports which are [tool ports](../maintainers/authoring-tool-ports.md) and provide a required tool for other ports either by downloading a prebuild binary or by building a tool from source.
+
 ## Features
 
 ### Do not use features to implement alternatives
