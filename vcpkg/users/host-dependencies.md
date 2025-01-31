@@ -1,7 +1,9 @@
 ---
 title: Host dependencies
 description: Describes host dependencies, tools packaged by vcpkg for use by ports or custom build systems.
-ms.date: 01/10/2024
+author: vicroms
+ms.author: viromer
+ms.date: 01/31/2025
 ms.topic: concept-article
 ---
 # Host dependencies
@@ -87,5 +89,5 @@ Only tools installed in the [`tools` folder](../reference/installation-tree-layo
 for the host triplet are added to `CMAKE_PROGRAM_PATH`.
 Effectively, the following locations are added:
 
-* `${VCPKG_INSTALLED/DIR}/${VCPKG_HOST_TRIPLET}/tools`
-* `${VCPKG_INSTALLED/DIR}/${VCPKG_HOST_TRIPLET}/tools/*/bin`
+* `${VCPKG_INSTALLED_DIR}/${VCPKG_HOST_TRIPLET}/tools`
+* `${VCPKG_INSTALLED_DIR}/${VCPKG_HOST_TRIPLET}/tools/*/bin`
