@@ -39,11 +39,12 @@ without modifying the curated registry.
 
 ### Use lowercase for hexadecimal digits strings
 
-Many of the features in vcpkg rely on comparing strings of hexadecimal digits, some examples include but are not limited
-to SHA512 hashes, Git commit IDs and tree object hashes.
+Many of the features in vcpkg rely on comparing strings of hexadecimal digits. Some examples include, but are not limited to, SHA512 hashes, Git commit IDs, and tree object hashes.
+
 
 Internally, vcpkg uses lowercase normalization for comparisons of such values where the casing is irrelevant. However, tooling
-built on top of vcpkg's infrastructure may not make the same considerations. For this reason we require hexadecimal strings
+built on top of vcpkg's infrastructure may not make the same considerations. For this reason, we require hexadecimal strings
+
 to be lowercased for consistency in the following scenarios:
 
 * The `SHA512` parameter in vcpkg helper functions.
