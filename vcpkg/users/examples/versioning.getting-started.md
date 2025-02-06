@@ -255,7 +255,7 @@ The last thing to discuss is how overlay ports interact with versioning resoluti
 
 Going into more detail, when you provide an overlay for a port, vcpkg will always use the overlay port without caring what version is contained in it. The reasons are two-fold: (1) it is consistent with the existing behavior of overlay ports of completely masking the existing port, and (2) overlay ports do not (and are not expected to) provide enough information to power vcpkg's versioning feature.
 
-If you want to have flexible port customization along with versioning, you should consider [making your own custom registry](../../maintainers/registries.md).
+If you want to have flexible port customization along with versioning, you should consider [making your own custom registry](../../concepts/registries.md).
 
 ## Further reading
 

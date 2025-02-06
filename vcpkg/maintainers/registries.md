@@ -1,281 +1,289 @@
 ---
-title: Creating registries
-description: Learn about how to create registries for vcpkg.
-ms.date: 01/10/2024
-ms.topic: tutorial
+title: Registries reference
+description: This article describes specific details on how to implement custom registries
+author: vicroms
+ms.author: viromer
+ms.date: 11/10/2024
+ms.topic: reference
 ---
-# Creating registries
-
-For information on consuming registries, see [Using registries](../consume/git-registries.md).
+# Registries reference
 
 ## Overview
 
-Registries are collections of ports and their versions. There are two major choices of implementation for registries, if you want to create your own: git registries, and filesystem registries.
+This article describes the implementation details for each kind of
+registry. Specifically, this file concerns with the recommended layout for each
+kind of registry and the expected contents of their respective [versions
+database](../concepts/registries.md#versions-database).
 
-Git registries are simple git repositories, and can be shared publicly or privately via normal mechanisms for git repositories. The [vcpkg repository](https://github.com/microsoft/vcpkg), for example, is a git registry.
+> [!NOTE]
+> This article contains information on how to implement custom registries. For
+> information on consuming custom registries in your project see the [Using
+> registries](../consume/git-registries.md) article. 
 
-Filesystem registries are designed as more of a testing ground. Given that they literally live on your filesystem, the only way to share them is via shared directories. However, filesystem registries can be useful as a way to represent registries held in non-git version control systems, assuming one has some way to get the registry onto the disk.
+## Git registries
 
-We expect the set of registry types to grow over time; if you would like support for registries built in your favorite public version control system, don't hesitate to open a PR.
+### <a name="git-baseline"></a> Baseline file layout in Git registries
 
-The basic structure of a registry is:
+#### Top-level fields
 
-- The set of versions that are considered "latest" at certain times in history, known as the "baseline".
-- The set of all the versions of all the ports, and where to find each of these in the registry.
+The top-level object in a `baseine.json` file is a dictionary, each key in this
+dictionary is a _named baseline_. Due to implementation details of Git
+registries, it is required that a _named baseline_ with the name "default"
+exists and that it contains a mapping of all the ports in the registry to their
+baseline version.
 
-### Git registries
+| Name           | Type           | Description |
+| -------------- | -------------- | ----------- |
+| `default`      | BaselineObject | The default baseline, required for Git registries. |
+| Named baseline | BaselineObject | Additional baselines. The field name corresponds to the baseline name. |
 
-As you're following along with this documentation, it may be helpful to have
-a working example to refer to. We've written one and put it here:
+#### BaselineObject
 
-[Microsoft/vcpkg-docs: vcpkg registry](https://github.com/microsoft/vcpkg-docs/tree/vcpkg-registry).
+The baseline object is a dictionary, with each key corresponding to a port name
+in the registry and its value being the latest version of the port.
 
-All git registries must have a `versions/baseline.json` file. This file contains the set of "latest versions" at a certain commit. It is laid out as a top-level object containing only the `"default"` field. This field should contain an object mapping port names to the version which is currently the latest.
+| Name      | Type                  | Description |
+| --------- | --------------------- | ----------- |
+| Port name | BaselineVersionObject | A mapping of a port name to its latest version |
 
-Here's an example of a valid baseline.json:
+#### BaselineVersionObject
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `baseline` | string | A string corresponding to the latest available version of the port in the registry. |
+| `port-version` | integer | An integer corresponding to the latest port version of the port in the registry |
+
+#### Example of a `baseline.json` file in a Git registry
+
+In a registry containing a single port named `foo` at version `1.0.0#1`, the
+`baseline.json` file contents should be:
 
 ```json
 {
   "default": {
-    "kitten": {
-      "baseline": "2.6.2",
-      "port-version": 0
-    },
-    "port-b": {
-      "baseline": "19.00",
-      "port-version": 2
+    "foo": { 
+      "baseline": "1.0.0", 
+      "port-version": 1
     }
   }
 }
 ```
 
-The `versions` directory contains all the information about which versions of which packages are contained in the registry, along with where those versions are stored. The rest of the registry just acts as a backing store, as far as vcpkg is concerned: only things inside the `versions` directory will be used to direct how your registry is seen by vcpkg.
+### <a name="git-version-file"></a> Version file layout in Git registries
 
-Each port in a registry should exist in the versions directory as `<first letter of port>-/<name of port>.json`; in other words, the information about the `kitten` port would be located in `versions/k-/kitten.json`. This should be a top-level object with only a single field: `"versions"`. This field should contain an array of version objects:
+The `versions` directory contains all the information about which versions of
+packages are contained in the registry, along with the method to retrieve those
+versions from the repository's history.
 
-- The version of the port in question; should be exactly the same as the `vcpkg.json` file, including the version fields and `"port-version"`.
-- The `"git-tree"` field, which is a git tree; in other words, what you get when you write `git rev-parse COMMIT-ID:path/to/port`.
+#### Top-level fields
 
-The version field for ports with deprecated `CONTROL` files is `"version-string"`.
+| Name       | Type            | Description |
+| ---------- | --------------- | --------------------------- |
+| `versions` | VersionObject[] | An array of version objects. Contains an entry for each version of the port in the history of the registry. |
 
-> [!WARNING]
-> One very important part of registries is that versions should _never_ be changed. Updating to a later ref should never remove or change an existing version. It must always be safe to update a registry.
+#### VersionObject
 
-Here's an example of a valid version database for a `kitten` port with one version:
+| Name       | Type   | Description |
+| ---------- | ------ | ----------- |
+| `git-tree` | string | A git tree SHA used to retrieve the port contents |
+| [`version`<br>`version-semver`<br>`version-date`<br>`version-string`](../reference/vcpkg-json.md#version) | string | Upstream version information |
+| [port-version](../reference/vcpkg-json.md#port-version) | integer | Port files revision |
 
-```json
-{
-  "versions": [
-    {
-      "version": "2.6.2",
-      "port-version": 0,
-      "git-tree": "67d60699c271b7716279fdea5a5c6543929eb90e"
-    }
-  ]
-}
-```
-
-In general, it's not important where you place port directories. However, the idiom in vcpkg is to follow what the built in vcpkg registry does: your `kitten` port should be placed in `ports/kitten`.
-
-> [!WARNING]
-> One other thing to keep in mind is that when you update a registry, all previous versions should also be accessible. Since your user will set their baseline to a commit ID, that commit ID must always exist, and be accessible from your HEAD commit, which is what is actually fetched. This means that your HEAD commit should be a child of all previous HEAD commits.
-
-### Builtin registries
-
-Builtin registries are treated as special [Git registries](#git-registries). Instead of fetching from a remote url, builtin registries consult the `$VCPKG_ROOT/.git` directory of the vcpkg clone. They use the currently checked out `$VCPKG_ROOT/versions` directory as the source for versioning information.
-
-#### Adding a new version
-
-There is some git trickery involved in creating a new version of a port. The first thing to do is make some changes, update the `"port-version"` and regular version field as you need to, and then test with `overlay-ports`:
-
-  `vcpkg install kitten --overlay-ports=ports/kitten`.
-
-Once you've finished your testing, you'll need to make sure that the directory as it is is under git's purview. You'll do this by creating a temporary commit:
-
-```powershell
-> git add ports/kitten
-> git commit -m 'temporary commit'
-```
-
-Then, get the git tree ID of the directory:
-
-```powershell
-> git rev-parse HEAD:ports/kitten
-73ad3c823ef701c37421b450a34271d6beaf7b07
-```
-
-Then, you can add this version to the versions database. At the top of your `versions/k-/kitten.json`, you can add (assuming you're adding version `2.6.3#0`):
+#### Example of a Git registry versions file
 
 ```json
 {
   "versions": [
     {
-      "version": "2.6.3",
-      "port-version": 0,
-      "git-tree": "73ad3c823ef701c37421b450a34271d6beaf7b07"
-    },
-    {
-      "version": "2.6.2",
-      "port-version": 0,
-      "git-tree": "67d60699c271b7716279fdea5a5c6543929eb90e"
-    }
-  ]
-}
-```
-
-Then, you'll want to modify your `versions/baseline.json` with your new version as well:
-
-```json
-{
-  "default": {
-    "kitten": {
-      "baseline": "2.6.3",
+      "git-tree": "963060040c3ca463d17136e39c7317efb15eb6a5",
+      "version": "1.2.0",
       "port-version": 0
     },
-    "port-b": {
-      "baseline": "19.00",
-      "port-version": 2
+    {
+      "git-tree": "548c90710d59c174aa9ab10a24deb69f1d75ff8f",
+      "version": "1.1.0",
+      "port-version": 0
+    },
+    {
+      "git-tree": "67d60699c271b7716279fdea5a5c6543929eb90e",
+      "version": "1.0.0",
+      "port-version": 0
     }
-  }
+  ]
 }
+``` 
+
+#### <a name="obtain-git-tree-sha"></a> Obtaining a `git-tree` SHA
+
+vcpkg uses Git's capabilities to retrieve specific versions of a port contained
+in its commit history. The method used is to retrieve the `git-tree` object from
+the repository as specified in the versions file of a port.
+
+Each port directory in a Git registry has a unique SHA associated with it
+(referred as `git-tree` in the versions files). The SHA is calculated using the
+contents of the directory; each time a change is commited to the repository that
+modifies a directory, its SHA is recalculated. 
+
+Git allows you to retrieve the contents of a given directory at any point in its
+history, provided that you know their specific SHA. By making use of this
+feature, vcpkg can index specific port versions with their respective SHA
+(`git-tree`).
+
+To obtain the SHA of a port directory at any given revision the following Git
+command can be used:
+
+```Console
+git -C <path/to/ports> ls-tree --format='%(objectname)' <commit sha> -- <portname>
 ```
 
-and amend your current commit:
+Example:
 
-```powershell
-> git commit --amend
+```Console
+git -C %VCPKG_ROOT%/ports ls-tree --format='%(objectname)' HEAD -- curl
+6ef1763f3cbe570d6378632c9b5793479c37fb07
 ```
 
-then share away!
+The command returns the SHA of the directory containing the `curl` port at the
+current revision (`HEAD`).
+
+It is possible to show the contents of the `git-tree` using the command `git show <git-tree>`:
+
+```Console
+git show 6ef1763f3cbe570d6378632c9b5793479c37fb07
+tree 6ef1763f3cbe570d6378632c9b5793479c37fb07
+
+0005_remove_imp_suffix.patch
+0020-fix-pc-file.patch
+0022-deduplicate-libs.patch
+cmake-config.patch
+cmake-project-include.cmake
+dependencies.patch
+export-components.patch
+portfile.cmake
+redact-input-vars.diff
+usage
+vcpkg-cmake-wrapper.cmake
+vcpkg.json
+```
+
+Or the contents of a specific file with `git show <git-tree>:<file>`:
+
+```Console
+git show 6ef1763f3cbe570d6378632c9b5793479c37fb07:usage
+curl is compatible with built-in CMake targets:
+
+    find_package(CURL REQUIRED)
+    target_link_libraries(main PRIVATE CURL::libcurl)
+```
+
+Mantaining the database files up to date using these Git commands in a manual
+process can be a difficult task. For that reason we recommend using the
+[`x-add-version` command](../commands/add-version.md), which automates the
+process as long as the repository follows the recommended [registry
+structure](../concepts/registries.md#registry-structure). See the [Tutorial:
+Publish packages to a private vcpkg registry using
+Git](../produce/publish-to-a-git-registry.md) article for an example of how to
+publish a port in a Git registry.
 
 ### Filesystem registries
 
-As you're following along with this documentation, it may be helpful to have a working example to refer to. We've written one and put it here:
+### <a name="filesystem-baseline"></a> Baseline file layout in filesystem registries
 
-[Example filesystem registry](https://github.com/vcpkg/example-filesystem-registry).
+#### Top-level fields
 
-All filesystem registries must have a `versions/baseline.json` file. This file contains the set of "latest versions" for a certain version of the registry. It is laid out as a top-level object containing a map from version name to "baseline objects", which map port names to the version which is considered "latest" for that version of the registry.
+The top-level object in a `baseine.json` file is a dictionary, each key in this
+dictionary is a _named baseline_. Baselines should contain mappings of all the
+ports in the registry to their baseline version.
 
-Filesystem registries need to decide on a versioning scheme. Unlike git registries, which have the implicit versioning scheme of refs, filesystem registries can't rely on the version control system here. One possible option is to do a daily release, and have your "versions" be dates.
+| Name           | Type           | Description |
+| -------------- | -------------- | ----------- |
+| Named baseline | BaselineObject | Additional baselines. The field name corresponds to the baseline name. |
 
-> [!WARNING]
-> A baseline must not be modified once published. If you want to change or update versions, you need to create a new baseline in the `baseline.json` file.
+#### BaselineObject
 
-Here's an example of a valid `baseline.json`, for a registry that has decided upon dates for their versions:
+The baseline object is a dictionary, with each key corresponding to a port name
+in the registry and its value being the latest version of the port.
+
+| Name      | Type                  | Description |
+| --------- | --------------------- | ----------- |
+| Port name | BaselineVersionObject | A mapping of a port name to its latest version |
+
+#### BaselineVersionObject
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `baseline` | string | A string corresponding to the latest available version of the port in the registry. |
+| `port-version` | integer | An integer corresponding to the latest port version of the port in the registry |
+
+The layout of the baseline file in a filesystem registry is the same as for [Git
+registries](#git-baseline). The only difference being that filesystems
+don't require a `default` baseline.
+
+#### Example of a `baseline.json` file in a Git registry
 
 ```json
 {
-  "2021-04-16": {
-    "kitten": {
-      "baseline": "2.6.2",
-      "port-version": 0
-    },
-    "port-b": {
-      "baseline": "19.00",
-      "port-version": 2
-    }
-  },
-  "2021-04-15": {
-    "kitten": {
-      "baseline": "2.6.2",
-      "port-version": 0
-    },
-    "port-b": {
-      "baseline": "19.00",
+  "2024-12-01": {
+    "foo": {
+      "baseline": "1.0.0",
       "port-version": 1
     }
   }
 }
 ```
 
-The `versions` directory contains all the information about which versions of which packages are contained in the registry, along with where those versions are stored. The rest of the registry just acts as a backing store, as far as vcpkg is concerned: only things inside the `versions` directory will be used to direct how your registry is seen by vcpkg.
+### <a name="filesystem-version-file"></a> Version file layout in Git registries
 
-Each port in a registry should exist in the versions directory as `<first letter of port>-/<name of port>.json`; in other words, the information about the `kitten` port would be located in `versions/k-/kitten.json`. This should be a top-level object with only a single field: `"versions"`. This field should contain an array of version objects:
+The `versions` directory contains all the information about which versions of
+packages are contained in the registry, along with the method to retrieve those
+versions from a filesystem location.
 
-- The version of the port in question; should be exactly the same as the `vcpkg.json` file, including the version fields and `"port-version"`.
-- The `"path"` field: a relative directory, rooted at the base of the registry (in other words, the directory where `versions` is located), to the port directory. It should look something like `"$/path/to/port/dir`"
+*Top-level fields*
 
-The version field for ports with deprecated `CONTROL` files is `"version-string"`.
+| Name       | Type            | Description |
+| ---------- | --------------- | --------------------------- |
+| `versions` | VersionObject[] | An array of version objects. Contains an entry for each version of the port in the registry. |
 
-In general, it's not important where you place port directories. However, the idiom in vcpkg is to follow somewhat closely to what the built in vcpkg registry does: your `kitten` port at version `x.y.z` should be placed in `ports/kitten/x.y.z`, with port versions appended as you see fit (although since `#` is not a good character to use for file names, perhaps use `_`).
+*VersionObject*
 
-> [!WARNING]
-> One very important part of registries is that versions should _never_ be changed. One should never remove or change an existing version. Your changes to your registry shouldn't change behavior to downstream users.
+| Name       | Type   | Description |
+| ---------- | ------ | ----------- |
+| `path`     | string | The filesystem location where the port files for the corresponding version are located |
+| [`version`<br>`version-semver`<br>`version-date`<br>`version-string`](../reference/vcpkg-json.md#version) | string | Upstream version information |
+| [port-version](../reference/vcpkg-json.md#port-version) | integer | Port files revision |
 
-Here's an example of a valid version database for a `kitten` port with one version:
+When specifying the `path` of a registry, the `$` character can be used to
+reference the root of the registry. Otherwise, absolute paths can be used
+instead.
 
-```json
-{
-  "versions": [
-    {
-      "version": "2.6.2",
-      "port-version": 0,
-      "path": "$/ports/kitten/2.6.2_0"
-    }
-  ]
-}
-```
-
-#### Add a new version
-
-Unlike git registries, adding a new version to a filesystem registry mostly involves a lot of copying. The first thing to do is to copy the latest version of your port into a new version directory, update the version and `"port-version"` fields as you need to, and then test with `overlay-ports`:
-
-  `vcpkg install kitten --overlay-ports=ports/kitten/new-version`.
-
-Once you've finished your testing, you can add this new version to the top of your `versions/k-/kitten.json`:
+#### Example of a filesystem registry version file
 
 ```json
 {
   "versions": [
     {
-      "version": "2.6.3",
-      "port-version": 0,
-      "path": "$/ports/kitten/2.6.3_0"
+      "path": "$/ports/foo/1.2.0",
+      "version": "1.2.0",
+      "port-version": 0
     },
     {
-      "version": "2.6.2",
-      "port-version": 0,
-      "path": "$/ports/kitten/2.6.2_0"
+      "path": "$/ports/foo/1.1.0",
+      "version": "1.1.0",
+      "port-version": 0
+    },
+    {
+      "path": "$/ports/foo/1.0.0",
+      "version": "1.0.0",
+      "port-version": 0
     }
   ]
 }
 ```
 
-Then, you'll want to modify your `versions/baseline.json` with your new version as well (remember not to modify existing baselines):
+## Next steps
 
-```json
-{
-  "2021-04-17": {
-    "kitten": {
-      "baseline": "2.6.3",
-      "port-version": 0
-    },
-    "port-b": {
-      "baseline": "19.00",
-      "port-version": 2
-    }
-  },
-  "2021-04-16": {
-    "kitten": {
-      "baseline": "2.6.2",
-      "port-version": 0
-    },
-    "port-b": {
-      "baseline": "19.00",
-      "port-version": 2
-    }
-  },
-  "2021-04-15": {
-    "kitten": {
-      "baseline": "2.6.2",
-      "port-version": 0
-    },
-    "port-b": {
-      "baseline": "19.00",
-      "port-version": 1
-    }
-  }
-}
-```
+Here are some tasks to try next:
 
-And you're done!
+* [Read the registries conceptual documentation](../concepts/registries.md)
+* [Create your own Git-based registry](../produce/publish-to-a-git-registry.md)
+* [Install packages from a custom registry](../consume/git-registries.md)

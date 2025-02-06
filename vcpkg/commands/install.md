@@ -1,7 +1,7 @@
 ---
 title: vcpkg install
 description: Command line reference for the vcpkg install command. Build and install port packages.
-ms.date: 01/10/2024
+ms.date: 01/22/2025
 ---
 # vcpkg install
 
@@ -164,12 +164,6 @@ This flag blocks vcpkg from performing builds on demand and will fail if a packa
 Approve an install plan that requires rebuilding packages.
 
 In order to modify the set of features of an installed package, vcpkg must remove and rebuild that package. Because this has the potential of failing and leaving the install tree with fewer packages than the user started with, the user must approve plans that rebuild packages by passing this flag.
-
-### `--x-use-aria2`
-
-[!INCLUDE [experimental](../../includes/experimental.md)]
-
-Use aria2 to perform download tasks.
 
 ### <a name="write-nuget-packages-config"></a> `--x-write-nuget-packages-config`
 

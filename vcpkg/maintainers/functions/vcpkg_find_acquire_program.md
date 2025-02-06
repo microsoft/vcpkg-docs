@@ -1,7 +1,7 @@
 ---
 title: vcpkg_find_acquire_program
 description: Learn how to use vcpkg_find_acquire_program.
-ms.date: 01/10/2024
+ms.date: 01/22/2025
 ---
 # vcpkg_find_acquire_program
 
@@ -24,7 +24,6 @@ This variable specifies both the program to be acquired as well as the out param
 The current list of programs includes:
 
 - 7Z
-- ARIA2 (Downloader)
 - BISON
 - CLANG
 - DARK

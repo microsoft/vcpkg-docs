@@ -14,7 +14,7 @@ vcpkg is a free and open-source C/C++ package manager maintained by Microsoft an
 ## Why vcpkg?
 
 - Over [2300 open-source libraries](https://github.com/microsoft/vcpkg/tree/master/ports) to choose from in a curated registry, routinely built to verify ABI compatibility
-- Create your own [custom library registry](../maintainers/registries.md) with your own custom library packages
+- Create your own [custom library registry](../concepts/registries.md) with your own custom library packages
 - Consistent, cross-platform experience for Windows, macOS, and Linux
 - Easily add libraries to your project with [any build and project system](../concepts/build-system-integration.md)
 - Build dependencies from source or download prebuilt ABI-verified binaries, with over 70 configurations available by default, and [infinite customization for your specific requirements](../concepts/triplets.md)
