@@ -26,7 +26,7 @@ database](../concepts/registries.md#versions-database).
 
 #### Top-level fields
 
-The top-level object in a `baseine.json` file is a dictionary, each key in this
+The top-level object in a `baseline.json` file is a dictionary, each key in this
 dictionary is a _named baseline_. Due to implementation details of Git
 registries, it is required that a _named baseline_ with the name "default"
 exists and that it contains a mapping of all the ports in the registry to their
@@ -191,7 +191,7 @@ publish a port in a Git registry.
 
 #### Top-level fields
 
-The top-level object in a `baseine.json` file is a dictionary, each key in this
+The top-level object in a `baseline.json` file is a dictionary, each key in this
 dictionary is a _named baseline_. Baselines should contain mappings of all the
 ports in the registry to their baseline version.
 

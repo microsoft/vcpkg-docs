@@ -29,7 +29,7 @@ not a fatal error.
 ### ONLY_DYNAMIC_LIBRARY
 
 Indicates that this port can only be built with dynamic/shared library linkage. When using this
-option, port authors should add `!(static & static-crt)` to the [`"supports"`](../../reference/vcpkg-json.md#supports) expression in the
+option, port authors should add `!(static & staticcrt)` to the [`"supports"`](../../reference/vcpkg-json.md#supports) expression in the
 port's `vcpkg.json` to warn consumers it will fail early.
 
 ### ONLY_STATIC_CRT
