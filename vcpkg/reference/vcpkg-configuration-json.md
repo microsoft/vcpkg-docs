@@ -60,7 +60,7 @@ The example also configures custom overlays for ports and triplets that are pres
 | Name | Type   | Description |
 |------|--------|-------------|
 | [default-registry](#default-registry) | [Registry][] or null | Registry used for all ports without a specific registry |
-| [overlay-ports](#overlay-ports) | string[] | List of paths to use as overlay ports |
+| [overlay-ports](#overlay-ports) | string[] | List of paths to use as overlay port locations |
 | [overlay-triplets](#overlay-triplets) | string[] | List of paths to use as overlay triplets |
 | [registries](#registries) | [Registry][][] | Additional registries to use for subsets of ports |
 
@@ -78,10 +78,10 @@ Additional registries to use for specific ports. An array of [Registries](#regis
 
 A list of port overlay paths. An array of strings. Optional.
 
-Each path in the array must point to either:
+Each path in the array must name either:
 
-- A port directory containing `vcpkg.json` and `portfile.cmake`
-- A directory containing port directories named after the ports (`zlib`'s `vcpkg.json` must be at `zlib/vcpkg.json`).
+- A directory containing a port, with  `vcpkg.json` and `portfile.cmake` files, or
+- A directory containing directories named after the ports (`zlib`'s `vcpkg.json` must be at `zlib/vcpkg.json`).
 
 Relative paths are resolved relative to the `vcpkg-configuration.json` file. Absolute paths can be used but are discouraged.
 
@@ -96,7 +96,7 @@ Each path in the array must point to a directory of triplet files ([see triplets
 | Name | Required | Type   | Description |
 |------|----------|--------|-------------|
 | [baseline](#registry-baseline) | Git and Builtin Registries | string | Minimum version constraint on all ports from this registry |
-| [kind](#registry-kind) | Yes | string | Type of registry being used |
+| [kind](#registry-kind) | Yes | string | Kind of registry being used |
 | [packages](#registry-packages) | Yes, if not default | string | List of ports to come from this registry |
 | [path](#registry-path) | Filesystem Registry | string | Path to the Filesystem registry |
 | [reference](#registry-reference) | No | string | Git reference to use for available versions |
@@ -106,9 +106,9 @@ Each path in the array must point to a directory of triplet files ([see triplets
 
 ### <a name="registry-kind"></a> [Registry][]: `"kind"`
 
-The type of registry being used. A string. Required.
+The kind of registry being used. A string. Required.
 
-| `"kind"` Value | Registry Type |
+| `"kind"` Value | Registry Kind |
 | ------|---|
 | `"filesystem"` | [Filesystem Registry][] |
 | `"git"` | [Git Registry][] |
@@ -170,6 +170,6 @@ Package patterns may contain only lowercase letters, digits, and `-`, with an op
 
 See the [Using Registries documentation](../concepts/package-name-resolution.md) for more information on how port names are resolved.
 
-[Git Registry]: ../maintainers/registries.md#git-registries
-[Filesystem Registry]: ../maintainers/registries.md#filesystem-registries
-[Builtin Registry]: ../maintainers/registries.md#builtin-registries
+[Git Registry]: ../concepts/registries.md#git-registries
+[Filesystem Registry]: ../concepts/registries.md#filesystem-registries
+[Builtin Registry]: ../concepts/registries.md#built-in-registry

@@ -8,10 +8,7 @@ zone_pivot_groups: shell-selections
 ---
 # Authenticate to private Git repositories
 
-A common operation of vcpkg is to access Git repositories to fetch remote
-resources. In some cases, these repositories are protected from anonymous access
-and require authentication credentials. This article describes authentication
-strategies for Git repositories that work with vcpkg.
+[Registries](../concepts/registries.md) and [`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md) directly use the Git command line tools to fetch remote resources. Some of these resources may be protected from anonymous access and need authentication or credentials.
 
 ## Pre-seed Git credentials
 
@@ -82,7 +79,7 @@ export VCPKG_KEEP_ENV_VARS=MY_TOKEN_VAR
 export MY_TOKEN_VAR=abc123
 ```
 
-This can then be used in your private ports with the [`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md) or [`vcpkg_from_github()`](../maintainers/functions/vcpkg_from_github.md) helpers.
+This can then be used in your private ports with the [`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md), [`vcpkg_from_github()`](../maintainers/functions/vcpkg_from_github.md) or [`vcpkg_from_gitlab()`](../maintainers/functions/vcpkg_from_gitlab.md) helpers.
 
 ```cmake
 # vcpkg-from-git-example/portfile.cmake
@@ -103,7 +100,7 @@ vcpkg_from_github(
 )
 ```
 
-For private ports, we recommend using `vcpkg_from_git()` instead of `vcpkg_from_github()` and the pre-seeding method above.
+For private ports, we recommend using `vcpkg_from_git()` instead of `vcpkg_from_github()/vcpkg_from_gitlab()` and the pre-seeding method above.
 
 ## Pass Jenkins gitUsernamePassword credentials
 

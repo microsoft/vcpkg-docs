@@ -413,6 +413,7 @@ The ABI Hash considers:
 - The ABI Hash of each dependency
 - All helper functions referenced by `portfile.cmake` (heuristic)
 - The version of CMake used
+- The version of PowerShell used (Windows)
 - The contents of any environment variables listed in
   [`VCPKG_ENV_PASSTHROUGH`](../users/triplets.md#vcpkg_env_passthrough)
 - The toolchain file's textual contents

@@ -79,12 +79,6 @@ Officially supported SDK formats:
 - [7zip](#7zip)
 - [NuGet](#nuget)
 
-Experimental SDK formats (may change or be removed at any time):
-
-- [IFW](#ifw)
-- [Chocolatey](#chocolatey)
-- [Prefab](#prefab)
-
 #### Raw Directory
 
 ```no-highlight
@@ -133,55 +127,31 @@ Format specific options:
 
 #### IFW
 
-[!INCLUDE [experimental](../../includes/experimental.md)]
+<a id="ifw-configuration-file-path"></a>
+<a id="ifw-installer-file-path"></a>
+<a id="ifw-packages-directory-path"></a>
+<a id="ifw-repository-directory-path"></a>
+<a id="ifw-repository-url"></a>
 
-```no-highlight
-vcpkg export --ifw [options] <package>...
-```
-
-Export to an IFW-based installer.
-
-Format specific options:
-
-- [`--ifw-configuration-file-path`](#ifw-configuration-file-path)
-- [`--ifw-installer-file-path`](#ifw-installer-file-path)
-- [`--ifw-packages-directory-path`](#ifw-packages-directory-path)
-- [`--ifw-repository-directory-path`](#ifw-repository-directory-path)
-- [`--ifw-repository-url`](#ifw-repository-url)
+IFW export has been removed.
 
 #### Chocolatey
 
-[!INCLUDE [experimental](../../includes/experimental.md)]
+<a id="maintainer"></a>
+<a id="version-suffix"></a>
 
-```no-highlight
-vcpkg export --x-chocolatey [options] <package>...
-```
-
-Export a Chocolatey package.
-
-Format specific options:
-
-- [`--x-maintainer`](#maintainer)
-- [`--x-version-suffix`](#version-suffix)
+Chocolatey export has been removed.
 
 #### Prefab
 
-[!INCLUDE [experimental](../../includes/experimental.md)]
+<a id="prefab-artifact-id"></a>
+<a id="prefab-group-id"></a>
+<a id="prefab-maven"></a>
+<a id="prefab-min-sdk"></a>
+<a id="prefab-target-sdk"></a>
+<a id="prefab-version"></a>
 
-```no-highlight
-vcpkg export --prefab [options] <package>...
-```
-
-Export to Prefab format.
-
-Format specific options:
-
-- [`--prefab-artifact-id`](#prefab-artifact-id)
-- [`--prefab-group-id`](#prefab-group-id)
-- [`--prefab-maven`](#prefab-maven)
-- [`--prefab-min-sdk`](#prefab-min-sdk)
-- [`--prefab-target-sdk`](#prefab-target-sdk)
-- [`--prefab-version`](#prefab-version)
+Prefab export has been removed.
 
 ## Options
 
@@ -215,42 +185,6 @@ Export all installed packages. This option is implied when using `vcpkg export` 
 ### `--dry-run`
 
 Do not perform the export, only print the export plan.
-
-<a id="ifw-configuration-file-path"></a>
-
-### `--ifw-configuration-file-path=`
-
-Specify the temporary file path for the installer configuration.
-
-<a id="ifw-installer-file-path"></a>
-
-### `--ifw-installer-file-path=`
-
-Specify the file path for the exported installer.
-
-<a id="ifw-packages-directory-path"></a>
-
-### `--ifw-packages-directory-path=`
-
-Specify the temporary directory path for the repacked packages.
-
-<a id="ifw-repository-directory-path"></a>
-
-### `--ifw-repository-directory-path=`
-
-Specify the directory path for the exported repository.
-
-<a id="ifw-repository-url"></a>
-
-### `--ifw-repository-url=`
-
-Specify the remote repository URL for the online installer.
-
-<a id="maintainer"></a>
-
-### `--x-maintainer=`
-
-Specify the maintainer for the exported Chocolatey package.
 
 <a id="nuget-description"></a>
 
@@ -293,48 +227,6 @@ Defaults to `vcpkg-export-<date>-<time>`. Scripted use of `export` should always
 Specifies the output directory.
 
 All top-level SDK files will be produced into this directory. This option is required in manifest mode. In classic mode, this is optional and defaults to the [vcpkg root directory](../users/config-environment.md#vcpkg_root).
-
-<a id="prefab-artifact-id"></a>
-
-### `--prefab-artifact-id=`
-
-Artifact Id is the name of the project according to Maven specifications.
-
-<a id="prefab-group-id"></a>
-
-### `--prefab-group-id=`
-
-GroupId uniquely identifies your project according to Maven specifications.
-
-<a id="prefab-maven"></a>
-
-### `--prefab-maven`
-
-Enable Maven.
-
-<a id="prefab-min-sdk"></a>
-
-### `--prefab-min-sdk=`
-
-Android minimum supported sdk version.
-
-<a id="prefab-target-sdk"></a>
-
-### `--prefab-target-sdk=`
-
-Android target supported sdk version.
-
-<a id="prefab-version"></a>
-
-### `--prefab-version=`
-
-Version is the version of the project according to Maven specifications.
-
-<a id="version-suffix"></a>
-
-### `--x-version-suffix=`
-
-Specify the version suffix to add for the exported Chocolatey package.
 
 [cmake]: ../users/buildsystems/cmake-integration.md
 [msbuild]: ../users/buildsystems/msbuild-integration.md

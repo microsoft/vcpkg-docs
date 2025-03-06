@@ -4,7 +4,7 @@ title: Versioning reference
 description: Reference documentation for the vcpkg versioning feature.
 author: vicroms
 ms.author: viromer
-ms.date: 3/1/2024
+ms.date: 1/16/2025
 ms.topic: reference
 ---
 # Versioning reference
@@ -112,7 +112,7 @@ Examples:
 
 ### Baselines
 
-Baselines define a global version floor for what versions will be considered. This enables top-level manifests to keep the entire graph of dependencies up-to-date without needing to individually specify direct [`"version>="`](#version-gte) constraints.
+Baselines define a global version floor for what versions will be considered (unless specified elsewhere, the version associated with that baseline will be used). This enables top-level manifests to keep the entire graph of dependencies up-to-date without needing to individually specify direct [`"version>="`](#version-gte) constraints.
 
 Every configured registry has an associated baseline. For manifests that don't configure any registries, the [`"builtin-baseline"`](../reference/vcpkg-json.md#builtin-baseline) field defines the baseline for the built-in registry. If a manifest does not configure any registries and does not have a `"builtin-baseline"`, the install operates according to the Classic mode algorithm and ignores all versioning information.
 
@@ -161,6 +161,8 @@ Declaring an override forces vcpkg to ignore all other version constraints and u
 Overrides are declared as an array of package version declarations.
 
 For an override to take effect, the overridden package must form part of the dependency graph. That means that a dependency must be declared either by the top-level manifest or be part of a transitive dependency.
+
+Only one override may be declared for a given name.
 
 ```json
 {

@@ -154,4 +154,4 @@ Run the program, the output should look like this:
 
 * Lock down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
 * Reuse binaries across local or continuous integration runs using [binary caching](../users/binarycaching.md)
-* Manage your private libraries using custom [registries](../maintainers/registries.md)
+* Manage your private libraries using custom [registries](../concepts/registries.md)

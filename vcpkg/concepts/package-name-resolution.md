@@ -194,19 +194,31 @@ Because exact matches are preferred over pattern matches,
 `qt-advanced-docking-system` and `qtkeychain` will resolve to the default
 registry.
 
-## <a name="overlays"></a> Overlays
+## <a name="overlays"></a><a name="overlay-ports"></a> Overlay ports
 
-Overlays are a way to extend vcpkg with additional ports and additional
-triplets, without creating a full registry. Overlays are considered before
-performing any registry lookups or versioning and will replace any builtin
-triplets or ports. See [overlay ports](../concepts/overlay-ports.md) to learn more.
+Overlay ports are a way to extend vcpkg with additional ports without creating a full registry. Overlays are considered before any registry lookups, or versioning considerations. Overlays replace any builtin triplets or ports. See [overlay ports](../concepts/overlay-ports.md) to learn more.
 
-Overlay settings are evaluated in this order:
+Overlay ports are evaluated in this order:
 
-1. Overlays from the [command line](../commands/common-options.md#overlay-ports)
+1. Overlays from the [command line](../commands/common-options.md#overlay-ports) `--overlay-ports`
    in the order passed; then
 2. Overlays from
-   [`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md#overlay-ports)
+   [`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md#overlay-ports) `"overlay-ports"`
    in order; then
-3. Overlays from the `VCPKG_OVERLAY_[PORTS|TRIPLETS]` [environment
-   variables](../users/config-environment.md#vcpkg_overlay_ports) in order.
+3. Overlays from the `VCPKG_OVERLAY_PORTS` [environment
+   variable](../users/config-environment.md#vcpkg_overlay_ports) in order.
+
+## <a name="overlay-triplets"></a> Overlay triplets
+
+Overlay triplets are a way to extend vcpkg with additional triplets, without modifying vcpkg's installation directory. Overlays are considered before any builtin triplets.
+
+Overlay triplets are evaluated in this order:
+
+1. Overlays from the [command line](../commands/common-options.md#overlay-triplets)
+   in the order passed; then
+2. Overlays from
+   [`vcpkg-configuration.json`](../reference/vcpkg-configuration-json.md#overlay-triplets)
+   in order; then
+3. Overlays from the `VCPKG_OVERLAY_TRIPLETS` [environment
+   variable](../users/config-environment.md#vcpkg_overlay_triplets) in order.
+

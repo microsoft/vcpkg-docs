@@ -168,7 +168,7 @@ registries.
       "kind": "git",
       "repository": "https://github.com/Microsoft/vcpkg",
       "baseline": "42bb0d9e8d4cf33485afb9ee2229150f79f61a1f",
-      "packages": "*"
+      "packages": ["*"]
     }
   ]
 }

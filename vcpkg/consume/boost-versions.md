@@ -7,7 +7,7 @@ ms.date: 01/10/2024
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to install a specific version set of the Boost libraries
 ---
-# Tutorial: Install a specific version of the Boost libraries using registry baselines"
+# Tutorial: Install a specific version of the Boost libraries using registry baselines
 
 vcpkg provides the `Boost` set of libraries as individual packages as a
 convenience for users that depend only on a limited subset of Boost packages.
@@ -55,7 +55,7 @@ override for your dependency as show below:
 
 When you run `vcpkg install`, you'll notice that only the version of
 `boost-optional` has been locked to `1.80.0` while the other Boost dependencies
-are using the baseline version (`1.83.0`). 
+are using the baseline version (`1.83.0`).
 
 ```console
 Fetching registry information from https://github.com/Microsoft/vcpkg (HEAD)...
@@ -179,4 +179,4 @@ Here are some additional tasks to try next:
 * Install packages for custom platforms using [triplets](../users/triplets.md)
 * Lock down your versions for repeatable builds using [versioning](../users/versioning.concepts.md)
 * Reuse binaries across Continuous Integration runs using [binary caching](../users/binarycaching.md)
-* Manage your private libraries using [custom registries](../maintainers/registries.md)
+* Manage your private libraries using [custom registries](../concepts/registries.md)
