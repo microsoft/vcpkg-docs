@@ -1,7 +1,7 @@
 ---
 title: vcpkg install
 description: Command line reference for the vcpkg install command. Build and install port packages.
-ms.date: 11/30/2022
+ms.date: 01/22/2025
 ---
 # vcpkg install
 
@@ -25,7 +25,10 @@ Build and install port packages.
 
 ### Classic mode
 
-In [Classic mode](../users/classic-mode.md), this verb adds port packages to the existing set in the [installed directory](common-options.md#install-root) (defaults to `installed/` under the vcpkg root). This can require removing and rebuilding existing packages, which can fail.
+In [Classic mode](../concepts/classic-mode.md), this verb adds port packages to
+the existing set in the [installed directory](common-options.md#install-root)
+(defaults to `installed/` under the vcpkg root). This can require removing and
+rebuilding existing packages, which can fail.
 
 #### <a name="package-syntax"></a> Package Syntax
 
@@ -37,7 +40,9 @@ Package references without a triplet are automatically qualified by the [default
 
 ### Manifest mode
 
-In [Manifest mode](../users/manifests.md), this verb sets the [installed directory](common-options.md#install-root) to the state specified by the `vcpkg.json` manifest file, adding, removing, or rebuilding packages as needed.
+In [Manifest mode](../concepts/manifest-mode.md), this command sets the [installed
+directory](common-options.md#install-root) to the state specified by the
+`vcpkg.json` manifest file, adding, removing, or rebuilding packages as needed.
 
 ## Options
 
@@ -49,7 +54,7 @@ Instead of stopping on an unsupported port, continue with a warning.
 
 By default, vcpkg refuses to execute an install plan containing a port installation for a triplet outside its [`"supports"`](../reference/vcpkg-json.md#supports) clause. The `"supports"` clause of a package describes the full set of platforms a package is expected to be buildable on. This flag instructs vcpkg to warn that the build is expected to fail instead of stopping.
 
-### `--clean-after-build`
+### <a name="clean-after-build"></a> `--clean-after-build`
 
 Clean buildtrees, packages, and downloads after building each package.
 
@@ -103,9 +108,12 @@ By default, vcpkg will run several checks on built packages and emit warnings if
 
 - **Manifest mode only**
 
-Specify an additional [feature](../users/manifests.md#features) from the `vcpkg.json` to install dependencies for.
+Specify an additional [feature](../concepts/features.md) from the `vcpkg.json` to install dependencies for.
 
-By default, only [`"dependencies"`](../reference/vcpkg-json.md#dependencies) and the dependencies of [`"default-features"`](../reference/vcpkg-json.md#default-features) will be installed.
+By default, only [`"dependencies"`](../reference/vcpkg-json.md#dependencies) and
+the dependencies of
+[`"default-features"`](../reference/vcpkg-json.md#default-features) will be
+installed.
 
 ### `--head`
 
@@ -156,12 +164,6 @@ This flag blocks vcpkg from performing builds on demand and will fail if a packa
 Approve an install plan that requires rebuilding packages.
 
 In order to modify the set of features of an installed package, vcpkg must remove and rebuild that package. Because this has the potential of failing and leaving the install tree with fewer packages than the user started with, the user must approve plans that rebuild packages by passing this flag.
-
-### `--x-use-aria2`
-
-[!INCLUDE [experimental](../../includes/experimental.md)]
-
-Use aria2 to perform download tasks.
 
 ### <a name="write-nuget-packages-config"></a> `--x-write-nuget-packages-config`
 

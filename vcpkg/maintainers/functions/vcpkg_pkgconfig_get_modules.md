@@ -1,7 +1,7 @@
 ---
 title: x_vcpkg_pkgconfig_get_modules
 description: Learn how to use x_vcpkg_pkgconfig_get_modules.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # x_vcpkg_pkgconfig_get_modules
 

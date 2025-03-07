@@ -1,7 +1,7 @@
 ---
 title: vcpkg_acquire_msys
 description: Use vcpkg_acquire_msys to download and prepare an MSYS2 instance.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_acquire_msys
 
@@ -42,7 +42,7 @@ A list of URL/SHA512 pairs to acquire in msys.
 This parameter can be used by a port to privately extend the list of msys packages to be acquired.
 The URLs can be found on the [msys2 website](https://packages.msys2.org/search) and should be a direct archive link:
 
-> `https://repo.msys2.org/mingw/i686/mingw-w64-i686-gettext-0.19.8.1-9-any.pkg.tar.zst`
+> `https://mirror.msys2.org/msys/x86_64/gettext-0.22.4-1-x86_64.pkg.tar.zst`
 
 ## Notes
 
@@ -50,7 +50,7 @@ A call to `vcpkg_acquire_msys` will usually be followed by a call to `bash.exe`:
 
 ```cmake
 vcpkg_acquire_msys(MSYS_ROOT)
-set(BASH ${MSYS_ROOT}/usr/bin/bash.exe)
+set(BASH "${MSYS_ROOT}/usr/bin/bash.exe")
 
 vcpkg_execute_required_process(
     COMMAND "${BASH}" --noprofile --norc "${CMAKE_CURRENT_LIST_DIR}\\build.sh"
@@ -62,7 +62,6 @@ vcpkg_execute_required_process(
 ## Examples
 
 - [ffmpeg](https://github.com/Microsoft/vcpkg/blob/master/ports/ffmpeg/portfile.cmake)
-- [icu](https://github.com/Microsoft/vcpkg/blob/master/ports/icu/portfile.cmake)
 - [libvpx](https://github.com/Microsoft/vcpkg/blob/master/ports/libvpx/portfile.cmake)
 
 ## Source

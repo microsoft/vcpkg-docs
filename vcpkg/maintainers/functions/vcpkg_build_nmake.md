@@ -1,7 +1,7 @@
 ---
 title: vcpkg_build_nmake
 description: Use vcpkg_build_nmake to build an NMake Makefile project.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_build_nmake
 
@@ -42,7 +42,7 @@ Specifies the sub directory containing the makefile.
 ### PROJECT_NAME
 
 Specifies the name of the makefile.
-Default is `makefile.vc`
+Default is `makefile.vc`.
 
 ### LOGFILE_ROOT
 
@@ -103,7 +103,6 @@ You can use the alias [`vcpkg_install_nmake()`](vcpkg_install_nmake.md) function
 ## Examples
 
 - [librttopo](https://github.com/microsoft/vcpkg/blob/master/ports/librttopo/portfile.cmake)
-- [openssl](https://github.com/microsoft/vcpkg/blob/master/ports/openssl/portfile.cmake)
 
 ## Source
 

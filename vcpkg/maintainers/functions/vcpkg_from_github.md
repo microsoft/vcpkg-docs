@@ -1,7 +1,7 @@
 ---
 title: vcpkg_from_github
 description: Learn how to use vcpkg_from_github.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_from_github
 
@@ -28,6 +28,7 @@ vcpkg_from_github(
 ## Parameters
 
 ### OUT_SOURCE_PATH
+
 Specifies the out-variable that will contain the extracted location.
 
 This should be set to `SOURCE_PATH` by convention.
@@ -91,4 +92,3 @@ This exports the `VCPKG_HEAD_VERSION` variable during head builds.
 ## Source
 
 [scripts/cmake/vcpkg\_from\_github.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_from_github.cmake)
-

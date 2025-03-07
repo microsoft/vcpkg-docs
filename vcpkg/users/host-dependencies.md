@@ -1,7 +1,10 @@
 ---
 title: Host dependencies
 description: Describes host dependencies, tools packaged by vcpkg for use by ports or custom build systems.
-ms.date: 11/30/2022
+author: vicroms
+ms.author: viromer
+ms.date: 01/31/2025
+ms.topic: concept-article
 ---
 # Host dependencies
 
@@ -72,3 +75,19 @@ tool ports are common examples. In this case, you can use the `"native"`
 supports expression to describe this. This supports expression is true when
 `VCPKG_CROSSCOMPILING` is false (implying that `TARGET_TRIPLET ==
 HOST_TRIPLET`).
+
+## VCPKG_USE_HOST_TOOLS
+
+Set this CMake option to add executables built by vcpkg to
+[`CMAKE_PROGRAM_PATH`](https://cmake.org/cmake/help/latest/variable/CMAKE_PROGRAM_PATH.html).
+and make them available during your build process.
+
+For this option to take effect it must be set before any call to `project()` in
+your `CMakeLists.txt` file. The `VCPKG_HOST_TRIPLET` variable must also be set.
+
+Only tools installed in the [`tools` folder](../reference/installation-tree-layout.md#layout-tools)
+for the host triplet are added to `CMAKE_PROGRAM_PATH`.
+Effectively, the following locations are added:
+
+* `${VCPKG_INSTALLED_DIR}/${VCPKG_HOST_TRIPLET}/tools`
+* `${VCPKG_INSTALLED_DIR}/${VCPKG_HOST_TRIPLET}/tools/*/bin`

@@ -1,7 +1,7 @@
 ---
 title: vcpkg_execute_required_process
 description: Execute a process with logging and fail the build if the command fails.
-ms.date: 11/30/2022
+ms.date: 06/27/2024
 ---
 # vcpkg_execute_required_process
 
@@ -20,9 +20,11 @@ vcpkg_execute_required_process(
     [SAVE_LOG_FILES [<relative-path> [ALIAS <unique-alias>]]...]
 )
 ```
+
 ## Parameters
 
 ### ALLOW_IN_DOWNLOAD_MODE
+
 Allows the command to execute in Download Mode.
 
 ### COMMAND
@@ -35,7 +37,7 @@ The directory to execute the command in.
 
 ### LOGNAME
 
-The prefix to use for the log files.
+The prefix to use for the log files. This should be a unique name for different triplets so that the logs don't conflict when building multiple at once.
 
 ### TIMEOUT
 
@@ -45,11 +47,17 @@ Optional timeout after which to terminate the command.
 
 Optional variable to receive stdout of the command.
 
+### OUTPUT_STRIP_TRAILING_WHITESPACE
+
+Removes trailing whitespace before setting `OUTPUT_VARIABLE`.
+
 ### ERROR_VARIABLE
 
 Optional variable to receive stderr of the command.
 
-This should be a unique name for different triplets so that the logs don't conflict when building multiple at once.
+### ERROR_STRIP_TRAILING_WHITESPACE
+
+Removes trailing whitespace before setting `ERROR_VARIABLE`.
 
 ### SAVE_LOG_FILES
 
@@ -67,7 +75,6 @@ The `ALIAS` parameter after a relative path name replaces the target file name g
 
 - [boost-build](https://github.com/Microsoft/vcpkg/blob/master/ports/boost-build/portfile.cmake)
 - [ffmpeg](https://github.com/Microsoft/vcpkg/blob/master/ports/ffmpeg/portfile.cmake)
-- [qt5-base](https://github.com/Microsoft/vcpkg/blob/master/ports/qt5-base/portfile.cmake)
 - [vcpkg-cmake](https://github.com/Microsoft/vcpkg/blob/master/ports/vcpkg-cmake/vcpkg_cmake_configure.cmake)
 
 ## Source

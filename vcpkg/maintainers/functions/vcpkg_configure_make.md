@@ -1,7 +1,7 @@
 ---
 title: vcpkg_configure_make
 description: Learn how to use vcpkg_configure_make.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_configure_make
 
@@ -40,7 +40,7 @@ By convention, this is usually set in the portfile as the variable `SOURCE_PATH`
 
 ### PROJECT_SUBPATH
 
-Specifies the directory containing the ``configure`/`configure.ac`.
+Specifies the directory containing the `configure`/`configure.ac`.
 By convention, this is usually set in the portfile as the variable `SOURCE_PATH`.
 
 ### SKIP_CONFIGURE
@@ -119,4 +119,3 @@ This command supplies many common arguments to configure. To see the full list, 
 ## Source
 
 [scripts/cmake/vcpkg\_configure\_make.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_configure_make.cmake)
-

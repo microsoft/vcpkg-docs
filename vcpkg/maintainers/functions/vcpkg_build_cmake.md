@@ -1,11 +1,12 @@
 ---
 title: vcpkg_build_cmake
 description: Use vcpkg_build_cmake to build a cmake project.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_build_cmake
 
-**This function has been deprecated in favor of [`vcpkg_cmake_build`](vcpkg_cmake_build.md).**
+> [!WARNING]
+> This function has been deprecated in favor of [`vcpkg_cmake_build`](vcpkg_cmake_build.md).
 
 Build a cmake project.
 

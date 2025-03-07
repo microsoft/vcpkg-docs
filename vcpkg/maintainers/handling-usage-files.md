@@ -3,8 +3,8 @@ title: Provide usage documentation for your ports
 description: Guidance for adding usage documentation to vcpkg ports
 author: JavierMatosD
 ms.author: javiermat
-ms.date: 07/17/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
+ms.topic: concept-article
 ---
 # Provide usage documentation for your ports
 
@@ -32,7 +32,11 @@ After installing ports, vcpkg detects files installed to `${CURRENT_PACKAGES_DIR
 
 Provide clear instructions on how to use the package. The content should be concise, well-structured, and emphasize the minimum build system integration required to use the library.
 
-Be clear and concise about how to utilize the package effectively. Avoid overwhelming users with code snippets, command-line instructions, or configuration details. Instead, use the [`"documentation"` property in the port's `vcpkg.json` file](../users/manifests.md) so users can learn more about your library.
+Be clear and concise about how to utilize the package effectively. Avoid
+overwhelming users with code snippets, command-line instructions, or
+configuration details. Instead, use the [`"documentation"` property in the
+port's `vcpkg.json` file](../concepts/manifest-mode.md) so users can learn more
+about your library.
 
 Use the following templates as a pattern for your `usage` files:
 

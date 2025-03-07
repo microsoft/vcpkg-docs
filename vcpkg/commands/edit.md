@@ -3,8 +3,7 @@ title: vcpkg edit
 description: Command-line reference for the vcpkg edit command. Opens a port's contents in a text editor window.
 author: vicroms
 ms.author: viromer
-ms.date: 8/2/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ---
 # vcpkg edit
 
@@ -19,7 +18,7 @@ vcpkg edit <ports> [--all] [--buildtrees] [options]
 ### Open multiple ports
 
 ```Console
-vcpkg edit fmt zlib 
+vcpkg edit fmt zlib
 ```
 
 ### Open related folders

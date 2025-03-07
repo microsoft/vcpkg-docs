@@ -2,12 +2,10 @@
 title: vcpkg env
 description: Command-line reference for the env command. Creates a clean build environment in your current terminal.
 ms.author: viromer
-ms.date: 8/8/2023
-ms.prod: vcpkg
+ms.date: 01/10/2024
 ---
 
 # vcpkg env
-
 
 ## Synopsis
 
@@ -68,7 +66,7 @@ CMake suite maintained and supported by Kitware (kitware.com/cmake).
 PS C:\Users\vcpkg\vcpkg> $env:CLEARED_ENV_VAR="hello"
 PS C:\Users\vcpkg\vcpkg> vcpkg env "set CLEARED_ENV_VAR"
 Environment variable CLEARED_ENV_VAR not defined
-PS C:\Users\vcpkg\vcpkg> $env:KEEP_ENV_VARS="CLEARED_ENV_VAR"
+PS C:\Users\vcpkg\vcpkg> $env:VCPKG_KEEP_ENV_VARS="CLEARED_ENV_VAR"
 PS C:\Users\vcpkg\vcpkg> vcpkg env "set CLEARED_ENV_VAR"
 CLEARED_ENV_VAR=hello
 ```

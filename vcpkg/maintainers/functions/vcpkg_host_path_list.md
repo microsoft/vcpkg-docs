@@ -1,7 +1,7 @@
 ---
 title: vcpkg_host_path_list
 description: Learn how to use vcpkg_host_path_list.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_host_path_list
 
@@ -33,4 +33,3 @@ for `SET`, the variable will be set to the empty string.
 ## Source
 
 [scripts/cmake/vcpkg\_host\_path\_list.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_host_path_list.cmake)
-

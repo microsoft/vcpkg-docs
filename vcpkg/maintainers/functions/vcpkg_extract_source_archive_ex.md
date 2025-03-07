@@ -1,11 +1,12 @@
 ---
 title: vcpkg_extract_source_archive_ex
 description: Learn how to use vcpkg_extract_source_archive_ex.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_extract_source_archive_ex
 
-**This function has been deprecated in favor of [`vcpkg_extract_source_archive()`].**
+> [!WARNING]
+> This function has been deprecated in favor of [`vcpkg_extract_source_archive()`](vcpkg_extract_source_archive.md).
 
 Extract an archive.
 
@@ -18,7 +19,7 @@ vcpkg_extract_source_archive_ex(
 )
 ```
 
-This command forwards all options to [`vcpkg_extract_source_archive()`], with `<out-var>` as the first argument. Equivalent to `vcpkg_extract_source_archive(<out-var> <options>...)`. For parameter help, see the documentation for [`vcpkg_extract_source_archive()`](vcpkg_extract_source_archive.md).
+This command forwards all options to [`vcpkg_extract_source_archive()`](vcpkg_extract_source_archive.md), with `<out-var>` as the first argument. Equivalent to `vcpkg_extract_source_archive(<out-var> <options>...)`. For parameter help, see the documentation for [`vcpkg_extract_source_archive()`](vcpkg_extract_source_archive.md).
 
 ## Source
 

@@ -3,7 +3,8 @@ title: Xbox
 description: Use x64 community triplets for Xbox development.
 author: walbourn
 ms.author: viromer
-ms.date: 8/8/2023
+ms.date: 01/10/2024
+ms.topic: concept-article
 ---
 # Xbox
 
@@ -35,7 +36,7 @@ Libraries that make use of DirectX graphics APIs must be built using a custom va
 
 Libraries that require these headers must use the **`ms-gdkx`** "stub" port to indicate this requirement. This port looks for paths pointed to by ``GameDKLatest``, ``GameGXDKLatest``, and ``GameGRDKLatest`` environment variables.
 
-> [!NOTE] 
+> [!NOTE]
 > Xbox game developers are responsible for ensuring that they and their publishers have appropriate and correct licensing terms for use of any 3rd party software components per the terms of their Title License Agreement. Be sure to seek appropriate legal advice for any use of open-source components in your title.
 
 ## UWP on Xbox

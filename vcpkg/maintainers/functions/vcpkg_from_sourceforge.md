@@ -1,13 +1,13 @@
 ---
 title: vcpkg_from_sourceforge
 description: Learn how to use vcpkg_from_sourceforge.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_from_sourceforge
 
-Download and extract a project from sourceforge.
+Download and extract an archive from a project from SourceForge.
 
-This function automatically checks a set of sourceforge mirrors.
+This function automatically checks a set of SourceForge mirrors.
 Additional mirrors can be injected through the `VCPKG_SOURCEFORGE_EXTRA_MIRRORS`
 list variable in the triplet.
 
@@ -20,7 +20,6 @@ vcpkg_from_sourceforge(
     [REF <2.1-3>]
     SHA512 <547b417109332...>
     FILENAME <CUnit-2.1-3.tar.bz2>
-    [DISABLE_SSL]
     [NO_REMOVE_ONE_LEVEL]
     [PATCHES <patch1.patch> <patch2.patch>...]
 )
@@ -36,7 +35,7 @@ This should be set to `SOURCE_PATH` by convention.
 
 ### REPO
 
-The organization or user and repository (optional) on sourceforge.
+The organization or user and repository (optional) on SourceForge.
 
 ### REF
 
@@ -44,7 +43,8 @@ A stable version number that will not change contents.
 
 ### FILENAME
 
-The local name for the file. Files are shared between ports, so the file may need to be renamed to make it clearly attributed to this port and avoid conflicts.
+The local name for the file. Files are shared between ports, so the file may need to be renamed to make it clearly
+attributed to this port and avoid conflicts.
 
 For example, we can get the download link:
 https://sourceforge.net/settings/mirror_choices?projectname=mad&filename=libmad/0.15.1b/libmad-0.15.1b.tar.gz&selected=nchc
@@ -58,7 +58,8 @@ The REPO is `soxr`, REF is not exist, and the FILENAME is `soxr-0.1.3-Source.tar
 
 The SHA512 hash that should match the archive.
 
-This is most easily determined by first setting it to `0`, then trying to build the port. The error message will contain the full hash, which can be copied back into the portfile.
+This is most easily determined by first setting it to `0`, then trying to build the port. The error message will
+contain the full hash, which can be copied back into the portfile.
 
 ### WORKING_DIRECTORY
 
@@ -85,4 +86,3 @@ Specifies that the default removal of the top level folder should not occur.
 ## Source
 
 [scripts/cmake/vcpkg\_from\_sourceforge.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_from_sourceforge.cmake)
-

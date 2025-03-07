@@ -1,7 +1,7 @@
 ---
 title: vcpkg_copy_pdbs
 description: Learn how to use vcpkg_copy_pdbs.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_copy_pdbs
 
@@ -17,6 +17,7 @@ vcpkg_copy_pdbs(
 ## Parameters
 
 ### BUILD_PATHS
+
 Patterns which will be passed to `file(GLOB_RECURSE)`, for locating DLLs.
 
 Defaults to:
@@ -27,3 +28,11 @@ Defaults to:
 ## Notes
 
 This command should be called by all portfiles after they have finished rearranging the binary output.
+
+## Examples
+
+- [zlib](https://github.com/Microsoft/vcpkg/blob/master/ports/zlib/portfile.cmake)
+
+## Source
+
+[scripts/cmake/vcpkg\_copy\_pdbs.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_copy_pdbs.cmake)

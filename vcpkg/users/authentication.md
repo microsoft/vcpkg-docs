@@ -1,11 +1,12 @@
 ---
 title: Remote Authentication
 description: Learn to configure which credentials are used when accessing remote resources with vcpkg.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
+ms.topic: concept-article
 ---
 # Remote authentication
 
-[Registries](registries.md) and [`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md) directly use the Git command line tools to fetch remote resources. Some of these resources may be protected from anonymous access and need authentication or credentials.
+[Registries](../concepts/registries.md) and [`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md) directly use the Git command line tools to fetch remote resources. Some of these resources may be protected from anonymous access and need authentication or credentials.
 
 The strategies below all seek to achieve the same fundamental goal: `git clone https://....` should succeed without interaction. This enables vcpkg to be separated from the specifics of your authentication scheme, ensuring forward compatibility with any additional security improvements in the future.
 
@@ -68,7 +69,7 @@ export VCPKG_KEEP_ENV_VARS=MY_TOKEN_VAR
 export MY_TOKEN_VAR=abc123
 ```
 
-This can then be used in your private ports with the p[`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md) or [`vcpkg_from_github()`](../maintainers/functions/vcpkg_from_github.md) helpers.
+This can then be used in your private ports with the [`vcpkg_from_git()`](../maintainers/functions/vcpkg_from_git.md), [`vcpkg_from_github()`](../maintainers/functions/vcpkg_from_github.md) or [`vcpkg_from_gitlab()`](../maintainers/functions/vcpkg_from_gitlab.md) helpers.
 
 ```cmake
 # vcpkg-from-git-example/portfile.cmake
@@ -89,7 +90,7 @@ vcpkg_from_github(
 )
 ```
 
-For private ports, we recommend using `vcpkg_from_git()` instead of `vcpkg_from_github()` and the pre-seeding method above.
+For private ports, we recommend using `vcpkg_from_git()` instead of `vcpkg_from_github()/vcpkg_from_gitlab()` and the pre-seeding method above.
 
 ## Pass Jenkins gitUsernamePassword credentials
 

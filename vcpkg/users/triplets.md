@@ -1,57 +1,19 @@
 ---
-title:  Triplet files
-description: Understand the use and content of triplets in vcpkg.
-ms.date: 11/30/2022
+title: Triplet variables
+description: This article describes the configurable variables available to triplet files.
+author: vicroms
+ms.author: viromer
+ms.date: 02/14/2024
+ms.topic: reference
 ---
-# Triplet files
 
-*Triplet* is a standard term used in cross compiling as a way to completely capture the target environment (cpu, os, compiler, runtime, etc.) in a single, convenient name.
+# Triplet variables
 
-In vcpkg, we use triplets to describe an imaginary "target configuration set" for every library. Within a triplet, libraries are generally built with the same configuration, but it is not a requirement. For example, you could have one triplet that builds `openssl` statically and `zlib` dynamically, one that builds them both statically, and one that builds them both dynamically (all for the same target OS and architecture).
+This article describes the vcpkg variables that are available to triplet files.
+A triplet file can also include user defined variables.
 
-A single build will consume files from up to two triplets: the target triplet and the host triplet. If you need to apply different settings for different libraries, you must make a single custom triplet with that combination of settings. See [Per-port customization](#per-port-customization) below for how to accomplish this.
-
-vcpkg comes with pre-defined triplets for many common platforms and configurations. Run `vcpkg help triplet` to get the list available in your environment.
-
-## Triplet selection
-
-To select the target triplet,
-- With the CLI in [Classic mode](classic-mode.md), you can qualify package references with the triplet name, such as `zlib:x64-windows-static-md`.
-- With the CLI, you can pass [`--triplet=<triplet>`](../commands/common-options.md#triplet).
-- With CMake, you can set [`VCPKG_TARGET_TRIPLET`](buildsystems/cmake-integration.md#vcpkg_target_triplet).
-- With MSBuild, you can set [`VcpkgTriplet`](buildsystems/msbuild-integration.md#vcpkgtriplet).
-
-To select the host triplet for the current machine,
-- With the CLI, you can pass [`--host-triplet=<triplet>`](../commands/common-options.md#host-triplet).
-- With CMake, you can set [`VCPKG_HOST_TRIPLET`](buildsystems/cmake-integration.md#vcpkg_host_triplet).
-- With MSBuild, you can set [`VcpkgHostTriplet`](buildsystems/msbuild-integration.md#vcpkghosttriplet).
-
-## Community triplets
-
-Triplets contained in the `triplets\community` folder are not tested by the curated catalog's continuous integration, but are commonly requested by the community. Because we do not have continuous coverage, port updates may break compatibility with community triplets. We will gladly accept and review contributions that aim to solve issues with these triplets.
-
-When using a community triplet, a message like the following one will be printed during a package install:
-
-```console
--- Using community triplet x86-uwp. This triplet configuration is not guaranteed to succeed.
--- [COMMUNITY] Loading triplet configuration from: D:\src\vcpkg\triplets\community\x86-uwp.cmake
-```
-
-## Adding or replacing triplets
-
-You can extend vcpkg by replacing in-the-box triplets or creating new triplets for your particular project.
-
-First, copy a built-in triplet file from the `triplets\` directory into a project local location. Then, add that directory to the list of overlay triplet paths when interacting with vcpkg.
-
-- In [Manifest mode](manifests.md), you can use [`$.vcpkg-configuration.overlay-triplets`](../reference/vcpkg-configuration-json.md#overlay-triplets)
-- When using vcpkg from CMake, you can set [`VCPKG_OVERLAY_TRIPLETS`](buildsystems/cmake-integration.md#vcpkg_overlay_triplets)
-- When using vcpkg from MSBuild, you can add [`--overlay-triplets=...`][overlay-triplets] to [MSBuild Additional Options](buildsystems/msbuild-integration.md#vcpkg-additional-install-options).
-- When using the CLI directly, you can pass [`--overlay-triplets=...`][overlay-triplets]
-- You can set the [`$VCPKG_OVERLAY_TRIPLETS`](config-environment.md#vcpkg_overlay_triplets) environment variable to a list of overlay paths.
-
-See our [overlay triplets example](examples/overlay-triplets-linux-dynamic.md) for a more detailed walkthrough.
-
-[overlay-triplets]: ../commands/common-options.md#overlay-triplets
+See the [triplets concept documentation](../concepts/triplets.md) for a high-level view of triplet
+capabilities.
 
 ## Variables
 
@@ -59,7 +21,7 @@ See our [overlay triplets example](examples/overlay-triplets-linux-dynamic.md) f
 
 Specifies the target machine architecture.
 
-Valid options are `x86`, `x64`, `arm`, `arm64` and `wasm32`.
+Valid options include `x86`, `x64`, `arm`, `arm64`, `arm64ec`, `s390x`, `ppc64le`, `riscv32`, `riscv64`, `loongarch32`, `loongarch64`, `mips64`, and `wasm32`.
 
 ### VCPKG_CRT_LINKAGE
 
@@ -71,11 +33,14 @@ Valid options are `dynamic` and `static`.
 
 Specifies the preferred library linkage.
 
-Valid options are `dynamic` and `static`. Libraries can ignore this setting if they do not support the preferred linkage type.
+Valid options are `dynamic` and `static`. Libraries can ignore this setting if
+they do not support the preferred linkage type.
 
 ### VCPKG_BUILD_TYPE
 
-You can set this value to `release` to only build release versions of the ports. By default this value is empty and release and debug versions of a port are built.
+You can set this value to `release` to build release-only versions of the ports.
+By default this value is empty. When this value is empty vcpkg builds release
+and debug configurations of ports.
 
 ### VCPKG_CMAKE_SYSTEM_NAME
 
@@ -95,23 +60,36 @@ Valid options include any CMake system name, such as:
 
 Specifies the target platform system version.
 
-This field is optional and, if present, will be passed into the build as `CMAKE_SYSTEM_VERSION`.
+This field is optional and, if present, will be passed into the build as
+`CMAKE_SYSTEM_VERSION`.
 
-See also the CMake documentation for `CMAKE_SYSTEM_VERSION`: https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_VERSION.html.
+See also the CMake documentation for
+[`CMAKE_SYSTEM_VERSION`](<https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_VERSION.html>)
 
 ### VCPKG_CHAINLOAD_TOOLCHAIN_FILE
 
-Specifies an alternate CMake Toolchain file to use.
+Specifies an alternate CMake toolchain file to use.
 
-This (if set) will override all other compiler detection logic. By default, a toolchain file is selected from `scripts/toolchains/` appropriate to the platform.
+This (if set) will override all other compiler detection logic. By default, a
+toolchain file is selected from `scripts/toolchains/` appropriate to the
+platform.
 
-See also the CMake documentation for toolchain files: https://cmake.org/cmake/help/v3.11/manual/cmake-toolchains.7.html.
+> [!NOTE]
+> To create a custom toolchain file, it's best to start by including an existing
+> toolchain from `${VCPKG_ROOT}/scripts/toolchains` and extend it. This ensures that
+> essential variables set by the vcpkg executable, such as `VCPKG_TARGET_ARCHITECTURE`,
+> `VCPKG_CXX_FLAGS`, `VCPKG_LINKER_FLAGS`, and other variables are forwarded to CMake.
+
+See also the CMake documentation for [toolchain
+files](<https://cmake.org/cmake/help/v3.11/manual/cmake-toolchains.7.html>).
 
 ### VCPKG_CXX_FLAGS
 
-Sets additional compiler flags to be used when not using `VCPKG_CHAINLOAD_TOOLCHAIN_FILE`.
+Sets additional compiler flags to be used when not using
+`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`.
 
-This option also has forms for configuration-specific and C flags:
+This option also has forms for configuration-specific flags and C language
+flags:
 
 - `VCPKG_CXX_FLAGS`
 - `VCPKG_CXX_FLAGS_DEBUG`
@@ -119,6 +97,15 @@ This option also has forms for configuration-specific and C flags:
 - `VCPKG_C_FLAGS`
 - `VCPKG_C_FLAGS_DEBUG`
 - `VCPKG_C_FLAGS_RELEASE`
+
+If you set `VCPKG_CXX_FLAGS`, you also have to set `VCPKG_C_FLAGS`, and vice-versa. 
+The same is true for the configuration-specific flags. These variables accept a 
+space-delimited string of compiler flags:
+
+```cmake
+set(VCPKG_CXX_FLAGS "/wd4996 -D_CRT_SECURE_NO_WARNINGS")
+set(VCPKG_C_FLAGS "/wd4996 -D_CRT_SECURE_NO_WARNINGS")
+```
 
 ### VCPKG_LINKER_FLAGS
 
@@ -133,15 +120,20 @@ This option also has forms for configuration-specific flags:
 
 ### VCPKG_MESON_CONFIGURE_OPTIONS
 
-Set additional Meson configure options that are appended to the configure command (in [`vcpkg_configure_meson`](../maintainers/functions/vcpkg_configure_meson.md)).
+Set additional Meson configure options that are appended to the configure
+command (in
+[`vcpkg_configure_meson`](../maintainers/functions/vcpkg_configure_meson.md)).
 
 This field is optional.
 
-Also available as build-type specific `VCPKG_MESON_CONFIGURE_OPTIONS_DEBUG` and `VCPKG_MESON_CONFIGURE_OPTIONS_RELEASE` variables.
+Also available as build-type specific `VCPKG_MESON_CONFIGURE_OPTIONS_DEBUG` and
+`VCPKG_MESON_CONFIGURE_OPTIONS_RELEASE` variables.
 
 ### VCPKG_MESON_NATIVE_FILE_RELEASE
 
-Provide an additional configuration dependent file as a meson cross/native file. Can be used to override settings provided by vcpkg since it will be passed after vcpkg's generated cross/native files are passed.
+Provide an additional configuration dependent file as a meson cross/native file.
+Can be used to override settings provided by vcpkg since it will be passed after
+vcpkg's generated cross/native files are passed.
 
 Especially useful to provide your own build_machine and host_machine entries.
 
@@ -159,25 +151,66 @@ See [VCPKG_MESON_NATIVE_FILE_RELEASE](#vcpkg_meson_native_file_release).
 
 ### VCPKG_CMAKE_CONFIGURE_OPTIONS
 
-Set additional CMake configure options that are appended to the configure command (in [`vcpkg_cmake_configure`](../maintainers/functions/vcpkg_cmake_configure.md)).
+Sets additional CMake configure options that are appended to the configure
+command (in
+[`vcpkg_cmake_configure`](../maintainers/functions/vcpkg_cmake_configure.md)).
 
 This field is optional.
 
-Also available as build-type specific `VCPKG_CMAKE_CONFIGURE_OPTIONS_DEBUG` and `VCPKG_CMAKE_CONFIGURE_OPTIONS_RELEASE` variables.
+Also available as build-type specific `VCPKG_CMAKE_CONFIGURE_OPTIONS_DEBUG` and
+`VCPKG_CMAKE_CONFIGURE_OPTIONS_RELEASE` variables.
 
-### VCPKG_MAKE_CONFIGURE_OPTIONS
+### VCPKG_CONFIGURE_MAKE_OPTIONS
 
-Set additional automake / autoconf configure options that are appended to the configure command (in [`vcpkg_configure_make`](../maintainers/functions/vcpkg_configure_make.md)).
+Set additional automake/autoconf configure options that are appended to the
+configure command (in
+[`vcpkg_configure_make`](../maintainers/functions/vcpkg_configure_make.md)).
 
 This field is optional.
 
 For example, to skip certain libtool checks that may errantly fail:
 
 ```cmake
-set(VCPKG_MAKE_CONFIGURE_OPTIONS "lt_cv_deplibs_check_method=pass_all")
+set(VCPKG_CONFIGURE_MAKE_OPTIONS "lt_cv_deplibs_check_method=pass_all")
 ```
 
-Also available as build-type specific `VCPKG_MAKE_CONFIGURE_OPTIONS_DEBUG` and `VCPKG_MAKE_CONFIGURE_OPTIONS_RELEASE` variables.
+Also available as build-type specific `VCPKG_CONFIGURE_MAKE_OPTIONS_DEBUG` and
+`VCPKG_CONFIGURE_MAKE_OPTIONS_RELEASE` variables.
+
+### VCPKG_HASH_ADDITIONAL_FILES
+
+A list of files to include in the calculation of [package ABI hashes](../reference/binarycaching.md#abi-hash).
+
+This field is optional.
+
+Declare any files that affect the contents of a package and should be factored into the calculation of the ABI hash. For example:
+
+* Files that are included (via `include(filepath)`) in custom triplets and toolchains.
+* Files that are defined in `VCPKG_MESON_(NATIVE|CROSS)_FILE_<CONFIG>`
+
+Only the contents and order of the files are considered, the paths of the files do not affect the ABI hash.
+
+```cmake
+set(VCPKG_HASH_ADDITIONAL_FILES
+  "${CMAKE_CURRENT_LIST_DIR}/file1.cmake"
+  "${CMAKE_CURRENT_LIST_DIR}/meson-cross.txt"
+)
+```
+
+### VCPKG_POST_PORTFILE_INCLUDES
+
+A list of CMake files to include after the execution of portfile.cmake.
+
+This field is optional.
+
+The contents and order of the files are used for the ABI hash, the paths of the files do not affect the ABI hash.
+
+```cmake
+set(VCPKG_POST_PORTFILE_INCLUDES
+  "${CMAKE_CURRENT_LIST_DIR}/file1.cmake"
+  "${CMAKE_CURRENT_LIST_DIR}/file2.cmake"
+)
+```
 
 ### VCPKG_DEP_INFO_OVERRIDE_VARS
 
@@ -185,53 +218,77 @@ Also available as build-type specific `VCPKG_MAKE_CONFIGURE_OPTIONS_DEBUG` and `
 
 Replaces the default computed list of triplet "Supports" terms.
 
-This option (if set) will override the default set of terms used for [Platform Expression](../reference/vcpkg-json.md#platform-expression) evaluation.
+This option (if set) will override the default set of terms used for [Platform
+Expression](../reference/vcpkg-json.md#platform-expression) evaluation.
 
-See the [`"supports"`](../reference/vcpkg-json.md#supports) manifest file field documentation for more details.
+See the [`"supports"`](../reference/vcpkg-json.md#supports) manifest file field
+documentation for more details.
 
-> Implementers' note: this list is extracted via the `vcpkg_get_dep_info` mechanism.
+> [!NOTE]
+> This list is extracted via the `vcpkg_get_dep_info` helper function.
 
 ### VCPKG_DISABLE_COMPILER_TRACKING
 
-When this option is set to `TRUE`, `ON`, or `1`, the compiler will not be tracked as part of the package abis.
+> [!WARNING]
+> Enabling this option is not recommended since it can lead to ABI
+> incompatibility in restored binary packages. See the [binary caching
+> documentation](../consume/binary-caching-overview.md) to learn more
 
-This will cause [Binary Caching](binarycaching.md) to reuse builds from older or newer compilers.
+When this option is set to `TRUE`, `ON`, or `1`, the compiler will not be
+tracked as part of the package abis.
+
+This will cause [binary caching](binarycaching.md) to reuse builds from older or
+newer compilers.
 
 ## Windows-specific Variables
 
 ### VCPKG_ENV_PASSTHROUGH
 
-Instructs vcpkg to allow additional environment variables into the build process.
+Instructs vcpkg to allow additional environment variables into the build
+process.
 
-On Windows, vcpkg builds packages in a special clean environment that is isolated from the current command prompt to
-ensure build reliability and consistency. This triplet option can be set to a list of additional environment variables
-that will be added to the clean environment. The values of these environment variables will be hashed into the package
-abi -- to pass through environment variables without abi tracking, see `VCPKG_ENV_PASSTHROUGH_UNTRACKED`.
+On Windows, vcpkg builds packages in a special clean environment that is
+isolated from the current command prompt to ensure build reliability and
+consistency. This triplet option can be set to a list of additional environment
+variables that will be added to the clean environment. The values of these
+environment variables will be hashed into the package abi -- to pass through
+environment variables without abi tracking, see
+[`VCPKG_ENV_PASSTHROUGH_UNTRACKED`](#vcpkg_env_passthrough_untracked).
 
-See also the `vcpkg env` command for how you can inspect the precise environment that will be used.
+See also the [`vcpkg env`](../commands/env.md) command for how you can inspect
+the precise environment that will be used.
 
-> Implementers' note: this list is extracted via the `vcpkg_get_tags` mechanism.
+> [!NOTE]
+> This list is extracted via the `vcpkg_get_tags` helper function.
 
 ### VCPKG_ENV_PASSTHROUGH_UNTRACKED
 
-Instructs vcpkg to allow additional environment variables into the build process without abi tracking.
+Instructs vcpkg to allow additional environment variables into the build process
+without abi tracking.
 
-See `VCPKG_ENV_PASSTHROUGH`.
+See [`VCPKG_ENV_PASSTHROUGH`](#vcpkg_env_passthrough).
 
-### <a name="VCPKG_VISUAL_STUDIO_PATH"></a> VCPKG_VISUAL_STUDIO_PATH
+### VCPKG_VISUAL_STUDIO_PATH
 
 Specifies the Visual Studio installation to use.
 
-To select the precise combination of Visual Studio instance and toolset version, we walk through the following algorithm:
+To select the precise combination of Visual Studio instance and toolset version,
+we walk through the following algorithm:
 
-1. Determine the setting for `VCPKG_VISUAL_STUDIO_PATH` from the triplet, or the environment variable `VCPKG_VISUAL_STUDIO_PATH`, or consider it unset
-1. Determine the setting for `VCPKG_PLATFORM_TOOLSET` from the triplet or consider it unset
-1. Gather a list of all pairs of Visual Studio Instances with all toolsets available in those instances
-   - This is ordered first by instance type (Stable, Prerelease, Legacy) and then by toolset version (v143, v142, v141, v140)
-1. Filter the list based on the settings for `VCPKG_VISUAL_STUDIO_PATH` and `VCPKG_PLATFORM_TOOLSET`.
+1. Determine the setting for `VCPKG_VISUAL_STUDIO_PATH` from the triplet, or the
+   environment variable `VCPKG_VISUAL_STUDIO_PATH`, or consider it unset
+1. Determine the setting for `VCPKG_PLATFORM_TOOLSET` from the triplet or
+   consider it unset
+1. Gather a list of all pairs of Visual Studio instances with all toolsets
+   available in those instances
+   - This is ordered first by instance type (Stable, Prerelease, Legacy) and
+     then by toolset version (v143, v142, v141, v140)
+1. Filter the list based on the settings for `VCPKG_VISUAL_STUDIO_PATH` and
+   `VCPKG_PLATFORM_TOOLSET`.
 1. Select the best remaining option
 
-The path should be absolute, formatted with backslashes, and have no trailing slash:
+The path should be absolute, formatted with backslashes, and have no trailing
+slash:
 
 ```cmake
 set(VCPKG_VISUAL_STUDIO_PATH "C:\\Program Files (x86)\\Microsoft Visual Studio\\Preview\\Community")
@@ -239,9 +296,10 @@ set(VCPKG_VISUAL_STUDIO_PATH "C:\\Program Files (x86)\\Microsoft Visual Studio\\
 
 ### VCPKG_PLATFORM_TOOLSET
 
-Specifies the VS-based C/C++ compiler toolchain to use.
+Specifies the Visual Studio-based C/C++ compiler toolchain to use.
 
-See [`VCPKG_VISUAL_STUDIO_PATH`](#VCPKG_VISUAL_STUDIO_PATH) for the full selection algorithm.
+See [`VCPKG_VISUAL_STUDIO_PATH`](#vcpkg_visual_studio_path) for the full
+selection algorithm.
 
 Valid settings:
 
@@ -254,43 +312,83 @@ Valid settings:
 
 Specifies the detailed MSVC C/C++ compiler toolchain to use.
 
-By default, [`VCPKG_PLATFORM_TOOLSET`] always chooses the latest installed minor version of the selected toolset.
-If you need more granularity, you can use this variable.
-Valid values are, for example, `14.25` or `14.27.29110`.
+By default, [`VCPKG_PLATFORM_TOOLSET`](#vcpkg_platform_toolset) always chooses the latest installed minor
+version of the selected toolset. If you need more granularity, you can use this
+variable. You can specify either a partial or a full version number. Valid values are,
+for example, `14.25` or `14.27.29110`.
 
 ### VCPKG_LOAD_VCVARS_ENV
 
-Determines whether vcpkg will search for and use an instance of Visual Studio as part of the triplet environment.
+Determines whether vcpkg will search for and use an instance of Visual Studio as
+part of the triplet environment.
 
-By default, this is `ON` for Windows triplets that do not specify [`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](#vcpkg_chainload_toolchain_file). For non-Windows triplets and triplets specifying `VCPKG_CHAINLOAD_TOOLCHAIN_FILE`, this defaults to `OFF`.
+By default, this is `ON` for Windows triplets that do not specify
+[`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](#vcpkg_chainload_toolchain_file). For
+non-Windows triplets and triplets specifying `VCPKG_CHAINLOAD_TOOLCHAIN_FILE`,
+this defaults to `OFF`.
 
 ## Linux Variables
 
 ### VCPKG_FIXUP_ELF_RPATH
 
-When this option is set to (true|1|on), vcpkg will add `$ORIGIN` and `$ORIGIN/<path_relative_to_lib>` to the `RUNPATH` header of executables and shared libraries. This allows packages to be relocated on Linux.
+When this option is set to (true|1|on), vcpkg will add `$ORIGIN` and
+`$ORIGIN/<path_relative_to_lib>` to the `RUNPATH` header of executables and
+shared libraries. This allows packages to be relocated on Linux.
 
 ## MacOS Variables
 
 ### VCPKG_INSTALL_NAME_DIR
 
-Sets the install name used when building macOS dynamic libraries. Default value is `@rpath`. See the CMake documentation for [CMAKE_INSTALL_NAME_DIR](https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_NAME_DIR.html) for more information.
+Sets the install name used when building macOS dynamic libraries. Default value
+is `@rpath`. See the CMake documentation for
+[CMAKE_INSTALL_NAME_DIR](https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_NAME_DIR.html)
+for more information.
+
+### VCPKG_FIXUP_MACHO_RPATH
+
+Ensures Mach-O binaries built by vcpkg are relocatable by using relative install names and run-paths.
+
+When set to `ON`:
+
+- Modifies absolute `LC_LC_ID_DYLIB` field to `@rpath/<library>` for shared library binaries;
+- Modifies absolute `LC_RPATH` fields to relative `@loader_path/<relative/path/to/library>` for executable and shared library binaries.
+
+> [!IMPORTANT]
+> This functionality is enabled by default when `VCPKG_TARGET_IS_OSX` is `TRUE`. To disable, explicitly set `VCPKG_FIXUP_MACHO_RPATH` to `OFF` in a [triplet file](../concepts/triplets.md).
+
+For more information about dynamic libraries on macOS, refer to the following links:
+
+- [Dynamic Library Identification](https://forums.developer.apple.com/forums/thread/736719)
+- [Dynamic Library Standard Setup for Apps](https://developer.apple.com/forums/thread/736728)
+- [Dynamic Library Full Path Alternative](https://developer.apple.com/forums/thread/736737)
+- [Embedding nonstandard code structures in a bundle](https://developer.apple.com/documentation/xcode/embedding-nonstandard-code-structures-in-a-bundle)
 
 ### VCPKG_OSX_DEPLOYMENT_TARGET
 
-Sets the minimum macOS version for compiled binaries. This also changes what versions of the macOS platform SDK that CMake will search for. See the CMake documentation for [CMAKE_OSX_DEPLOYMENT_TARGET](https://cmake.org/cmake/help/latest/variable/CMAKE_OSX_DEPLOYMENT_TARGET.html) for more information.
+Sets the minimum macOS version for compiled binaries. This also changes what
+versions of the macOS platform SDK CMake will search for. See the CMake
+documentation for
+[CMAKE_OSX_DEPLOYMENT_TARGET](https://cmake.org/cmake/help/latest/variable/CMAKE_OSX_DEPLOYMENT_TARGET.html)
+for more information.
 
 ### VCPKG_OSX_SYSROOT
 
-Set the name or path of the macOS platform SDK that will be used by CMake. See the CMake documentation for [CMAKE_OSX_SYSROOT](https://cmake.org/cmake/help/latest/variable/CMAKE_OSX_SYSROOT.html) for more information.
+Set the name or path of the macOS platform SDK that will be used by CMake. See
+the CMake documentation for
+[CMAKE_OSX_SYSROOT](https://cmake.org/cmake/help/latest/variable/CMAKE_OSX_SYSROOT.html)
+for more information.
 
 ### VCPKG_OSX_ARCHITECTURES
 
-Set the macOS / iOS target architecture which will be used by CMake. See the CMake documentation for [CMAKE_OSX_ARCHITECTURES](https://cmake.org/cmake/help/latest/variable/CMAKE_OSX_ARCHITECTURES.html) for more information.
+Set the macOS / iOS target architecture which will be used by CMake. See the
+CMake documentation for
+[CMAKE_OSX_ARCHITECTURES](https://cmake.org/cmake/help/latest/variable/CMAKE_OSX_ARCHITECTURES.html)
+for more information.
 
 ## Per-port customization
 
-The CMake Macro `PORT` will be set when interpreting the triplet file and can be used to change settings (such as `VCPKG_LIBRARY_LINKAGE`) on a per-port basis.
+The CMake variable `PORT` will be set when interpreting the triplet file. It can be
+used to change settings (such as `VCPKG_LIBRARY_LINKAGE`) on a per-port basis.
 
 Example:
 
@@ -301,16 +399,8 @@ if(PORT MATCHES "qt5-")
 endif()
 ```
 
-This will build all the `qt5-*` libraries as DLLs, but every other library as a static library.
+This will build all the `qt5-*` ports as dynamic libraries, but every other port as a
+static library.
 
-For an example in a real project, see https://github.com/Intelight/vcpkg/blob/master/triplets/x86-windows-mixed.cmake.
-
-## Remarks
-
-The default triplet when running any vcpkg command is `%VCPKG_DEFAULT_TRIPLET%` or a platform-specific choice if that environment variable is undefined.
-
-- Windows: `x86-windows`
-- Linux: `x64-linux`
-- OSX: `x64-osx`
-
-We recommend using a systematic naming scheme when creating new triplets. The Android toolchain naming scheme is a good source of inspiration: https://developer.android.com/ndk/guides/standalone_toolchain.html.
+For an example in a real project, see
+<https://github.com/Intelight/vcpkg/blob/master/triplets/x86-windows-mixed.cmake>.

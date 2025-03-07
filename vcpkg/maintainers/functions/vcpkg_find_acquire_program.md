@@ -1,7 +1,7 @@
 ---
 title: vcpkg_find_acquire_program
 description: Learn how to use vcpkg_find_acquire_program.
-ms.date: 11/30/2022
+ms.date: 01/22/2025
 ---
 # vcpkg_find_acquire_program
 
@@ -24,7 +24,6 @@ This variable specifies both the program to be acquired as well as the out param
 The current list of programs includes:
 
 - 7Z
-- ARIA2 (Downloader)
 - BISON
 - CLANG
 - DARK
@@ -52,8 +51,6 @@ msys2 has a dedicated helper function: [`vcpkg_acquire_msys`](vcpkg_acquire_msys
 ## Examples
 
 - [ffmpeg](https://github.com/Microsoft/vcpkg/blob/master/ports/ffmpeg/portfile.cmake)
-- [openssl](https://github.com/Microsoft/vcpkg/blob/master/ports/openssl/portfile.cmake)
-- [qt5](https://github.com/Microsoft/vcpkg/blob/master/ports/qt5/portfile.cmake)
 
 ## Source
 

@@ -1,16 +1,16 @@
 ### YamlMime:Landing
 
 title: vcpkg documentation
-summary: vcpkg is a cross-platform package manager for C and C++ developers. Using vcpkg you can quickly get thousands of high quality open source libraries to empower your application and internally share collections of private components.
+summary: vcpkg is a cross-platform C/C++ package manager. Get access to thousands of high quality open-source libraries to empower your application and internally share collections of private components.
+
 
 metadata:
   title: vcpkg documentation
-  description: vcpkg is a cross-platform package manager for C and C++ developers. Using vcpkg you can quickly get thousands of high quality open source libraries to empower your application and internally share collections of private components.
-  ms.prod: vcpkg
+  description: vcpkg is the leading cross-platform C/C++ package manager. Get access to thousands of high quality open-source libraries to empower your application and internally share collections of private components.
   ms.topic: landing-page
   author: ras0219-msft
   ms.author: roschuma
-  ms.date: 11/17/2022
+  ms.date: 10/25/2023
 
 landingContent:
   # Card 
@@ -18,39 +18,81 @@ landingContent:
     linkLists:
       - linkListType: quickstart
         links:
-          - text: Use sqlite3 in Visual Studio
-            url: examples/installing-and-using-packages.md
-          - text: Use sqlite3 in CMake
-            url: examples/installing-and-using-packages.md
-          - text: Use sqlite3 in Other Buildsystems
-            url: examples/installing-and-using-packages.md
-
-  # Card
-  - title: Use Packages
-    linkLists:
-      - linkListType: overview
-        links:
-          - text: Customize compilation flags
-            url: users/triplets.md
-          - text: Reuse builds between projects and machines
-            url: users/binarycaching.md
-          - text: Mirror external resources for disconnected builds
-            url: users/assetcaching.md
-      - linkListType: deploy
-        links:
+          - text: Install and use packages with CMake
+            url: get_started/get-started.md
+          - text: Install and use packages with CMake in Visual Studio
+            url: get_started/get-started-vs.md
+          - text: Install and use packages with MSBuild in Visual Studio
+            url: get_started/get-started-msbuild.md
           - text: Integrate with your CMake project
             url: users/buildsystems/cmake-integration.md
           - text: Integrate with your MSBuild (Visual Studio) project
             url: users/buildsystems/msbuild-integration.md
-          - text: Integrate with a custom buildsystem
+          - text: Integrate with a different build system
             url: users/buildsystems/manual-integration.md
-
-  # Card (Optional; Remove if not applicable.)
-  - title: Create Packages
+  # Card
+  - title: Use External Registries
+    linkLists:
+      - linkListType: tutorial
+        links:
+          - text: Registry types
+            url: maintainers/registries.md
+          - text: Install your private dependencies
+            url: consume/git-registries.md
+  # Card
+  - title: Package your own library
+    linkLists:
+      - linkListType: tutorial
+        links:
+          - text: Create and publish packages
+            url: get_started/get-started-packaging.md
+          - text: Apply patches to a dependency's source code
+            url: examples/patching.md
+          - text: Contribute an open-source library to vcpkg
+            url: get_started/get-started-adding-to-registry.md
+          - text: Provide usage documentation
+            url: maintainers/handling-usage-files.md
+  # Card
+  - title: Use vcpkg in CI
+    linkLists:
+      - linkListType: tutorial
+        links:
+          - text: Mirror external resources for disconnected builds
+            url: users/assetcaching.md
+          - text: Troubleshoot asset caching issues
+            url: troubleshoot/asset-caching.md
+          - text: Reuse builds between projects and machines
+            url: consume/binary-caching-local.md
+          - text: Troubleshoot binary caching issues
+            url: users/binarycaching-troubleshooting.md
+  # Card
+  - title: Version your dependencies
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: Versioning
+            url: users/versioning.concepts.md
+      - linkListType: tutorial
+        links:
+          - text: Install a specific version of a package
+            url: consume/lock-package-versions.md
+          - text: Troubleshoot versioning issues
+            url: users/versioning-troubleshooting.md
+  # Card
+  - title: Customize ports and triplets
     linkLists:
       - linkListType: reference
         links:
-          - text: Registry structure reference
-            url: maintainers/registries.md
-          - text: Portfile variable reference
-            url: maintainers/variables.md
+          - text: Environmental variables
+            url: users/config-environment.md
+          - text: Triplet settings
+            url: users/triplets.md
+  # Card
+  - title: Maintain your own registry
+    linkLists:
+      - linkListType: tutorial
+        links:
+          - text: Test your custom registry ports with GitHub Actions
+            url: produce/test-registry-ports-gha.md
+          - text: Test your custom registry ports with Azure DevOps
+            url: produce/test-registry-ports-ado.md

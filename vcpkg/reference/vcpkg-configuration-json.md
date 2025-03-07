@@ -1,17 +1,26 @@
 ---
 title: vcpkg-configuration.json Reference
 description: Reference documentation for the vcpkg-configuration.json file format
-ms.date: 11/30/2022
+ms.date: 01/10/2024
+ms.topic: reference
 ---
 # vcpkg-configuration.json Reference
 
-The `vcpkg-configuration.json` file forms part of a project's [manifest](../users/manifests.md), along with [`vcpkg.json`](vcpkg-json.md). All fields in the `vcpkg-configuration.json` file are only used from the top-level project -- the `vcpkg-configuration.json` files in any dependencies are ignored.
+The `vcpkg-configuration.json` file forms part of a project's
+[manifest](../concepts/manifest-mode.md), along with
+[`vcpkg.json`](vcpkg-json.md). All fields in the `vcpkg-configuration.json` file
+are only used from the top-level project -- the `vcpkg-configuration.json` files
+in any dependencies are ignored.
 
-In [Manifest Mode](../users/manifests.md), `vcpkg-configuration.json` can be in a separate file beside [`vcpkg.json`](vcpkg-json.md) or it can be embedded in the [`"vcpkg-configuration" field`](vcpkg-json.md#vcpkg-configuration).
+In [Manifest Mode](../concepts/manifest-mode.md), `vcpkg-configuration.json` can
+be in a separate file beside [`vcpkg.json`](vcpkg-json.md) or it can be embedded
+in the [`"vcpkg-configuration" field`](vcpkg-json.md#vcpkg-configuration).
 
-In [Classic Mode](../users/classic-mode.md), vcpkg will use the `vcpkg-configuration.json` file in the [root](../commands/common-options.md#vcpkg-root) of the vcpkg instance.
+In [Classic Mode](../concepts/classic-mode.md), vcpkg will use the
+`vcpkg-configuration.json` file in the
+[root](../commands/common-options.md#vcpkg-root) of the vcpkg instance.
 
-For an overview of using registries with vcpkg, see [Using Registries](../users/registries.md).
+For an overview of using registries with vcpkg, see [Using Registries](../consume/git-registries.md).
 
 The latest JSON Schema is available at [https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg-configuration.schema.json](https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg-configuration.schema.json). IDEs with JSON Schema support such as Visual Studio and Visual Studio Code can use this file to provide autocomplete and syntax checking. For most IDEs, you should set `"$schema"` in your `vcpkg-configuration.json` to this URL.
 
@@ -28,8 +37,9 @@ The latest JSON Schema is available at [https://raw.githubusercontent.com/micros
   "registries": [
     {
       "kind": "git",
-      "repository": "https://github.com/northwindtraders/vcpkg-registry",
-      "baseline": "dacf4de488094a384ca2c202b923ccc097956e0c",
+      "repository": "https://github.com/microsoft/vcpkg-docs",
+      "reference": "vcpkg-registry",
+      "baseline": "768f6a3ad9f9b6c4c2ff390137690cf26e3c3453",
       "packages": [ "beicode", "beison" ]
     }
   ],
@@ -40,7 +50,8 @@ The latest JSON Schema is available at [https://raw.githubusercontent.com/micros
   "overlay-triplets": [ "./my-triplets" ]
 }
 ```
-This example adds a private registry, `https://github.com/northwindtraders/vcpkg-registry`, as the source for the libraries `beicode` and `beison`. All other ports are found from an internal mirror of the Curated Catalog hosted at `https://internal/mirror/of/github.com/Microsoft/vcpkg`.
+
+This example adds a private registry, `https://github.com/microsoft/vcpkg-docs/tree/vcpkg-registry`, as the source for the libraries `beicode` and `beison`. All other ports are found from an internal mirror of the Curated Catalog hosted at `https://internal/mirror/of/github.com/Microsoft/vcpkg`.
 
 The example also configures custom overlays for ports and triplets that are present in the source code repository.
 
@@ -49,8 +60,8 @@ The example also configures custom overlays for ports and triplets that are pres
 | Name | Type   | Description |
 |------|--------|-------------|
 | [default-registry](#default-registry) | [Registry][] or null | Registry used for all ports without a specific registry |
-| [overlay-ports](#overlay-ports) | string[] | List of paths to use as port overlays |
-| [overlay-triplets](#overlay-triplets) | string[] | List of paths to use as triplet overlays |
+| [overlay-ports](#overlay-ports) | string[] | List of paths to use as overlay port locations |
+| [overlay-triplets](#overlay-triplets) | string[] | List of paths to use as overlay triplets |
 | [registries](#registries) | [Registry][][] | Additional registries to use for subsets of ports |
 
 ### <a name="default-registry"></a> `"default-registry"`
@@ -67,10 +78,10 @@ Additional registries to use for specific ports. An array of [Registries](#regis
 
 A list of port overlay paths. An array of strings. Optional.
 
-Each path in the array must point to either:
+Each path in the array must name either:
 
-- A port directory containing `vcpkg.json` and `portfile.cmake`
-- A directory containing port directories named after the ports (`zlib`'s `vcpkg.json` must be at `zlib/vcpkg.json`).
+- A directory containing a port, with  `vcpkg.json` and `portfile.cmake` files, or
+- A directory containing directories named after the ports (`zlib`'s `vcpkg.json` must be at `zlib/vcpkg.json`).
 
 Relative paths are resolved relative to the `vcpkg-configuration.json` file. Absolute paths can be used but are discouraged.
 
@@ -84,8 +95,8 @@ Each path in the array must point to a directory of triplet files ([see triplets
 
 | Name | Required | Type   | Description |
 |------|----------|--------|-------------|
-| [baseline](#registry-baseline) | Yes | string | Minimum version constraint on all ports from this registry |
-| [kind](#registry-kind) | Yes | string | Type of registry being used |
+| [baseline](#registry-baseline) | Git and Builtin Registries | string | Minimum version constraint on all ports from this registry |
+| [kind](#registry-kind) | Yes | string | Kind of registry being used |
 | [packages](#registry-packages) | Yes, if not default | string | List of ports to come from this registry |
 | [path](#registry-path) | Filesystem Registry | string | Path to the Filesystem registry |
 | [reference](#registry-reference) | No | string | Git reference to use for available versions |
@@ -95,9 +106,9 @@ Each path in the array must point to a directory of triplet files ([see triplets
 
 ### <a name="registry-kind"></a> [Registry][]: `"kind"`
 
-The type of registry being used. A string. Required.
+The kind of registry being used. A string. Required.
 
-| `"kind"` Value | Registry Type |
+| `"kind"` Value | Registry Kind |
 | ------|---|
 | `"filesystem"` | [Filesystem Registry][] |
 | `"git"` | [Git Registry][] |
@@ -107,9 +118,9 @@ The type of registry being used. A string. Required.
 
 The registry-specific identifier for the minimum versions to use from this registry. A string. Required.
 
-For [Git Registries][Git Registry] and for the [Builtin Registry][], it should be a 40-character git commit sha in the registry's repository that contains a `versions/baseline.json`.
+For [Git Registries][Git Registry] and for the [Builtin Registry][], this is a 40-character git commit sha in the registry's repository that contains a `versions/baseline.json`.
 
-For [Filesystem Registries][Filesystem Registry], it can be any valid baseline string that the registry defines.
+For [Filesystem Registries][Filesystem Registry], it can be any valid json property name that the registry defines on its `baseline.json`. If a filesystem registry does not declare a baseline, the value used is `"default"`.
 
 ### <a name="registry-reference"></a> [Registry][]: `"reference"`
 
@@ -157,8 +168,8 @@ Package patterns may contain only lowercase letters, digits, and `-`, with an op
 * `a+` (`+` is not a valid pattern character)
 * `a?` (`?` is not a valid pattern character)
 
-See the [Using Registries documentation](../users/registries.md#package-name-resolution) for more information on how port names are resolved.
+See the [Using Registries documentation](../concepts/package-name-resolution.md) for more information on how port names are resolved.
 
-[Git Registry]: ../maintainers/registries.md#git-registries
-[Filesystem Registry]: ../maintainers/registries.md#filesystem-registries
-[Builtin Registry]: ../maintainers/registries.md#builtin-registries
+[Git Registry]: ../concepts/registries.md#git-registries
+[Filesystem Registry]: ../concepts/registries.md#filesystem-registries
+[Builtin Registry]: ../concepts/registries.md#built-in-registry

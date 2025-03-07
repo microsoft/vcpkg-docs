@@ -1,9 +1,10 @@
 ---
 title: vcpkg CMake Style Guide
 description: The CMake Style Guide for contributing to vcpkg.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
+ms.topic: concept-article
 ---
-# CMake Style Guide
+# CMake style guide
 
 We expect that all CMake scripts that are either:
 
@@ -18,7 +19,7 @@ to fall in line with these guidelines.
 These guidelines are intended to create stability in our scripts.
 We hope that they will make both forwards and backwards compatibility easier.
 
-## The Guidelines
+## The guidelines
 
 - Except for out-parameters, we always use `cmake_parse_arguments()`
   rather than function parameters or referring to `${ARG<N>}`.
@@ -143,7 +144,7 @@ We hope that they will make both forwards and backwards compatibility easier.
 - All port-based scripts must use `include_guard(GLOBAL)`
   to avoid being included multiple times.
 
-### CMake Versions to Require
+### CMake versions to require
 
 - All CMake scripts, except for `vcpkg.cmake`,
   may assume the version of CMake that is present in the

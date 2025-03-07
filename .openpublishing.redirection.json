@@ -1,0 +1,23 @@
+{
+    "redirections": [
+        {
+            "source_path": "vcpkg/examples/manifest-mode-cmake.md",
+            "redirect_url": "/vcpkg/consume/manifest-mode",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "vcpkg/users/registries.md",
+            "redirect_url": "/vcpkg/concepts/registries",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "vcpkg/users/classic-mode.md",
+            "redirect_url": "/vcpkg/concepts/classic-mode",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "vcpkg/users/manifests.md",
+            "redirect_url": "/vcpkg/concepts/manifest-mode"
+        }
+    ]
+}

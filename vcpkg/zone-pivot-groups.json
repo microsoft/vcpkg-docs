@@ -1,0 +1,38 @@
+{
+    "groups": [
+      {
+        "id": "shell-selections",
+        "title": "Shell Selections",
+        "prompt": "Terminal options",
+        "pivots": [
+          {
+            "id": "shell-powershell",
+            "title": "PowerShell"
+          },
+          {
+            "id": "shell-cmd",
+            "title": "CMD"
+          },
+          {
+            "id": "shell-bash",
+            "title": "Bash"
+          }
+        ]
+      },
+      {
+        "id": "os-runner",
+        "title": "OS Runner",
+        "prompt": "Operating System Runner",
+        "pivots": [
+          {
+            "id": "windows-runner",
+            "title": "Windows runner"
+          },
+          {
+            "id": "linux-runner",
+            "title": "Linux runner"
+          }
+        ]
+      }
+    ]
+  }

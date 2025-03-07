@@ -1,7 +1,7 @@
 ---
 title: vcpkg_check_features
 description: Check if one or more features are a part of a package installation.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_check_features
 

@@ -1,7 +1,7 @@
 ---
 title: vcpkg list
 description: Command line reference for the vcpkg list command. Shows a list of the packages in the installed tree, along with the version and description of each.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg list
 

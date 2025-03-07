@@ -1,7 +1,7 @@
 ---
 title: vcpkg export
 description: Command line reference for the vcpkg export command. Create standalone SDK bundles.
-ms.date: 1/31/2023
+ms.date: 01/10/2024
 ---
 # vcpkg export
 
@@ -18,13 +18,15 @@ Exports built packages from the [installed directory](common-options.md#install-
 `export` produces a standalone, distributable SDK (Software Development Kit) that can be used on another machine without separately acquiring vcpkg. It contains:
 
 1. The prebuilt binaries for the selected packages
-2. Their transitive dependencies
-3. [Integration files](#standard-integration), such as a [CMake toolchain][cmake] or [MSBuild props/targets][msbuild]
+1. Their transitive dependencies
+1. [Integration files](#standard-integration), such as a [CMake toolchain][cmake] or [MSBuild props/targets][msbuild]
 
-[!NOTE]
-This command's behavior is different in [Classic Mode](../users/classic-mode.md) and [Manifest Mode](../users/manifests.md)
+>[!NOTE]
+> This command's behavior is different in [Classic
+> Mode](../concepts/classic-mode.md) and [Manifest
+> Mode](../concepts/manifest-mode.md)
 
-The `export` command does not install any packages or transitive dependencies. It only exports packages that are already installed. 
+The `export` command does not install any packages or transitive dependencies. It only exports packages that are already installed.
 
 Refer to [Manifest Mode](export.md#Manifest-Mode) or [Classic Mode](export.md#Classic-Mode) for more details.
 
@@ -44,13 +46,14 @@ This command exports the specified packages in zip format. Both `sqlite:x64-wind
 
 ## <a name="Manifest-Mode"></a>Manifest Mode
 
-In manifest mode, the command exports all currently installed packes. The installation directory includes all the packages declared in the manifest (`vcpkg.json`) as well as their transitive dependencies. Run `vcpkg install` before using this command to ensure that all required packages are installed. 
+In manifest mode, the command exports all currently installed packages. The installation directory includes all the packages declared in the manifest (`vcpkg.json`) as well as their transitive dependencies. Run `vcpkg install` before using this command to ensure that all required packages are installed.
 
 In this mode you can't specify individual packages to export. The command operates on the entire installed state as a single entity, respecting the dependencies and versions specified in the manifest file.
 
 Another difference is the requirement of the `--output-dir` option. This option specifies the directory where the exported packages will be stored.
 
 For example, from the manifest directory
+
 ```no-highlight
 vcpkg export --zip --output-dir=.\exports
 ```
@@ -63,21 +66,18 @@ Most export formats contain a standard set of integration files:
 
 - A [CMake toolchain][cmake] at `/scripts/buildsystems/vcpkg.cmake`
 - [MSBuild props/targets][msbuild] at `/scripts/buildsystems/msbuild/vcpkg.props` and `/scripts/buildsystems/msbuild/vcpkg.targets`
+- The [installation tree][installation] at `/`
 
 Some export formats differ from this standard set; see the individual format help below for more details.
 
 ### Formats
 
 Officially supported SDK formats:
+
 - [Raw Directory](#raw-directory)
 - [Zip](#zip)
 - [7zip](#7zip)
 - [NuGet](#nuget)
-
-Experimental SDK formats (may change or be removed at any time):
-- [IFW](#ifw)
-- [Chocolatey](#chocolatey)
-- [Prefab](#prefab)
 
 #### Raw Directory
 
@@ -120,57 +120,38 @@ Create an [NuGet](/nuget/what-is-nuget) package at `<output-dir>/<nuget-id>.<nug
 Contains the [Standard Integration Files][] as well as additional MSBuild integration to support inclusion in an MSBuild C++ project (`.vcxproj`) via the NuGet Package Manager. Note that you cannot mix multiple NuGet packages produced with `export` together -- only one of the packages will be used. To add additional libraries, you must create a new export with the full set of dependencies.
 
 Format specific options:
+
 - [`--nuget-id`](#nuget-id)
 - [`--nuget-version`](#nuget-version)
 - [`--nuget-description`](#nuget-description)
-  
+
 #### IFW
-[!INCLUDE [experimental](../../includes/experimental.md)]
 
-```no-highlight
-vcpkg export --ifw [options] <package>...
-```
+<a id="ifw-configuration-file-path"></a>
+<a id="ifw-installer-file-path"></a>
+<a id="ifw-packages-directory-path"></a>
+<a id="ifw-repository-directory-path"></a>
+<a id="ifw-repository-url"></a>
 
-Export to an IFW-based installer.
-
-Format specific options:
-- [`--ifw-configuration-file-path`](#ifw-configuration-file-path)
-- [`--ifw-installer-file-path`](#ifw-installer-file-path)
-- [`--ifw-packages-directory-path`](#ifw-packages-directory-path)
-- [`--ifw-repository-directory-path`](#ifw-repository-directory-path)
-- [`--ifw-repository-url`](#ifw-repository-url)
+IFW export has been removed.
 
 #### Chocolatey
 
-[!INCLUDE [experimental](../../includes/experimental.md)]
+<a id="maintainer"></a>
+<a id="version-suffix"></a>
 
-```no-highlight
-vcpkg export --x-chocolatey [options] <package>...
-```
-
-Export a Chocolatey package.
-
-Format specific options:
-- [`--x-maintainer`](#maintainer)
-- [`--x-version-suffix`](#version-suffix)
+Chocolatey export has been removed.
 
 #### Prefab
 
-[!INCLUDE [experimental](../../includes/experimental.md)]
+<a id="prefab-artifact-id"></a>
+<a id="prefab-group-id"></a>
+<a id="prefab-maven"></a>
+<a id="prefab-min-sdk"></a>
+<a id="prefab-target-sdk"></a>
+<a id="prefab-version"></a>
 
-```no-highlight
-vcpkg export --prefab [options] <package>...
-```
-
-Export to Prefab format.
-
-Format specific options:
-- [`--prefab-artifact-id`](#prefab-artifact-id)
-- [`--prefab-group-id`](#prefab-group-id)
-- [`--prefab-maven`](#prefab-maven)
-- [`--prefab-min-sdk`](#prefab-min-sdk)
-- [`--prefab-target-sdk`](#prefab-target-sdk)
-- [`--prefab-version`](#prefab-version)
+Prefab export has been removed.
 
 ## Options
 
@@ -183,9 +164,11 @@ This is the list of top-level built packages which will be included in the SDK. 
 <a id="package-syntax"></a>
 
 **Package Syntax**
+
 ```
 <port name>:<triplet>
 ```
+
 Package references without a triplet are automatically qualified by the [default target triplet](common-options.md#triplet).
 Note: `<port name>:<triplet>` arguments are not allowed when using `vcpkg export` in manifest mode.
 
@@ -202,42 +185,6 @@ Export all installed packages. This option is implied when using `vcpkg export` 
 ### `--dry-run`
 
 Do not perform the export, only print the export plan.
-
-<a id="ifw-configuration-file-path"></a>
-
-### `--ifw-configuration-file-path=`
-
-Specify the temporary file path for the installer configuration.
-
-<a id="ifw-installer-file-path"></a>
-
-### `--ifw-installer-file-path=`
-
-Specify the file path for the exported installer.
-
-<a id="ifw-packages-directory-path"></a>
-
-### `--ifw-packages-directory-path=`
-
-Specify the temporary directory path for the repacked packages.
-
-<a id="ifw-repository-directory-path"></a>
-
-### `--ifw-repository-directory-path=`
-
-Specify the directory path for the exported repository.
-
-<a id="ifw-repository-url"></a>
-
-### `--ifw-repository-url=`
-
-Specify the remote repository URL for the online installer.
-
-<a id="maintainer"></a>
-
-### `--x-maintainer=`
-
-Specify the maintainer for the exported Chocolatey package.
 
 <a id="nuget-description"></a>
 
@@ -281,48 +228,7 @@ Specifies the output directory.
 
 All top-level SDK files will be produced into this directory. This option is required in manifest mode. In classic mode, this is optional and defaults to the [vcpkg root directory](../users/config-environment.md#vcpkg_root).
 
-<a id="prefab-artifact-id"></a>
-
-### `--prefab-artifact-id=`
-
-Artifact Id is the name of the project according to Maven specifications.
-
-<a id="prefab-group-id"></a>
-
-### `--prefab-group-id=`
-
-GroupId uniquely identifies your project according to Maven specifications.
-
-<a id="prefab-maven"></a>
-
-### `--prefab-maven`
-
-Enable Maven.
-
-<a id="prefab-min-sdk"></a>
-
-### `--prefab-min-sdk=`
-
-Android minimum supported sdk version.
-
-<a id="prefab-target-sdk"></a>
-
-### `--prefab-target-sdk=`
-
-Android target supported sdk version.
-
-<a id="prefab-version"></a>
-
-### `--prefab-version=`
-
-Version is the version of the project according to Maven specifications.
-
-<a id="version-suffix"></a>
-
-### `--x-version-suffix=`
-
-Specify the version suffix to add for the exported Chocolatey package.
-
 [cmake]: ../users/buildsystems/cmake-integration.md
 [msbuild]: ../users/buildsystems/msbuild-integration.md
 [Standard Integration Files]: #standard-integration
+[installation]: ../reference/installation-tree-layout.md

@@ -1,11 +1,12 @@
 ---
 title: vcpkg_fixup_cmake_targets
 description: Learn how to use vcpkg_fixup_cmake_targets.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_fixup_cmake_targets
 
-**This function has been deprecated in favor of [`vcpkg_cmake_config_fixup`](vcpkg_cmake_config_fixup.md).**
+> [!WARNING]
+> This function has been deprecated in favor of [`vcpkg_cmake_config_fixup`](vcpkg_cmake_config_fixup.md).
 
 Merge release and debug CMake targets and configs to support multiconfig generators.
 
@@ -61,12 +62,6 @@ Transform all references matching `/bin/*` to `/${TOOLS_PATH}/*`  on other platf
 
 Fix `${_IMPORT_PREFIX}` in auto generated targets to be one folder deeper.
 Replace `${CURRENT_INSTALLED_DIR}` with `${_IMPORT_PREFIX}` in configs and targets.
-
-## Examples
-
-- [concurrentqueue](https://github.com/Microsoft/vcpkg/blob/master/ports/concurrentqueue/portfile.cmake)
-- [curl](https://github.com/Microsoft/vcpkg/blob/master/ports/curl/portfile.cmake)
-- [nlohmann-json](https://github.com/Microsoft/vcpkg/blob/master/ports/nlohmann-json/portfile.cmake)
 
 ## Source
 

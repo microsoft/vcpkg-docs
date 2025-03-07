@@ -1,12 +1,14 @@
 ---
 title: Getting Started with Classic mode
 description: Learn to get started with SQLite with vcpkg in Classic mode.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
+ROBOTS: NOINDEX
+is_archived: true
 ---
 # Installing and Using Packages Example: SQLite
 
 > [!NOTE]
-> This old example uses Classic mode, but most developers will be happier with Manifest mode. See [Manifest mode: CMake Example](manifest-mode-cmake.md) for an example of converting to Manifest mode.
+> This old example uses Classic mode, but most developers will be happier with Manifest mode. See [Manifest mode: CMake Example](../consume/manifest-mode.md) for an example of converting to Manifest mode.
 
 - [Step 1: Install](#install)
 - [Step 2: Use](#use)
@@ -187,15 +189,11 @@ Unlike other platforms, we do not automatically add the `include\` directory to 
 ```cmake
 # To find and use catch
 find_path(CATCH_INCLUDE_DIR catch.hpp)
-include_directories(${CATCH_INCLUDE_DIR})
+target_include_directories(main PRIVATE ${CATCH_INCLUDE_DIR})
 
 # To find and use azure-storage-cpp
 find_path(WASTORAGE_INCLUDE_DIR was/blob.h)
 find_library(WASTORAGE_LIBRARY wastorage)
-include_directories(${WASTORAGE_INCLUDE_DIR})
-link_libraries(${WASTORAGE_LIBRARY})
-
-# We recommend using the target-specific directives for a cleaner cmake:
-#     target_include_directories(main ${LIBRARY})
-#     target_link_libraries(main PRIVATE ${LIBRARY})
+target_include_directories(main PRIVATE ${WASTORAGE_INCLUDE_DIR})
+target_link_libraries(main PRIVATE ${WASTORAGE_LIBRARY})
 ```

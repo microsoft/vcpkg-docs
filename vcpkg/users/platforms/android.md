@@ -1,13 +1,14 @@
 ---
-title: Android Support in vcpkg
+title: Android support
 description: How to target Android devices using C++ with vcpkg
-ms.date: 11/30/2022
+ms.date: 07/11/2024
+ms.topic: concept-article
 ---
 # Android
 
-The triplets x64-android, arm-neon-android, and arm64-android are tested by vcpkg's public catalog CI.
+The triplets x64-android, arm-neon-android, and arm64-android are tested by vcpkg's curated registry continuous integration.
 
-## Android Build Requirements
+## Android build requirements
 
 1. Download the [Android NDK](https://developer.android.com/ndk/downloads/)
 
@@ -20,12 +21,12 @@ The triplets x64-android, arm-neon-android, and arm64-android are tested by vcpk
    Or:
 
    ```bash
-   export ANDROID_NDK_HOME=/home/your-account/Android/android-ndk-r25c
+   export ANDROID_NDK_HOME=/home/your-account/Android/android-ndk-r26d
    ```
 
 Note: you will still need to install g++ or a C++ compiler that targets your host for any host dependencies.
 
-## vcpkg triplets and their corresponding android ABI
+## vcpkg triplets and their corresponding Android ABI
 
 There are six different Android ABIs, each of which maps to a vcpkg triplet. The following table outlines the mapping from vcpkg architectures to android architectures:
 
@@ -43,6 +44,7 @@ There are six different Android ABIs, each of which maps to a vcpkg triplet. The
 You can build Android libraries, such as `jsoncpp` in a Ubuntu Docker container.
 
 Create a `Dockerfile` with the following contents:
+
 ```Dockerfile
 FROM ubuntu:22.04
 
@@ -57,11 +59,11 @@ RUN \
 
 # Download Android NDK
 RUN \
-  wget https://dl.google.com/android/repository/android-ndk-r25c-linux.zip && \
-  unzip android-ndk-r25c-linux.zip && \
-  rm -rf android-ndk-r25c-linux.zip
+  wget https://dl.google.com/android/repository/android-ndk-r26d-linux.zip && \
+  unzip android-ndk-r26d-linux.zip && \
+  rm -rf android-ndk-r26d-linux.zip
 
-ENV ANDROID_NDK_HOME /android-ndk-r25c
+ENV ANDROID_NDK_HOME /android-ndk-r26d
 
 RUN git clone https://github.com/microsoft/vcpkg
 WORKDIR vcpkg
@@ -74,12 +76,14 @@ WORKDIR /project
 ```
 
 Build the image and launch a new container:
+
 ```sh
 docker build . -t "vcpkg-android"
 docker run -it "vcpkg-android" bash
 ```
 
 In the container, create `/project/vcpkg.json` with the following contents:
+
 ```json
 {
   "dependencies": [
@@ -118,7 +122,7 @@ Notice that **the location of the sysroot has changed since NDK 22**. (For more 
 
 If you prefer using [the latest version](https://developer.android.com/studio/projects/install-ndk#default-ndk-per-agp), check the [BuildSystemMaintainers.md of the NDK document](https://android.googlesource.com/platform/ndk/+/master/docs/BuildSystemMaintainers.md#sysroot) and then put appropriate path for your system.
 
-For example, Mac OS users will use the path like this example:
+For example, MacOS users will use the path like this example:
 
 ```cmake
 # In android triplets... (e.g. arm64-android.cmake)
@@ -128,7 +132,7 @@ set(VCPKG_CMAKE_SYSTEM_NAME Android)
 set(ENV{VULKAN_SDK} $ENV{ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr)
 ```
 
-By doing this for all android triplets, you can install `vulkan` and the packages that require it. (e.g. `vulkan-hpp`)
+By doing this for all Android triplets, you can install `vulkan` and the packages that require it. (e.g. `vulkan-hpp`)
 
 <details>
   <summary>`vcpkg install vulkan-hpp:arm64-android`</summary>
@@ -185,7 +189,7 @@ The package vulkan-hpp:arm64-android is header only and can be used from CMake v
 
 ## Example Android Project
 
-The folder [docs/examples/vcpkg_android_example_cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake) provides a working example, with an android library that consumes the jsoncpp library:
+The folder [docs/examples/vcpkg_android_example_cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake) provides a working example, with an Android library that consumes the jsoncpp library:
 
 ### Details
 
@@ -221,165 +225,3 @@ The folder [vcpkg_android_example_cmake_script](https://github.com/Microsoft/vcp
   ```bash
   cmake .. -DVCPKG_TARGET_ANDROID=ON -DANDROID_ABI=armeabi-v7a
   ```
-
-## Consume libraries using vcpkg, and Android prefab Archives (AAR files)
-
-[!INCLUDE [experimental](../../../includes/experimental.md)]
-
-vcpkg can export android archives ([AAR files](https://developer.android.com/studio/projects/android-library)). Once an archive is created, it can imported in Android Studio as a native dependent.  The archive is automatically consumed using [android studio's prefab tool](https://github.com/google/prefab).
-
-For more information on Prefab, refer to:
-
-- The [official prefab documentation](https://google.github.io/prefab).
-- a blog post from Android developers blog: [Native Dependencies in Android Studio 4.0](https://android-developers.googleblog.com/2020/02/native-dependencies-in-android-studio-40.html)
-
-> [!NOTE]
-> Android Studio users: prefab packages are supported on Android Studio 4+.
-
-### Requirements
-
-1. `ndk <required>`
-
-Set environment variable `ANDROID_NDK_HOME` to your android ndk installation. For example:
-
-```console
-export ANDROID_NDK_HOME=/home/your-account/Android/Sdk/ndk-bundle
-```
-
-1. `7zip <required on windows>` or `zip <required on linux>`
-
-1. `maven <optional>`
-
-1. Android triplets
-
-> [!NOTE]
-> To use "prefab" (see below), all four architectures are required. If any are missing the export will fail.
-
-### Example exporting \[jsoncpp]
-
-First, "vcpkg install" the 4 android architectures (it is mandatory to export all 4 of them):
-
-```console
-./vcpkg install jsoncpp:arm-android  jsoncpp:arm64-android  jsoncpp:x64-android  jsoncpp:x86-android
-```
-
-Then, export the prefab:
-
-Notes:
-
-- The `--prefab-maven` flag is optional. Call it if maven is installed.
-- The `--prefab-debug` flag will output instructions on how to use the prefab archive via gradle.
-
-```console
-./vcpkg export --triplet x64-android jsoncpp --prefab --prefab-maven --prefab-debug
-```
-
-You will see output like this:
-
-```console
-The following packages are already built and will be exported:
-    jsoncpp:arm64-android
-
-Exporting package jsoncpp...
-[DEBUG] Found 4 triplets
-  arm64-android
-  x64-android
-  x86-android
-  arm-android
-
-...
-... Lots of output...
-...
-
-[INFO] Scanning for projects...
-Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/2.5/maven-clean-plugin-2.5.pom
-
-...
-... Lots of output...
-...
-
-[INFO] BUILD SUCCESS
-[INFO] Total time:  2.207 s
-[INFO] Finished at: 2020-05-10T14:42:28+02:00
-
-
-...
-... Lots of output...
-...
-
-[DEBUG] Configuration properties in Android Studio
-In app/build.gradle
-
-  com.vcpkg.ndk.support:jsoncpp:1.9.2
-
-And cmake flags
-
-    externalNativeBuild {
-                cmake {
-                    arguments '-DANDROID_STL=c++_shared'
-                    cppFlags "-std=c++17"
-                }
-            }
-
-In gradle.properties
-
-    android.enablePrefab=true
-    android.enableParallelJsonGen=false
-    android.prefabVersion=${prefab.version}
-
-Successfully exported jsoncpp. Checkout .../vcpkg/prefab 
-
-```
-
-#### The output directory after export
-
-```
-prefab
-└── jsoncpp/
-    ├── aar/
-    │   ├── AndroidManifest.xml
-    │   ├── META-INF/
-    │   │   └── LICENSE
-    │   └── prefab/
-    │       ├── modules/
-    │       │   └── jsoncpp/
-    │       │       ├── libs/
-    │       │       │   ├── android.arm64-v8a/
-    │       │       │   │   ├── abi.json
-    │       │       │   │   ├── include/
-    │       │       │   │   │   └── json/
-    │       │       │   │   │       ├── json.h
-    │       │       │   │   │       └── ....
-    │       │       │   │   └── libjsoncpp.so
-    │       │       │   ├── android.armeabi-v7a/
-    │       │       │   │   ├── abi.json
-    │       │       │   │   ├── include/
-    │       │       │   │   │   └── json/
-    │       │       │   │   │       ├── json.h
-    │       │       │   │   │       └── ....
-    │       │       │   │   └── libjsoncpp.so
-    │       │       │   ├── android.x86/
-    │       │       │   │   ├── abi.json
-    │       │       │   │   ├── include/
-    │       │       │   │   │   └── json/
-    │       │       │   │   │       ├── json.h
-    │       │       │   │   │       └── ....
-    │       │       │   │   └── libjsoncpp.so
-    │       │       │   └── android.x86_64/
-    │       │       │       ├── abi.json
-    │       │       │       ├── include/
-    │       │       │       │   └── json/
-    │       │       │       │       ├── json.h
-    │       │       │       │       └── ....
-    │       │       │       └── libjsoncpp.so
-    │       │       └── module.json
-    │       └── prefab.json
-    ├── jsoncpp-1.9.2.aar
-    └── pom.xml
-```
-
-### Example consuming [jsoncpp] via vcpkg and prefab
-
-See the example GitHub repo here:
-
-[`atkawa7/prefab-vpkg-integration-sample`](https://github.com/atkawa7/prefab-vpkg-integration-sample)

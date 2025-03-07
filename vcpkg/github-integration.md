@@ -3,7 +3,8 @@ title: GitHub integration
 description: Information on the available vcpkg integration points with GitHub
 author: michaelbprice
 ms.author: miprice
-ms.date: 06/15/2023
+ms.date: 10/23/2023
+ms.topic: concept-article
 ---
 
 # GitHub integration points
@@ -37,7 +38,7 @@ The GitHub dependency graph stores the set of dependencies for a repository. Bey
 
 vcpkg has experimental support for populating the GitHub dependency graph from within a GitHub Actions workflow. To enable this feature, make the following changes in your workflow file:
 
-* Set the `VCPKG_FEATURE_FLAGS` environment variable to include the value `dependencygraph`. 
+* Set the `VCPKG_FEATURE_FLAGS` environment variable to include the value `dependencygraph`.
 * Set the `GITHUB_TOKEN` environment variable to the value `${{ secrets.GITHUB_TOKEN }}`.
 * Give GitHub Actions write access to the contents of your repository by including the following permissions block. This is required to write the dependency graph metadata to your repository. This __will not__ add any commits to your repository or make any other modification to the contents of your repository.
 
@@ -56,7 +57,9 @@ You must enable the GitHub dependency graph in your repository's settings (enabl
 ### Example GitHub Actions workflow
 
 > [!NOTE]
-> This example assumes that there is a valid `vcpkg.json` manifest that lists some dependent ports. For more information on manifests, see our [documentation on manifest mode](./users/manifests.md).
+> This example assumes that there is a valid `vcpkg.json` manifest that lists
+> some dependent ports. For more information on manifests, see our
+> [documentation on manifest mode](concepts/manifest-mode.md).
 
 ```yaml
 name: Populate dependencies
@@ -79,7 +82,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: 'recursive'
 
@@ -90,4 +93,3 @@ jobs:
       run: ${{ github.workspace }}/vcpkg/vcpkg install --dry-run
 
 ```
-

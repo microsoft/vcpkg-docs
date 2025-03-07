@@ -1,9 +1,12 @@
 ---
 title: vcpkg Maintainer Guide
 description: The Guide for maintainers contributing to vcpkg.
-ms.date: 2/10/2023
+author: vicroms
+ms.author: viromer
+ms.date: 7/22/2024
+ms.topic: concept-article
 ---
-# Maintainer Guide
+# Maintainer guide
 
 This document lists a set of policies that you should apply when adding or updating a port recipe.
 It is intended to serve the role of
@@ -11,9 +14,48 @@ It is intended to serve the role of
 [Homebrew's Maintainer Guidelines](https://docs.brew.sh/Maintainer-Guidelines), and
 [Homebrew's Formula Cookbook](https://docs.brew.sh/Formula-Cookbook).
 
-## PR Structure
+## Overall registry design goals
 
-### Make separate Pull Requests per port
+### Ports in the current baseline must be installable simultaneously
+
+We wish to be able to show downstream users of libraries in the curated registry that the
+combination of libraries in any given baseline we publish have been tested to work together in at
+least some configurations. Allowing ports to exclude each other breaks the ability to test such
+configurations, as the number of builds necessary for such tests would grow as
+`2^number_of_such_cases`. Moreover, installing additional dependencies is always considered "safe":
+there is no way for a port or end user to assert that a dependency is *not* installed in their
+requirements.
+
+If you wish to represent such an alternative situation for users, consider describing how
+someone can create an [overlay port](../concepts/overlay-ports.md) implementing the alternative
+form with a comment in `portfile.cmake` rather than trying to add additional ports never built in
+the curated registry's continuous integration. For example, see
+[glad@0.1.36](https://github.com/microsoft/vcpkg/blob/67cc1677c3bf5c23ea14b9d2416c7422fdeac492/ports/glad/portfile.cmake#L17).
+
+Before the introduction of [registries](../concepts/registries.md), we accepted several
+not tested ports-as-alternatives, such as `boringssl`, that could make authoring overlay ports
+easier. This is no longer accepted because registries allow publishing of these untested ports
+without modifying the curated registry.
+
+### Use lowercase for hexadecimal digits strings
+
+Many of the features in vcpkg rely on comparing strings of hexadecimal digits. Some examples include, but are not limited to, SHA512 hashes, Git commit IDs, and tree object hashes.
+
+
+Internally, vcpkg uses lowercase normalization for comparisons of such values where the casing is irrelevant. However, tooling
+built on top of vcpkg's infrastructure may not make the same considerations. For this reason, we require hexadecimal strings
+
+to be lowercased for consistency in the following scenarios:
+
+* The `SHA512` parameter in vcpkg helper functions.
+* The `REF` parameter in vcpkg helper functions, when the value is a hexadecimal string.
+* The `git-tree` object in [version database files](../concepts/registries.md#versions-files).
+* The `sha512` object in the `scripts/vcpkg-tools.json` file.
+* Other places where casing of the hexadecimal string is unimportant.
+
+## PR structure
+
+### Make separate pull requests per port
 
 Whenever possible, separate changes into multiple PRs.
 This makes them significantly easier to review and prevents issues with one set of changes from holding up every other change.
@@ -26,14 +68,38 @@ then obviously beneficial changes like fixing typos are appreciated!
 
 ### Check names against other repositories
 
-A good service to check many at once is [Repology](https://repology.org/).
-If the library you are adding could be confused with another one,
-consider renaming to make it clear. We prefer when names are longer and/or
-unlikely to conflict with any future use of the same name. If the port refers
-to a library on GitHub, a good practice is to prefix the name with the organization
-if there is any chance of confusion.
+Port names should attempt to be unambiguous about which package the port
+installs. Ideally, searching the port's name in a search engine should quickly
+lead you to the corresponding project. A good service to check many package
+names across multiple repositories at once is [Repology](https://repology.org/).
 
-### Use GitHub Draft PRs
+Projects with short names or named after common words may require
+disambiguation, specially when there are no projects with a strong association
+to the given word. For example, a port with the name `ip` is not acceptable
+since it is likely that multiple projects would be named similarly.
+
+Examples of good disambiguators are:
+
+* The repository's owner username or organization: `google-cloud-cpp`.
+* The name of a suite of libraries the project is part of: `boost-dll`.
+
+Common prefixes and suffixes used by C++ and open source projects are not valid
+disambiguators, some examples include but are not limited to: 
+
+* `cpp`, 
+* `free`,
+* `lib`, 
+* `open`, 
+* numbers
+
+For example, when comparing the following port names: `ip-cpp`, `libip` and
+`ip5` and removing the invalid disambiguators they all are reduced to the same
+stem (`ip`) and thus are considered to have the same name.
+
+An exception to this guideline is made for names that are strongly associated
+with a single project. For example: `libpng`, `openssl` and `zlib`.
+
+### Use GitHub draft PRs
 
 GitHub Draft PRs are a great way to get CI or human feedback on work that isn't yet ready to merge.
 Most new PRs should be opened as drafts and converted to normal PRs once the CI passes.
@@ -98,9 +164,11 @@ the files installed by `b` must be the same, regardless of influence by the prev
 
 In the entire vcpkg system, no two ports a user is expected to use concurrently may provide the same file. If a port tries to install a file already provided by another file, installation will fail. If a port wants to use an extremely common name for a header, for example, it should place those headers in a subdirectory rather than in `include`.
 
+This property is checked regularly by continuous integration runs which try to install all ports in the registry, which will fail with `FILE_CONFLICTS` if two ports provide the same file.
+
 ### Add CMake exports in an unofficial- namespace
 
-A core design ideal of vcpkg is to not create "lock-in" for customers. In the build system, there should be no difference between depending on a library from the system, and depending on a library from vcpkg. To that end, we avoid adding CMake exports or targets to existing libraries with "the obvious name", to allow upstreams to add their own official CMake exports without conflicting with vcpkg.
+A core design ideal of vcpkg is to not create "lock-in" for users. In the build system, there should be no difference between depending on a library from the system, and depending on a library from vcpkg. To that end, we avoid adding CMake exports or targets to existing libraries with "the obvious name", to allow upstreams to add their own official CMake exports without conflicting with vcpkg.
 
 To that end, any CMake configs that the port exports, which are not in the upstream library, should have `unofficial-` as a prefix. Any additional targets should be in the `unofficial::<port>::` namespace.
 
@@ -115,17 +183,31 @@ Examples:
 
 ### Install copyright file
 
-Each port has to provide a file named `copyright` in the folder `${CURRENT_PACKAGES_DIR}/share/${PORT}`.
-
-Many ports are using this code to install a copyright file:
+Each port has to provide a file named `copyright` in the folder `${CURRENT_PACKAGES_DIR}/share/${PORT}`. If a package's license content is available within its source files, this file should be created by a call to [`vcpkg_install_copyright()`](../maintainers/functions/vcpkg_install_copyright.md). `vcpkg_install_copyright` also bundles multiple copyright files if necessary.
 
 ```cmake
-file(INSTALL "${SOURCE_PATH}LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
+vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 ```
 
-This is discouraged in favour of [`vcpkg_install_copyright()`](../maintainers/functions/vcpkg_install_copyright.md). New ports should use `vcpkg_install_copyright()` instead. However, it is still valid for existing ports to use something like the code above. You may replace this with `vcpkg_install_copyright` but you don't have to.
+An older method to manually create this file is with CMake's built in `file` command. This is discouraged in favor of `vcpkg_install_copyright` in new ports but is still allowed.
 
-`vcpkg_install_copyright` also includes the functionality to handle multiple copyright files. See its [documentation](../maintainers/functions/vcpkg_install_copyright.md) for more info.
+```cmake
+file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
+```
+
+If the license content in the upstream source files is not in text form (e.g. a PDF file), `copyright` should contain an explanation as to how a user can find the license requirements. If possible, it should also include a link to the original source files indicating this, so users can check if it is up to date.
+
+```cmake
+file(WRITE "${CURRENT_PACKAGES_DIR}/share/${PORT}/copyright" [[As of 2023-07-25, according to
+https://github.com/GPUOpen-LibrariesAndSDKs/display-library/blob/master/Public-Documents/README.md#end-user-license-agreement
+this software is bound by the "SOFTWARE DEVELOPMENT KIT LICENSE AGREEMENT" PDF located at
+https://github.com/GPUOpen-LibrariesAndSDKs/display-library/blob/master/Public-Documents/ADL%20SDK%20EULA.pdf
+]])
+```
+
+### Version constraints in ports
+
+Version constraints within ports should generally be avoided, as they can hinder the independent evolution of projects. Adding such constraints is only permissible when there is a well-documented justification, such as proven incompatibility with specific earlier versions. These constraints should not be used merely to maintain parity with independent projects.
 
 ## Features
 
@@ -149,13 +231,17 @@ Examples:
 - The Azure SDKs (of the form `azure-Xxx`) have a `public-preview` feature.
 - `imgui` has an `experimental-docking` feature which engages their preview docking branch which uses a merge commit attached to each of their public numbered releases.
 
-### Default features should enable behaviors, not APIs
+### <a name="default-features-should-enable-behaviors-not-apis"></a> Default features must not add APIs
 
-If a consumer is depending directly upon a library, they can list out any desired features easily (`library[feature1,feature2]`). However, if a consumer _does not know_ they are using a library, they cannot list out those features. If that hidden library is like `libarchive` where features are adding additional compression algorithms (and thus behaviors) to an existing generic interface, default features offer a way to ensure a reasonably functional transitive library is built even if the final consumer doesn't name it directly.
+Default features are intended to ensure that a reasonably functional build of a library gets installed for customers who don't know they are using it. If they don't know they are using a library, they can't know to list features. For example, `libarchive` exposes features that enable compression algorithms to an existing generic interface; if built without any of such features, the library may have no utility.
 
-If the feature adds additional APIs (or executables, or library binaries) and doesn't modify the behavior of existing APIs, it should be left off by default. This is because any consumer which might want to use those APIs can easily require it via their direct reference.
+One must carefully consider whether a feature should be on by default, because disabling default features is complex.
 
-If in doubt, do not mark a feature as default.
+Disabling a default feature as a 'transitive' consumer requires:
+* All customers explicitly disabling default features via [`"default-features": false`](../reference/vcpkg-json.md#dependency-default-features) or including `[core]` in the feature list on the command line.
+* Naming the transitive dependency on the `vcpkg install` command line, or as a direct dependency in the top level manifest
+
+In vcpkg's curated registry, if the feature adds additional APIs, executables, or other binaries, it must be off by default. If in doubt, do not mark a feature as default.
 
 ### Do not use features to control alternatives in published interfaces
 
@@ -189,12 +275,27 @@ message(STATUS "This recipe is at ${CMAKE_CURRENT_LIST_DIR}")
 message(STATUS "See the overlay ports documentation at https://github.com/microsoft/vcpkg/blob/master/docs/specifications/ports-overlay.md")
 ```
 
-## Build Techniques
+## Build techniques
 
 ### Do not use vendored dependencies
 
 Do not use embedded copies of libraries.
 All dependencies should be split out and packaged separately so they can be updated and maintained.
+
+Vendored dependencies introduce several challenges that conflict with vcpkg’s goals of providing a reliable, consistent, and maintainable package management system:
+
+Difficulty in Updates: Embedded copies of libraries make it harder to track and apply updates, including security patches, from the upstream projects. This leads to potential security risks and outdated dependencies in the ecosystem.
+
+Symbol Conflicts: Vendored dependencies can cause symbol conflicts when multiple packages include different versions of the same library. 
+  
+  For example:
+  If Package A vendors Library X (version 1) and Package B vendors Library X (version 2), an application linking both packages may experience runtime errors or undefined behavior due to conflicting symbols.
+
+By packaging dependencies separately, vcpkg ensures a single version of a library is used across all packages, eliminating such conflicts.
+
+Licensing Compliance: Vendored dependencies can obscure the licensing of the embedded libraries, potentially violating their terms or creating compatibility issues.
+
+Increased Maintenance Burden: Keeping vendored dependencies in sync with their upstream versions requires significant manual effort and often leads to duplicated work across packages.
 
 ### Prefer using CMake
 
@@ -203,12 +304,15 @@ Additionally, when appropriate, it can be easier and more maintainable to rewrit
 
 Examples: [abseil](https://github.com/Microsoft/vcpkg/tree/master/ports/abseil/portfile.cmake)
 
-### Choose either static or shared binaries
+### <a name="only-static-or-shared"></a>Choose either static or shared binaries
 
-By default, `vcpkg_cmake_configure()` will pass in the appropriate setting for `BUILD_SHARED_LIBS`,
-however for libraries that don't respect that variable, you can switch on `VCPKG_LIBRARY_LINKAGE`:
+When building CMake libraries, [`vcpkg_cmake_configure()`](../maintainers/functions/vcpkg_cmake_configure.md) will pass in the correct value for `BUILD_SHARED_LIBS` based on the user's requested variant.
+
+You can calculate alternative configure parameters by using `string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" ...)`.
 
 ```cmake
+# portfile.cmake
+
 string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "static" KEYSTONE_BUILD_STATIC)
 string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "dynamic" KEYSTONE_BUILD_SHARED)
 
@@ -218,6 +322,44 @@ vcpkg_cmake_configure(
         -DKEYSTONE_BUILD_STATIC=${KEYSTONE_BUILD_STATIC}
         -DKEYSTONE_BUILD_SHARED=${KEYSTONE_BUILD_SHARED}
 )
+```
+
+If a library does not offer configure options to select the build variant, the build must be patched. When patching a build, you should always attempt to maximize the future maintainability of the port. Typically this means minimizing the number of lines that need to be touched to fix the issue at hand.
+
+#### Example: Patching a CMake library to avoid building unwanted variants
+
+For example, when patching a CMake-based library, it may be sufficient to add [`EXCLUDE_FROM_ALL`](https://cmake.org/cmake/help/latest/prop_tgt/EXCLUDE_FROM_ALL.html) to unwanted targets and wrap the `install(TARGETS ...)` call in an `if(BUILD_SHARED_LIBS)`. This will be shorter than wrapping or deleting every line that mentions the unwanted variant.
+
+For a project `CMakeLists.txt` with the following contents:
+```cmake
+add_library(contoso SHARED contoso.c)
+add_library(contoso_static STATIC contoso.c)
+
+install(TARGETS contoso contoso_static EXPORT ContosoTargets)
+
+install(EXPORT ContosoTargets
+  FILE ContosoTargets
+  NAMESPACE contoso::
+  DESTINATION share/contoso)
+```
+
+Only the `install(TARGETS)` line needs to be patched.
+```cmake
+add_library(contoso SHARED contoso.c)
+add_library(contoso_static STATIC contoso.c)
+
+if(BUILD_SHARED_LIBS)
+  set_target_properties(contoso_static PROPERTIES EXCLUDE_FROM_ALL 1)
+  install(TARGETS contoso EXPORT ContosoTargets)
+else()
+  set_target_properties(contoso PROPERTIES EXCLUDE_FROM_ALL 1)
+  install(TARGETS contoso_static EXPORT ContosoTargets)
+endif()
+
+install(EXPORT ContosoTargets
+  FILE ContosoTargets
+  NAMESPACE contoso::
+  DESTINATION share/contoso)
 ```
 
 ### When defining features, explicitly control dependencies
@@ -269,18 +411,13 @@ A lib is considered conflicting if it does any of the following:
 
 Conflicting libs are typically by design and not considered a defect.  Because some build systems link against everything in the lib directory, these should be moved into a subdirectory named `manual-link`.
 
-## Manifests and CONTROL files
-
-When adding a new port, use the new manifest syntax for defining a port;
-you may also change over to manifests when modifying an existing port.
-You may do so easily by running the `vcpkg format-manifest` command, which will convert existing CONTROL
-files into manifest files. Do not convert CONTROL files that have not been modified.
-
 ## Versioning
 
 ### Follow common conventions for the `"version"` field
 
-For a full explanation of our conventions, see our [versioning documentation](../users/versioning.md#version-schemes).
+When creating a new port, follow the versioning convention used by the package author. When updating the port, continue to use the same convention unless upstream says otherwise. For a full explanation of our conventions, see our [versioning documentation](../users/versioning.md#version-schemes). 
+
+If upstream has not published a release in a while, do not change the port's versioning scheme to `version-date` in order to get the latest changes. These commits may include changes that are not production ready. Instead ask the upstream repository to publish a new release.
 
 ### Update the `"port-version"` field in the manifest file of any modified ports
 
@@ -328,7 +465,7 @@ to update the files for all modified ports at once.
 > [!NOTE]
 > These commands require you to have committed your changes to the ports before running them. The reason is that the Git SHA of the port directory is required in these version files. But don't worry, the `x-add-version` command will warn you if you have local changes that haven't been committed.
 
-For more information, see the [Versioning reference](../users/versioning.md) and [Creating registries](../maintainers/registries.md).
+For more information, see the [Versioning reference](../users/versioning.md) and [Registries](../concepts/registries.md) articles.
 
 ## Patching
 
@@ -363,6 +500,26 @@ Common options that allow you to avoid patching:
 - [CMAKE] Calls to `find_package(XYz)` in CMake scripts can be disabled via [`-DCMAKE_DISABLE_FIND_PACKAGE_XYz=ON`](https://cmake.org/cmake/help/v3.15/variable/CMAKE_DISABLE_FIND_PACKAGE_PackageName.html)
 - [CMAKE] Cache variables (declared as `set(VAR "value" CACHE STRING "Documentation")` or `option(VAR "Documentation" "Default Value")`) can be overridden by just passing them in on the command line as `-DVAR:STRING=Foo`. One notable exception is if the `FORCE` parameter is passed to `set()`. For more information, see the [CMake `set` documentation](https://cmake.org/cmake/help/v3.15/command/set.html)
 
+### <a name="prefer-download-patches"></a> Prefer downloading approved patches over checking them into the port
+
+If an approved or merged patch file can be obtained from upstream, ports should
+try to download them and apply them instead of having them as part of the port files.
+This process is prefered because it:
+
+- Confirms that upstream has accepted the patch changes
+- Simplifies the reviewing process by shifting the onus upstream
+- Reduces the vcpkg repository size for users that aren't using the patch
+- Avoids license conflicts with the vcpkg repository
+
+Patches should be downloaded from a stable endpoint to avoid SHA conflicts. 
+When downloading patch files from a pull request or commit from GitHub and
+GitLab the `?full_index=1` parameter should be appended to the download URL.
+
+Examples:
+* `https://github.com/google/farmhash/pull/40.diff?full_index=1`
+* `https://github.com/linux-audit/audit-userspace/commit/f8e9bc5914d715cdacb2edc938ab339d5094d017.patch?full_index=1`
+* `https://gitlab.kitware.com/paraview/paraview/-/merge_requests/6375.diff?full_index=1`
+
 ### Prefer patching over overriding `VCPKG_<VARIABLE>` values
 
 Some variables prefixed with `VCPKG_<VARIABLE>` have an equivalent `CMAKE_<VARIABLE>`.
@@ -379,11 +536,11 @@ Using `vcpkg`'s built-in toolchains this works, because the value of `VCPKG_<LAN
 
 Because of this, it is preferable to patch the buildsystem directly when setting `CMAKE_<LANG>_FLAGS`.
 
-### Minimize patches
+### <a name="minimize-patches"></a>Minimize patches
 
-When making changes to a library, strive to minimize the final diff. This means you should _not_ reformat the upstream source code when making changes that affect a region. Also, when disabling a conditional, it is better to add a `AND FALSE` or `&& 0` to the condition than to delete every line of the conditional.
+When making changes to a library, strive to minimize the final diff. This means you should not reformat the upstream source code when making changes that affect a region. When disabling a conditional, it is better to add an `AND FALSE` or `&& 0` to the condition than to delete every line of the conditional. If a large region needs to be disabled, it is shorter to add an `if(0)` or `#if 0` around the region instead of deleting every line in the patch.
 
-Don't add patches if the port is outdated and updating the port to a newer released version would solve the same issue. vcpkg prefers updating ports over patching outdated versions unless the version bump breaks a considerable amount of dependent ports.
+Don't add patches if the port is outdated and updating the port to a newer released version would solve the same issue. vcpkg prefers updating ports over patching outdated versions.
 
 This helps to keep the size of the vcpkg repository down as well as improves the likelihood that the patch will apply to future code versions.
 
@@ -391,7 +548,7 @@ This helps to keep the size of the vcpkg repository down as well as improves the
 
 The purpose of patching in vcpkg is to enable compatibility with compilers, libraries, and platforms. It is not to implement new features in lieu of following proper Open Source procedure (submitting an Issue/PR/etc).
 
-## Do not build tests/docs/examples by default
+### Do not build tests/docs/examples by default
 
 When submitting a new port, check for any options like `BUILD_TESTS` or `WITH_TESTS` or `POCO_ENABLE_SAMPLES` and ensure the additional binaries are disabled. This minimizes build times and dependencies for the average user.
 
@@ -428,6 +585,7 @@ We require that the manifest file be formatted. Use the following command to for
 We are not accepting requests to add non-community triplets at this time. Promotion from community to full triplet status is primarily based on budget for the hardware to test such triplets and will be driven by metrics submitted by vcpkg to maximize the likelihood what people actually use is fully tested.
 
 We will add community triplets if:
+
 * It is demonstrated that people will actually use that community triplet; and,
 * we don't know that such a triplet is broken.
 

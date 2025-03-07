@@ -1,16 +1,19 @@
 ---
-title: Portfile Variable Reference
+title: Portfile variable reference
 description: These are variables set automatically by vcpkg for use in any port.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
+ms.topic: reference
 ---
 
-# Portfile Variable Reference
+# Portfile variable reference
 
 These are variables set automatically by vcpkg for use in any port. They should not be modified by the port.
 
+Full list of variables is defined in the [vcpkg_common_definitions](https://github.com/microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_common_definitions.cmake) module.
+
 ### PORT
 
-The name of the port that is currently being built
+The name of the port that is currently being built.
 
 ### VERSION
 
@@ -23,11 +26,12 @@ Does not contain the ["port-version"](../users/versioning.md#port-version).
 Defined to a true value if building for *\<system\>*.
 
 Supported systems:
-- `VCPKG_TARGET_IS_WINDOWS` - Also true for UWP and MINGW
+- `VCPKG_TARGET_IS_WINDOWS` (*also true for UWP and MinGW*)
 - `VCPKG_TARGET_IS_UWP`
 - `VCPKG_TARGET_IS_MINGW`
 - `VCPKG_TARGET_IS_LINUX`
 - `VCPKG_TARGET_IS_OSX`
+- `VCPKG_TARGET_IS_IOS`
 - `VCPKG_TARGET_IS_ANDROID`
 - `VCPKG_TARGET_IS_FREEBSD`
 - `VCPKG_TARGET_IS_OPENBSD`
@@ -49,6 +53,7 @@ Supported systems:
 Host specific path separator.
 
 Always use quotes when expanding `VCPKG_HOST_PATH_SEPARATOR` since it may contain a semicolon. For example:
+
 ```cmake
 set(ENV{SOMEPATH} "$ENV{SOMEPATH}${VCPKG_HOST_PATH_SEPARATOR}${my_extra_path}")
 ```

@@ -1,0 +1,20 @@
+{
+    "MD013": {
+        "line_length": 120,
+        // Increase code block lenght since some command-line examples are extremely long
+        "code_blocks": false,
+        "tables": false
+    },
+    // Some documentation sections repeat headings, allow this as long as the parent heading is different
+    "MD024": {
+        "siblings_only": true
+    },
+    // Disable "Multiple top level headings in the same document" triggered by metadata and top-level
+    // heading on articles
+    "MD025": false,
+    // We use inline <a> to simplify anchor links
+    // We use inline <br> for line breaks inside tables
+    "MD033": {
+        "allowed_elements": [ "a", "br" ]
+    } 
+}

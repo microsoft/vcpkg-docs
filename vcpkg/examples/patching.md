@@ -1,7 +1,8 @@
 ---
 title: Patching libpng 1.6.37 for UWP compatibility
 description: Learn how to develop and apply patches to a library in a vcpkg portfile.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
+ms.topic: tutorial
 ---
 # Patching example: Patching libpng to work for x64-uwp
 
@@ -65,7 +66,7 @@ Time Elapsed 00:00:04.19
 
 ## Identify the problematic code
 
-Taking a look at [MSDN](https://msdn.microsoft.com/library/windows/desktop/ms682658(v=vs.85).aspx) shows that `ExitProcess` is only available for desktop apps. Additionally, it's useful to see the surrounding context:
+Taking a look at [Microsoft Learn](/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitprocess) shows that `ExitProcess` is only available for desktop apps. Additionally, it's useful to see the surrounding context:
 
 ```c
 /* buildtrees\libpng\src\v1.6.37-c993153cdf\pngerror.c:769 */

@@ -1,7 +1,7 @@
 ---
 title: vcpkg_cmake_install
 description: Use vcpkg_cmake_install to build and install a CMake project.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_cmake_install
 
@@ -49,7 +49,7 @@ vcpkg_cmake_configure(SOURCE_PATH "${source_path}")
 vcpkg_cmake_install()
 ```
 
-[Search microsoft/vcpkg for Examples](https://github.com/microsoft/vcpkg/search?q=vcpkg_cmake_install+path%3A%2Fports)
+[Search microsoft/vcpkg for examples](https://github.com/microsoft/vcpkg/search?q=vcpkg_cmake_install+path%3A%2Fports)
 
 ## Remarks
 

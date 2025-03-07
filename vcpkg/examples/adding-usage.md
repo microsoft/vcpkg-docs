@@ -1,7 +1,10 @@
 ---
 title: Add an explicit usage file to a port.
 description: Learn about supplying specific usage instructions in ports
-ms.date: 2/16/2023
+ms.date: 01/10/2024
+ROBOTS: NOINDEX
+is_archived: true
+# Replaced by: maintainers/handling-usage-files.md
 ---
 # Add an explicit usage file to a port.
 

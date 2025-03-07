@@ -1,7 +1,7 @@
 ---
 title: vcpkg upgrade
 description: Command line reference for the vcpkg upgrade command.
-ms.date: 4/3/2023
+ms.date: 01/10/2024
 ---
 # vcpkg upgrade
 
@@ -54,5 +54,5 @@ By default, on a package install failure, vcpkg will continue to attempt to inst
 
 Allow performing upgrades to unsupported packages.
 
-[Classic mode]: ../users/classic-mode.md
-[Manifest mode]: ../users/manifests.md
+[Classic mode]: ../concepts/classic-mode.md
+[Manifest mode]: ../concepts/manifest-mode.md

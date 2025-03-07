@@ -1,9 +1,12 @@
 ---
 title: vcpkg_install_msbuild
 description: Learn how to use vcpkg_install_msbuild.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_install_msbuild
+
+> [!WARNING]
+> This function has been deprecated in favor of [`vcpkg_msbuild_install`](vcpkg_msbuild_install.md).
 
 Build and install a msbuild-based project. This replaces `vcpkg_build_msbuild()`.
 
@@ -32,6 +35,7 @@ vcpkg_install_msbuild(
 ## Parameters
 
 ### SOURCE_PATH
+
 The path to the root of the source tree.
 
 Because MSBuild uses in-source builds, the source tree will be copied into a temporary location for the build. This
@@ -116,13 +120,6 @@ Additional options passed to msbuild for Release builds. These are in addition t
 
 Additional options passed to msbuild for Debug builds. These are in addition to `OPTIONS`.
 
-## Examples
-
-- [libfabric](https://github.com/Microsoft/vcpkg/blob/master/ports/libfabric/portfile.cmake)
-- [libirecovery](https://github.com/Microsoft/vcpkg/blob/master/ports/libirecovery/portfile.cmake)
-- [ngspice](https://github.com/Microsoft/vcpkg/blob/master/ports/ngspice/portfile.cmake) (example of setting `PLATFORM`)
-
 ## Source
 
 [scripts/cmake/vcpkg\_install\_msbuild.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_install_msbuild.cmake)
-

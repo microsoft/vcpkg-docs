@@ -1,7 +1,7 @@
 ---
 title: vcpkg_configure_gn
 description: Use vcpkg_configure_gn to generate ninja targets.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_configure_gn
 

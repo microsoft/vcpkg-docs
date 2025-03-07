@@ -1,7 +1,7 @@
 ---
 title: vcpkg_clean_executables_in_bin
 description: Use vcpkg_clean_executables_in_bin to remove specified executables.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_clean_executables_in_bin
 
@@ -23,11 +23,7 @@ A list of executable filenames without extension.
 
 ## Notes
 
-Generally, there is no need to call this function manually. Instead, pass an extra `AUTO_CLEAN` argument when calling `vcpkg_copy_tools`.
-
-## Examples
-
-- [czmq](https://github.com/microsoft/vcpkg/blob/master/ports/czmq/portfile.cmake)
+Generally, there is no need to call this function manually. Instead, pass an extra `AUTO_CLEAN` argument when calling [`vcpkg_copy_tools()`](vcpkg_copy_tools.md#auto_clean).
 
 ## Source
 

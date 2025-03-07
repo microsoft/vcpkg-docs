@@ -1,9 +1,13 @@
 {
-    "version": 3,
-    "configurePresets": [
-        {
-            "name": "debug",
-            "toolchainFile": "C:/src/vcpkg/scripts/buildsystems/vcpkg.cmake"
-        }
-    ]
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "default",
+      "inherits": "debug",
+      "environment": {
+        "VCPKG_ROOT": "<path to vcpkg>"
+      }
+    }
+  ]
 }
+  

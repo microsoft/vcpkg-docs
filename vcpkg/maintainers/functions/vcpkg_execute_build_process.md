@@ -1,7 +1,7 @@
 ---
 title: vcpkg_execute_build_process
 description: Learn how to use vcpkg_execute_build_process.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_execute_build_process
 
@@ -17,9 +17,11 @@ vcpkg_execute_build_process(
     LOGNAME <log_name>
 )
 ```
+
 ## Parameters
 
 ### COMMAND
+
 The command to be executed, along with its arguments.
 
 ### NO_PARALLEL_COMMAND
@@ -38,11 +40,6 @@ The prefix to use for the log files.
 This should be a unique name for different triplets so that the logs don't
 conflict when building multiple at once.
 
-## Examples
-
-- [icu](https://github.com/Microsoft/vcpkg/blob/master/ports/icu/portfile.cmake)
-
 ## Source
 
 [scripts/cmake/vcpkg\_execute\_build\_process.cmake](https://github.com/Microsoft/vcpkg/blob/master/scripts/cmake/vcpkg_execute_build_process.cmake)
-

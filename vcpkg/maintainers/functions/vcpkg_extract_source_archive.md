@@ -1,7 +1,7 @@
 ---
 title: vcpkg_extract_source_archive
 description: Learn how to use vcpkg_extract_source_archive.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_extract_source_archive
 

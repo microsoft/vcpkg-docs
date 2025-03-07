@@ -1,14 +1,56 @@
 ---
-title: CMake Integration
-description: Integrate vcpkg into a CMake project using Visual Studio, Visual Studio Code, a terminal, or other IDEs.
-ms.date: 11/30/2022
+title: vcpkg in CMake projects
+description: Integrate vcpkg into a CMake project using a terminal, Visual Studio, Visual Studio Code, or other IDEs.
+author: vicroms
+ms.author: viromer
+ms.date: 01/10/2024
+ms.topic: concept-article
 ---
+# vcpkg in CMake projects
 
-# CMake Integration
+vcpkg offers seamless integration with CMake to make installed packages available in
+your projects automatically. The mechanism in which vcpkg integrates is by providing a CMake toolchain file.
+
+The first time CMake configures a project, it runs internal search routines to locate a viable
+[toolchain](<https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#id9>) (compiler,
+linker, etc.). This search happens within the
+[`project()`](https://cmake.org/cmake/help/latest/command/project.html#command:project) function in
+your `CMakeLists.txt`.
+
+To customize the toolchain selection process, CMake supports using custom CMake-language scripts,
+known as toolchain files. A toolchain file is specified by setting the `CMAKE_TOOLCHAIN_FILE`
+variable. CMake evaluates the contents of the provided toolchain script and sets variable definitions, paths to
+required build tools, and other build parameters, such as cross-compilation flags, accordingly.
+
+When you set `CMAKE_TOOLCHAIN_FILE` to use the vcpkg toolchain
+(`<vcpkg-root>/scripts/buildsystems/vcpkg.cmake`), vcpkg takes advantage of the toolchain file
+mechanism to inject code to integrate with built-in CMake functions transparently to you.
+
+You can still use a toolchain file to configure your own toolsets by using the
+[`VCPKG_CHAINLOAD_TOOLCHAIN_FILE`](../../users/triplets.md#vcpkg_chainload_toolchain_file) triplet variable.
+
+The vcpkg integration works differently depending on the operation mode you're using:
+
+In [classic mode](../../concepts/classic-mode.md), vcpkg sets CMake search paths
+appropriately to make installed packages available via the `find_package()`,
+`find_library()`, and `find_path()` functions.
+
+In [manifest mode](../../concepts/manifest-mode.md), in addition to the above,
+the toolchain detects manifest files (`vcpkg.json` files) and runs `vcpkg
+install` to automatically acquire the project's dependencies.
+
+Because the toolchain file is evaluated during the `project()` call, all CMake-level variables that
+modify a vcpkg setting must be set before the first call to `project()`. It may also be necessary to
+reconfigure your CMake project if you modify any vcpkg setting that results in [ABI
+hash](../../reference/binarycaching.md#abi-hash) changes.
 
 See [Installing and Using Packages Example: sqlite](../../examples/installing-and-using-packages.md) for a fully worked example using CMake.
 
 ## `CMAKE_TOOLCHAIN_FILE`
+
+> [!NOTE]
+> If you set `CMAKE_TOOLCHAIN_FILE` in your `CMakeList.txt` file, make sure that
+> the variable is set before any calls to `project()`.
 
 Projects configured to use the vcpkg toolchain file (via the CMake setting `CMAKE_TOOLCHAIN_FILE`) can find libraries from vcpkg using the standard CMake functions: `find_package()`, `find_path()`, and `find_library()`.
 
@@ -47,7 +89,7 @@ vcpkg does not automatically add any include or links paths into your project. T
 ```cmake
 # To find and use catch2
 find_path(CATCH_INCLUDE_DIR NAMES catch.hpp PATH_SUFFIXES catch2)
-include_directories(${CATCH_INCLUDE_DIR})
+target_include_directories(main PRIVATE ${CATCH_INCLUDE_DIR})
 ```
 
 ## IDE Integration
@@ -206,7 +248,8 @@ This variable can be set to a list of additional command line parameters to pass
 
 ### `VCPKG_PREFER_SYSTEM_LIBS`
 
-**This feature has been deprecated. Use empty overlay ports instead.**
+> [!WARNING]
+> This feature has been deprecated. Use empty overlay ports instead.
 
 This variable controls whether vcpkg will append instead of prepend its paths to `CMAKE_PREFIX_PATH`, `CMAKE_LIBRARY_PATH` and `CMAKE_FIND_ROOT_PATH` so that vcpkg libraries/packages are found after toolchain/system libraries/packages.
 

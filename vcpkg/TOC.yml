@@ -1,86 +1,252 @@
-- name: vcpkg Documentation
+- name: vcpkg documentation
   href: index.yml
-- name: Consuming Libraries
+- name: Get started
+  expanded: true
   items:
-  - name: Getting Started with Classic mode
-    href: examples/installing-and-using-packages.md
-  - name: Getting Started with Manifest mode
-    href: examples/manifest-mode-cmake.md
-  - name: Manifest mode
-    href: users/manifests.md
-  - name: Classic mode
-    href: users/classic-mode.md
-  - name: Triplets
-    href: users/triplets.md
-  - name: Buildsystems
+  - name: vcpkg overview
+    href: get_started/overview.md
+  - name: Install and use packages with CMake
+    href: get_started/get-started.md
+  - name: Install and use packages with CMake in Visual Studio
+    href: get_started/get-started-vs.md
+  - name: Install and use packages with MSBuild in Visual Studio
+    href: get_started/get-started-msbuild.md
+  - name: Install and use packages with CMake in Visual Studio Code
+    href: get_started/get-started-vscode.md
+  - name: Package a library with vcpkg
+    href: get_started/get-started-packaging.md
+  - name: Contribute an open-source library to vcpkg
+    href: get_started/get-started-adding-to-registry.md
+- name: Consume packages
+  expanded: true
+  items:
+  - name: Install a dependency from a manifest file
+    href: consume/manifest-mode.md
+  - name: Install a dependency from the command line
+    href: consume/classic-mode.md
+  - name: Install a specific version of a package
+    displayName: version, pin version, lock version
+    href: consume/lock-package-versions.md
+  - name: Install a specific version of the Boost libraries
+    href: consume/boost-versions.md
+  - name: Enable optional features for a dependency
+    # TODO: Modernize article: users/examples/selecting-llvm-features.md
+    href: users/examples/selecting-llvm-features.md
+  - name: Install a package for a custom build configuration
+    # TODO: Modernize article: users/examples/overlay-triplets-linux-dynamic.md
+    displayName: dynamic, so, shared object, overlay
+    href: users/examples/overlay-triplets-linux-dynamic.md
+  - name: Install native dependencies in a CLR application
+    displayName: .NET, C#, managed, CLI
+    href: consume/cpp-cli.md
+  - name: Install private or custom dependencies
     items:
-    - name: CMake Integration
+    - name: Install a locally modified dependency using overlay ports
+      href: consume/install-locally-modified-package.md
+    - name: Install a dependency from a Git-based registry
+      href: consume/git-registries.md
+    - name: Authenticate to private Git registries
+      href: users/authentication.md
+    - name: Authenticate to private Git registries in your GitHub Actions workflows
+      href: consume/gha-authentication.md
+  - name: Reduce build times with binary caching
+    items:
+    - name: "What is binary caching?"
+      href: consume/binary-caching-overview.md
+    - name: Default binary cache
+      href: consume/binary-caching-default.md
+    - name: Set up a binary cache using filesystem directories
+      href: consume/binary-caching-local.md
+    - name: Set up a binary cache using a NuGet feed
+      href: consume/binary-caching-nuget.md
+    - name: Set up a binary cache using GitHub Actions cache
+      href: consume/binary-caching-github-actions-cache.md
+    - name: Set up a binary cache using GitHub Packages in your GitHub Actions workflow
+      href: consume/binary-caching-github-packages.md
+  - name: Improve reliability by caching dependency assets
+    items:
+    - name: Set up a vcpkg asset cache
+      href: consume/asset-caching.md
+    - name: Use a custom script as an asset caching storage provider
+      # TODO: Modernize article: examples/asset-caching-source-nuget.md
+      href: examples/asset-caching-source-nuget.md
+  - name: Set up caching using Azure Storage and Azure DevOps
+    href: consume/caching-workload-identity-federation.md
+- name: Produce packages
+  expanded: true
+  items:
+  # TODO: Modernize: examples/packaging-github-repos.md
+  - name: Package a dependency from a public GitHub repository
+    href: examples/packaging-github-repos.md
+    # TODO: Modernize: examples/packaging-zipfiles.md
+  - name: Package a dependency from a source archive
+    href: examples/packaging-zipfiles.md
+  - name: Package a dependency from Azure DevOps
+    href: produce/package-ado-dependency.md
+    # TODO: Modernize: examples/patching.md
+  - name: Apply patches to a dependency's source code
+    href: examples/patching.md
+  - name: Update an existing dependency
+    href: produce/update-package-version.md
+  - name: Provide usage documentation for your packages
+    href: maintainers/handling-usage-files.md
+  - name: Publish dependencies
+    expanded: true
+    items:
+    # TODO: Modernize: maintainers/registries.md
+    - name: Create custom registries
+      href: maintainers/registries.md
+    - name: Publish to a Git registry
+      href: produce/publish-to-a-git-registry.md
+  - name: Test your custom Git registry's ports
+    items:
+    - name: Test your custom Git registry's ports using GitHub Actions
+      href: produce/test-registry-ports-gha.md
+    - name: Test your custom Git registry's ports using Azure DevOps
+      href: produce/test-registry-ports-ado.md
+- name: Concepts
+  items:
+  - name: Asset caching
+    href: concepts/asset-caching.md
+  - name: Binary caching
+    href: users/binarycaching.md
+  - name: Build system integration
+    items:
+    - name: Available build system integrations
+      href: concepts/build-system-integration.md
+    - name: CMake integration
       href: users/buildsystems/cmake-integration.md
-    - name: MSBuild (Visual Studio) Integration
+    - name: MSBuild integration
       href: users/buildsystems/msbuild-integration.md
-    - name: Manual Integration
+    - name: Manual integration
       href: users/buildsystems/manual-integration.md
-  - name: Platforms
+  - name: Classic mode
+    href: concepts/classic-mode.md
+  - name: Continuous Integration
+    href: concepts/continuous-integration.md
+  - name: Default features
+    href: concepts/default-features.md
+  - name: Features
+    href: concepts/features.md
+  - name: Manifest mode
+    href: concepts/manifest-mode.md
+  - name: Supported hosts
+    href: concepts/supported-hosts.md
+  - name: Target platforms
     items:
+    - name: Supported target platforms
+      href: users/platforms/all.md
     - name: Android
       href: users/platforms/android.md
     - name: MinGW
       href: users/platforms/mingw.md
-  - name: Using Registries
-    href: users/registries.md
-  - name: Versioning Concepts
-    href: users/versioning.concepts.md
-  - name: Versioning Reference
-    href: users/versioning.md
-  - name: Asset Caching
-    displayName: airgap, offline, source, mirror
-    href: users/assetcaching.md
-  - name: Binary Caching
-    displayName: binaries, build
-    href: users/binarycaching.md
-  - name: Remote Authentication
-    href: users/authentication.md
-  - name: Environment variables
-    href: users/config-environment.md
+    - name: Universal Windows platform
+      href: users/platforms/uwp.md
+    - name: Windows with MSVC
+      href: users/platforms/windows.md
+    - name: Xbox
+      href: users/platforms/xbox.md
   - name: GitHub integration
     href: github-integration.md
-  - name: Examples
-    items:
-    - name: Selecting LLVM Features
-      href: users/examples/selecting-llvm-features.md
-    - name: Selecting Boost Versions as a Set
-      displayName: baseline, baselines, versioning
-      href: users/examples/modify-baseline-to-pin-old-boost.md
-    - name: Creating a Custom Linux Triplet
-      displayName: dynamic, so, shared object, overlay
-      href: users/examples/overlay-triplets-linux-dynamic.md
-    - name: Getting Started with Versioning
-      href: users/examples/versioning.getting-started.md
-    - name: Create a x-script Asset Caching source for NuGet
-      href: examples/asset-caching-source-nuget.md
-- name: Packaging Libraries
-  items:
-  - name: Tutorials
-    items:
-    - name: Packaging libogg 1.3.3 for vcpkg
-      href: examples/packaging-github-repos.md
-    - name: Packaging zlib 1.2.13 for vcpkg
-      href: examples/packaging-zipfiles.md
-    - name: Patching libpng 1.6.37 for UWP compatibility
-      href: examples/patching.md
-    - name: Adding explicit usage text
-      href: examples/adding-usage.md
-  - name: Authoring Script Ports
-    displayName: helpers, scripts, reusable, function, reuse
-    href: maintainers/authoring-script-ports.md
-  - name: Creating Registries
-    href: maintainers/registries.md
-  - name: Host Dependencies
+  - name: Host dependencies
     displayName: host, dependencies
     href: users/host-dependencies.md
-  - name: Portfile Variable Reference
-    href: maintainers/variables.md
-  - name: Portfile Function Reference
+  - name: Open-source registry
+    items:
+    - name: Maintainer guide
+      href: contributing/maintainer-guide.md
+    - name: CMake style guide
+      href: contributing/cmake-guidelines.md
+    - name: PR review checklist
+      href: contributing/pr-review-checklist.md
+  - name: Overlay ports
+    href: concepts/overlay-ports.md
+  - name: Package name resolution
+    href: concepts/package-name-resolution.md
+  - name: Ports
+    href: concepts/ports.md
+  - name: Registries
+    href: concepts/registries.md
+  - name: Helper ports
+    displayName: script port
+    href: maintainers/authoring-script-ports.md
+  - name: Comparing vcpkg with system package managers
+    href: concepts/system-package-managers.md
+  - name: Triplets
+    href: concepts/triplets.md
+  - name: Versioning
+    href: users/versioning.concepts.md
+- name: Reference
+  items:
+  - name: vcpkg.json Reference
+    href: reference/vcpkg-json.md
+  - name: vcpkg-configuration.json Reference
+    href: reference/vcpkg-configuration-json.md
+  - name: Command-Line
+    items:
+    - name: Common Command Options
+      href: commands/common-options.md
+    - name: vcpkg add
+      href: commands/add.md
+    - name: vcpkg x-add-version
+      href: commands/add-version.md
+    - name: vcpkg contact
+      href: commands/contact.md
+    - name: vcpkg create
+      href: commands/create.md
+    - name: vcpkg depend-info
+      href: commands/depend-info.md
+    - name: vcpkg edit
+      href: commands/edit.md
+    - name: vcpkg env
+      href: commands/env.md
+    - name: vcpkg export
+      href: commands/export.md
+    - name: vcpkg format-feature-baseline
+      href: commands/format-feature-baseline.md
+    - name: vcpkg format-manifest
+      href: commands/format-manifest.md
+    - name: vcpkg hash
+      href: commands/hash.md
+    - name: vcpkg help
+      href: commands/help.md
+    - name: vcpkg install
+      href: commands/install.md
+    - name: vcpkg integrate
+      href: commands/integrate.md
+    - name: vcpkg list
+      href: commands/list.md
+    - name: vcpkg new
+      href: commands/new.md
+    - name: vcpkg owns
+      href: commands/owns.md
+    - name: vcpkg remove
+      href: commands/remove.md
+    - name: vcpkg search
+      href: commands/search.md
+    - name: vcpkg update
+      href: commands/update.md
+    - name: vcpkg x-check-features
+      href: commands/check-features.md
+    - name: vcpkg x-update-baseline
+      href: commands/update-baseline.md
+    - name: vcpkg upgrade
+      href: commands/upgrade.md
+    - name: vcpkg version
+      href: commands/version.md
+  - name: Asset caching configuration
+    displayName: airgap, offline, source, mirror
+    href: users/assetcaching.md
+  - name: Binary caching configuration
+    displayName: binaries, build
+    href: reference/binarycaching.md
+  - name: Environment variables
+    href: users/config-environment.md
+  - name: Installation tree layout
+    href: reference/installation-tree-layout.md
+  - name: Port policies
+    href: reference/policies.md
+  - name: Portfile functions
     items:
     - name: vcpkg_acquire_msys
       href: maintainers/functions/vcpkg_acquire_msys.md
@@ -140,6 +306,8 @@
       href: maintainers/functions/vcpkg_copy_tools.md
     - name: vcpkg_download_distfile
       href: maintainers/functions/vcpkg_download_distfile.md
+    - name: vcpkg_download_sourceforge
+      href: maintainers/functions/vcpkg_download_sourceforge.md
     - name: vcpkg_execute_build_process
       href: maintainers/functions/vcpkg_execute_build_process.md
     - name: vcpkg_execute_in_download_mode
@@ -148,6 +316,8 @@
       href: maintainers/functions/vcpkg_execute_required_process.md
     - name: vcpkg_execute_required_process_repeat
       href: maintainers/functions/vcpkg_execute_required_process_repeat.md
+    - name: vcpkg_extract_archive
+      href: maintainers/functions/vcpkg_extract_archive.md
     - name: vcpkg_extract_source_archive
       href: maintainers/functions/vcpkg_extract_source_archive.md
     - name: vcpkg_extract_source_archive_ex
@@ -202,8 +372,14 @@
       href: maintainers/functions/vcpkg_install_qmake.md
     - name: vcpkg_list
       href: maintainers/functions/vcpkg_list.md
+    - name: vcpkg_make_configure
+      href: maintainers/functions/vcpkg_make_configure.md
+    - name: vcpkg_make_install
+      href: maintainers/functions/vcpkg_make_install.md
     - name: vcpkg_minimum_required
       href: maintainers/functions/vcpkg_minimum_required.md
+    - name: vcpkg_msbuild_install
+      href: maintainers/functions/vcpkg_msbuild_install.md
     - name: x_vcpkg_pkgconfig_get_modules
       href: maintainers/functions/vcpkg_pkgconfig_get_modules.md
     - name: vcpkg_qmake_build
@@ -232,59 +408,45 @@
         href: maintainers/functions/internal/z_vcpkg_restore_pkgconfig_path.md
       - name: z_vcpkg_setup_pkgconfig_path
         href: maintainers/functions/internal/z_vcpkg_setup_pkgconfig_path.md
-  - name: Provide usage documentation for your packages
-    href: maintainers/handling-usage-files.md
-  - name: CONTROL Files (deprecated)
-    href: maintainers/control-files.md
-- name: Reference
+  - name: Portfile variables
+    href: maintainers/variables.md
+  - name: Software Bill of Materials generation
+    href: reference/software-bill-of-materials.md
+  - name: Triplet variables
+    href: users/triplets.md
+  - name: Versioning reference
+    href: users/versioning.md
+  - name: Deprecated features
+    items:
+    - name: CONTROL Files
+      href: maintainers/control-files.md
+- name: Troubleshooting
   items:
-    - name: vcpkg.json Reference
-      href: reference/vcpkg-json.md
-    - name: vcpkg-configuration.json Reference
-      href: reference/vcpkg-configuration-json.md
-    - name: Command-Line
-      items:
-        - name: Common Command Options
-          href: commands/common-options.md
-        - name: vcpkg depend-info
-          href: commands/depend-info.md
-        - name: vcpkg edit
-          href: commands/edit.md
-        - name: vcpkg env
-          href: commands/env.md
-        - name: vcpkg export
-          href: commands/export.md
-        - name: vcpkg install
-          href: commands/install.md
-        - name: vcpkg integrate
-          href: commands/integrate.md
-        - name: vcpkg list
-          href: commands/list.md
-        - name: vcpkg remove
-          href: commands/remove.md
-        - name: vcpkg search
-          href: commands/search.md
-        - name: vcpkg test-features
-          href: commands/test-features.md
-        - name: vcpkg update
-          href: commands/update.md
-        - name: vcpkg x-update-baseline
-          href: commands/update-baseline.md
-        - name: vcpkg upgrade
-          href: commands/upgrade.md
-        - name: vcpkg version
-          href: commands/version.md
-- name: Contributing to vcpkg
-  items:
-  - name: Maintainer Guide
-    href: contributing/maintainer-guide.md
-  - name: CMake Style Guide
-    href: contributing/cmake-guidelines.md
-  - name: PR Review Checklist
-    href: contributing/pr-review-checklist.md
+    - name: Troubleshoot asset caching issues
+      href: troubleshoot/asset-caching.md
+    - name: Troubleshoot binary caching issues
+      href: users/binarycaching-troubleshooting.md
+    - name: Troubleshoot package build issues
+      href: troubleshoot/build-failures.md
+    - name: Troubleshoot versioning issues
+      href: users/versioning-troubleshooting.md
+- name: Glossary
+  href: concepts/glossary.md
 - name: About
   items:
   - name: FAQ
     href: about/faq.md
   - name: Privacy
     href: about/privacy.md
+- name: Resources
+  items:
+  - name: vcpkg website
+    href: https://vcpkg.io/
+  - name: vcpkg open-source registry on GitHub
+    href: https://github.com/Microsoft/vcpkg
+  - name: vcpkg source code on GitHub
+    href: https://github.com/Microsoft/vcpkg-tool
+  - name: Microsoft C++ Team Blog
+    href: https://devblogs.microsoft.com/search?query=vcpkg
+  - name: Support channels and social media
+    href: resources/support-channels.md

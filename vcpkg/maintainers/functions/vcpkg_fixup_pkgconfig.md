@@ -1,7 +1,7 @@
 ---
 title: vcpkg_fixup_pkgconfig
 description: Learn how to use vcpkg_fixup_pkgconfig.
-ms.date: 11/30/2022
+ms.date: 01/10/2024
 ---
 # vcpkg_fixup_pkgconfig
 
@@ -37,15 +37,18 @@ Skips the library checks in `vcpkg_fixup_pkgconfig`. Only use if the script itse
 
 ### SYSTEM_PACKAGES (deprecated)
 
-This argument has been deprecated and has no effect.
+> [!WARNING]
+> This argument has been deprecated and has no effect.
 
 ### SYSTEM_LIBRARIES (deprecated)
 
-This argument has been deprecated and has no effect.
+> [!WARNING]
+> This argument has been deprecated and has no effect.
 
 ### IGNORE_FLAGS (deprecated)
 
-This argument has been deprecated and has no effect.
+> [!WARNING]
+> This argument has been deprecated and has no effect.
 
 ## Notes
 

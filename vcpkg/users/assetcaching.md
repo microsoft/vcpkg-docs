@@ -1,45 +1,50 @@
 ---
-title: Asset Caching
-description: Use vcpkg to mirror sources and tools internally to guarantee build reliability.
-ms.date: 11/30/2022
+title: Asset caching configuration
+description: Reference documentation for the asset caching feature configuration and capabilities.
+author: vicroms
+ms.author: viromer
+ms.topic: reference
+ms.date: 01/10/2024
 ---
-# Asset caching
+# Asset caching configuration
 
-[!INCLUDE [experimental](../../includes/experimental.md)]
+## Sources
 
-vcpkg can utilize mirrors to cache downloaded assets, ensuring continued operation even if the original source changes or disappears.
+The `<rw>` parameter is optional and common to most sources described below. It controls
+access permissions for the specific source and accepts the values `read`, `write`, or `readwrite`
+(defaults to `read`).
 
-In-tool help is available via `vcpkg help assetcaching`.
+Use a backtick (\`) to escape characters inside the source strings.
 
-## Configuration
+### <a name="clear"></a> `clear`
 
-Asset caching can be configured by setting the environment variable `X_VCPKG_ASSET_SOURCES` to a semicolon-delimited
-list of source strings. Characters can be escaped using backtick (\`).
+**Syntax**: `clear`
 
-### Valid source strings
+Removes all previous sources in the configuration string. Useful in combination with the
+`--x-asset-sources` parameter to disable all asset caching sources coming from the
+`X_VCPKG_ASSET_SOURCES` environment variable.
 
-The `<rw>` optional parameter for certain strings controls how they will be accessed. It can be specified as `read`,
-`write`, or `readwrite` and defaults to `read`.
+### <a name="x-azurl"></a>Azure Blob Storage (`x-azurl`)
 
-#### `clear`
+**Syntax**:
+1. `x-azurl,<url>[,<sas>[,<rw>]]`
+1. `x-azurl,file://<network-location>[,,<rw>]`
 
-Syntax: `clear`
+`<url>`: Required. The Azure Blob Storage connection URL. It must include the container path and a trailing
+`/`.
 
-Removes all previous sources
+`<sas>`: Optional. For endpoints using Shared Access Signature validation, use this parameter to provide the generated SAS.
 
-#### `x-azurl`
+Non-Azure endpoints can provide an access token using this parameter. As long as they can respond to
+GET and PUT requests of the form `<url>/<sha512>?<sas>`.
 
-Syntax: `x-azurl,<url>[,<sas>[,<rw>]]`
+For example, a source configured as follows: `azurl,https://mydomain.com/vcpkg/,token=abc123,readwrite`, produces a request in the form: `https://mydomain.com/vcpkg/<sha512>?token=abc123`.
 
-Adds an Azure Blob Storage source, optionally using Shared Access Signature validation. URL should include the container
-path and be terminated with a trailing `/`. SAS, if defined, should be prefixed with a `?`. Non-Azure servers will also
-work if they respond to GET and PUT requests of the form: `<url><sha512><sas>`. As an example, if you set
-`X_VCPKG_ASSET_SOURCES` to `x-azurl,https://mydomain.com/vcpkg/,token=abc123,readwrite` your server should respond to
-`GET` and `PUT` requests of the form `https://mydomain.com/vcpkg/<sha512>?token=abc123`.
+Alternatively, you can use a filesystem location as the endpoint by using the
+`x-azurl,file://<filesystem-location>[,,<rw>]` pattern.
 
-You can also use the filesystem (e.g. a network drive) via `file://` as asset cache. For example you then set
-`X_VCPKG_ASSET_SOURCES` to `x-azurl,file:///Z:/vcpkg/assetcache/,,readwrite` when you have a network folder mounted at
-`Z:/`.
+For example, `x-azurl,file:///Z:/vcpkg/assetcache/,,readwrite` configures a cache in the `Z:/`
+network folder.
 
 The workflow of this asset source is:
 
@@ -47,21 +52,44 @@ The workflow of this asset source is:
 1. (If step 1 failed) Read from the original url
 1. (If step 2 succeeded) Write back to the mirror
 
-You can enable/disable steps 1 and 3 via the [`<rw>`](#valid-source-strings) specifier and you can disable step 2 via
+You can enable/disable steps 1 and 3 via the [`<rw>`](#sources) specifier, and you can disable step 2 via
 `x-block-origin` below.
 
-See also the [binary caching documentation for Azure Blob Storage](binarycaching.md#azblob) for more information on how to set up an `x-azurl` source.
+See also the [binary caching documentation for Azure Blob
+Storage](../reference/binarycaching.md#azblob) for more information on how to
+set up an `x-azurl` source.
 
-#### `x-block-origin`
+#### <a name="x-block-origin"></a> `x-block-origin`
 
 Syntax: `x-block-origin`
 
-Disables use of the original URLs in case the mirror does not have the file available.
+Disables falling back to the original download URL when an asset is not found in any of the
+configured sources.
 
 #### `x-script`
 
 Syntax: `x-script,<template>`
 
-Dispatches to an external tool to fetch the asset. Within the template, `{url}` will be replaced by the original url, `{sha512}` will be replaced by the SHA512 value, and `{dst}` will be replaced by the output path to save to. These substitutions will all be properly shell escaped, so an example template would be: `curl -L {url} --output {dst}`. `{{` will be replaced by `}` and `}}` will be replaced by `}` to avoid expansion. Note that this will be executed inside the build environment, so the PATH and other environment variables will be modified by the triplet.
+Dispatches to an external tool to fetch the asset.
 
-See [How to create an x-script Asset Caching source for NuGet](../examples/asset-caching-source-nuget.md) for a walkthrough using `x-script`.
+`<template>`: Required. A command template that vcpkg executes to acquire an asset. For example:
+`x-script,curl -L {url} --output {dst}` configures vcpkg to execute `curl` and provide the `{url}`
+and `{dst}` parameters.
+
+The logic to restore and upload assets and to connect to the cache storage endpoint are responsibility
+of the command provided within the template.
+
+vcpkg will substitute these arguments when executing the command:
+
+* `{url}`: the original download URL for the asset.
+* `{sha512}`: the expected SHA512 of the downloaded asset.
+* `{dst}`: the location where the downloaded asset is expected.
+
+The template command is run within vcpkg's build environment; this means that some environment
+variables like `PATH` may be modified by the triplet.
+
+## Next step
+
+> [!div class="nexstepaction"]
+> [Use a custom script as an asset caching source for
+> NuGet](../examples/asset-caching-source-nuget.md)
