@@ -558,7 +558,13 @@ Optionally, you can add a `test` feature which enables building the tests, howev
 
 ### Do not add `CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS`
 
-Unless the author of the library is already using it, we should not use this CMake functionality because it interacts poorly with C++ templates and breaks certain compiler features. Libraries that don't provide a .def file and do not use __declspec() declarations simply do not support shared builds for Windows and should be marked as such with `vcpkg_check_linkage(ONLY_STATIC_LIBRARY)`.
+Unless the author of the library is already using it, we should not use this CMake functionality because it interacts poorly with C++ templates and breaks certain compiler features. Libraries that don't provide a .def file and do not use __declspec() declarations simply do not support shared builds for Windows and should be marked as such:
+
+```cmake
+if(VCPKG_TARGET_IS_WINDOWS)
+    vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
+endif()
+```
 
 ### Do not rename binaries outside the names given by upstream
 
