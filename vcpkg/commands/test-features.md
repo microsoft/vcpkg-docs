@@ -18,9 +18,9 @@ Tests all features of a package by installing them in manifest mode. This comman
 The following tests are performed:
 - The core feature gets installed with default featured disabled
 - Every feature gets installed separately with default features disabled
-- All features combined gets installed
+- All features combined get installed
 
-Feature which are unsupported or marked as cascade in --ci-feature-baseline are skipped.
+Features which are unsupported or marked as cascade in `--ci-feature-baseline` are skipped.
 
 ## Example
 
@@ -60,8 +60,8 @@ States:
   dependency but the port itself states that it can be build. This is added to ports to detect
   "hidden" not tested ports. 
 
-Additional States can be specified for specific features:
-* **feature-fails** - The listed feature do not build. They are therefore excluded from the
+Additional states can be specified for specific features:
+* **feature-fails** - The listed features do not build. They are therefore excluded from the
   "combined" feature test because it would simply fail too.
 * **combination-fails** - The listed combination of features will fail to build.
 * **no-separate-feature-test** - The listed features are not tested in the "seperate" feature test.
@@ -69,7 +69,7 @@ Additional States can be specified for specific features:
   first feature in the list is added to every test combination. Use the `core` feature as first one
   to add no feature to every test combination.
 
-You could select ports by triplet or supports expression:
+You can select ports by triplet or supports expression:
 
 * `curl[wchar]:x64-osx = feature-fails # the wchar feature does not work on !windows`
 * `curl[wchar](!windows) = feature-fails # Using support expressions is often shorter than listing all triplets`
