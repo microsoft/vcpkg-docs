@@ -4,7 +4,9 @@ description: Command line reference for the vcpkg test-features command. Builds 
 ms.date: 03/07/2025
 ---
 
-# vcpkg test-features
+# vcpkg x-test-features
+
+[!INCLUDE [experimental](../../includes/experimental.md)]
 
 ## Synopsis
 
@@ -46,7 +48,10 @@ All vcpkg commands support a set of [common options](common-options.md).
 Path to the `ci.feature.baseline.txt` file. Used to skip ports and detect regressions.
 
 Each line in this file is an assignment of a port spec to a state. `#`s indicate comments, and
-blank lines are ignored.
+blank lines are ignored. A port spec is of the form
+`port-name[features]:triplet(supports-expression)`, where the features, triplet, and supports
+expression part are optiona. For example, `curl`, `curl[http2]`, `curl:x64-windows`, or
+`curl[http2](!windows)`.
 
 States:
 
@@ -58,16 +63,17 @@ States:
   comment for why a port is skipped so it can be removed when the issue is resolved.
 * **cascade** - The port depends on a port that fails or is excluded by a supports expression of a
   dependency but the port itself states that it can be build. This is added to ports to detect
-  "hidden" not tested ports. 
+  "hidden" untested ports. 
 
 Additional states can be specified for specific features:
 * **feature-fails** - The listed features do not build. They are therefore excluded from the
   "combined" feature test because it would simply fail too.
 * **combination-fails** - The listed combination of features will fail to build.
-* **no-separate-feature-test** - The listed features are not tested in the "seperate" feature test.
+* **no-separate-feature-test** - The listed features are not tested in the "separate" feature test.
 * **options** - The listed features are mutually exclusive and can not be selected together. The
   first feature in the list is added to every test combination. Use the `core` feature as first one
-  to add no feature to every test combination.
+  to add no feature to every test combination. [Note that, in general, features of this form are
+  not intended to be accepted for anything new in vcpkg's curated registry.](/vcpkg/contributing/maintainer-guide#do-not-use-features-to-implement-alternatives)
 
 You can select ports by triplet or supports expression:
 
