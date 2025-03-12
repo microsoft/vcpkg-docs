@@ -1,3 +1,11 @@
+---
+title: Offline Usage of vcpkg
+description: Use export, asset caching, and git to develop in offline or air-gapped networks.
+author: roschuma
+ms.author: roschuma
+ms.topic: concept-article
+ms.date: 03/12/2025
+---
 # Offline Usage of vcpkg
 
 This document details two robust methods for deploying vcpkg in environments without live internet connectivity.
