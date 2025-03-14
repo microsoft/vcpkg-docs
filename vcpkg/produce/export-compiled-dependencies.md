@@ -1,6 +1,6 @@
 ---
 title: "Tutorial: Export compiled dependencies"
-description: In this tutorial we show you how to export compiled dependencies to be consumed by another project.
+description: In this tutorial we show you how to export compiled dependencies to be consumed by another project offline or on another machine.
 author: JavierMatosD
 ms.author: Javiermat
 ms.date: 01/10/2024
@@ -10,16 +10,15 @@ ms.topic: tutorial
 
 # Tutorial: Export compiled dependencies
 
-In this tutorial, we'll walk through how to export compiled dependencies using vcpkg. This can be particularly useful when you want to share libraries across multiple projects or for ease of distribution.
+In this tutorial, we'll walk through how to export compiled dependencies using vcpkg. This can be particularly useful when you want to share libraries across multiple projects or for ease of distribution. Additionally, the process can be adapted for offline or air-gapped scenarios by transferring the exported archive to environments without live internet connectivity.
 
 ## Prerequisites
 
-- [Visual Studio](<https://visualstudio.microsoft.com/downloads/>) with C++ development workload and [CMake component](</cpp/build/cmake-projects-in-visual-studio#installation>)
-- [Git](<https://git-scm.com/downloads>)
-* vcpkg
-* A terminal
+- [Visual Studio](https://visualstudio.microsoft.com/downloads/) with C++ development workload and [CMake component](</cpp/build/cmake-projects-in-visual-studio#installation>)
+- [Git](https://git-scm.com/downloads)
+- vcpkg
 
-## 1 - Install `fmt` library
+## 1 - Install the `fmt` library
 
 Open a terminal and navigate to the directory where vcpkg is installed then install the `fmt` library for your target platform:
 
@@ -29,7 +28,7 @@ vcpkg install fmt:x64-windows
 
 Replace `x64-windows` with your target triplet.
 
-## 2 - Export `fmt` library
+## 2 - Export the `fmt` library
 
 After installing `fmt`, export it by running:
 
@@ -53,13 +52,13 @@ Zip archive exported at: C:\dev\vcpkg\vcpkg-export-20231106-164550.zip
 To use exported libraries in CMake projects, add -DCMAKE_TOOLCHAIN_FILE=[...]/scripts/buildsystems/vcpkg.cmake to your CMake command line.
 ```
 
-The command creates a zip archive containing all the necessary files to use the `fmt` library, including binaries and headers. For a list of all the supported formats check out the [`export` command documentation](../commands/export.md#formats).
+The command creates a zip archive containing all the necessary files to use the `fmt` library, including binaries and headers. This exported archive can be transferred to offline systems for deployment. For a list of all the supported formats check out the [`export` command documentation](../commands/export.md#formats).
 
 ## 3 - Use the `fmt` library in a new CMake project
 
 To use the `fmt` library in a new CMake project, follow these steps:
 
-1. Unzip the exported archive to a known location on your machine.
+1. Unzip the exported archive to a known location on your machine, or transfer it to your offline environment.
 2. Make a new directory for your CMake project and navigate into it.
 3. Create a `CMakeLists.txt` with the following content:
 
@@ -74,7 +73,7 @@ To use the `fmt` library in a new CMake project, follow these steps:
 
 4. Write your `main.cpp` file to include `fmt` and print "Hello, World":
    
-   ```cpp
+    ```cpp
     #include <fmt/core.h>
 
     int main() 
@@ -82,7 +81,7 @@ To use the `fmt` library in a new CMake project, follow these steps:
         fmt::print("Hello, World!\n");
         return 0;
     }
-   ```
+    ```
 
 5. Build the project - In your terminal, from the project directory, run:
    
