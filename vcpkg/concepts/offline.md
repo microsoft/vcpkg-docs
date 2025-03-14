@@ -1,7 +1,7 @@
 ---
 title: Offline Usage of vcpkg
 description: Use export, asset caching, and git to develop in offline or air-gapped networks.
-author: roschuma
+author: ras0219-msft
 ms.author: roschuma
 ms.topic: concept-article
 ms.date: 03/12/2025
