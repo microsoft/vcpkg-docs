@@ -3,7 +3,7 @@ title: "Tutorial: Set up a vcpkg asset cache"
 description: Learn to set up a local asset cache to mirror download assets.
 author: vicroms
 ms.author: viromer
-ms.date: 09/02/2024
+ms.date: 10/03/2025
 ms.topic: tutorial
 #CustomerIntent: As a beginner vcpkg user, I want to set up a local asset cache to mirror downloaded artifacts
 zone_pivot_group_filename: zone-pivot-groups.json
@@ -12,10 +12,12 @@ zone_pivot_groups: shell-selections
 # Tutorial: Set up a vcpkg asset cache
 
 All asset caches are configured through the `X_VCPKG_ASSET_SOURCES` environment variable. The value
-of `X_VCPKG_ASSET_SOURCES` follows a  specific [configuration
-syntax](../users/assetcaching.md).
+of `X_VCPKG_ASSET_SOURCES` follows a  specific [configuration syntax](../users/assetcaching.md).
 
-In this tutorial you'll learn how to:
+In this tutorial, you'll create a local asset cache location to store downloaded artifacts. 
+
+you want to use instead,
+replace the URL and provide a SAS token as the second parameter in the configuration string.
 
 > [!div class="checklist"]
 > * [Create an asset cache directory](#1---create-an-asset-cache-directory)
@@ -28,15 +30,21 @@ In this tutorial you'll learn how to:
 
 ## 1 - Create an asset cache directory
 
-You can use the Azure Blob Storage backend "[`x-azurl`](../users/assetcaching.md#x-azurl)", to store
-assets. Alternatively, you can use filesystem directories to store
-your download assets, including network locations. To do so, you need to use the
-`file://` protocol in your asset cache URL.
+vcpkg offers two types of asset cache providers:
 
-In this tutorial, you'll create a local asset cache location to store downloaded
-artifacts. If you have an Azure DevOps Blob Storage you want to use instead,
-replace the URL and provide a SAS token as the second parameter in the
-configuration string.
+* `x-azurl`: which is intended to work with Azure Blob Storage containers, but works just as well with other service providers
+  and even local or network filesystems.
+* `x-script`: which lets you add your own business logic to handle asset caching throug a customizable script or executable.
+
+This tutorial uses, `x-azurl` as the provider to store assets in a local directory in your filesystem using the URLS with
+the `file://` protocol.
+
+> [!NOTE]
+> You can use these same steps to create an asset cache with Azure Blob Storage. Replace any URL in the tutorial with the
+> URL for your storage and provide a SAS Token for authentication.
+>
+> See the [instructions for authenticating to an Azure Blob Storage](third-party-authentication.md#asset-cache-azure-blob-storage).
+
 
 1. Create a directory to serve as an asset cache location (substitute with any locations of your choosing):
 
@@ -82,7 +90,7 @@ set "X_VCPKG_ASSET_SOURCES=clear;x-azurl,file://D:/vcpkg/asset-cache,,readwrite"
 This `X_VCPKG_ASSET_SOURCES` configuration adds the following source strings:
 
 * `clear`, disables any previously configured asset cache
-* `x-azurl,file://C:/vcpkg/asset-cache,,readwrite`, sets a filesystem asset cache, located in
+* `x-azurl,file://D:/vcpkg/asset-cache,,readwrite`, sets a filesystem asset cache, located in
   `D:\vcpkg\asset-cache`, with read-write permissions.
 ::: zone-end
 

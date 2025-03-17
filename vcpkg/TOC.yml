@@ -67,7 +67,7 @@
     items:
     - name: Set up a vcpkg asset cache
       href: consume/asset-caching.md
-    - name: Use a custom script as an asset caching storage provider
+    - name: Use a custom script as an asset caching source
       # TODO: Modernize article: examples/asset-caching-source-nuget.md
       href: examples/asset-caching-source-nuget.md
   - name: Set up caching using Azure Storage and Azure DevOps
