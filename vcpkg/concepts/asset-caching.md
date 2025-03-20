@@ -1,27 +1,31 @@
 ---
 title: Asset caching with vcpkg
-description: Use asset caching with vcpkg to mirror your asset's downloads to improve build reliability.
+description: Use asset caching with vcpkg to mirror your downloaded artifacts, reduce external network reliance and improve build reliability.
 author: vicroms
 ms.author: viromer
 ms.topic: concept-article
-ms.date: 10/03/2024
+ms.date: 03/20/2025
 ---
 # Asset caching with vcpkg
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
-A fundamental operation of vcpkg is downloading files from the Internet, things like: source code archives, tool executables,
-source code patches, etc. We call anything that is downloaded from the network an **asset**.
+A fundamental operation of vcpkg is downloading files from the Internet, such as source code archives, tool executables,
+and source code patches. These files, referred to as **assets**, are obtained through simple file transfers over a network.
+Each asset has a known SHA512 hash, to check for integrity, before the download begins.
 
-Asset caching allows you to configure alternative download locations (caches) to acquire assets. When enabled, vcpkg first
-attempst to acquire assets from any configured cache location, and falls back to the original download if no cached asset
-is found. Optionally, vcpkg stores the asset in the cache for future use.
+Asset caching enables you to set up mirror locations, known as caches, to retrieve these assets. If enabled, vcpkg first
+tries to fetch assets from known caches. If the asset is unavailable, vcpkg falls back to the original download source.
+Additionally, vcpkg can save the asset to the cache for future use.
 
-This feature helps mitigate these common development concerns:
+The primary goal of asset caching is to minimize reliance on external networks, offering several advantages:
 
-* Reducing dependency from external networks. Possibly, also reducing download times.
-* Mirroring assets in trusted locations for air-gapped environments.
-* Maintaining continuity of business if assets hosted by third-parties are changed or unavailable.
+* **Reduced download times and bandwidth usage**: By retrieving assets from a local or nearby cache, builds complete
+  faster and consume less network bandwidth.
+* **Support for air-gapped or offline environments**: Assets can be mirrored in trusted locations, enabling builds in
+  environments without internet access.
+* **Improved reliability and continuity**: Ensures access to critical assets even if third-party hosts modify or remove
+  them, reducing the risk of disruptions.
 
 ## Configuration
 
@@ -30,13 +34,14 @@ Asset caching is configured via:
 * The `X_VCPKG_ASSET_SOURCES` environment variable, or
 * The `--x-asset-sources` command-line option.
 
-The expected value is a semicolon-delimited list of asset caching sources. Read the [asset caching reference
-documentation](../users/assetcaching.md) to learn the configuration syntax.
+In both cases, the expected value is a semicolon-delimited list of sources. Each source has a specific syntax depending
+on its storage backend. See the [asset caching reference documentation](../users/assetcaching.md) to learn how to
+configure asset caching sources.
 
-Example using Azure Blob Storage as an asset cache:
+### Example using Azure Blob Storage
 
 ```PowerShell
-vcpkg install zlib --x-asset-sources="x-azurl,mystorageaccount.blob.core.windows.net,${env:SAS_TOKEN},readwrite"
+vcpkg install zlib --x-asset-sources="clear;x-azurl,mystorageaccount.blob.core.windows.net,${SAS_TOKEN},readwrite;x-azurl,file:///Z:/vcpkg-cache/assets,,readwrite"
 ```
 
 ## Next step
