@@ -167,7 +167,7 @@ Example in PowerShell:
 $env:PATH="C:\dev\vcpkg\downloads\tools\nuget-6.10.0-windows;$env:PATH"
 ```
 
-### 2 - Add your private feed as a NuGet packages source
+### <a name="nuget-add-source"></a> 2 - Add your private feed as a NuGet packages source
 
 > ![NOTE]
 > Be aware that encrypted passwords are only supported on Windows. Moreover, they can only be decrypted on the same machine
@@ -187,4 +187,44 @@ Set `<username>` and `<password>` to your authentication credentials and `<feed-
 
 On non-Windows you may need to add the `-StorePasswordInClearText` option to the command-line.
 
-## Private repositories: Git
+## Binary cache provider: Nuget + Azure Artifacts
+
+### Create a feed
+
+1. Sign in to your Azure DevOps organization and navigate to your project.
+2. Open the "Artifacts" tab.
+3. Click the "+ Create Feed" button.
+4. Configure your feed's name, visibility and scope. We recommend unchecking the "Include packages from common public sources" for vcpkg binary caching feeds.
+5. Click the "Create" button.
+
+:::image type="content" source="../resources/create-nuget-feed.png" alt-text="Screenshot of the Create new feed window":::
+
+### Connect to a feed
+
+1. Sign in to your Azure DevOps organization and navigate to your project.
+2. Open the "Artifacts" tab
+3. Select your feed from the dropwdown menu.
+4. Select "Connect to Feed", and then select Visual Studio from the left pane.
+5. Copy the Name and Source values from Machine setup
+
+:::image type="content" source="../resources/connect-to-nuget-feed.png" alt-text="Screenshot of the Machine setup to connect with Visual Studio":::
+
+### Add your feed as a NuGet source
+
+#### Method 1: Create a Personal Access Token to authenticate
+
+1. Sign in to your Azure DevOps organization
+2. From your home page, click the Settings icon and then Personal Access Tokens
+    :::image type="content" source="../resources/ado-options-pat.png" alt-text="Screenshot of the User Settings menu with the Personal Access Tokens option highlighted":::
+3. Click the "+New Token" button
+4. Set your token's name, expiration date, and scopes. In the Packages scope, make sure to give the token readwrite access. Then click "Create".
+   :::image type="content" source="../resources/ado-create-pat.png" alt-text="Screenshot of the Create a new personal access tokens window":::
+5. Copy the token and store it in a secure location. NOTE: The token cannot be displayed again after you close this window.
+  :::image type="content" source="../resources/ado-copy-pat.png" alt-text="Screenshot of the window showing the newly created personal access token":::
+6. Follow the steps to [add a private feed as a NuGet packages source](#nuget-add-source)
+7. Use your Personal Access Token as the password to authenticate to your NuGet feed.
+
+### Set an API Key for your feed
+
+Azure Artifacts requires that packages include an API Key. However, the key can be any arbitrary string.
+
