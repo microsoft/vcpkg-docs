@@ -12,7 +12,7 @@ zone_pivot_groups: shell-selections
 # Tutorial: Set up a vcpkg asset cache
 
 All asset caches are configured through the `X_VCPKG_ASSET_SOURCES` environment variable. The value
-of `X_VCPKG_ASSET_SOURCES` follows a  specific [configuration syntax](../users/assetcaching.md).
+of `X_VCPKG_ASSET_SOURCES` follows a specific [configuration syntax](../users/assetcaching.md).
 
 In this tutorial you'll learn how to:
 
@@ -27,11 +27,11 @@ In this tutorial you'll learn how to:
 
 ## 1 - Create an asset cache directory
 
-vcpkg offers two types of asset cache providers:
+vcpkg offers the following asset cache providers:
 
 * `x-azurl`: which is intended to work with Azure Blob Storage containers, but works just as well with other service providers
   and even local or network filesystems.
-* `x-script`: which lets you add your own business logic to handle asset caching throug a customizable script or executable.
+* `x-script`: which lets you add your own business logic to handle asset caching through a customizable script or executable.
 
 This tutorial uses, `x-azurl` as the provider to store assets in a local directory in your filesystem using a URL with
 the `file://` protocol.
