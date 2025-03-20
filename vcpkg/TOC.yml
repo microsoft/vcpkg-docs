@@ -45,7 +45,8 @@
       href: consume/install-locally-modified-package.md
     - name: Install a dependency from a Git-based registry
       href: consume/git-registries.md
-    - name: Authenticate to private Git registries
+    - name: Authenticate to private Git repositories
+      displayName: private registry, custom registry, GitHub
       href: users/authentication.md
     - name: Authenticate to private Git registries in your GitHub Actions workflows
       href: consume/gha-authentication.md
@@ -67,8 +68,8 @@
     items:
     - name: Set up a vcpkg asset cache
       href: consume/asset-caching.md
-    - name: Use a custom script as an asset caching storage provider
-      # TODO: Modernize article: examples/asset-caching-source-nuget.md
+    - name: Use a custom script as an asset caching source
+      displayName: x-script, NuGet, Azure Artifacts, Azure DevOps
       href: examples/asset-caching-source-nuget.md
   - name: Set up caching using Azure Storage and Azure DevOps
     href: consume/caching-workload-identity-federation.md
