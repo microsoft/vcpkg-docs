@@ -41,7 +41,7 @@ configure asset caching sources.
 ### Example using Azure Blob Storage
 
 ```PowerShell
-vcpkg install zlib --x-asset-sources="clear;x-azurl,mystorageaccount.blob.core.windows.net,${env:SAS_TOKEN},readwrite"
+vcpkg install zlib --x-asset-sources="clear;x-azurl,mystorageaccount.blob.core.windows.net,${SAS_TOKEN},readwrite;x-azurl,file:///Z:/vcpkg-cache/assets,,readwrite"
 ```
 
 ## Next step
