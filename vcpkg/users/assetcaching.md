@@ -43,7 +43,7 @@ For example, a source configured as follows: `azurl,https://mydomain.com/vcpkg/,
 Alternatively, you can use a filesystem location as the endpoint by using the
 `x-azurl,file://<filesystem-location>[,,<rw>]` pattern.
 
-For example, `x-azurl,file:///Z:/vcpkg/assetcache/,,readwrite` configures a cache in the `Z:/`
+For example, `x-azurl,file://Z:/vcpkg/assetcache/,,readwrite` configures a cache in the `Z:/`
 network folder.
 
 The workflow of this asset source is:
