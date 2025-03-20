@@ -9,13 +9,14 @@ ms.date: 03/20/2025
 # Asset caching with vcpkg
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
-A fundamental operation of vcpkg is downloading files from the Internet, such as source code archives, tool executables,
-and source code patches. These files, referred to as **assets**, are obtained through straightforward file transfers over
-a network. Each asset has a known SHA512 hash that ensures its integrity before the download begins.
 
-Asset caching allows you to configure alternative download locations (caches) to acquire assets. When enabled, vcpkg first
-attempst to acquire assets from any configured cache location, and falls back to the original download if the asset is not
-found in any of the configured caches. Additionally, vcpkg can store the asset in the cache for future reuse.
+A fundamental operation of vcpkg is downloading files from the Internet, such as source code archives, tool executables,
+and source code patches. These files, referred to as **assets**, are obtained through simple file transfers over a network.
+Each asset has a known SHA512 hash, to check for integrity, before the download begins.
+
+Asset caching enables you to set up mirror locations, known as caches, to retrieve these assets. If enabled, vcpkg first
+tries to fetch assets from known caches. If the asset is unavailable, vcpkg falls back to the original download source.
+Additionally, vcpkg can save the asset to the cache for future use.
 
 The primary goal of asset caching is to minimize reliance on external networks, offering several advantages:
 
@@ -40,7 +41,7 @@ configure asset caching sources.
 ### Example using Azure Blob Storage
 
 ```PowerShell
-vcpkg install zlib --x-asset-sources="x-azurl,mystorageaccount.blob.core.windows.net,${env:SAS_TOKEN},readwrite"
+vcpkg install zlib --x-asset-sources="clear;x-azurl,mystorageaccount.blob.core.windows.net,${env:SAS_TOKEN},readwrite"
 ```
 
 ## Next step
