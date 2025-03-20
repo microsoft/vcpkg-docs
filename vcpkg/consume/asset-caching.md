@@ -14,9 +14,6 @@ zone_pivot_groups: shell-selections
 All asset caches are configured through the `X_VCPKG_ASSET_SOURCES` environment variable. The value
 of `X_VCPKG_ASSET_SOURCES` follows a specific [configuration syntax](../users/assetcaching.md).
 
-you want to use instead,
-replace the URL and provide a SAS token as the second parameter in the configuration string.
-
 > [!div class="checklist"]
 > * [Create an asset cache directory](#1---create-an-asset-cache-directory)
 > * [Configure `X_VCPKG_ASSET_SOURCES`](#2---configure-x_vcpkg_asset_sources)

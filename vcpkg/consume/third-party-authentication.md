@@ -29,18 +29,18 @@ Read the Azure documentation to [learn more about SAS Tokens](/rest/api/storages
 
 ### 1 - Create a Shared Access Signature Token in the Azure portal
 
-1 - Open the [Azure portal](https://portal.azure.com/#home) and navigate to your container.
-    1 - From the portal home click on Storage Accounts,
-    2 - Select the account for your asset cache and expand it,
-    3 - on the right side menu, find your container under Data Storage > Containers and click  it to open its own page.
-2 - Create an Account key SAS Token for your container.
-    1 - In the container page, click on Settings > Shared access tokens
-    2 - Select Account Key as the signing method
-    3 - Configure the token permissions, ensure that the token has read and write permissions enabled.
-    4 - Set the expiration for your token, by default, SAS Tokens have a 30-days lifetime, but you can increase it.
-    5 - Click on Generate SAS token and URL
-    6 - Copy the Blob SAS token and SAS URL and store them somewhere secure. This information is only displayed once when
-    creating the token and cannot be viewed again after you leave this page.
+1. Open the [Azure portal](https://portal.azure.com/#home) and navigate to your container.
+    1. From the portal home click on Storage Accounts,
+    2. Select the account for your asset cache and expand it,
+    3. on the right side menu, find your container under Data Storage > Containers and click  it to open its own page.
+2. Create an Account key SAS Token for your container.
+    1. In the container page, click on Settings > Shared access tokens
+    2. Select Account Key as the signing method
+    3. Configure the token permissions, ensure that the token has read and write permissions enabled.
+    4. Set the expiration for your token, by default, SAS Tokens have a 30-days lifetime, but you can increase it.
+    5. Click on Generate SAS token and URL
+    6. Copy the Blob SAS token and SAS URL and store them somewhere secure. This information is only displayed once when 
+       creating the token and cannot be viewed again after you leave this page.
 
 ### 2 - Configure your asset cache to use your Azure Blob Storage container and SAS token
 
