@@ -12,14 +12,14 @@ This document details two robust methods for deploying vcpkg in environments wit
 
 ## Method 1: Prebuild and Export Packages
 
-This method uses the export command to create a comprehensive package bundle on an internet-connected system. The process compiles binaries, headers, and all transitive dependencies into a self-contained SDK bundle suitable for offline deployment.
+This method uses the [`export` command](../commands/export.md) to create a comprehensive package bundle on an internet-connected system. The process compiles binaries, headers, and all transitive dependencies into a self-contained SDK bundle suitable for offline deployment.
 
 Get started with the [Export Tutorial – Creating a self-contained SDK bundle](../produce/export-compiled-dependencies.md).
 
 ### Pros and Cons
 
 **Pros:**
-- All necessary components are bundled together into a single archive using the export command.
+- All necessary components are bundled together into a single archive using the `export` command.
 - Easy to get started.
 - Extremely reliable.
 
