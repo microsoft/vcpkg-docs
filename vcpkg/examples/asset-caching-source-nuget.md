@@ -7,7 +7,7 @@ ms.date: 03/20/2025
 ms.topic: tutorial
 ---
 
-# Tutorial: Use a custom script as an asset caching source
+# Tutorial: Use a custom script as an asset caching source with NuGet as a storage backend
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
