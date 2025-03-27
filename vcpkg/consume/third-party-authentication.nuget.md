@@ -39,7 +39,7 @@ Modify your `PATH` environment variable to add the directory containing `nuget.e
 ### Example setting `PATH` in a PowerShell session
 
 ```PowerShell
-$env:PATH="C:\dev\vcpkg\downloads\tools\nuget-6.10.0-windows;$env:PATH"
+$env:PATH="$env:PATH;C:\dev\vcpkg\downloads\tools\nuget-6.10.0-windows"
 ```
 
 ## 2 - Add your private feed as a NuGet packages source <a name="nuget-add-source"></a>
@@ -129,7 +129,7 @@ Use the `nuget setapikey` command to set the API key for a specific feed URL.
 .$(vcpkg fetch nuget) setapikey $GITHUB_PAT_TOKEN -Source https://nuget.pkg.github.com/$GITHUB_OWNER/index.json
 ```
 
-### Method 2: Se the API key using a NuGet config file
+### Method 2: Set the API key using a NuGet config file
 
 If you're using a `nuget.config` file to add your package feed sources, you can set their API keys in the same file by adding
 an [`<apiKeys>`](/nuget/reference/nuget-config-file#apikeys) section.
