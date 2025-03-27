@@ -17,13 +17,13 @@ name>/usage`) that describes the minimal steps necessary to integrate with a bui
 ### Supplying a usage file
 
 To provide usage documentation create a text file named `usage` in the port's `share`
-installation directory. The recommended method is to call the `configure_file()` function in
+installation directory. The recommended method is to call the `file(INSTALL ...)` function in
 `portfile.cmake`.
 
 For example:
 
 ```cmake
-configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" COPYONLY)
+file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}")
 ```
 
 After installing ports, vcpkg detects files installed to `${CURRENT_PACKAGES_DIR}/share/${PORT}/usage` and prints their usage instructions.
@@ -45,7 +45,7 @@ Packages with CMake targets:
 ```text
 <port> provides CMake targets:
 
-    <instructions>
+  <instructions>
 ```
 
 Header-only libraries:
@@ -53,7 +53,7 @@ Header-only libraries:
 ```text
 <port> is header-only and can be used from CMake via:
 
-    <instructions>
+  <instructions>
 ```
 
 #### Example of `usage` file
@@ -61,6 +61,6 @@ Header-only libraries:
 ```text
 proj provides CMake targets:
 
-    find_package(PROJ CONFIG REQUIRED)
-    target_link_libraries(main PRIVATE PROJ::proj)
+  find_package(PROJ CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE PROJ::proj)
 ```
