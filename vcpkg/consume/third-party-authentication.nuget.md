@@ -63,7 +63,7 @@ Replace `<username>` and `<password>` with your authentication credentials.  Rep
 > [!WARNING]
 > Storing passwords in clear text is strongly discouraged. For more information on managing credentials securely, refer
 > to the [security best practies for consuming packages from private
-> feeds](/nuget/consume-packages/consuming-packages-authenticated-feed#security-best-practices-for-managing-credentials).
+> feeds](/nuget/consume-packages/consuming-packages-authenticated-feeds#security-best-practices-for-managing-credentials).
 
 On non-Windows you may need to add the `-StorePasswordInClearText` option to the command-line.
 
