@@ -39,6 +39,11 @@
   - name: Install native dependencies in a CLR application
     displayName: .NET, C#, managed, CLI
     href: consume/cpp-cli.md
+  - name: Authenticate to third-party services
+    items:
+    - name: Authenticate to NuGet package feeds
+      displayName: binary cache, nuget.config, api key
+      href: consume/third-party-authentication.nuget.md
   - name: Install private or custom dependencies
     items:
     - name: Install a locally modified dependency using overlay ports
