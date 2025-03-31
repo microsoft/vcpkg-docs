@@ -1,11 +1,13 @@
 ---
-title: How to create a x-script Asset Caching source for NuGet
-description: Learn about how to create a x-script Asset Caching source for NuGet
-ms.date: 01/10/2024
+title: "Tutorial: Use a custom script as an asset caching source"
+description: Learn to use a script to insert custom business logic in the asset caching process with the x-script provider.
+author: vicroms
+ms.author: viromer
+ms.date: 03/20/2025
 ms.topic: tutorial
 ---
 
-# Creating a x-script Asset Caching source for NuGet
+# Tutorial: Use a custom script as an asset caching source with NuGet as a storage backend
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
