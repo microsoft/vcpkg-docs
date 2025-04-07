@@ -1,7 +1,9 @@
 ---
 title: Frequently Asked Questions
 description: Common questions and answers about vcpkg
-ms.date: 02/09/2024
+author: vicroms
+ms.author: viromer
+ms.date: 04/07/2025
 ms.topic: faq
 ---
 # Frequently Asked Questions
@@ -122,9 +124,17 @@ Yes. If you already have a CMake toolchain file, you will need to include our to
 
 ## Can I use my own/specific flags for rebuilding libraries?
 
-Yes. In the current version, there is not yet a standardized global way to change them, however you can edit individual portfiles and tweak the exact build process however you'd like.
+Yes. You can use [custom triplets](../concepts/triplets.md#custom-triplets) to modify compilation flags via the
+[`VCPKG_C_FLAGS` and `VCPKG_CXX_FLAGS`](../users/triplets.md#vcpkg_cxx_flags) variables.
 
-By saving the changes to the portfile (and checking them in), you'll get the same results even if you're rebuilding from scratch in the future and forgot what exact settings you used.
+You can also [customize the flags for each port individually](../users/triplets.md#per-port-customization). For example:
+
+```CMake
+if (PORT MATCHES "my-port")
+  set(VCPKG_CXX_FLAGS "/wd4996 -D_CRT_SECURE_NO_WARNINGS")
+  set(VCPKG_C_FLAGS "/wd4996 -D_CRT_SECURE_NO_WARNINGS")
+endif()
+```
 
 ## Can I get vcpkg integration for custom configurations?
 
