@@ -271,7 +271,7 @@ When this option is set, non-nested calls to [`find_package`](<https://cmake.org
 required (`VCPKG_LOCK_FIND_PACKAGE_<Pkg>=ON`) or disabled (`VCPKG_LOCK_FIND_PACKAGE_<Pkg>=OFF`).
 
 This variable is a tool to control direct dependencies and related features in vcpkg ports
-which use the CMake build system. It can be used with [`vcpkg_check_features`](../maintainers/functions/vcpkg_check_features.md) and avoids
+which use the CMake build system. It can be used with [`vcpkg_check_features`](../../maintainers/functions/vcpkg_check_features.md) and avoids
 unintended effects on transitive dependencies.
 
 [CMake Presets]: https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
