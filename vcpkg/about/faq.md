@@ -131,8 +131,8 @@ You can also [customize the flags for each port individually](../users/triplets.
 
 ```CMake
 if (PORT MATCHES "my-port")
-  set(VCPKG_CXX_FLAGS "/wd4996 -D_CRT_SECURE_NO_WARNINGS")
-  set(VCPKG_C_FLAGS "/wd4996 -D_CRT_SECURE_NO_WARNINGS")
+  set(VCPKG_CXX_FLAGS "-D_CRT_SECURE_NO_WARNINGS")
+  set(VCPKG_C_FLAGS "-D_CRT_SECURE_NO_WARNINGS")
 endif()
 ```
 
