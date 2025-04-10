@@ -209,6 +209,29 @@ https://github.com/GPUOpen-LibrariesAndSDKs/display-library/blob/master/Public-D
 
 Version constraints within ports should generally be avoided, as they can hinder the independent evolution of projects. Adding such constraints is only permissible when there is a well-documented justification, such as proven incompatibility with specific earlier versions. These constraints should not be used merely to maintain parity with independent projects.
 
+### Variables in `MAYBE_UNUSED_VARIABLES` must apply to at least one configuration
+
+When using [`MAYBE_UNUSED_VARIABLES`](../maintainers/functions/vcpkg_cmake_configure.md#maybe_unused_variables)
+to silence warnings during the CMake configuration step, there must be a comment explaining when the variable applies.
+If a variable does not apply in any configuration, then it is very likely that an underlying bug exists and adding it has
+no actual effect on the build.
+
+```cmake
+vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
+  FEATURES
+    windowsfeature WINDOWS_OPTION
+)
+
+vcpkg_configure_cmake(
+  SOURCE_PATH "${SOURCE_PATH}"
+  OPTIONS
+    ${FEATURE_OPTIONS}
+  MAYBE_UNUSED_VARIABLES
+    # Applies only on Windows
+    WINDOWS_OPTION
+)
+```
+
 ## Features
 
 ### Do not use features to implement alternatives
