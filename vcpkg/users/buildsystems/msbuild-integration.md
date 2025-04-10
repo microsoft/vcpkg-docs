@@ -83,7 +83,7 @@ section of the official MSBuild documentation for more information on `Directory
 ### Pass MSBuild properties to triplets and portfiles
 
 You can pass the value of MSBuild properties to vcpkg builds as environment variables by using the
-[`SetEnv` task](visualstudio/msbuild/setenv-task). You must set these environment variables before the
+[`SetEnv` task](/visualstudio/msbuild/setenv-task). You must set these environment variables before the
 `VcpkgTripletSelection` task.
 
 The following example shows a MSBuild project passing the value of the `MyProp` property to vcpkg as an environment variable,
