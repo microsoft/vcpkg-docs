@@ -211,10 +211,10 @@ Version constraints within ports should generally be avoided, as they can hinder
 
 ### Variables in `MAYBE_UNUSED_VARIABLES` must apply to at least one configuration
 
-When using [`MAYBE_UNUSED_VARIABLES`](../maintainers/functions/vcpkg_cmake_configure.md#maybe_unused_variables)
-to silence warnings during the CMake configuration step, there must be a comment explaining when the variable applies.
-If a variable does not apply in any configuration, then it is very likely that an underlying bug exists and adding it has
-no actual effect on the build.
+When adding a new variable to [`MAYBE_UNUSED_VARIABLES`](../maintainers/functions/vcpkg_cmake_configure.md#maybe_unused_variables)
+to silence a warning during the CMake configuration step, you must add a comment explaining the case when the new variable
+applies. If a variable does not apply in any configuration, then it is very likely that an underlying bug exists (for example,
+a  misspeled variable name) and adding it has no actual effect on the build.
 
 ```cmake
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
