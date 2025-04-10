@@ -18,11 +18,11 @@ vcpkg x-test-features [options] <package>...
 
 Tests all features of a package by installing them in manifest mode. This command is useful for testing that all features of a package are working correctly.
 The following tests are performed:
-- The core feature gets installed with default featured disabled
+- The `core` feature gets installed with default featured disabled
 - Every feature gets installed separately with default features disabled
 - All features combined get installed
 
-Features which are unsupported or marked as cascade in `--ci-feature-baseline` are skipped.
+Features marked as `unsupported` or `cascade` in [`--ci-feature-baseline`](#ci-feature-baseline) are skipped.
 
 ## Example
 
@@ -47,9 +47,9 @@ All vcpkg commands support a set of [common options](common-options.md).
 
 Path to the `ci.feature.baseline.txt` file. Used to skip ports and detect regressions.
 
-Each line in this file is an assignment of a port spec to a state. `#`s indicate comments, and
+Each line in this file is an assignment of a [port spec](install.md#package-syntax) to a state. Lines starting with a `#` (treated as comments) and
 blank lines are ignored. A port spec is of the form
-`port-name[features]:triplet(supports-expression)`, where the features, triplet, and supports
+`port-name[features]:triplet(supports-expression)`, where the features, triplet, and [`supports`](../reference/vcpkg-json.md#supports)
 expression part are optiona. For example, `curl`, `curl[http2]`, `curl:x64-windows`, or
 `curl[http2](!windows)`.
 

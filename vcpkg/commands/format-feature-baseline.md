@@ -4,6 +4,7 @@ description: Reference for the vcpkg format-feature-baseline command. Formats ci
 author: BillyONeal
 ms.author: bion
 ms.date: 03/07/2025
+ms.topic: reference
 ---
 
 # vcpkg format-feature-baseline
