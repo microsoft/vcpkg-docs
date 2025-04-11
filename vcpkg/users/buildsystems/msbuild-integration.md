@@ -80,6 +80,59 @@ build](/visualstudio/msbuild/customize-your-build#directorybuildprops-and-direct
 section of the official MSBuild documentation for more information on `Directory.Build.targets` and
 `Directory.Build.props`.
 
+### Pass MSBuild properties to triplets and portfiles
+
+You can pass the value of MSBuild properties to vcpkg builds as environment variables by using the
+[`SetEnv` task](/visualstudio/msbuild/setenv-task). You must set these environment variables before the
+`VcpkgTripletSelection` task.
+
+The following example shows a MSBuild project passing the value of the `MyProp` property to vcpkg as an environment variable,
+to make it usable inside triplets and portfiles.
+
+#### Example `Directory.Build.props`
+
+```xml
+<Project>
+  <PropertyGroup>
+    <VcpkgRoot>C:\dev\vcpkg\</VcpkgRoot>
+    <MyProp Condition="'$(Platform)' == 'x64'">X64_VALUE</MyProp>
+    <MyProp Condition="'$(Platform)' == 'x86'">X86_VALUE</MyProp>
+  </PropertyGroup>
+ <Import Project="$(VcpkgRoot)scripts\buildsystems\msbuild\vcpkg.props" />
+</Project>
+```
+
+#### Example `Directory.Build.targets`
+
+```xml
+<Project>
+  <Import Project="$(VcpkgRoot)scripts\buildsystems\msbuild\vcpkg.targets" />
+  <Target Name="_SetVcpkgEnvVars" BeforeTargets="VcpkgTripletSelection">
+    <Message Text="Setting MY_PROP to $(MyProp)" />
+    <SetEnv Name="MY_PROP" Value="$(MyProp)" Prefix="false" />
+  </Target>
+</Project>
+```
+
+#### Example triplet `x64-windows-custom.cmake`
+
+```cmake
+set(VCPKG_TARGET_ARCHITECTURE x64)
+set(VCPKG_CRT_LINKAGE dynamic)
+set(VCPKG_LIBRARY_LINKAGE dynamic)
+
+# Pass the environment variable to port builds
+set(VCPKG_ENV_PASSTHROUGH_UNTRACKED MY_PROP)
+```
+
+#### Example portfile.cmake
+
+```cmake
+set(VCPKG_POLICY_EMPTY_PACKAGE enabled)
+
+MESSAGE(STATUS "MY_PROP is $ENV{MY_PROP}")
+```
+
 ### Linked NuGet package
 
 > [!NOTE]
