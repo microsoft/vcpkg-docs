@@ -223,39 +223,6 @@ Otherwise, replace the value with your feed's proper API Key if you have one.
 Add the `<clear />` source to ignore other previously configured values. If you want, you can define multiple
 sources in this file, use a `<add key="<feed name>" value="<feed url>" />` entry for each source.
 
-Run the following command to add a NuGet source using a `nuget.config` file, replace 
-`<path to nuget.config>` with the path to your `nuget.config` file:
-
-::: zone pivot="shell-powershell"
-
-```PowerShell
-.$(vcpkg fetch nuget) sources add -ConfigFile <path to nuget.config>
-```
-
-::: zone-end
-::: zone pivot="shell-cmd"
-
-Execute the command below to fetch the path to the NuGet executable:
-
-```console
-vcpkg fetch nuget
-```
-This will provide an output that looks something like `C:\path\to\nuget.exe`. Make a note of this path.
-Using the path obtained from the previous step, run the following command:
-
-```console
-C:\path\to\nuget.exe sources add -ConfigFile <path to nuget.config>
-```
-
-::: zone-end
-::: zone pivot="shell-bash"
-
-```bash
-mono `vcpkg fetch nuget | tail -n 1` sources add -ConfigFile <path to nuget.config>
-```
-
-::: zone-end
-
 ## 3 - Configure vcpkg to use your NuGet feed
 
 Set the `VCPKG_BINARY_SOURCES` environment variable as follows:
