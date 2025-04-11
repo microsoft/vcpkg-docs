@@ -151,6 +151,9 @@
   - name: Host dependencies
     displayName: host, dependencies
     href: users/host-dependencies.md
+  - name: Offline Usage
+    displayName: air gap, firewall, proxy, no internet
+    href: concepts/offline.md
   - name: Open-source registry
     items:
     - name: Maintainer guide

@@ -25,7 +25,7 @@ Get started with the [Export Tutorial – Creating a self-contained SDK bundle](
 
 **Cons:**
 - Updates and source development must be performed on a connected system.
-- Involves additional maintenance due to frequent updates.
+- Involves additional maintenance when libraries update.
 - Handling offline-only private libraries is not possible.
 - Does not scale well to multiple diverse consumers -- each needs a separate bundle.
 
@@ -35,7 +35,7 @@ This strategy enables controlled access to external resources by combining Git U
 
 ### Git Redirection
 
-The Git configuration below demonstrates how to redirect requests from the standard repository to an internal mirror:
+Git Registries and some port sources are fetched using the git protocol, which may refer to resources outside the offline environment. The Git configuration below demonstrates how to redirect requests from the standard repository to an internal mirror:
 
 ```ini
 [url "https://internal/mirror/of/vcpkg"]
@@ -47,6 +47,8 @@ This configuration can also be applied via the command line:
 ```sh
 git config --global url."https://internal/mirror/of/vcpkg".insteadOf "https://github.com/microsoft/vcpkg"
 ```
+
+See [Using Git URL Redirection (insteadOf)](https://git-scm.com/docs/git-config#Documentation/git-config.txt-url) in the official Git documentation for more information.
 
 ### Asset Caching
 
