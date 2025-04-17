@@ -163,7 +163,6 @@ vcpkg_from_github(
     HEAD_REF cmake-sample-lib
 )
 
-
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
 )
@@ -174,8 +173,8 @@ vcpkg_cmake_config_fixup(PACKAGE_NAME "my_sample_lib")
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 
-file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
-configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" COPYONLY)
+file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}")
+vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 ```
 
 This `portfile` defines how to download, build, install, and package a specific
@@ -200,10 +199,10 @@ C++ library from GitHub using vcpkg.
   package configuration files to be compatible with vcpkg.
 - `file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")`: Deletes the
   include directory from the debug installation to prevent overlap.
-- `file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION ...)`: Installs the LICENSE
-  file to the package's share directory and renames it to copyright.
-- `configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" ...)`: Copies a usage
+- `file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" ...)`: Copies a usage
   instruction file to the package's share directory.
+- `vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")`: Installs the LICENSE
+  file to the package's share directory and renames it to copyright.
 
 For more information, refer to the [maintainer guide](../contributing/maintainer-guide.md).
 
@@ -249,6 +248,7 @@ Building vcpkg-sample-library:x64-windows...
 -- Configuring x64-windows
 -- Building x64-windows-dbg
 -- Building x64-windows-rel
+-- Installing: C:/Users/dev/demo/vcpkg/packages/vcpkg-sample-library_x64-windows/share/vcpkg-sample-library/usage
 -- Installing: C:/Users/dev/demo/vcpkg/packages/vcpkg-sample-library_x64-windows/share/vcpkg-sample-library/copyright
 -- Performing post-build validation
 Stored binaries in 1 destinations in 94 ms.

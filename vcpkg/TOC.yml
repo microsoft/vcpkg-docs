@@ -122,20 +122,49 @@
       href: concepts/build-system-integration.md
     - name: CMake integration
       href: users/buildsystems/cmake-integration.md
-    - name: MSBuild integration
-      href: users/buildsystems/msbuild-integration.md
     - name: Manual integration
       href: users/buildsystems/manual-integration.md
+    - name: MSBuild integration
+      href: users/buildsystems/msbuild-integration.md
   - name: Classic mode
     href: concepts/classic-mode.md
+  - name: Comparing vcpkg with system package managers
+    href: concepts/system-package-managers.md
   - name: Continuous Integration
     href: concepts/continuous-integration.md
   - name: Default features
     href: concepts/default-features.md
   - name: Features
     href: concepts/features.md
+  - name: GitHub integration
+    href: github-integration.md
+  - name: Helper ports
+    displayName: script port
+    href: maintainers/authoring-script-ports.md
+  - name: Host dependencies
+    displayName: host, dependencies
+    href: users/host-dependencies.md
   - name: Manifest mode
     href: concepts/manifest-mode.md
+  - name: Offline Usage
+    displayName: air gap, firewall, proxy, no internet
+    href: concepts/offline.md
+  - name: Open-source registry
+    items:
+    - name: CMake style guide
+      href: contributing/cmake-guidelines.md
+    - name: Maintainer guide
+      href: contributing/maintainer-guide.md
+    - name: PR review checklist
+      href: contributing/pr-review-checklist.md
+  - name: Overlay ports
+    href: concepts/overlay-ports.md
+  - name: Package name resolution
+    href: concepts/package-name-resolution.md
+  - name: Ports
+    href: concepts/ports.md
+  - name: Registries
+    href: concepts/registries.md
   - name: Supported hosts
     href: concepts/supported-hosts.md
   - name: Target platforms
@@ -152,32 +181,6 @@
       href: users/platforms/windows.md
     - name: Xbox
       href: users/platforms/xbox.md
-  - name: GitHub integration
-    href: github-integration.md
-  - name: Host dependencies
-    displayName: host, dependencies
-    href: users/host-dependencies.md
-  - name: Open-source registry
-    items:
-    - name: Maintainer guide
-      href: contributing/maintainer-guide.md
-    - name: CMake style guide
-      href: contributing/cmake-guidelines.md
-    - name: PR review checklist
-      href: contributing/pr-review-checklist.md
-  - name: Overlay ports
-    href: concepts/overlay-ports.md
-  - name: Package name resolution
-    href: concepts/package-name-resolution.md
-  - name: Ports
-    href: concepts/ports.md
-  - name: Registries
-    href: concepts/registries.md
-  - name: Helper ports
-    displayName: script port
-    href: maintainers/authoring-script-ports.md
-  - name: Comparing vcpkg with system package managers
-    href: concepts/system-package-managers.md
   - name: Triplets
     href: concepts/triplets.md
   - name: Versioning
