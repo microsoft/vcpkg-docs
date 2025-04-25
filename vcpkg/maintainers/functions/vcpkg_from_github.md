@@ -72,7 +72,7 @@ This field should contain the scheme, host, and port of the desired URL without 
 
 ### AUTHORIZATION_TOKEN
 
-A token to be passed via the Authorization HTTP header as "token ${AUTHORIZATION_TOKEN}". If `AUTHORIZATION_TOKEN` is a [fine-grained access token](https://docs.github.com/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens), you must also use [`USE_TARBALL_API`](#USE_TARBALL_API).
+A token to be passed via the Authorization HTTP header as "token ${AUTHORIZATION_TOKEN}". If `AUTHORIZATION_TOKEN` is a [fine-grained access token](https://docs.github.com/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens), you must also use [`USE_TARBALL_API`](#use_tarball_api).
 
 ### FILE_DISAMBIGUATOR
 
