@@ -178,14 +178,14 @@ template below:
   </apiKeys>
   <packageSources>
     <clear />
-    <add  key="<feed name>" value="<feed url>" />
+    <add  key="<feed name>" value="<feed url>" disableTLSCertificateValidation="false" />
   </packageSources>
-  <packageSourcesCredentials>
+  <packageSourceCredentials>
     <<feed name>>
       <add key="Username" value="<username>" />
-      <add key="Password" value="<password>" />
+      <add key="ClearTextPassword" value="<password>" />
     </<feed name>>
-  </packageSourcesCredentials>
+  </packageSourceCredentials>
 </configuration>
 ```
 
@@ -202,14 +202,14 @@ Example `nuget.config` file :
   </apikeys>
   <packageSources>
     <clear />
-    <add key="Contoso" value="https://contoso.org/packages/" />
+    <add key="Contoso" value="https://contoso.org/packages/" disableTLSCertificateValidation="false" />
   </packageSources>
-  <packageSourcesCredentials>
+  <packageSourceCredentials>
     <Contoso>
       <add key="Username" value="user" />
-      <add key="Password" value="..." />
+      <add key="ClearTextPassword" value="..." />
     </Contoso>
-  </packageSourcesCredentials>
+  </packageSourceCredentials>
 </configuration>
 ```
 
@@ -219,6 +219,9 @@ URL as the default source to push binary packages.
 If you're uploading your packages to an Azure Artifacts NuGet feed, use `AzureDevOps` as your
 source's API Key by running `nuget setApiKey AzureDevOps -Source <feed url> -ConfigFile <path to nuget.config>`.
 Otherwise, replace the value with your feed's proper API Key if you have one.
+
+If you are using a self-signed certificate you may need to disable TLS certificate validation. This option
+is only available through the use of a _nuget.config_ file.
 
 Add the `<clear />` source to ignore other previously configured values. If you want, you can define multiple
 sources in this file, use a `<add key="<feed name>" value="<feed url>" />` entry for each source.
