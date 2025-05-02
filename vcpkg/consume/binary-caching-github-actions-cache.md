@@ -9,7 +9,7 @@ ms.date: 01/10/2024
 ---
 # Tutorial: Set up a vcpkg binary cache using GitHub Actions Cache
 
-> [!WARNING]
+> [!CAUTION]
 > Vcpkg binary cache for GitHub Actions is **deprecated** and this tutorial is **no longer maintained**.  
 > For more information and migration guidance, please see [GitHub PR #1662](https://github.com/microsoft/vcpkg-tool/pull/1662).
 
