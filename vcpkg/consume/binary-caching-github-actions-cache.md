@@ -4,14 +4,15 @@ description: This tutorial shows how to set up a vcpkg binary cache using a NuGe
 author: vicroms
 ms.author: viromer
 ms.topic: tutorial
-ms.date: 01/10/2024
+ms.date: 05/01/2025
 #CustomerIntent: As a vcpkg user, I want to setup binary caching in my GitHub Actions workflow using GitHub Packages as the binary cache storage
+ROBOTS: NOINDEX
 ---
 # Tutorial: Set up a vcpkg binary cache using GitHub Actions Cache
 
 > [!CAUTION]
 > The GitHub Actions Cache backend for binary caching has been removed. This tutorial is no longer maintained.  
-> For more information and migration guidance, please see [GitHub PR #1662](https://github.com/microsoft/vcpkg-tool/pull/1662).
+> For more information and migration guidance, please see [GitHub Pull Request #1662](<https://github.com/microsoft/vcpkg-tool/pull/1662>).
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
 
