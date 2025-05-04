@@ -138,10 +138,6 @@ Commas (`,`) are valid as part of a object prefix in GCS. Remember to escape the
 
 [!INCLUDE [removed](../../includes/removed.md)]
 
-```
-x-gha[,<rw>]
-```
-
 ### <a name="azuniversal"></a> Universal Packages in Azure Artifacts
 
 [!INCLUDE [experimental](../../includes/experimental.md)]
