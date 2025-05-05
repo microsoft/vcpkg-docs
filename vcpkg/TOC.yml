@@ -65,8 +65,6 @@
       href: consume/binary-caching-local.md
     - name: Set up a binary cache using a NuGet feed
       href: consume/binary-caching-nuget.md
-    - name: Set up a binary cache using GitHub Actions cache
-      href: consume/binary-caching-github-actions-cache.md
     - name: Set up a binary cache using GitHub Packages in your GitHub Actions workflow
       href: consume/binary-caching-github-packages.md
   - name: Improve reliability by caching dependency assets

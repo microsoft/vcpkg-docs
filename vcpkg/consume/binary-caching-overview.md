@@ -49,5 +49,4 @@ Here are other tasks to try next:
 * [Set up a local binary cache](binary-caching-local.md)
 * [Set up a binary cache using a NuGet feed](binary-caching-nuget.md)
 * [Set up a binary cache in your GitHub Actions workflow using GitHub Packages](binary-caching-github-packages.md)
-* [Set up a binary cache in your GitHub Actions workflow using GitHub Actions Cache](binary-caching-github-actions-cache.md)
 * [Authenticate to private NuGet feeds](../reference/binarycaching.md#nuget-credentials)
