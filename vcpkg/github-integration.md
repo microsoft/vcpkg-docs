@@ -18,7 +18,7 @@ integration. For more information, read the [binary caching feature documentatio
 
 [GitHub Packages](https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages) let repositories
 publish binary artifacts for public or private use. Beyond hosting storage for published packages, GitHub Packages support
-offers a NuGet registry interface that vcpkg can use as a binary cache, with the [`nuget` binary source provider](../consume/binary-caching-github-packages.md).
+offers a NuGet registry interface that vcpkg can use as a binary cache, with the [`nuget` binary source provider](./consume/binary-caching-github-packages.md).
 
 ## <a name="dependency-graph"></a> The GitHub dependency graph
 

@@ -4,7 +4,7 @@ description: This tutorial shows how to set up a vcpkg binary cache using a NuGe
 author: vicroms
 ms.author: viromer
 ms.topic: tutorial
-ms.date: 01/10/2024
+ms.date: 5/1/2025
 #CustomerIntent: As a vcpkg user, I want to setup binary caching in my GitHub Actions workflow using GitHub Packages as the binary cache storage
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: os-runner

@@ -69,8 +69,6 @@ project's dependencies on each CI run.
 To learn more about binary caching read these articles:
 
 * [What is binary Caching](../consume/binary-caching-overview.md)
-* [Binary caching in GitHub
-  Actions](../consume/binary-caching-github-actions-cache.md)
 * [Authenticate NuGet
   feeds](../consume/binary-caching-nuget.md#provide-authentication-credentials)
 * [Binary caching configuration reference](../reference/binarycaching.md)
