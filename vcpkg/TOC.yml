@@ -209,6 +209,8 @@
       href: commands/env.md
     - name: vcpkg export
       href: commands/export.md
+    - name: vcpkg format-feature-baseline
+      href: commands/format-feature-baseline.md
     - name: vcpkg format-manifest
       href: commands/format-manifest.md
     - name: vcpkg hash
@@ -231,6 +233,8 @@
       href: commands/search.md
     - name: vcpkg update
       href: commands/update.md
+    - name: vcpkg x-test-features
+      href: commands/test-features.md
     - name: vcpkg x-update-baseline
       href: commands/update-baseline.md
     - name: vcpkg upgrade
