@@ -61,7 +61,7 @@ States:
 * **skip** - Do not build this port in the CI system.  
   This is added to ports that may be flaky or conflict with other ports. We recommend adding a
   comment for why a port is skipped so it can be removed when the issue is resolved.
-* **cascade** - The port depends on a port that fails or is excluded by a supports expression of a
+* **cascade** - The port depends on a port that fails or is excluded by a [supports expression](../reference/vcpkg-json.md#platform-expression) of a
   dependency but the port itself states that it can be build. This is added to ports to detect
   "hidden" untested ports. 
 
