@@ -240,6 +240,16 @@ tracked as part of the package abis.
 This will cause [binary caching](binarycaching.md) to reuse builds from older or
 newer compilers.
 
+### VCPKG_ENVIRONMENT_SETUP_SCRIPTS
+
+A list of scripts to execute before vcpkg starts building. The scripts must be runable on the given platform.
+If the script is a cmake script, cmake will be called to execute the script.
+This can be used to prepare the environment before vcpkg runs any other steps, like e.g. compiler detection.
+If the scripts are meant to participate in the abi hash use `VCPKG_HASH_ADDITIONAL_FILES` to declare them as ABI relevant.
+
+> [!NOTE]
+> Environment variables cannot be set in CMake scripts since CMake will run in its own process
+
 ## Windows-specific Variables
 
 ### VCPKG_ENV_PASSTHROUGH
