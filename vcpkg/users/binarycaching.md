@@ -89,7 +89,5 @@ syntax reference](../reference/binarycaching.md):
 
 * [Set up a local binary cache](../consume/binary-caching-local.md)
 * [Set up a binary cache using a NuGet feed](../consume/binary-caching-nuget.md)
-* [Set up a binary cache with GitHub Actions
-  cache](../consume/binary-caching-github-actions-cache.md)
 * [Set up a binary cache with GitHub
   Packages](../consume/binary-caching-github-packages.md)

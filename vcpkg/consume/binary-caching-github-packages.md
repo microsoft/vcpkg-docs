@@ -4,7 +4,7 @@ description: This tutorial shows how to set up a vcpkg binary cache using a NuGe
 author: vicroms
 ms.author: viromer
 ms.topic: tutorial
-ms.date: 01/10/2024
+ms.date: 5/1/2025
 #CustomerIntent: As a vcpkg user, I want to setup binary caching in my GitHub Actions workflow using GitHub Packages as the binary cache storage
 zone_pivot_group_filename: zone-pivot-groups.json
 zone_pivot_groups: os-runner
@@ -163,4 +163,3 @@ Here are other tasks to try next:
 * [Change the default binary cache location](binary-caching-default.md)
 * [Set up a local binary cache](binary-caching-local.md)
 * [Set up a binary cache using a NuGet feed](binary-caching-nuget.md)
-* [Set up a binary cache in your GitHub Actions workflow using GitHub Actions Cache](binary-caching-github-actions-cache.md)
