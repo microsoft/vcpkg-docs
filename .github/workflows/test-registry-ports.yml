@@ -27,6 +27,12 @@ jobs:
         run: "${{ github.workspace }}/vcpkg/bootstrap-vcpkg.sh"
         shell: bash
 
+      - name: Test keys
+        run: |
+          echo "${{ hashFiles('vcpkg/scripts/buildsystems/vcpkg.cmake') }}"
+          echo "${{ hashFiles('vcpkg.json') }}"
+        shell: bash
+
       - name: Cache vcpkg dependencies
         uses: actions/cache@v4
         with:
