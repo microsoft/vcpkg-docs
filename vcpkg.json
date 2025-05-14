@@ -2,7 +2,8 @@
   "$comment": "The dependency list should be populated with every port in the registry",
   "dependencies": [
     "beicode",
-    "beison"
+    "beison",
+    "zlib"
   ],
-  "builtin-baseline": "821100d967e1737d96414a308e3f7cbe0d1abf18"
+  "builtin-baseline": "dbe35ceb30c688bf72e952ab23778e009a578f18"
 }

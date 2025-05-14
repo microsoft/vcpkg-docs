@@ -7,33 +7,42 @@ on:
     branches: ["vcpkg-registry"]
 
 env:
-  VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
   VCPKG_OVERLAY_PORTS: "${{ github.workspace }}/ports"
+  VCPKG_TARGET_TRIPLET: "x64-linux"
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Acquire vcpkg
-      uses: actions/checkout@v4
-      with:
-        repository: "Microsoft/vcpkg"
-        path: vcpkg
+      - uses: actions/checkout@v4
 
-    - name: Bootstrap vcpkg
-      run: "${{ github.workspace }}/vcpkg/bootstrap-vcpkg.sh"
-      shell: bash
+      - name: Acquire vcpkg
+        uses: actions/checkout@v4
+        with:
+          repository: "Microsoft/vcpkg"
+          path: vcpkg
+          fetch-depth: 0
 
-    - name: Enable GitHub Actions Cache backend
-      uses: actions/github-script@v7
-      with:
-        script: |
-          core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
-          core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+      - name: Bootstrap vcpkg
+        run: "${{ github.workspace }}/vcpkg/bootstrap-vcpkg.sh"
+        shell: bash
 
-    - name: Build ports
-      run: ${{ github.workspace }}/vcpkg/vcpkg install
-      shell: bash
+      - name: Test keys
+        run: |
+          echo "${{ hashFiles('vcpkg/scripts/buildsystems/vcpkg.cmake') }}"
+          echo "${{ hashFiles('vcpkg.json') }}"
+        shell: bash
+
+      - name: Cache vcpkg dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/vcpkg_installed
+          key: cache-vcpkg-${{ env.VCPKG_TARGET_TRIPLET }}-${{ hashFiles('vcpkg/scripts/buildsystems/vcpkg.cmake') }}-${{ hashFiles('vcpkg.json') }}
+          restore-keys: |
+            cache-vcpkg-${{ env.VCPKG_TARGET_TRIPLET }}-${{ hashFiles('vcpkg/scripts/buildsystems/vcpkg.cmake') }}-
+            cache-vcpkg-${{ env.VCPKG_TARGET_TRIPLET }}-
+
+      - name: Build ports
+        run: ${{ github.workspace }}/vcpkg/vcpkg install
+        shell: bash
