@@ -22,6 +22,7 @@ jobs:
         with:
           repository: "Microsoft/vcpkg"
           path: vcpkg
+          fetch-depth: 0
 
       - name: Bootstrap vcpkg
         run: "${{ github.workspace }}/vcpkg/bootstrap-vcpkg.sh"
