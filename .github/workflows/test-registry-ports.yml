@@ -35,9 +35,9 @@ jobs:
           toolchain-path: "${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake"
         with:
           path: ${{ github.workspace }}/vcpkg_installed
-          key: ${{ env.cache-name }}-${{ env.VCPKG_TARGET_TRIPLET }}-${{ hashFiles('${{ env.toolchain-path }}')}}-${{ hashFiles('${{ env.manifest-path }}') }}
+          key: ${{ env.cache-name }}-${{ env.VCPKG_TARGET_TRIPLET }}-${{ hashFiles(${{ env.toolchain-path }}) }}-${{ hashFiles(${{ env.manifest-path }}) }}
           restore-keys: |
-            ${{ env.cache-name }}-${{ env.VCPKG_TARGET_TRIPLET }}-${{ hashFiles('${{ env.toolchain-path }}')}}-
+            ${{ env.cache-name }}-${{ env.VCPKG_TARGET_TRIPLET }}-${{ hashFiles(${{ env.toolchain-path }}) }}-
             ${{ env.cache-name }}-${{ env.VCPKG_TARGET_TRIPLET }}-
 
       - name: Build ports
