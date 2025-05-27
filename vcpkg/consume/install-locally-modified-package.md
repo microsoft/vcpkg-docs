@@ -154,7 +154,7 @@ endif()
 In the source code directory, run the following command to generate a patch file.
 
 ```Console
-git diff > "$OVERLAY_LOCATION/vcpkg-sample-library/add-dynamic-lib-support.patch"
+git diff --output "$OVERLAY_LOCATION/vcpkg-sample-library/add-dynamic-lib-support.patch"
 ```
 
 This creates a file named `add-dynamic-lib-support.patch` in your overlay port,
