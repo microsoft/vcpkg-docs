@@ -234,15 +234,10 @@ package's [upstream](../concepts/glossary.md#upstream) version, remember to set
 the `port-version` to `0`; otherwise, remember to increase the `port-version` by
 one.
 
-The [`x-add-version` command](../commands/add-version.md) requires that all your
-port changes are commited to the repository before updating the version
-database.
-
 #### Example: adding a new port version to a Git registry
 
 ```Console
 git add ports/foo/.
-git commit -m "Temporary commit"
 vcpkg x-add-version --x-builtin-ports-root=./ports --x-builtin-registry-versions-dir=./versions foo
 added version 1.0.0#1 to path/to/registry/versions/f-/foo.json
 added version 1.0.0#1 to path/to/registry/versions/baseline.json
@@ -252,11 +247,11 @@ The redirection options `--x-builtin-ports-root` and
 `--x-builtin-registry-versions-dir` should point to your registry's `ports` and
 `versions` directories respectively.
 
-Once, the `x-add-version` command runs successfully, amend the last commit to
-include the versions file changes.
+Once, the `x-add-version` command runs successfully, add and commit the changes.
 
 ```bash
-git commit --amend -m "Update foo to new version"
+git add ./versions
+git commit -m "Update foo to new version"
 ```
 
 ## Filesystem registries

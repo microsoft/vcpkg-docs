@@ -485,9 +485,6 @@ vcpkg x-add-version --all
 
 to update the files for all modified ports at once.
 
-> [!NOTE]
-> These commands require you to have committed your changes to the ports before running them. The reason is that the Git SHA of the port directory is required in these version files. But don't worry, the `x-add-version` command will warn you if you have local changes that haven't been committed.
-
 For more information, see the [Versioning reference](../users/versioning.md) and [Registries](../concepts/registries.md) articles.
 
 ## Patching
