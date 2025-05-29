@@ -148,7 +148,7 @@ Now we can modify `pngpriv.h` to use `abort()` everywhere.
 The output of `git diff` is already in patch format, so we just need to save the patch into the `ports/libpng` directory.
 
 ```powershell
-PS buildtrees\libpng\src\v1.6.37-c993153cdf> git diff --ignore-space-at-eol | out-file -enc ascii ..\..\..\..\ports\libpng\use-abort-on-all-platforms.patch
+PS buildtrees\libpng\src\v1.6.37-c993153cdf> git diff --output ..\..\..\..\ports\libpng\use-abort-on-all-platforms.patch
 ```
 
 Finally, we need to apply the patch after extracting the source.
