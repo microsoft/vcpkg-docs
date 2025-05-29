@@ -280,7 +280,7 @@ Having a `vcpkg-configuration` defined in `vcpkg.json` while also having a `vcpk
       {
         "kind": "git",
         "baseline": "768f6a3ad9f9b6c4c2ff390137690cf26e3c3453",
-        "repository": "https://github.com/microsoft/vcpkg-docs",
+        "repository": "https://github.com/MicrosoftDocs/vcpkg-docs",
         "reference": "vcpkg-registry",
         "packages": [ "beicode", "beison" ]
       }

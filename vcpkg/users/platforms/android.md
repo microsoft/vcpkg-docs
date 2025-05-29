@@ -189,27 +189,27 @@ The package vulkan-hpp:arm64-android is header only and can be used from CMake v
 
 ## Example Android Project
 
-The folder [docs/examples/vcpkg_android_example_cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake) provides a working example, with an Android library that consumes the jsoncpp library:
+The folder [docs/examples/vcpkg_android_example_cmake](https://github.com/MicrosoftDocs/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake) provides a working example, with an Android library that consumes the jsoncpp library:
 
 ### Details
 
-- The [CMakeLists.txt](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake/CMakeLists.txt) simply uses `find_package` and `target_link_library`
+- The [CMakeLists.txt](https://github.com/MicrosoftDocs/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake/CMakeLists.txt) simply uses `find_package` and `target_link_library`
 
-- The [compile.sh](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake/compile.sh) script enables you to select any matching pair of "android abi" /  "vcpkg triplet" and to test the compilation
+- The [compile.sh](https://github.com/MicrosoftDocs/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake/compile.sh) script enables you to select any matching pair of "android abi" /  "vcpkg triplet" and to test the compilation
 
-- The dummy [my_lib.cpp](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake/my_lib.cpp) file uses the jsoncpp library
+- The dummy [my_lib.cpp](https://github.com/MicrosoftDocs/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake/my_lib.cpp) file uses the jsoncpp library
 
 > [!NOTE]
 > This example only compiles an Android library, as the compilation of a full-fledged Android App is beyond the scope of this document.
 
 ## Test on an example: `vcpkg_android.cmake`
 
-Test using [vcpkg_android.cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake).
+Test using [vcpkg_android.cmake](https://github.com/MicrosoftDocs/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake).
 
-The folder [vcpkg_android_example_cmake_script](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script) provides the same example, and uses a cmake script in order to simplify the usage.
+The folder [vcpkg_android_example_cmake_script](https://github.com/MicrosoftDocs/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script) provides the same example, and uses a cmake script in order to simplify the usage.
 
 ### Details
-- The main [CMakeLists.txt](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/CMakeLists.txt) loads [vcpkg_android.cmake](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake) if the flag `VCPKG_TARGET_ANDROID` is set:
+- The main [CMakeLists.txt](https://github.com/MicrosoftDocs/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/CMakeLists.txt) loads [vcpkg_android.cmake](https://github.com/MicrosoftDocs/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/cmake/vcpkg_android.cmake) if the flag `VCPKG_TARGET_ANDROID` is set:
 
   ```cmake
   if (VCPKG_TARGET_ANDROID)
@@ -220,7 +220,7 @@ The folder [vcpkg_android_example_cmake_script](https://github.com/Microsoft/vcp
   > [!IMPORTANT]
   > Place these lines before calling `project()`.
 
-- The [compile.sh](https://github.com/Microsoft/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/compile.sh) script shows that it is then possible to compile for android using a simple cmake invocation, for example:
+- The [compile.sh](https://github.com/MicrosoftDocs/vcpkg-docs/tree/main/vcpkg/examples/vcpkg_android_example_cmake_script/compile.sh) script shows that it is then possible to compile for android using a simple cmake invocation, for example:
 
   ```bash
   cmake .. -DVCPKG_TARGET_ANDROID=ON -DANDROID_ABI=armeabi-v7a
