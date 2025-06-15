@@ -76,6 +76,9 @@
       href: examples/asset-caching-source-nuget.md
   - name: Set up caching using Azure Storage and Azure DevOps
     href: consume/caching-workload-identity-federation.md
+  - name: Authenticate to third-party services
+    displayName: third-party, authentication, GitHub, Azure DevOps, NuGet, GitHub Packages, GitHub Actions Cache, Azure Blob Storage
+    href: consume/third-party-authentication.md
 - name: Produce packages
   expanded: true
   items:
