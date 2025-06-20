@@ -16,7 +16,7 @@ vcpkg x-test-features [options] <package>...
 
 ## Description
 
-Tests all features of a package by installing them in manifest mode. This command is useful for testing that all features of a package are working correctly.
+Tests all features of a package using manifest mode. This command is designed for testing that all features of a package work correctly.
 The following tests are performed:
 - The `core` feature gets installed with default featured disabled
 - Every feature gets installed separately with default features disabled
@@ -117,3 +117,7 @@ Directory to which failure logs will be copied.
 ### `--failing-abi-log`
 
 Path to a file to which abis from ports that failed to build will be written.
+
+### `--for-merge-with [ref]`
+
+Determine which ports to test by comparing the current git repo with the merge-base of `ref`.
