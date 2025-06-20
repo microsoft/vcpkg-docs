@@ -22,7 +22,7 @@ The following tests are performed:
 - Every feature gets installed separately with default features disabled
 - All features combined get installed
 
-Features marked as `unsupported` or `cascade` in [`--ci-feature-baseline`](#ci-feature-baseline) are skipped.
+Features marked as `unsupported` or `cascade` in [`--ci-feature-baseline`](#--ci-feature-baseline) are skipped.
 
 ## Example
 
