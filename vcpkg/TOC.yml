@@ -219,6 +219,8 @@
       href: commands/install.md
     - name: vcpkg integrate
       href: commands/integrate.md
+    - name: vcpkg license-report
+      href: commands/license-report.md
     - name: vcpkg list
       href: commands/list.md
     - name: vcpkg new
