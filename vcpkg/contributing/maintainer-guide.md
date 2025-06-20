@@ -209,6 +209,29 @@ https://github.com/GPUOpen-LibrariesAndSDKs/display-library/blob/master/Public-D
 
 Version constraints within ports should generally be avoided, as they can hinder the independent evolution of projects. Adding such constraints is only permissible when there is a well-documented justification, such as proven incompatibility with specific earlier versions. These constraints should not be used merely to maintain parity with independent projects.
 
+### Variables in `MAYBE_UNUSED_VARIABLES` must apply to at least one configuration
+
+When adding a new variable to [`MAYBE_UNUSED_VARIABLES`](../maintainers/functions/vcpkg_cmake_configure.md#maybe_unused_variables)
+to silence a warning during the CMake configuration step, you must add a comment explaining the case when the new variable
+applies. If a variable does not apply in any configuration, then it is very likely that an underlying bug exists (for example,
+a  misspeled variable name) and adding it has no actual effect on the build.
+
+```cmake
+vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
+  FEATURES
+    windowsfeature WINDOWS_OPTION
+)
+
+vcpkg_configure_cmake(
+  SOURCE_PATH "${SOURCE_PATH}"
+  OPTIONS
+    ${FEATURE_OPTIONS}
+  MAYBE_UNUSED_VARIABLES
+    # Applies only on Windows
+    WINDOWS_OPTION
+)
+```
+
 ## Features
 
 ### Do not use features to implement alternatives
@@ -462,9 +485,6 @@ vcpkg x-add-version --all
 
 to update the files for all modified ports at once.
 
-> [!NOTE]
-> These commands require you to have committed your changes to the ports before running them. The reason is that the Git SHA of the port directory is required in these version files. But don't worry, the `x-add-version` command will warn you if you have local changes that haven't been committed.
-
 For more information, see the [Versioning reference](../users/versioning.md) and [Registries](../concepts/registries.md) articles.
 
 ## Patching
@@ -558,7 +578,13 @@ Optionally, you can add a `test` feature which enables building the tests, howev
 
 ### Do not add `CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS`
 
-Unless the author of the library is already using it, we should not use this CMake functionality because it interacts poorly with C++ templates and breaks certain compiler features. Libraries that don't provide a .def file and do not use __declspec() declarations simply do not support shared builds for Windows and should be marked as such with `vcpkg_check_linkage(ONLY_STATIC_LIBRARY)`.
+Unless the author of the library is already using it, we should not use this CMake functionality because it interacts poorly with C++ templates and breaks certain compiler features. Libraries that don't provide a .def file and do not use __declspec() declarations simply do not support shared builds for Windows and should be marked as such:
+
+```cmake
+if(VCPKG_TARGET_IS_WINDOWS)
+    vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
+endif()
+```
 
 ### Do not rename binaries outside the names given by upstream
 

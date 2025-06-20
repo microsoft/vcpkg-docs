@@ -82,25 +82,25 @@ Adding it to `PATH` ensures you can run vcpkg commands directly from the shell.
 ## 4 - Set up the port files
 
 First, create the `vcpkg.json` file within the
-`custom-overlay\vcpkg-sample-library` folder with the following content:
+`custom-overlay/vcpkg-sample-library` folder with the following content:
 
 ```json
 {
   "name": "vcpkg-sample-library",
   "version": "1.0.2",
-  "homepage": "https://github.com/microsoft/vcpkg-docs/tree/cmake-sample-lib",
   "description": "A sample C++ library designed to serve as a foundational example for a tutorial on packaging libraries with vcpkg.",
+  "homepage": "https://github.com/MicrosoftDocs/vcpkg-docs/tree/cmake-sample-lib",
   "license": "MIT",
   "dependencies": [
+    "fmt",
     {
-      "name" : "vcpkg-cmake",
-      "host" : true
+      "name": "vcpkg-cmake",
+      "host": true
     },
     {
-      "name" : "vcpkg-cmake-config",
-      "host" : true
-    },
-    "fmt"
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
   ]
 }
 ```
@@ -157,12 +157,11 @@ vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO Microsoft/vcpkg-docs
+    REPO MicrosoftDocs/vcpkg-docs
     REF "${VERSION}"
-    SHA512 0  # This is a temporary value. We will modify this value in the next section.
+    SHA512 0 # This is a temporary value. We will modify this value in the next section.
     HEAD_REF cmake-sample-lib
 )
-
 
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
@@ -174,8 +173,8 @@ vcpkg_cmake_config_fixup(PACKAGE_NAME "my_sample_lib")
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 
-file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
-configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" COPYONLY)
+file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}")
+vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 ```
 
 This `portfile` defines how to download, build, install, and package a specific
@@ -187,7 +186,7 @@ C++ library from GitHub using vcpkg.
   GitHub repository.
   - `OUT_SOURCE_PATH SOURCE_PATH`: Sets the directory where the source code will
     be extracted.
-  - `REPO Microsoft/vcpkg-docs`: The GitHub repository containing
+  - `REPO MicrosoftDocs/vcpkg-docs`: The GitHub repository containing
     the source code.
   - `REF "${VERSION}"`: The version of the source code to download.
   - `SHA512 0`: Placeholder for the SHA-512 hash of the source code for
@@ -200,10 +199,10 @@ C++ library from GitHub using vcpkg.
   package configuration files to be compatible with vcpkg.
 - `file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")`: Deletes the
   include directory from the debug installation to prevent overlap.
-- `file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION ...)`: Installs the LICENSE
-  file to the package's share directory and renames it to copyright.
-- `configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" ...)`: Copies a usage
+- `file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" ...)`: Copies a usage
   instruction file to the package's share directory.
+- `vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")`: Installs the LICENSE
+  file to the package's share directory and renames it to copyright.
 
 For more information, refer to the [maintainer guide](../contributing/maintainer-guide.md).
 
@@ -218,8 +217,9 @@ vcpkg install vcpkg-sample-library --overlay-ports=C:\path\to\custom-overlay
 You will get a long error message. Scan the output until you find:
 
 ```console
-Expected hash: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-Actual hash: 4202125968a01219deeee14b81e1d476dab18d968425ba36d640816b0b3db6168f8ccf4120ba20526e9930c8c7294e64d43900ad2aef9d5f28175210d0c3a417
+Downloading https://github.com/MicrosoftDocs/vcpkg-docs/archive/1.0.2.tar.gz -> MicrosoftDocs-vcpkg-docs-1.0.2.tar.gz
+Successfully downloaded MicrosoftDocs-vcpkg-docs-1.0.2.tar.gz
+error: failing download because the expected SHA512 was all zeros, please change the expected SHA512 to: 4202125968a01219deeee14b81e1d476dab18d968425ba36d640816b0b3db6168f8ccf4120ba20526e9930c8c7294e64d43900ad2aef9d5f28175210d0c3a417
 ```
 
 Copy the "Actual hash"
@@ -249,6 +249,7 @@ Building vcpkg-sample-library:x64-windows...
 -- Configuring x64-windows
 -- Building x64-windows-dbg
 -- Building x64-windows-rel
+-- Installing: C:/Users/dev/demo/vcpkg/packages/vcpkg-sample-library_x64-windows/share/vcpkg-sample-library/usage
 -- Installing: C:/Users/dev/demo/vcpkg/packages/vcpkg-sample-library_x64-windows/share/vcpkg-sample-library/copyright
 -- Performing post-build validation
 Stored binaries in 1 destinations in 94 ms.

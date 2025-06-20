@@ -3,7 +3,7 @@ title: Test your custom registry ports using vcpkg with GitHub Actions
 description: This tutorial shows users how to set up continuous integration environment for their registry's vcpkg ports using GitHub Actions.
 author: vicroms
 ms.author: viromer
-ms.date: 1/10/2024
+ms.date: 5/1/2025
 ms.topic: how-to
 
 #customer intent: As an advanced vcpkg user, I want to add continuous integration to test the vcpkg ports in my custom Git registry
@@ -12,18 +12,16 @@ ms.topic: how-to
 # Test your custom registry ports using vcpkg with GitHub Actions
 
 Once you have set up a custom registry of vcpkg ports, you may want to add
-Continous Integration to validate that all your dependencies can be built
+Continuos Integration (CI) to validate that all your dependencies can be built
 successfully.
 
-The main vcpkg registry at
-[Microsoft/vcpkg](<https://github.com/Microsoft/vcpkg>) is tested by the vcpkg
-team using continuous integration (CI) with Azure DevOps. This ensures that
-adding new packages or updating existing ones does not break consumers.
+The main vcpkg registry at [Microsoft/vcpkg](<https://github.com/Microsoft/vcpkg>) is tested by the vcpkg team using Azure
+DevOps Pipelines. This ensures that adding new packages or updating existing ones does not break consumers.
 
 In this article, we show you how to set up a CI environment to test the vcpkg
 ports in your own registry.
 
-In this article, you'll learn to:
+In this article, you'll learn to set up a CI workflow for your registry running in GitHub Actions:
 
 > [!divclass]
 >
@@ -33,15 +31,13 @@ In this article, you'll learn to:
 ## Prerequisites
 
 * A GitHub account
-* Your own [vcpkg Git registry](../produce/publish-to-a-git-registry.md)
-* Completion of the [binary
-  caching](../consume/binary-caching-github-actions-cache.md)
-  and [asset caching](../consume/asset-caching.md) tutorials.
-* Knowledge about GitHub Actions workflows
+* A [vcpkg Git registry](../produce/publish-to-a-git-registry.md)
+* Read the [binary caching](../consume/binary-caching-github-packages.md) tutorial
+* Read the [asset caching](../consume/asset-caching.md) tutorial
 
 ## Set up a binary cache and asset cache for your GitHub Actions workflows
 
-Building a large collection of ports is an expensive task both in terms of
+Testing a large collection of ports is an expensive task both in terms of
 time and computing power. We strongly recommend that before engaging CI for
 your ports, you invest in setting up a binary cache and an asset cache for your
 GitHub Action workflows.
@@ -53,30 +49,25 @@ artifacts in subsequent runs. It can also help mitigate issues where the
 upstream repository is unreliable: for example, a broken download URL.
 
 For detailed instructions on how to set up these caches read our [binary
-caching](../consume/binary-caching-github-actions-cache.md) and [asset
+caching](../consume/binary-caching-github-packages.md) and [asset
 caching](../consume/asset-caching.md) articles.
 
 ## Example: Enable asset and binary caching in a GitHub Actions workflow
 
 ```yml
-steps:
-  - name: Enable GitHub Actions Cache backend
-    uses: actions/github-script@v7
-    with:
-      script: |
-        core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
-        core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+env:
+  FEED_URL: https://nuget.pkg.github.com/<OWNER>/index.json
 
-  - name: some vcpkg task
+steps:
+  - name: Install vcpkg ports
     run: "${{ github.workspace }}/vcpkg/vcpkg install"
     env: 
       X_VCPKG_ASSET_SOURCES: "clear;x-azurl,https://my.domain.com/container,{{ secrets.SAS }},readwrite"
-      VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
+      VCPKG_BINARY_SOURCES: "clear;nuget,https://nuget.pkg.github.com/<OWNER>/index.json,readwrite"
 ```
 
-This example shows how to set up a binary cache and asset cache in a
-GitHub Actions workflow. You should adapt this snippet to use on your
-own workflow's YAML file.
+This example shows how to set up a binary cache and asset cache in a GitHub Actions workflow. You should adapt this snippet 
+to use on your own workflow's YAML file.
 
 Breaking down this snippet:
 
@@ -285,8 +276,6 @@ left out of the tests.
 The following articles may be useful to you when setting up a CI environment.
 
 * [Authenticate to private Git registries](../consume/gha-authentication.md)
-* [Set up a binary cache using GHA
-  Cache](../consume/binary-caching-github-actions-cache.md)
 * [Set up an asset cache](../consume/asset-caching.md)
 * [Binary cache reference](../users/binarycaching.md)
 * [Asset cache reference](../users/assetcaching.md)

@@ -24,7 +24,7 @@ Binary caching is configured with the environment variable `VCPKG_BINARY_SOURCES
 | [`x-aws,<prefix>[,<rw>]`](#aws)                  | **Experimental: will change or be removed without warning**<br>Adds an AWS S3 source.                                            |
 | [`x-aws-config,<parameter>`](#aws)               | **Experimental: will change or be removed without warning**<br>Configure all AWS S3 providers.                                   |
 | [`x-cos,<prefix>[,<rw>]`](#cos)                  | **Experimental: will change or be removed without warning**<br>Adds a Tencent Cloud Object Storage source.                       |
-| [`x-gha,<rw>]`](#gha)                            | **Experimental: will change or be removed without warning**<br>Use the GitHub Actions cache as source.                           |
+| [`x-gha,<rw>]`](#gha)                            | **Removed: This feature has been removed from vcpkg** |
 | [`x-az-universal,<organization>,<project>,<feed>[,<rw>]`](#azuniversal)                   | **Experimental: will change or be removed without warning**<br>Use Universal Packages in Azure Artifacts as source.             |
 | `interactive`                                    | Enables interactive credential management for [NuGet](#nuget) (for debugging; requires `--debug` on the command line)            |
 
@@ -136,34 +136,7 @@ Commas (`,`) are valid as part of a object prefix in GCS. Remember to escape the
 
 ### <a name="gha"></a> GitHub Actions cache
 
-[!INCLUDE [experimental](../../includes/experimental.md)]
-
-```
-x-gha[,<rw>]
-```
-
-Adds the GitHub Actions cache as a provider. This binary caching provider is only valid in the context of a GitHub Actions workflow. This provider requires both of the `ACTIONS_CACHE_URL` and `ACTIONS_RUNTIME_TOKEN` environment variables to be set. Setting these environment variables correctly is covered in the following Quickstart section.
-
-#### <a name="gha-quickstart"></a> Quickstart
-
-In order for vcpkg to make use of the GitHub Actions Cache, it needs the Actions Cache URL and Runtime Token. To do this, both values should be exported as environment variables in a workflow step similar to the following:
-
-```yaml
-- uses: actions/github-script@v7
-  with:
-    script: |
-      core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
-      core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
-```
-
-Specifying these values as environment variables instead of vcpkg command line arguments is by design as the GitHub Actions Cache binary caching provider can only be used from a GitHub Actions workflow.
-
-Once the environment variables have been exported, vcpkg can be run with the GitHub Actions binary caching provider like this:
-
-```yaml
-- name: Install dependencies via vcpkg
-  run: vcpkg install zlib --binarysource="clear;x-gha,readwrite"
-```
+[!INCLUDE [removed](../../includes/removed.md)]
 
 ### <a name="azuniversal"></a> Universal Packages in Azure Artifacts
 
@@ -194,7 +167,6 @@ x-az-universal,organization_url,,feed_name,readwrite
 ```
 
 Leave the `project_name` parameter empty to make vcpkg download and publish Universal Packages to your feed at an organization scope.
-
 
 ### <a name="http"></a> HTTP provider
 
@@ -228,14 +200,19 @@ http,https://cache.example.com/{name}/{version}/{sha},readwrite,Authorization: B
 ### <a name="nuget"></a> NuGet provider
 
 Add a NuGet server with the `-Source` NuGet CLI parameter:
+
 ```
 nuget,<uri>[,<rw>]
 ```
+
 Use a NuGet config file with the `-Config` NuGet CLI parameter:
+
 ```
 nugetconfig,<path>[,<rw>]
 ```
+
 Configure the timeout for NuGet sources:
+
 ```
 nugettimeout,<seconds>
 ```
@@ -401,7 +378,7 @@ Use a Personal Access Token (PAT) as the password for maximum security. You can 
 > [!NOTE]
 > Information on the ABI Hash is provided as an implementation note and will change without notice.
 
-For every build, vcpkg calculates an _ABI Hash_ to determine equivalence. If two builds have the same ABI Hash, vcpkg will consider them identical and reuse the binaries across projects and machines.
+For every build, vcpkg calculates an *ABI Hash* to determine equivalence. If two builds have the same ABI Hash, vcpkg will consider them identical and reuse the binaries across projects and machines.
 
 The ABI Hash considers:
 
@@ -429,7 +406,7 @@ The calculated ABI Hashes are stored in each package and in the current installe
 ### Example ABI Hash of zlib
 
 Enable [debug output](../users/binarycaching-troubleshooting.md#debug-output) to
-print the full Application Binary Interface (ABI) hash of a pacakge. For zlib: 
+print the full Application Binary Interface (ABI) hash of a pacakge. For zlib:
 
 ```
 [DEBUG] Trying to hash <path>\buildtrees\zlib\x86-windows.vcpkg_abi_info.txt

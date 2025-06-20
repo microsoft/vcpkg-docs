@@ -66,5 +66,5 @@ cyclonedx convert --input-file vcpkg.spdx.json --input-format spdxjson --output-
 ```
 
 Some vcpkg dependency information may be lost during conversion. Refer to the [CycloneDX 
-documentation]((https://github.com/CycloneDX/cyclonedx-cli?tab=readme-ov-file#spdx-format)
+documentation](https://github.com/CycloneDX/cyclonedx-cli?tab=readme-ov-file#spdx-format)
 for more details.

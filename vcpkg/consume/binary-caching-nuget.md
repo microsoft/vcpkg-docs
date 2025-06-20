@@ -178,14 +178,14 @@ template below:
   </apiKeys>
   <packageSources>
     <clear />
-    <add  key="<feed name>" value="<feed url>" />
+    <add  key="<feed name>" value="<feed url>" disableTLSCertificateValidation="false" />
   </packageSources>
-  <packageSourcesCredentials>
+  <packageSourceCredentials>
     <<feed name>>
       <add key="Username" value="<username>" />
-      <add key="Password" value="<password>" />
+      <add key="ClearTextPassword" value="<password>" />
     </<feed name>>
-  </packageSourcesCredentials>
+  </packageSourceCredentials>
 </configuration>
 ```
 
@@ -202,14 +202,14 @@ Example `nuget.config` file :
   </apikeys>
   <packageSources>
     <clear />
-    <add key="Contoso" value="https://contoso.org/packages/" />
+    <add key="Contoso" value="https://contoso.org/packages/" disableTLSCertificateValidation="false" />
   </packageSources>
-  <packageSourcesCredentials>
+  <packageSourceCredentials>
     <Contoso>
       <add key="Username" value="user" />
-      <add key="Password" value="..." />
+      <add key="ClearTextPassword" value="..." />
     </Contoso>
-  </packageSourcesCredentials>
+  </packageSourceCredentials>
 </configuration>
 ```
 
@@ -220,41 +220,11 @@ If you're uploading your packages to an Azure Artifacts NuGet feed, use `AzureDe
 source's API Key by running `nuget setApiKey AzureDevOps -Source <feed url> -ConfigFile <path to nuget.config>`.
 Otherwise, replace the value with your feed's proper API Key if you have one.
 
+If you are using a self-signed certificate you may need to disable TLS certificate validation. This option
+is only available through the use of a _nuget.config_ file.
+
 Add the `<clear />` source to ignore other previously configured values. If you want, you can define multiple
 sources in this file, use a `<add key="<feed name>" value="<feed url>" />` entry for each source.
-
-Run the following command to add a NuGet source using a `nuget.config` file, replace 
-`<path to nuget.config>` with the path to your `nuget.config` file:
-
-::: zone pivot="shell-powershell"
-
-```PowerShell
-.$(vcpkg fetch nuget) sources add -ConfigFile <path to nuget.config>
-```
-
-::: zone-end
-::: zone pivot="shell-cmd"
-
-Execute the command below to fetch the path to the NuGet executable:
-
-```console
-vcpkg fetch nuget
-```
-This will provide an output that looks something like `C:\path\to\nuget.exe`. Make a note of this path.
-Using the path obtained from the previous step, run the following command:
-
-```console
-C:\path\to\nuget.exe sources add -ConfigFile <path to nuget.config>
-```
-
-::: zone-end
-::: zone pivot="shell-bash"
-
-```bash
-mono `vcpkg fetch nuget | tail -n 1` sources add -ConfigFile <path to nuget.config>
-```
-
-::: zone-end
 
 ## 3 - Configure vcpkg to use your NuGet feed
 
@@ -317,5 +287,3 @@ Here are other tasks to try next:
 * [Change the default binary cache location](binary-caching-default.md)
 * [Set up a local binary cache](binary-caching-local.md)
 * [Set up a binary cache in your GitHub Actions workflow using GitHub Packages](binary-caching-github-packages.md)
-* [Set up a binary cache in your GitHub Actions workflow using GitHub Actions
-  Cache](binary-caching-github-actions-cache.md)
