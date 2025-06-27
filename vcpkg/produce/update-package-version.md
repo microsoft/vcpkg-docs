@@ -101,19 +101,19 @@ Change the version in `vcpkg.json` to `1.0.1`.
 {
   "name": "vcpkg-sample-library",
   "version": "1.0.1",
-  "homepage": "https://github.com/microsoft/vcpkg-docs/tree/cmake-sample-lib",
   "description": "A sample C++ library designed to serve as a foundational example for a tutorial on packaging libraries with vcpkg.",
+  "homepage": "https://github.com/MicrosoftDocs/vcpkg-docs/tree/cmake-sample-lib",
   "license": "MIT",
   "dependencies": [
+    "fmt",
     {
-      "name" : "vcpkg-cmake",
-      "host" : true
+      "name": "vcpkg-cmake",
+      "host": true
     },
     {
-      "name" : "vcpkg-cmake-config",
-      "host" : true
-    },
-    "fmt"
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
   ]
 }
 ```
@@ -136,8 +136,9 @@ hash in your portfile.
 Example output:
 
 ```Console
-Expected hash: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-Actual hash: 1290bdba0f55fcdd702a3292ce00798b173fdffa0c0cc005e15dc88c6d2e7a1143c16f29fde0647b8bddd01a7c97299cc845f7dff22811a3326cf7c69f5957f3
+Downloading https://github.com/MicrosoftDocs/vcpkg-docs/archive/1.0.1.tar.gz -> MicrosoftDocs-vcpkg-docs-1.0.1.tar.gz
+Successfully downloaded MicrosoftDocs-vcpkg-docs-1.0.1.tar.gz
+error: failing download because the expected SHA512 was all zeros, please change the expected SHA512 to: fc55ce73b9175bdfedd73d9df1e7ed744de7ee3fd4aa51cafce65ee7bd49e56dc68301843c31d2ba017fd362663c25f53bbf56cfd35dbac09520e39b86bc25b8
 ```
 
 ### Modify `portfile.cmake`
@@ -153,20 +154,24 @@ Your `portfile.cmake` file should look similar to:
 ```cmake
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO Microsoft/vcpkg-docs
-    REF e5c3f12d5e6ac6450f43aee898f7697a06280521
-    SHA512 1290bdba0f55fcdd702a3292ce00798b173fdffa0c0cc005e15dc88c6d2e7a1143c16f29fde0647b8bddd01a7c97299cc845f7dff22811a3326cf7c69f5957f3
+    REPO MicrosoftDocs/vcpkg-docs
+    REF 1.0.1
+    SHA512 fc55ce73b9175bdfedd73d9df1e7ed744de7ee3fd4aa51cafce65ee7bd49e56dc68301843c31d2ba017fd362663c25f53bbf56cfd35dbac09520e39b86bc25b8
     HEAD_REF cmake-sample-lib
 )
+
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
 )
+
 vcpkg_cmake_install()
-vcpkg_copy_pdbs()
+
 vcpkg_cmake_config_fixup(PACKAGE_NAME "my_sample_lib")
+
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
-file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
-configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" COPYONLY)
+
+file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}")
+vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 ```
 
 ## 4 - Install your overlay port
@@ -186,7 +191,6 @@ in your local clone of the vpckg repository:
 ```Console
 git checkout -b vcpkg-sample-library-1.0.1
 git add ports/vcpkg-sample-library
-git commit -m "Update vcpkg-sample-library to version 1.0.1"
 ```
 
 ### Update the versions database
@@ -204,7 +208,7 @@ to your fork of <https://github.com/Microsoft/vcpkg>.
 
 ```Console
 git add versions/.
-git commit -m "Update vcpkg-sample-library to version 1.0.1" --amend
+git commit -m "Update vcpkg-sample-library to version 1.0.1"
 git push --set-upstream <fork remote> vcpkg-sample-library-1.0.1
 ```
 

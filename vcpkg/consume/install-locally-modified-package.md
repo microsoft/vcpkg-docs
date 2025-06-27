@@ -154,7 +154,7 @@ endif()
 In the source code directory, run the following command to generate a patch file.
 
 ```Console
-git diff > "$OVERLAY_LOCATION/vcpkg-sample-library/add-dynamic-lib-support.patch"
+git diff --output "$OVERLAY_LOCATION/vcpkg-sample-library/add-dynamic-lib-support.patch"
 ```
 
 This creates a file named `add-dynamic-lib-support.patch` in your overlay port,
@@ -162,26 +162,48 @@ with contents similar to:
 
 ```diff
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 2b42f71..b347b53 100644
+index 2b42f71..378aac7 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -6,11 +6,15 @@ project(my_sample_lib)
+@@ -2,26 +2,33 @@ cmake_minimum_required(VERSION 3.10)
+ 
+ project(my_sample_lib)
+ 
++include(GNUInstallDirs)
++
+ # Find the fmt library
  find_package(fmt CONFIG REQUIRED)
  
  # Add your library
 -add_library(my_sample_lib STATIC my_sample_lib.cpp)
 +add_library(my_sample_lib my_sample_lib.cpp)
++
++if (BUILD_SHARED_LIBS AND MSVC)
++    target_compile_definitions(my_sample_lib PRIVATE MYLIB_EXPORTS)
++endif()
  
  # Link your library to fmt
  target_link_libraries(my_sample_lib PRIVATE fmt::fmt)
  
-+if (BUILD_SHARED_LIBS)
-+    target_compile_definitions(my_sample_lib PRIVATE MYLIB_EXPORTS)
-+endif()
 +
  # Add include directories
  target_include_directories(my_sample_lib PUBLIC 
      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>   # for headers when building
+-    $<INSTALL_INTERFACE:include>  # for client in install mode
++    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>  # for client in install mode
+ )
+ # Install the library and its headers
+ install(TARGETS my_sample_lib
+         EXPORT my_sample_lib_targets
+-        ARCHIVE DESTINATION lib
+-        LIBRARY DESTINATION lib
+-        RUNTIME DESTINATION bin)
++        ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
++        LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
++        RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
+ 
+ install(FILES my_sample_lib.h DESTINATION include)
+ 
 diff --git a/my_sample_lib.h b/my_sample_lib.h
 index d6d70b8..0b62141 100644
 --- a/my_sample_lib.h
@@ -194,6 +216,7 @@ index d6d70b8..0b62141 100644
 +__declspec(dllexport)
 +#endif
  std::string greet(const std::string& name);
+
 ```
 
 ## 6 - Modify `portfile.cmake` to apply the patch
@@ -206,12 +229,12 @@ apply your patch to the source code.
 ```cmake
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO Microsoft/vcpkg-docs
-    REF "${VERSION}"
+    REPO MicrosoftDocs/vcpkg-docs
+    REF 1.0.0 # This is for demonstration purposes as '1.0.2' of the sample library already has dynamic library support
     SHA512 3f206cc2fe61d9c97c82b30852e1e4e6df299d93f6159edd1e56c644fa03ccc4670f7681e356d0e3db898a74e099a1ec531821df5430a7b14d61c743c5aa8c30
     HEAD_REF cmake-sample-lib
     PATCHES
-      "add-dynamic-lib-support.patch"
+        "add-dynamic-lib-support.patch"
 )
 
 vcpkg_cmake_configure(
@@ -219,17 +242,13 @@ vcpkg_cmake_configure(
 )
 
 vcpkg_cmake_install()
-vcpkg_copy_pdbs()
+
 vcpkg_cmake_config_fixup(PACKAGE_NAME "my_sample_lib")
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
-file(
-    INSTALL "${SOURCE_PATH}/LICENSE" 
-    DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" 
-    RENAME copyright
-)
-configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" COPYONLY)
 
+file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}")
+vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 ```
 
 ## 7 - Install your overlay port

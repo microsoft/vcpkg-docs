@@ -45,7 +45,7 @@ Support is broken into 4 distinct categories. They are:
   configurations work. The vcpkg team is interested in moving as many platforms out of community support
   into full support as possible.
 * **Unsupported**  
-  Configurations that are known no to work for some reason. In general, PRs fixing only these platforms
+  Configurations that are known not to work for some reason. In general, PRs fixing only these platforms
   are not accepted.
 
 ## Full support, tested

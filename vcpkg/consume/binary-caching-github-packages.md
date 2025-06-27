@@ -122,8 +122,15 @@ Add the following step in your GitHub Actions workflow file:
 
 ::: zone pivot="linux-runner"
 
-On Linux, you need `mono` to execute `nuget.exe`. GitHub Actions runners using Ubuntu come with `mono`
-preinstalled. Otherwise, you can install `mono` using your distribution's system package manager.
+On Linux, you need `mono` to execute `nuget.exe`. You can install `mono` using your distribution's
+system package manager:
+
+```bash
+apt install mono-complete
+```
+
+Note that `ubuntu-22.04` GitHub Actions runners come with `mono` preinstalled, but starting with
+`ubuntu-24.04` (which `ubuntu-latest` currently points to), `mono` no longer comes preinstalled.
 
 ```YAML
 - name: Add NuGet sources

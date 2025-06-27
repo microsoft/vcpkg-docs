@@ -291,7 +291,7 @@ The path should be absolute, formatted with backslashes, and have no trailing
 slash:
 
 ```cmake
-set(VCPKG_VISUAL_STUDIO_PATH "C:\\Program Files (x86)\\Microsoft Visual Studio\\Preview\\Community")
+set(VCPKG_VISUAL_STUDIO_PATH "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview")
 ```
 
 ### VCPKG_PLATFORM_TOOLSET
