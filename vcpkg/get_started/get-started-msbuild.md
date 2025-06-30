@@ -23,12 +23,34 @@ dependencies, configure the project, build, and run a simple application.
 
 ## 1 - Set up vcpkg
 
+vcpkg can be installed in two ways: manually or through the Visual Studio installer.
+
+### Option A: If you installed vcpkg via Visual Studio installer
+
+If vcpkg was installed through the Visual Studio installer (as part of the C++ development workload), it's
+already available on your system and you can skip to step 3. The vcpkg executable is typically available in your
+PATH and integration may already be enabled.
+
+To verify vcpkg is available, run:
+
+```console
+vcpkg version
+```
+
+If this command succeeds, proceed to step 3. If not, or if you prefer a manual installation, follow Option B.
+
+### Option B: Manual installation
+
 [!INCLUDE [setup-vcpkg](includes/setup-vcpkg.md)]
 
 3. Integrate with Visual Studio MSBuild
 
     The next step is to enable user-wide vcpkg integration, this makes MSBuild
     aware of vcpkg's installation path.
+
+    > [!NOTE]
+    > If you installed vcpkg via Visual Studio installer, integration may already be enabled. You can still run
+    > this command to ensure integration is properly set up.
 
     Run
 
@@ -67,6 +89,10 @@ dependencies, configure the project, build, and run a simple application.
 
     [!INCLUDE [env-vars](../../includes/env-vars.md)]
 
+    > [!NOTE]
+    > If you installed vcpkg via Visual Studio installer, you may skip this step as vcpkg is typically already
+    > available in your PATH. However, you may still need to set `VCPKG_ROOT` for some scenarios.
+
     ::: zone pivot="shell-powershell"
     Open the built-in Developer PowerShell window in Visual Studio.
 
@@ -74,15 +100,26 @@ dependencies, configure the project, build, and run a simple application.
         Screenshot of Visual Studio UI for the built-in PowerShell developer window
     :::image-end:::
 
-    Run the following commands:
+    Run the following commands (adjust the path based on your installation):
+
+    **For manual installation:**
 
     ```PowerShell
     $env:VCPKG_ROOT = "C:\path\to\vcpkg"
     $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
     ```
 
+    **For Visual Studio installer installation:**
+
+    ```PowerShell
+    # vcpkg is typically already in PATH, but you can set VCPKG_ROOT if needed
+    # The exact path may vary depending on your Visual Studio version
+    $env:VCPKG_ROOT = "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg"
+    ```
+
     :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-powershell.png" alt-text="setting up your environment variables":::
-        Screenshot of Visual Studio UI for the built-in PowerShell developer window showing how to set up VCPKG_ROOT and and add it to PATH.
+        Screenshot of Visual Studio UI for the built-in PowerShell developer window showing how to set up
+        VCPKG_ROOT and and add it to PATH.
     :::image-end:::
 
     ::: zone-end
@@ -93,17 +130,27 @@ dependencies, configure the project, build, and run a simple application.
         Screenshot of Visual Studio UI for developer command prompt.
     :::image-end:::
 
-    Run the following commands:
+    Run the following commands (adjust the path based on your installation):
+
+    **For manual installation:**
 
     ```console
     set "VCPKG_ROOT=C:\path\to\vcpkg"
     set PATH=%VCPKG_ROOT%;%PATH%
     ```
 
-    :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-cmd.png" alt-text="setting up your environment variables":::
-        Screenshot of Visual Studio developer command prompt showing how to set up VCPKG_ROOT and and add it to PATH.
-    :::image-end:::
+    **For Visual Studio installer installation:**
 
+    ```console
+    REM vcpkg is typically already in PATH, but you can set VCPKG_ROOT if needed
+    REM The exact path may vary depending on your Visual Studio version
+    set "VCPKG_ROOT=C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg"
+    ```
+
+    :::image type="complex" source="../resources/get_started/visual-studio-environment-variable-setup-cmd.png" alt-text="setting up your environment variables":::
+        Screenshot of Visual Studio developer command prompt showing how to set up VCPKG_ROOT and and add it
+        to PATH.
+    :::image-end:::
 
     ::: zone-end
 
